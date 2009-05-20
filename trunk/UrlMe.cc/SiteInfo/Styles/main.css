@@ -1,0 +1,72 @@
+﻿body { font-family: Arial; font-size:12px; }
+
+input { }
+
+.txtBoxExtraLarge { width: 180px; }
+.txtBoxLarge { width: 152px;  }
+.txtBoxMedium { width: 80px; }
+.txtBoxSmall { width: 40px; }
+
+#divLogo {
+    float:left;
+    height:45px;
+}
+
+#divSiteUpdates 
+{
+    float:left; width: 600px; padding:5px; overflow:auto;
+}
+
+#divSignInCreateAccountContainer {
+    float: right;
+    border: 1px dashed #D0D0D0; 
+    padding:5px; 
+    overflow:auto;
+    /* width:188px; */
+}
+
+#divSignInCreateAccountContainer #divSignInCreateAccount {
+    float:right;
+    background-color: #E8EEFA;
+    padding: 10px;
+    border: 0px dashed #D0D0D0;
+}
+
+.msg { }
+a:link,a:visited,a:hover,a:active { color:blue; }
+a.feedback:link,a.feedback:visited,a.feedback:hover,a.feedback:active { color:green; }
+.editUnchecked { border-bottom:dashed 1px black; }
+.editChecked { border-bottom:dashed 1px #AAA; color: #AAA; text-decoration:line-through; }
+a.noUnderline:link,a.noUnderline:visited,a.noUnderline:hover,a.noUnderline:active { text-decoration:none; }
+.inputField { margin-bottom:5px; }
+
+.messageBox { position: absolute; top: 13px; left: 0; width: 100%; }
+.messageBox #messageContent { font-weight:bold; padding: 3px; background-color: #FFF1A8; text-align:center; margin: 0 auto; width: 110px; }
+
+.GridView 
+{
+}
+    .GridView td 
+    {
+        padding:0 5px; height:24px;
+    }
+    .GridView th
+    {
+        background-color:#69A8D1;
+        color:White;
+        padding: 0 4px;
+    }
+.Form 
+{
+    border: dashed 1px #D0D0D0;
+    padding:5px;
+}
+    .Add
+    {
+        width: 700px; /* orig: 823, then 858 */
+    }
+.Private 
+{
+    font-style: italic;
+    color:Red;    
+}

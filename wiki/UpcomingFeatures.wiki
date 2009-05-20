@@ -2,12 +2,11 @@
 
 = Introduction =
 
-Add your content here.
+Intro content here.
 
 
 = Details =
 
-Add your content here.  Format your content with:
-  * Text in *bold* or _italic_
-  * Headings, paragraphs, and lists
-  * Automatic links to other wiki pages
+1. OpenID authentication, supporting login to urlme.cc via your Google, MyOpenID, Facebook accounts.
+
+2. Thumbnail previews for each link, via http://www.thumbalizr.com/.

@@ -1,4 +1,4 @@
-#summary Upcoming features that I'd like to implement!
+#summary Upcoming features that I'd like to implement
 
 = Introduction =
 

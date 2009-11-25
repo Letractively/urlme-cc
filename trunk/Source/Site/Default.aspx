@@ -5,7 +5,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" >
 <head runat="server">
     <link href="SiteInfo/Styles/main.css" rel="stylesheet" type="text/css" />
-    <script src="http://filebox.vt.edu/users/iadavis/javascript/common.js" type="text/javascript"></script>
+    <script src="<%=ResolveUrl("~/") %>/SiteInfo/javascript/common.js" type="text/javascript"></script>
 </head>
 <body>
     <form id="form1" runat="server">
@@ -21,7 +21,7 @@
         <ContentTemplate>
             <div>
 	            <div id="divLogo">
-	                <a href="<%= Library.Configuration.Site.ApplicationUrlRoot %>"><img style="border:none;" src="<%=ResolveUrl(Library.Configuration.Site.Logo) %>" /></a>
+	                <a href="<%= ResolveUrl("~/") %>"><img style="border:none;" src="<%=ResolveUrl(Library.Configuration.Site.Logo) %>" /></a>
 	            </div><!-- /divLogo -->
                 <div style="float:right; width: 300px; text-align:right;">
                     <b><%= HttpContext.Current.User.Identity.Name.Split("|".ToCharArray())[1]%></b>
@@ -33,7 +33,7 @@
                 <!-- ### ADD FORM ### -->
                 <strong>Add:</strong>
                 <div class="Form Add">
-                    <%=Library.Configuration.Site.ApplicationUrlRoot %>&nbsp;<asp:TextBox ID="txtPath" style="width:50px" runat="server" />
+                    <%=Library.Configuration.Site.UrlNoEndingSlash %>/&nbsp;<asp:TextBox ID="txtPath" style="width:50px" runat="server" />
                     &nbsp;redirects&nbsp;to&nbsp;
                     <asp:TextBox ID="txtDestinationUrl" runat="server" style="width:300px;" />
                     <span style="display:none">
@@ -69,10 +69,10 @@
                     <asp:TemplateField HeaderText="Link">
                         <ItemTemplate>
                             <div style="width:200px;" onmouseover="showTextBox(<%# Eval("LinkID") %>);" onmouseout="hideTextBox(<%# Eval("LinkID") %>);">
-                                <span id="spnLinkTextContainer<%# Eval("LinkID") %>"><%# String.Format("{0}<b>{1}</b>",Library.Configuration.Site.ApplicationUrlRoot, Eval("Path")) %></span>
-                                <span style="display:none;" id="spnLinkTextBoxContainer<%# Eval("LinkID") %>"><%# String.Format("<input readonly=\"readonly\" onclick=\"this.select();\" class=\"txtBoxLarge\" id=\"txtLink{0}\" type=\"text\" value=\"{1}{2}\"/>",Eval("LinkID"),Library.Configuration.Site.ApplicationUrlRoot, Eval("Path")) %></span>
+                                <span id="spnLinkTextContainer<%# Eval("LinkID") %>"><%# String.Format("{0}/<b>{1}</b>",Library.Configuration.Site.UrlNoEndingSlash, Eval("Path")) %></span>
+                                <span style="display:none;" id="spnLinkTextBoxContainer<%# Eval("LinkID") %>"><%# String.Format("<input readonly=\"readonly\" onclick=\"this.select();\" class=\"txtBoxLarge\" id=\"txtLink{0}\" type=\"text\" value=\"{1}/{2}\"/>",Eval("LinkID"),Library.Configuration.Site.UrlNoEndingSlash, Eval("Path")) %></span>
                             </div>
-                            <div id="divEditPath" runat="server" visible="false"><%=Library.Configuration.Site.ApplicationUrlRoot%><asp:TextBox ID="txtPath" CssClass="txtBoxLarge" runat="server" Text='<%# Eval("Path") %>' /></div>
+                            <div id="divEditPath" runat="server" visible="false"><%=Library.Configuration.Site.UrlNoEndingSlash + "/"%><asp:TextBox ID="txtPath" CssClass="txtBoxLarge" runat="server" Text='<%# Eval("Path") %>' /></div>
                         </ItemTemplate>
                     </asp:TemplateField>
                     <asp:TemplateField HeaderText="Destination Url">

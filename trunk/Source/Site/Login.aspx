@@ -5,12 +5,13 @@
 <html xmlns="http://www.w3.org/1999/xhtml" >
 <head runat="server">
     <link href="SiteInfo/Styles/main.css" rel="stylesheet" type="text/css" />
+    <script src="<%=ResolveUrl("~/") %>/SiteInfo/javascript/common.js" type="text/javascript"></script>
 </head>
 <body>
     <form id="form1" runat="server">
     <div>
 	    <div style="float:left;">
-	        <div style="float:left;"><a href="<%= Library.Configuration.Site.ApplicationUrlRoot %>"><img style="border:none;" src="<%=ResolveUrl(Library.Configuration.Site.Logo) %>" /></a></div>
+	        <div style="float:left;"><a href="<%= ResolveUrl("~/") %>"><img style="border:none;" src="<%=ResolveUrl(Library.Configuration.Site.Logo) %>" /></a></div>
             <br clear="all" />
             <br />	    
 	        <div id="divSiteUpdates">
@@ -36,7 +37,7 @@
 	        </div>
 	    </div><!-- logo & siteupdates container -->
 	    <div id="divSignInCreateAccountContainer">
-            <iframe style="display:none" src="https://urlme-cc.rpxnow.com/openid/embed?token_url=http://localhost/urlme.www01/login.aspx"
+            <iframe src="https://urlme-cc.rpxnow.com/openid/embed?token_url=<%=Library.Configuration.Site.UrlNoEndingSlash + ResolveUrl("~/") %>login.aspx"
               scrolling="no" frameBorder="no" style="width:310px;height:240px;">
             </iframe>
             <br clear="all" />
@@ -75,25 +76,6 @@
         function init() {
             // set focus to email input
             gel('<%=txtEmail.ClientID %>').focus();
-        }
-        function gel(id) {
-            return document.getElementById(id);
-        }
-        function show(ctl) {
-            ctl.style.display = "block";
-        }
-        function hide(ctl) {
-            ctl.style.display = "none";
-        }
-        function showInline(ctl) {
-            ctl.style.display = "inline";
-        }
-        function emailIsValid(value) {
-            var emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
-            return emailPattern.test(value);
-        }
-        function varIsNothing(value) {
-            return (value == null || value == "" || value == " ");
         }
         function switchView(view) {
             switch (view.toLowerCase()) {

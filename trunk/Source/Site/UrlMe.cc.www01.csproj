@@ -63,6 +63,7 @@
     <Content Include="Login.aspx" />
     <Content Include="Router.aspx" />
     <Content Include="SiteInfo\Images\logo.jpg" />
+    <Content Include="SiteInfo\JavaScript\common.js" />
     <Content Include="SiteInfo\Styles\main.css" />
     <Content Include="Web.config" />
   </ItemGroup>
@@ -101,7 +102,6 @@
     <Folder Include="Admin\" />
     <Folder Include="App_Data\" />
     <Folder Include="Assemblies\" />
-    <Folder Include="SiteInfo\JavaScript\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v9.0\WebApplications\Microsoft.WebApplication.targets" />

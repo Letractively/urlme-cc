@@ -26,26 +26,13 @@ namespace UrlMe.cc
 
         protected void btnAddEdit_Click(object sender, EventArgs e)
         {
-            DateTime expirationDate = DateTime.Now;
-            switch (ddlExpiresIn.SelectedValue.ToLower())
-            {
-                case "1yr":
-                    expirationDate = expirationDate.AddYears(1);
-                    break;                
-                case "1wk":
-                    expirationDate = expirationDate.AddDays(7);
-                    break;
-                case "1d":
-                    expirationDate = expirationDate.AddDays(1);
-                    break;
-            }
-            int success = Library.Data.LinkData.NewLink(int.Parse(HttpContext.Current.User.Identity.Name.Split("|".ToCharArray())[0]), txtPath.Text, txtDestinationUrl.Text, bool.Parse(ddlPublicPrivate.SelectedValue), expirationDate);
-            if (success != 0)
-                Response.Write("Failed.");
-            else
-            {
-                LoadLinks();
-            }
+            //int success = Library.Data.LinkData.NewLink(int.Parse(HttpContext.Current.User.Identity.Name.Split("|".ToCharArray())[0]), txtPath.Text, txtDestinationUrl.Text);
+            //if (success != 0)
+            //    Response.Write("Failed.");
+            //else
+            //{
+            //    LoadLinks();
+            //}
         }
 
         /// <summary>
@@ -53,10 +40,9 @@ namespace UrlMe.cc
         /// </summary>
         private void ClearForm()
         {
-            txtPath.Text = ""; txtPath.Focus();
-            txtDestinationUrl.Text = "";
-            ddlExpiresIn.SelectedIndex = 0;
-            ddlPublicPrivate.SelectedIndex = 0;
+            //txtPath.Text = ""; 
+            //// txtPath.Focus();
+            //txtDestinationUrl.Text = "";
         }
 
         private void LoadLinks()
@@ -64,8 +50,8 @@ namespace UrlMe.cc
             DataSet dsLinks = Library.Data.LinkData.GetLinksByUserID(int.Parse(HttpContext.Current.User.Identity.Name.Split("|".ToCharArray())[0]));
             if (dsLinks != null)
             {
-                gvLinks.DataSource = dsLinks;
-                gvLinks.DataBind();
+                LinksRepeater.DataSource = dsLinks;
+                LinksRepeater.DataBind();
             }
             ClearForm();
         }
@@ -82,9 +68,9 @@ namespace UrlMe.cc
         #region lbTogglePublicInd_Click
         public void lbTogglePublicInd_Click(object sender, EventArgs e)
         {
-            LinkButton lb = (LinkButton)sender;
-            Library.Data.LinkData.TogglePublicInd(int.Parse(lb.CommandArgument));
-            LoadLinks();
+            //LinkButton lb = (LinkButton)sender;
+            //Library.Data.LinkData.TogglePublicInd(int.Parse(lb.CommandArgument));
+            //LoadLinks();
         }
         #endregion
 
@@ -114,7 +100,7 @@ namespace UrlMe.cc
         {
             switch (e.CommandName.ToLower()) {
                 case "edit":
-                    txtPath.Text = "hi there";
+                    // txtPath.Text = "hi there";
                     //GridViewRow gvr = (GridViewRow)gvLinks.Rows[int.Parse(e.CommandArgument.ToString())];
                     //LinkButton lb = (LinkButton)gvr.FindControl("lbTogglePublicInd");
                     //lb.Visible = false;

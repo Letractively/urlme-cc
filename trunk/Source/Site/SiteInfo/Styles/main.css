@@ -32,6 +32,8 @@ input { }
     border: 0px dashed #D0D0D0;
 }
 
+#divWelcome { float:right; width: 300px; text-align:right; }
+
 .msg { }
 a:link,a:visited,a:hover,a:active { color:blue; }
 a.feedback:link,a.feedback:visited,a.feedback:hover,a.feedback:active { color:green; }
@@ -43,30 +45,18 @@ a.noUnderline:link,a.noUnderline:visited,a.noUnderline:hover,a.noUnderline:activ
 .messageBox { position: absolute; top: 13px; left: 0; width: 100%; }
 .messageBox #messageContent { font-weight:bold; padding: 3px; background-color: #FFF1A8; text-align:center; margin: 0 auto; width: 110px; }
 
-.GridView 
-{
-}
-    .GridView td 
-    {
-        padding:0 5px; height:24px;
-    }
-    .GridView th
-    {
-        background-color:#69A8D1;
-        color:White;
-        padding: 0 4px;
-    }
+.TextBox { padding: 2px; font-size:140%; }
+
+.GridView {}
+    .GridView td { padding:0 5px; height:30px; }
+    .GridView th { background-color:#69A8D1; color:White; padding: 4px; }
+    .GridView tr.EditRow { display: none; }
+    .GridView tr.EditRow .PathTextBox { width: 150px; }
+    .GridView tr.EditRow .UrlTextBox { width: 396px; }
 .Form 
 {
     border: dashed 1px #D0D0D0;
-    padding:5px;
+    padding:5px 8px 5px 8px;
 }
-    .Add
-    {
-        width: 700px; /* orig: 823, then 858 */
-    }
-.Private 
-{
-    font-style: italic;
-    color:Red;    
-}
+    .Add { width: 652px; margin-top:13px; }
+    .AddPathTextBox { width: 100px; }

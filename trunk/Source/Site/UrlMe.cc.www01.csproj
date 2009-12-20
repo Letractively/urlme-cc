@@ -64,6 +64,7 @@
     <Content Include="Router.aspx" />
     <Content Include="SiteInfo\Images\logo.jpg" />
     <Content Include="SiteInfo\JavaScript\common.js" />
+    <Content Include="SiteInfo\JavaScript\jquery-1.3.2.min.js" />
     <Content Include="SiteInfo\Styles\main.css" />
     <Content Include="Web.config" />
   </ItemGroup>

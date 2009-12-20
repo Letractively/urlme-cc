@@ -14,32 +14,13 @@ namespace Library.Data
         public static Database db = DatabaseFactory.CreateDatabase("Default");
         public static SqlCommand cmd;
 
-        public static int NewLink(int userID, string path, string destinationUrl, bool publicInd, DateTime expirationDate, string description)
+        public static int NewLink(int userID, string path, string destinationUrl)
         {
             cmd = (SqlCommand)db.GetStoredProcCommand("LinkInsert");
 
             cmd.Parameters.Add("userID", SqlDbType.Int).Value = userID;
             cmd.Parameters.Add("path", SqlDbType.NVarChar).Value = path;
             cmd.Parameters.Add("destinationUrl", SqlDbType.NVarChar).Value = destinationUrl;
-            cmd.Parameters.Add("description", SqlDbType.NVarChar).Value = description;
-            cmd.Parameters.Add("publicInd", SqlDbType.Bit).Value = publicInd;
-            cmd.Parameters.Add("expirationDate", SqlDbType.SmallDateTime).Value = expirationDate;
-
-            try { db.ExecuteNonQuery(cmd); }
-            catch { return -1; }
-
-            return 0;
-        } //NewLink
-
-        public static int NewLink(int userID, string path, string destinationUrl, bool publicInd, DateTime expirationDate)
-        {
-            cmd = (SqlCommand)db.GetStoredProcCommand("LinkInsert");
-
-            cmd.Parameters.Add("userID", SqlDbType.Int).Value = userID;
-            cmd.Parameters.Add("path", SqlDbType.NVarChar).Value = path;
-            cmd.Parameters.Add("destinationUrl", SqlDbType.NVarChar).Value = destinationUrl;
-            cmd.Parameters.Add("publicInd", SqlDbType.Bit).Value = publicInd;
-            cmd.Parameters.Add("expirationDate", SqlDbType.SmallDateTime).Value = expirationDate;
 
             try { db.ExecuteNonQuery(cmd); }
             catch { return -1; }
@@ -72,17 +53,17 @@ namespace Library.Data
             return 0;
         } //ToggleActiveInd
 
-        public static int TogglePublicInd(int linkID)
+        public static int DeleteLink(int linkID)
         {
-            cmd = (SqlCommand)db.GetStoredProcCommand("LinkUpdateTogglePublicInd");
+            cmd = (SqlCommand)db.GetStoredProcCommand("LinkDelete");
 
-            cmd.Parameters.Add("linkID", SqlDbType.Int).Value = linkID;
+            cmd.Parameters.Add("linkId", SqlDbType.Int).Value = linkID;
 
             try { db.ExecuteNonQuery(cmd); }
             catch { return -1; }
 
             return 0;
-        } //NewLink
+        } //ToggleActiveInd
 
         public static string LookupPath(string path)
         {

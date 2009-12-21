@@ -43,7 +43,7 @@ a.noUnderline:link,a.noUnderline:visited,a.noUnderline:hover,a.noUnderline:activ
 .inputField { margin-bottom:5px; }
 
 .messageBox { position: absolute; top: 13px; left: 0; width: 100%; }
-.messageBox #messageContent { font-weight:bold; padding: 3px; background-color: #FFF1A8; text-align:center; margin: 0 auto; width: 110px; }
+.messageBox .messageContent { font-weight:bold; padding: 3px; background-color: #FFF1A8; text-align:center; margin: 0 auto; width: 110px; }
 
 .TextBox { padding: 2px; font-size:140%; }
 

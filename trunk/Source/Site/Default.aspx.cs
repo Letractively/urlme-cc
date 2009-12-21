@@ -14,8 +14,19 @@ namespace UrlMe.cc
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!IsPostBack)
-                LoadLinks();
+            // add link form submission?
+            if (!string.IsNullOrEmpty(Request.Form["FormAction"]) && Request.Form["FormAction"] == "AddLink")
+            {
+                Message.InnerHtml = "Adding&nbsp;...";
+            }
+
+            // save link row(s) form submission?
+            else if (!string.IsNullOrEmpty(Request.Form["FormAction"]) && Request.Form["FormAction"] == "UpdateLink")
+            {
+                Message.InnerHtml = "Updating&nbsp;...";
+            }
+            
+            LoadLinks();
         }
 
         protected void lbSignOut_Click(object sender, EventArgs e)

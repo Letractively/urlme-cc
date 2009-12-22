@@ -28,9 +28,9 @@
         <div class="Form Add">
             <form id="AddLinkForm" method="post">
                 <strong>Add:</strong>
-                <%=Library.Configuration.Site.UrlNoEndingSlash %>/&nbsp;<input class="TextBox AddPathTextBox" type="text" id="AddPath" />
-                &nbsp;redirects&nbsp;to&nbsp;
-                <input type="text" id="AddDestinationUrl" style="width:300px;" />
+                <%=Library.Configuration.Site.UrlNoEndingSlash %>/&nbsp;<input class="TextBox AddPathTextBox" type="text" name="AddPath" id="AddPath" />
+                <%=string.Format("{0}redirects{0}to{0}","&nbsp;") %>
+                <input type="text" id="AddDestinationUrl" name="AddDestinationUrl" style="width:300px;" />
                 <input type="submit" value="Add" />
                 <input type="hidden" name="FormAction" value="AddLink" />
             </form>
@@ -44,7 +44,8 @@
         <asp:Repeater runat="server" ID="LinksRepeater">
             <HeaderTemplate>
                 <form id="EditLinksForm" method="post">
-                <input type="hidden" name="FormAction" value="UpdateLink" />
+                <input type="hidden" id="EditLinksFormAction" name="FormAction" value="" />
+                <input type="hidden" id="LinkIdToDelete" name="LinkIdToDelete" value="" />
                 <table class="GridView">
                     <tr>
                         <th>Link</th><th>Destination Url</th><th>&nbsp;</th>
@@ -54,7 +55,7 @@
                     <tr id="DisplayLinkRow-<%# Eval("LinkID") %>">
                         <td><%# String.Format("{0}/<b>{1}</b>",Library.Configuration.Site.UrlNoEndingSlash, Eval("Path")) %></td>
                         <td><%# String.Format("<a href=\"{0}\">{0}</a>",MakeSnippet(Eval("DestinationUrl").ToString(),Library.Configuration.Page.DestinationUrlSnippetLength)) %></td>    
-                        <td><a href="#" onclick="EditRow(<%# Eval("LinkID") %>); return false;">Edit</a> | <a href="#" onclick="DeleteRow(<%# Eval("LinkID") %>); return false;">Delete</a></td>
+                        <td><a href="#" onclick="EditRow(<%# Eval("LinkID") %>); return false;">Edit</a> | <a href="#" onclick="DeleteRow(<%# Eval("LinkID") %>);">Delete</a></td>
                     </tr>
                     <tr id="EditLinkRow-<%# Eval("LinkID") %>" class="EditRow">
                         <td><%= Library.Configuration.Site.UrlNoEndingSlash %>/&nbsp;<input class="TextBox PathTextBox" type="text" name="Path-<%# Eval("LinkID") %>" value="<%# Eval("Path") %>" /></td>
@@ -75,11 +76,24 @@
             // set focus to email input
             $('#AddPath').focus();
 
+            // show or hide messagebox
+            ShowHideMessageBox();
         });
+
+        function ShowHideMessageBox() {
+
+        }
 
         function EditRow(linkId) {
             $("#DisplayLinkRow-" + linkId).hide();
             $("#EditLinkRow-" + linkId).show();
+        }
+
+        function DeleteRow(linkId) {
+            $("#LinkIdToDelete").val(linkId);
+            $("#EditLinksFormAction").val("DeleteLink");
+            $("#EditLinksForm").submit();
+            return true;
         }
 
         function CancelEditRow(linkId) {

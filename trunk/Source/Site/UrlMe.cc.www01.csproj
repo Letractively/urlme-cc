@@ -83,6 +83,9 @@
     <Compile Include="Login.aspx.designer.cs">
       <DependentUpon>Login.aspx</DependentUpon>
     </Compile>
+    <Compile Include="LogOut.ashx.cs">
+      <DependentUpon>LogOut.ashx</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Router.aspx.cs">
       <DependentUpon>Router.aspx</DependentUpon>
@@ -98,6 +101,9 @@
       <Project>{F2D0B3A2-5A22-47E9-8437-FB1F4D40DACB}</Project>
       <Name>UrlMe.cc.Library</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="LogOut.ashx" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Admin\" />

@@ -37,10 +37,11 @@
 	        </div>
 	    </div><!-- logo & siteupdates container -->
 	    <div id="divSignInCreateAccountContainer">
+            <div style="display:none">
             <iframe src="https://urlme-cc.rpxnow.com/openid/embed?token_url=<%=Library.Configuration.Site.UrlNoEndingSlash + ResolveUrl("~/") %>login.aspx"
               scrolling="no" frameBorder="no" style="width:310px;height:240px;">
             </iframe>
-            <br clear="all" />
+            </div>
 	        <div id="divSignInCreateAccount">
 		        <div id="divEmail" class="inputField">
         	        Email<span id="spnReqEmail" style="display:none">*</span>:<br />

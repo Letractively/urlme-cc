@@ -12,20 +12,42 @@ namespace UrlMe.cc
 {
     public partial class _Default : System.Web.UI.Page
     {
+        private string AddPath { get { return Request.Form["AddPath"]; } }
+        private string AddDestinationUrl { get { return Request.Form["AddDestinationUrl"]; } }
+        private int LinkIdToDelete { get { return int.Parse(Request.Form["LinkIdToDelete"]); } }
+
         protected void Page_Load(object sender, EventArgs e)
         {
-            // add link form submission?
-            if (!string.IsNullOrEmpty(Request.Form["FormAction"]) && Request.Form["FormAction"] == "AddLink")
-            {
-                Message.InnerHtml = "Adding&nbsp;...";
-            }
+            int success = -1; // data calls return 0 if success. todo: make this more flexible (could return a specific error msg like "path already exists")
 
-            // save link row(s) form submission?
-            else if (!string.IsNullOrEmpty(Request.Form["FormAction"]) && Request.Form["FormAction"] == "UpdateLink")
+            if (!string.IsNullOrEmpty(Request.Form["FormAction"]))
             {
-                Message.InnerHtml = "Updating&nbsp;...";
+                // TODO: case switch
+                switch (Request.Form["FormAction"])
+                {
+                    case "AddLink":
+                        // todo: create a User.Current with user props, push this in the data calls rather than right here
+                        success = Library.Data.LinkData.NewLink(int.Parse(HttpContext.Current.User.Identity.Name.Split("|".ToCharArray())[0]), this.AddPath, this.AddDestinationUrl);
+                        if (success != 0)
+                            Message.InnerHtml = "Failed.";
+                        else
+                        {
+                            // todo: add "want to edit?" or "you just added the path X"
+                            Message.InnerHtml = "Success!";
+                        }
+                        break;
+                    case "UpdateLinks":
+                        Message.InnerHtml = "Updating&nbsp;...";
+                        break;
+                    case "DeleteLink":
+                        success = Library.Data.LinkData.DeleteLink(this.LinkIdToDelete);
+                        if (success != 0)
+                            Message.InnerHtml = "Failed.";
+                        else 
+                            Message.InnerHtml = "Success!";
+                        break;
+                }
             }
-            
             LoadLinks();
         }
 

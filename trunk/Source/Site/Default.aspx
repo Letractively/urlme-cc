@@ -5,11 +5,11 @@
 <html xmlns="http://www.w3.org/1999/xhtml" >
 <head runat="server">
     <link href="SiteInfo/Styles/main.css" rel="stylesheet" type="text/css" />
-    <script src="<%=ResolveUrl("~/") %>/SiteInfo/javascript/common.js" type="text/javascript"></script>
-    <script src="<%=ResolveUrl("~/") %>/SiteInfo/javascript/jquery-1.3.2.min.js" type="text/javascript"></script>
+    <script src="<%=ResolveUrl("~/") %>SiteInfo/javascript/common.js" type="text/javascript"></script>
+    <script src="<%=ResolveUrl("~/") %>SiteInfo/javascript/jquery-1.3.2.min.js" type="text/javascript"></script>
 </head>
 <body>
-    <div class="messageBox">
+    <div class="messageBox" style="display:none;">
         <div class="messageContent" id="Message" runat="server"></div>
     </div>
     

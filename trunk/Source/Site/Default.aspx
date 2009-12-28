@@ -46,6 +46,7 @@
                 <form id="EditLinksForm" method="post">
                 <input type="hidden" id="EditLinksFormAction" name="FormAction" value="" />
                 <input type="hidden" id="LinkIdToDelete" name="LinkIdToDelete" value="" />
+                <input type="hidden" id="LinkIdsToUpdate" name="LinkIdsToUpdate" value="" />
                 <table class="GridView">
                     <tr>
                         <th>Link</th><th>Destination Url</th><th>&nbsp;</th>
@@ -60,7 +61,7 @@
                     <tr id="EditLinkRow-<%# Eval("LinkID") %>" class="EditRow">
                         <td><%= Library.Configuration.Site.UrlNoEndingSlash %>/&nbsp;<input class="TextBox PathTextBox" type="text" name="Path-<%# Eval("LinkID") %>" value="<%# Eval("Path") %>" /></td>
                         <td><input class="UrlTextBox" type="text" name="Url-<%# Eval("LinkID") %>" value="<%# Eval("DestinationUrl") %>" /></td>
-                        <td><input type="submit" name="Save" value="Save" /> | <a href="#" onclick="CancelEditRow(<%# Eval("LinkID") %>); return false;">Cancel</a></td>
+                        <td><a class="SaveLink" href="#">Save</a> | <a href="#" onclick="CancelEditRow(<%# Eval("LinkID") %>); return false;">Cancel</a></td>
                     </tr>
             </ItemTemplate>
             <FooterTemplate>
@@ -83,6 +84,11 @@
         function ShowHideMessageBox() {
 
         }
+
+        $(".SaveLink").each(function() {
+            alert('hi');
+            return false;
+        });
 
         function EditRow(linkId) {
             $("#DisplayLinkRow-" + linkId).hide();

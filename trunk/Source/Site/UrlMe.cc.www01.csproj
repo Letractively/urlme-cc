@@ -95,6 +95,13 @@
       <DependentUpon>Router.aspx</DependentUpon>
     </Compile>
     <Compile Include="RpxData.cs" />
+    <Compile Include="SandBox.aspx.cs">
+      <DependentUpon>SandBox.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SandBox.aspx.designer.cs">
+      <DependentUpon>SandBox.aspx</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Library\UrlMe.cc.Library.csproj">
@@ -104,6 +111,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="LogOut.ashx" />
+    <Content Include="SandBox.aspx" />
+    <Content Include="SiteInfo\JavaScript\jquery-ui-1.7.2.custom.min.js" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Admin\" />
@@ -131,7 +140,7 @@
           </IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>True</UseCustomServer>
-          <CustomServerUrl>http://localhost/UrlMe.www01</CustomServerUrl>
+          <CustomServerUrl>http://localhost/</CustomServerUrl>
           <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
         </WebProjectProperties>
       </FlavorProperties>

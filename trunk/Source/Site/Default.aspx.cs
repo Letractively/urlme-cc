@@ -15,6 +15,7 @@ namespace UrlMe.cc
         private string AddPath { get { return Request.Form["AddPath"]; } }
         private string AddDestinationUrl { get { return Request.Form["AddDestinationUrl"]; } }
         private int LinkIdToDelete { get { return int.Parse(Request.Form["LinkIdToDelete"]); } }
+        private string LinkIdsToDelete { get { return Request.Form["LinkIdsToDelete"]; } }
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -44,6 +45,13 @@ namespace UrlMe.cc
                         if (success != 0)
                             Message.InnerHtml = "Failed.";
                         else 
+                            Message.InnerHtml = "Success!";
+                        break;
+                    case "DeleteLinks":
+                        success = Library.Data.LinkData.DeleteLinks(this.LinkIdsToDelete);
+                        if (success != 0)
+                            Message.InnerHtml = "Failed.";
+                        else
                             Message.InnerHtml = "Success!";
                         break;
                 }

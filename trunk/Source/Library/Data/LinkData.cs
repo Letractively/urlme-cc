@@ -65,6 +65,22 @@ namespace Library.Data
             return 0;
         } //ToggleActiveInd
 
+        public static int DeleteLinks(string linkIDs)
+        {
+            cmd = (SqlCommand)db.GetStoredProcCommand("LinkDelete");
+
+            foreach (string linkID in linkIDs.Split(','))
+            {
+                cmd.Parameters.Clear();
+                cmd.Parameters.Add("linkId", SqlDbType.Int).Value = int.Parse(linkID);
+
+                try { db.ExecuteNonQuery(cmd); }
+                catch { return -1; }
+            }
+
+            return 0;
+        } //ToggleActiveInd
+
         public static string LookupPath(string path)
         {
             string retDestinationUrl = ""; 

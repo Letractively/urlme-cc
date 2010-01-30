@@ -46,17 +46,22 @@
                 <form id="EditLinksForm" method="post">
                 <input type="hidden" id="EditLinksFormAction" name="FormAction" value="" />
                 <input type="hidden" id="LinkIdToDelete" name="LinkIdToDelete" value="" />
+                <input type="hidden" id="LinkIdsToDelete" name="LinkIdsToDelete" value="" />
                 <input type="hidden" id="LinkIdsToUpdate" name="LinkIdsToUpdate" value="" />
+                <div class="TableControls">
+                    <input type="button" id="DeleteChecked" value="Delete checked" /><input type="checkbox" id="GlobalCheckbox" />
+                </div>
+                <div>
                 <table class="GridView">
                     <tr>
                         <th>Link</th><th>Destination Url</th><th>&nbsp;</th>
                     </tr>
             </HeaderTemplate>
             <ItemTemplate>
-                    <tr id="DisplayLinkRow-<%# Eval("LinkID") %>">
-                        <td><%# String.Format("{0}/<b>{1}</b>",Library.Configuration.Site.UrlNoEndingSlash, Eval("Path")) %></td>
-                        <td><%# String.Format("<a href=\"{0}\">{0}</a>",MakeSnippet(Eval("DestinationUrl").ToString(),Library.Configuration.Page.DestinationUrlSnippetLength)) %></td>    
-                        <td><a href="#" onclick="EditRow(<%# Eval("LinkID") %>); return false;">Edit</a> | <a href="#" onclick="DeleteRow(<%# Eval("LinkID") %>);">Delete</a></td>
+                    <tr id="DisplayLinkRow-<%# Eval("LinkID") %>" class="DisplayRow">
+                        <td style="width: 225px"><%# String.Format("{0}/<b>{1}</b>",Library.Configuration.Site.UrlNoEndingSlash, Eval("Path")) %></td>
+                        <td style="width: 450px"><%# String.Format("<a href=\"{0}\">{0}</a>",MakeSnippet(Eval("DestinationUrl").ToString(),Library.Configuration.Page.DestinationUrlSnippetLength)) %></td>    
+                        <td style="width: 90px"><a href="#" onclick="EditRow(<%# Eval("LinkID") %>); return false;">Edit</a>&nbsp;|&nbsp;<a href="#" onclick="DeleteRow(<%# Eval("LinkID") %>); return false;">Delete</a>&nbsp;<input class="RowCheckbox" type="checkbox" id="Checkbox-<%# Eval("LinkID") %>" name="Checkbox-<%# Eval("LinkID") %>" /></td>
                     </tr>
                     <tr id="EditLinkRow-<%# Eval("LinkID") %>" class="EditRow">
                         <td><%= Library.Configuration.Site.UrlNoEndingSlash %>/&nbsp;<input class="TextBox PathTextBox" type="text" name="Path-<%# Eval("LinkID") %>" value="<%# Eval("Path") %>" /></td>
@@ -66,6 +71,7 @@
             </ItemTemplate>
             <FooterTemplate>
                 </table>
+                </div>
                 </form>
             </FooterTemplate>
         </asp:Repeater>
@@ -79,6 +85,37 @@
 
             // show or hide messagebox
             ShowHideMessageBox();
+
+            $("#DeleteChecked").attr("disabled", true);
+            $("#DeleteChecked").click(function() {
+                if (confirm('Are you sure?')) {
+                    var linkIdsToDelete = [];
+                    $(".RowCheckbox:checked").each(function() {
+                        linkIdsToDelete.push($(this).attr("id").replace("Checkbox-", ""));
+                    });
+                    $("#LinkIdsToDelete").val(linkIdsToDelete.join(","));
+                    $("#EditLinksFormAction").val("DeleteLinks");
+                    $("#EditLinksForm").submit();
+                }
+            });
+
+            $("#GlobalCheckbox").click(function() {
+                var checked = $(this).attr("checked");
+                $("#DeleteChecked").attr("disabled", !checked);
+                $(".RowCheckbox").each(function() {
+                    $(this).attr("checked", checked);
+                });
+            });
+            $(".RowCheckbox").click(function() {
+                var atLeastOneChecked = false;
+                $(".RowCheckbox").each(function() {
+                    if ($(this).attr("checked") == true)
+                        atLeastOneChecked = true;
+                });
+                $("#DeleteChecked").attr("disabled", !atLeastOneChecked);
+            });
+
+            $(".DisplayRow:odd").css("background-color", "#E0E0E0");
         });
 
         function ShowHideMessageBox() {
@@ -86,7 +123,7 @@
         }
 
         $(".SaveLink").each(function() {
-            alert('hi');
+            // need to add click events
             return false;
         });
 
@@ -96,10 +133,11 @@
         }
 
         function DeleteRow(linkId) {
-            $("#LinkIdToDelete").val(linkId);
-            $("#EditLinksFormAction").val("DeleteLink");
-            $("#EditLinksForm").submit();
-            return true;
+            if (confirm('Are you sure?')) {
+                $("#LinkIdToDelete").val(linkId);
+                $("#EditLinksFormAction").val("DeleteLink");
+                $("#EditLinksForm").submit();
+            }
         }
 
         function CancelEditRow(linkId) {

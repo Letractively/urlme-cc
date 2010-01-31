@@ -4,9 +4,9 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml" >
 <head runat="server">
-    <link href="SiteInfo/Styles/main.css" rel="stylesheet" type="text/css" />
-    <script src="<%=ResolveUrl("~/") %>SiteInfo/javascript/common.js" type="text/javascript"></script>
-    <script src="<%=ResolveUrl("~/") %>SiteInfo/javascript/jquery-1.3.2.min.js" type="text/javascript"></script>
+    <link href="Resource/Styles/main.css" rel="stylesheet" type="text/css" />
+    <script src="<%=ResolveUrl("~/") %>Resource/javascript/common.js" type="text/javascript"></script>
+    <script src="<%=ResolveUrl("~/") %>Resource/javascript/jquery-1.3.2.min.js" type="text/javascript"></script>
 </head>
 <body>
     <form id="form1" runat="server">

@@ -4,9 +4,10 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml" >
 <head runat="server">
-    <link href="SiteInfo/Styles/main.css" rel="stylesheet" type="text/css" />
-    <script src="<%=ResolveUrl("~/") %>SiteInfo/javascript/common.js" type="text/javascript"></script>
-    <script src="<%=ResolveUrl("~/") %>SiteInfo/javascript/jquery-1.3.2.min.js" type="text/javascript"></script>
+    <link href="Resource/Styles/main.css" rel="stylesheet" type="text/css" />
+    <script src="<%=ResolveUrl("~/") %>Resource/javascript/common.js" type="text/javascript"></script>
+    <script src="<%=ResolveUrl("~/") %>Resource/javascript/bakersdozen.js" type="text/javascript"></script>
+    <script src="<%=ResolveUrl("~/") %>Resource/javascript/jquery-1.3.2.min.js" type="text/javascript"></script>
 </head>
 <body>
     <div class="messageBox" style="display:none;">
@@ -79,71 +80,8 @@
     </div>
     
     <script type="text/javascript" language="javascript">
-        $(document).ready(function() {
-            // set focus to email input
-            $('#AddPath').focus();
-
-            // show or hide messagebox
-            ShowHideMessageBox();
-
-            $("#DeleteChecked").attr("disabled", true);
-            $("#DeleteChecked").click(function() {
-                if (confirm('Are you sure?')) {
-                    var linkIdsToDelete = [];
-                    $(".RowCheckbox:checked").each(function() {
-                        linkIdsToDelete.push($(this).attr("id").replace("Checkbox-", ""));
-                    });
-                    $("#LinkIdsToDelete").val(linkIdsToDelete.join(","));
-                    $("#EditLinksFormAction").val("DeleteLinks");
-                    $("#EditLinksForm").submit();
-                }
-            });
-
-            $("#GlobalCheckbox").click(function() {
-                var checked = $(this).attr("checked");
-                $("#DeleteChecked").attr("disabled", !checked);
-                $(".RowCheckbox").each(function() {
-                    $(this).attr("checked", checked);
-                });
-            });
-            $(".RowCheckbox").click(function() {
-                var atLeastOneChecked = false;
-                $(".RowCheckbox").each(function() {
-                    if ($(this).attr("checked") == true)
-                        atLeastOneChecked = true;
-                });
-                $("#DeleteChecked").attr("disabled", !atLeastOneChecked);
-            });
-
-            $(".DisplayRow:odd").css("background-color", "#E0E0E0");
-        });
-
-        function ShowHideMessageBox() {
-
-        }
-
-        $(".SaveLink").each(function() {
-            // need to add click events
-            return false;
-        });
-
-        function EditRow(linkId) {
-            $("#DisplayLinkRow-" + linkId).hide();
-            $("#EditLinkRow-" + linkId).show();
-        }
-
-        function DeleteRow(linkId) {
-            if (confirm('Are you sure?')) {
-                $("#LinkIdToDelete").val(linkId);
-                $("#EditLinksFormAction").val("DeleteLink");
-                $("#EditLinksForm").submit();
-            }
-        }
-
-        function CancelEditRow(linkId) {
-            $("#DisplayLinkRow-" + linkId).show();
-            $("#EditLinkRow-" + linkId).hide();
-        }        
+        var proxyUrl = '<%=ResolveUrl("~/resource/serviceproxy/linkproxy.svc") %>/';
     </script>
+    <script src="<%=ResolveUrl("~/") %>Resource/javascript/default.js" type="text/javascript"></script>
 </body>
 </html>

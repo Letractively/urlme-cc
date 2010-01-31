@@ -1,0 +1,1 @@
+﻿<%@ ServiceHost Language="C#" Debug="true" Service="UrlMe.cc.Resource.ServiceProxy.LinkProxy" CodeBehind="LinkProxy.svc.cs" %>

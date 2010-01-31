@@ -5,8 +5,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml" >
 <head runat="server">
     <title></title>
-    <script src="<%=ResolveUrl("~/") %>SiteInfo/javascript/jquery-1.3.2.min.js" type="text/javascript"></script>
-    <script src="<%=ResolveUrl("~/") %>SiteInfo/javascript/jquery-ui-1.7.2.custom.min.js" type="text/javascript"></script>
+    <script src="<%=ResolveUrl("~/") %>Resource/javascript/jquery-1.3.2.min.js" type="text/javascript"></script>
+    <script src="<%=ResolveUrl("~/") %>Resource/javascript/jquery-ui-1.7.2.custom.min.js" type="text/javascript"></script>
     <style type="text/css">
 	    #sortable { list-style-type: none; margin: 0; padding: 0; width: 60%; }
 	    #sortable li { margin: 0 5px 5px 5px; padding: 5px; /* font-size: 1.2em; height: 1.5em; */ border: solid 1px black; }

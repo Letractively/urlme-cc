@@ -38,6 +38,15 @@
     <Reference Include="System.Data.DataSetExtensions">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
+    <Reference Include="System.Runtime.Serialization">
+      <RequiredTargetFramework>3.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.ServiceModel">
+      <RequiredTargetFramework>3.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.ServiceModel.Web">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
     <Reference Include="System.Web.Abstractions, Version=3.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
@@ -62,10 +71,10 @@
     <Content Include="Default.aspx" />
     <Content Include="Login.aspx" />
     <Content Include="Router.aspx" />
-    <Content Include="SiteInfo\Images\logo.jpg" />
-    <Content Include="SiteInfo\JavaScript\common.js" />
-    <Content Include="SiteInfo\JavaScript\jquery-1.3.2.min.js" />
-    <Content Include="SiteInfo\Styles\main.css" />
+    <Content Include="Resource\Images\logo.jpg" />
+    <Content Include="Resource\JavaScript\common.js" />
+    <Content Include="Resource\JavaScript\jquery-1.3.2.min.js" />
+    <Content Include="Resource\Styles\main.css" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -87,6 +96,9 @@
       <DependentUpon>LogOut.ashx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Resource\ServiceProxy\LinkProxy.svc.cs">
+      <DependentUpon>LinkProxy.svc</DependentUpon>
+    </Compile>
     <Compile Include="Router.aspx.cs">
       <DependentUpon>Router.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -111,8 +123,11 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="LogOut.ashx" />
+    <Content Include="Resource\JavaScript\bakersdozen.js" />
+    <Content Include="Resource\JavaScript\Default.js" />
+    <Content Include="Resource\ServiceProxy\LinkProxy.svc" />
     <Content Include="SandBox.aspx" />
-    <Content Include="SiteInfo\JavaScript\jquery-ui-1.7.2.custom.min.js" />
+    <Content Include="Resource\JavaScript\jquery-ui-1.7.2.custom.min.js" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Admin\" />

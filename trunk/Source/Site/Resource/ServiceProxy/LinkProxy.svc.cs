@@ -17,5 +17,25 @@ namespace UrlMe.cc.Resource.ServiceProxy
         {
             return "Hello world";
         }
+
+        [OperationContract]
+        [WebInvoke(Method = "GET", RequestFormat = WebMessageFormat.Json, ResponseFormat = WebMessageFormat.Json)]
+        public string DeleteLink(int linkId)
+        {
+            int success = Library.Data.LinkData.DeleteLink(linkId);
+            if (success == 0)
+                return "Success:" + linkId.ToString();
+            return "Failure";
+        }
+
+        [OperationContract]
+        [WebInvoke(Method = "GET", RequestFormat = WebMessageFormat.Json, ResponseFormat = WebMessageFormat.Json)]
+        public string DeleteLinks(string linkIds)
+        {
+            int success = Library.Data.LinkData.DeleteLinks(linkIds);
+            if (success == 0)
+                return "Success:" + linkIds;
+            return "Failure";
+        }
     }
 }

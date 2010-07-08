@@ -20,8 +20,9 @@ namespace UrlMe.cc
             } else {
                 string destinationUrl = Library.Data.LinkData.LookupPath(path);
                 if (!String.IsNullOrEmpty(destinationUrl)){
-                    Response.Write(String.Format("Redirecting to <a href=\"{0}\">{0}</a> ...<br/><br/>Create your own urlme.cc redirect link at <a href=\"http://urlme.cc\">http://urlme.cc</a>.",destinationUrl));
-                    Response.AddHeader("REFRESH",string.Format("{0};URL={1}", Library.Configuration.Site.RedirectDelaySeconds, destinationUrl));
+                    // Response.Write(String.Format("Redirecting to <a href=\"{0}\">{0}</a> ...<br/><br/>Create your own urlme.cc redirect link at <a href=\"http://urlme.cc\">http://urlme.cc</a>.",destinationUrl));
+                    // Response.AddHeader("REFRESH",string.Format("{0};URL={1}", Library.Configuration.Site.RedirectDelaySeconds, destinationUrl));
+                    Response.Redirect(destinationUrl);
                 } else {
                     Response.Write("This path does not exist in the lookup table.");
                 }

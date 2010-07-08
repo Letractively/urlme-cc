@@ -125,6 +125,8 @@
     <Content Include="LogOut.ashx" />
     <Content Include="Resource\JavaScript\bakersdozen.js" />
     <Content Include="Resource\JavaScript\Default.js" />
+    <Content Include="Resource\JavaScript\jquery.tablesorter.js" />
+    <Content Include="Resource\JavaScript\jquery.tablesorter.pager.js" />
     <Content Include="Resource\ServiceProxy\LinkProxy.svc" />
     <Content Include="SandBox.aspx" />
     <Content Include="Resource\JavaScript\jquery-ui-1.7.2.custom.min.js" />

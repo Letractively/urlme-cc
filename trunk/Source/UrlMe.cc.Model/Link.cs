@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using UrlMe.cc.Model.Enums;
 
 namespace UrlMe.cc.Model
 {
@@ -31,24 +32,46 @@ namespace UrlMe.cc.Model
             this.path = link.Path;
             this.destinationUrl = link.DestinationUrl;
             this.description = link.Description;
-            this.expirationDate = (DateTime)link.ExpirationDate;
-            this.isPublic = link.PublicInd;
+            // this.expirationDate = (DateTime)link.ExpirationDate;
+            // this.isPublic = link.PublicInd;
             this.isActive = link.ActiveInd;
         }
         #endregion
 
-        public static void AllLinks() {
-            //Data.UrlMe_ccDataContext db = new UrlMe.cc.Data.UrlMe_ccDataContext();
-            //var a = (from l in db.Links select l).ToList();
-            //List<Link> allLinks = new List<Link>();
-            //foreach (Data.Link link in a)
-            //{
-            //    allLinks.Add(new Link(link));
-            //}
-            //using (Data.UrlMe_ccDataContext db = new UrlMe.cc.Data.UrlMe_ccDataContext())
-            //{
+        public static List<Link> AllLinks() {
+            List<Link> ret = new List<Link>();
+            using (Data.UrlMe_ccDataContext db = new UrlMe.cc.Data.UrlMe_ccDataContext())
+            {
+                var links = db.Links.ToList();
+                foreach (Data.Link link in links)
+                {
+                    ret.Add(new Link(link));
+                }
+            }
+            return ret;
+        }
 
-            //}
+        public CreateLinkResults CreateLink(int userId, string path, string destinationUrl)
+        {
+            CreateLinkResults ret = CreateLinkResults.Success;
+            using (Data.UrlMe_ccDataContext db = new UrlMe.cc.Data.UrlMe_ccDataContext())
+            {
+                Data.Link link = new UrlMe.cc.Data.Link();
+                link.UserId = userId;
+                link.Path = path;
+                link.DestinationUrl = destinationUrl;
+                db.Links.InsertOnSubmit(link);
+
+                try
+                {
+                    db.SubmitChanges();
+                }
+                catch
+                {
+                    ret = CreateLinkResults.Failure;
+                }
+            }
+            return ret;
         }
     }
 }

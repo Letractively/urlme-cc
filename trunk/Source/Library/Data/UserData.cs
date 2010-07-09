@@ -1,4 +1,6 @@
-﻿using System;
+﻿// DELETE THIS ONCE THE MODEL.USER METHODS ARE TESTED
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;

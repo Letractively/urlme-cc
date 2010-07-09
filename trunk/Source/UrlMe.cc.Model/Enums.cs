@@ -4,7 +4,7 @@ using System.Text;
 
 namespace UrlMe.cc.Model.Enums
 {
-    public enum CreateLinkResults
+    public enum CrudLinkResults
     {
         Success,
         Failure

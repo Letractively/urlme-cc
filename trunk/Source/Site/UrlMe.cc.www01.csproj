@@ -116,12 +116,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Library\UrlMe.cc.Library.csproj">
-      <Project>{F2D0B3A2-5A22-47E9-8437-FB1F4D40DACB}</Project>
-      <Name>UrlMe.cc.Library</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="LogOut.ashx" />
     <Content Include="Resource\JavaScript\bakersdozen.js" />
     <Content Include="Resource\JavaScript\Default.js" />
@@ -130,6 +124,16 @@
     <Content Include="Resource\ServiceProxy\LinkProxy.svc" />
     <Content Include="SandBox.aspx" />
     <Content Include="Resource\JavaScript\jquery-ui-1.7.2.custom.min.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Library\UrlMe.cc.Library.csproj">
+      <Project>{F2D0B3A2-5A22-47E9-8437-FB1F4D40DACB}</Project>
+      <Name>UrlMe.cc.Library</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\UrlMe.cc.Model\UrlMe.cc.Model.csproj">
+      <Project>{BD303265-8EE5-4649-9B12-CAE020428FE8}</Project>
+      <Name>UrlMe.cc.Model</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Admin\" />

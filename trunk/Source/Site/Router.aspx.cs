@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using UrlMe.cc.Model;
 
 namespace UrlMe.cc
 {
@@ -18,7 +19,7 @@ namespace UrlMe.cc
             if (path.ToLower() == "urlme") {
                 Response.Write("You're an asshole.");
             } else {
-                string destinationUrl = Library.Data.LinkData.LookupPath(path);
+                string destinationUrl = Link.GetDestinationUrlByPath(path);
                 if (!String.IsNullOrEmpty(destinationUrl)){
                     // Response.Write(String.Format("Redirecting to <a href=\"{0}\">{0}</a> ...<br/><br/>Create your own urlme.cc redirect link at <a href=\"http://urlme.cc\">http://urlme.cc</a>.",destinationUrl));
                     // Response.AddHeader("REFRESH",string.Format("{0};URL={1}", Library.Configuration.Site.RedirectDelaySeconds, destinationUrl));

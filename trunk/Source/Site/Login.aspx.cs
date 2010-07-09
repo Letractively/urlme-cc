@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Web.Security;
+using UrlMe.cc.Model;
 
 namespace UrlMe.cc
 {
@@ -15,14 +16,14 @@ namespace UrlMe.cc
             if (!this.IsPostBack)
             {
                 // load site updates
-                gvSiteUpdates.DataSource = Library.Data.SiteData.GetSiteUpdatesSiteCD("URLME");
+                gvSiteUpdates.DataSource = SiteUpdate.GetSiteUpdatesBySite("URLME");
                 gvSiteUpdates.DataBind();
             }
         }
 
         protected void btnSignIn_Click(object sender, EventArgs e)
         {
-            int userID = Library.Data.UserData.AuthenticateUser(txtEmail.Text,txtPassword.Text);
+            int userID = Model.User.AuthenticateUser(txtEmail.Text,txtPassword.Text);
             if (userID != -1)
                 FormsAuthentication.RedirectFromLoginPage(userID.ToString() + "|" + txtEmail.Text, chkRememberMe.Checked);
             else
@@ -30,7 +31,7 @@ namespace UrlMe.cc
         }
         protected void btnCreateAccount_Click(object sender, EventArgs e)
         {
-            int userID = Library.Data.UserData.NewUser(txtEmail.Text, txtPassword.Text,txtPasswordHint.Text);
+            int userID = Model.User.NewUser(txtEmail.Text, txtPassword.Text,txtPasswordHint.Text);
             if (userID != -1)
                 FormsAuthentication.RedirectFromLoginPage(userID.ToString() + "|" + txtEmail.Text, chkRememberMe.Checked);
             else

@@ -30,15 +30,15 @@ namespace UrlMe.cc.Data
 		
     #region Extensibility Method Definitions
     partial void OnCreated();
-    partial void InsertSiteUpdate(SiteUpdate instance);
-    partial void UpdateSiteUpdate(SiteUpdate instance);
-    partial void DeleteSiteUpdate(SiteUpdate instance);
-    partial void InsertUser(User instance);
-    partial void UpdateUser(User instance);
-    partial void DeleteUser(User instance);
     partial void InsertLink(Link instance);
     partial void UpdateLink(Link instance);
     partial void DeleteLink(Link instance);
+    partial void InsertUser(User instance);
+    partial void UpdateUser(User instance);
+    partial void DeleteUser(User instance);
+    partial void InsertSiteUpdate(SiteUpdate instance);
+    partial void UpdateSiteUpdate(SiteUpdate instance);
+    partial void DeleteSiteUpdate(SiteUpdate instance);
     #endregion
 		
 		public UrlMe_ccDataContext() : 
@@ -71,11 +71,11 @@ namespace UrlMe.cc.Data
 			OnCreated();
 		}
 		
-		public System.Data.Linq.Table<SiteUpdate> SiteUpdates
+		public System.Data.Linq.Table<Link> Links
 		{
 			get
 			{
-				return this.GetTable<SiteUpdate>();
+				return this.GetTable<Link>();
 			}
 		}
 		
@@ -87,452 +87,12 @@ namespace UrlMe.cc.Data
 			}
 		}
 		
-		public System.Data.Linq.Table<Link> Links
+		public System.Data.Linq.Table<SiteUpdate> SiteUpdates
 		{
 			get
 			{
-				return this.GetTable<Link>();
+				return this.GetTable<SiteUpdate>();
 			}
-		}
-	}
-	
-	[Table(Name="ihdavis.SiteUpdate")]
-	public partial class SiteUpdate : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _SiteUpdateID;
-		
-		private string _SiteCD;
-		
-		private System.DateTime _UpdateDate;
-		
-		private string _Text;
-		
-		private bool _ActiveInd;
-		
-		private System.DateTime _CreateTimeStamp;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnSiteUpdateIDChanging(int value);
-    partial void OnSiteUpdateIDChanged();
-    partial void OnSiteCDChanging(string value);
-    partial void OnSiteCDChanged();
-    partial void OnUpdateDateChanging(System.DateTime value);
-    partial void OnUpdateDateChanged();
-    partial void OnTextChanging(string value);
-    partial void OnTextChanged();
-    partial void OnActiveIndChanging(bool value);
-    partial void OnActiveIndChanged();
-    partial void OnCreateTimeStampChanging(System.DateTime value);
-    partial void OnCreateTimeStampChanged();
-    #endregion
-		
-		public SiteUpdate()
-		{
-			OnCreated();
-		}
-		
-		[Column(Storage="_SiteUpdateID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int SiteUpdateID
-		{
-			get
-			{
-				return this._SiteUpdateID;
-			}
-			set
-			{
-				if ((this._SiteUpdateID != value))
-				{
-					this.OnSiteUpdateIDChanging(value);
-					this.SendPropertyChanging();
-					this._SiteUpdateID = value;
-					this.SendPropertyChanged("SiteUpdateID");
-					this.OnSiteUpdateIDChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_SiteCD", DbType="NVarChar(5) NOT NULL", CanBeNull=false)]
-		public string SiteCD
-		{
-			get
-			{
-				return this._SiteCD;
-			}
-			set
-			{
-				if ((this._SiteCD != value))
-				{
-					this.OnSiteCDChanging(value);
-					this.SendPropertyChanging();
-					this._SiteCD = value;
-					this.SendPropertyChanged("SiteCD");
-					this.OnSiteCDChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_UpdateDate", DbType="SmallDateTime NOT NULL")]
-		public System.DateTime UpdateDate
-		{
-			get
-			{
-				return this._UpdateDate;
-			}
-			set
-			{
-				if ((this._UpdateDate != value))
-				{
-					this.OnUpdateDateChanging(value);
-					this.SendPropertyChanging();
-					this._UpdateDate = value;
-					this.SendPropertyChanged("UpdateDate");
-					this.OnUpdateDateChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_Text", DbType="NVarChar(255) NOT NULL", CanBeNull=false)]
-		public string Text
-		{
-			get
-			{
-				return this._Text;
-			}
-			set
-			{
-				if ((this._Text != value))
-				{
-					this.OnTextChanging(value);
-					this.SendPropertyChanging();
-					this._Text = value;
-					this.SendPropertyChanged("Text");
-					this.OnTextChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_ActiveInd", DbType="Bit NOT NULL")]
-		public bool ActiveInd
-		{
-			get
-			{
-				return this._ActiveInd;
-			}
-			set
-			{
-				if ((this._ActiveInd != value))
-				{
-					this.OnActiveIndChanging(value);
-					this.SendPropertyChanging();
-					this._ActiveInd = value;
-					this.SendPropertyChanged("ActiveInd");
-					this.OnActiveIndChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_CreateTimeStamp", DbType="SmallDateTime NOT NULL")]
-		public System.DateTime CreateTimeStamp
-		{
-			get
-			{
-				return this._CreateTimeStamp;
-			}
-			set
-			{
-				if ((this._CreateTimeStamp != value))
-				{
-					this.OnCreateTimeStampChanging(value);
-					this.SendPropertyChanging();
-					this._CreateTimeStamp = value;
-					this.SendPropertyChanged("CreateTimeStamp");
-					this.OnCreateTimeStampChanged();
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-	}
-	
-	[Table(Name="ihdavis.[User]")]
-	public partial class User : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _UserId;
-		
-		private string _Email;
-		
-		private System.Data.Linq.Binary _Password;
-		
-		private string _PasswordHint;
-		
-		private bool _AdminInd;
-		
-		private System.DateTime _DateTouched;
-		
-		private string _LastTouch;
-		
-		private System.DateTime _CreateTimeStamp;
-		
-		private EntitySet<Link> _Links;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnUserIdChanging(int value);
-    partial void OnUserIdChanged();
-    partial void OnEmailChanging(string value);
-    partial void OnEmailChanged();
-    partial void OnPasswordChanging(System.Data.Linq.Binary value);
-    partial void OnPasswordChanged();
-    partial void OnPasswordHintChanging(string value);
-    partial void OnPasswordHintChanged();
-    partial void OnAdminIndChanging(bool value);
-    partial void OnAdminIndChanged();
-    partial void OnDateTouchedChanging(System.DateTime value);
-    partial void OnDateTouchedChanged();
-    partial void OnLastTouchChanging(string value);
-    partial void OnLastTouchChanged();
-    partial void OnCreateTimeStampChanging(System.DateTime value);
-    partial void OnCreateTimeStampChanged();
-    #endregion
-		
-		public User()
-		{
-			this._Links = new EntitySet<Link>(new Action<Link>(this.attach_Links), new Action<Link>(this.detach_Links));
-			OnCreated();
-		}
-		
-		[Column(Storage="_UserId", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int UserId
-		{
-			get
-			{
-				return this._UserId;
-			}
-			set
-			{
-				if ((this._UserId != value))
-				{
-					this.OnUserIdChanging(value);
-					this.SendPropertyChanging();
-					this._UserId = value;
-					this.SendPropertyChanged("UserId");
-					this.OnUserIdChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_Email", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
-		public string Email
-		{
-			get
-			{
-				return this._Email;
-			}
-			set
-			{
-				if ((this._Email != value))
-				{
-					this.OnEmailChanging(value);
-					this.SendPropertyChanging();
-					this._Email = value;
-					this.SendPropertyChanged("Email");
-					this.OnEmailChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_Password", DbType="Binary(16) NOT NULL", CanBeNull=false, UpdateCheck=UpdateCheck.Never)]
-		public System.Data.Linq.Binary Password
-		{
-			get
-			{
-				return this._Password;
-			}
-			set
-			{
-				if ((this._Password != value))
-				{
-					this.OnPasswordChanging(value);
-					this.SendPropertyChanging();
-					this._Password = value;
-					this.SendPropertyChanged("Password");
-					this.OnPasswordChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_PasswordHint", DbType="NVarChar(250) NOT NULL", CanBeNull=false)]
-		public string PasswordHint
-		{
-			get
-			{
-				return this._PasswordHint;
-			}
-			set
-			{
-				if ((this._PasswordHint != value))
-				{
-					this.OnPasswordHintChanging(value);
-					this.SendPropertyChanging();
-					this._PasswordHint = value;
-					this.SendPropertyChanged("PasswordHint");
-					this.OnPasswordHintChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_AdminInd", DbType="Bit NOT NULL")]
-		public bool AdminInd
-		{
-			get
-			{
-				return this._AdminInd;
-			}
-			set
-			{
-				if ((this._AdminInd != value))
-				{
-					this.OnAdminIndChanging(value);
-					this.SendPropertyChanging();
-					this._AdminInd = value;
-					this.SendPropertyChanged("AdminInd");
-					this.OnAdminIndChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_DateTouched", DbType="SmallDateTime NOT NULL")]
-		public System.DateTime DateTouched
-		{
-			get
-			{
-				return this._DateTouched;
-			}
-			set
-			{
-				if ((this._DateTouched != value))
-				{
-					this.OnDateTouchedChanging(value);
-					this.SendPropertyChanging();
-					this._DateTouched = value;
-					this.SendPropertyChanged("DateTouched");
-					this.OnDateTouchedChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_LastTouch", DbType="NVarChar(3) NOT NULL", CanBeNull=false)]
-		public string LastTouch
-		{
-			get
-			{
-				return this._LastTouch;
-			}
-			set
-			{
-				if ((this._LastTouch != value))
-				{
-					this.OnLastTouchChanging(value);
-					this.SendPropertyChanging();
-					this._LastTouch = value;
-					this.SendPropertyChanged("LastTouch");
-					this.OnLastTouchChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_CreateTimeStamp", DbType="SmallDateTime NOT NULL")]
-		public System.DateTime CreateTimeStamp
-		{
-			get
-			{
-				return this._CreateTimeStamp;
-			}
-			set
-			{
-				if ((this._CreateTimeStamp != value))
-				{
-					this.OnCreateTimeStampChanging(value);
-					this.SendPropertyChanging();
-					this._CreateTimeStamp = value;
-					this.SendPropertyChanged("CreateTimeStamp");
-					this.OnCreateTimeStampChanged();
-				}
-			}
-		}
-		
-		[Association(Name="User_Link", Storage="_Links", ThisKey="UserId", OtherKey="UserId")]
-		public EntitySet<Link> Links
-		{
-			get
-			{
-				return this._Links;
-			}
-			set
-			{
-				this._Links.Assign(value);
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-		
-		private void attach_Links(Link entity)
-		{
-			this.SendPropertyChanging();
-			entity.User = this;
-		}
-		
-		private void detach_Links(Link entity)
-		{
-			this.SendPropertyChanging();
-			entity.User = null;
 		}
 	}
 	
@@ -552,13 +112,11 @@ namespace UrlMe.cc.Data
 		
 		private string _Description;
 		
+		private System.Nullable<System.DateTime> _ExpirationDate;
+		
 		private bool _ActiveInd;
 		
-		private System.DateTime _DateTouched;
-		
-		private string _LastTouch;
-		
-		private System.DateTime _CreateTimeStamp;
+		private System.DateTime _CreateDate;
 		
 		private EntityRef<User> _User;
 		
@@ -576,14 +134,12 @@ namespace UrlMe.cc.Data
     partial void OnDestinationUrlChanged();
     partial void OnDescriptionChanging(string value);
     partial void OnDescriptionChanged();
+    partial void OnExpirationDateChanging(System.Nullable<System.DateTime> value);
+    partial void OnExpirationDateChanged();
     partial void OnActiveIndChanging(bool value);
     partial void OnActiveIndChanged();
-    partial void OnDateTouchedChanging(System.DateTime value);
-    partial void OnDateTouchedChanged();
-    partial void OnLastTouchChanging(string value);
-    partial void OnLastTouchChanged();
-    partial void OnCreateTimeStampChanging(System.DateTime value);
-    partial void OnCreateTimeStampChanged();
+    partial void OnCreateDateChanging(System.DateTime value);
+    partial void OnCreateDateChanged();
     #endregion
 		
 		public Link()
@@ -696,6 +252,26 @@ namespace UrlMe.cc.Data
 			}
 		}
 		
+		[Column(Storage="_ExpirationDate", DbType="DateTime")]
+		public System.Nullable<System.DateTime> ExpirationDate
+		{
+			get
+			{
+				return this._ExpirationDate;
+			}
+			set
+			{
+				if ((this._ExpirationDate != value))
+				{
+					this.OnExpirationDateChanging(value);
+					this.SendPropertyChanging();
+					this._ExpirationDate = value;
+					this.SendPropertyChanged("ExpirationDate");
+					this.OnExpirationDateChanged();
+				}
+			}
+		}
+		
 		[Column(Storage="_ActiveInd", DbType="Bit NOT NULL")]
 		public bool ActiveInd
 		{
@@ -716,62 +292,22 @@ namespace UrlMe.cc.Data
 			}
 		}
 		
-		[Column(Storage="_DateTouched", DbType="SmallDateTime NOT NULL")]
-		public System.DateTime DateTouched
+		[Column(Storage="_CreateDate", DbType="DateTime NOT NULL")]
+		public System.DateTime CreateDate
 		{
 			get
 			{
-				return this._DateTouched;
+				return this._CreateDate;
 			}
 			set
 			{
-				if ((this._DateTouched != value))
+				if ((this._CreateDate != value))
 				{
-					this.OnDateTouchedChanging(value);
+					this.OnCreateDateChanging(value);
 					this.SendPropertyChanging();
-					this._DateTouched = value;
-					this.SendPropertyChanged("DateTouched");
-					this.OnDateTouchedChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_LastTouch", DbType="NVarChar(3) NOT NULL", CanBeNull=false)]
-		public string LastTouch
-		{
-			get
-			{
-				return this._LastTouch;
-			}
-			set
-			{
-				if ((this._LastTouch != value))
-				{
-					this.OnLastTouchChanging(value);
-					this.SendPropertyChanging();
-					this._LastTouch = value;
-					this.SendPropertyChanged("LastTouch");
-					this.OnLastTouchChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_CreateTimeStamp", DbType="SmallDateTime NOT NULL")]
-		public System.DateTime CreateTimeStamp
-		{
-			get
-			{
-				return this._CreateTimeStamp;
-			}
-			set
-			{
-				if ((this._CreateTimeStamp != value))
-				{
-					this.OnCreateTimeStampChanging(value);
-					this.SendPropertyChanging();
-					this._CreateTimeStamp = value;
-					this.SendPropertyChanged("CreateTimeStamp");
-					this.OnCreateTimeStampChanged();
+					this._CreateDate = value;
+					this.SendPropertyChanged("CreateDate");
+					this.OnCreateDateChanged();
 				}
 			}
 		}
@@ -806,6 +342,398 @@ namespace UrlMe.cc.Data
 						this._UserId = default(int);
 					}
 					this.SendPropertyChanged("User");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[Table(Name="ihdavis.[User]")]
+	public partial class User : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _UserId;
+		
+		private string _Email;
+		
+		private System.Data.Linq.Binary _Password;
+		
+		private string _PasswordHint;
+		
+		private bool _AdminInd;
+		
+		private System.DateTime _CreateDate;
+		
+		private EntitySet<Link> _Links;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnUserIdChanging(int value);
+    partial void OnUserIdChanged();
+    partial void OnEmailChanging(string value);
+    partial void OnEmailChanged();
+    partial void OnPasswordChanging(System.Data.Linq.Binary value);
+    partial void OnPasswordChanged();
+    partial void OnPasswordHintChanging(string value);
+    partial void OnPasswordHintChanged();
+    partial void OnAdminIndChanging(bool value);
+    partial void OnAdminIndChanged();
+    partial void OnCreateDateChanging(System.DateTime value);
+    partial void OnCreateDateChanged();
+    #endregion
+		
+		public User()
+		{
+			this._Links = new EntitySet<Link>(new Action<Link>(this.attach_Links), new Action<Link>(this.detach_Links));
+			OnCreated();
+		}
+		
+		[Column(Storage="_UserId", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int UserId
+		{
+			get
+			{
+				return this._UserId;
+			}
+			set
+			{
+				if ((this._UserId != value))
+				{
+					this.OnUserIdChanging(value);
+					this.SendPropertyChanging();
+					this._UserId = value;
+					this.SendPropertyChanged("UserId");
+					this.OnUserIdChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_Email", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
+		public string Email
+		{
+			get
+			{
+				return this._Email;
+			}
+			set
+			{
+				if ((this._Email != value))
+				{
+					this.OnEmailChanging(value);
+					this.SendPropertyChanging();
+					this._Email = value;
+					this.SendPropertyChanged("Email");
+					this.OnEmailChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_Password", DbType="Binary(16) NOT NULL", CanBeNull=false, UpdateCheck=UpdateCheck.Never)]
+		public System.Data.Linq.Binary Password
+		{
+			get
+			{
+				return this._Password;
+			}
+			set
+			{
+				if ((this._Password != value))
+				{
+					this.OnPasswordChanging(value);
+					this.SendPropertyChanging();
+					this._Password = value;
+					this.SendPropertyChanged("Password");
+					this.OnPasswordChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_PasswordHint", DbType="NVarChar(250) NOT NULL", CanBeNull=false)]
+		public string PasswordHint
+		{
+			get
+			{
+				return this._PasswordHint;
+			}
+			set
+			{
+				if ((this._PasswordHint != value))
+				{
+					this.OnPasswordHintChanging(value);
+					this.SendPropertyChanging();
+					this._PasswordHint = value;
+					this.SendPropertyChanged("PasswordHint");
+					this.OnPasswordHintChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_AdminInd", DbType="Bit NOT NULL")]
+		public bool AdminInd
+		{
+			get
+			{
+				return this._AdminInd;
+			}
+			set
+			{
+				if ((this._AdminInd != value))
+				{
+					this.OnAdminIndChanging(value);
+					this.SendPropertyChanging();
+					this._AdminInd = value;
+					this.SendPropertyChanged("AdminInd");
+					this.OnAdminIndChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_CreateDate", DbType="DateTime NOT NULL")]
+		public System.DateTime CreateDate
+		{
+			get
+			{
+				return this._CreateDate;
+			}
+			set
+			{
+				if ((this._CreateDate != value))
+				{
+					this.OnCreateDateChanging(value);
+					this.SendPropertyChanging();
+					this._CreateDate = value;
+					this.SendPropertyChanged("CreateDate");
+					this.OnCreateDateChanged();
+				}
+			}
+		}
+		
+		[Association(Name="User_Link", Storage="_Links", ThisKey="UserId", OtherKey="UserId")]
+		public EntitySet<Link> Links
+		{
+			get
+			{
+				return this._Links;
+			}
+			set
+			{
+				this._Links.Assign(value);
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_Links(Link entity)
+		{
+			this.SendPropertyChanging();
+			entity.User = this;
+		}
+		
+		private void detach_Links(Link entity)
+		{
+			this.SendPropertyChanging();
+			entity.User = null;
+		}
+	}
+	
+	[Table(Name="ihdavis.SiteUpdate")]
+	public partial class SiteUpdate : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _SiteUpdateID;
+		
+		private string _SiteCD;
+		
+		private System.DateTime _UpdateDate;
+		
+		private string _Text;
+		
+		private bool _ActiveInd;
+		
+		private System.DateTime _CreateDate;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnSiteUpdateIDChanging(int value);
+    partial void OnSiteUpdateIDChanged();
+    partial void OnSiteCDChanging(string value);
+    partial void OnSiteCDChanged();
+    partial void OnUpdateDateChanging(System.DateTime value);
+    partial void OnUpdateDateChanged();
+    partial void OnTextChanging(string value);
+    partial void OnTextChanged();
+    partial void OnActiveIndChanging(bool value);
+    partial void OnActiveIndChanged();
+    partial void OnCreateDateChanging(System.DateTime value);
+    partial void OnCreateDateChanged();
+    #endregion
+		
+		public SiteUpdate()
+		{
+			OnCreated();
+		}
+		
+		[Column(Storage="_SiteUpdateID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int SiteUpdateID
+		{
+			get
+			{
+				return this._SiteUpdateID;
+			}
+			set
+			{
+				if ((this._SiteUpdateID != value))
+				{
+					this.OnSiteUpdateIDChanging(value);
+					this.SendPropertyChanging();
+					this._SiteUpdateID = value;
+					this.SendPropertyChanged("SiteUpdateID");
+					this.OnSiteUpdateIDChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_SiteCD", DbType="NVarChar(5) NOT NULL", CanBeNull=false)]
+		public string SiteCD
+		{
+			get
+			{
+				return this._SiteCD;
+			}
+			set
+			{
+				if ((this._SiteCD != value))
+				{
+					this.OnSiteCDChanging(value);
+					this.SendPropertyChanging();
+					this._SiteCD = value;
+					this.SendPropertyChanged("SiteCD");
+					this.OnSiteCDChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_UpdateDate", DbType="SmallDateTime NOT NULL")]
+		public System.DateTime UpdateDate
+		{
+			get
+			{
+				return this._UpdateDate;
+			}
+			set
+			{
+				if ((this._UpdateDate != value))
+				{
+					this.OnUpdateDateChanging(value);
+					this.SendPropertyChanging();
+					this._UpdateDate = value;
+					this.SendPropertyChanged("UpdateDate");
+					this.OnUpdateDateChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_Text", DbType="NVarChar(255) NOT NULL", CanBeNull=false)]
+		public string Text
+		{
+			get
+			{
+				return this._Text;
+			}
+			set
+			{
+				if ((this._Text != value))
+				{
+					this.OnTextChanging(value);
+					this.SendPropertyChanging();
+					this._Text = value;
+					this.SendPropertyChanged("Text");
+					this.OnTextChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_ActiveInd", DbType="Bit NOT NULL")]
+		public bool ActiveInd
+		{
+			get
+			{
+				return this._ActiveInd;
+			}
+			set
+			{
+				if ((this._ActiveInd != value))
+				{
+					this.OnActiveIndChanging(value);
+					this.SendPropertyChanging();
+					this._ActiveInd = value;
+					this.SendPropertyChanged("ActiveInd");
+					this.OnActiveIndChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_CreateDate", DbType="DateTime NOT NULL")]
+		public System.DateTime CreateDate
+		{
+			get
+			{
+				return this._CreateDate;
+			}
+			set
+			{
+				if ((this._CreateDate != value))
+				{
+					this.OnCreateDateChanging(value);
+					this.SendPropertyChanging();
+					this._CreateDate = value;
+					this.SendPropertyChanged("CreateDate");
+					this.OnCreateDateChanged();
 				}
 			}
 		}

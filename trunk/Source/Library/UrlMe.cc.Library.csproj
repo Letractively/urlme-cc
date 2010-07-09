@@ -59,11 +59,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Configuration\Database.cs" />
     <Compile Include="Configuration\Page.cs" />
     <Compile Include="Configuration\Site.cs" />
-    <Compile Include="Data\SiteData.cs" />
-    <Compile Include="Data\LinkData.cs" />
     <Compile Include="Data\UserData.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

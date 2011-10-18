@@ -10,13 +10,14 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>urlme.Core</RootNamespace>
     <AssemblyName>urlme.Core</AssemblyName>
-    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <FileUpgradeFlags>
     </FileUpgradeFlags>
     <UpgradeBackupLocation>
     </UpgradeBackupLocation>
     <OldToolsVersion>3.5</OldToolsVersion>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -37,10 +38,12 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.configuration" />
     <Reference Include="System.Core">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
+    <Reference Include="System.Data.Linq" />
     <Reference Include="System.Runtime.Serialization">
       <RequiredTargetFramework>3.0</RequiredTargetFramework>
     </Reference>
@@ -61,29 +64,20 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Configuration\ConfigurationManager.cs" />
-    <Compile Include="Configuration\Database.cs" />
-    <Compile Include="Configuration\Mail.cs" />
-    <Compile Include="Configuration\Site.cs" />
-    <Compile Include="Configuration\WebServices.cs" />
-    <Compile Include="Diagnostics\DebugWriter.cs" />
-    <Compile Include="Enum\Attributes.cs" />
-    <Compile Include="Enum\Utils.cs" />
-    <Compile Include="Extensions\ArrayExtensions.cs" />
-    <Compile Include="Extensions\EnumExtensions.cs" />
-    <Compile Include="Extensions\IO\StreamExtensions.cs" />
-    <Compile Include="Extensions\JsonExtensions.cs" />
-    <Compile Include="Extensions\ObjectExtensions.cs" />
+    <Compile Include="Model\Enums.cs" />
+    <Compile Include="Model\Link.cs" />
+    <Compile Include="Model\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Utils.cs" />
-    <Compile Include="Web\Caching\Cache.cs" />
-    <Compile Include="Web\Caching\CacheItem.cs" />
-    <Compile Include="Web\Caching\CacheItemManager.cs" />
-    <Compile Include="Web\Handlers\Cache.cs" />
-    <Compile Include="Web\Services\Security.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="urlme.Core.config" />
+    <ProjectReference Include="..\urlme.Data\urlme.Data.csproj">
+      <Project>{9F8EA416-9DF3-4B09-80E8-3089AE096098}</Project>
+      <Name>urlme.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\urlme.Utils\urlme.Utils.csproj">
+      <Project>{133B5E7D-72B0-4186-9DCF-77CFA369817A}</Project>
+      <Name>urlme.Utils</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

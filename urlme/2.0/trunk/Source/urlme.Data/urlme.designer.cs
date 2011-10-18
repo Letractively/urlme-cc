@@ -83,6 +83,14 @@ namespace urlme.Data
 				return this.GetTable<User>();
 			}
 		}
+		
+		public System.Data.Linq.Table<test> tests
+		{
+			get
+			{
+				return this.GetTable<test>();
+			}
+		}
 	}
 	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="ihdavis.Link")]
@@ -469,6 +477,33 @@ namespace urlme.Data
 			if ((this.PropertyChanged != null))
 			{
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="ihdavis.test")]
+	public partial class test
+	{
+		
+		private System.Nullable<int> _NullableInt;
+		
+		public test()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NullableInt", DbType="Int")]
+		public System.Nullable<int> NullableInt
+		{
+			get
+			{
+				return this._NullableInt;
+			}
+			set
+			{
+				if ((this._NullableInt != value))
+				{
+					this._NullableInt = value;
+				}
 			}
 		}
 	}

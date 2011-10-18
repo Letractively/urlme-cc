@@ -6,7 +6,7 @@ using System.Web.Mvc;
 using urlme.Site.ViewModels;
 using urlme.Model.Enums;
 using urlme.Model;
-using urlme.Core.Extensions;
+using urlme.Utils.Enum;
 
 namespace urlme.Site.Controllers
 {
@@ -27,7 +27,7 @@ namespace urlme.Site.Controllers
             if (this.ModelState.IsValid)
             {
                 CrudLinkResults result = Model.Link.CreateLink(link.Path, link.DestinationUrl);
-                string feedback = EnumHelper.GetStringValue(result);
+                string feedback = StringAttribute.GetStringValue(result);
                 TempData.Add("Feedback", feedback);
 
                 if (result == CrudLinkResults.Success)

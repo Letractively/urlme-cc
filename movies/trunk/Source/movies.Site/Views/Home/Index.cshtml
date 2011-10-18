@@ -1,0 +1,14 @@
+﻿@{
+    ViewBag.Title = "Index";
+}
+
+@section ExtraHeadContent {
+    <script type="text/javascript" src="@this.Url.Content("~/scripts/codejkjk.movies.HomeIndex.js")"></script>
+}
+
+<div id="container">
+    <input type="text" id="q" name="q" autofocus placeholder="Search..." /><button id="go">Go</button>
+    <div id="loading"><img src="@this.Url.Content("~/content/ajax-loader.gif")" /><span id="loadingMessage"></span></div>
+    <div id="movies">
+    </div>
+</div>

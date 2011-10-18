@@ -16,12 +16,13 @@ body
 .movie .details { margin-left: 10px; float: left; font-size: 120%; }
 .movie .details .title { font-weight: bold; margin-right: 20px; }
 .movie .details .ratings { margin-top: 10px; }
+.movie .details .links { font-size: 80%; }
 #loading { margin-top: 10px; }
 #loading img { margin-right: 10px; }
 a.external { background: url('/content/external-link-icon.png') no-repeat top right; padding-right:15px; }
 #go { padding: 10px; width: 50px; }
-.star {
-    background: url("/content/star.png") no-repeat scroll 0 0 transparent;
+.movie .details .ratings .rating 
+{
     color: black;
     display: inline-block;
     float: left;
@@ -33,8 +34,13 @@ a.external { background: url('/content/external-link-icon.png') no-repeat top ri
     padding-right: 5px;
     text-align: center;
     vertical-align: middle;
-    width: 66px;
+    width: 66px;    
 }
+.movie .details .ratings .star { background: url("/content/star.png") no-repeat scroll 0 0 transparent; }
+.movie .details .ratings .critics-fresh { background: url("/content/critics-fresh.png") no-repeat scroll 0 0 transparent; }
+.movie .details .ratings .critics-rotten { background: url("/content/critics-rotten.png") no-repeat scroll 0 0 transparent; }
+.movie .details .ratings .audience-upright { background: url("/content/audience-upright.png") no-repeat scroll 0 0 transparent; }
+.movie .details .ratings .audience-spilled { background: url("/content/audience-spilled.png") no-repeat scroll 0 0 transparent; }
 
 #q  
 {

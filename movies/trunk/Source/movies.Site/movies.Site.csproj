@@ -66,6 +66,10 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\ajax-loader.gif" />
+    <Content Include="Content\audience-spilled.png" />
+    <Content Include="Content\audience-upright.png" />
+    <Content Include="Content\critics-fresh.png" />
+    <Content Include="Content\critics-rotten.png" />
     <Content Include="Content\external-link-icon.png" />
     <Content Include="Content\star.png" />
     <Content Include="Global.asax" />

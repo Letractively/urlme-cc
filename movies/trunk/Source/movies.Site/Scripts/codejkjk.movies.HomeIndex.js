@@ -30,8 +30,9 @@ codejkjk.movies.HomeIndex = {
             html += String.format("<div class='movie imdbNotSet' id='{0}'>", movie.alternate_ids.imdb);
             html += String.format("<img src='{0}'/>", movie.posters.profile);
             html += String.format("<div class='details'><span class='title'>{0}</span>{1}", movie.title, movie.mpaa_rating);
-            html += String.format("<div class='ratings'><span class='imdb_rating star'></span> out of 10 (<span class='imdb_votes'></span> votes) on <a href='{0}' class='external' target='_blank'>IMDb.com</a></div>", codejkjk.movies.IMDB.GetMovieUrl(movie.alternate_ids.imdb));
-            html += String.format("<div class='ratings'>{0}% (critics), {1}% (audience) on <a href='{2}' class='external' target='_blank'>RottenTomatoes.com</a></div>", movie.ratings.critics_score, movie.ratings.audience_score, movie.links.alternate);
+            html += String.format("<div class='ratings'><span class='imdb_rating star rating'></span> (<span class='imdb_votes'></span> votes)</div>");
+            html += String.format("<div class='ratings'><span class='critics-fresh rating'>{0}%</span> <span class='audience-upright rating'>{1}%</span></div>", movie.ratings.critics_score, movie.ratings.audience_score);
+            html += String.format("<div class='links'><a href='{0}' class='external' target='_blank'>IMDb</a>, <a href='{1}' class='external' target='_blank'>RottenTomatoes</a></div>", codejkjk.movies.IMDB.GetMovieUrl(movie.alternate_ids.imdb), movie.links.alternate);
             html += "</div>"; // close details
             html += "</div>"; // close movie
         });

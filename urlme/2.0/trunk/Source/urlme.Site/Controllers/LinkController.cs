@@ -4,7 +4,6 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using urlme.Model.Enums;
-using urlme.Core.Extensions;
 
 namespace urlme.Site.Controllers
 {

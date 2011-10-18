@@ -21,4 +21,9 @@
       <Column Name="CreateDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
     </Type>
   </Table>
+  <Table Name="ihdavis.test" Member="tests">
+    <Type Name="test">
+      <Column Name="NullableInt" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </Type>
+  </Table>
 </Database>

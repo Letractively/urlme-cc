@@ -2,66 +2,96 @@
 
 codejkjk.movies.HomeIndex = {
     // page elements
-    MoviesContainer: function () { return $("#movies"); },
-    LoadingContainer: function () { return $("#loading"); },
-    LoadingMessage: function () { return $("#loadingMessage"); },
+    Controls: {
+        MoviesContainer: function () { return $("#movies"); }
+        , LoadingContainer: function () { return $("#loading"); }
+        , LoadingMessage: function () { return $("#loadingMessage"); }
+        , SearchBox: function () { return $("#q"); }
+        , SearchButton: function () { return $("#go"); }
+    },
 
     Init: function () {
+        codejkjk.movies.HomeIndex.Controls.SearchBox().focus(); // cuz some browsers are stupid and don't yet support html5's autofocus attr
         codejkjk.movies.HomeIndex.BindFormActions();
         codejkjk.movies.HomeIndex.HandleFeedback();
 
+        codejkjk.movies.HomeIndex.Controls.MoviesContainer().show();
         codejkjk.movies.HomeIndex.ShowLoading("Loading RottenTomatoes.com info...");
         codejkjk.movies.RottenTomatoes.GetBoxOfficeMovies(codejkjk.movies.HomeIndex.LoadMovies);
     },
 
     ShowLoading: function (msg) {
-        codejkjk.movies.HomeIndex.LoadingContainer().show();
-        codejkjk.movies.HomeIndex.LoadingMessage().html(msg);
+        codejkjk.movies.HomeIndex.Controls.LoadingContainer().show();
+        codejkjk.movies.HomeIndex.Controls.LoadingMessage().html(msg);
     },
 
     HideLoading: function () {
-        codejkjk.movies.HomeIndex.LoadingContainer().hide();
+        codejkjk.movies.HomeIndex.Controls.LoadingContainer().hide();
     },
 
     LoadMovies: function (movies) {
-        codejkjk.movies.HomeIndex.MoviesContainer().hide(); // hide it; show it after injecting imdb data
         var html = "";
         $.each(movies, function (index, movie) {
-            html += String.format("<div class='movie imdbNotSet' id='{0}'>", movie.alternate_ids.imdb);
-            html += String.format("<img src='{0}'/>", movie.posters.profile);
-            html += String.format("<div class='details'><span class='title'>{0}</span>{1}", movie.title, movie.mpaa_rating);
-            html += String.format("<div class='ratings'><span class='imdb_rating star rating'></span> (<span class='imdb_votes'></span> votes)</div>");
-            html += String.format("<div class='ratings'><span class='critics-fresh rating'>{0}%</span> <span class='audience-upright rating'>{1}%</span></div>", movie.ratings.critics_score, movie.ratings.audience_score);
-            html += String.format("<div class='links'><a href='{0}' class='external' target='_blank'>IMDb</a>, <a href='{1}' class='external' target='_blank'>RottenTomatoes</a></div>", codejkjk.movies.IMDB.GetMovieUrl(movie.alternate_ids.imdb), movie.links.alternate);
-            html += "</div>"; // close details
-            html += "</div>"; // close movie
+            if (movie.ratings.critics_score != -1 && movie.ratings.audience_score != -1) {
+                var criticsClass = movie.ratings.critics_rating.indexOf("Fresh") >= 0 ? "criticsFresh" : "criticsRotten";
+                var audienceClass = movie.ratings.audience_rating.indexOf("Upright") >= 0 ? "audienceUpright" : "audienceSpilled";
+
+                html += String.format("<div class='movie imdbNotSet' id='{0}'>", movie.alternate_ids.imdb);
+                html += String.format("<img src='{0}'/>", movie.posters.profile);
+                html += String.format("<div class='details'><span class='title'>{0}</span>{1}", movie.title, movie.mpaa_rating);
+                html += "<div class='ratings'>";
+                html += "<span class='imdb_rating star rating'></span>";
+                html += String.format("<span class='{0} rottenTomato rating'>{1}<sup>%</sup></span><span class='{2} rottenTomato rating'>{3}<sup>%</sup></span>", criticsClass, movie.ratings.critics_score, audienceClass, movie.ratings.audience_score);
+                html += "</div>"; // close ratings
+                html += String.format("<div class='links'><a href='{0}' class='external' target='_blank'>IMDb</a>  <a href='{1}' class='external' target='_blank'>RottenTomatoes</a></div>", codejkjk.movies.IMDB.GetMovieUrl(movie.alternate_ids.imdb), movie.links.alternate);
+                html += "</div>"; // close details
+                html += "</div>"; // close movie
+            } else {
+                html += "<div class='movie notYetReleased'>";
+                html += String.format("<img src='{0}'/>", movie.posters.thumbnail);
+                html += String.format("<div class='details'><span class='title'>{0}</span>{1}", movie.title, movie.mpaa_rating);
+                html += "<div class='notYetReleasedMessage'>Not yet released / no rating available</div>";
+                html += "</div>"; // close details
+                html += "</div>"; // close movie
+            }
         });
-        codejkjk.movies.HomeIndex.MoviesContainer().html(html);
+        codejkjk.movies.HomeIndex.Controls.MoviesContainer().html(html);
         codejkjk.movies.HomeIndex.GetIMDBData();
     },
 
     GetIMDBData: function () {
+        codejkjk.movies.HomeIndex.Controls.MoviesContainer().show();
         codejkjk.movies.HomeIndex.ShowLoading("Loading IMDb.com info...");
-        codejkjk.movies.HomeIndex.MoviesContainer().find(".movie").each(function () {
-            var imdbMovieId = $(this).attr("id");
-            codejkjk.movies.IMDB.GetMovie(imdbMovieId, codejkjk.movies.HomeIndex.SetIMDBDetails);
+        codejkjk.movies.HomeIndex.Controls.MoviesContainer().find(".movie").each(function () {
+            if (!$(this).hasClass("notYetReleased")) {
+                var imdbMovieId = $(this).attr("id");
+                codejkjk.movies.IMDB.GetMovie(imdbMovieId, codejkjk.movies.HomeIndex.SetIMDBDetails);
+            }
         });
     },
     SetIMDBDetails: function (movieId, movie) {
         var movieContainer = $("#" + movieId);
-        movieContainer.find(".imdb_rating").html(movie.Rating);
-        movieContainer.find(".imdb_votes").html(addCommas(movie.Votes));
+        var votes = String.format("{0} votes", movie.Votes);
+        movieContainer.find(".imdb_rating").html(movie.Rating).attr("alt", votes).attr("title", votes).removeClass(".imdb_rating");
         movieContainer.removeClass("imdbNotSet");
         if ($(".imdbNotSet").length == 0) {
-            codejkjk.movies.HomeIndex.MoviesContainer().show();
             codejkjk.movies.HomeIndex.HideLoading();
         }
     },
     BindFormActions: function () {
-        $("#go").click(function (e) {
+        codejkjk.movies.HomeIndex.Controls.SearchButton().click(function (e) {
             e.preventDefault();
-            var q = $("#q").val();
+            codejkjk.movies.HomeIndex.Controls.MoviesContainer().hide();
+            codejkjk.movies.HomeIndex.ShowLoading("Loading RottenTomatoes.com info...");
+            var q = codejkjk.movies.HomeIndex.Controls.SearchBox().val();
             codejkjk.movies.RottenTomatoes.SearchMovies(q, codejkjk.movies.HomeIndex.LoadMovies);
+            $(this).blur();
+        });
+        codejkjk.movies.HomeIndex.Controls.SearchBox().keypress(function (e) {
+            var code = (e.keyCode ? e.keyCode : e.which);
+            if (code == 13) {
+                codejkjk.movies.HomeIndex.Controls.SearchButton().trigger('click');
+            }
         });
     },
     HandleFeedback: function () {

@@ -3,11 +3,17 @@
 }
 
 @section ExtraHeadContent {
+    <link href="@Url.Content("~/Content/Site.css")" rel="stylesheet" type="text/css" />
+    <script src="@Url.Content("~/Scripts/jquery-1.4.1.min.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/jquery.autocomplete.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/codejkjk.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/codejkjk.movies.RottenTomatoes.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/codejkjk.movies.IMDB.js")" type="text/javascript"></script>
     <script type="text/javascript" src="@this.Url.Content("~/scripts/codejkjk.movies.HomeIndex.js")"></script>
 }
 
 <div id="container">
-    <input type="text" id="q" name="q" autofocus placeholder="Search..." /><button id="go">Go</button>
+    <input type="text" id="q" name="q" autofocus placeholder="Search..." /><button id="go" class="button blue">Go</button>
     <div id="loading"><img src="@this.Url.Content("~/content/ajax-loader.gif")" /><span id="loadingMessage"></span></div>
     <div id="movies">
     </div>

@@ -6,7 +6,7 @@ body
     /* text-align: center; */
 }
 
-/* .container { margin: 0 auto; width: 450px; text-align:left; } */
+#container { margin: 0 auto; width: 467px; text-align:left; }
 
 #movies { margin-top: 15px; }
 

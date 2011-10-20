@@ -8,6 +8,8 @@ codejkjk.movies.HomeIndex = {
         , LoadingMessage: function () { return $("#loadingMessage"); }
         , SearchBox: function () { return $("#q"); }
         , SearchButton: function () { return $("#go"); }
+        , PinLinks: function () { return $(".pinLink"); }
+        , RemoveLinks: function () { return $(".removeLink"); }
     },
 
     Init: function () {
@@ -45,6 +47,7 @@ codejkjk.movies.HomeIndex = {
                 html += "</div>"; // close ratings
                 html += String.format("<div class='links'><a href='{0}' class='external' target='_blank'>IMDb</a>  <a href='{1}' class='external' target='_blank'>RottenTomatoes</a></div>", codejkjk.movies.IMDB.GetMovieUrl(movie.alternate_ids.imdb), movie.links.alternate);
                 html += "</div>"; // close details
+                html += "<div class='actions'><a href='#' class='removeLink'>Remove</a><a href='#' class='pinLink'>Pin it</a></div>";
                 html += "</div>"; // close movie
             } else {
                 html += "<div class='movie notYetReleased'>";
@@ -52,10 +55,12 @@ codejkjk.movies.HomeIndex = {
                 html += String.format("<div class='details'><span class='title'>{0}</span>{1}", movie.title, movie.mpaa_rating);
                 html += "<div class='notYetReleasedMessage'>Not yet released / no rating available</div>";
                 html += "</div>"; // close details
+                html += "<div class='actions'><a href='#' class='removeLink'>Remove</a></div>";
                 html += "</div>"; // close movie
             }
         });
         codejkjk.movies.HomeIndex.Controls.MoviesContainer().html(html);
+        codejkjk.movies.HomeIndex.BindResultActions();
         codejkjk.movies.HomeIndex.GetIMDBData();
     },
 
@@ -92,6 +97,14 @@ codejkjk.movies.HomeIndex = {
             if (code == 13) {
                 codejkjk.movies.HomeIndex.Controls.SearchButton().trigger('click');
             }
+        });
+    },
+    BindResultActions: function () {
+        codejkjk.movies.HomeIndex.Controls.RemoveLinks().click(function (e) {
+            e.preventDefault();
+            var link = $(this);
+            var movie = link.closest(".movie");
+            movie.remove();
         });
     },
     HandleFeedback: function () {

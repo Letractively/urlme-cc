@@ -50,7 +50,7 @@ codejkjk.movies.HomeIndex = {
                 html += "<div class='movie unPinned notYetReleased'>";
                 html += String.format("<img src='{0}'/>", movie.posters.thumbnail);
                 html += String.format("<div class='details'><span class='title'>{0}</span>{1}", movie.title, movie.mpaa_rating);
-                html += "<div class='notYetReleasedMessage'>Not yet released / no rating available / not on IMDb</div>";
+                html += "<div class='notYetReleasedMessage'>Info not available</div>";
             }
             html += "</div>"; // close details
             html += "<div class='actions'><a href='#' class='removeLink'>Remove</a><a href='#' class='pinLink'>Freeze in results</a></div>";

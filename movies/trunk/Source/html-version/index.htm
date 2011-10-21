@@ -12,8 +12,12 @@
 </head>
 <body>
     <div id="container">
-        <input type="text" id="q" name="q" autofocus placeholder="Search..." /><button id="go" class="button blue">Go</button>
-        <div id="loading"><img src="resource/ajax-loader.gif" /><span id="loadingMessage"></span></div>
+        <div id="header">
+            <div id="headerContents">
+                <div id="searchControls"><input type="text" id="q" name="q" autofocus placeholder="Search..." /><button id="go" class="button blue">Go</button></div>
+                <div id="loading"><img src="resource/ajax-loader.gif" /><span id="loadingMessage"></span></div>
+            </div>
+        </div>
         <div id="movies">
         </div>
     </div>

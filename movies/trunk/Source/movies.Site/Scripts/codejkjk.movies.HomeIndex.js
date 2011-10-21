@@ -45,18 +45,15 @@ codejkjk.movies.HomeIndex = {
                 html += String.format("<span class='{0} rottenTomato rating'>{1}<sup>%</sup></span><span class='{2} rottenTomato rating'>{3}<sup>%</sup></span>", criticsClass, movie.ratings.critics_score, audienceClass, movie.ratings.audience_score);
                 html += "</div>"; // close ratings
                 html += String.format("<div class='links'><a href='{0}' class='external' target='_blank'>IMDb</a>  <a href='{1}' class='external' target='_blank'>RottenTomatoes</a></div>", codejkjk.movies.IMDB.GetMovieUrl(movie.alternate_ids.imdb), movie.links.alternate);
-                html += "</div>"; // close details
-                html += "<div class='actions'><a href='#' class='removeLink'>Remove</a><a href='#' class='pinLink'>Freeze in results</a></div>";
-                html += "</div>"; // close movie
             } else { // not yet released / not rated
                 html += "<div class='movie unPinned notYetReleased'>";
                 html += String.format("<img src='{0}'/>", movie.posters.thumbnail);
                 html += String.format("<div class='details'><span class='title'>{0}</span>{1}", movie.title, movie.mpaa_rating);
                 html += "<div class='notYetReleasedMessage'>Not yet released / no rating available</div>";
-                html += "</div>"; // close details
-                html += "<div class='actions'><a href='#' class='removeLink'>Remove</a><a href='#' class='pinLink'>Freeze in results</a></div>";
-                html += "</div>"; // close movie
             }
+            html += "</div>"; // close details
+            html += "<div class='actions'><a href='#' class='removeLink'>Remove</a><a href='#' class='pinLink'>Freeze in results</a></div>";
+            html += "</div>"; // close movie
         });
         codejkjk.movies.HomeIndex.Controls.MoviesContainer().append(html);
         codejkjk.movies.HomeIndex.BindResultActions();
@@ -108,9 +105,14 @@ codejkjk.movies.HomeIndex = {
             var movie = link.closest(".movie");
             if (link.hasClass("removeLink"))
                 movie.remove();
-            else {
-                movie.addClass("pinned").removeClass('unPinned');
-                link.html("Frozen in results");
+            else if (link.hasClass("pinLink")) {
+                if (link.html().indexOf("Frozen") >= 0) { // already frozen, so unfreeze
+                    movie.addClass("unPinned").removeClass('pinned');
+                    link.html("Freeze in results");
+                } else { // not already frozen, so freeze
+                    movie.addClass("pinned").removeClass('unPinned');
+                    link.html("Frozen in results");
+                }
                 link.blur();
             }
         });

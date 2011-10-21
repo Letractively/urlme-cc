@@ -33,7 +33,7 @@ codejkjk.movies.HomeIndex = {
     LoadMovies: function (movies) {
         var html = "";
         $.each(movies, function (index, movie) {
-            if (movie.ratings.critics_score != -1 && movie.ratings.audience_score != -1) {
+            if (movie.ratings.critics_score != -1 && movie.ratings.audience_score != -1 && typeof movie.alternate_ids != 'undefined') {
                 var criticsClass = movie.ratings.critics_rating.indexOf("Fresh") >= 0 ? "criticsFresh" : "criticsRotten";
                 var audienceClass = movie.ratings.audience_rating.indexOf("Upright") >= 0 ? "audienceUpright" : "audienceSpilled";
 
@@ -49,7 +49,7 @@ codejkjk.movies.HomeIndex = {
                 html += "<div class='movie unPinned notYetReleased'>";
                 html += String.format("<img src='{0}'/>", movie.posters.thumbnail);
                 html += String.format("<div class='details'><span class='title'>{0}</span>{1}", movie.title, movie.mpaa_rating);
-                html += "<div class='notYetReleasedMessage'>Not yet released / no rating available</div>";
+                html += "<div class='notYetReleasedMessage'>Not yet released / no rating available / not on IMDb</div>";
             }
             html += "</div>"; // close details
             html += "<div class='actions'><a href='#' class='removeLink'>Remove</a><a href='#' class='pinLink'>Freeze in results</a></div>";
@@ -99,7 +99,7 @@ codejkjk.movies.HomeIndex = {
         });
     },
     BindResultActions: function () {
-        codejkjk.movies.HomeIndex.Controls.ActionLinks().click(function (e) {
+        codejkjk.movies.HomeIndex.Controls.ActionLinks().unbind().click(function (e) {
             e.preventDefault();
             var link = $(this);
             var movie = link.closest(".movie");

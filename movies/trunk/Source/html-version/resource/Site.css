@@ -11,8 +11,8 @@ body
 #movies { margin-top: 15px; }
 
 .notYetReleased { color: Gray; }
-.notYetReleased img { width: 80px; }
 .notYetReleased .notYetReleasedMessage { overflow: auto; margin-top: 10px; }
+.notYetReleased img { opacity:0.4; filter:alpha(opacity=40); /* For IE8 and earlier */ }
 .movie.unPinned .actions { display:none; } 
 .movie { overflow: hidden; margin-top:10px; position: relative; }
 .movie .actions { position: absolute; bottom: 10px; right: 5px; }
@@ -21,11 +21,11 @@ body
 .movie .actions a:hover { color: black; }
 .movie.unPinned:hover .actions { display:block; }
 .movie:first-child { margin-top:0px; }
-.movie img { float: left; }
+.movie img { float: left; max-width: 85px; }
 .movie .details { margin-left: 10px; float: left; font-size: 120%; }
 .movie .details .title { font-weight: bold; margin-right: 20px; }
 .movie .details .ratings { margin-top: 10px; overflow:auto; }
-.movie .details .links { font-size: 80%; margin-top:14px; }
+.movie .details .links { font-size: 75%; margin-top:14px; }
 #loading { margin-top: 10px; }
 #loading img { margin-right: 10px; }
 a.external { padding-right: 15px; }

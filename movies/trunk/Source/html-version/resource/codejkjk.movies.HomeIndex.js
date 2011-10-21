@@ -10,6 +10,7 @@ codejkjk.movies.HomeIndex = {
         , SearchButton: function () { return $("#go"); }
         , ActionLinks: function () { return $(".actions").find("a"); }
         , UnPinnedMovies: function () { return $(".movie:not(.pinned)"); }
+        , Ratings: function () { return $(".rating"); }
     },
 
     Init: function () {
@@ -41,10 +42,10 @@ codejkjk.movies.HomeIndex = {
                 html += String.format("<img src='{0}'/>", movie.posters.profile);
                 html += String.format("<div class='details'><span class='title'>{0}</span>{1}", movie.title, movie.mpaa_rating);
                 html += "<div class='ratings'>";
-                html += "<span class='imdb_rating star rating'></span>";
-                html += String.format("<span class='{0} rottenTomato rating'>{1}<sup>%</sup></span><span class='{2} rottenTomato rating'>{3}<sup>%</sup></span>", criticsClass, movie.ratings.critics_score, audienceClass, movie.ratings.audience_score);
+                html += String.format("<a href='{0}' target='_blank' class='imdb_rating star rating'></a>", codejkjk.movies.IMDB.GetMovieUrl(movie.alternate_ids.imdb));
+                html += String.format("<a href='{4}' target='_blank' alt='{5}' title='{5}' class='{0} rottenTomato rating'>{1}<sup>%</sup></a><a href='{4}' target='_blank' alt='{6}' title='{6}' class='{2} rottenTomato rating'>{3}<sup>%</sup></a>", criticsClass, movie.ratings.critics_score, audienceClass, movie.ratings.audience_score, movie.links.alternate, "Critics score on RottenTomatoes", "Audience score on RottenTomatoes");
                 html += "</div>"; // close ratings
-                html += String.format("<div class='links'><a href='{0}' class='external' target='_blank'>IMDb</a>  <a href='{1}' class='external' target='_blank'>RottenTomatoes</a></div>", codejkjk.movies.IMDB.GetMovieUrl(movie.alternate_ids.imdb), movie.links.alternate);
+                // , movie.links.alternate
             } else { // not yet released / not rated
                 html += "<div class='movie unPinned notYetReleased'>";
                 html += String.format("<img src='{0}'/>", movie.posters.thumbnail);
@@ -71,7 +72,7 @@ codejkjk.movies.HomeIndex = {
     },
     SetIMDBDetails: function (movieId, movie) {
         var movieContainer = $("#" + movieId);
-        var votes = String.format("{0} votes", movie.Votes);
+        var votes = String.format("{0} votes on IMDb.com", movie.Votes);
         movieContainer.find(".imdb_rating").html(movie.Rating).attr("alt", votes).attr("title", votes).removeClass(".imdb_rating");
         movieContainer.removeClass("imdbNotSet");
         if ($(".imdbNotSet").length == 0) {
@@ -114,6 +115,12 @@ codejkjk.movies.HomeIndex = {
                 movie.toggleClass("unPinned").toggleClass('pinned');
                 link.blur();
             }
+        });
+        
+        // prevent that weird dotted gray box to show around the rating links that go to imdb.com and rottentomatoes.com after the user clicks on them.
+        codejkjk.movies.HomeIndex.Controls.Ratings().unbind().click(function () {
+            $(this).blur();
+            return true;
         });
     },
     HandleFeedback: function () {

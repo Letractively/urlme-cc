@@ -8,8 +8,8 @@ codejkjk.movies.HomeIndex = {
         , LoadingMessage: function () { return $("#loadingMessage"); }
         , SearchBox: function () { return $("#q"); }
         , SearchButton: function () { return $("#go"); }
-        , PinLinks: function () { return $(".pinLink"); }
-        , RemoveLinks: function () { return $(".removeLink"); }
+        , ActionLinks: function () { return $(".actions").find("a"); }
+        , UnPinnedMovies: function () { return $(".movie:not(.pinned)"); }
     },
 
     Init: function () {
@@ -17,7 +17,6 @@ codejkjk.movies.HomeIndex = {
         codejkjk.movies.HomeIndex.BindFormActions();
         codejkjk.movies.HomeIndex.HandleFeedback();
 
-        codejkjk.movies.HomeIndex.Controls.MoviesContainer().show();
         codejkjk.movies.HomeIndex.ShowLoading("Loading RottenTomatoes.com info...");
         codejkjk.movies.RottenTomatoes.GetBoxOfficeMovies(codejkjk.movies.HomeIndex.LoadMovies);
     },
@@ -47,25 +46,24 @@ codejkjk.movies.HomeIndex = {
                 html += "</div>"; // close ratings
                 html += String.format("<div class='links'><a href='{0}' class='external' target='_blank'>IMDb</a>  <a href='{1}' class='external' target='_blank'>RottenTomatoes</a></div>", codejkjk.movies.IMDB.GetMovieUrl(movie.alternate_ids.imdb), movie.links.alternate);
                 html += "</div>"; // close details
-                html += "<div class='actions'><a href='#' class='removeLink'>Remove</a><a href='#' class='pinLink'>Pin it</a></div>";
+                html += "<div class='actions unPinned'><a href='#' class='removeLink'>Remove</a><a href='#' class='pinLink'>Pin it</a></div>";
                 html += "</div>"; // close movie
-            } else {
+            } else { // not yet released / not rated
                 html += "<div class='movie notYetReleased'>";
                 html += String.format("<img src='{0}'/>", movie.posters.thumbnail);
                 html += String.format("<div class='details'><span class='title'>{0}</span>{1}", movie.title, movie.mpaa_rating);
                 html += "<div class='notYetReleasedMessage'>Not yet released / no rating available</div>";
                 html += "</div>"; // close details
-                html += "<div class='actions'><a href='#' class='removeLink'>Remove</a></div>";
+                html += "<div class='actions unPinned'><a href='#' class='removeLink'>Remove</a><a href='#' class='pinLink'>Pin it</a></div>";
                 html += "</div>"; // close movie
             }
         });
-        codejkjk.movies.HomeIndex.Controls.MoviesContainer().html(html);
+        codejkjk.movies.HomeIndex.Controls.MoviesContainer().append(html);
         codejkjk.movies.HomeIndex.BindResultActions();
         codejkjk.movies.HomeIndex.GetIMDBData();
     },
 
     GetIMDBData: function () {
-        codejkjk.movies.HomeIndex.Controls.MoviesContainer().show();
         codejkjk.movies.HomeIndex.ShowLoading("Loading IMDb.com info...");
         codejkjk.movies.HomeIndex.Controls.MoviesContainer().find(".movie").each(function () {
             if (!$(this).hasClass("notYetReleased")) {
@@ -86,7 +84,11 @@ codejkjk.movies.HomeIndex = {
     BindFormActions: function () {
         codejkjk.movies.HomeIndex.Controls.SearchButton().click(function (e) {
             e.preventDefault();
-            codejkjk.movies.HomeIndex.Controls.MoviesContainer().hide();
+
+            // prep result list
+            // remove non-pinned items
+            codejkjk.movies.HomeIndex.Controls.UnPinnedMovies().remove();
+
             codejkjk.movies.HomeIndex.ShowLoading("Loading RottenTomatoes.com info...");
             var q = codejkjk.movies.HomeIndex.Controls.SearchBox().val();
             codejkjk.movies.RottenTomatoes.SearchMovies(q, codejkjk.movies.HomeIndex.LoadMovies);
@@ -100,11 +102,19 @@ codejkjk.movies.HomeIndex = {
         });
     },
     BindResultActions: function () {
-        codejkjk.movies.HomeIndex.Controls.RemoveLinks().click(function (e) {
+        codejkjk.movies.HomeIndex.Controls.ActionLinks().click(function (e) {
             e.preventDefault();
             var link = $(this);
             var movie = link.closest(".movie");
-            movie.remove();
+            if (link.hasClass("removeLink"))
+                movie.remove();
+            else {
+                movie.addClass("pinned");
+                movie.find(".actions").addClass("pinned").removeClass("unPinned");
+                link.html("Pinned");
+                link.removeClass("pinLink");
+                link.blur();
+            }
         });
     },
     HandleFeedback: function () {

@@ -1,0 +1,115 @@
+body
+{
+    font-size: 12px;
+    font-family: Verdana, Tahoma, Arial, "Helvetica Neue", Helvetica, Sans-Serif;
+    color: #232323;
+    /* text-align: center; */
+}
+
+#container { margin: 0 auto; width: 467px; text-align:left; }
+
+#movies { margin-top: 15px; }
+
+.notYetReleased { color: Gray; }
+.notYetReleased img { width: 80px; }
+.notYetReleased .notYetReleasedMessage { overflow: auto; margin-top: 10px; }
+.movie.unPinned .actions { display:none; } 
+.movie { overflow: hidden; margin-top:10px; position: relative; }
+.movie .actions { position: absolute; bottom: 10px; right: 5px; }
+.movie .actions a { padding: 5px; border: 1px solid gray; margin-left: 5px; text-decoration: none; color: Gray; }
+.movie.pinned .actions a.pinLink { color: Black; }
+.movie .actions a:hover { color: black; }
+.movie.unPinned:hover .actions { display:block; }
+.movie:first-child { margin-top:0px; }
+.movie img { float: left; }
+.movie .details { margin-left: 10px; float: left; font-size: 120%; }
+.movie .details .title { font-weight: bold; margin-right: 20px; }
+.movie .details .ratings { margin-top: 10px; overflow:auto; }
+.movie .details .links { font-size: 80%; margin-top:14px; }
+#loading { margin-top: 10px; }
+#loading img { margin-right: 10px; }
+a.external { padding-right: 15px; }
+a.external:hover { background: url('external-link-icon.png') no-repeat top right; }
+#go { padding: 10px; width: 50px; }
+.movie .details .ratings .star
+{
+    color: black;
+    display: inline-block;
+    font-family: tahoma;
+    font-size: 15px;
+    font-weight: bold;
+    height: 66px;
+    line-height: 66px;
+    padding-right: 5px;
+    text-align: center;
+    vertical-align: middle;
+    width: 66px;    
+    background: url("star.png") no-repeat scroll 0 0 transparent;
+    margin-right:30px;
+}
+.movie .details .ratings .rating 
+{
+    float: left;
+}
+.movie .details .ratings .rottenTomato { height: 48px; padding-left: 54px; line-height: 48px; font-weight: bold; color: #506A16; margin-top:8px; margin-right: 14px; }
+.movie .details .ratings .criticsFresh { background: url("critics-fresh.png") no-repeat scroll 0 0 transparent; }
+.movie .details .ratings .criticsRotten { background: url("critics-rotten.png") no-repeat scroll 0 0 transparent; }
+.movie .details .ratings .audienceUpright { background: url("audience-upright.png") no-repeat scroll 0 0 transparent; }
+.movie .details .ratings .audienceSpilled { background: url("audience-spilled.png") no-repeat scroll 0 0 transparent; }
+
+#q  
+{
+    padding: 5px; 
+    font-size: 25px; 
+    border: 1px solid #717171; 
+    border-radius: 5px; 
+    width: 400px; 
+    outline: none; 
+    background: -webkit-gradient(linear, left top, left bottom, from(#F8F8F8), to(#ffffff));
+    background: -moz-linear-gradient(top,  #F8F8F8,  #ffffff);  
+    -webkit-box-shadow: 1px 1px 0px #efefef;
+    -moz-box-shadow: 1px 1px 0px #efefef;
+    box-shadow:  1px 1px 0px #efefef;
+    margin-right:5px;
+    float: left;
+}
+
+.button {
+	display: inline-block;
+	outline: none;
+	cursor: pointer;
+	text-align: center;
+	text-decoration: none;
+	font: 14px/100% Arial, Helvetica, sans-serif;
+	padding: .5em 2em .55em;
+	text-shadow: 0 1px 1px rgba(0,0,0,.3);
+	-webkit-border-radius: .5em; 
+	-moz-border-radius: .5em;
+	border-radius: .5em;
+	-webkit-box-shadow: 0 1px 2px rgba(0,0,0,.2);
+	-moz-box-shadow: 0 1px 2px rgba(0,0,0,.2);
+	box-shadow: 0 1px 2px rgba(0,0,0,.2);
+}
+.button:hover { text-decoration: none; }
+.button:active { position: relative; top: 1px; }
+
+.blue {
+	color: #d9eef7;
+	border: solid 1px #0076a3;
+	background: #0095cd;
+	background: -webkit-gradient(linear, left top, left bottom, from(#00adee), to(#0078a5));
+	background: -moz-linear-gradient(top,  #00adee,  #0078a5);
+	filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#00adee', endColorstr='#0078a5');
+}
+.blue:hover {
+	background: #007ead;
+	background: -webkit-gradient(linear, left top, left bottom, from(#0095cc), to(#00678e));
+	background: -moz-linear-gradient(top,  #0095cc,  #00678e);
+	filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#0095cc', endColorstr='#00678e');
+}
+.blue:active {
+	color: #80bed6;
+	background: -webkit-gradient(linear, left top, left bottom, from(#0078a5), to(#00adee));
+	background: -moz-linear-gradient(top,  #0078a5,  #00adee);
+	filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#0078a5', endColorstr='#00adee');
+}

@@ -1,0 +1,21 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Movie Ratings</title>
+    <link href="resource/Site.css" rel="stylesheet" type="text/css" />
+    <script src="resource/jquery-1.4.1.min.js" type="text/javascript"></script>
+    <script src="resource/jquery.autocomplete.js" type="text/javascript"></script>
+    <script src="resource/codejkjk.js" type="text/javascript"></script>
+    <script src="resource/codejkjk.movies.RottenTomatoes.js" type="text/javascript"></script>
+    <script src="resource/codejkjk.movies.IMDB.js" type="text/javascript"></script>
+    <script src="resource/codejkjk.movies.HomeIndex.js" type="text/javascript"></script>
+</head>
+<body>
+    <div id="container">
+        <input type="text" id="q" name="q" autofocus placeholder="Search..." /><button id="go" class="button blue">Go</button>
+        <div id="loading"><img src="resource/ajax-loader.gif" /><span id="loadingMessage"></span></div>
+        <div id="movies">
+        </div>
+    </div>
+</body>
+</html>

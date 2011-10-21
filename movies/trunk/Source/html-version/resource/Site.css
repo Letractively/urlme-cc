@@ -25,7 +25,6 @@ body
 .movie .details { margin-left: 10px; float: left; font-size: 120%; }
 .movie .details .title { font-weight: bold; margin-right: 20px; }
 .movie .details .ratings { margin-top: 10px; overflow:auto; }
-.movie .details .links { font-size: 75%; margin-top:14px; }
 #loading { margin-top: 10px; }
 #loading img { margin-right: 10px; }
 a.external { padding-right: 15px; }
@@ -49,7 +48,7 @@ a.external:hover { background: url('external-link-icon.png') no-repeat top right
 }
 .movie .details .ratings .rating 
 {
-    float: left;
+    float: left; text-decoration: none;
 }
 .movie .details .ratings .rottenTomato { height: 48px; padding-left: 54px; line-height: 48px; font-weight: bold; color: #506A16; margin-top:8px; margin-right: 14px; }
 .movie .details .ratings .criticsFresh { background: url("critics-fresh.png") no-repeat scroll 0 0 transparent; }

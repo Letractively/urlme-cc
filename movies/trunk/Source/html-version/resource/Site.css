@@ -6,26 +6,32 @@ body
     /* text-align: center; */
 }
 
-#container { margin: 0 auto; width: 467px; text-align:left; }
+#container { margin: 0 auto; width: 830px; text-align:left; padding-top:10px; }
 
-#movies { margin-top: 15px; }
+#movies { margin-top: 25px; overflow:auto; }
 
 .notYetReleased { color: Gray; }
 .notYetReleased .notYetReleasedMessage { overflow: auto; margin-top: 10px; }
 .notYetReleased img { opacity:0.4; filter:alpha(opacity=40); /* For IE8 and earlier */ }
 .movie.unPinned .actions { display:none; } 
-.movie { overflow: hidden; margin-top:10px; position: relative; }
+
+#header { text-align:center; }
+#header #headerContents { width:467px; display:inline-block; }
+#header #headerContents #searchControls { overflow:auto; }
+
+.movie { overflow: hidden; margin-bottom:15px; position: relative; width: 415px; float: left; height:133px; }
 .movie .actions { position: absolute; bottom: 10px; right: 5px; }
 .movie .actions a { padding: 5px; border: 1px solid gray; margin-left: 5px; text-decoration: none; color: Gray; }
 .movie.pinned .actions a.pinLink { color: Black; }
 .movie .actions a:hover { color: black; }
 .movie.unPinned:hover .actions { display:block; }
-.movie:first-child { margin-top:0px; }
+/* .movie:first-child { margin-top:0px; } */
 .movie img { float: left; max-width: 85px; }
 .movie .details { margin-left: 10px; float: left; font-size: 120%; }
 .movie .details .title { font-weight: bold; margin-right: 20px; }
 .movie .details .ratings { margin-top: 10px; overflow:auto; }
-#loading { margin-top: 10px; }
+
+#loading { margin-top: 10px; clear:left; }
 #loading img { margin-right: 10px; }
 a.external { padding-right: 15px; }
 a.external:hover { background: url('external-link-icon.png') no-repeat top right; }
@@ -74,6 +80,7 @@ a.external:hover { background: url('external-link-icon.png') no-repeat top right
 }
 
 .button {
+	float:left;
 	display: inline-block;
 	outline: none;
 	cursor: pointer;

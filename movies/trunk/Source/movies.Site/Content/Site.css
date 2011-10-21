@@ -13,13 +13,13 @@ body
 .notYetReleased { color: Gray; }
 .notYetReleased img { width: 80px; }
 .notYetReleased .notYetReleasedMessage { overflow: auto; margin-top: 10px; }
+.movie.unPinned .actions { display:none; } 
 .movie { overflow: hidden; margin-top:10px; position: relative; }
 .movie .actions { position: absolute; bottom: 10px; right: 5px; }
 .movie .actions a { padding: 5px; border: 1px solid gray; margin-left: 5px; text-decoration: none; color: Gray; }
+.movie.pinned .actions a.pinLink { color: Black; }
 .movie .actions a:hover { color: black; }
-.movie .actions.pinned { display:block; }
-.movie .actions.unPinned { display:none; }
-.movie:hover .actions.unPinned { display:block; }
+.movie.unPinned:hover .actions { display:block; }
 .movie:first-child { margin-top:0px; }
 .movie img { float: left; }
 .movie .details { margin-left: 10px; float: left; font-size: 120%; }

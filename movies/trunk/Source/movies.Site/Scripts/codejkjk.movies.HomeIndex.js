@@ -37,7 +37,7 @@ codejkjk.movies.HomeIndex = {
                 var criticsClass = movie.ratings.critics_rating.indexOf("Fresh") >= 0 ? "criticsFresh" : "criticsRotten";
                 var audienceClass = movie.ratings.audience_rating.indexOf("Upright") >= 0 ? "audienceUpright" : "audienceSpilled";
 
-                html += String.format("<div class='movie imdbNotSet' id='{0}'>", movie.alternate_ids.imdb);
+                html += String.format("<div class='movie unPinned imdbNotSet' id='{0}'>", movie.alternate_ids.imdb);
                 html += String.format("<img src='{0}'/>", movie.posters.profile);
                 html += String.format("<div class='details'><span class='title'>{0}</span>{1}", movie.title, movie.mpaa_rating);
                 html += "<div class='ratings'>";
@@ -46,15 +46,15 @@ codejkjk.movies.HomeIndex = {
                 html += "</div>"; // close ratings
                 html += String.format("<div class='links'><a href='{0}' class='external' target='_blank'>IMDb</a>  <a href='{1}' class='external' target='_blank'>RottenTomatoes</a></div>", codejkjk.movies.IMDB.GetMovieUrl(movie.alternate_ids.imdb), movie.links.alternate);
                 html += "</div>"; // close details
-                html += "<div class='actions unPinned'><a href='#' class='removeLink'>Remove</a><a href='#' class='pinLink'>Pin it</a></div>";
+                html += "<div class='actions'><a href='#' class='removeLink'>Remove</a><a href='#' class='pinLink'>Freeze in results</a></div>";
                 html += "</div>"; // close movie
             } else { // not yet released / not rated
-                html += "<div class='movie notYetReleased'>";
+                html += "<div class='movie unPinned notYetReleased'>";
                 html += String.format("<img src='{0}'/>", movie.posters.thumbnail);
                 html += String.format("<div class='details'><span class='title'>{0}</span>{1}", movie.title, movie.mpaa_rating);
                 html += "<div class='notYetReleasedMessage'>Not yet released / no rating available</div>";
                 html += "</div>"; // close details
-                html += "<div class='actions unPinned'><a href='#' class='removeLink'>Remove</a><a href='#' class='pinLink'>Pin it</a></div>";
+                html += "<div class='actions'><a href='#' class='removeLink'>Remove</a><a href='#' class='pinLink'>Freeze in results</a></div>";
                 html += "</div>"; // close movie
             }
         });
@@ -109,10 +109,8 @@ codejkjk.movies.HomeIndex = {
             if (link.hasClass("removeLink"))
                 movie.remove();
             else {
-                movie.addClass("pinned");
-                movie.find(".actions").addClass("pinned").removeClass("unPinned");
-                link.html("Pinned");
-                link.removeClass("pinLink");
+                movie.addClass("pinned").removeClass('unPinned');
+                link.html("Frozen in results");
                 link.blur();
             }
         });

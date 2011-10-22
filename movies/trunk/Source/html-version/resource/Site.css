@@ -17,7 +17,7 @@ body
 
 #header { text-align:center; }
 #header #headerContents { width:467px; display:inline-block; }
-#header #headerContents #searchControls { overflow:auto; }
+#header #headerContents #searchControls { overflow:auto; width: 486px; height: 45px; }
 
 .movie { overflow: hidden; margin-bottom:15px; position: relative; width: 415px; float: left; height:133px; }
 .movie .actions { position: absolute; bottom: 10px; right: 5px; }
@@ -31,7 +31,7 @@ body
 .movie .details .title { font-weight: bold; margin-right: 20px; }
 .movie .details .ratings { margin-top: 10px; overflow:auto; }
 
-#loading { margin-top: 10px; clear:left; }
+#loading { position:absolute; top:8px; right: 8px; }
 #loading img { margin-right: 10px; }
 a.external { padding-right: 15px; }
 a.external:hover { background: url('external-link-icon.png') no-repeat top right; }
@@ -56,7 +56,7 @@ a.external:hover { background: url('external-link-icon.png') no-repeat top right
 {
     float: left; text-decoration: none;
 }
-.movie .details .ratings .rottenTomato { height: 48px; padding-left: 54px; line-height: 48px; font-weight: bold; color: #506A16; margin-top:8px; margin-right: 14px; }
+.movie .details .ratings .rottenTomato { height: 48px; padding-left: 54px; line-height: 49px; font-weight: bold; color: #506A16; margin-top:8px; margin-right: 14px; }
 .movie .details .ratings .criticsFresh { background: url("critics-fresh.png") no-repeat scroll 0 0 transparent; }
 .movie .details .ratings .criticsRotten { background: url("critics-rotten.png") no-repeat scroll 0 0 transparent; }
 .movie .details .ratings .audienceUpright { background: url("audience-upright.png") no-repeat scroll 0 0 transparent; }

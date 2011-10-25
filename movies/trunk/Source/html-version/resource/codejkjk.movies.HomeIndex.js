@@ -18,17 +18,9 @@ codejkjk.movies.HomeIndex = {
         codejkjk.movies.HomeIndex.BindFormActions();
         codejkjk.movies.HomeIndex.HandleFeedback();
 
-        codejkjk.movies.HomeIndex.ShowLoading("Loading RottenTomatoes.com info...");
-        codejkjk.movies.RottenTomatoes.GetBoxOfficeMovies(codejkjk.movies.HomeIndex.LoadMovies);
+        codejkjk.movies.HomeIndex.ShowLoading("Loading Flixster.com info...");
 
-        //debug
         codejkjk.movies.Flixster.GetTheaters("20111025", 23226, codejkjk.movies.HomeIndex.LoadTheaters);
-    },
-
-    LoadTheaters: function (theaters) {
-        $.each(theaters, function (i, theater) {
-            
-        });
     },
 
     ShowLoading: function (msg) {
@@ -38,6 +30,17 @@ codejkjk.movies.HomeIndex = {
 
     HideLoading: function () {
         codejkjk.movies.HomeIndex.Controls.LoadingContainer().hide();
+    },
+
+    LoadTheaters: function (theaters) {
+        var html = "";
+        $.each(theaters, function (i, theater) {
+            html += "<div class='theater'>";
+            html += String.format("<h2>{0}</h2> - {1} - <a href='{2}'>Map</a>", theater.name, theater.address, theater.mapUrl);
+            html += 
+            html += "</div>"; // close theater
+        });
+        codejkjk.movies.HomeIndex.Controls.MoviesContainer().html(html);
     },
 
     LoadMovies: function (movies) {

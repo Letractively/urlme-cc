@@ -20,6 +20,15 @@ codejkjk.movies.HomeIndex = {
 
         codejkjk.movies.HomeIndex.ShowLoading("Loading RottenTomatoes.com info...");
         codejkjk.movies.RottenTomatoes.GetBoxOfficeMovies(codejkjk.movies.HomeIndex.LoadMovies);
+
+        //debug
+        codejkjk.movies.Flixster.GetTheaters("20111025", 23226, codejkjk.movies.HomeIndex.LoadTheaters);
+    },
+
+    LoadTheaters: function (theaters) {
+        $.each(theaters, function (i, theater) {
+            
+        });
     },
 
     ShowLoading: function (msg) {
@@ -116,7 +125,7 @@ codejkjk.movies.HomeIndex = {
                 link.blur();
             }
         });
-        
+
         // prevent that weird dotted gray box to show around the rating links that go to imdb.com and rottentomatoes.com after the user clicks on them.
         codejkjk.movies.HomeIndex.Controls.Ratings().unbind().click(function () {
             $(this).blur();

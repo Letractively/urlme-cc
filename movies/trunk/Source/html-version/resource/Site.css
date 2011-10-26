@@ -1,3 +1,5 @@
+html{font-size:12px;color:#000;background:#FFF;}body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,code,form,fieldset,legend,input,button,textarea,p,blockquote,th,td{margin:0;padding:0;}table{border-collapse:collapse;border-spacing:0;}fieldset,img{border:0;}address,caption,cite,code,dfn,em,strong,th,var,optgroup{font-style:inherit;font-weight:inherit;}del,ins{text-decoration:none;}li{list-style:none;}caption,th{text-align:left;}h1,h2,h3,h4,h5,h6{font-size:100%;font-weight:normal;}q:before,q:after{content:'';}abbr,acronym{border:0;font-variant:normal;}sup{vertical-align:baseline;}sub{vertical-align:baseline;}legend{color:#000;}input,button,textarea,select,optgroup,option{font-family:inherit;font-size:inherit;font-style:inherit;font-weight:inherit;}input,button,textarea,select{font-size:100%;}
+
 body
 {
     font-size: 12px;
@@ -8,35 +10,54 @@ body
 
 #container { margin: 0 auto; width: 830px; text-align:left; padding-top:10px; }
 
-#movies { margin-top: 25px; overflow:auto; }
+#movies,#theaters { margin-top: 25px; overflow:auto; }
 
-.notYetReleased { color: Gray; }
-.notYetReleased .notYetReleasedMessage { overflow: auto; margin-top: 10px; }
-.notYetReleased img { opacity:0.4; filter:alpha(opacity=40); /* For IE8 and earlier */ }
-.movie.unPinned .actions { display:none; } 
+/* begin: elements specific to theater view */
+#theaters .theater { margin-bottom: 15px; overflow: auto; }
+    #theaters .theater h2 { font-weight: bold; font-size: 130%; margin-bottom:10px; }
+    #theaters .theater .movies { overflow: auto;  margin-top:15px; margin-left: 20px;}
+        #theaters .theater .movies h3 { overflow: auto; display:inline; margin-right:10px; }
+        #theaters .theater .movies .movie { overflow: hidden; margin-bottom:15px; position: relative; width: 405px; float: left; height:90px; }        
+            #theaters .theater .movies .movie .ratings { overflow: auto; margin-top: 8px; height: 24px; margin-bottom: 10px; }
+                #theaters .theater .movies .movie .ratings a
+                {
+                    float: left; text-decoration: none; height: 24px; margin-right: 10px; line-height: 24px;
+                }
+                #theaters .theater .movies .movie .ratings .rottenTomato { padding-left: 31px; font-weight: bold; color: #506A16; }
+                #theaters .theater .movies .movie .ratings .imdb { width: 20px; padding-left: 31px; color: Black; background: url("star_small.png") no-repeat scroll left center transparent; }
+                #theaters .theater .movies .movie .ratings .criticsFresh { background: url("rt-graphics/critics-fresh_smaller.png") no-repeat scroll left center transparent; }
+                #theaters .theater .movies .movie .ratings .criticsRotten { background: url("rt-graphics/critics-rotten_smaller.png") no-repeat scroll left center transparent; }
+                #theaters .theater .movies .movie .ratings .audienceUpright { padding-left: 28px; background: url("rt-graphics/audience-upright_smaller.png") no-repeat scroll left center transparent; }
+                #theaters .theater .movies .movie .ratings .audienceSpilled { background: url("rt-graphics/audience-spilled_smaller.png") no-repeat scroll left center transparent; }
+/* end: elements specific to theater view */
+
+#movies .notYetReleased { color: Gray; }
+#movies .notYetReleased .notYetReleasedMessage { overflow: auto; margin-top: 10px; }
+#movies .notYetReleased img { opacity:0.4; filter:alpha(opacity=40); /* For IE8 and earlier */ }
+#movies .movie.unPinned .actions { display:none; } 
 
 #header { text-align:center; }
 #header #headerContents { width:467px; display:inline-block; }
 #header #headerContents #searchControls { overflow:auto; width: 486px; height: 45px; }
 
-.movie { overflow: hidden; margin-bottom:15px; position: relative; width: 415px; float: left; height:133px; }
-.movie .actions { position: absolute; bottom: 10px; right: 5px; }
-.movie .actions a { padding: 5px; border: 1px solid gray; margin-left: 5px; text-decoration: none; color: Gray; }
-.movie.pinned .actions a.pinLink { color: Black; }
-.movie .actions a:hover { color: black; }
-.movie.unPinned:hover .actions { display:block; }
+#movies .movie { overflow: hidden; margin-bottom:15px; position: relative; width: 415px; float: left; height:133px; }
+#movies .movie .actions { position: absolute; bottom: 10px; right: 5px; }
+#movies .movie .actions a { padding: 5px; border: 1px solid gray; margin-left: 5px; text-decoration: none; color: Gray; }
+#movies .movie.pinned .actions a.pinLink { color: Black; }
+#movies .movie .actions a:hover { color: black; }
+#movies .movie.unPinned:hover .actions { display:block; }
 /* .movie:first-child { margin-top:0px; } */
-.movie img { float: left; max-width: 85px; }
-.movie .details { margin-left: 10px; float: left; font-size: 120%; }
-.movie .details .title { font-weight: bold; margin-right: 20px; }
-.movie .details .ratings { margin-top: 10px; overflow:auto; }
+#movies .movie img { float: left; max-width: 85px; }
+#movies .movie .details { margin-left: 10px; float: left; font-size: 120%; }
+#movies .movie .details .title { font-weight: bold; margin-right: 20px; }
+#movies .movie .details .ratings { margin-top: 10px; overflow:auto; }
 
 #loading { position:absolute; top:8px; right: 8px; }
 #loading img { margin-right: 10px; }
 a.external { padding-right: 15px; }
 a.external:hover { background: url('external-link-icon.png') no-repeat top right; }
 #go { padding: 10px; width: 50px; }
-.movie .details .ratings .star
+#movies .movie .ratings .star
 {
     color: black;
     display: inline-block;
@@ -52,15 +73,15 @@ a.external:hover { background: url('external-link-icon.png') no-repeat top right
     background: url("star.png") no-repeat scroll 0 0 transparent;
     margin-right:30px;
 }
-.movie .details .ratings .rating 
+#movies .movie .ratings a
 {
     float: left; text-decoration: none;
 }
-.movie .details .ratings .rottenTomato { height: 48px; padding-left: 54px; line-height: 49px; font-weight: bold; color: #506A16; margin-top:8px; margin-right: 14px; }
-.movie .details .ratings .criticsFresh { background: url("critics-fresh.png") no-repeat scroll 0 0 transparent; }
-.movie .details .ratings .criticsRotten { background: url("critics-rotten.png") no-repeat scroll 0 0 transparent; }
-.movie .details .ratings .audienceUpright { background: url("audience-upright.png") no-repeat scroll 0 0 transparent; }
-.movie .details .ratings .audienceSpilled { background: url("audience-spilled.png") no-repeat scroll 0 0 transparent; }
+#movies .movie .ratings .rottenTomato { height: 48px; padding-left: 54px; line-height: 49px; font-weight: bold; color: #506A16; margin-top:8px; margin-right: 14px; }
+#movies .movie .ratings .criticsFresh { background: url("critics-fresh.png") no-repeat scroll 0 0 transparent; }
+#movies .movie .ratings .criticsRotten { background: url("critics-rotten.png") no-repeat scroll 0 0 transparent; }
+#movies .movie .ratings .audienceUpright { background: url("audience-upright.png") no-repeat scroll 0 0 transparent; }
+#movies .movie .ratings .audienceSpilled { background: url("audience-spilled.png") no-repeat scroll 0 0 transparent; }
 
 #q  
 {

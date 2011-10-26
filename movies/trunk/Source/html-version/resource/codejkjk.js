@@ -10,14 +10,16 @@
     }
 }
 
-String.format = function () {
-    var s = arguments[0];
-    for (var i = 0; i < arguments.length - 1; i++) {
-        var reg = new RegExp("\\{" + i + "\\}", "gm");
-        s = s.replace(reg, arguments[i + 1]);
-    }
+String = {
+    format: function() {
+        var s = arguments[0];
+        for (var i = 0; i < arguments.length - 1; i++) {
+            var reg = new RegExp("\\{" + i + "\\}", "gm");
+            s = s.replace(reg, arguments[i + 1]);
+        }
 
-    return s;
+        return s;
+    }
 }
 
 function addCommas(nStr) {
@@ -31,3 +33,19 @@ function addCommas(nStr) {
     }
     return x1 + x2;
 }
+
+Date.prototype = {
+    addDays: function (days) {
+        var dat = new Date(this.valueOf())
+        dat.setDate(dat.getDate() + days);
+        return dat;
+    }
+};
+
+// orig:
+//Date.prototype.addDays = function(days)
+// {
+//     var dat = new Date(this.valueOf())
+//     dat.setDate(dat.getDate() + days);
+//     return dat;
+// }

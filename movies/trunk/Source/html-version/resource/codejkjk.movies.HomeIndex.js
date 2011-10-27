@@ -4,6 +4,11 @@ codejkjk.movies.HomeIndex = {
     // page elements
     Controls: {
         MoviesContainer: function () { return $("#movies"); }
+        , FiltersContainer: function () { return $("#filters"); }
+        , TodayShowtimes: function () { return $("#today"); }
+        , TomorrowShowtimes: function () { return $("#tomorrow"); }
+        , DayAfterTomorrowShowtimes: function () { return $("#dayAfterTomorrow"); }
+        , ShowtimeDayLinks: function () { return $("#showtimeDays").find("a"); }
         , TheatersContainer: function () { return $("#theaters"); }
         , LoadingContainer: function () { return $("#loading"); }
         , LoadingMessage: function () { return $("#loadingMessage"); }
@@ -16,11 +21,22 @@ codejkjk.movies.HomeIndex = {
 
     Init: function () {
         codejkjk.movies.HomeIndex.Controls.SearchBox().focus(); // cuz some browsers are stupid and don't yet support html5's autofocus attr
+        codejkjk.movies.HomeIndex.InitShowtimeDates();
         codejkjk.movies.HomeIndex.BindFormActions();
         codejkjk.movies.HomeIndex.HandleFeedback();
 
         codejkjk.movies.HomeIndex.ShowLoading("Loading...");
-        codejkjk.movies.Flixster.GetTheaters("20111025", 23226, codejkjk.movies.HomeIndex.LoadTheaters);
+        codejkjk.movies.Flixster.GetTheaters(codejkjk.movies.HomeIndex.Controls.TodayShowtimes().attr("date"), 23226, codejkjk.movies.HomeIndex.LoadTheaters);
+    },
+
+    InitShowtimeDates: function () {
+        var today = new Date();
+        var tomorrow = today.addDays(1);
+        var dayAfterTomorrow = today.addDays(2);
+
+        codejkjk.movies.HomeIndex.Controls.TodayShowtimes().attr("date", today.toFormat("yyyyMMdd"));
+        codejkjk.movies.HomeIndex.Controls.TomorrowShowtimes().attr("date", tomorrow.toFormat("yyyyMMdd"));
+        codejkjk.movies.HomeIndex.Controls.DayAfterTomorrowShowtimes().attr("date", dayAfterTomorrow.toFormat("yyyyMMdd"));
     },
 
     ShowLoading: function (msg) {
@@ -36,7 +52,7 @@ codejkjk.movies.HomeIndex = {
         var html = "";
         var rtMovieIdsToLoad = [];
         $.each(theaters, function (i, theater) {
-            html += "<div class='theater'>";
+            html += String.format("<div class='theater' id='{0}'>", theater.theaterId);
             html += String.format("<h2>{0}</h2>{1} - <a href='{2}'>Map</a>", theater.name, theater.address, theater.mapUrl);
             html += "<div class='movies'>";
             $.each(theater.movies, function (j, movie) {
@@ -46,7 +62,7 @@ codejkjk.movies.HomeIndex = {
                 } else {
                     html += String.format("<div class='movie'>", movie.rtMovieId); // init to being invisible, since there's really nothing in here yet for the user to see
                 }
-                html += String.format("<h3>{0}</h3><span class='mpaaRating'></span>", String.snippet(movie.title,45));
+                html += String.format("<h3>{0}</h3><span class='mpaaRating'></span>", String.snippet(movie.title, 45));
                 html += "<div class='ratings'><a class='imdb' target='_blank'></a><a class='rt_critics_rating rottenTomato' target='_blank'></a><a class='rt_audience_rating rottenTomato' target='_blank'></a></div>"
                 html += String.format("<div>{0}</div>", movie.showtimes);
                 html += "</div>"; // close movie
@@ -54,7 +70,7 @@ codejkjk.movies.HomeIndex = {
             html += "</div>"; // close movies
             html += "</div>"; // close theater
         });
-        codejkjk.movies.HomeIndex.Controls.TheatersContainer().append(html);
+        codejkjk.movies.HomeIndex.Controls.TheatersContainer().html(html);
 
         // make the api calls to fill the theaters with the list of unique rt movie id's
         $.each(rtMovieIdsToLoad, function (i, rtMovieIdToLoad) {
@@ -133,6 +149,8 @@ codejkjk.movies.HomeIndex = {
         }
 
         if (typeof movie.ratings != 'undefined'
+            && typeof movie.ratings.critics_rating != 'undefined'
+            && typeof movie.ratings.audience_rating != 'undefined'
             && movie.ratings.critics_score != -1
             && movie.ratings.audience_score != -1
             ) {
@@ -183,6 +201,14 @@ codejkjk.movies.HomeIndex = {
             if (code == 13) {
                 codejkjk.movies.HomeIndex.Controls.SearchButton().trigger('click');
             }
+        });
+        codejkjk.movies.HomeIndex.Controls.ShowtimeDayLinks().click(function (e) {
+            e.preventDefault();
+            var showtimeDayLink = $(this);
+            codejkjk.movies.HomeIndex.ShowLoading("Loading...");
+            codejkjk.movies.Flixster.GetTheaters(showtimeDayLink.attr("date"), 23226, codejkjk.movies.HomeIndex.LoadTheaters);
+            codejkjk.movies.HomeIndex.Controls.ShowtimeDayLinks().removeClass("active");
+            showtimeDayLink.addClass("active");
         });
     },
     BindResultActions: function () {

@@ -15,6 +15,8 @@ codejkjk.movies.Flixster = {
                     var theaterName = theaterDivElem.find("a:first").attr("title");
                     var theaterAddress = $.trim(theaterDivElem.find("span:first").html().split('-')[1]);
                     var theaterMapUrl = theaterDivElem.find("span:first").find("a").attr("href");
+                    var theaterUrl = theaterDivElem.find("a:first").attr("href");
+                    var theaterId = theaterUrl.substring(theaterUrl.lastIndexOf('/') + 1);
 
                     var movies = [];
                     theaterDivElem.find('div.showtime').each(function () {
@@ -26,7 +28,7 @@ codejkjk.movies.Flixster = {
                         movies.push({ rtMovieId: rtMovieId, title: movieTitle, showtimes: showtimes });
                     });
 
-                    theaters.push({ name: theaterName, address: theaterAddress, mapUrl: theaterMapUrl, movies: movies });
+                    theaters.push({ theaterId: theaterId, name: theaterName, address: theaterAddress, mapUrl: theaterMapUrl, movies: movies });
                 }); // next theaterDiv
 
                 return callback(theaters);

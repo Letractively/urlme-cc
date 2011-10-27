@@ -12,9 +12,9 @@ body
 
 #movies,#theaters { margin-top: 25px; overflow:auto; }
 
-#theaterView #filter { margin-top:25px; }
-    #theaterView #filter a { padding: 5px 10px; text-decoration: none; }
-    #theaterView #filter a.active { background-color: #FFFF80; }
+#theaterView #filters { margin-top:25px; }
+    #theaterView #filters #showtimeDays a { padding: 5px 10px; }
+    #theaterView #filters #showtimeDays a.active { /* background-color: #FFFF80; */ color: Black; font-weight: bold; text-decoration: none; cursor:text; }
 
 /* begin: elements specific to theater view */
 #theaters .theater { margin-bottom: 15px; overflow: auto; }

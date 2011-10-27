@@ -1,4 +1,4 @@
-﻿registerNS("codejkjk.movies.IMDB");
+registerNS("codejkjk.movies.IMDB");
 
 codejkjk.movies.IMDB = {
     BaseUrl: "http://www.imdbapi.com/?i=tt",

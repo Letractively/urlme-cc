@@ -1,4 +1,4 @@
-﻿registerNS("codejkjk.movies.RottenTomatoes");
+registerNS("codejkjk.movies.RottenTomatoes");
 
 codejkjk.movies.RottenTomatoes = {
     ApiKey: "pfrwfgnr53tpaydw8pnhrymy",

@@ -12,12 +12,16 @@ body
 
 #movies,#theaters { margin-top: 25px; overflow:auto; }
 
+#theaterView #filter { margin-top:25px; }
+    #theaterView #filter a { padding: 5px 10px; text-decoration: none; }
+    #theaterView #filter a.active { background-color: #FFFF80; }
+
 /* begin: elements specific to theater view */
 #theaters .theater { margin-bottom: 15px; overflow: auto; }
     #theaters .theater h2 { font-weight: bold; font-size: 130%; margin-bottom:10px; }
-    #theaters .theater .movies { overflow: auto;  margin-top:15px; margin-left: 20px;}
-        #theaters .theater .movies h3 { overflow: auto; display:inline; margin-right:10px; }
-        #theaters .theater .movies .movie { overflow: hidden; margin-bottom:15px; position: relative; width: 405px; float: left; height:90px; }        
+    #theaters .theater .movies { overflow: auto; margin-left: 20px;}
+        #theaters .theater .movies h3 { font-weight:bold; overflow: auto; display:inline; margin-right:10px; }
+        #theaters .theater .movies .movie { overflow: hidden; margin-top:15px; position: relative; width: 405px; float: left; height:90px; }        
             #theaters .theater .movies .movie .ratings { overflow: auto; margin-top: 8px; height: 24px; margin-bottom: 10px; }
                 #theaters .theater .movies .movie .ratings a
                 {

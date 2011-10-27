@@ -11,13 +11,19 @@
 }
 
 String = {
-    format: function() {
+    format: function () {
         var s = arguments[0];
         for (var i = 0; i < arguments.length - 1; i++) {
             var reg = new RegExp("\\{" + i + "\\}", "gm");
             s = s.replace(reg, arguments[i + 1]);
         }
 
+        return s;
+    },
+    snippet: function (s, len) {
+        if (s.length > len) {
+            return String.format("<span alt='{0}' title='{0}'>{1}...</span>", s, s.substring(0, len));
+        }
         return s;
     }
 }

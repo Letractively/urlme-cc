@@ -176,6 +176,7 @@ codejkjk.movies.HomeIndex = {
         // load imdb movie ratings
         if (typeof movie.alternate_ids != 'undefined') {
             movies.attr("imdbMovieId", movie.alternate_ids.imdb);
+            movies.find(".imdb").attr("href", codejkjk.movies.IMDB.GetMovieUrl(movie.alternate_ids.imdb));
             codejkjk.movies.IMDB.GetMovie(movie.alternate_ids.imdb, codejkjk.movies.HomeIndex.SetIMDbMovieDetails2);
         } else {
             movies.find().addClass("unknownRating");

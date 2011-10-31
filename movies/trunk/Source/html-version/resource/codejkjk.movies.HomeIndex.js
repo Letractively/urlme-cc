@@ -53,7 +53,7 @@ codejkjk.movies.HomeIndex = {
         var rtMovieIdsToLoad = [];
         $.each(theaters, function (i, theater) {
             html += String.format("<div class='theater' id='{0}'>", theater.theaterId);
-            html += String.format("<h2>{0}</h2>{1} - <a href='{2}'>Map</a>", theater.name, theater.address, theater.mapUrl);
+            html += String.format("<h2>{0}</h2>{1} - <a href='{2}' target='_blank' class='external'>Map</a>", theater.name, theater.address, theater.mapUrl);
             html += "<div class='movies'>";
             $.each(theater.movies, function (j, movie) {
                 if (movie.rtMovieId != null) {
@@ -62,7 +62,7 @@ codejkjk.movies.HomeIndex = {
                 } else {
                     html += String.format("<div class='movie'>", movie.rtMovieId); // init to being invisible, since there's really nothing in here yet for the user to see
                 }
-                html += String.format("<h3>{0}</h3><span class='mpaaRating'></span>", String.snippet(movie.title, 45));
+                html += String.format("<h3>{0}</h3><a href='#' class='mpaaRating' target='_blank' alt='{1}' title='{1}'></a>", String.snippet(movie.title, 45), "Link to Parents Guide on IMDb.com");
                 html += "<div class='ratings'><a class='imdb' target='_blank'></a><a class='rt_critics_rating rottenTomato' target='_blank'></a><a class='rt_audience_rating rottenTomato' target='_blank'></a></div>"
                 html += String.format("<div>{0}</div>", movie.showtimes);
                 html += "</div>"; // close movie
@@ -178,7 +178,9 @@ codejkjk.movies.HomeIndex = {
             movies.attr("imdbMovieId", movie.alternate_ids.imdb);
             movies.find(".imdb").attr("href", codejkjk.movies.IMDB.GetMovieUrl(movie.alternate_ids.imdb));
             codejkjk.movies.IMDB.GetMovie(movie.alternate_ids.imdb, codejkjk.movies.HomeIndex.SetIMDbMovieDetails2);
+            movies.find('.mpaaRating').addClass("external").attr("href", codejkjk.movies.IMDB.GetParentalGuideUrl(movie.alternate_ids.imdb));
         } else {
+            movies.find('.mpaaRating').addClass("disabled").click(function (e) { e.preventDefault(); }); // prevent user from clicking on this
             movies.find().addClass("unknownRating");
         }
 

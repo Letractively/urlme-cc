@@ -53,7 +53,7 @@ codejkjk.movies.HomeIndex = {
         var rtMovieIdsToLoad = [];
         $.each(theaters, function (i, theater) {
             html += String.format("<div class='theater' id='{0}'>", theater.theaterId);
-            html += String.format("<h2>{0}</h2>{1} - <a href='{2}' target='_blank' class='external'>Map</a>", theater.name, theater.address, theater.mapUrl);
+            html += String.format("<a href='#' class='theaterHeader'>{0}</a>{1} - <a href='{2}' target='_blank' class='external'>Map</a>", theater.name, theater.address, theater.mapUrl);
             html += "<div class='movies'>";
             $.each(theater.movies, function (j, movie) {
                 if (movie.rtMovieId != null) {

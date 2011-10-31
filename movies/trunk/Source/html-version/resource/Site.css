@@ -18,7 +18,7 @@ body
 
 /* begin: elements specific to theater view */
 #theaters .theater { margin-bottom: 15px; overflow: auto; }
-    #theaters .theater .theaterHeader { font-weight: bold; font-size: 130%; margin-bottom:10px; display:block; }
+    #theaters .theater .theaterHeader { font-weight: bold; font-size: 130%; margin-bottom:10px; display:block; background: url("icons/collapse_medium.png") no-repeat scroll right center transparent; }
     #theaters .theater .movies { overflow: auto; margin-left: 20px;}
         #theaters .theater .movies h3 { font-weight:bold; overflow: auto; display:inline; margin-right:10px; }
         #theaters .theater .movies .movie { overflow: hidden; margin-top:15px; position: relative; width: 405px; float: left; height:90px; }        

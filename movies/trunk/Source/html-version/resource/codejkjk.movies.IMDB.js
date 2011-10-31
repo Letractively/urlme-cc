@@ -13,5 +13,10 @@ codejkjk.movies.IMDB = {
     },
     GetMovieUrl: function (movieId) {
         return String.format("http://www.imdb.com/title/tt{0}/", movieId);
+    },
+    GetParentalGuideUrl: function (movieId) {
+        if (movieId.indexOf("tt") != 0)
+            movieId = "tt" + movieId;
+        return String.format("http://www.imdb.com/title/{0}/parentalguide", movieId);
     }
 };

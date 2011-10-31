@@ -59,7 +59,8 @@ body
 #loading { position:absolute; top:8px; right: 8px; }
 #loading img { margin-right: 10px; }
 a.external { padding-right: 15px; }
-a.external:hover { background: url('external-link-icon.png') no-repeat top right; }
+a.disabled { color: Black; cursor: text; }
+a.external:hover { background: url('icons/external-link-icon.png') no-repeat top right; }
 #go { padding: 10px; width: 50px; }
 #movies .movie .ratings .star
 {

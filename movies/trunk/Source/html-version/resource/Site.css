@@ -8,6 +8,8 @@ body
     /* text-align: center; */
 }
 
+a:focus { outline: none; } /* firefox */
+
 #container { margin: 0 auto; width: 830px; text-align:left; padding-top:10px; }
 
 #movies,#theaters { margin-top: 25px; overflow:auto; }
@@ -18,7 +20,9 @@ body
 
 /* begin: elements specific to theater view */
 #theaters .theater { margin-bottom: 15px; overflow: auto; }
-    #theaters .theater .theaterHeader { font-weight: bold; font-size: 130%; margin-bottom:10px; display:block; background: url("icons/collapse_medium.png") no-repeat scroll right center transparent; }
+    #theaters .theater .theaterHeader { color: black; text-decoration: none; font-weight: bold; font-size: 130%; margin-bottom:5px; display:block; padding: 10px 0 10px 10px; border-right: 10px solid #e8e8e8; }
+    #theaters .theater .theaterHeader.expanded { background: url("icons/collapse_medium.png") no-repeat scroll right center #e8e8e8; }
+    #theaters .theater .theaterHeader.collapsed { background: url("icons/expand_medium.png") no-repeat scroll right center #e8e8e8; }
     #theaters .theater .movies { overflow: auto; margin-left: 20px;}
         #theaters .theater .movies h3 { font-weight:bold; overflow: auto; display:inline; margin-right:10px; }
         #theaters .theater .movies .movie { overflow: hidden; margin-top:15px; position: relative; width: 405px; float: left; height:90px; }        

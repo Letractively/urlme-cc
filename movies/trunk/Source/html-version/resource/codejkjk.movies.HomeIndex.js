@@ -53,7 +53,8 @@ codejkjk.movies.HomeIndex = {
         var rtMovieIdsToLoad = [];
         $.each(theaters, function (i, theater) {
             html += String.format("<div class='theater' id='{0}'>", theater.theaterId);
-            html += String.format("<a href='#' class='theaterHeader'>{0}</a>{1} - <a href='{2}' target='_blank' class='external'>Map</a>", theater.name, theater.address, theater.mapUrl);
+            html += String.format("<a href='#' class='theaterHeader collapser expanded' collapsee='.collapsee-{0}'>{1}</a>", theater.theaterId, theater.name);
+            html += String.format("<div class='collapsee-{0}'>{1} - <a href='{2}' target='_blank' class='external'>Map</a>", theater.theaterId, theater.address, theater.mapUrl); 
             html += "<div class='movies'>";
             $.each(theater.movies, function (j, movie) {
                 if (movie.rtMovieId != null) {
@@ -68,9 +69,13 @@ codejkjk.movies.HomeIndex = {
                 html += "</div>"; // close movie
             });
             html += "</div>"; // close movies
+            html += "</div>"; // close theaterContents
             html += "</div>"; // close theater
         });
         codejkjk.movies.HomeIndex.Controls.TheatersContainer().html(html);
+
+        // wire the collapsers
+        codejkjk.movies.SiteActions.WireCollapsers();
 
         // make the api calls to fill the theaters with the list of unique rt movie id's
         $.each(rtMovieIdsToLoad, function (i, rtMovieIdToLoad) {

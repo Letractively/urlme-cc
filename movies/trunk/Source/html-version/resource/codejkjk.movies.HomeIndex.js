@@ -75,9 +75,10 @@ codejkjk.movies.HomeIndex = {
                 } else {
                     html += String.format("<div class='movie'>", movie.rtMovieId); // init to being invisible, since there's really nothing in here yet for the user to see
                 }
-                html += String.format("<h3>{0}</h3><a href='#' class='mpaaRating' target='_blank' alt='{1}' title='{1}'></a>", String.snippet(movie.title, 45), "Link to Parents Guide on IMDb.com");
+                html += String.format("<h3>{0}</h3><a href='#' class='mpaaRating' target='_blank' alt='{1}' title='{1}'></a>", String.snippet(movie.title, 40), "Link to Parents Guide on IMDb.com");
                 html += "<div class='ratings'><a class='imdb' target='_blank'></a><a class='rt_critics_rating rottenTomato' target='_blank'></a><a class='rt_audience_rating rottenTomato' target='_blank'></a></div>"
                 html += String.format("<div>{0}</div>", movie.showtimes);
+                html += "<div class='actions'><a href='#' class='removeLink'>Remove</a></div>";
                 html += "</div>"; // close movie
             });
             html += "</div>"; // close movies

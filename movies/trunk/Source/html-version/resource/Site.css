@@ -7,7 +7,7 @@ body
     color: #232323;
     /* text-align: center; */
 }
-
+.hidden { display:none; }
 a:focus { outline: none; } /* firefox */
 
 #container { margin: 0 auto; width: 830px; text-align:left; padding-top:10px; }

@@ -20,6 +20,12 @@ codejkjk.movies.HomeIndex = {
     },
 
     Init: function () {
+
+        if (typeof localStorage == 'undefined') {
+            document.writeln("Please use a more recent browser to view this site.  I recommend <a href='http://www.google.com/chrome'>Chrome</a>.");
+            return;
+        }
+
         codejkjk.movies.HomeIndex.Controls.SearchBox().focus(); // cuz some browsers are stupid and don't yet support html5's autofocus attr
         codejkjk.movies.HomeIndex.InitShowtimeDates();
         codejkjk.movies.HomeIndex.BindFormActions();
@@ -51,10 +57,16 @@ codejkjk.movies.HomeIndex = {
     LoadTheaters: function (theaters) {
         var html = "";
         var rtMovieIdsToLoad = [];
+
+        var collapsedTheaterIds = localStorage.getItem("CollapsedTheaterIds") != null ? localStorage.getItem("CollapsedTheaterIds").split(',') : [];
+
         $.each(theaters, function (i, theater) {
+            var collapserState = collapsedTheaterIds.indexOf(theater.theaterId) >= 0 ? 'collapsed' : 'expanded';
+            var collapseeState = collapserState == 'collapsed' ? 'hidden' : '';
+
             html += String.format("<div class='theater' id='{0}'>", theater.theaterId);
-            html += String.format("<a href='#' class='theaterHeader collapser expanded' collapsee='.collapsee-{0}'>{1}</a>", theater.theaterId, theater.name);
-            html += String.format("<div class='collapsee-{0}'>{1} - <a href='{2}' target='_blank' class='external'>Map</a>", theater.theaterId, theater.address, theater.mapUrl); 
+            html += String.format("<a href='#' class='theaterHeader collapser {0}' collapsee='.collapsee-{1}'>{2}</a>", collapserState, theater.theaterId, theater.name);
+            html += String.format("<div class='collapsee-{0} {1}'>{2} - <a href='{3}' target='_blank' class='external'>Map</a>", theater.theaterId, collapseeState, theater.address, theater.mapUrl);
             html += "<div class='movies'>";
             $.each(theater.movies, function (j, movie) {
                 if (movie.rtMovieId != null) {

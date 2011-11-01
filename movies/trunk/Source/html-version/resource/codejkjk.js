@@ -59,6 +59,29 @@ Date.prototype.toFormat = function (format) {
     }
 };
 
+Storage.prototype.setObject = function (key, value) {
+    this.setItem(key, JSON.stringify(value));
+};
+
+Storage.prototype.getObject = function (key) {
+    return this.getItem(key) && JSON.parse(this.getItem(key));
+};
+
+Array.prototype.removeByElement = function (elem) {
+    var arr = this;
+    $.each(arr, function (i, arrElem) {
+        if (arrElem == elem) {
+            arr.splice(i, 1);
+        }
+    });
+};
+
+Array.prototype.pushIfDoesNotExist = function (elem) {
+    if (this.indexOf(elem) == -1) {
+        this.push(elem);
+    }
+};
+
 // orig:
 //Date.prototype.addDays = function(days)
 // {

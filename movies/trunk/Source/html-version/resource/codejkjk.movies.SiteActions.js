@@ -7,23 +7,23 @@ codejkjk.movies.SiteActions = {
 
             var collapser = $(this);
             var collapsee = $($(collapser.attr("collapsee")));
-            var collapsedTheaterIds = localStorage.getItem("CollapsedTheaterIds") != null ? localStorage.getItem("CollapsedTheaterIds").split(',') : [];
+            var collapsedTheaters = localStorage.getItem("CollapsedTheaters") != null ? localStorage.getItem("CollapsedTheaters").split(',') : [];
             var theaterId = collapser.closest(".theater").attr("id");
 
             if (collapser.hasClass("collapsed")) {
-                collapsedTheaterIds.removeByElement(theaterId);
+                collapsedTheaters.removeByElement(theaterId);
             } else {
-                collapsedTheaterIds.pushIfDoesNotExist(theaterId);
+                collapsedTheaters.pushIfDoesNotExist(theaterId);
             }
 
             collapsee.slideToggle('fast');
             collapser.toggleClass("collapsed").toggleClass("expanded");
             collapser.blur();
 
-            if (collapsedTheaterIds.length > 0) {
-                localStorage.setItem("CollapsedTheaterIds", collapsedTheaterIds.join(','));
+            if (collapsedTheaters.length > 0) {
+                localStorage.setItem("CollapsedTheaters", collapsedTheaters.join(','));
             } else {
-                localStorage.removeItem("CollapsedTheaterIds");
+                localStorage.removeItem("CollapsedTheaters");
             }
         });
     }

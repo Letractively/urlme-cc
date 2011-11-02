@@ -61,19 +61,28 @@ codejkjk.movies.HomeIndex = {
         var rtMovieIdsToLoad = [];
 
         var collapsedTheaters = localStorage.getItem("CollapsedTheaters") != null ? localStorage.getItem("CollapsedTheaters").split(',') : [];
-        var collapsedTheaterMovies = localStorage.getItem("CollapsedTheaterMovies") != null ? localStorage.getItem("CollapsedTheaterMovies").split(',') : [];
+        var removedTheaterMovies = localStorage.getItem("RemovedTheaterMovies") != null ? localStorage.getItem("RemovedTheaterMovies").split(',') : [];
 
         $.each(theaters, function (i, theater) {
             var collapserState = collapsedTheaters.indexOf(theater.theaterId) >= 0 ? 'collapsed' : 'expanded';
             var collapseeState = collapserState == 'collapsed' ? 'hidden' : '';
 
+            // determine if "Show removed movies" link should show, along w/ the number of hidden movies if applicable
+            var removedMoviesCount = 0;
+            $.each(removedTheaterMovies, function (i, removedTheaterMovie) {
+                if (removedTheaterMovie.indexOf(String.format("{0}-", theater.theaterId)) == 0) {
+                    removedMoviesCount++;
+                }
+            });
+            var showRemovedMoviesLinkState = removedMoviesCount > 0 ? '' : 'hidden';
+
             html += String.format("<div class='theater' id='{0}'>", theater.theaterId);
             html += String.format("<a href='#' class='theaterHeader collapser {0}' collapsee='.collapsee-{1}'>{2}</a>", collapserState, theater.theaterId, theater.name);
-            html += String.format("<div class='collapsee-{0} {1}'>{2} - <a href='{3}' target='_blank' class='external'>Map</a> <a href='#' class='showRemovedMoviesLink'>Show removed movies (<span class='removedMoviesCount'></span>)</a>", theater.theaterId, collapseeState, theater.address, theater.mapUrl);
+            html += String.format("<div class='collapsee-{0} {1}'>{2} - <a href='{3}' target='_blank' class='external'>Map</a> <a href='#' class='showRemovedMoviesLink {4}'>Show removed movies (<span class='removedMoviesCount'>{5}</span>)</a>", theater.theaterId, collapseeState, theater.address, theater.mapUrl, showRemovedMoviesLinkState, removedMoviesCount);
             html += "<div class='movies'>";
             $.each(theater.movies, function (j, movie) {
                 var theaterMovieId = String.format("{0}-{1}", theater.theaterId, movie.rtMovieId);
-                var movieState = collapsedTheaterMovies.indexOf(theaterMovieId) >= 0 ? 'hidden' : '';
+                var movieState = removedTheaterMovies.indexOf(theaterMovieId) >= 0 ? 'hidden' : '';
 
                 if (movie.rtMovieId != null) {
                     if (rtMovieIdsToLoad.indexOf(movie.rtMovieId) == -1) { rtMovieIdsToLoad.push(movie.rtMovieId); }
@@ -270,33 +279,33 @@ codejkjk.movies.HomeIndex = {
             var link = $(this);
             var movie = link.closest(".movie");
             var theater = link.closest(".theater");
-            var collapsedTheaterMovies = localStorage.getItem("CollapsedTheaterMovies") != null ? localStorage.getItem("CollapsedTheaterMovies").split(',') : [];
-            collapsedTheaterMovies.pushIfDoesNotExist(movie.attr("theaterMovieId"));
+            var removedTheaterMovies = localStorage.getItem("RemovedTheaterMovies") != null ? localStorage.getItem("RemovedTheaterMovies").split(',') : [];
+            removedTheaterMovies.pushIfDoesNotExist(movie.attr("theaterMovieId"));
             movie.addClass('hidden');
             var removedMoviesCount = theater.find(".movie.hidden").length;
             theater.find(".showRemovedMoviesLink").find(".removedMoviesCount").html(removedMoviesCount);
             theater.find(".showRemovedMoviesLink").show();
 
-            localStorage.setItem("CollapsedTheaterMovies", collapsedTheaterMovies.join(','));
+            localStorage.setItem("RemovedTheaterMovies", removedTheaterMovies.join(','));
         });
 
         codejkjk.movies.HomeIndex.Controls.ShowRemovedMoviesLinks().click(function (e) {
             e.preventDefault();
-            var collapsedTheaterMovies = localStorage.getItem("CollapsedTheaterMovies") != null ? localStorage.getItem("CollapsedTheaterMovies").split(',') : [];
+            var removedTheaterMovies = localStorage.getItem("RemovedTheaterMovies") != null ? localStorage.getItem("RemovedTheaterMovies").split(',') : [];
 
             var link = $(this);
             var theater = link.closest(".theater");
             theater.find(".movie.hidden").each(function () {
                 var movie = $(this);
                 var movieTheaterId = movie.attr("theaterMovieId");
-                collapsedTheaterMovies.removeByElement(movieTheaterId);
+                removedTheaterMovies.removeByElement(movieTheaterId);
                 movie.removeClass('hidden');
             });
 
-            if (collapsedTheaterMovies.length > 0) {
-                localStorage.setItem("CollapsedTheaterMovies", collapsedTheaterMovies.join(','));
+            if (removedTheaterMovies.length > 0) {
+                localStorage.setItem("RemovedTheaterMovies", removedTheaterMovies.join(','));
             } else {
-                localStorage.removeItem("CollapsedTheaterMovies");
+                localStorage.removeItem("RemovedTheaterMovies");
             }
 
             link.hide();

@@ -40,24 +40,24 @@ function addCommas(nStr) {
     return x1 + x2;
 }
 
-Date.prototype.addDays = function (days) {
-    var dat = new Date(this.valueOf());
-    dat.setDate(dat.getDate() + days);
-    return dat;
-};
+//Date.prototype.addDays = function (days) {
+//    var dat = new Date(this.valueOf());
+//    dat.setDate(dat.getDate() + days);
+//    return dat;
+//};
     
-Date.prototype.toFormat = function (format) {
-    var d = this;
-    var yyyy = this.getFullYear();
-    var MM = (this.getMonth() + 1) < 10 ? "0" + this.getMonth() + 1 : this.getMonth() + 1;
-    var dd = this.getDate() < 10 ? "0" + this.getDate() : this.getDate();
+//Date.prototype.toFormat = function (format) {
+//    var d = this;
+//    var yyyy = this.getFullYear();
+//    var MM = (this.getMonth() + 1) < 10 ? "0" + this.getMonth() + 1 : this.getMonth() + 1;
+//    var dd = this.getDate() < 10 ? "0" + this.getDate() : this.getDate();
 
-    switch (format) {
-        case "yyyyMMdd":
-            return yyyy.toString() + MM.toString() + dd.toString();
-            break;
-    }
-};
+//    switch (format) {
+//        case "yyyyMMdd":
+//            return yyyy.toString() + MM.toString() + dd.toString();
+//            break;
+//    }
+//};
 
 Storage.prototype.setObject = function (key, value) {
     this.setItem(key, JSON.stringify(value));

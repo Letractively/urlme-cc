@@ -38,13 +38,31 @@ codejkjk.movies.HomeIndex = {
     },
 
     InitShowtimeDates: function () {
-        var today = new Date();
-        var tomorrow = today.addDays(1);
-        var dayAfterTomorrow = today.addDays(2);
+        var today = Date.today();
+        var tomorrow = Date.today().add(1).days();
+        var dayAfterTomorrow = Date.today().add(2).days();
 
-        codejkjk.movies.HomeIndex.Controls.TodayShowtimes().attr("date", today.toFormat("yyyyMMdd"));
-        codejkjk.movies.HomeIndex.Controls.TomorrowShowtimes().attr("date", tomorrow.toFormat("yyyyMMdd"));
-        codejkjk.movies.HomeIndex.Controls.DayAfterTomorrowShowtimes().attr("date", dayAfterTomorrow.toFormat("yyyyMMdd"));
+        codejkjk.movies.HomeIndex.Controls.TodayShowtimes().attr("date", today.toString("yyyyMMdd"));
+        codejkjk.movies.HomeIndex.Controls.TomorrowShowtimes().attr("date", tomorrow.toString("yyyyMMdd"));
+        codejkjk.movies.HomeIndex.Controls.DayAfterTomorrowShowtimes().attr("date", dayAfterTomorrow.toString("yyyyMMdd")).html(dayAfterTomorrow.toString("ddd, MMM dd"));
+
+        for(var i = 0; i < 5, i++) {
+            var d = Date.today().add(i).days();
+            var label = '';
+            switch (i) {
+                case 0:
+                    label = "Today";
+                    break;
+                case 1:
+                    label = "Tomorrow";
+                    break;
+                default:
+                    label = d.toString("ddd, MMM dd");
+                    break;
+            }
+        }
+
+        codejkjk.movies.HomeIndex.Controls.FiltersContainer().show();
     },
 
     ShowLoading: function (msg) {

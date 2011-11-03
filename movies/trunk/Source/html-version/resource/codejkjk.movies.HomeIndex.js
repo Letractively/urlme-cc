@@ -5,9 +5,7 @@ codejkjk.movies.HomeIndex = {
     Controls: {
         MoviesContainer: function () { return $("#movies"); }
         , FiltersContainer: function () { return $("#filters"); }
-        , TodayShowtimes: function () { return $("#today"); }
-        , TomorrowShowtimes: function () { return $("#tomorrow"); }
-        , DayAfterTomorrowShowtimes: function () { return $("#dayAfterTomorrow"); }
+        , ShowtimeDayLinksContainer: function () { return $("#showtimeDays"); }
         , ShowtimeDayLinks: function () { return $("#showtimeDays").find("a"); }
         , TheatersContainer: function () { return $("#theaters"); }
         , LoadingContainer: function () { return $("#loading"); }
@@ -29,29 +27,31 @@ codejkjk.movies.HomeIndex = {
         }
 
         codejkjk.movies.HomeIndex.Controls.SearchBox().focus(); // cuz some browsers are stupid and don't yet support html5's autofocus attr
-        codejkjk.movies.HomeIndex.InitShowtimeDates();
+        codejkjk.movies.HomeIndex.Filters();
         codejkjk.movies.HomeIndex.BindFormActions();
         codejkjk.movies.HomeIndex.HandleFeedback();
 
         codejkjk.movies.HomeIndex.ShowLoading("Loading...");
-        codejkjk.movies.Flixster.GetTheaters(codejkjk.movies.HomeIndex.Controls.TodayShowtimes().attr("date"), 23226, codejkjk.movies.HomeIndex.LoadTheaters);
+        codejkjk.movies.Flixster.GetTheaters(Date.today().toString("yyyyMMdd"), 23226, codejkjk.movies.HomeIndex.LoadTheaters);
     },
 
-    InitShowtimeDates: function () {
+    Filters: function () {
         var today = Date.today();
         var tomorrow = Date.today().add(1).days();
         var dayAfterTomorrow = Date.today().add(2).days();
 
-        codejkjk.movies.HomeIndex.Controls.TodayShowtimes().attr("date", today.toString("yyyyMMdd"));
-        codejkjk.movies.HomeIndex.Controls.TomorrowShowtimes().attr("date", tomorrow.toString("yyyyMMdd"));
-        codejkjk.movies.HomeIndex.Controls.DayAfterTomorrowShowtimes().attr("date", dayAfterTomorrow.toString("yyyyMMdd")).html(dayAfterTomorrow.toString("ddd, MMM dd"));
+//        codejkjk.movies.HomeIndex.Controls.TodayShowtimes().attr("date", today.toString("yyyyMMdd"));
+//        codejkjk.movies.HomeIndex.Controls.TomorrowShowtimes().attr("date", tomorrow.toString("yyyyMMdd"));
+//        codejkjk.movies.HomeIndex.Controls.DayAfterTomorrowShowtimes().attr("date", dayAfterTomorrow.toString("yyyyMMdd")).html(dayAfterTomorrow.toString("ddd, MMM dd"));
 
-        for(var i = 0; i < 5, i++) {
+        for (var i = 0; i < 5; i++) {
             var d = Date.today().add(i).days();
             var label = '';
+            var cssClass = '';
             switch (i) {
                 case 0:
                     label = "Today";
+                    cssClass = 'active';
                     break;
                 case 1:
                     label = "Tomorrow";
@@ -59,7 +59,9 @@ codejkjk.movies.HomeIndex = {
                 default:
                     label = d.toString("ddd, MMM dd");
                     break;
-            }
+            } // end switch
+            var showtimeDayLink = $('<a/>', { href: '#', text: label, class: cssClass }).attr("date", d.toString("yyyyMMdd"));
+            codejkjk.movies.HomeIndex.Controls.ShowtimeDayLinksContainer().append(showtimeDayLink);
         }
 
         codejkjk.movies.HomeIndex.Controls.FiltersContainer().show();

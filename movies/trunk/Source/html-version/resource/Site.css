@@ -17,7 +17,7 @@ a:focus { outline: none; } /* firefox */
 #theaterView #filters { margin-top:25px; display:none; position: relative; }
     #theaterView #filters #showtimeDays a { padding: 5px 10px; }
     #theaterView #filters #showtimeDays a.active { /* background-color: #FFFF80; */ color: Black; font-weight: bold; text-decoration: none; cursor:text; }
-    #theaterView #filters #nearZip { position: absolute; right: 5px; }
+    #theaterView #filters #nearZip { position: absolute; right: 5px; display:none; } /* hide for now, until we get this thing working */
 
 /* begin: elements specific to theater view */
 #theaters .theater { margin-bottom: 15px; overflow: auto; }
@@ -29,10 +29,9 @@ a:focus { outline: none; } /* firefox */
         #theaters .theater .movies h3 { font-weight:bold; overflow: auto; display:inline; margin-right:10px; }
         #theaters .theater .movies .movie { overflow: hidden; margin-top:15px; position: relative; width: 405px; float: left; height:90px; }        
         
-            #theaters .theater .movies .movie .actions { display:none; position: absolute; top: 6px; right: 10px; }
-            #theaters .theater .movies .movie .actions a { padding: 5px; border: 1px solid gray; text-decoration: none; color: Gray; }
-            #theaters .theater .movies .movie .actions a:hover { color: black; }
-            #theaters .theater .movies .movie:hover .actions { display:block; }
+            #theaters .theater .movies .movie .actions { position: absolute; top: 6px; right: 10px; }
+            #theaters .theater .movies .movie .actions a { padding: 5px; border: 1px solid #cdcdcd; text-decoration: none; color: #cdcdcd; }
+            #theaters .theater .movies .movie .actions a:hover { color: black; border-color: Black; }
             
             #theaters .theater .movies .movie .ratings { overflow: auto; margin-top: 8px; height: 24px; margin-bottom: 10px; }
             

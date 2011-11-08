@@ -108,7 +108,7 @@ codejkjk.movies.HomeIndex = {
                     if (rtMovieIdsToLoad.indexOf(movie.rtMovieId) == -1) { rtMovieIdsToLoad.push(movie.rtMovieId); }
                     html += String.format("<div class='movie rtNotSet imdbNotSet {0}' rtMovieId='{1}' theaterMovieId='{2}'>", movieState, movie.rtMovieId, theaterMovieId); // init to being invisible, since there's really nothing in here yet for the user to see
                 } else {
-                    html += String.format("<div class='movie' style='display:none;'>", movie.rtMovieId); // init to being invisible, since there's really nothing in here yet for the user to see
+                    html += "<div class='movie' style='display:none;'>"; // init to being invisible, since there's really nothing in here yet for the user to see
                 }
                 html += String.format("<h3>{0}</h3><a href='#' class='mpaaRating' target='_blank' alt='{1}' title='{1}'></a>", String.snippet(movie.title, 40), "Link to Parents Guide on IMDb.com");
                 html += "<div class='ratings'><a class='imdb' target='_blank'></a><a class='rt_critics_rating rottenTomato' target='_blank'></a><a class='rt_audience_rating rottenTomato' target='_blank'></a></div>"

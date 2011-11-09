@@ -17,7 +17,8 @@ a:focus { outline: none; } /* firefox */
 #theaterView #filters { margin-top:25px; display:none; position: relative; }
     #theaterView #filters #showtimeDays a { padding: 5px 10px; }
     #theaterView #filters #showtimeDays a.active { /* background-color: #FFFF80; */ color: Black; font-weight: bold; text-decoration: none; cursor:text; }
-    #theaterView #filters #nearZip { position: absolute; right: 5px; display:none; } /* hide for now, until we get this thing working */
+    #theaterView #filters #nearPostalCode { position: absolute; right: 5px; display:none; } /* hide for now, until we get this thing working */
+        #theaterView #filters #nearPostalCode #postalCode { font-weight: bold; } /* hide for now, until we get this thing working */
 
 /* begin: elements specific to theater view */
 #theaters .theater { margin-bottom: 15px; overflow: auto; }

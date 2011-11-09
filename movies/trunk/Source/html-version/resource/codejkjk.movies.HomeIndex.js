@@ -17,32 +17,42 @@ codejkjk.movies.HomeIndex = {
         , ShowRemovedMoviesLinks: function () { return $(".showRemovedMoviesLink"); }
         , UnPinnedMovies: function () { return $(".movie:not(.pinned)"); }
         , Ratings: function () { return $(".rating"); }
+        , PostalCode: function () { return $("#postalCode"); }
+        , PostalCodeContainer: function () { return $("#nearPostalCode"); }
+        , ChangePostalCodeLink: function () { return $("#changePostalCodeLink"); }
     },
 
     Init: function () {
 
-        if (typeof localStorage == 'undefined') {
+        if (typeof localStorage == 'undefined' || !navigator.geolocation) {
             document.writeln("Please use a more recent browser to view this site.  I recommend <a href='http://www.google.com/chrome'>Chrome</a>.");
             return;
         }
 
         codejkjk.movies.HomeIndex.Controls.SearchBox().focus(); // cuz some browsers are stupid and don't yet support html5's autofocus attr
-        codejkjk.movies.HomeIndex.Filters();
+        codejkjk.movies.HomeIndex.BuildFilters();
         codejkjk.movies.HomeIndex.BindFormActions();
-        codejkjk.movies.HomeIndex.HandleFeedback();
 
         codejkjk.movies.HomeIndex.ShowLoading("Loading...");
-        codejkjk.movies.Flixster.GetTheaters(Date.today().toString("yyyyMMdd"), 23226, codejkjk.movies.HomeIndex.LoadTheaters);
+
+        if (localStorage.getItem("PostalCode")) {
+            codejkjk.movies.HomeIndex.Controls.PostalCode().html(postalCode);
+            codejkjk.movies.HomeIndex.Controls.PostalCodeContainer().show();
+            codejkjk.movies.Flixster.GetTheaters(Date.today().toString("yyyyMMdd"), localStorage.getItem("PostalCode"), codejkjk.movies.HomeIndex.LoadTheaters);
+        } else {
+            codejkjk.Geo.GetPostalCode(function (postalCode) {
+                localStorage.setItem("PostalCode", postalCode);
+                codejkjk.movies.HomeIndex.Controls.PostalCode().html(postalCode);
+                codejkjk.movies.HomeIndex.Controls.PostalCodeContainer().show();
+                codejkjk.movies.Flixster.GetTheaters(Date.today().toString("yyyyMMdd"), postalCode, codejkjk.movies.HomeIndex.LoadTheaters);
+            });
+        }
     },
 
-    Filters: function () {
+    BuildFilters: function () {
         var today = Date.today();
         var tomorrow = Date.today().add(1).days();
         var dayAfterTomorrow = Date.today().add(2).days();
-
-//        codejkjk.movies.HomeIndex.Controls.TodayShowtimes().attr("date", today.toString("yyyyMMdd"));
-//        codejkjk.movies.HomeIndex.Controls.TomorrowShowtimes().attr("date", tomorrow.toString("yyyyMMdd"));
-//        codejkjk.movies.HomeIndex.Controls.DayAfterTomorrowShowtimes().attr("date", dayAfterTomorrow.toString("yyyyMMdd")).html(dayAfterTomorrow.toString("ddd, MMM dd"));
 
         for (var i = 0; i < 5; i++) {
             var d = Date.today().add(i).days();
@@ -65,6 +75,16 @@ codejkjk.movies.HomeIndex = {
         }
 
         codejkjk.movies.HomeIndex.Controls.FiltersContainer().show();
+
+        // bind postal code control
+        codejkjk.movies.HomeIndex.Controls.ChangePostalCodeLink().click(function (e) {
+            e.preventDefault();
+            codejkjk.Geo.GetPostalCode(function (postalCode) {
+                localStorage.setItem("PostalCode", postalCode);
+                codejkjk.movies.HomeIndex.Controls.PostalCode().html(postalCode);
+                codejkjk.movies.Flixster.GetTheaters(Date.today().toString("yyyyMMdd"), postalCode, codejkjk.movies.HomeIndex.LoadTheaters);
+            });
+        });
     },
 
     ShowLoading: function (msg) {
@@ -330,17 +350,6 @@ codejkjk.movies.HomeIndex = {
 
             link.hide();
         });
-    },
-
-    HandleFeedback: function () {
-        //        if (feedback != "") {
-        //            if (feedback.indexOf("Error") >= 0 || feedback.indexOf("Fail") >= 0) {
-        //                $("#Error").html(feedback);
-        //                setTimeout(function () { $("#Error").fadeOut(250); }, 4000);
-        //            } else {
-        //                $.growlUI(feedback, null);
-        //            }
-        //        }
     }
 }
 

@@ -21,6 +21,10 @@ codejkjk.movies.HomeIndex = {
         , PostalCodeContainer: function () { return $("#nearPostalCode"); }
         , ChangePostalCodeLink: function () { return $("#changePostalCodeLink"); }
         , ChangeOptionsContainer: function () { return $("#changeOptions"); }
+        , UseNearbyPostalCodeLink: function () { return $("#useNearbyPostalCode"); }
+        , SetPostalCodeButton: function () { return codejkjk.movies.HomeIndex.Controls.ChangeOptionsContainer().find("button"); }
+        , NewPostalCodeInput: function () { return codejkjk.movies.HomeIndex.Controls.ChangeOptionsContainer().find("input[type=text]"); }
+
     },
 
     Init: function () {
@@ -36,19 +40,10 @@ codejkjk.movies.HomeIndex = {
 
         codejkjk.movies.HomeIndex.ShowLoading("Loading...");
 
-        if (localStorage.getItem("PostalCode")) {
-            var cachedPostalCode = localStorage.getItem("PostalCode");
-            codejkjk.movies.HomeIndex.Controls.PostalCode().html(cachedPostalCode);
-            codejkjk.movies.HomeIndex.Controls.PostalCodeContainer().show();
-            codejkjk.movies.Flixster.GetTheaters(Date.today().toString("yyyyMMdd"), cachedPostalCode, codejkjk.movies.HomeIndex.LoadTheaters);
-        } else {
-            codejkjk.Geo.GetPostalCode(function (postalCode) {
-                localStorage.setItem("PostalCode", postalCode);
-                codejkjk.movies.HomeIndex.Controls.PostalCode().html(postalCode);
-                codejkjk.movies.HomeIndex.Controls.PostalCodeContainer().show();
-                codejkjk.movies.Flixster.GetTheaters(Date.today().toString("yyyyMMdd"), postalCode, codejkjk.movies.HomeIndex.LoadTheaters);
-            });
-        }
+        var postalCode = localStorage.getItem("PostalCode") || 23226; // default to 23226
+        codejkjk.movies.HomeIndex.Controls.PostalCode().html(postalCode);
+        codejkjk.movies.HomeIndex.Controls.PostalCodeContainer().show();
+        codejkjk.movies.Flixster.GetTheaters(Date.today().toString("yyyyMMdd"), postalCode, codejkjk.movies.HomeIndex.LoadTheaters);
     },
 
     BuildFilters: function () {
@@ -82,11 +77,32 @@ codejkjk.movies.HomeIndex = {
         codejkjk.movies.HomeIndex.Controls.ChangePostalCodeLink().click(function (e) {
             e.preventDefault();
             codejkjk.movies.HomeIndex.Controls.ChangeOptionsContainer().slideToggle('fast');
-//            codejkjk.Geo.GetPostalCode(function (postalCode) {
-//                localStorage.setItem("PostalCode", postalCode);
-//                codejkjk.movies.HomeIndex.Controls.PostalCode().html(postalCode);
-//                codejkjk.movies.Flixster.GetTheaters(Date.today().toString("yyyyMMdd"), postalCode, codejkjk.movies.HomeIndex.LoadTheaters);
-//            });
+        });
+
+        // bind UseNearbyPostalCodeLink, SetPostalCodeButton, NewPostalCodeInput
+        codejkjk.movies.HomeIndex.Controls.UseNearbyPostalCodeLink().click(function (e) {
+            e.preventDefault();
+            codejkjk.movies.HomeIndex.Controls.ChangeOptionsContainer().mask();
+            codejkjk.Geo.GetPostalCode(function (postalCode) {
+                localStorage.setItem("PostalCode", postalCode);
+                codejkjk.movies.HomeIndex.Controls.ChangeOptionsContainer().unmask();
+                codejkjk.movies.HomeIndex.Controls.PostalCode().html(postalCode);
+                codejkjk.movies.HomeIndex.Controls.ChangePostalCodeLink().trigger('click');
+                codejkjk.movies.Flixster.GetTheaters(Date.today().toString("yyyyMMdd"), postalCode, codejkjk.movies.HomeIndex.LoadTheaters);
+            });
+        });
+        codejkjk.movies.HomeIndex.Controls.SetPostalCodeButton().click(function (e) {
+            e.preventDefault();
+            var postalCode = codejkjk.movies.HomeIndex.Controls.NewPostalCodeInput().val();
+            localStorage.setItem("PostalCode", postalCode);
+            codejkjk.movies.HomeIndex.Controls.PostalCode().html(postalCode);
+            codejkjk.movies.HomeIndex.Controls.ChangePostalCodeLink().trigger('click');
+            codejkjk.movies.Flixster.GetTheaters(Date.today().toString("yyyyMMdd"), postalCode, codejkjk.movies.HomeIndex.LoadTheaters);
+        });
+        codejkjk.movies.HomeIndex.Controls.NewPostalCodeInput().keydown(function (e) {
+            if (e.keyCode == 13) {
+                codejkjk.movies.HomeIndex.Controls.SetPostalCodeButton().trigger('click');
+            }
         });
     },
 

@@ -159,3 +159,11 @@ a.external:hover { background: url('icons/external-link-icon.png') no-repeat top
 	background: -moz-linear-gradient(top,  #0078a5,  #00adee);
 	filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#0078a5', endColorstr='#00adee');
 }
+
+/* This is for the jquery mask plugin */
+.loadmask { z-index: 100; position: absolute; top: 0; left: 0; -moz-opacity: 0.5; opacity: .50; filter: alpha(opacity=50); background-color: #CCC; width: 100%; height: 100%; zoom: 1; }
+.loadmask-msg { z-index: 20001; position: absolute; top: 0; left: 0; padding: 0; margin: 0; }
+.loadmask-msg div { padding: 0; margin: 0; background: transparent url(processing-bar.gif) no-repeat center center; border: 0; cursor: wait; width: 220px; height: 19px; }
+.masked { overflow: hidden !important; }
+.masked-relative { position: relative !important; }
+.masked-hidden { visibility: hidden !important; }

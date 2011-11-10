@@ -9,6 +9,7 @@ body
 }
 .hidden { display:none; }
 a:focus { outline: none; } /* firefox */
+a { text-decoration: none; color: Blue; }
 
 #container { margin: 0 auto; width: 830px; text-align:left; padding-top:10px; }
 
@@ -17,6 +18,9 @@ a:focus { outline: none; } /* firefox */
 #theaterView #filters { margin-top:25px; display:none; position: relative; }
     #theaterView #filters #showtimeDays a { padding: 5px 10px; }
     #theaterView #filters #showtimeDays a.active { /* background-color: #FFFF80; */ color: Black; font-weight: bold; text-decoration: none; cursor:text; }
+    #theaterView #filters #changeOptions { position: absolute; right: 5px; top: 20px; background: #ccc; display:none; padding: 8px; border-radius: 5px; -moz-border-radius: 5px; }
+        #theaterView #filters #changeOptions button { padding: 3px; }
+        #theaterView #filters #changeOptions input { padding: 4px; width: 80px; margin-right:4px; }
     #theaterView #filters #nearPostalCode { position: absolute; right: 5px; display:none; } /* hide for now, until we get this thing working */
         #theaterView #filters #nearPostalCode #postalCode { font-weight: bold; } /* hide for now, until we get this thing working */
 

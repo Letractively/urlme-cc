@@ -31,7 +31,6 @@ codejkjk.movies.HomeIndex = {
             return;
         }
 
-        codejkjk.movies.HomeIndex.Controls.SearchBox().focus(); // cuz some browsers are stupid and don't yet support html5's autofocus attr
         codejkjk.movies.HomeIndex.BuildFilters();
         codejkjk.movies.HomeIndex.BindFormActions();
 

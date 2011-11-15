@@ -31,16 +31,22 @@
     <div id="container">
         <div id="header">
             <div id="headerContents">
-                <div id="searchControls"><input type="text" id="q" name="q" autofocus placeholder="Search..." /><button id="go" class="button blue">Go</button></div>
+                <ul id="views">
+                    <li class="active"><a href="#">Box Office</a></li>
+                    <li><a href="#">Showtimes</a></li>
+                    <li><a href="#">Upcoming</a></li>
+                    <li class="shadow"></li>
+                    <div id="searchControls"><input type="text" id="q" name="q" placeholder="Search + enter..." /></div>
+                </ul>
                 <div id="loading"><img src="resource/ajax-loader.gif" /><span id="loadingMessage"></span></div>
             </div>
         </div>
         <div id="debug"></div>
-        <div id="movies" style="display:none">
+        <div id="movies" class="content" style="display:none">
         </div>
-        <div id="theaterView">
+        <div id="theaterView" class="content">
             <div id="filters">
-                <span id="showtimeDays">Showtimes for </span>
+                <span id="showtimeDays"></span>
                 <span id="nearPostalCode">Near <span id="postalCode"></span>&nbsp;&nbsp;<a href="#" id="changePostalCodeLink">Change</a></span>
                 <div id="changeOptions">
                     <a id="useNearbyPostalCode" href="#">Use nearby zip</a> or specify: <input type="text" placeholder="e.g., 23226"><button type="button">Set</button>

@@ -10,11 +10,37 @@ body
 .hidden { display:none; }
 a:focus { outline: none; } /* firefox */
 a { text-decoration: none; color: Blue; }
+span.divider { color: #CDCDCD; font-weight: normal; margin: 0 5px; }
+.content { margin-top: 20px; }
 
 #container { margin: 0 auto; width: 830px; text-align:left; padding-top:10px; }
 
+#header { text-align:center; overflow:auto; }
+#header #headerContents { }
+#header #headerContents #searchControls { overflow:auto; height: 45px; position:absolute; right: 20px; top: 0px; }
+#header #headerContents #views { float: left; }
+
+#q  
+{
+    padding: 5px; 
+    font-size: 18px; 
+    border: 1px solid #717171; 
+    border-radius: 5px; 
+    width: 200px; 
+    outline: none; 
+    background: -webkit-gradient(linear, left top, left bottom, from(#F8F8F8), to(#ffffff));
+    background: -moz-linear-gradient(top,  #F8F8F8,  #ffffff);  
+    -webkit-box-shadow: 1px 1px 0px #efefef;
+    -moz-box-shadow: 1px 1px 0px #efefef;
+    box-shadow:  1px 1px 0px #efefef;
+    float: left;
+}
+
+#go { width: 50px; height:34px; }
+
 #movies,#theaters { margin-top: 25px; overflow:auto; }
 
+#theaterView { clear: both; }
 #theaterView #filters { margin-top:25px; position: relative; }
     #theaterView #filters #showtimeDays a { padding: 5px 10px; }
     #theaterView #filters #showtimeDays a.active { /* background-color: #FFFF80; */ color: Black; font-weight: bold; text-decoration: none; cursor:text; }
@@ -54,10 +80,6 @@ a { text-decoration: none; color: Blue; }
 #movies .notYetReleased img { opacity:0.4; filter:alpha(opacity=40); /* For IE8 and earlier */ }
 #movies .movie.unPinned .actions { display:none; } 
 
-#header { text-align:center; }
-#header #headerContents { width:467px; display:inline-block; }
-#header #headerContents #searchControls { overflow:auto; width: 486px; height: 45px; }
-
 #movies .movie { overflow: hidden; margin-bottom:15px; position: relative; width: 415px; float: left; height:133px; }
 #movies .movie .actions { position: absolute; bottom: 10px; right: 5px; }
 #movies .movie .actions a { padding: 5px; border: 1px solid gray; margin-left: 5px; text-decoration: none; color: Gray; }
@@ -75,7 +97,6 @@ a { text-decoration: none; color: Blue; }
 a.external { padding-right: 15px; }
 a.disabled { color: Black; cursor: text; }
 a.external:hover { background: url('icons/external-link-icon.png') no-repeat top right; }
-#go { padding: 10px; width: 50px; }
 #movies .movie .ratings .star
 {
     color: black;
@@ -102,23 +123,7 @@ a.external:hover { background: url('icons/external-link-icon.png') no-repeat top
 #movies .movie .ratings .audienceUpright { background: url("audience-upright.png") no-repeat scroll 0 0 transparent; }
 #movies .movie .ratings .audienceSpilled { background: url("audience-spilled.png") no-repeat scroll 0 0 transparent; }
 
-#q  
-{
-    padding: 5px; 
-    font-size: 25px; 
-    border: 1px solid #717171; 
-    border-radius: 5px; 
-    width: 400px; 
-    outline: none; 
-    background: -webkit-gradient(linear, left top, left bottom, from(#F8F8F8), to(#ffffff));
-    background: -moz-linear-gradient(top,  #F8F8F8,  #ffffff);  
-    -webkit-box-shadow: 1px 1px 0px #efefef;
-    -moz-box-shadow: 1px 1px 0px #efefef;
-    box-shadow:  1px 1px 0px #efefef;
-    margin-right:5px;
-    float: left;
-}
-
+/*
 .button {
 	float:left;
 	display: inline-block;
@@ -159,6 +164,7 @@ a.external:hover { background: url('icons/external-link-icon.png') no-repeat top
 	background: -moz-linear-gradient(top,  #0078a5,  #00adee);
 	filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#0078a5', endColorstr='#00adee');
 }
+*/
 
 /* This is for the jquery mask plugin */
 .loadmask { z-index: 100; position: absolute; top: 0; left: 0; -moz-opacity: 0.5; opacity: .50; filter: alpha(opacity=50); background-color: #CCC; width: 100%; height: 100%; zoom: 1; }
@@ -167,3 +173,44 @@ a.external:hover { background: url('icons/external-link-icon.png') no-repeat top
 .masked { overflow: hidden !important; }
 .masked-relative { position: relative !important; }
 .masked-hidden { visibility: hidden !important; }
+
+/* css for tabs */
+ul#views {	height: 36px; padding: 0 0 0 20px; width: 810px; position: relative; overflow: hidden; }
+ul#views li { -webkit-border-radius: 6px; -moz-border-radius: 6px; border-radius: 6px; float: left; margin: 0 10px 0 0; background-color: #2B477D; border: solid 1px #415F9D; position: relative; z-index: 1; }
+ul#views li.active {	z-index: 3; }
+ul#views li.shadow { width: 100%; height: 2px; position: absolute; bottom: -3px; left: 0; border: none; background: none; z-index: 2; -webkit-box-shadow: #111 0 -2px 6px; -moz-box-shadow: #111 0 -2px 6px; box-shadow: #111 0 -2px 6px; }
+ul#views li a:link, ul#views li a:visited {
+	-webkit-border-radius: 6px;
+	-moz-border-radius: 6px;
+	border-radius: 6px;
+	display: block;
+	text-align: center;
+	width: 130px;
+	height: 40px;
+	line-height: 36px;
+	font-family: Arial, Helvetica, sans-serif;
+	text-transform: uppercase;
+	text-decoration: none;
+	font-size: 12px;
+	font-weight: bold;
+	color: #fff;
+	letter-spacing: 1px;
+	outline: none;
+	float: left;
+	background: #2B477D;
+	-webkit-transition: background-color 0.3s linear;
+	-moz-transition: background-color 0.3s linear;
+	-o-transition: background-color 0.3s linear;
+}
+
+ul#views li a:hover {
+	background-color: #5a87dd;
+}
+
+ul#views li.active a:link, ul#views li.active a:visited {
+	color: #2B477D;
+	-webkit-transition: background-color 0.2s linear;
+	background: -moz-linear-gradient(top center, #e8e8e8, #fff 60%) repeat scroll 0 0 #f2f2f2;
+	background: -webkit-gradient(linear,left bottom,left top,color-stop(.4, #fff),color-stop(.6, #e8e8e8));
+	background-color: #f2f2f2;
+}

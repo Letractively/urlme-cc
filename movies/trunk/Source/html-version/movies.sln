@@ -1,0 +1,30 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{EF20B33B-4396-4860-AF4B-A95C7D665BD7}"
+	ProjectSection(SolutionItems) = preProject
+		resource\codejkjk.Geo.js = resource\codejkjk.Geo.js
+		resource\codejkjk.js = resource\codejkjk.js
+		resource\codejkjk.movies.Flixster.js = resource\codejkjk.movies.Flixster.js
+		resource\codejkjk.movies.HomeIndex.js = resource\codejkjk.movies.HomeIndex.js
+		resource\codejkjk.movies.IMDB.js = resource\codejkjk.movies.IMDB.js
+		resource\codejkjk.movies.RottenTomatoes.js = resource\codejkjk.movies.RottenTomatoes.js
+		resource\codejkjk.movies.SearchIndex.js = resource\codejkjk.movies.SearchIndex.js
+		resource\codejkjk.movies.SiteActions.js = resource\codejkjk.movies.SiteActions.js
+		resource\date.js = resource\date.js
+		index.htm = index.htm
+		resource\jquery-1.4.1.min-vsdoc.js = resource\jquery-1.4.1.min-vsdoc.js
+		resource\jquery-1.4.1.min.js = resource\jquery-1.4.1.min.js
+		resource\jquery-ui.min.js = resource\jquery-ui.min.js
+		resource\jquery.autocomplete.js = resource\jquery.autocomplete.js
+		resource\jquery.mask.min.js = resource\jquery.mask.min.js
+		resource\jquery.validate.min.js = resource\jquery.validate.min.js
+		resource\jquery.validate.unobtrusive.js = resource\jquery.validate.unobtrusive.js
+		resource\Site.css = resource\Site.css
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

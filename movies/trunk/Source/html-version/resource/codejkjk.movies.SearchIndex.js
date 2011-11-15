@@ -3,7 +3,9 @@
 codejkjk.movies.HomeIndex = {
     // page elements
     Controls: {
-        ShowtimeDayLinksContainer: function () { return $("#showtimeDays"); }
+        MoviesContainer: function () { return $("#movies"); }
+        , FiltersContainer: function () { return $("#filters"); }
+        , ShowtimeDayLinksContainer: function () { return $("#showtimeDays"); }
         , ShowtimeDayLinks: function () { return $("#showtimeDays").find("a"); }
         , TheatersContainer: function () { return $("#theaters"); }
         , LoadingContainer: function () { return $("#loading"); }
@@ -44,7 +46,9 @@ codejkjk.movies.HomeIndex = {
     },
 
     BuildFilters: function () {
-        var today = Date.today(), tomorrow = Date.today().add(1).days(), dayAfterTomorrow = Date.today().add(2).days();
+        var today = Date.today();
+        var tomorrow = Date.today().add(1).days();
+        var dayAfterTomorrow = Date.today().add(2).days();
 
         for (var i = 0; i < 5; i++) {
             var d = Date.today().add(i).days();
@@ -65,6 +69,40 @@ codejkjk.movies.HomeIndex = {
             var showtimeDayLink = $('<a/>', { href: '#', text: label, class: cssClass }).attr("date", d.toString("yyyyMMdd"));
             codejkjk.movies.HomeIndex.Controls.ShowtimeDayLinksContainer().append(showtimeDayLink);
         }
+
+        codejkjk.movies.HomeIndex.Controls.FiltersContainer().show();
+
+        // bind postal code control
+        codejkjk.movies.HomeIndex.Controls.ChangePostalCodeLink().click(function (e) {
+            e.preventDefault();
+            codejkjk.movies.HomeIndex.Controls.ChangeOptionsContainer().slideToggle('fast');
+        });
+
+        // bind UseNearbyPostalCodeLink, SetPostalCodeButton, NewPostalCodeInput
+        codejkjk.movies.HomeIndex.Controls.UseNearbyPostalCodeLink().click(function (e) {
+            e.preventDefault();
+            codejkjk.movies.HomeIndex.Controls.ChangeOptionsContainer().mask();
+            codejkjk.Geo.GetPostalCode(function (postalCode) {
+                localStorage.setItem("PostalCode", postalCode);
+                codejkjk.movies.HomeIndex.Controls.ChangeOptionsContainer().unmask();
+                codejkjk.movies.HomeIndex.Controls.PostalCode().html(postalCode);
+                codejkjk.movies.HomeIndex.Controls.ChangePostalCodeLink().trigger('click');
+                codejkjk.movies.Flixster.GetTheaters(Date.today().toString("yyyyMMdd"), postalCode, codejkjk.movies.HomeIndex.LoadTheaters);
+            });
+        });
+        codejkjk.movies.HomeIndex.Controls.SetPostalCodeButton().click(function (e) {
+            e.preventDefault();
+            var postalCode = codejkjk.movies.HomeIndex.Controls.NewPostalCodeInput().val();
+            localStorage.setItem("PostalCode", postalCode);
+            codejkjk.movies.HomeIndex.Controls.PostalCode().html(postalCode);
+            codejkjk.movies.HomeIndex.Controls.ChangePostalCodeLink().trigger('click');
+            codejkjk.movies.Flixster.GetTheaters(Date.today().toString("yyyyMMdd"), postalCode, codejkjk.movies.HomeIndex.LoadTheaters);
+        });
+        codejkjk.movies.HomeIndex.Controls.NewPostalCodeInput().keydown(function (e) {
+            if (e.keyCode == 13) {
+                codejkjk.movies.HomeIndex.Controls.SetPostalCodeButton().trigger('click');
+            }
+        });
     },
 
     ShowLoading: function (msg) {
@@ -126,6 +164,46 @@ codejkjk.movies.HomeIndex = {
         // make the api calls to fill the theaters with the list of unique rt movie id's
         $.each(rtMovieIdsToLoad, function (i, rtMovieIdToLoad) {
             codejkjk.movies.RottenTomatoes.GetMovie(rtMovieIdToLoad, codejkjk.movies.HomeIndex.SetRottenTomatoesMovieDetails);
+        });
+    },
+
+    LoadMovies: function (movies) {
+        var html = "";
+        $.each(movies, function (index, movie) {
+            if (movie.ratings.critics_score != -1 && movie.ratings.audience_score != -1 && typeof movie.alternate_ids != 'undefined') {
+                var criticsClass = movie.ratings.critics_rating.indexOf("Fresh") >= 0 ? "criticsFresh" : "criticsRotten";
+                var audienceClass = movie.ratings.audience_rating.indexOf("Upright") >= 0 ? "audienceUpright" : "audienceSpilled";
+
+                html += String.format("<div class='movie unPinned imdbNotSet' id='{0}'>", movie.alternate_ids.imdb);
+                html += String.format("<img src='{0}'/>", movie.posters.profile);
+                html += String.format("<div class='details'><span class='title'>{0}</span>{1}", movie.title, movie.mpaa_rating);
+                html += "<div class='ratings'>";
+                html += String.format("<a href='{0}' target='_blank' class='imdb_rating star'></a>", codejkjk.movies.IMDB.GetMovieUrl(movie.alternate_ids.imdb));
+                html += String.format("<a href='{4}' target='_blank' alt='{5}' title='{5}' class='{0} rottenTomato'>{1}<sup>%</sup></a><a href='{4}' target='_blank' alt='{6}' title='{6}' class='{2} rottenTomato'>{3}<sup>%</sup></a>", criticsClass, movie.ratings.critics_score, audienceClass, movie.ratings.audience_score, movie.links.alternate, "Critics score on RottenTomatoes", "Audience score on RottenTomatoes");
+                html += "</div>"; // close ratings
+                // , movie.links.alternate
+            } else { // not yet released / not rated
+                html += "<div class='movie unPinned notYetReleased'>";
+                html += String.format("<img src='{0}'/>", movie.posters.thumbnail);
+                html += String.format("<div class='details'><span class='title'>{0}</span>{1}", movie.title, movie.mpaa_rating);
+                html += "<div class='notYetReleasedMessage'>Info not available</div>";
+            }
+            html += "</div>"; // close details
+            html += "<div class='actions'><a href='#' class='removeLink'>Remove</a><a href='#' class='pinLink'>Freeze in results</a></div>";
+            html += "</div>"; // close movie
+        });
+        codejkjk.movies.HomeIndex.Controls.MoviesContainer().append(html);
+        codejkjk.movies.HomeIndex.BindResultActions();
+        codejkjk.movies.HomeIndex.GetIMDBData();
+    },
+
+    GetIMDBData: function () {
+        codejkjk.movies.HomeIndex.ShowLoading("Loading IMDb.com info...");
+        codejkjk.movies.HomeIndex.Controls.MoviesContainer().find(".movie").each(function () {
+            if (!$(this).hasClass("notYetReleased")) {
+                var imdbMovieId = $(this).attr("id");
+                codejkjk.movies.IMDB.GetMovie(imdbMovieId, codejkjk.movies.HomeIndex.SetIMDbMovieDetails);
+            }
         });
     },
     SetIMDbMovieDetails: function (imdbMovieId, movie) {
@@ -198,44 +276,31 @@ codejkjk.movies.HomeIndex = {
         movies.removeClass('rtNotSet');
     },
     BindFormActions: function () {
+        codejkjk.movies.HomeIndex.Controls.SearchButton().click(function (e) {
+            e.preventDefault();
+
+            // prep result list
+            // remove non-pinned items
+            codejkjk.movies.HomeIndex.Controls.UnPinnedMovies().remove();
+
+            codejkjk.movies.HomeIndex.ShowLoading("Loading RottenTomatoes.com info...");
+            var q = codejkjk.movies.HomeIndex.Controls.SearchBox().val();
+            codejkjk.movies.RottenTomatoes.SearchMovies(q, codejkjk.movies.HomeIndex.LoadMovies);
+            $(this).blur();
+        });
+        codejkjk.movies.HomeIndex.Controls.SearchBox().keypress(function (e) {
+            var code = (e.keyCode ? e.keyCode : e.which);
+            if (code == 13) {
+                codejkjk.movies.HomeIndex.Controls.SearchButton().trigger('click');
+            }
+        });
         codejkjk.movies.HomeIndex.Controls.ShowtimeDayLinks().click(function (e) {
             e.preventDefault();
-            var link = $(this);
+            var showtimeDayLink = $(this);
             codejkjk.movies.HomeIndex.ShowLoading("Loading...");
-            codejkjk.movies.Flixster.GetTheaters(link.attr("date"), 23226, codejkjk.movies.HomeIndex.LoadTheaters);
+            codejkjk.movies.Flixster.GetTheaters(showtimeDayLink.attr("date"), 23226, codejkjk.movies.HomeIndex.LoadTheaters);
             codejkjk.movies.HomeIndex.Controls.ShowtimeDayLinks().removeClass("active");
-            link.addClass("active");
-        });
-        // bind postal code control
-        codejkjk.movies.HomeIndex.Controls.ChangePostalCodeLink().click(function (e) {
-            e.preventDefault();
-            codejkjk.movies.HomeIndex.Controls.ChangeOptionsContainer().slideToggle('fast');
-        });
-
-        // bind UseNearbyPostalCodeLink, SetPostalCodeButton, NewPostalCodeInput
-        codejkjk.movies.HomeIndex.Controls.UseNearbyPostalCodeLink().click(function (e) {
-            e.preventDefault();
-            codejkjk.movies.HomeIndex.Controls.ChangeOptionsContainer().mask();
-            codejkjk.Geo.GetPostalCode(function (postalCode) {
-                localStorage.setItem("PostalCode", postalCode);
-                codejkjk.movies.HomeIndex.Controls.ChangeOptionsContainer().unmask();
-                codejkjk.movies.HomeIndex.Controls.PostalCode().html(postalCode);
-                codejkjk.movies.HomeIndex.Controls.ChangePostalCodeLink().trigger('click');
-                codejkjk.movies.Flixster.GetTheaters(Date.today().toString("yyyyMMdd"), postalCode, codejkjk.movies.HomeIndex.LoadTheaters);
-            });
-        });
-        codejkjk.movies.HomeIndex.Controls.SetPostalCodeButton().click(function (e) {
-            e.preventDefault();
-            var postalCode = codejkjk.movies.HomeIndex.Controls.NewPostalCodeInput().val();
-            localStorage.setItem("PostalCode", postalCode);
-            codejkjk.movies.HomeIndex.Controls.PostalCode().html(postalCode);
-            codejkjk.movies.HomeIndex.Controls.ChangePostalCodeLink().trigger('click');
-            codejkjk.movies.Flixster.GetTheaters(Date.today().toString("yyyyMMdd"), postalCode, codejkjk.movies.HomeIndex.LoadTheaters);
-        });
-        codejkjk.movies.HomeIndex.Controls.NewPostalCodeInput().keydown(function (e) {
-            if (e.keyCode == 13) {
-                codejkjk.movies.HomeIndex.Controls.SetPostalCodeButton().trigger('click');
-            }
+            showtimeDayLink.addClass("active");
         });
     },
     BindResultActions: function () {

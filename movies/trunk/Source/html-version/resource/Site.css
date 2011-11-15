@@ -15,7 +15,7 @@ a { text-decoration: none; color: Blue; }
 
 #movies,#theaters { margin-top: 25px; overflow:auto; }
 
-#theaterView #filters { margin-top:25px; display:none; position: relative; }
+#theaterView #filters { margin-top:25px; position: relative; }
     #theaterView #filters #showtimeDays a { padding: 5px 10px; }
     #theaterView #filters #showtimeDays a.active { /* background-color: #FFFF80; */ color: Black; font-weight: bold; text-decoration: none; cursor:text; }
     #theaterView #filters #changeOptions { position: absolute; right: 5px; top: 20px; background: #ccc; display:none; padding: 8px; border-radius: 5px; -moz-border-radius: 5px; }

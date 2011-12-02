@@ -13,7 +13,7 @@ a { text-decoration: none; color: Blue; }
 span.divider { color: #CDCDCD; font-weight: normal; margin: 0 5px; }
 .content { margin-top: 20px; }
 
-#container { margin: 0 auto; width: 830px; text-align:left; padding-top:10px; }
+#container { margin: 0 auto; width: 980px; text-align:left; padding-top:10px; } /* same width as cnn.com */
 
 #header { text-align:center; overflow:auto; }
 #header #headerContents { }
@@ -73,6 +73,16 @@ span.divider { color: #CDCDCD; font-weight: normal; margin: 0 5px; }
                 #theaters .theater .movies .movie .ratings .criticsRotten { background: url("rt-graphics/critics-rotten_smaller.png") no-repeat scroll left center transparent; }
                 #theaters .theater .movies .movie .ratings .audienceUpright { padding-left: 28px; background: url("rt-graphics/audience-upright_smaller.png") no-repeat scroll left center transparent; }
                 #theaters .theater .movies .movie .ratings .audienceSpilled { background: url("rt-graphics/audience-spilled_smaller.png") no-repeat scroll left center transparent; }
+
+#theaterView #theaters #theaterList { float: left; width: 265px; }
+    #theaterView #theaters #theaterList li { border-bottom: 1px solid #999; padding: 10px; }
+    #theaterView #theaters #theaterList li#location { padding: 0; }
+        #theaterView #theaters #theaterList li#location div { padding: 5px 0 5px 8px; width: 124px; display:inline-block;}    
+        #theaterView #theaters #theaterList li#location #theatersNearYou { background: gray; }
+        #theaterView #theaters #theaterList li#location #searchByZip { background: orange; }
+        #theaterView #theaters #theaterList li .title { font-weight: bold; margin-bottom: 2px; }
+        #theaterView #theaters #theaterList li .address { font-size: 90%; color: #999999; }
+#theaterView #theaters #showtimesList { float: left; width: 48%; background: orange; }
 /* end: elements specific to theater view */
 
 #movies .notYetReleased { color: Gray; }
@@ -92,8 +102,6 @@ span.divider { color: #CDCDCD; font-weight: normal; margin: 0 5px; }
 #movies .movie .details .title { font-weight: bold; margin-right: 20px; }
 #movies .movie .details .ratings { margin-top: 10px; overflow:auto; }
 
-#loading { position:absolute; top:8px; right: 8px; }
-#loading img { margin-right: 10px; }
 a.external { padding-right: 15px; }
 a.disabled { color: Black; cursor: text; }
 a.external:hover { background: url('icons/external-link-icon.png') no-repeat top right; }
@@ -175,7 +183,7 @@ a.external:hover { background: url('icons/external-link-icon.png') no-repeat top
 .masked-hidden { visibility: hidden !important; }
 
 /* css for tabs */
-ul#views {	height: 36px; padding: 0 0 0 20px; width: 810px; position: relative; overflow: hidden; }
+ul#views {	height: 36px; padding: 0 0 0 20px; width: 960px; position: relative; overflow: hidden; }
 ul#views li { -webkit-border-radius: 6px; -moz-border-radius: 6px; border-radius: 6px; float: left; margin: 0 10px 0 0; background-color: #2B477D; border: solid 1px #415F9D; position: relative; z-index: 1; }
 ul#views li.active {	z-index: 3; }
 ul#views li.shadow { width: 100%; height: 2px; position: absolute; bottom: -3px; left: 0; border: none; background: none; z-index: 2; -webkit-box-shadow: #111 0 -2px 6px; -moz-box-shadow: #111 0 -2px 6px; box-shadow: #111 0 -2px 6px; }

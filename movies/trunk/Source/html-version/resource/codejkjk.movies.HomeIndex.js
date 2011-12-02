@@ -6,8 +6,6 @@ codejkjk.movies.HomeIndex = {
         ShowtimeDayLinksContainer: function () { return $("#showtimeDays"); }
         , ShowtimeDayLinks: function () { return $("#showtimeDays").find("a"); }
         , TheatersContainer: function () { return $("#theaters"); }
-        , LoadingContainer: function () { return $("#loading"); }
-        , LoadingMessage: function () { return $("#loadingMessage"); }
         , SearchBox: function () { return $("#q"); }
         , SearchButton: function () { return $("#go"); }
         , ActionLinks: function () { return $(".actions").find("a"); }
@@ -22,7 +20,6 @@ codejkjk.movies.HomeIndex = {
         , UseNearbyPostalCodeLink: function () { return $("#useNearbyPostalCode"); }
         , SetPostalCodeButton: function () { return codejkjk.movies.HomeIndex.Controls.ChangeOptionsContainer().find("button"); }
         , NewPostalCodeInput: function () { return codejkjk.movies.HomeIndex.Controls.ChangeOptionsContainer().find("input[type=text]"); }
-
     },
 
     Init: function () {
@@ -33,8 +30,6 @@ codejkjk.movies.HomeIndex = {
 
         codejkjk.movies.HomeIndex.BuildFilters();
         codejkjk.movies.HomeIndex.BindFormActions();
-
-        codejkjk.movies.HomeIndex.ShowLoading("Loading...");
 
         var postalCode = localStorage.getItem("PostalCode") || 23226; // default to 23226
         codejkjk.movies.HomeIndex.Controls.PostalCode().html(postalCode);
@@ -66,15 +61,6 @@ codejkjk.movies.HomeIndex = {
         }
     },
 
-    ShowLoading: function (msg) {
-        codejkjk.movies.HomeIndex.Controls.LoadingContainer().show();
-        codejkjk.movies.HomeIndex.Controls.LoadingMessage().html(msg);
-    },
-
-    HideLoading: function () {
-        codejkjk.movies.HomeIndex.Controls.LoadingContainer().hide();
-    },
-
     LoadTheaters: function (theaters) {
         var html = "";
         var rtMovieIdsToLoad = [];
@@ -94,6 +80,8 @@ codejkjk.movies.HomeIndex = {
                 }
             });
             var showRemovedMoviesLinkState = removedMoviesCount > 0 ? '' : 'hidden';
+
+            $("#theaterList").append(String.format("<li><div class='title'>{0}</div><div class='address'>{1}</div></li>", String.snippet(theater.name, 30), String.snippet(theater.address, 36)));
 
             html += String.format("<div class='theater' id='{0}'>", theater.theaterId);
             html += String.format("<a href='#' class='theaterHeader collapser {0}' collapsee='.collapsee-{1}'>{2}</a>", collapserState, theater.theaterId, theater.name);
@@ -119,7 +107,7 @@ codejkjk.movies.HomeIndex = {
             html += "</div>"; // close theaterContents
             html += "</div>"; // close theater
         });
-        codejkjk.movies.HomeIndex.Controls.TheatersContainer().html(html);
+        // codejkjk.movies.HomeIndex.Controls.TheatersContainer().html(html);
         codejkjk.movies.HomeIndex.BindResultActions2();
 
         // make the api calls to fill the theaters with the list of unique rt movie id's
@@ -132,9 +120,6 @@ codejkjk.movies.HomeIndex = {
         var votes = String.format("{0} votes on IMDb.com", movie.Votes);
         movieContainer.find(".imdb_rating").html(movie.Rating).attr("alt", votes).attr("title", votes).removeClass(".imdb_rating");
         movieContainer.removeClass("imdbNotSet");
-        if ($(".imdbNotSet").length == 0) {
-            codejkjk.movies.HomeIndex.HideLoading();
-        }
     },
     SetIMDbMovieDetails2: function (imdbMovieId, movie) {
         var movies = $(".movie[imdbMovieId=" + imdbMovieId + "]");
@@ -143,9 +128,6 @@ codejkjk.movies.HomeIndex = {
 
         movies.find(".imdb").html(movie.Rating).attr("alt", votes).attr("title", votes);
         movies.removeClass("imdbNotSet");
-        if ($(".imdbNotSet").length == 0 && $(".rtNotSet").length == 0) {
-            codejkjk.movies.HomeIndex.HideLoading();
-        }
     },
     SetRottenTomatoesMovieDetails: function (movie) {
         var movies = $(".movie[rtMovieId=" + movie.id + "]");
@@ -200,7 +182,6 @@ codejkjk.movies.HomeIndex = {
         codejkjk.movies.HomeIndex.Controls.ShowtimeDayLinks().click(function (e) {
             e.preventDefault();
             var link = $(this);
-            codejkjk.movies.HomeIndex.ShowLoading("Loading...");
             codejkjk.movies.Flixster.GetTheaters(link.attr("date"), 23226, codejkjk.movies.HomeIndex.LoadTheaters);
             codejkjk.movies.HomeIndex.Controls.ShowtimeDayLinks().removeClass("active");
             link.addClass("active");

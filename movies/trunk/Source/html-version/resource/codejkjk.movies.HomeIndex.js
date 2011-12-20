@@ -6,6 +6,7 @@ codejkjk.movies.HomeIndex = {
         ShowtimeDayLinksContainer: function () { return $("#showtimeDays"); }
         , ShowtimeDayLinks: function () { return $("#showtimeDays").find("a"); }
         , TheatersContainer: function () { return $("#theaters"); }
+        , TheaterList: function () { return $("#theaterList"); }
         , SearchBox: function () { return $("#q"); }
         , SearchButton: function () { return $("#go"); }
         , ActionLinks: function () { return $(".actions").find("a"); }
@@ -28,9 +29,10 @@ codejkjk.movies.HomeIndex = {
             return;
         }
 
-        codejkjk.movies.HomeIndex.BuildFilters();
-        codejkjk.movies.HomeIndex.BindFormActions();
+        //codejkjk.movies.HomeIndex.BuildFilters();
+        //codejkjk.movies.HomeIndex.BindFormActions();
 
+        // TODO: no default
         var postalCode = localStorage.getItem("PostalCode") || 23226; // default to 23226
         codejkjk.movies.HomeIndex.Controls.PostalCode().html(postalCode);
         codejkjk.movies.HomeIndex.Controls.PostalCodeContainer().show();
@@ -62,11 +64,10 @@ codejkjk.movies.HomeIndex = {
     },
 
     LoadTheaters: function (theaters) {
-        var html = "";
         var rtMovieIdsToLoad = [];
-
-        var collapsedTheaters = localStorage.getItem("CollapsedTheaters") != null ? localStorage.getItem("CollapsedTheaters").split(',') : [];
         var removedTheaterMovies = localStorage.getItem("RemovedTheaterMovies") != null ? localStorage.getItem("RemovedTheaterMovies").split(',') : [];
+
+
 
         $.each(theaters, function (i, theater) {
             var collapserState = collapsedTheaters.indexOf(theater.theaterId) >= 0 ? 'collapsed' : 'expanded';

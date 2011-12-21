@@ -69,7 +69,6 @@ codejkjk.movies.HomeIndex = {
     },
 
     LoadTheaters: function (theaters) {
-        var rtMovieIdsToLoad = [];
         var removedTheaterMovies = localStorage.getItem("RemovedTheaterMovies") != null ? localStorage.getItem("RemovedTheaterMovies").split(',') : [];
 
         $.views.allowCode = true; // allow {{* if (...) { }} type of code in the templates
@@ -86,8 +85,21 @@ codejkjk.movies.HomeIndex = {
             codejkjk.movies.HomeIndex.Controls.CurrentTheaterTemplate().render(theaters)
         );
 
-        return;
+        // fill movie data with rotten tomatoes
 
+        // build list of rotten tomato id's
+        var rtMovieIdsToLoad = [];
+        $.each(theaters, function (i, theater) {
+            $.each(theater.movies, function (j, movie) {
+                if (rtMovieIdsToLoad.indexOf(movie.rtMovieId) == -1) { rtMovieIdsToLoad.push(movie.rtMovieId); }
+            });
+        });
+
+        $.each(rtMovieIdsToLoad, function (i, rtMovieIdToLoad) {
+            codejkjk.movies.RottenTomatoes.GetMovie(rtMovieIdToLoad, codejkjk.movies.HomeIndex.SetRottenTomatoesMovieDetails);
+        });
+
+        return;
 
 
         $.each(theaters, function (i, theater) {
@@ -140,16 +152,20 @@ codejkjk.movies.HomeIndex = {
         movieContainer.removeClass("imdbNotSet");
     },
     SetIMDbMovieDetails2: function (imdbMovieId, movie) {
-        var movies = $(".movie[imdbMovieId=" + imdbMovieId + "]");
-
-        var votes = String.format("{0} votes on IMDb.com", movie.Votes);
-
+        var movies = $(".movie[data-imdbmovieid='{0}']".format(imdbMovieId));
+        var votes = "{0} votes on IMDb.com".format(movie.Votes);
+        
         movies.find(".imdb").html(movie.Rating).attr("alt", votes).attr("title", votes);
-        movies.removeClass("imdbNotSet");
     },
     SetRottenTomatoesMovieDetails: function (movie) {
-        var movies = $(".movie[rtMovieId=" + movie.id + "]");
+        var movies = $(".movie[data-rtmovieid='{0}']".format(movie.id));
 
+        // set movie poster
+        if (typeof movie.posters != 'undefined' && movie.posters.thumbnail != 'undefined') {
+            movies.find("img").attr("src", movie.posters.thumbnail);
+        }
+
+        // set rating
         movies.find('.mpaaRating').html(movie.mpaa_rating);
 
         if (typeof movie.links != 'undefined') {
@@ -171,12 +187,12 @@ codejkjk.movies.HomeIndex = {
 
             movies.find('.rt_critics_rating').removeClass('rt_critics_rating')
                                          .addClass(criticsClass)
-                                         .html(String.format("{0}<sup>%</sup>", movie.ratings.critics_score))
+                                         .html("{0}<sup>%</sup>".format(movie.ratings.critics_score))
                                          .attr("alt", criticsAlt)
                                          .attr("title", criticsAlt);
             movies.find('.rt_audience_rating').removeClass('rt_audience_rating')
                                          .addClass(audienceClass)
-                                         .html(String.format("{0}<sup>%</sup>", movie.ratings.audience_score))
+                                         .html("{0}<sup>%</sup>".format(movie.ratings.audience_score))
                                          .attr("alt", audienceAlt)
                                          .attr("title", audienceAlt);
         } else {
@@ -185,7 +201,7 @@ codejkjk.movies.HomeIndex = {
 
         // load imdb movie ratings
         if (typeof movie.alternate_ids != 'undefined') {
-            movies.attr("imdbMovieId", movie.alternate_ids.imdb);
+            movies.attr("data-imdbmovieid", movie.alternate_ids.imdb);
             movies.find(".imdb").attr("href", codejkjk.movies.IMDB.GetMovieUrl(movie.alternate_ids.imdb));
             codejkjk.movies.IMDB.GetMovie(movie.alternate_ids.imdb, codejkjk.movies.HomeIndex.SetIMDbMovieDetails2);
             movies.find('.mpaaRating').addClass("external").attr("href", codejkjk.movies.IMDB.GetParentalGuideUrl(movie.alternate_ids.imdb));
@@ -193,8 +209,6 @@ codejkjk.movies.HomeIndex = {
             movies.find('.mpaaRating').addClass("disabled").click(function (e) { e.preventDefault(); }); // prevent user from clicking on this
             movies.find().addClass("unknownRating");
         }
-
-        movies.removeClass('rtNotSet');
     },
     BindControls: function () {
         $(document).on('click', codejkjk.movies.HomeIndex.Controls.TheaterLinksSelector(), function (e) {

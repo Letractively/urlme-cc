@@ -3,7 +3,7 @@
 codejkjk.movies.Flixster = {
     BaseUrl: "http://opensocial.flixster.com/igoogle/showtimes", // ?date=20111025&postal=23226
     GetTheaters: function (dateStr, zip, callback) {
-        var url = "{0}?date={1}&postal={2}".format(codejkjk.movies.Flixster.BaseUrl,dateStr,zip);
+        var url = "{0}?date={1}&postal={2}".format(codejkjk.movies.Flixster.BaseUrl, dateStr, zip);
 
         $.ajax({
             url: url,
@@ -23,9 +23,10 @@ codejkjk.movies.Flixster = {
                         var showtime = $(this);
                         var movieName = $.trim(showtime.find("a:first").html()); // movie title
                         var rtMovieId = showtime.find("a.trailer").attr("movieid"); // rottentomatoes movie id
+                        var movieLength = $.trim(showtime.find("span:first").html().split(' - ')[1]);
                         showtime.find("h3").remove(); // remove header info, which leaves the showtimes as remaining text w/in this showtime div
                         var showtimes = showtime.html();
-                        movies.push({ rtMovieId: rtMovieId, name: movieName, showtimes: showtimes });
+                        movies.push({ rtMovieId: rtMovieId, name: movieName, showtimes: showtimes, length: movieLength });
                     });
 
                     theaters.push({ theaterId: theaterId, name: theaterName, address: theaterAddress, mapUrl: theaterMapUrl, movies: movies });

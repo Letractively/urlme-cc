@@ -3,7 +3,7 @@
 codejkjk.movies.Flixster = {
     BaseUrl: "http://opensocial.flixster.com/igoogle/showtimes", // ?date=20111025&postal=23226
     GetTheaters: function (dateStr, zip, callback) {
-        var url = String.format("{0}?date={1}&postal={2}", codejkjk.movies.Flixster.BaseUrl, dateStr, zip);
+        var url = "{0}?date={1}&postal={2}".format(codejkjk.movies.Flixster.BaseUrl,dateStr,zip);
 
         $.ajax({
             url: url,

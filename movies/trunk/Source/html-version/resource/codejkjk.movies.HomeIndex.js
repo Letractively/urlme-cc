@@ -7,6 +7,7 @@ codejkjk.movies.HomeIndex = {
         , ShowtimeDayLinks: function () { return $("#showtimeDays").find("a"); }
         , TheatersContainer: function () { return $("#theaters"); }
         , TheaterList: function () { return $("#theaterList"); }
+        , TheaterListTemplate: function () { return $("#theaterListTemplate"); }
         , SearchBox: function () { return $("#q"); }
         , SearchButton: function () { return $("#go"); }
         , ActionLinks: function () { return $(".actions").find("a"); }
@@ -37,6 +38,7 @@ codejkjk.movies.HomeIndex = {
         codejkjk.movies.HomeIndex.Controls.PostalCode().html(postalCode);
         codejkjk.movies.HomeIndex.Controls.PostalCodeContainer().show();
         codejkjk.movies.Flixster.GetTheaters(Date.today().toString("yyyyMMdd"), postalCode, codejkjk.movies.HomeIndex.LoadTheaters);
+
     },
 
     BuildFilters: function () {
@@ -67,7 +69,11 @@ codejkjk.movies.HomeIndex = {
         var rtMovieIdsToLoad = [];
         var removedTheaterMovies = localStorage.getItem("RemovedTheaterMovies") != null ? localStorage.getItem("RemovedTheaterMovies").split(',') : [];
 
+        codejkjk.movies.HomeIndex.Controls.TheaterList().html(
+            codejkjk.movies.HomeIndex.Controls.TheaterListTemplate().render(theaters)
+        );
 
+        return;
 
         $.each(theaters, function (i, theater) {
             var collapserState = collapsedTheaters.indexOf(theater.theaterId) >= 0 ? 'collapsed' : 'expanded';

@@ -3,7 +3,7 @@
 <head>
     <title>Movie Ratings</title>
     <link href="resource/Site.css" rel="stylesheet" type="text/css" />
-    <script src="resource/jquery-1.4.1.min.js" type="text/javascript"></script>
+    <script src="resource/jquery-1.7.1.min.js" type="text/javascript"></script>
 	<script src="resource/date.js" type="text/javascript"></script>
     <script src="resource/jquery.mask.min.js" type="text/javascript"></script>
     <script src="resource/codejkjk.js" type="text/javascript"></script>
@@ -13,6 +13,7 @@
     <script src="resource/codejkjk.movies.Flixster.js" type="text/javascript"></script>
     <script src="resource/codejkjk.movies.IMDB.js" type="text/javascript"></script>
     <script src="resource/codejkjk.movies.HomeIndex.js" type="text/javascript"></script>
+    <script src="resource/jsrender.js" type="text/javascript"></script>
     <script type="text/javascript">
 
         var _gaq = _gaq || [];
@@ -43,7 +44,7 @@
         <div id="debug"></div>
         <div id="movies" class="content" style="display:none">
         </div>
-        <div id="theaterView" class="content">
+        <div id="showtimesView" class="content">
             <div id="filters">
                 <span id="showtimeDays"></span>
                 <span id="nearPostalCode">Near <span id="postalCode"></span>&nbsp;&nbsp;<a href="#" id="changePostalCodeLink">Change</a></span>
@@ -57,10 +58,10 @@
             </div>
         </div>
     </div>
-<script type="x-jquery-tmpl">
-    <a href="/#/{{=ZipCode}}/theater/{{=TheaterId}}">
-        <div>{{=Name}}</div>
-        <div>{{=Address}}</div>
+<script id="theaterListTemplate" type="text/x-jquery-tmpl">
+    <a href="/#/ZipCode/theater/{{=theaterId}}">
+        <div class="theaterName">{{=name}}</div>
+        <div class="theaterAddress">{{=address}}</div>
     </a>
 </script>
 </body>

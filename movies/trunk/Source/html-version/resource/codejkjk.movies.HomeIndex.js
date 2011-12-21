@@ -5,7 +5,10 @@ codejkjk.movies.HomeIndex = {
     Controls: {
         ShowtimeDayLinksContainer: function () { return $("#showtimeDays"); }
         , ShowtimeDayLinks: function () { return $("#showtimeDays").find("a"); }
-        , TheatersContainer: function () { return $("#theaters"); }
+        , ChangeOptionsContainer: function () { return $("#changeOptions"); }
+        , ChangePostalCodeLink: function () { return $("#changePostalCodeLink"); }
+        , CurrentTheater: function () { return $("#currentTheater"); }
+        , CurrentTheaterTemplate: function () { return $("#currentTheaterTemplate"); }
         , TheaterList: function () { return $("#theaterList"); }
         , TheaterListTemplate: function () { return $("#theaterListTemplate"); }
         , SearchBox: function () { return $("#q"); }
@@ -17,10 +20,10 @@ codejkjk.movies.HomeIndex = {
         , Ratings: function () { return $(".rating"); }
         , PostalCode: function () { return $("#postalCode"); }
         , PostalCodeContainer: function () { return $("#nearPostalCode"); }
-        , ChangePostalCodeLink: function () { return $("#changePostalCodeLink"); }
-        , ChangeOptionsContainer: function () { return $("#changeOptions"); }
         , UseNearbyPostalCodeLink: function () { return $("#useNearbyPostalCode"); }
         , SetPostalCodeButton: function () { return codejkjk.movies.HomeIndex.Controls.ChangeOptionsContainer().find("button"); }
+        , TheaterLinksSelector: function () { return "#theaterList > a"; }
+        , Theaters: function () { return $(".theater"); }
         , NewPostalCodeInput: function () { return codejkjk.movies.HomeIndex.Controls.ChangeOptionsContainer().find("input[type=text]"); }
     },
 
@@ -31,7 +34,7 @@ codejkjk.movies.HomeIndex = {
         }
 
         //codejkjk.movies.HomeIndex.BuildFilters();
-        //codejkjk.movies.HomeIndex.BindFormActions();
+        codejkjk.movies.HomeIndex.BindControls();
 
         // TODO: no default
         var postalCode = localStorage.getItem("PostalCode") || 23226; // default to 23226
@@ -69,16 +72,25 @@ codejkjk.movies.HomeIndex = {
         var rtMovieIdsToLoad = [];
         var removedTheaterMovies = localStorage.getItem("RemovedTheaterMovies") != null ? localStorage.getItem("RemovedTheaterMovies").split(',') : [];
 
+        $.views.allowCode = true; // allow {{* if (...) { }} type of code in the templates
+
         codejkjk.movies.HomeIndex.Controls.TheaterList().html(
             codejkjk.movies.HomeIndex.Controls.TheaterListTemplate().render(theaters)
         );
 
+        // now that the theater links are filled, set the currentTheater container's height to match height of theater links container
+        var theaterListHeight = codejkjk.movies.HomeIndex.Controls.TheaterList().height() + 25;
+        codejkjk.movies.HomeIndex.Controls.CurrentTheater().css("min-height", theaterListHeight + "px");
+
+        codejkjk.movies.HomeIndex.Controls.CurrentTheater().html(
+            codejkjk.movies.HomeIndex.Controls.CurrentTheaterTemplate().render(theaters)
+        );
+
         return;
 
-        $.each(theaters, function (i, theater) {
-            var collapserState = collapsedTheaters.indexOf(theater.theaterId) >= 0 ? 'collapsed' : 'expanded';
-            var collapseeState = collapserState == 'collapsed' ? 'hidden' : '';
 
+
+        $.each(theaters, function (i, theater) {
             // determine if "Show removed movies" link should show, along w/ the number of hidden movies if applicable
             var removedMoviesCount = 0;
             $.each(removedTheaterMovies, function (i, removedTheaterMovie) {
@@ -114,7 +126,6 @@ codejkjk.movies.HomeIndex = {
             html += "</div>"; // close theaterContents
             html += "</div>"; // close theater
         });
-        // codejkjk.movies.HomeIndex.Controls.TheatersContainer().html(html);
         codejkjk.movies.HomeIndex.BindResultActions2();
 
         // make the api calls to fill the theaters with the list of unique rt movie id's
@@ -185,7 +196,17 @@ codejkjk.movies.HomeIndex = {
 
         movies.removeClass('rtNotSet');
     },
-    BindFormActions: function () {
+    BindControls: function () {
+        $(document).on('click', codejkjk.movies.HomeIndex.Controls.TheaterLinksSelector(), function (e) {
+            e.preventDefault();
+            var link = $(this);
+            var theaterId = link.data().theaterid;
+            $(codejkjk.movies.HomeIndex.Controls.TheaterLinksSelector()).removeClass("selected");
+            link.addClass("selected");
+            codejkjk.movies.HomeIndex.Controls.Theaters().removeClass("selected");
+            $(".theater[data-theaterid='{0}']".format(theaterId)).addClass("selected");
+        });
+
         codejkjk.movies.HomeIndex.Controls.ShowtimeDayLinks().click(function (e) {
             e.preventDefault();
             var link = $(this);

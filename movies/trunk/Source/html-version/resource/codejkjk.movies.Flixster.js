@@ -21,11 +21,11 @@ codejkjk.movies.Flixster = {
                     var movies = [];
                     theaterDivElem.find('div.showtime').each(function () {
                         var showtime = $(this);
-                        var movieTitle = $.trim(showtime.find("a:first").html()); // movie title
+                        var movieName = $.trim(showtime.find("a:first").html()); // movie title
                         var rtMovieId = showtime.find("a.trailer").attr("movieid"); // rottentomatoes movie id
                         showtime.find("h3").remove(); // remove header info, which leaves the showtimes as remaining text w/in this showtime div
                         var showtimes = showtime.html();
-                        movies.push({ rtMovieId: rtMovieId, title: movieTitle, showtimes: showtimes });
+                        movies.push({ rtMovieId: rtMovieId, name: movieName, showtimes: showtimes });
                     });
 
                     theaters.push({ theaterId: theaterId, name: theaterName, address: theaterAddress, mapUrl: theaterMapUrl, movies: movies });

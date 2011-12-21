@@ -45,24 +45,53 @@
         <div id="movies" class="content" style="display:none">
         </div>
         <div id="showtimesView" class="content">
-            <div id="filters">
+            <div id="filters" style="display:none;">
                 <span id="showtimeDays"></span>
                 <span id="nearPostalCode">Near <span id="postalCode"></span>&nbsp;&nbsp;<a href="#" id="changePostalCodeLink">Change</a></span>
                 <div id="changeOptions">
                     <a id="useNearbyPostalCode" href="#">Use nearby zip</a> or specify: <input type="text" placeholder="e.g., 23226"><button type="button">Set</button>
                 </div>
             </div>
-            <div id="theaters">
+            <section id="theaters">
                 <div id="location"><div id="theatersNearYou">Theaters Near You</div><div id="searchByZip">Search by Zip</div></div>
                 <div id="theaterList"></div>
-            </div>
+            </section>
+            <section id="currentTheater"></section>
         </div>
     </div>
 <script id="theaterListTemplate" type="text/x-jquery-tmpl">
-    <a href="/#/ZipCode/theater/{{=theaterId}}">
+    {{* 
+        if ($view.itemNumber == 1) {
+    }}
+    <a class="selected" href="/#/ZipCode/theater/{{=theaterId}}" data-theaterid="{{=theaterId}}">            
+    {{*
+        } else {
+    }}
+    <a href="/#/ZipCode/theater/{{=theaterId}}" data-theaterid="{{=theaterId}}">            
+    {{* } }}
         <div class="theaterName">{{=name}}</div>
         <div class="theaterAddress">{{=address}}</div>
     </a>
+</script>
+<script id="currentTheaterTemplate" type="text/x-jquery-tmpl">
+    {{* 
+        if ($view.itemNumber == 1) {
+    }}
+    <div class="theater selected" data-theaterid="{{=theaterId}}">
+    {{*
+        } else {
+    }}
+    <div class="theater" data-theaterid="{{=theaterId}}">
+    {{* } }}    
+        <h1>{{=name}}</h1>
+        <p class="address">{{=address}}</p>
+        {{#each movies}}
+            <div class="movie">
+                <h2>{{=name}}</h2>
+                <p>{{=showtimes!}}</p>
+            </div>
+        {{/each}}
+    </div>
 </script>
 </body>
 </html>

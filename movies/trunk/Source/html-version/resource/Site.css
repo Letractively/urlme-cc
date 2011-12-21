@@ -55,7 +55,10 @@ span.divider { color: #CDCDCD; font-weight: normal; margin: 0 5px; }
         #showtimesView #theaters #theaterList a div.theaterName { font-weight: bold; margin-bottom: 2px; font-size: 110%; }
         #showtimesView #theaters #theaterList a div.theaterAddress { font-size: 90%; color: #999999; }
         
-#showtimesView #currentTheater { float: left; width: 685px; background: #E9E9E9; padding: 15px; border-radius: 5px; -moz-border-radius: 5px; -webkit-border-radius: 5px; }
+#showtimesView #currentTheater { float: left; width: 685px; }
+    #showtimesView #currentTheater .theater { background: #E9E9E9; padding: 15px; }
+    #showtimesView #currentTheater .theater:first-child { border-top-right-radius: 5px; border-bottom-left-radius: 5px; border-bottom-right-radius: 5px; -moz-border-top-right-radius: 5px; -moz-border-bottom-left-radius: 5px; -moz-border-bottom-right-radius: 5px; -webkit-border-bottom-left-radius: 5px; -webkit-border-bottom-right-radius: 5px; -webkit-border-top-right-radius: 5px;}
+    #showtimesView #currentTheater .theater:not(:first-child) { border-radius: 5px; -moz-border-radius: 5px; -webkit-border-radius: 5px; }
     #showtimesView #currentTheater .theater:not(.selected) { display: none; }
     #showtimesView #currentTheater .theater.selected { display: block; }
         #showtimesView #currentTheater .theater h1 { font-size: 150%; font-weight: bold; }

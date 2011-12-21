@@ -22,8 +22,8 @@ span.divider { color: #CDCDCD; font-weight: normal; margin: 0 5px; }
 
 #q  
 {
-    padding: 5px; 
-    font-size: 18px; 
+    padding: 2px; 
+    font-size: 15px; 
     border: 1px solid #717171; 
     border-radius: 5px; 
     width: 200px; 
@@ -60,7 +60,18 @@ span.divider { color: #CDCDCD; font-weight: normal; margin: 0 5px; }
     #showtimesView #currentTheater .theater.selected { display: block; }
         #showtimesView #currentTheater .theater h1 { font-size: 150%; font-weight: bold; }
         #showtimesView #currentTheater .theater p.address { color: #999; margin-top:5px; }
-        #showtimesView #currentTheater .theater .movie { background: #fff; padding: 10px; border-radius: 5px; -moz-border-radius: 5px; -webkit-border-radius: 5px; margin-top:10px; }
+        #showtimesView #currentTheater .theater .movie { overflow: auto; display:block; background: #fff; padding: 10px; border-radius: 5px; -moz-border-radius: 5px; -webkit-border-radius: 5px; margin-top:10px; }
+            #showtimesView #currentTheater .theater .movie .showtimes { margin-top: 10px; }
+            #showtimesView #currentTheater .theater .movie img { float: left; margin-right: 10px; width:61px; display:block; height: 91px; }
+            #showtimesView #currentTheater .theater .movie h2 { display:inline; font-weight: bold; margin-right: 10px; }
+            #showtimesView #currentTheater .theater .movie .ratings { margin-top: 10px; }
+                #showtimesView #currentTheater .theater .movie .ratings a { float: left; text-decoration: none; height: 24px; margin-right: 10px; line-height: 24px; }
+                #showtimesView #currentTheater .theater .movie .ratings .rottenTomato { padding-left: 31px; font-weight: bold; color: #506A16; }
+                #showtimesView #currentTheater .theater .movie .ratings .imdb { width: 20px; padding-left: 31px; color: Black; background: url("star_small.png") no-repeat scroll left center transparent; }
+                #showtimesView #currentTheater .theater .movie .ratings .criticsFresh { background: url("rt-graphics/critics-fresh_smaller.png") no-repeat scroll left center transparent; }
+                #showtimesView #currentTheater .theater .movie .ratings .criticsRotten { background: url("rt-graphics/critics-rotten_smaller.png") no-repeat scroll left center transparent; }
+                #showtimesView #currentTheater .theater .movie .ratings .audienceUpright { padding-left: 28px; background: url("rt-graphics/audience-upright_smaller.png") no-repeat scroll left center transparent; }
+                #showtimesView #currentTheater .theater .movie .ratings .audienceSpilled { background: url("rt-graphics/audience-spilled_smaller.png") no-repeat scroll left center transparent; }            
     
     #showtimesView #theaters #location { padding: 0; }
         #showtimesView #theaters li#location div { padding: 5px 0 5px 8px; width: 124px; display:inline-block;}    

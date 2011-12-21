@@ -53,7 +53,7 @@
                 </div>
             </div>
             <section id="theaters">
-                <div id="location"><div id="theatersNearYou">Theaters Near You</div><div id="searchByZip">Search by Zip</div></div>
+                <div id="location" style="display:none;"><div id="theatersNearYou">Theaters Near You</div><div id="searchByZip">Search by Zip</div></div>
                 <div id="theaterList"></div>
             </section>
             <section id="currentTheater"></section>
@@ -86,9 +86,11 @@
         <h1>{{=name}}</h1>
         <p class="address">{{=address}}</p>
         {{#each movies}}
-            <div class="movie">
-                <h2>{{=name}}</h2>
-                <p>{{=showtimes!}}</p>
+            <div class="movie" data-rtmovieid="{{=rtMovieId}}" data-imdbmovieid="">
+                <img />
+                <h2>{{=name}}</h2><a href="#" class='mpaaRating' target='_blank' alt='Link to Parents Guide on IMDb.com' title='Link to Parents Guide on IMDb.com'></a><span class="movieLength">{{=length}}</span>
+                <p class="showtimes">{{=showtimes!}}</p>
+                <div class="ratings"><a class='imdb' target='_blank'></a><a class='rt_critics_rating rottenTomato' target='_blank'></a><a class='rt_audience_rating rottenTomato' target='_blank'></a></div>
             </div>
         {{/each}}
     </div>

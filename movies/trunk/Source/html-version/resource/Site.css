@@ -38,17 +38,27 @@ span.divider { color: #CDCDCD; font-weight: normal; margin: 0 5px; }
 
 #go { width: 50px; height:34px; }
 
-#movies,#theaters { margin-top: 25px; overflow:auto; }
+#showtimesView { clear: both; }
+#showtimesView #filters { margin-top:25px; position: relative; }
+    #showtimesView #filters #showtimeDays a { padding: 5px 10px; }
+    #showtimesView #filters #showtimeDays a.active { /* background-color: #FFFF80; */ color: Black; font-weight: bold; text-decoration: none; cursor:text; }
+    #showtimesView #filters #changeOptions { position: absolute; right: 5px; top: 20px; background: #ccc; display:none; padding: 8px; border-radius: 5px; -moz-border-radius: 5px; }
+        #showtimesView #filters #changeOptions button { padding: 3px; }
+        #showtimesView #filters #changeOptions input { padding: 4px; width: 80px; margin-right:4px; }
+    #showtimesView #filters #nearPostalCode { position: absolute; right: 5px; display:none; } /* hide for now, until we get this thing working */
+        #showtimesView #filters #nearPostalCode #postalCode { font-weight: bold; } /* hide for now, until we get this thing working */
 
-#theaterView { clear: both; }
-#theaterView #filters { margin-top:25px; position: relative; }
-    #theaterView #filters #showtimeDays a { padding: 5px 10px; }
-    #theaterView #filters #showtimeDays a.active { /* background-color: #FFFF80; */ color: Black; font-weight: bold; text-decoration: none; cursor:text; }
-    #theaterView #filters #changeOptions { position: absolute; right: 5px; top: 20px; background: #ccc; display:none; padding: 8px; border-radius: 5px; -moz-border-radius: 5px; }
-        #theaterView #filters #changeOptions button { padding: 3px; }
-        #theaterView #filters #changeOptions input { padding: 4px; width: 80px; margin-right:4px; }
-    #theaterView #filters #nearPostalCode { position: absolute; right: 5px; display:none; } /* hide for now, until we get this thing working */
-        #theaterView #filters #nearPostalCode #postalCode { font-weight: bold; } /* hide for now, until we get this thing working */
+#showtimesView #theaters { float: left; width: 265px; }
+    #showtimesView #theaters #theaterList a { border-bottom: 1px solid #999; padding: 10px; }
+        #showtimesView #theaters #theaterList a div.theaterName { font-weight: bold; margin-bottom: 2px; }
+        #showtimesView #theaters #theaterList a div.theaterAddress { font-size: 90%; color: #999999; }
+    
+    
+    #showtimesView #theaters #location { padding: 0; }
+        #showtimesView #theaters li#location div { padding: 5px 0 5px 8px; width: 124px; display:inline-block;}    
+        #showtimesView #theaters li#location #theatersNearYou { background: gray; }
+        #showtimesView #theaters li#location #searchByZip { background: orange; }
+#showtimesView #theaters #showtimesList { float: left; width: 48%; background: orange; }
 
 /* begin: elements specific to theater view */
 #theaters .theater { margin-bottom: 15px; overflow: auto; }
@@ -73,16 +83,6 @@ span.divider { color: #CDCDCD; font-weight: normal; margin: 0 5px; }
                 #theaters .theater .movies .movie .ratings .criticsRotten { background: url("rt-graphics/critics-rotten_smaller.png") no-repeat scroll left center transparent; }
                 #theaters .theater .movies .movie .ratings .audienceUpright { padding-left: 28px; background: url("rt-graphics/audience-upright_smaller.png") no-repeat scroll left center transparent; }
                 #theaters .theater .movies .movie .ratings .audienceSpilled { background: url("rt-graphics/audience-spilled_smaller.png") no-repeat scroll left center transparent; }
-
-#theaterView #theaters #theaterList { float: left; width: 265px; }
-    #theaterView #theaters #theaterList li { border-bottom: 1px solid #999; padding: 10px; }
-    #theaterView #theaters #theaterList li#location { padding: 0; }
-        #theaterView #theaters #theaterList li#location div { padding: 5px 0 5px 8px; width: 124px; display:inline-block;}    
-        #theaterView #theaters #theaterList li#location #theatersNearYou { background: gray; }
-        #theaterView #theaters #theaterList li#location #searchByZip { background: orange; }
-        #theaterView #theaters #theaterList li .title { font-weight: bold; margin-bottom: 2px; }
-        #theaterView #theaters #theaterList li .address { font-size: 90%; color: #999999; }
-#theaterView #theaters #showtimesList { float: left; width: 48%; background: orange; }
 /* end: elements specific to theater view */
 
 #movies .notYetReleased { color: Gray; }

@@ -17,6 +17,14 @@ String.prototype.format = function () {
     });
 };
 
+String.prototype.snippet = function (length) {
+    var s = this;
+    if (s.length > len) {
+        return "<span alt='{0}' title='{0}'>{1}...</span>".format(s, s.substring(0, len));
+    }
+    return s;
+};
+
 //String = {
 //    snippet: function (s, len) {
 //        if (s.length > len) {

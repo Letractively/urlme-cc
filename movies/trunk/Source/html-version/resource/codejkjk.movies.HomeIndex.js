@@ -6,9 +6,10 @@ codejkjk.movies.HomeIndex = {
         ShowtimeDayLinksContainer: function () { return $("#showtimeDays"); }
         , ShowtimeDayLinks: function () { return $("#showtimeDays").find("a"); }
         , ChangeOptionsContainer: function () { return $("#changeOptions"); }
-        , ChangePostalCodeLink: function () { return $("#changePostalCodeLink"); }
+        , ChangeCurrentZipLink: function () { return $("#changeCurrentZipLink"); }
         , CurrentTheater: function () { return $("#currentTheater"); }
         , CurrentTheaterTemplate: function () { return $("#currentTheaterTemplate"); }
+        , CurrentZip: function () { return $("#currentZip"); }
         , TheaterList: function () { return $("#theaterList"); }
         , TheaterListTemplate: function () { return $("#theaterListTemplate"); }
         , SearchBox: function () { return $("#q"); }
@@ -38,8 +39,7 @@ codejkjk.movies.HomeIndex = {
 
         // TODO: no default
         var postalCode = localStorage.getItem("PostalCode") || 23226; // default to 23226
-        codejkjk.movies.HomeIndex.Controls.PostalCode().html(postalCode);
-        codejkjk.movies.HomeIndex.Controls.PostalCodeContainer().show();
+        codejkjk.movies.HomeIndex.Controls.CurrentZip().html(postalCode);
         codejkjk.movies.Flixster.GetTheaters(Date.today().toString("yyyyMMdd"), postalCode, codejkjk.movies.HomeIndex.LoadTheaters);
 
     },
@@ -154,7 +154,7 @@ codejkjk.movies.HomeIndex = {
     SetIMDbMovieDetails2: function (imdbMovieId, movie) {
         var movies = $(".movie[data-imdbmovieid='{0}']".format(imdbMovieId));
         var votes = "{0} votes on IMDb.com".format(movie.Votes);
-        
+
         movies.find(".imdb").html(movie.Rating).attr("alt", votes).attr("title", votes);
     },
     SetRottenTomatoesMovieDetails: function (movie) {
@@ -229,7 +229,7 @@ codejkjk.movies.HomeIndex = {
             link.addClass("active");
         });
         // bind postal code control
-        codejkjk.movies.HomeIndex.Controls.ChangePostalCodeLink().click(function (e) {
+        codejkjk.movies.HomeIndex.Controls.ChangeCurrentZipLink().click(function (e) {
             e.preventDefault();
             codejkjk.movies.HomeIndex.Controls.ChangeOptionsContainer().slideToggle('fast');
         });

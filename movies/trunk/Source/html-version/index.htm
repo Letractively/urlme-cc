@@ -45,15 +45,18 @@
         <div id="movies" class="content" style="display:none">
         </div>
         <div id="showtimesView" class="content">
-            <div id="filters" style="display:none;">
+            <div id="filters">
                 <span id="showtimeDays"></span>
                 <span id="nearPostalCode">Near <span id="postalCode"></span>&nbsp;&nbsp;<a href="#" id="changePostalCodeLink">Change</a></span>
-                <div id="changeOptions">
-                    <a id="useNearbyPostalCode" href="#">Use nearby zip</a> or specify: <input type="text" placeholder="e.g., 23226"><button type="button">Set</button>
-                </div>
             </div>
             <section id="theaters">
-                <div id="location" style="display:none;"><div id="theatersNearYou">Theaters Near You</div><div id="searchByZip">Search by Zip</div></div>
+                <div id="location">
+                    Showtimes for <span id="currentZip"></span><a href="#" id="changeCurrentZipLink">Change</a>
+                    <div id="changeOptions">
+                        <a id="useNearbyPostalCode" href="#">Use nearby zip</a> or specify: <input type="text" placeholder="e.g., 23226"><button type="button">Set</button>
+                    </div>
+                    <div id="theatersNearYou">Theaters Near You</div><div id="searchByZip">Search by Zip</div>
+                </div>
                 <div id="theaterList"></div>
             </section>
             <section id="currentTheater"></section>

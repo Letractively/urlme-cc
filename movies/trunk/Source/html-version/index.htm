@@ -46,7 +46,6 @@
         </div>
         <div id="showtimesView" class="content">
             <div id="filters">
-                <span id="showtimeDays"></span>
             </div>
             <section id="theaters">
                 <div id="location">
@@ -86,6 +85,7 @@
     {{* } }}    
         <h1>{{=name}}</h1>
         <p class="address">{{=address}}</p>
+        <span class="showtimeDays"></span>
         {{#each movies}}
             <div class="movie" data-rtmovieid="{{=rtMovieId}}" data-imdbmovieid="">
                 <img />

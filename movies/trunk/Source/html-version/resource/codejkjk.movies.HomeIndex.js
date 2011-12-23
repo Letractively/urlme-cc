@@ -9,6 +9,7 @@ codejkjk.movies.HomeIndex = {
         , ChangeCurrentZipLink: function () { return $("#changeCurrentZipLink"); }
         , CurrentTheater: function () { return $("#currentTheater"); }
         , CurrentTheaterTemplate: function () { return $("#currentTheaterTemplate"); }
+        , CurrentShowtimeDay: function () { return $("currentShowtimeDay"); }
         , CurrentZip: function () { return $("#currentZip"); }
         , TheaterList: function () { return $("#theaterList"); }
         , TheaterListTemplate: function () { return $("#theaterListTemplate"); }
@@ -17,8 +18,6 @@ codejkjk.movies.HomeIndex = {
         , ActionLinks: function () { return $(".actions").find("a"); }
         , RemoveLinks: function () { return $(".actions").find(".removeLink"); }
         , ShowRemovedMoviesLinks: function () { return $(".showRemovedMoviesLink"); }
-        , UnPinnedMovies: function () { return $(".movie:not(.pinned)"); }
-        , Ratings: function () { return $(".rating"); }
         , PostalCodeContainer: function () { return $("#nearPostalCode"); }
         , UseNearbyPostalCodeLink: function () { return $("#useNearbyPostalCode"); }
         , SetPostalCodeButton: function () { return codejkjk.movies.HomeIndex.Controls.ChangeOptionsContainer().find("button"); }
@@ -33,13 +32,14 @@ codejkjk.movies.HomeIndex = {
             return;
         }
 
-        //codejkjk.movies.HomeIndex.BuildFilters();
+        // init showtime date to today
+        codejkjk.movies.HomeIndex.Controls.CurrentShowtimeDay().val(Date.today().toString("yyyyMMdd"));
+
         codejkjk.movies.HomeIndex.BindControls();
 
-        // TODO: no default
         var postalCode = localStorage.getItem("PostalCode") || 23226; // default to 23226
         codejkjk.movies.HomeIndex.Controls.CurrentZip().html(postalCode);
-        codejkjk.movies.Flixster.GetTheaters(Date.today().toString("yyyyMMdd"), postalCode, codejkjk.movies.HomeIndex.LoadTheaters);
+        codejkjk.movies.Flixster.GetTheaters(codejkjk.movies.HomeIndex.Controls.CurrentShowtimeDay().val(), postalCode, codejkjk.movies.HomeIndex.LoadTheaters);
 
     },
 
@@ -80,10 +80,12 @@ codejkjk.movies.HomeIndex = {
             codejkjk.movies.HomeIndex.Controls.CurrentTheaterTemplate().render(theaters)
         );
 
+        // codejkjk.movies.HomeIndex.BuildFilters();
+
         // now that the theater links are filled, set the currentTheater container's height to match height of theater links container
         var theaterListHeight = codejkjk.movies.HomeIndex.Controls.TheaterList().height() + 20;
         codejkjk.movies.HomeIndex.Controls.Theaters().css("min-height", theaterListHeight + "px");
-        
+
         // fill movie data with rotten tomatoes
 
         // build list of rotten tomato id's
@@ -209,6 +211,14 @@ codejkjk.movies.HomeIndex = {
             movies.find().addClass("unknownRating");
         }
     },
+
+    UpdateZip: function (zip) {
+        localStorage.setItem("PostalCode", postalCode);
+        codejkjk.movies.HomeIndex.Controls.CurrentZip().html(postalCode);
+        codejkjk.movies.HomeIndex.Controls.ChangeCurrentZipLink().trigger('click');
+        codejkjk.movies.Flixster.GetTheaters(codejkjk.movies.HomeIndex.Controls.CurrentZip().val(), postalCode, codejkjk.movies.HomeIndex.LoadTheaters);
+    },
+
     BindControls: function () {
         $(document).on('click', codejkjk.movies.HomeIndex.Controls.TheaterLinksSelector(), function (e) {
             e.preventDefault();
@@ -223,6 +233,7 @@ codejkjk.movies.HomeIndex = {
         codejkjk.movies.HomeIndex.Controls.ShowtimeDayLinks().click(function (e) {
             e.preventDefault();
             var link = $(this);
+            // TODO: this should NOT be hard-coded 23226
             codejkjk.movies.Flixster.GetTheaters(link.attr("date"), 23226, codejkjk.movies.HomeIndex.LoadTheaters);
             codejkjk.movies.HomeIndex.Controls.ShowtimeDayLinks().removeClass("active");
             link.addClass("active");
@@ -238,23 +249,15 @@ codejkjk.movies.HomeIndex = {
             e.preventDefault();
             codejkjk.movies.HomeIndex.Controls.ChangeOptionsContainer().mask();
             codejkjk.Geo.GetPostalCode(function (postalCode) {
-                localStorage.setItem("PostalCode", postalCode);
                 codejkjk.movies.HomeIndex.Controls.ChangeOptionsContainer().unmask();
-                codejkjk.movies.HomeIndex.Controls.CurrentZip().html(postalCode);
-                codejkjk.movies.HomeIndex.Controls.ChangeCurrentZipLink().trigger('click');
-                // TODO: don't use today. use what's current day.
-                codejkjk.movies.Flixster.GetTheaters(Date.today().toString("yyyyMMdd"), postalCode, codejkjk.movies.HomeIndex.LoadTheaters);
+                codejkjk.movies.HomeIndex.UpdateZip(postalCode);
             });
         });
 
         codejkjk.movies.HomeIndex.Controls.SetPostalCodeButton().click(function (e) {
             e.preventDefault();
             var postalCode = codejkjk.movies.HomeIndex.Controls.NewPostalCodeInput().val();
-            localStorage.setItem("PostalCode", postalCode);
-            codejkjk.movies.HomeIndex.Controls.CurrentZip().html(postalCode);
-            codejkjk.movies.HomeIndex.Controls.ChangeCurrentZipLink().trigger('click');
-            // TODO: don't use today, use what's current day
-            codejkjk.movies.Flixster.GetTheaters(Date.today().toString("yyyyMMdd"), postalCode, codejkjk.movies.HomeIndex.LoadTheaters);
+            codejkjk.movies.HomeIndex.UpdateZip(postalCode);
         });
 
         codejkjk.movies.HomeIndex.Controls.NewPostalCodeInput().keydown(function (e) {
@@ -279,12 +282,6 @@ codejkjk.movies.HomeIndex = {
                 movie.toggleClass("unPinned").toggleClass('pinned');
                 link.blur();
             }
-        });
-
-        // prevent that weird dotted gray box to show around the rating links that go to imdb.com and rottentomatoes.com after the user clicks on them.
-        codejkjk.movies.HomeIndex.Controls.Ratings().unbind().click(function () {
-            $(this).blur();
-            return true;
         });
     },
 

@@ -19,7 +19,6 @@ codejkjk.movies.HomeIndex = {
         , ShowRemovedMoviesLinks: function () { return $(".showRemovedMoviesLink"); }
         , UnPinnedMovies: function () { return $(".movie:not(.pinned)"); }
         , Ratings: function () { return $(".rating"); }
-        , PostalCode: function () { return $("#postalCode"); }
         , PostalCodeContainer: function () { return $("#nearPostalCode"); }
         , UseNearbyPostalCodeLink: function () { return $("#useNearbyPostalCode"); }
         , SetPostalCodeButton: function () { return codejkjk.movies.HomeIndex.Controls.ChangeOptionsContainer().find("button"); }
@@ -77,14 +76,14 @@ codejkjk.movies.HomeIndex = {
             codejkjk.movies.HomeIndex.Controls.TheaterListTemplate().render(theaters)
         );
 
-        // now that the theater links are filled, set the currentTheater container's height to match height of theater links container
-        var theaterListHeight = codejkjk.movies.HomeIndex.Controls.TheaterList().height() + 25;
-        codejkjk.movies.HomeIndex.Controls.CurrentTheater().css("min-height", theaterListHeight + "px");
-
         codejkjk.movies.HomeIndex.Controls.CurrentTheater().html(
             codejkjk.movies.HomeIndex.Controls.CurrentTheaterTemplate().render(theaters)
         );
 
+        // now that the theater links are filled, set the currentTheater container's height to match height of theater links container
+        var theaterListHeight = codejkjk.movies.HomeIndex.Controls.TheaterList().height() + 20;
+        codejkjk.movies.HomeIndex.Controls.Theaters().css("min-height", theaterListHeight + "px");
+        
         // fill movie data with rotten tomatoes
 
         // build list of rotten tomato id's
@@ -241,19 +240,23 @@ codejkjk.movies.HomeIndex = {
             codejkjk.Geo.GetPostalCode(function (postalCode) {
                 localStorage.setItem("PostalCode", postalCode);
                 codejkjk.movies.HomeIndex.Controls.ChangeOptionsContainer().unmask();
-                codejkjk.movies.HomeIndex.Controls.PostalCode().html(postalCode);
-                codejkjk.movies.HomeIndex.Controls.ChangePostalCodeLink().trigger('click');
+                codejkjk.movies.HomeIndex.Controls.CurrentZip().html(postalCode);
+                codejkjk.movies.HomeIndex.Controls.ChangeCurrentZipLink().trigger('click');
+                // TODO: don't use today. use what's current day.
                 codejkjk.movies.Flixster.GetTheaters(Date.today().toString("yyyyMMdd"), postalCode, codejkjk.movies.HomeIndex.LoadTheaters);
             });
         });
+
         codejkjk.movies.HomeIndex.Controls.SetPostalCodeButton().click(function (e) {
             e.preventDefault();
             var postalCode = codejkjk.movies.HomeIndex.Controls.NewPostalCodeInput().val();
             localStorage.setItem("PostalCode", postalCode);
-            codejkjk.movies.HomeIndex.Controls.PostalCode().html(postalCode);
-            codejkjk.movies.HomeIndex.Controls.ChangePostalCodeLink().trigger('click');
+            codejkjk.movies.HomeIndex.Controls.CurrentZip().html(postalCode);
+            codejkjk.movies.HomeIndex.Controls.ChangeCurrentZipLink().trigger('click');
+            // TODO: don't use today, use what's current day
             codejkjk.movies.Flixster.GetTheaters(Date.today().toString("yyyyMMdd"), postalCode, codejkjk.movies.HomeIndex.LoadTheaters);
         });
+
         codejkjk.movies.HomeIndex.Controls.NewPostalCodeInput().keydown(function (e) {
             if (e.keyCode == 13) {
                 codejkjk.movies.HomeIndex.Controls.SetPostalCodeButton().trigger('click');

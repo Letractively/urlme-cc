@@ -7,14 +7,18 @@ codejkjk.Geo = {
             console.log("navigator.geolocation " + navigator.geolocation);
             navigator.geolocation.getCurrentPosition(function (position) {
                 console.log("in getCurrentPosition callback");
-                var url = String.format("{0}findNearbyPostalCodesJSON?lat={1}&lng={2}&username=codejkjk", codejkjk.Geo.BaseUrl, position.coords.latitude, position.coords.longitude);
+                var url = "{0}findNearbyPostalCodesJSON?lat={1}&lng={2}&username=codejkjk".format(codejkjk.Geo.BaseUrl, position.coords.latitude, position.coords.longitude);
                 $.ajax({
                     url: url,
                     dataType: "jsonp",
                     success: function (resp) { return callback(resp.postalCodes[0].postalCode); }, // todo: check if postalCodes[0]
                     error: function () { return null; }
                 });
-            }, function (error) { alert(String.format("Error: {0}", error.code)); });
+            }, function (error) {
+                // alert("Error: {0}".format(error.code));
+                alert("Error, please try again.");
+                return callback(localStorage.getItem("PostalCode") || 23226);
+            });
         }
     }
 };

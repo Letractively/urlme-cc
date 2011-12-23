@@ -42,31 +42,29 @@ span.divider { color: #CDCDCD; font-weight: normal; margin: 0 5px; }
 #showtimesView #filters { margin-top:25px; position: relative; }
     #showtimesView #filters #showtimeDays a { padding: 5px 10px; }
     #showtimesView #filters #showtimeDays a.active { /* background-color: #FFFF80; */ color: Black; font-weight: bold; text-decoration: none; cursor:text; }
-    #showtimesView #filters #changeOptions { position: absolute; right: 5px; top: 20px; background: #ccc; display:none; padding: 8px; border-radius: 5px; -moz-border-radius: 5px; }
-        #showtimesView #filters #changeOptions button { padding: 3px; }
-        #showtimesView #filters #changeOptions input { padding: 4px; width: 80px; margin-right:4px; }
-    #showtimesView #filters #nearPostalCode { position: absolute; right: 5px; } /* hide for now, until we get this thing working */
-        #showtimesView #filters #nearPostalCode #postalCode { font-weight: bold; } /* hide for now, until we get this thing working */
 
 #showtimesView #theaters { float: left; width: 265px; }
-    #showtimesView #theaters #theaterList a { display:block; padding: 10px; }
-    #showtimesView #theaters #theaterList a:not(:first-child) { margin-top:0px; }
-    #showtimesView #theaters #theaterList a.selected { background: #E9E9E9; border-top-left-radius: 5px; border-bottom-left-radius: 5px; -moz-border-bottom-left-radius: 5px; -moz-border-top-left-radius: 5px; -webkit-border-bottom-left-radius: 5px; -webkit-border-top-left-radius: 5px; }
-        #showtimesView #theaters #theaterList a div.theaterName { font-weight: bold; margin-bottom: 2px; font-size: 110%; }
-        #showtimesView #theaters #theaterList a div.theaterAddress { font-size: 90%; color: #999999; }
+    #showtimesView #theaters #theaterList { margin-top:10px; }
+        #showtimesView #theaters #theaterList a { display:block; padding: 10px; }
+        #showtimesView #theaters #theaterList a:not(:first-child) { margin-top:0px; }
+        #showtimesView #theaters #theaterList a.selected { background: #E9E9E9; border-top-left-radius: 5px; border-bottom-left-radius: 5px; -moz-border-bottom-left-radius: 5px; -moz-border-top-left-radius: 5px; -webkit-border-bottom-left-radius: 5px; -webkit-border-top-left-radius: 5px; }
+            #showtimesView #theaters #theaterList a div.theaterName { font-weight: bold; margin-bottom: 2px; font-size: 110%; }
+            #showtimesView #theaters #theaterList a div.theaterAddress { font-size: 90%; color: #999999; }
 
     #showtimesView #theaters #location { padding: 0; }
-        #showtimesView #theaters #location > div { padding: 5px 0 5px 8px; width: 124px; display:inline-block; }    
         #showtimesView #theaters #location #theatersNearYou { background: gray; }
         #showtimesView #theaters #location #searchByZip { background: orange; }
         #showtimesView #theaters #location #currentZip { font-weight: bold; }
         #showtimesView #theaters #location #changeCurrentZipLink { margin-left: 10px; }
+        #showtimesView #theaters #location #changeOptions { margin-right: 10px; background: #ccc; display:none; padding: 8px; border-radius: 5px; -moz-border-radius: 5px; margin-top:5px; }
+            #showtimesView #theaters #location #changeOptions button { padding: 3px; }
+            #showtimesView #theaters #location #changeOptions input { padding: 4px; width: 80px; margin-right:4px; }
+        #showtimesView #theaters #location #nearPostalCode { position: absolute; right: 5px; } /* hide for now, until we get this thing working */
+            #showtimesView #theaters #location #nearPostalCode #postalCode { font-weight: bold; } /* hide for now, until we get this thing working */
 
-        
 #showtimesView #currentTheater { float: left; width: 685px; }
     #showtimesView #currentTheater .theater { background: #E9E9E9; padding: 15px; }
-    #showtimesView #currentTheater .theater:first-child { border-top-right-radius: 5px; border-bottom-left-radius: 5px; border-bottom-right-radius: 5px; -moz-border-top-right-radius: 5px; -moz-border-bottom-left-radius: 5px; -moz-border-bottom-right-radius: 5px; -webkit-border-bottom-left-radius: 5px; -webkit-border-bottom-right-radius: 5px; -webkit-border-top-right-radius: 5px;}
-    #showtimesView #currentTheater .theater:not(:first-child) { border-radius: 5px; -moz-border-radius: 5px; -webkit-border-radius: 5px; }
+    #showtimesView #currentTheater .theater { border-radius: 5px; -moz-border-radius: 5px; -webkit-border-radius: 5px; }
     #showtimesView #currentTheater .theater:not(.selected) { display: none; }
     #showtimesView #currentTheater .theater.selected { display: block; }
         #showtimesView #currentTheater .theater h1 { font-size: 150%; font-weight: bold; }

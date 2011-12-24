@@ -31,20 +31,21 @@
 <body>
     <div id="debug"></div>
     <div id="container">
-        <div id="header" style="display:none;">
-            <div id="headerContents">
-                <ul id="views">
-                    <li class="active"><a href="#">Box Office</a></li>
-                    <li><a href="#">Showtimes</a></li>
-                    <li><a href="#">Upcoming</a></li>
-                    <li class="shadow"></li>
-                    <div id="searchControls"><input type="text" id="q" name="q" placeholder="Search + enter..." /></div>
-                </ul>
-            </div>
-        </div>
+        <header>
+            <nav></nav>
+            <input id="q" type="text" placeholder="search + enter" />
+        </header>
+
         <div id="movies" class="content" style="display:none">
         </div>
-        <div id="showtimesView" class="content">
+        
+        <!-- BOX OFFICE -->
+        <section id="boxOfficeView" class="content" data-navitemtext="Box Office">
+            box office view
+        </section>
+
+        <!-- SHOWTIMES -->
+        <section id="showtimesView" class="content" data-navitemtext="Showtimes">
             <input type="hidden" id="currentShowtimeDay" />
             <input type="hidden" id="currentTheater" />
             <section id="theaters">
@@ -57,7 +58,13 @@
                 <div id="theaterList"></div>
             </section>
             <section id="currentTheaterContainer"></section>
-        </div>
+        </section>
+
+        <!-- UPCOMING -->
+        <section id="upcomingView" class="content" data-navitemtext="Upcoming">
+            upcoming view
+        </section>
+
     </div>
 <script id="theaterListTemplate" type="text/x-jquery-tmpl">
     {{#if $ctx.HlpIsCurrentTheater($itemNumber, theaterId) }}
@@ -88,5 +95,19 @@
         {{/each}}
     </div>
 </script>
+<script id="navTemplate" type="text/x-jquery-tmpl">
+    <a href="#" class="{{=className}}">{{=text}}</a>
+</script>
 </body>
 </html>
+
+
+<!--<div id="headerContents">
+    <ul id="views">
+        <li class="active"><a href="#">Box Office</a></li>
+        <li><a href="#">Showtimes</a></li>
+        <li><a href="#">Upcoming</a></li>
+        <li class="shadow"></li>
+        <div id="searchControls"><input type="text" id="q" name="q" placeholder="Search + enter..." /></div>
+    </ul>
+</div>-->

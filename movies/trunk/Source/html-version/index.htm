@@ -45,8 +45,8 @@
         <div id="movies" class="content" style="display:none">
         </div>
         <div id="showtimesView" class="content">
-            <div id="filters">
-            </div>
+            <input type="hidden" id="currentShowtimeDay" />
+            <input type="hidden" id="currentTheater" />
             <section id="theaters">
                 <div id="location">
                     Showtimes for <span id="currentZip"></span><a href="#" id="changeCurrentZipLink">Change</a>
@@ -56,18 +56,22 @@
                 </div>
                 <div id="theaterList"></div>
             </section>
-            <section id="currentTheater"></section>
+            <section id="currentTheaterContainer"></section>
         </div>
     </div>
 <script id="theaterListTemplate" type="text/x-jquery-tmpl">
     {{* 
-        if ($view.itemNumber == 1) {
+        if (codejkjk.movies.HomeIndex.Controls.CurrentTheater().val() == "" && $view.itemNumber == 1) {
     }}
-    <a class="selected" href="/#/ZipCode/theater/{{=theaterId}}" data-theaterid="{{=theaterId}}">            
+        <a class="selected" href="/#/ZipCode/theater/{{=theaterId}}" data-theaterid="{{=theaterId}}">            
+    {{*
+        } else if (codejkjk.movies.HomeIndex.Controls.CurrentTheater().val() != "" && {{=theaterId}} == "1") {
+    }}
+        <a class="selected" href=x"/#/ZipCode/theater/{{=theaterId}}" data-theaterid="{{=theaterId}}">           
     {{*
         } else {
-    }}
-    <a href="/#/ZipCode/theater/{{=theaterId}}" data-theaterid="{{=theaterId}}">            
+    }}         
+        <a href="/#/ZipCode/theater/{{=theaterId}}" data-theaterid="{{=theaterId}}">           
     {{* } }}
         <div class="theaterName">{{=name}}</div>
         <div class="theaterAddress">{{=address}}</div>
@@ -85,7 +89,7 @@
     {{* } }}    
         <h1>{{=name}}</h1>
         <p class="address">{{=address}}</p>
-        <span class="showtimeDays"></span>
+        <div class="showtimeDays"></div>
         {{#each movies}}
             <div class="movie" data-rtmovieid="{{=rtMovieId}}" data-imdbmovieid="">
                 <img />

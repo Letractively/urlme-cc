@@ -11,30 +11,32 @@ body
 a:focus { outline: none; } /* firefox */
 a { text-decoration: none; color: #0000CC; }
 span.divider { color: #CDCDCD; font-weight: normal; margin: 0 5px; }
-.content { margin-top: 20px; }
+
 
 #container { margin: 0 auto; width: 980px; text-align:left; padding-top:10px; } /* same width as cnn.com */
 
-#header { text-align:center; overflow:auto; }
-#header #headerContents { }
-#header #headerContents #searchControls { overflow:auto; height: 45px; position:absolute; right: 20px; top: 0px; }
-#header #headerContents #views { float: left; }
+header { text-align:center; overflow:auto; }
+    header nav { float: left; font-size: 150%; margin-top:5px; margin-right: 10px; }
+        header nav a { margin-right: 20px; }
+        header nav a.selected { font-weight: bold; color: #000; }
 
-#q  
-{
-    padding: 2px; 
-    font-size: 15px; 
-    border: 1px solid #717171; 
-    border-radius: 5px; 
-    width: 200px; 
-    outline: none; 
-    background: -webkit-gradient(linear, left top, left bottom, from(#F8F8F8), to(#ffffff));
-    background: -moz-linear-gradient(top,  #F8F8F8,  #ffffff);  
-    -webkit-box-shadow: 1px 1px 0px #efefef;
-    -moz-box-shadow: 1px 1px 0px #efefef;
-    box-shadow:  1px 1px 0px #efefef;
-    float: left;
-}
+    header #q  
+    {
+        padding: 5px; 
+        font-size: 15px; 
+        border: 1px solid #717171; 
+        border-radius: 5px; 
+        width: 200px; 
+        outline: none; 
+        background: -webkit-gradient(linear, left top, left bottom, from(#F8F8F8), to(#ffffff));
+        background: -moz-linear-gradient(top,  #F8F8F8,  #ffffff);  
+        -webkit-box-shadow: 1px 1px 0px #efefef;
+        -moz-box-shadow: 1px 1px 0px #efefef;
+        box-shadow:  1px 1px 0px #efefef;
+        float: left;
+    }
+
+.content { margin-top: 20px; display:none; }
 
 #go { width: 50px; height:34px; }
 

@@ -6,11 +6,15 @@ codejkjk.movies.HomeIndex = {
         ActionLinks: function () { return $(".actions").find("a"); }
         , ChangeCurrentZipLink: function () { return $("#changeCurrentZipLink"); }
         , ChangeOptionsContainer: function () { return $("#changeOptions"); }
+        , CurrentNavItem: function () { return $("nav > a.selected"); }
         , CurrentShowtimeDay: function () { return $("#currentShowtimeDay"); }
         , CurrentTheater: function () { return $("#currentTheater"); }
         , CurrentTheaterContainer: function () { return $("#currentTheaterContainer"); }
         , CurrentTheaterTemplate: function () { return $("#currentTheaterTemplate"); }
         , CurrentZip: function () { return $("#currentZip"); }
+        , Nav: function () { return $("nav"); }
+        , NavLinks: function () { return $("nav > a"); }
+        , NavTemplate: function () { return $("#navTemplate"); }
         , NewPostalCodeInput: function () { return codejkjk.movies.HomeIndex.Controls.ChangeOptionsContainer().find("input[type=text]"); }
         , PostalCodeContainer: function () { return $("#nearPostalCode"); }
         , RemoveLinks: function () { return $(".actions").find(".removeLink"); }
@@ -26,6 +30,7 @@ codejkjk.movies.HomeIndex = {
         , TheaterListTemplate: function () { return $("#theaterListTemplate"); }
         , Theaters: function () { return $(".theater"); }
         , UseNearbyPostalCodeLink: function () { return $("#useNearbyPostalCode"); }
+        , Views: function () { return $(".content"); }
     },
 
     Init: function () {
@@ -34,14 +39,29 @@ codejkjk.movies.HomeIndex = {
             return;
         }
 
-        // init showtime date to today
-        codejkjk.movies.HomeIndex.Controls.CurrentShowtimeDay().val(Date.today().toString("yyyyMMdd"));
+        // build nav
+        var navItems = [{ text: "Box Office" }, { text: "Showtimes" }, { text: "Upcoming"}];
+        var currentNavItem = localStorage.getItem("View") || "Box Office";
+        $.each(navItems, function (i, navItem) {
+            navItem.className = navItem.text == currentNavItem ? "selected" : "";
+        });
+        codejkjk.movies.HomeIndex.Controls.Nav().html(
+            codejkjk.movies.HomeIndex.Controls.NavTemplate().render(navItems)
+        );
 
         codejkjk.movies.HomeIndex.BindControls();
 
+        // *** load showtimes view ***
+        // init showtime date to today
+        codejkjk.movies.HomeIndex.Controls.CurrentShowtimeDay().val(Date.today().toString("yyyyMMdd"));
         var postalCode = localStorage.getItem("PostalCode") || 23226; // default to 23226
         codejkjk.movies.HomeIndex.Controls.CurrentZip().html(postalCode);
         codejkjk.movies.Flixster.GetTheaters(codejkjk.movies.HomeIndex.Controls.CurrentShowtimeDay().val(), postalCode, codejkjk.movies.HomeIndex.LoadTheaters);
+
+        // *** load box office view ***
+
+        // load the view that's selected (remembered)
+        codejkjk.movies.HomeIndex.Controls.CurrentNavItem().trigger('click');
     },
 
     BuildShowtimeDayLinks: function () {
@@ -74,7 +94,7 @@ codejkjk.movies.HomeIndex = {
     },
 
     IsCurrentTheater: function (i, iTheaterId) {
-        return (codejkjk.movies.HomeIndex.Controls.CurrentTheater().val() == iTheaterId 
+        return (codejkjk.movies.HomeIndex.Controls.CurrentTheater().val() == iTheaterId
             || (codejkjk.movies.HomeIndex.Controls.CurrentTheater().val() == "" && i == 1));
     },
 
@@ -93,7 +113,7 @@ codejkjk.movies.HomeIndex = {
         );
 
         codejkjk.movies.HomeIndex.BuildShowtimeDayLinks();
-        
+
         if (codejkjk.movies.HomeIndex.Controls.ChangeOptionsContainer().is(":visible")) {
             codejkjk.movies.HomeIndex.Controls.ChangeOptionsContainer().unmask();
             codejkjk.movies.HomeIndex.Controls.ChangeCurrentZipLink().trigger('click');
@@ -246,6 +266,19 @@ codejkjk.movies.HomeIndex = {
             link.addClass("selected");
             codejkjk.movies.HomeIndex.Controls.Theaters().removeClass("selected");
             $(".theater[data-theaterid='{0}']".format(theaterId)).addClass("selected");
+        });
+
+        // handle nav item clicks
+        codejkjk.movies.HomeIndex.Controls.NavLinks().click(function (e) {
+            e.preventDefault();
+            var link = $(this);
+            var navItemText = link.html();
+            codejkjk.movies.HomeIndex.Controls.NavLinks().removeClass("selected");
+            link.addClass("selected");
+            codejkjk.movies.HomeIndex.Controls.Views().hide();
+            $("[data-navitemtext='{0}']".format(navItemText)).show();
+            // store this nav tab, so it opens on this one next time user visits this site
+            localStorage.setItem("View", link.html());
         });
 
         // handle showtime day link clicks (Today, Tomorrow, etc)

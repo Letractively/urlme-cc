@@ -73,10 +73,16 @@ codejkjk.movies.HomeIndex = {
         }
     },
 
+    IsCurrentTheater: function (i, iTheaterId) {
+        return (codejkjk.movies.HomeIndex.Controls.CurrentTheater().val() == iTheaterId 
+            || (codejkjk.movies.HomeIndex.Controls.CurrentTheater().val() == "" && i == 1));
+    },
+
     LoadTheaters: function (theaters) {
         var removedTheaterMovies = localStorage.getItem("RemovedTheaterMovies") != null ? localStorage.getItem("RemovedTheaterMovies").split(',') : [];
 
         $.views.allowCode = true; // allow {{* if (...) { }} type of code in the templates
+        $.views.registerHelpers({ HlpIsCurrentTheater: codejkjk.movies.HomeIndex.IsCurrentTheater });
 
         codejkjk.movies.HomeIndex.Controls.TheaterList().html(
             codejkjk.movies.HomeIndex.Controls.TheaterListTemplate().render(theaters)
@@ -87,6 +93,11 @@ codejkjk.movies.HomeIndex = {
         );
 
         codejkjk.movies.HomeIndex.BuildShowtimeDayLinks();
+        
+        if (codejkjk.movies.HomeIndex.Controls.ChangeOptionsContainer().is(":visible")) {
+            codejkjk.movies.HomeIndex.Controls.ChangeOptionsContainer().unmask();
+            codejkjk.movies.HomeIndex.Controls.ChangeCurrentZipLink().trigger('click');
+        }
 
         // now that the theater links are filled, set the currentTheater container's height to match height of theater links container
         var theaterListHeight = codejkjk.movies.HomeIndex.Controls.TheaterList().height() + 20;
@@ -217,11 +228,10 @@ codejkjk.movies.HomeIndex = {
         }
     },
 
-    UpdateZip: function (zip) {
+    UpdateZip: function (postalCode) {
         localStorage.setItem("PostalCode", postalCode);
         codejkjk.movies.HomeIndex.Controls.CurrentZip().html(postalCode);
-        codejkjk.movies.HomeIndex.Controls.ChangeCurrentZipLink().trigger('click');
-        codejkjk.movies.HomeIndex.Controls.CurrentTheater.val("");
+        codejkjk.movies.HomeIndex.Controls.CurrentTheater().val(""); // new zip, so clear out current theater value
         codejkjk.movies.Flixster.GetTheaters(codejkjk.movies.HomeIndex.Controls.CurrentZip().val(), postalCode, codejkjk.movies.HomeIndex.LoadTheaters);
     },
 
@@ -231,7 +241,7 @@ codejkjk.movies.HomeIndex = {
             e.preventDefault();
             var link = $(this);
             var theaterId = link.data().theaterid;
-            codejkjk.movies.HomeIndex.Controls.CurrentTheater.valueOf(theaterId);
+            codejkjk.movies.HomeIndex.Controls.CurrentTheater().val(theaterId);
             $(codejkjk.movies.HomeIndex.Controls.TheaterLinksSelector()).removeClass("selected");
             link.addClass("selected");
             codejkjk.movies.HomeIndex.Controls.Theaters().removeClass("selected");
@@ -258,7 +268,6 @@ codejkjk.movies.HomeIndex = {
             e.preventDefault();
             codejkjk.movies.HomeIndex.Controls.ChangeOptionsContainer().mask();
             codejkjk.Geo.GetPostalCode(function (postalCode) {
-                codejkjk.movies.HomeIndex.Controls.ChangeOptionsContainer().unmask();
                 codejkjk.movies.HomeIndex.UpdateZip(postalCode);
             });
         });

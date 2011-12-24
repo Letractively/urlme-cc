@@ -60,33 +60,21 @@
         </div>
     </div>
 <script id="theaterListTemplate" type="text/x-jquery-tmpl">
-    {{* 
-        if (codejkjk.movies.HomeIndex.Controls.CurrentTheater().val() == "" && $view.itemNumber == 1) {
-    }}
-        <a class="selected" href="/#/ZipCode/theater/{{=theaterId}}" data-theaterid="{{=theaterId}}">            
-    {{*
-        } else if (codejkjk.movies.HomeIndex.Controls.CurrentTheater().val() != "" && {{=theaterId}} == "1") {
-    }}
-        <a class="selected" href=x"/#/ZipCode/theater/{{=theaterId}}" data-theaterid="{{=theaterId}}">           
-    {{*
-        } else {
-    }}         
-        <a href="/#/ZipCode/theater/{{=theaterId}}" data-theaterid="{{=theaterId}}">           
-    {{* } }}
+    {{#if $ctx.HlpIsCurrentTheater($itemNumber, theaterId) }}
+        <a class="selected" href="/#/ZipCode/theater/{{=theaterId}}" data-theaterid="{{=theaterId}}">
+    {{else}}
+        <a href="/#/ZipCode/theater/{{=theaterId}}" data-theaterid="{{=theaterId}}">
+    {{/if}}
         <div class="theaterName">{{=name}}</div>
         <div class="theaterAddress">{{=address}}</div>
     </a>
 </script>
 <script id="currentTheaterTemplate" type="text/x-jquery-tmpl">
-    {{* 
-        if ($view.itemNumber == 1) {
-    }}
-    <div class="theater selected" data-theaterid="{{=theaterId}}">
-    {{*
-        } else {
-    }}
-    <div class="theater" data-theaterid="{{=theaterId}}">
-    {{* } }}    
+    {{#if $ctx.HlpIsCurrentTheater($itemNumber, theaterId) }}
+        <div class="theater selected" data-theaterid="{{=theaterId}}">
+    {{else}}
+        <div class="theater" data-theaterid="{{=theaterId}}">
+    {{/if}}    
         <h1>{{=name}}</h1>
         <p class="address">{{=address}}</p>
         <div class="showtimeDays"></div>

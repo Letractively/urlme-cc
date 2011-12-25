@@ -41,7 +41,6 @@
         
         <!-- BOX OFFICE -->
         <section id="boxOfficeView" class="content" data-navitemtext="Box Office">
-            box office view
         </section>
 
         <!-- SHOWTIMES -->
@@ -98,9 +97,16 @@
 <script id="navTemplate" type="text/x-jquery-tmpl">
     <a href="#" class="{{=className}}">{{=text}}</a>
 </script>
+<script id="movieListTemplate" type="text/x-jquery-tmpl">
+    <div class="movie" data-rtmovieid="=rtMovieId" data-imdbmovieid="">
+        <img src="{{=posters.thumbnail}}" />
+        <h2>{{=title}}</h2><a href="#" class='mpaaRating external' target='_blank' alt='Link to Parents Guide on IMDb.com' title='Link to Parents Guide on IMDb.com'>{{=mpaa_rating}}</a><span class="movieLength">{{=runtime}} min.</span>
+        <p class="showtimes">{{=showtimes!}}</p>
+        <div class="ratings"><a class='imdb' target='_blank'></a><a class='rt_critics_rating rottenTomato' target='_blank'></a><a class='rt_audience_rating rottenTomato' target='_blank'></a></div>
+    </div>
+</script>
 </body>
 </html>
-
 
 <!--<div id="headerContents">
     <ul id="views">

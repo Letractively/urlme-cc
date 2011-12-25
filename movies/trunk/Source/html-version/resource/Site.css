@@ -40,11 +40,11 @@ header { text-align:center; overflow:auto; }
 
 #go { width: 50px; height:34px; }
 
-#boxOfficeView, #upcomingView { background: #E9E9E9; padding: 15px; border-radius: 5px; -moz-border-radius: 5px; -webkit-border-radius: 5px; }
+.movieList { background: #E9E9E9; padding: 15px; border-radius: 5px; -moz-border-radius: 5px; -webkit-border-radius: 5px; }
     /* #boxOfficeView .movie:not(:nth-child(1)) { margin-top:10px; } */
-    #boxOfficeView .movie:nth-child(odd), #upcomingView .movie:nth-child(odd) { margin-right: 15px; }
-    #boxOfficeView .movie, #upcomingView .movie { height: 93px; margin-bottom: 10px; width: 447px; float: left; overflow: auto; background: #fff; padding: 10px; border-radius: 5px; -moz-border-radius: 5px; -webkit-border-radius: 5px; }
-        #boxOfficeView .movie img, #upcomingView .movie img { width: 61px; height: 91px; }
+    .movieList .movie:nth-child(odd) { margin-right: 15px; }
+    .movieList .movie { height: 93px; margin-bottom: 10px; width: 447px; float: left; overflow: auto; background: #fff; padding: 10px; border-radius: 5px; -moz-border-radius: 5px; -webkit-border-radius: 5px; }
+        .movieList .movie img { width: 61px; height: 91px; }
 
 #showtimesView #theaters { float: left; width: 265px; }
     #showtimesView #theaters #theaterList { margin-top:10px; }

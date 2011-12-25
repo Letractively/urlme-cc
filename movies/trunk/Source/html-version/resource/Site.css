@@ -78,7 +78,7 @@ header { text-align:center; overflow:auto; }
             .content .movie .ratingAndLength { margin-top: 10px; }
             .content .movie img { float: left; margin-right: 10px; width:61px; display:block; height: 91px; }
             .content .movie h2 { display:inline; font-weight: bold; margin-right: 10px; }
-            .content .movie .mpaaRating { font-weight: bold; }
+            .content .movie .mpaaRating { font-weight: bold; margin-right:5px; }
             .content .movie .ratings { margin-top: 10px; }
             
                 .content .movie .ratings a { float: left; text-decoration: none; height: 24px; margin-right: 10px; line-height: 24px; }

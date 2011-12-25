@@ -27,7 +27,7 @@ codejkjk.movies.HomeIndex = {
         , PostalCodeContainer: function () { return $("#nearPostalCode"); }
         , RemoveLinks: function () { return $(".actions").find(".removeLink"); }
         , SearchBox: function () { return $("#q"); }
-        , SearchButton: function () { return $("#go"); }
+        , SearchResultsView: function () { return $("#searchResultsView"); }
         , SetPostalCodeButton: function () { return codejkjk.movies.HomeIndex.Controls.ChangeOptionsContainer().find("button"); }
         , ShowRemovedMoviesLinks: function () { return $(".showRemovedMoviesLink"); }
         , ShowtimeDayLinks: function () { return $(".showtimeDays > a"); }
@@ -148,6 +148,16 @@ codejkjk.movies.HomeIndex = {
         codejkjk.movies.HomeIndex.Controls.UpcomingView().html(
             codejkjk.movies.HomeIndex.Controls.MovieListTemplate().render(movies)
         );
+        codejkjk.movies.HomeIndex.GetIMDbData();
+    },
+
+    LoadSearchResults: function (movies) {
+        codejkjk.movies.HomeIndex.Controls.NavLinks().removeClass("selected");
+        $(".content").hide();
+        codejkjk.movies.HomeIndex.Controls.SearchResultsView().html(
+            codejkjk.movies.HomeIndex.Controls.MovieListTemplate().render(movies)
+        );
+        codejkjk.movies.HomeIndex.Controls.SearchResultsView().show();
         codejkjk.movies.HomeIndex.GetIMDbData();
     },
 
@@ -320,6 +330,15 @@ codejkjk.movies.HomeIndex = {
         codejkjk.movies.HomeIndex.Controls.NewPostalCodeInput().keydown(function (e) {
             if (e.keyCode == 13) {
                 codejkjk.movies.HomeIndex.Controls.SetPostalCodeButton().trigger('click');
+            }
+        });
+
+        codejkjk.movies.HomeIndex.Controls.SearchBox().keypress(function (e) {
+            var code = (e.keyCode ? e.keyCode : e.which);
+            if (code == 13) {
+                var q = $(this).val();
+                codejkjk.movies.RottenTomatoes.SearchMovies(q, codejkjk.movies.HomeIndex.LoadSearchResults);
+                $(this).blur();
             }
         });
     },

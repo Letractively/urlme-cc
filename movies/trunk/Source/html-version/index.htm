@@ -66,7 +66,7 @@
 
     </div>
 <script id="theaterListTemplate" type="text/x-jquery-tmpl">
-    {{#if $ctx.HlpIsCurrentTheater($itemNumber, theaterId) }}
+    {{#if $ctx.IsCurrentTheater($itemNumber, theaterId) }}
         <a class="selected" href="/#/ZipCode/theater/{{=theaterId}}" data-theaterid="{{=theaterId}}">
     {{else}}
         <a href="/#/ZipCode/theater/{{=theaterId}}" data-theaterid="{{=theaterId}}">
@@ -76,7 +76,7 @@
     </a>
 </script>
 <script id="currentTheaterTemplate" type="text/x-jquery-tmpl">
-    {{#if $ctx.HlpIsCurrentTheater($itemNumber, theaterId) }}
+    {{#if $ctx.IsCurrentTheater($itemNumber, theaterId) }}
         <div class="theater selected" data-theaterid="{{=theaterId}}">
     {{else}}
         <div class="theater" data-theaterid="{{=theaterId}}">
@@ -87,7 +87,7 @@
         {{#each movies}}
             <div class="movie" data-rtmovieid="{{=rtMovieId}}" data-imdbmovieid="">
                 <img />
-                <h2>{{=name}}</h2><a href="#" class='mpaaRating' target='_blank' alt='Link to Parents Guide on IMDb.com' title='Link to Parents Guide on IMDb.com'></a><span class="movieLength">{{=length}}</span>
+                <h2>{{=name}}</h2><a href="#" class='mpaaRating' target='_blank' alt='Link to Parents Guide on IMDb.com' title='Link to Parents Guide on IMDb.com'></a>{{=length}}
                 <p class="showtimes">{{=showtimes!}}</p>
                 <div class="ratings"><a class='imdb' target='_blank'></a><a class='rt_critics_rating rottenTomato' target='_blank'></a><a class='rt_audience_rating rottenTomato' target='_blank'></a></div>
             </div>
@@ -100,8 +100,8 @@
 <script id="movieListTemplate" type="text/x-jquery-tmpl">
     <div class="movie" data-rtmovieid="=rtMovieId" data-imdbmovieid="">
         <img src="{{=posters.thumbnail}}" />
-        <h2>{{=title}}</h2><a href="#" class='mpaaRating external' target='_blank' alt='Link to Parents Guide on IMDb.com' title='Link to Parents Guide on IMDb.com'>{{=mpaa_rating}}</a><span class="movieLength">{{=runtime}} min.</span>
-        <p class="showtimes">{{=showtimes!}}</p>
+        <h2>{{=title}}</h2>
+        <p class="ratingAndLength"><a href="#" class='mpaaRating external' target='_blank' alt='Link to Parents Guide on IMDb.com' title='Link to Parents Guide on IMDb.com'>{{=mpaa_rating}}</a>{{=$ctx.GetHoursAndMinutes(runtime)}}</p>
         <div class="ratings"><a class='imdb' target='_blank'></a><a class='rt_critics_rating rottenTomato' target='_blank'></a><a class='rt_audience_rating rottenTomato' target='_blank'></a></div>
     </div>
 </script>

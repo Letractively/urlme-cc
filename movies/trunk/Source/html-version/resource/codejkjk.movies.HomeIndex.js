@@ -54,6 +54,23 @@ codejkjk.movies.HomeIndex = {
 
         codejkjk.movies.HomeIndex.BindControls();
 
+        // register jsRender helper functions
+        $.views.registerHelpers({ HlpIsCurrentTheater: codejkjk.movies.HomeIndex.IsCurrentTheater });
+        $.views.registerHelpers({ HlpGetHoursAndMinutes: codejkjk.movies.HomeIndex.GetHoursAndMinutes });
+
+        $.views.registerHelpers({
+            IsCurrentTheater: function (i, iTheaterId) {
+                return (codejkjk.movies.HomeIndex.Controls.CurrentTheater().val() == iTheaterId
+                         || (codejkjk.movies.HomeIndex.Controls.CurrentTheater().val() == "" && i == 1));
+            },
+            GetHoursAndMinutes: function(minutes) {
+                var hrs = Math.floor(minutes / 60);
+                var mins = minutes % 60;
+
+                return "{0} hr. {1} min.".format(hrs, mins);
+            }
+        });
+
         // *** load showtimes view ***
         // init showtime date to today
         codejkjk.movies.HomeIndex.Controls.CurrentShowtimeDay().val(Date.today().toString("yyyyMMdd"));
@@ -98,11 +115,6 @@ codejkjk.movies.HomeIndex = {
         }
     },
 
-    IsCurrentTheater: function (i, iTheaterId) {
-        return (codejkjk.movies.HomeIndex.Controls.CurrentTheater().val() == iTheaterId
-            || (codejkjk.movies.HomeIndex.Controls.CurrentTheater().val() == "" && i == 1));
-    },
-
     LoadBoxOfficeMovies: function (movies) {
         codejkjk.movies.HomeIndex.Controls.BoxOfficeView().html(
             codejkjk.movies.HomeIndex.Controls.MovieListTemplate().render(movies)
@@ -143,9 +155,6 @@ codejkjk.movies.HomeIndex = {
 
     LoadTheaters: function (theaters) {
         var removedTheaterMovies = localStorage.getItem("RemovedTheaterMovies") != null ? localStorage.getItem("RemovedTheaterMovies").split(',') : [];
-
-        $.views.allowCode = true; // allow {{* if (...) { }} type of code in the templates
-        $.views.registerHelpers({ HlpIsCurrentTheater: codejkjk.movies.HomeIndex.IsCurrentTheater });
 
         codejkjk.movies.HomeIndex.Controls.TheaterList().html(
             codejkjk.movies.HomeIndex.Controls.TheaterListTemplate().render(theaters)

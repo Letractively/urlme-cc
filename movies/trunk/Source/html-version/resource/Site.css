@@ -75,17 +75,19 @@ header { text-align:center; overflow:auto; }
         #showtimesView #currentTheaterContainer .theater .movie { overflow: auto; display:block; background: #fff; padding: 10px; border-radius: 5px; -moz-border-radius: 5px; -webkit-border-radius: 5px; margin-top:10px; }
         
             .content .movie .showtimes { margin-top: 10px; }
+            .content .movie .ratingAndLength { margin-top: 10px; }
             .content .movie img { float: left; margin-right: 10px; width:61px; display:block; height: 91px; }
             .content .movie h2 { display:inline; font-weight: bold; margin-right: 10px; }
             .content .movie .mpaaRating { font-weight: bold; }
             .content .movie .ratings { margin-top: 10px; }
-                #showtimesView #currentTheaterContainer .theater .movie .ratings a { float: left; text-decoration: none; height: 24px; margin-right: 10px; line-height: 24px; }
-                #showtimesView #currentTheaterContainer .theater .movie .ratings .rottenTomato { padding-left: 31px; font-weight: bold; color: #506A16; }
-                #showtimesView #currentTheaterContainer .theater .movie .ratings .imdb { width: 20px; padding-left: 31px; color: Black; background: url("star_small.png") no-repeat scroll left center transparent; }
-                #showtimesView #currentTheaterContainer .theater .movie .ratings .criticsFresh { background: url("rt-graphics/critics-fresh_smaller.png") no-repeat scroll left center transparent; }
-                #showtimesView #currentTheaterContainer .theater .movie .ratings .criticsRotten { background: url("rt-graphics/critics-rotten_smaller.png") no-repeat scroll left center transparent; }
-                #showtimesView #currentTheaterContainer .theater .movie .ratings .audienceUpright { padding-left: 28px; background: url("rt-graphics/audience-upright_smaller.png") no-repeat scroll left center transparent; }
-                #showtimesView #currentTheaterContainer .theater .movie .ratings .audienceSpilled { background: url("rt-graphics/audience-spilled_smaller.png") no-repeat scroll left center transparent; }            
+            
+                .content .movie .ratings a { float: left; text-decoration: none; height: 24px; margin-right: 10px; line-height: 24px; }
+                .content .movie .ratings .rottenTomato { padding-left: 31px; font-weight: bold; color: #506A16; }
+                .content .movie .ratings .imdb { width: 20px; padding-left: 31px; color: Black; background: url("star_small.png") no-repeat scroll left center transparent; }
+                .content .movie .ratings .criticsFresh { background: url("rt-graphics/critics-fresh_smaller.png") no-repeat scroll left center transparent; }
+                .content .movie .ratings .criticsRotten { background: url("rt-graphics/critics-rotten_smaller.png") no-repeat scroll left center transparent; }
+                .content .movie .ratings .audienceUpright { padding-left: 28px; background: url("rt-graphics/audience-upright_smaller.png") no-repeat scroll left center transparent; }
+                .content .movie .ratings .audienceSpilled { background: url("rt-graphics/audience-spilled_smaller.png") no-repeat scroll left center transparent; }            
         
         #showtimesView #currentTheaterContainer .theater .showtimeDays { margin:15px 0; font-size: 130%; }
             #showtimesView #currentTheaterContainer .theater .showtimeDays a:not(:first-child) { padding-left: 20px; }

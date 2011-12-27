@@ -11,7 +11,7 @@ body
 a:focus { outline: none; } /* firefox */
 a { text-decoration: none; color: #0000CC; }
 span.divider { color: #CDCDCD; font-weight: normal; margin: 0 5px; }
-
+.seeThrough { opacity:0.5 }
 
 #container { margin: 0 auto; width: 980px; text-align:left; padding-top:10px; } /* same width as cnn.com */
 
@@ -36,14 +36,17 @@ header { text-align:center; overflow:auto; }
         float: left;
     }
 
-.content { margin-top: 20px; display:none; width: 950px; overflow: auto; }
+.content { margin-top: 20px; display:none; width: 950px; overflow: auto; position: relative; }
+#movieDetails { padding: 15px; position: absolute; left: 80px; top: 0; background: orange; width: 900px; height: 200px; border-radius: 5px; -moz-border-radius: 5px; -webkit-border-radius: 5px; }
 
 #go { width: 50px; height:34px; }
+
+.movie { position: relative; height: 91px; overflow:auto; background: #fff; padding: 10px; border-radius: 5px; -moz-border-radius: 5px; -webkit-border-radius: 5px; }
 
 .movieList { background: #E9E9E9; padding: 15px; border-radius: 5px; -moz-border-radius: 5px; -webkit-border-radius: 5px; }
     /* #boxOfficeView .movie:not(:nth-child(1)) { margin-top:10px; } */
     .movieList .movie:nth-child(odd) { margin-right: 15px; }
-    .movieList .movie { height: 93px; margin-bottom: 10px; width: 447px; float: left; overflow: auto; background: #fff; padding: 10px; border-radius: 5px; -moz-border-radius: 5px; -webkit-border-radius: 5px; }
+    .movieList .movie { margin-bottom: 10px; width: 447px; float: left; }
         .movieList .movie img { width: 61px; height: 91px; }
 
 #showtimesView #theaters { float: left; width: 265px; }
@@ -72,10 +75,12 @@ header { text-align:center; overflow:auto; }
     #showtimesView #currentTheaterContainer .theater.selected { display: block; }
         #showtimesView #currentTheaterContainer .theater h1 { font-size: 150%; font-weight: bold; }
         #showtimesView #currentTheaterContainer .theater p.address { color: #999; margin-top:5px; }
-        #showtimesView #currentTheaterContainer .theater .movie { overflow: auto; display:block; background: #fff; padding: 10px; border-radius: 5px; -moz-border-radius: 5px; -webkit-border-radius: 5px; margin-top:10px; }
+        #showtimesView #currentTheaterContainer .theater .movie { margin-top:10px; }
         
+            .content .movie .movieDetailsLink { display: none; position: absolute; top: 10px; right: 10px; background: #E9E9E9; width: 40px; height:91px; }
             .content .movie .showtimes { margin-top: 10px; }
             .content .movie .ratingAndLength { margin-top: 10px; }
+            .content .movie .releaseDate { margin-top: 10px; }
             .content .movie img { float: left; margin-right: 10px; width:61px; display:block; height: 91px; }
             .content .movie h2 { display:inline; font-weight: bold; margin-right: 10px; }
             .content .movie .mpaaRating { font-weight: bold; margin-right:5px; }

@@ -68,6 +68,9 @@
         </section>
 
     </div>
+<script id="movieDetailsTemplate" type="text/x-jquery-tmpl">
+    <section id="movieDetails">{{=title}}</section>
+</script>
 <script id="theaterListTemplate" type="text/x-jquery-tmpl">
     {{#if $ctx.IsCurrentTheater($itemNumber, theaterId) }}
         <a class="selected" href="/#/ZipCode/theater/{{=theaterId}}" data-theaterid="{{=theaterId}}">
@@ -101,11 +104,21 @@
     <a href="#" class="{{=className}}">{{=text}}</a>
 </script>
 <script id="movieListTemplate" type="text/x-jquery-tmpl">
-    <div class="movie imdbNotSet" data-imdbmovieid="{{=alternate_ids.imdb}}">
+    <div class="movie imdbNotSet" data-imdbmovieid="{{=alternate_ids.imdb}}" data-rtmovieid="{{=id}}">
         <img src="{{=posters.thumbnail}}" />
         <h2>{{=title}}</h2>
-        <p class="ratingAndLength"><a href="#" class='mpaaRating external' target='_blank' alt='Link to Parents Guide on IMDb.com' title='Link to Parents Guide on IMDb.com'>{{=mpaa_rating}}</a>{{=$ctx.GetHoursAndMinutes(runtime)}}</p>
-        <div class="ratings"><a class='imdb' target='_blank'></a><a class='{{=$ctx.GetCriticsClass(ratings.critics_rating)}} rottenTomato' target='_blank'>{{=ratings.critics_score}}<sup>%</sup></a><a class='{{=$ctx.GetAudienceClass(ratings.audience_rating)}} rottenTomato' target='_blank'>{{=ratings.audience_score}}<sup>%</sup></a></div>
+        <p class="ratingAndLength"><a href="{{=$ctx.GetParentalGuideUrl(alternate_ids.imdb)}}" class='mpaaRating external' target='_blank' alt='Link to Parents Guide on IMDb.com' title='Link to Parents Guide on IMDb.com'>{{=mpaa_rating}}</a>{{=$ctx.GetHoursAndMinutes(runtime)}}</p>
+        <div class="ratings"><a href="{{=$ctx.GetIMDbMovieUrl(alternate_ids.imdb)}}" class='imdb' target='_blank'></a><a href="{{=links.alternate}}" class='{{=$ctx.GetCriticsClass(ratings.critics_rating)}} rottenTomato' target='_blank'>{{=ratings.critics_score}}<sup>%</sup></a><a href="{{=links.alternate}}" class='{{=$ctx.GetAudienceClass(ratings.audience_rating)}} rottenTomato' target='_blank'>{{=ratings.audience_score}}<sup>%</sup></a></div>
+        <a href="#" class="movieDetailsLink"></a>
+    </div>
+</script>
+<script id="upcomingListTemplate" type="text/x-jquery-tmpl">
+    <div class="movie" data-rtmovieid="{{=id}}">
+        <img src="{{=posters.thumbnail}}" />
+        <h2>{{=title}}</h2>
+        <p class="ratingAndLength"><a href="{{=$ctx.GetParentalGuideUrl(alternate_ids.imdb)}}" class='mpaaRating external' target='_blank' alt='Link to Parents Guide on IMDb.com' title='Link to Parents Guide on IMDb.com'>{{=mpaa_rating}}</a>{{=$ctx.GetHoursAndMinutes(runtime)}}</p>
+        <p class="releaseDate">Release date: {{=$ctx.FormatReleaseDate(release_dates.theater)}}</p>
+        <a href="#" class="movieDetailsLink"></a>
     </div>
 </script>
 </body>

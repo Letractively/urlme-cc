@@ -1,9 +1,7 @@
 ﻿registerNS("codejkjk.movies.HomeIndex");
 
-// todo: 
-// - make rating icons links on movie lists
-// - make search work
-// - hide ratings on upcoming
+// todo:
+// - test details view from search results
 
 codejkjk.movies.HomeIndex = {
     // page elements
@@ -17,8 +15,11 @@ codejkjk.movies.HomeIndex = {
         , CurrentTheater: function () { return $("#currentTheater"); }
         , CurrentTheaterContainer: function () { return $("#currentTheaterContainer"); }
         , CurrentTheaterTemplate: function () { return $("#currentTheaterTemplate"); }
+        , CurrentView: function () { return $(".content:visible"); }
         , CurrentZip: function () { return $("#currentZip"); }
         , IMDbMoviesNotSet: function () { return $(".imdbNotSet"); }
+        , MovieDetailsLinksSelector: function () { return ".movieDetailsLink"; }
+        , MovieDetailsTemplate: function () { return $("#movieDetailsTemplate"); }
         , MovieListTemplate: function () { return $("#movieListTemplate"); }
         , Nav: function () { return $("nav"); }
         , NavLinks: function () { return $("nav > a"); }
@@ -37,6 +38,7 @@ codejkjk.movies.HomeIndex = {
         , TheaterList: function () { return $("#theaterList"); }
         , TheaterListTemplate: function () { return $("#theaterListTemplate"); }
         , Theaters: function () { return $(".theater"); }
+        , UpcomingListTemplate: function () { return $("#upcomingListTemplate"); }
         , UpcomingView: function () { return $("#upcomingView"); }
         , UseNearbyPostalCodeLink: function () { return $("#useNearbyPostalCode"); }
         , Views: function () { return $(".content"); }
@@ -82,6 +84,15 @@ codejkjk.movies.HomeIndex = {
             GetAudienceClass: function (rating) {
                 if (!rating) { return ""; }
                 return rating.indexOf("Upright") >= 0 ? "audienceUpright" : "audienceSpilled";
+            },
+            FormatReleaseDate: function (date) {
+                return Date.parse(date).toString("MMM d, yyyy");
+            },
+            GetParentalGuideUrl: function (imdbId) {
+                return codejkjk.movies.IMDB.GetParentalGuideUrl(imdbId);
+            },
+            GetIMDbMovieUrl: function (imdbId) {
+                return codejkjk.movies.IMDB.GetMovieUrl(imdbId);
             }
         });
 
@@ -146,7 +157,7 @@ codejkjk.movies.HomeIndex = {
 
     LoadUpcomingMovies: function (movies) {
         codejkjk.movies.HomeIndex.Controls.UpcomingView().html(
-            codejkjk.movies.HomeIndex.Controls.MovieListTemplate().render(movies)
+            codejkjk.movies.HomeIndex.Controls.UpcomingListTemplate().render(movies)
         );
         codejkjk.movies.HomeIndex.GetIMDbData();
     },
@@ -283,9 +294,26 @@ codejkjk.movies.HomeIndex = {
             $(".theater[data-theaterid='{0}']".format(theaterId)).addClass("selected");
         });
 
+        // handle move details links
+        $(document).on('click', codejkjk.movies.HomeIndex.Controls.MovieDetailsLinksSelector(), function (e) {
+            e.preventDefault();
+            var link = $(this);
+            var rtMovieId = link.closest("[data-rtmovieid]").data().rtmovieid;
+            // codejkjk.movies.HomeIndex.Controls.CurrentView().addClass("seeThrough");
+            codejkjk.movies.RottenTomatoes.GetMovie(rtMovieId, function (movie) {
+                codejkjk.movies.HomeIndex.Controls.CurrentView().append(
+                    codejkjk.movies.HomeIndex.Controls.MovieDetailsTemplate().render(movie)
+                );                
+            });
+        });
+
         // handle nav item clicks
         codejkjk.movies.HomeIndex.Controls.NavLinks().click(function (e) {
             e.preventDefault();
+
+            // clear out search val if user previously searched for something
+            codejkjk.movies.HomeIndex.Controls.SearchBox().val("");
+
             var link = $(this);
             var navItemText = link.html();
             codejkjk.movies.HomeIndex.Controls.NavLinks().removeClass("selected");

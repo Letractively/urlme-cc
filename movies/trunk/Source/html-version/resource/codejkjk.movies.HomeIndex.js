@@ -315,8 +315,10 @@ codejkjk.movies.HomeIndex = {
                     .css("width", width + "px")
                     .html(
                         codejkjk.movies.HomeIndex.Controls.MovieDetailsTemplate().render(movie)
-                ).show();
+                ).show('slide', { direction: 'right' }, 250);
             });
+
+            // $(this).hide("slide", { direction: "down" }, 1000);
         });
 
         // handle close movie details link

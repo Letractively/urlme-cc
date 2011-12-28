@@ -12,6 +12,8 @@ a:focus { outline: none; } /* firefox */
 a { text-decoration: none; color: #0000CC; }
 span.divider { color: #CDCDCD; font-weight: normal; margin: 0 5px; }
 .seeThrough { opacity:0.5 }
+.leftShadow { -webkit-box-shadow: -5px 5px 5px #ccc; -moz-box-shadow: -5px 5px 5px #ccc; box-shadow: -5px 5px 5px #ccc; }
+.rounded { border-radius: 5px; -moz-border-radius: 5px; -webkit-border-radius: 5px; } /* .theater */
 
 #container { margin: 0 auto; width: 980px; text-align:left; padding-top:10px; } /* same width as cnn.com */
 
@@ -25,7 +27,6 @@ header { text-align:center; overflow:auto; }
         padding: 5px; 
         font-size: 15px; 
         border: 1px solid #717171; 
-        border-radius: 5px; 
         width: 200px; 
         outline: none; 
         background: -webkit-gradient(linear, left top, left bottom, from(#F8F8F8), to(#ffffff));
@@ -36,14 +37,18 @@ header { text-align:center; overflow:auto; }
         float: left;
     }
 
-.content { margin-top: 20px; display:none; width: 950px; overflow: auto; position: relative; }
-#movieDetails { padding: 15px; position: absolute; left: 80px; top: 0; background: orange; width: 900px; height: 200px; border-radius: 5px; -moz-border-radius: 5px; -webkit-border-radius: 5px; }
+.content { margin-top: 20px; display:none; width: 950px; overflow: auto; }
+
+#movieDetails { border: 1px solid #999; display:none; padding: 15px; position: absolute; background: #fff; width: 900px; height: 200px; min-height: 350px; }
+    #movieDetails #closeMovieDetailsLink { text-transform:uppercase; letter-spacing:2px; float: right; background: url("icons/close.png") no-repeat scroll right top transparent; display:inline-block; padding: 0 22px 20px 20px; }
+    #movieDetails h2 { font-size: 150%; font-weight: bold; display:inline; }
+    #movieDetails img.poster { width: 180px; height: 267px; float: left; margin-right: 15px; }
 
 #go { width: 50px; height:34px; }
 
-.movie { position: relative; height: 91px; overflow:auto; background: #fff; padding: 10px; border-radius: 5px; -moz-border-radius: 5px; -webkit-border-radius: 5px; }
+.movie { position: relative; height: 91px; overflow:auto; background: #fff; padding: 10px; }
 
-.movieList { background: #E9E9E9; padding: 15px; border-radius: 5px; -moz-border-radius: 5px; -webkit-border-radius: 5px; }
+.movieList { background: #E9E9E9; padding: 15px; }
     /* #boxOfficeView .movie:not(:nth-child(1)) { margin-top:10px; } */
     .movieList .movie:nth-child(odd) { margin-right: 15px; }
     .movieList .movie { margin-bottom: 10px; width: 447px; float: left; }
@@ -62,7 +67,7 @@ header { text-align:center; overflow:auto; }
         #showtimesView #theaters #location #searchByZip { background: orange; }
         #showtimesView #theaters #location #currentZip { font-weight: bold; }
         #showtimesView #theaters #location #changeCurrentZipLink { margin-left: 10px; }
-        #showtimesView #theaters #location #changeOptions { margin-right: 10px; background: #ccc; display:none; padding: 8px; border-radius: 5px; -moz-border-radius: 5px; margin-top:5px; }
+        #showtimesView #theaters #location #changeOptions { margin-right: 10px; background: #ccc; display:none; padding: 8px; }
             #showtimesView #theaters #location #changeOptions button { padding: 3px; }
             #showtimesView #theaters #location #changeOptions input { padding: 4px; width: 80px; margin-right:4px; }
         #showtimesView #theaters #location #nearPostalCode { position: absolute; right: 5px; } /* hide for now, until we get this thing working */
@@ -70,14 +75,13 @@ header { text-align:center; overflow:auto; }
 
 #showtimesView #currentTheaterContainer { float: left; width: 685px; }
     #showtimesView #currentTheaterContainer .theater { background: #E9E9E9; padding: 15px; }
-    #showtimesView #currentTheaterContainer .theater { border-radius: 5px; -moz-border-radius: 5px; -webkit-border-radius: 5px; }
     #showtimesView #currentTheaterContainer .theater:not(.selected) { display: none; }
     #showtimesView #currentTheaterContainer .theater.selected { display: block; }
         #showtimesView #currentTheaterContainer .theater h1 { font-size: 150%; font-weight: bold; }
         #showtimesView #currentTheaterContainer .theater p.address { color: #999; margin-top:5px; }
         #showtimesView #currentTheaterContainer .theater .movie { margin-top:10px; }
         
-            .content .movie .movieDetailsLink { display: none; position: absolute; top: 10px; right: 10px; background: #E9E9E9; width: 40px; height:91px; }
+            .content .movie .movieDetailsLink { font-size: 180%; position: absolute; top: 10px; right: 10px; background: #E9E9E9; width: 40px; height:91px; line-height: 100px; text-align: center; }
             .content .movie .showtimes { margin-top: 10px; }
             .content .movie .ratingAndLength { margin-top: 10px; }
             .content .movie .releaseDate { margin-top: 10px; }

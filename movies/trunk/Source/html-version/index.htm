@@ -33,14 +33,11 @@
     <div id="container">
         <header>
             <nav></nav>
-            <input id="q" type="text" placeholder="search + enter" />
+            <input class="rounded" id="q" type="text" placeholder="search + enter" />
         </header>
-
-        <div id="movies" class="content" style="display:none">
-        </div>
         
         <!-- BOX OFFICE -->
-        <section id="boxOfficeView" class="content movieList" data-navitemtext="Box Office">
+        <section id="boxOfficeView" class="content movieList rounded" data-navitemtext="Box Office">
         </section>
 
         <!-- SHOWTIMES -->
@@ -50,7 +47,7 @@
             <section id="theaters">
                 <div id="location">
                     Showtimes for <span id="currentZip"></span><a href="#" id="changeCurrentZipLink">Change</a>
-                    <div id="changeOptions">
+                    <div id="changeOptions" class="rounded">
                         <input type="text" placeholder="e.g., 23226"><button type="button">Set</button> or <a id="useNearbyPostalCode" href="#">see nearby</a>
                     </div>
                 </div>
@@ -60,16 +57,23 @@
         </section>
 
         <!-- UPCOMING -->
-        <section id="upcomingView" class="content movieList" data-navitemtext="Upcoming">
+        <section id="upcomingView" class="content movieList rounded" data-navitemtext="Upcoming">
         </section>
 
         <!-- SEARCH RESULTS -->
-        <section id="searchResultsView" class="content movieList">
+        <section id="searchResultsView" class="content movieList rounded">
+        </section>
+
+        <!-- MOVIE DETAILS -->
+        <section id="movieDetails" class="leftShadow rounded">
         </section>
 
     </div>
 <script id="movieDetailsTemplate" type="text/x-jquery-tmpl">
-    <section id="movieDetails">{{=title}}</section>
+    <a href="#" id="closeMovieDetailsLink">Close</a>
+    <img class="poster" src="{{=posters.detailed}}" />
+    <h2>{{=title}}</h2>
+    <div style="margin-top:15px;">other info here...</div>
 </script>
 <script id="theaterListTemplate" type="text/x-jquery-tmpl">
     {{#if $ctx.IsCurrentTheater($itemNumber, theaterId) }}
@@ -83,19 +87,20 @@
 </script>
 <script id="currentTheaterTemplate" type="text/x-jquery-tmpl">
     {{#if $ctx.IsCurrentTheater($itemNumber, theaterId) }}
-        <div class="theater selected" data-theaterid="{{=theaterId}}">
+        <div class="theater selected rounded" data-theaterid="{{=theaterId}}">
     {{else}}
-        <div class="theater" data-theaterid="{{=theaterId}}">
+        <div class="theater rounded" data-theaterid="{{=theaterId}}">
     {{/if}}    
         <h1>{{=name}}</h1>
         <p class="address">{{=address}}</p>
         <div class="showtimeDays"></div>
         {{#each movies}}
-            <div class="movie" data-rtmovieid="{{=rtMovieId}}" data-imdbmovieid="">
+            <div class="movie rounded" data-rtmovieid="{{=rtMovieId}}" data-imdbmovieid="">
                 <img />
                 <h2>{{=name}}</h2><a href="#" class='mpaaRating' target='_blank' alt='Link to Parents Guide on IMDb.com' title='Link to Parents Guide on IMDb.com'></a>{{=length}}
                 <p class="showtimes">{{=showtimes!}}</p>
                 <div class="ratings"><a class='imdb' target='_blank'></a><a class='rt_critics_rating rottenTomato' target='_blank'></a><a class='rt_audience_rating rottenTomato' target='_blank'></a></div>
+                <a href="#" class="movieDetailsLink">&#8230;</a>
             </div>
         {{/each}}
     </div>
@@ -104,21 +109,21 @@
     <a href="#" class="{{=className}}">{{=text}}</a>
 </script>
 <script id="movieListTemplate" type="text/x-jquery-tmpl">
-    <div class="movie imdbNotSet" data-imdbmovieid="{{=alternate_ids.imdb}}" data-rtmovieid="{{=id}}">
+    <div class="movie rounded imdbNotSet" data-imdbmovieid="{{=alternate_ids.imdb}}" data-rtmovieid="{{=id}}">
         <img src="{{=posters.thumbnail}}" />
         <h2>{{=title}}</h2>
         <p class="ratingAndLength"><a href="{{=$ctx.GetParentalGuideUrl(alternate_ids.imdb)}}" class='mpaaRating external' target='_blank' alt='Link to Parents Guide on IMDb.com' title='Link to Parents Guide on IMDb.com'>{{=mpaa_rating}}</a>{{=$ctx.GetHoursAndMinutes(runtime)}}</p>
         <div class="ratings"><a href="{{=$ctx.GetIMDbMovieUrl(alternate_ids.imdb)}}" class='imdb' target='_blank'></a><a href="{{=links.alternate}}" class='{{=$ctx.GetCriticsClass(ratings.critics_rating)}} rottenTomato' target='_blank'>{{=ratings.critics_score}}<sup>%</sup></a><a href="{{=links.alternate}}" class='{{=$ctx.GetAudienceClass(ratings.audience_rating)}} rottenTomato' target='_blank'>{{=ratings.audience_score}}<sup>%</sup></a></div>
-        <a href="#" class="movieDetailsLink"></a>
+        <a href="#" class="movieDetailsLink">&#8230;</a>
     </div>
 </script>
 <script id="upcomingListTemplate" type="text/x-jquery-tmpl">
-    <div class="movie" data-rtmovieid="{{=id}}">
+    <div class="movie rounded" data-rtmovieid="{{=id}}">
         <img src="{{=posters.thumbnail}}" />
         <h2>{{=title}}</h2>
         <p class="ratingAndLength"><a href="{{=$ctx.GetParentalGuideUrl(alternate_ids.imdb)}}" class='mpaaRating external' target='_blank' alt='Link to Parents Guide on IMDb.com' title='Link to Parents Guide on IMDb.com'>{{=mpaa_rating}}</a>{{=$ctx.GetHoursAndMinutes(runtime)}}</p>
         <p class="releaseDate">Release date: {{=$ctx.FormatReleaseDate(release_dates.theater)}}</p>
-        <a href="#" class="movieDetailsLink"></a>
+        <a href="#" class="movieDetailsLink">&#8230;</a>
     </div>
 </script>
 </body>

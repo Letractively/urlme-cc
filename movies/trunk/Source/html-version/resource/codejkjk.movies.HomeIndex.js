@@ -2,6 +2,8 @@
 
 // todo:
 // - test details view from search results
+// - details view not positioned correctly from theater view
+// - theater h1, make h2 b/c there should only be one h1 on the page
 
 codejkjk.movies.HomeIndex = {
     // page elements
@@ -10,6 +12,7 @@ codejkjk.movies.HomeIndex = {
         , BoxOfficeView: function () { return $("#boxOfficeView"); }
         , ChangeCurrentZipLink: function () { return $("#changeCurrentZipLink"); }
         , ChangeOptionsContainer: function () { return $("#changeOptions"); }
+        , CloseMovieDetailsLinkSelector: function () { return "#closeMovieDetailsLink"; }
         , CurrentNavItem: function () { return $("nav > a.selected"); }
         , CurrentShowtimeDay: function () { return $("#currentShowtimeDay"); }
         , CurrentTheater: function () { return $("#currentTheater"); }
@@ -18,6 +21,7 @@ codejkjk.movies.HomeIndex = {
         , CurrentView: function () { return $(".content:visible"); }
         , CurrentZip: function () { return $("#currentZip"); }
         , IMDbMoviesNotSet: function () { return $(".imdbNotSet"); }
+        , MovieDetails: function () { return $("#movieDetails"); }
         , MovieDetailsLinksSelector: function () { return ".movieDetailsLink"; }
         , MovieDetailsTemplate: function () { return $("#movieDetailsTemplate"); }
         , MovieListTemplate: function () { return $("#movieListTemplate"); }
@@ -294,17 +298,32 @@ codejkjk.movies.HomeIndex = {
             $(".theater[data-theaterid='{0}']".format(theaterId)).addClass("selected");
         });
 
-        // handle move details links
+        // handle movie details links
         $(document).on('click', codejkjk.movies.HomeIndex.Controls.MovieDetailsLinksSelector(), function (e) {
             e.preventDefault();
             var link = $(this);
             var rtMovieId = link.closest("[data-rtmovieid]").data().rtmovieid;
-            // codejkjk.movies.HomeIndex.Controls.CurrentView().addClass("seeThrough");
+            var top = codejkjk.movies.HomeIndex.Controls.CurrentView().offset().top;
+            var left = codejkjk.movies.HomeIndex.Controls.CurrentView().offset().left + 80;
+            var width = codejkjk.movies.HomeIndex.Controls.CurrentView().width() - 80;
+            codejkjk.movies.HomeIndex.Controls.CurrentView().addClass("seeThrough");
+
             codejkjk.movies.RottenTomatoes.GetMovie(rtMovieId, function (movie) {
-                codejkjk.movies.HomeIndex.Controls.CurrentView().append(
-                    codejkjk.movies.HomeIndex.Controls.MovieDetailsTemplate().render(movie)
-                );                
+                codejkjk.movies.HomeIndex.Controls.MovieDetails()
+                    .css("top", top + "px")
+                    .css("left", left + "px")
+                    .css("width", width + "px")
+                    .html(
+                        codejkjk.movies.HomeIndex.Controls.MovieDetailsTemplate().render(movie)
+                ).show();
             });
+        });
+
+        // handle close movie details link
+        $(document).on("click", codejkjk.movies.HomeIndex.Controls.CloseMovieDetailsLinkSelector(), function (e) {
+            e.preventDefault();
+            codejkjk.movies.HomeIndex.Controls.CurrentView().removeClass("seeThrough");
+            codejkjk.movies.HomeIndex.Controls.MovieDetails().hide();
         });
 
         // handle nav item clicks

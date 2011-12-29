@@ -85,9 +85,9 @@
 </script>
 <script id="theaterListTemplate" type="text/x-jquery-tmpl">
     {{#if $ctx.IsCurrentTheater($itemNumber, theaterId) }}
-        <a class="selected rounded" href="/#/ZipCode/theater/{{=theaterId}}" data-theaterid="{{=theaterId}}">
+        <a class="selected" href="/#/ZipCode/theater/{{=theaterId}}" data-theaterid="{{=theaterId}}">
     {{else}}
-        <a class="rounded" href="/#/ZipCode/theater/{{=theaterId}}" data-theaterid="{{=theaterId}}">
+        <a href="/#/ZipCode/theater/{{=theaterId}}" data-theaterid="{{=theaterId}}">
     {{/if}}
         <div class="theaterName">{{=name}}</div>
         <div class="theaterAddress">{{=address}}</div>

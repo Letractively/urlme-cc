@@ -15,7 +15,7 @@ a { text-decoration: none; color: #465F82; }
 span.divider { color: #CDCDCD; font-weight: normal; margin: 0 5px; }
 .seeThrough { opacity:0.5 }
 .leftShadow { -webkit-box-shadow: -5px 5px 5px #ccc; -moz-box-shadow: -5px 5px 5px #ccc; box-shadow: -5px 5px 5px #ccc; }
-.glowing { box-shadow: 2px 2px 2px #999; }
+.glowing { box-shadow: 2px 2px 2px #999; -webkit-box-shadow: 2px 2px 2px #999; -moz-box-shadow: 2px 2px 2px #999; }
 .rounded { border-radius: 5px; -moz-border-radius: 5px; -webkit-border-radius: 5px; }
 
 #container { margin: 0 auto; width: 980px; text-align:left; padding-top:10px; } /* same width as cnn.com */

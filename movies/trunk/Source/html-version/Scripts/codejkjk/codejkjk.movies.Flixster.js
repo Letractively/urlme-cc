@@ -3,6 +3,13 @@
 codejkjk.movies.Flixster = {
     BaseUrl: "http://opensocial.flixster.com/igoogle/showtimes", // ?date=20111025&postal=23226
     GetTheaters: function (dateStr, zip, callback) {
+        // first, check cache
+        var cacheKey = "flixster-{0}-{1}".format(dateStr, zip);
+        var cached = $.cacheItem(cacheKey);
+        if (cached) {
+            return callback(cached);
+        }
+
         var url = "{0}?date={1}&postal={2}".format(codejkjk.movies.Flixster.BaseUrl, dateStr, zip);
 
         $.ajax({
@@ -32,6 +39,7 @@ codejkjk.movies.Flixster = {
                     theaters.push({ theaterId: theaterId, name: theaterName, address: theaterAddress, mapUrl: theaterMapUrl, movies: movies });
                 }); // next theaterDiv
 
+                $.cacheItem(cacheKey, theaters, { expires: { hours: 6 } });
                 return callback(theaters);
             },
             error: function () { return null; }

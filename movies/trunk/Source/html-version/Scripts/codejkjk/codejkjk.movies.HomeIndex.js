@@ -59,7 +59,7 @@ codejkjk.movies.HomeIndex = {
         var navItems = [{ text: "Box Office" }, { text: "Showtimes" }, { text: "Upcoming"}];
         var currentNavItem = localStorage.getItem("View") || "Box Office";
         $.each(navItems, function (i, navItem) {
-            navItem.className = navItem.text == currentNavItem ? "selected" : "";
+            navItem.className = navItem.text == currentNavItem ? "selected glowing rounded" : "";
         });
         codejkjk.movies.HomeIndex.Controls.Nav().html(
             codejkjk.movies.HomeIndex.Controls.NavTemplate().render(navItems)
@@ -168,7 +168,7 @@ codejkjk.movies.HomeIndex = {
     },
 
     LoadSearchResults: function (movies) {
-        codejkjk.movies.HomeIndex.Controls.NavLinks().removeClass("selected");
+        codejkjk.movies.HomeIndex.Controls.NavLinks().removeClass("selected glowing rounded");
         $(".content").hide();
         codejkjk.movies.HomeIndex.Controls.SearchResultsView().html(
             codejkjk.movies.HomeIndex.Controls.MovieListTemplate().render(movies)
@@ -338,8 +338,8 @@ codejkjk.movies.HomeIndex = {
 
             var link = $(this);
             var navItemText = link.html();
-            codejkjk.movies.HomeIndex.Controls.NavLinks().removeClass("selected");
-            link.addClass("selected");
+            codejkjk.movies.HomeIndex.Controls.NavLinks().removeClass("selected glowing rounded");
+            link.addClass("selected glowing rounded");
             codejkjk.movies.HomeIndex.Controls.Views().hide();
             $("[data-navitemtext='{0}']".format(navItemText)).show();
             // store this nav tab, so it opens on this one next time user visits this site

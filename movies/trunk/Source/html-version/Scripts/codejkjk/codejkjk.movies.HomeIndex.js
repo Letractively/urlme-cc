@@ -4,6 +4,7 @@
 // - test details view from search results
 // - details view not positioned correctly from theater view
 // - theater h1, make h2 b/c there should only be one h1 on the page
+// - theater view, make width same as width of box office and upcoming views. this way the movie details popup will show up in same location.
 
 codejkjk.movies.HomeIndex = {
     // page elements

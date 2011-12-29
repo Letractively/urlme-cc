@@ -81,7 +81,7 @@
     <a href="#" id="closeMovieDetailsLink">Close</a>
     <img class="poster" src="{{=posters.detailed}}" />
     <h2>{{=title}}</h2>
-    <div style="margin-top:15px;">other info here...</div>
+    <p class="description">{{=synopsis}}</p>
 </script>
 <script id="theaterListTemplate" type="text/x-jquery-tmpl">
     {{#if $ctx.IsCurrentTheater($itemNumber, theaterId) }}

@@ -40,9 +40,10 @@ header { text-align:center; overflow:auto; }
 .content { margin-top: 20px; display:none; width: 950px; overflow: auto; }
 
 #movieDetails { border: 1px solid #999; display:none; padding: 15px; position: absolute; background: #fff; width: 900px; height: 200px; min-height: 350px; }
-    #movieDetails #closeMovieDetailsLink { text-transform:uppercase; letter-spacing:2px; float: right; background: url("images/icons/close.png") no-repeat scroll right top transparent; display:inline-block; padding: 0 22px 20px 20px; }
+    #movieDetails #closeMovieDetailsLink { color: #000; text-transform:uppercase; letter-spacing:2px; float: right; background: url("images/icons/close.png") no-repeat scroll right top transparent; display:inline-block; padding: 0 22px 17px 20px; }
     #movieDetails h2 { font-size: 150%; font-weight: bold; display:inline; }
     #movieDetails img.poster { width: 180px; height: 267px; float: left; margin-right: 15px; }
+    #movieDetails p.description { margin-top: 10px; }
 
 #go { width: 50px; height:34px; }
 

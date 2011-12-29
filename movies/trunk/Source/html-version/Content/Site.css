@@ -13,7 +13,7 @@ a { text-decoration: none; color: #0000CC; }
 span.divider { color: #CDCDCD; font-weight: normal; margin: 0 5px; }
 .seeThrough { opacity:0.5 }
 .leftShadow { -webkit-box-shadow: -5px 5px 5px #ccc; -moz-box-shadow: -5px 5px 5px #ccc; box-shadow: -5px 5px 5px #ccc; }
-.rounded { border-radius: 5px; -moz-border-radius: 5px; -webkit-border-radius: 5px; } /* .theater */
+.rounded { border-radius: 5px; -moz-border-radius: 5px; -webkit-border-radius: 5px; }
 
 #container { margin: 0 auto; width: 980px; text-align:left; padding-top:10px; } /* same width as cnn.com */
 
@@ -40,7 +40,7 @@ header { text-align:center; overflow:auto; }
 .content { margin-top: 20px; display:none; width: 950px; overflow: auto; }
 
 #movieDetails { border: 1px solid #999; display:none; padding: 15px; position: absolute; background: #fff; width: 900px; height: 200px; min-height: 350px; }
-    #movieDetails #closeMovieDetailsLink { text-transform:uppercase; letter-spacing:2px; float: right; background: url("icons/close.png") no-repeat scroll right top transparent; display:inline-block; padding: 0 22px 20px 20px; }
+    #movieDetails #closeMovieDetailsLink { text-transform:uppercase; letter-spacing:2px; float: right; background: url("images/icons/close.png") no-repeat scroll right top transparent; display:inline-block; padding: 0 22px 20px 20px; }
     #movieDetails h2 { font-size: 150%; font-weight: bold; display:inline; }
     #movieDetails img.poster { width: 180px; height: 267px; float: left; margin-right: 15px; }
 
@@ -92,11 +92,11 @@ header { text-align:center; overflow:auto; }
             
                 .content .movie .ratings a { float: left; text-decoration: none; height: 24px; margin-right: 10px; line-height: 24px; }
                 .content .movie .ratings .rottenTomato { padding-left: 31px; font-weight: bold; color: #506A16; }
-                .content .movie .ratings .imdb { width: 20px; padding-left: 31px; color: Black; background: url("star_small.png") no-repeat scroll left center transparent; }
-                .content .movie .ratings .criticsFresh { background: url("rt-graphics/critics-fresh_smaller.png") no-repeat scroll left center transparent; }
-                .content .movie .ratings .criticsRotten { background: url("rt-graphics/critics-rotten_smaller.png") no-repeat scroll left center transparent; }
-                .content .movie .ratings .audienceUpright { padding-left: 28px; background: url("rt-graphics/audience-upright_smaller.png") no-repeat scroll left center transparent; }
-                .content .movie .ratings .audienceSpilled { background: url("rt-graphics/audience-spilled_smaller.png") no-repeat scroll left center transparent; }            
+                .content .movie .ratings .imdb { width: 20px; padding-left: 31px; color: Black; background: url("images/star_small.png") no-repeat scroll left center transparent; }
+                .content .movie .ratings .criticsFresh { background: url("images/rt-graphics/critics-fresh_smaller.png") no-repeat scroll left center transparent; }
+                .content .movie .ratings .criticsRotten { background: url("images/rt-graphics/critics-rotten_smaller.png") no-repeat scroll left center transparent; }
+                .content .movie .ratings .audienceUpright { padding-left: 28px; background: url("images/rt-graphics/audience-upright_smaller.png") no-repeat scroll left center transparent; }
+                .content .movie .ratings .audienceSpilled { background: url("images/rt-graphics/audience-spilled_smaller.png") no-repeat scroll left center transparent; }            
         
         #showtimesView #currentTheaterContainer .theater .showtimeDays { margin:15px 0; font-size: 130%; }
             #showtimesView #currentTheaterContainer .theater .showtimeDays a:not(:first-child) { padding-left: 20px; }
@@ -121,10 +121,10 @@ header { text-align:center; overflow:auto; }
                 #theaters .theater .movies .movie .ratings a { float: left; text-decoration: none; height: 24px; margin-right: 10px; line-height: 24px; }
                 #theaters .theater .movies .movie .ratings .rottenTomato { padding-left: 31px; font-weight: bold; color: #506A16; }
                 #theaters .theater .movies .movie .ratings .imdb { width: 20px; padding-left: 31px; color: Black; background: url("star_small.png") no-repeat scroll left center transparent; }
-                #theaters .theater .movies .movie .ratings .criticsFresh { background: url("rt-graphics/critics-fresh_smaller.png") no-repeat scroll left center transparent; }
-                #theaters .theater .movies .movie .ratings .criticsRotten { background: url("rt-graphics/critics-rotten_smaller.png") no-repeat scroll left center transparent; }
-                #theaters .theater .movies .movie .ratings .audienceUpright { padding-left: 28px; background: url("rt-graphics/audience-upright_smaller.png") no-repeat scroll left center transparent; }
-                #theaters .theater .movies .movie .ratings .audienceSpilled { background: url("rt-graphics/audience-spilled_smaller.png") no-repeat scroll left center transparent; }
+                #theaters .theater .movies .movie .ratings .criticsFresh { background: url("images/rt-graphics/critics-fresh_smaller.png") no-repeat scroll left center transparent; }
+                #theaters .theater .movies .movie .ratings .criticsRotten { background: url("images/rt-graphics/critics-rotten_smaller.png") no-repeat scroll left center transparent; }
+                #theaters .theater .movies .movie .ratings .audienceUpright { padding-left: 28px; background: url("images/rt-graphics/audience-upright_smaller.png") no-repeat scroll left center transparent; }
+                #theaters .theater .movies .movie .ratings .audienceSpilled { background: url("images/rt-graphics/audience-spilled_smaller.png") no-repeat scroll left center transparent; }
 */
 /* end: elements specific to theater view */
 
@@ -147,7 +147,7 @@ header { text-align:center; overflow:auto; }
 
 a.external { padding-right: 15px; }
 a.disabled { color: Black; cursor: text; }
-a.external:hover { background: url('icons/external-link-icon.png') no-repeat top right; }
+a.external:hover { background: url('images/icons/external-link-icon.png') no-repeat top right; }
 #movies .movie .ratings .star
 {
     color: black;

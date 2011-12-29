@@ -3,26 +3,94 @@ Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{EF20B33B-4396-4860-AF4B-A95C7D665BD7}"
 	ProjectSection(SolutionItems) = preProject
-		resource\codejkjk.Geo.js = resource\codejkjk.Geo.js
-		resource\codejkjk.js = resource\codejkjk.js
-		resource\codejkjk.movies.Flixster.js = resource\codejkjk.movies.Flixster.js
-		resource\codejkjk.movies.HomeIndex.js = resource\codejkjk.movies.HomeIndex.js
-		resource\codejkjk.movies.IMDB.js = resource\codejkjk.movies.IMDB.js
-		resource\codejkjk.movies.RottenTomatoes.js = resource\codejkjk.movies.RottenTomatoes.js
-		resource\codejkjk.movies.SearchIndex.js = resource\codejkjk.movies.SearchIndex.js
-		resource\codejkjk.movies.SiteActions.js = resource\codejkjk.movies.SiteActions.js
-		resource\date.js = resource\date.js
 		index.htm = index.htm
-		resource\jquery-ui.min.js = resource\jquery-ui.min.js
-		resource\jquery.autocomplete.js = resource\jquery.autocomplete.js
-		resource\jquery.mask.min.js = resource\jquery.mask.min.js
-		resource\jquery.validate.min.js = resource\jquery.validate.min.js
-		resource\jquery.validate.unobtrusive.js = resource\jquery.validate.unobtrusive.js
-		resource\Site.css = resource\Site.css
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Scripts", "Scripts", "{850F1670-1C82-400F-9BD0-653CFF931C7A}"
+	ProjectSection(SolutionItems) = preProject
+		Scripts\jquery-1.7.1.min.js = Scripts\jquery-1.7.1.min.js
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Plugins", "Plugins", "{C6BB9C33-C91B-4DF5-84BC-9A4ABCE43A95}"
+	ProjectSection(SolutionItems) = preProject
+		Scripts\Plugins\date.js = Scripts\Plugins\date.js
+		Scripts\Plugins\jquery.autocomplete.js = Scripts\Plugins\jquery.autocomplete.js
+		Scripts\Plugins\jquery.mask.min.js = Scripts\Plugins\jquery.mask.min.js
+		Scripts\Plugins\jsrender.js = Scripts\Plugins\jsrender.js
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "codejkjk", "codejkjk", "{EB0CC415-7E6F-4B84-B504-B3D40FDAA10C}"
+	ProjectSection(SolutionItems) = preProject
+		Scripts\codejkjk\codejkjk.Geo.js = Scripts\codejkjk\codejkjk.Geo.js
+		Scripts\codejkjk\codejkjk.js = Scripts\codejkjk\codejkjk.js
+		Scripts\codejkjk\codejkjk.movies.Defaults.js = Scripts\codejkjk\codejkjk.movies.Defaults.js
+		Scripts\codejkjk\codejkjk.movies.Flixster.js = Scripts\codejkjk\codejkjk.movies.Flixster.js
+		Scripts\codejkjk\codejkjk.movies.HomeIndex.js = Scripts\codejkjk\codejkjk.movies.HomeIndex.js
+		Scripts\codejkjk\codejkjk.movies.IMDB.js = Scripts\codejkjk\codejkjk.movies.IMDB.js
+		Scripts\codejkjk\codejkjk.movies.RottenTomatoes.js = Scripts\codejkjk\codejkjk.movies.RottenTomatoes.js
+		Scripts\codejkjk\codejkjk.movies.SiteActions.js = Scripts\codejkjk\codejkjk.movies.SiteActions.js
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Content", "Content", "{033AF14F-4F03-4928-9CDF-081B8FB822D4}"
+	ProjectSection(SolutionItems) = preProject
+		Content\Site.css = Content\Site.css
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Images", "Images", "{6DA31586-98C1-438D-9117-15B358FB4C8F}"
+	ProjectSection(SolutionItems) = preProject
+		Content\Images\ajax-loader.gif = Content\Images\ajax-loader.gif
+		Content\Images\processing-bar.gif = Content\Images\processing-bar.gif
+		Content\Images\star.png = Content\Images\star.png
+		Content\Images\star_small.png = Content\Images\star_small.png
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Icons", "Icons", "{A180B28C-316E-4531-A571-46C6E89753F9}"
+	ProjectSection(SolutionItems) = preProject
+		Content\Images\Icons\close.png = Content\Images\Icons\close.png
+		Content\Images\Icons\collapse_large.png = Content\Images\Icons\collapse_large.png
+		Content\Images\Icons\collapse_medium.png = Content\Images\Icons\collapse_medium.png
+		Content\Images\Icons\expand_large.png = Content\Images\Icons\expand_large.png
+		Content\Images\Icons\expand_medium.png = Content\Images\Icons\expand_medium.png
+		Content\Images\Icons\external-link-icon.png = Content\Images\Icons\external-link-icon.png
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "rt-graphics", "rt-graphics", "{A9ED8518-412D-46BE-B0DA-320D410DD38C}"
+	ProjectSection(SolutionItems) = preProject
+		Content\Images\rt-graphics\audience-spilled.png = Content\Images\rt-graphics\audience-spilled.png
+		Content\Images\rt-graphics\audience-spilled_large.png = Content\Images\rt-graphics\audience-spilled_large.png
+		Content\Images\rt-graphics\audience-spilled_medium.png = Content\Images\rt-graphics\audience-spilled_medium.png
+		Content\Images\rt-graphics\audience-spilled_mini.png = Content\Images\rt-graphics\audience-spilled_mini.png
+		Content\Images\rt-graphics\audience-spilled_small.png = Content\Images\rt-graphics\audience-spilled_small.png
+		Content\Images\rt-graphics\audience-spilled_smaller.png = Content\Images\rt-graphics\audience-spilled_smaller.png
+		Content\Images\rt-graphics\audience-upright.png = Content\Images\rt-graphics\audience-upright.png
+		Content\Images\rt-graphics\audience-upright_large.png = Content\Images\rt-graphics\audience-upright_large.png
+		Content\Images\rt-graphics\audience-upright_medium.png = Content\Images\rt-graphics\audience-upright_medium.png
+		Content\Images\rt-graphics\audience-upright_mini.png = Content\Images\rt-graphics\audience-upright_mini.png
+		Content\Images\rt-graphics\audience-upright_small.png = Content\Images\rt-graphics\audience-upright_small.png
+		Content\Images\rt-graphics\audience-upright_smaller.png = Content\Images\rt-graphics\audience-upright_smaller.png
+		Content\Images\rt-graphics\critics-fresh.png = Content\Images\rt-graphics\critics-fresh.png
+		Content\Images\rt-graphics\critics-fresh_large.png = Content\Images\rt-graphics\critics-fresh_large.png
+		Content\Images\rt-graphics\critics-fresh_medium.png = Content\Images\rt-graphics\critics-fresh_medium.png
+		Content\Images\rt-graphics\critics-fresh_mini.png = Content\Images\rt-graphics\critics-fresh_mini.png
+		Content\Images\rt-graphics\critics-fresh_small.png = Content\Images\rt-graphics\critics-fresh_small.png
+		Content\Images\rt-graphics\critics-fresh_smaller.png = Content\Images\rt-graphics\critics-fresh_smaller.png
+		Content\Images\rt-graphics\critics-rotten.png = Content\Images\rt-graphics\critics-rotten.png
+		Content\Images\rt-graphics\critics-rotten_large.png = Content\Images\rt-graphics\critics-rotten_large.png
+		Content\Images\rt-graphics\critics-rotten_medium.png = Content\Images\rt-graphics\critics-rotten_medium.png
+		Content\Images\rt-graphics\critics-rotten_mini.png = Content\Images\rt-graphics\critics-rotten_mini.png
+		Content\Images\rt-graphics\critics-rotten_small.png = Content\Images\rt-graphics\critics-rotten_small.png
+		Content\Images\rt-graphics\critics-rotten_smaller.png = Content\Images\rt-graphics\critics-rotten_smaller.png
 	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{C6BB9C33-C91B-4DF5-84BC-9A4ABCE43A95} = {850F1670-1C82-400F-9BD0-653CFF931C7A}
+		{EB0CC415-7E6F-4B84-B504-B3D40FDAA10C} = {850F1670-1C82-400F-9BD0-653CFF931C7A}
+		{6DA31586-98C1-438D-9117-15B358FB4C8F} = {033AF14F-4F03-4928-9CDF-081B8FB822D4}
+		{A180B28C-316E-4531-A571-46C6E89753F9} = {6DA31586-98C1-438D-9117-15B358FB4C8F}
+		{A9ED8518-412D-46BE-B0DA-320D410DD38C} = {6DA31586-98C1-438D-9117-15B358FB4C8F}
 	EndGlobalSection
 EndGlobal

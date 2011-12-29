@@ -3,11 +3,21 @@ registerNS("codejkjk.movies.IMDB");
 codejkjk.movies.IMDB = {
     BaseUrl: "http://www.imdbapi.com/?i=tt",
     GetMovie: function (movieId, callback) {
+        // first, check cache
+        var cacheKey = "imdb-{0}".format(movieId);
+        var cached = $.cacheItem(cacheKey);
+        if (cached) {
+            return callback(movieId, cached);
+        }
+
         var url = "{0}{1}".format(codejkjk.movies.IMDB.BaseUrl, movieId);
         $.ajax({
             url: url,
             dataType: "jsonp",
-            success: function (response) { return callback(movieId, response); },
+            success: function (response) {
+                $.cacheItem(cacheKey, response, { expires: codejkjk.movies.Defaults.CacheExpires });
+                return callback(movieId, response);
+            },
             error: function () { return null; }
         });
     },

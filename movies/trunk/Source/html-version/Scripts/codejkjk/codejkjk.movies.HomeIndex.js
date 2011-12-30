@@ -55,6 +55,8 @@ codejkjk.movies.HomeIndex = {
             return;
         }
 
+        // init history plugin
+
         // build nav
         var navItems = [{ text: "Box Office" }, { text: "Showtimes" }, { text: "Upcoming"}];
         var currentNavItem = localStorage.getItem("View") || "Box Office";

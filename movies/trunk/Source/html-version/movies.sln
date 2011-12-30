@@ -14,9 +14,11 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Plugins", "Plugins", "{C6BB9C33-C91B-4DF5-84BC-9A4ABCE43A95}"
 	ProjectSection(SolutionItems) = preProject
 		Scripts\Plugins\date.js = Scripts\Plugins\date.js
+		Scripts\Plugins\history.js = Scripts\Plugins\history.js
 		Scripts\Plugins\jquery.autocomplete.js = Scripts\Plugins\jquery.autocomplete.js
 		Scripts\Plugins\jquery.mask.min.js = Scripts\Plugins\jquery.mask.min.js
 		Scripts\Plugins\jsrender.js = Scripts\Plugins\jsrender.js
+		Scripts\Plugins\MyBible.js = Scripts\Plugins\MyBible.js
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "codejkjk", "codejkjk", "{EB0CC415-7E6F-4B84-B504-B3D40FDAA10C}"

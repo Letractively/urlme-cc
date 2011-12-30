@@ -1,4 +1,4 @@
-﻿// grabbed from: http://plugins.jquery.com/project/history, TWEAKED BY ANDREW DUNCAN
+// grabbed from: http://plugins.jquery.com/project/history, TWEAKED BY ANDREW DUNCAN
 
 /*
 * jQuery history plugin
@@ -16,7 +16,7 @@
 
     function History() {
         this._curHash = '';
-        this._callback = function(hash,leftOrRight,referenceHandler) { };
+        this._callback = function(hash) { };
     };
 
     $.extend(History.prototype, {
@@ -45,12 +45,12 @@
                 }
         },
 
-        load: function(hash,leftOrRight,referenceHandler) {
+        load: function(hash) {
             var newhash;
                 newhash = '#' + hash;
                 location.hash = newhash;
             this._curHash = newhash;
-                this._callback(hash,leftOrRight,referenceHandler);
+                this._callback(hash);
             }
     });
 

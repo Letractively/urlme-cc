@@ -17,6 +17,8 @@ span.divider { color: #CDCDCD; font-weight: normal; margin: 0 5px; }
 .leftShadow { -webkit-box-shadow: -5px 5px 5px #ccc; -moz-box-shadow: -5px 5px 5px #ccc; box-shadow: -5px 5px 5px #ccc; }
 .glowing { box-shadow: 2px 2px 2px #999; -webkit-box-shadow: 2px 2px 2px #999; -moz-box-shadow: 2px 2px 2px #999; }
 .rounded { border-radius: 5px; -moz-border-radius: 5px; -webkit-border-radius: 5px; }
+.rightArrow { border-top: 30px solid transparent; border-bottom: 30px solid transparent; border-left: 30px solid #C5D8E6; }
+
 
 #container { margin: 0 auto; width: 980px; text-align:left; padding-top:10px; } /* same width as cnn.com */
 
@@ -80,7 +82,7 @@ header { text-align:center; height:33px; }
         #showtimesView #theaters #location #nearPostalCode { position: absolute; right: 5px; } /* hide for now, until we get this thing working */
             #showtimesView #theaters #location #nearPostalCode #postalCode { font-weight: bold; } /* hide for now, until we get this thing working */
 
-#showtimesView #currentTheaterContainer { float: left; width: 685px; }
+#showtimesView #currentTheaterContainer { float: left; width: 681px; }
     #showtimesView #currentTheaterContainer .theater { background: #ccc; padding: 15px; }
     #showtimesView #currentTheaterContainer .theater:not(.selected) { display: none; }
     #showtimesView #currentTheaterContainer .theater.selected { display: block; }
@@ -88,7 +90,7 @@ header { text-align:center; height:33px; }
         #showtimesView #currentTheaterContainer .theater p.address { margin-top:5px; }
         #showtimesView #currentTheaterContainer .theater .movie { margin-top:10px; }
         
-            .content .movie .movieDetailsLink { color: #fff; font-size: 180%; position: absolute; top: 10px; right: 10px; background: #C5D8E6; width: 40px; height:91px; line-height: 100px; text-align: center; }
+            .content .movie .movieDetailsLink { position: absolute; top: 0; right: 0; padding: 26px 15px 10px 10px; }
             .content .movie .showtimes { margin-top: 10px; }
             .content .movie .ratingAndLength { margin-top: 10px; }
             .content .movie .releaseDate { margin-top: 10px; }

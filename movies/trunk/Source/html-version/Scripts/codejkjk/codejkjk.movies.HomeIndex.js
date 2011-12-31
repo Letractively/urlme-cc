@@ -295,10 +295,10 @@ codejkjk.movies.HomeIndex = {
             var link = $(this);
             var theaterId = link.data().theaterid;
             codejkjk.movies.HomeIndex.Controls.CurrentTheater().val(theaterId);
-            $(codejkjk.movies.HomeIndex.Controls.TheaterLinksSelector()).removeClass("selected");
-            link.addClass("selected");
-            codejkjk.movies.HomeIndex.Controls.Theaters().removeClass("selected");
-            $(".theater[data-theaterid='{0}']".format(theaterId)).addClass("selected");
+            $(codejkjk.movies.HomeIndex.Controls.TheaterLinksSelector()).removeClass("selected glowing");
+            link.addClass("selected glowing");
+            codejkjk.movies.HomeIndex.Controls.Theaters().removeClass("selected glowing");
+            $(".theater[data-theaterid='{0}']".format(theaterId)).addClass("selected glowing");
         });
 
         // handle movie details links
@@ -379,12 +379,14 @@ codejkjk.movies.HomeIndex = {
             codejkjk.movies.HomeIndex.UpdateZip(postalCode);
         });
 
+        // handle Enter key on manual zip input box - triggers "Set" button click
         codejkjk.movies.HomeIndex.Controls.NewPostalCodeInput().keydown(function (e) {
             if (e.keyCode == 13) {
                 codejkjk.movies.HomeIndex.Controls.SetPostalCodeButton().trigger('click');
             }
         });
 
+        // handle Enter key on search box
         codejkjk.movies.HomeIndex.Controls.SearchBox().keypress(function (e) {
             var code = (e.keyCode ? e.keyCode : e.which);
             if (code == 13) {
@@ -394,63 +396,6 @@ codejkjk.movies.HomeIndex = {
             }
         });
     },
-    BindResultActions: function () {
-        codejkjk.movies.HomeIndex.Controls.ActionLinks().unbind().click(function (e) {
-            e.preventDefault();
-            var link = $(this);
-            var movie = link.closest(".movie");
-            if (link.hasClass("removeLink"))
-                movie.remove();
-            else if (link.hasClass("pinLink")) {
-                if (movie.hasClass("pinned")) { // already frozen, so unfreeze
-                    link.html("Freeze in results");
-                } else { // not already frozen, so freeze
-                    link.html("Frozen in results");
-                }
-                movie.toggleClass("unPinned").toggleClass('pinned');
-                link.blur();
-            }
-        });
-    },
-
-    BindResultActions2: function () {
-        codejkjk.movies.HomeIndex.Controls.RemoveLinks().click(function (e) {
-            e.preventDefault();
-            var link = $(this);
-            var movie = link.closest(".movie");
-            var theater = link.closest(".theater");
-            var removedTheaterMovies = localStorage.getItem("RemovedTheaterMovies") != null ? localStorage.getItem("RemovedTheaterMovies").split(',') : [];
-            removedTheaterMovies.pushIfDoesNotExist(movie.attr("theaterMovieId"));
-            movie.addClass('hidden');
-            var removedMoviesCount = theater.find(".movie.hidden").length;
-            theater.find(".showRemovedMoviesLink").find(".removedMoviesCount").html(removedMoviesCount);
-            theater.find(".showRemovedMoviesLink").show();
-
-            localStorage.setItem("RemovedTheaterMovies", removedTheaterMovies.join(','));
-        });
-
-        codejkjk.movies.HomeIndex.Controls.ShowRemovedMoviesLinks().click(function (e) {
-            e.preventDefault();
-            var removedTheaterMovies = localStorage.getItem("RemovedTheaterMovies") != null ? localStorage.getItem("RemovedTheaterMovies").split(',') : [];
-
-            var link = $(this);
-            var theater = link.closest(".theater");
-            theater.find(".movie.hidden").each(function () {
-                var movie = $(this);
-                var movieTheaterId = movie.attr("theaterMovieId");
-                removedTheaterMovies.removeByElement(movieTheaterId);
-                movie.removeClass('hidden');
-            });
-
-            if (removedTheaterMovies.length > 0) {
-                localStorage.setItem("RemovedTheaterMovies", removedTheaterMovies.join(','));
-            } else {
-                localStorage.removeItem("RemovedTheaterMovies");
-            }
-
-            link.hide();
-        });
-    }
 }
 
 $(document).ready(function () {

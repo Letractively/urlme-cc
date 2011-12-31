@@ -44,11 +44,24 @@ header { text-align:center; height:33px; }
 
 .content { margin-top: 25px; display:none; width: 950px; overflow: auto; }
 
-#movieDetails { border: 1px solid #999; display:none; padding: 15px; position: absolute; background: #fff; width: 900px; height: 200px; min-height: 350px; }
+/* styles common to both movie div in the lists and the movie details popup */
+.mpaaRating { font-weight: bold; margin-right:5px; }
+.ratingAndLength { margin-top: 10px; }
+.ratings { margin-top: 10px; }
+
+#movieDetails { font-size: 120%; border: 1px solid #999; display:none; padding: 15px; position: absolute; background: #fff; width: 900px; height: 200px; min-height: 350px; }
     #movieDetails #closeMovieDetailsLink { color: #000; text-transform:uppercase; letter-spacing:2px; float: right; background: url("images/icons/close.png") no-repeat scroll right top transparent; display:inline-block; padding: 0 22px 17px 20px; }
-    #movieDetails h2 { font-size: 150%; font-weight: bold; display:inline; }
+    #movieDetails h2 { font-size: 130%; font-weight: bold; display:inline; }
     #movieDetails img.poster { width: 180px; height: 267px; float: left; margin-right: 15px; }
     #movieDetails p.description { margin-top: 10px; }
+        #movieDetails .ratings a { float: left; height: 32px; margin-right: 10px; line-height: 32px; }
+        #movieDetails .ratings .rottenTomato { padding-left: 39px; font-weight: bold; color: #506A16; }
+        #movieDetails .ratings .imdb { width: 20px; padding-left: 31px; color: Black; background: url("images/star_bigger.png") no-repeat scroll left center transparent; }
+        #movieDetails .ratings .criticsFresh { background: url("images/rt-graphics/critics-fresh_small.png") no-repeat scroll left center transparent; }
+        #movieDetails .ratings .criticsRotten { background: url("images/rt-graphics/critics-rotten_small.png") no-repeat scroll left center transparent; }
+        #movieDetails .ratings .audienceUpright { padding-left: 36px; background: url("images/rt-graphics/audience-upright_small.png") no-repeat scroll left center transparent; }
+        #movieDetails .ratings .audienceSpilled { background: url("images/rt-graphics/audience-spilled_small.png") no-repeat scroll left center transparent; }            
+
 
 #go { width: 50px; height:34px; }
 
@@ -92,14 +105,11 @@ header { text-align:center; height:33px; }
         
             .content .movie .movieDetailsLink { position: absolute; top: 0; right: 0; padding: 26px 15px 10px 10px; }
             .content .movie .showtimes { margin-top: 10px; }
-            .content .movie .ratingAndLength { margin-top: 10px; }
             .content .movie .releaseDate { margin-top: 10px; }
             .content .movie img { float: left; margin-right: 10px; width:61px; display:block; height: 91px; }
             .content .movie h2 { display:inline; font-weight: bold; margin-right: 10px; }
-            .content .movie .mpaaRating { font-weight: bold; margin-right:5px; }
-            .content .movie .ratings { margin-top: 10px; }
             
-                .content .movie .ratings a { float: left; text-decoration: none; height: 24px; margin-right: 10px; line-height: 24px; }
+                .content .movie .ratings a { float: left; height: 24px; margin-right: 10px; line-height: 24px; }
                 .content .movie .ratings .rottenTomato { padding-left: 31px; font-weight: bold; color: #506A16; }
                 .content .movie .ratings .imdb { width: 20px; padding-left: 31px; color: Black; background: url("images/star_small.png") no-repeat scroll left center transparent; }
                 .content .movie .ratings .criticsFresh { background: url("images/rt-graphics/critics-fresh_smaller.png") no-repeat scroll left center transparent; }

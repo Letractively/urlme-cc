@@ -21,6 +21,7 @@ codejkjk.movies.HomeIndex = {
         , CurrentTheaterTemplate: function () { return $("#currentTheaterTemplate"); }
         , CurrentView: function () { return $(".content:visible"); }
         , CurrentZip: function () { return $("#currentZip"); }
+        , DefaultNavItem: function() { return $("nav > a:first"); }
         , IMDbMoviesNotSet: function () { return $(".imdbNotSet"); }
         , MovieDetails: function () { return $("#movieDetails"); }
         , MovieDetailsLinksSelector: function () { return ".movieDetailsLink"; }
@@ -57,15 +58,7 @@ codejkjk.movies.HomeIndex = {
 
         // init history plugin
 
-        // build nav
-        var navItems = [{ text: "Box Office" }, { text: "Showtimes" }, { text: "Upcoming"}];
-        var currentNavItem = localStorage.getItem("View") || "Box Office";
-        $.each(navItems, function (i, navItem) {
-            navItem.className = navItem.text == currentNavItem ? "selected glowing rounded" : "";
-        });
-        codejkjk.movies.HomeIndex.Controls.Nav().html(
-            codejkjk.movies.HomeIndex.Controls.NavTemplate().render(navItems)
-        );
+        codejkjk.movies.HomeIndex.BuildNav();
 
         codejkjk.movies.HomeIndex.BindControls();
 
@@ -116,6 +109,24 @@ codejkjk.movies.HomeIndex = {
 
         // load the view that's selected (remembered)
         codejkjk.movies.HomeIndex.Controls.CurrentNavItem().trigger('click');
+    },
+
+    BuildNav: function() {
+        // build nav
+        var navItems = [{ text: "Top Box Office" }, { text: "Showtimes" }, { text: "Coming Soon"}];
+        var currentNavItem = localStorage.getItem("View") || "Top Box Office";
+        $.each(navItems, function (i, navItem) {
+            navItem.className = navItem.text == currentNavItem ? "selected glowing rounded" : "";
+        });
+
+        codejkjk.movies.HomeIndex.Controls.Nav().html(
+            codejkjk.movies.HomeIndex.Controls.NavTemplate().render(navItems)
+        );
+
+        // if for whatever reason there is not a current nav item, set the first to be it
+        if (codejkjk.movies.HomeIndex.Controls.CurrentNavItem().length == 0) {
+            codejkjk.movies.HomeIndex.Controls.DefaultNavItem().addClass("selected glowing rounded");
+        }
     },
 
     BuildShowtimeDayLinks: function () {

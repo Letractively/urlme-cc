@@ -62,11 +62,30 @@ codejkjk.movies.HomeIndex = {
 
         codejkjk.movies.HomeIndex.BindControls();
 
-        // register jsRender helper functions
-        $.views.registerHelpers({ HlpIsCurrentTheater: codejkjk.movies.HomeIndex.IsCurrentTheater });
-        $.views.registerHelpers({ HlpGetHoursAndMinutes: codejkjk.movies.HomeIndex.GetHoursAndMinutes });
+        codejkjk.movies.HomeIndex.RegisterJsRenderHelpers();
 
+        // *** load showtimes view ***
+        // init showtime date to today
+        codejkjk.movies.HomeIndex.Controls.CurrentShowtimeDay().val(Date.today().toString("yyyyMMdd"));
+        var postalCode = localStorage.getItem("PostalCode") || 23226; // default to 23226
+        codejkjk.movies.HomeIndex.Controls.CurrentZip().html(postalCode);
+        codejkjk.movies.Flixster.GetTheaters(codejkjk.movies.HomeIndex.Controls.CurrentShowtimeDay().val(), postalCode, codejkjk.movies.HomeIndex.LoadTheaters);
+
+        // *** load box office & upcoming views ***
+        codejkjk.movies.RottenTomatoes.GetBoxOfficeMovies(codejkjk.movies.HomeIndex.LoadBoxOfficeMovies);
+        codejkjk.movies.RottenTomatoes.GetUpcomingMovies(codejkjk.movies.HomeIndex.LoadUpcomingMovies);
+
+        // load the view that's selected (remembered)
+        codejkjk.movies.HomeIndex.Controls.CurrentNavItem().trigger('click');
+    },
+
+    RegisterJsRenderHelpers: function() {
         $.views.registerHelpers({
+            IsReleasedMovie: function(releaseDate) {
+                var now = new Date();
+                releaseDate = new Date(releaseDate);
+                return now >= releaseDate;
+            },
             IsCurrentTheater: function (i, iTheaterId) {
                 return (codejkjk.movies.HomeIndex.Controls.CurrentTheater().val() == iTheaterId
                          || (codejkjk.movies.HomeIndex.Controls.CurrentTheater().val() == "" && i == 1));
@@ -95,20 +114,6 @@ codejkjk.movies.HomeIndex = {
                 return codejkjk.movies.IMDB.GetMovieUrl(imdbId);
             }
         });
-
-        // *** load showtimes view ***
-        // init showtime date to today
-        codejkjk.movies.HomeIndex.Controls.CurrentShowtimeDay().val(Date.today().toString("yyyyMMdd"));
-        var postalCode = localStorage.getItem("PostalCode") || 23226; // default to 23226
-        codejkjk.movies.HomeIndex.Controls.CurrentZip().html(postalCode);
-        codejkjk.movies.Flixster.GetTheaters(codejkjk.movies.HomeIndex.Controls.CurrentShowtimeDay().val(), postalCode, codejkjk.movies.HomeIndex.LoadTheaters);
-
-        // *** load box office & upcoming views ***
-        codejkjk.movies.RottenTomatoes.GetBoxOfficeMovies(codejkjk.movies.HomeIndex.LoadBoxOfficeMovies);
-        codejkjk.movies.RottenTomatoes.GetUpcomingMovies(codejkjk.movies.HomeIndex.LoadUpcomingMovies);
-
-        // load the view that's selected (remembered)
-        codejkjk.movies.HomeIndex.Controls.CurrentNavItem().trigger('click');
     },
 
     BuildNav: function() {
@@ -234,30 +239,25 @@ codejkjk.movies.HomeIndex = {
 
         if (rating) {
             movies.find(".imdb").html(rating).attr("alt", votes).attr("title", votes).removeClass("imdbNotSet");
-            // console.log(imdbMovieId + " is null");
-            // return;
         }
     },
     SetRottenTomatoesMovieDetails: function (movie) {
         var movies = $(".movie[data-rtmovieid='{0}']".format(movie.id));
 
         // set movie poster
-        if (typeof movie.posters != 'undefined' && movie.posters.thumbnail != 'undefined') {
+        if (movie.posters && movie.posters.thumbnail) {
             movies.find("img").attr("src", movie.posters.thumbnail);
         }
 
-        // set rating
-        movies.find('.mpaaRating').html(movie.mpaa_rating);
-
-        if (typeof movie.links != 'undefined') {
+        if (movie.links && movie.links.alternate) {
             movies.find('.rt_critics_rating,.rt_audience_rating').attr("href", movie.links.alternate);
         } else {
             movies.find('.rt_critics_rating,.rt_audience_rating').unbind().click(function (e) { e.preventDefault(); });
         }
 
-        if (typeof movie.ratings != 'undefined'
-            && typeof movie.ratings.critics_rating != 'undefined'
-            && typeof movie.ratings.audience_rating != 'undefined'
+        if (movie.ratings 
+            && movie.ratings.critics_rating
+            && movie.ratings.audience_rating
             && movie.ratings.critics_score != -1
             && movie.ratings.audience_score != -1
             ) {
@@ -281,7 +281,7 @@ codejkjk.movies.HomeIndex = {
         }
 
         // load imdb movie ratings
-        if (typeof movie.alternate_ids != 'undefined') {
+        if (movie.alternate_ids) {
             movies.attr("data-imdbmovieid", movie.alternate_ids.imdb);
             movies.find(".imdb").attr("href", codejkjk.movies.IMDB.GetMovieUrl(movie.alternate_ids.imdb));
             codejkjk.movies.IMDB.GetMovie(movie.alternate_ids.imdb, codejkjk.movies.HomeIndex.SetIMDbMovieDetails);

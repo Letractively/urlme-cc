@@ -76,15 +76,23 @@ header { text-align:center; height:33px; }
     .movieList .movie { margin-bottom: 10px; width: 447px; float: left; }
         .movieList .movie img { width: 61px; height: 91px; }
 
+.favoriteLink.default { background:url("images/icons/star_default.png") no-repeat scroll center transparent; }
+.favoriteLink.default:hover { background:url("images/icons/star_default_hover.png") no-repeat scroll center transparent; }
+.favoriteLink.lit { background:url("images/icons/star_lit.png") no-repeat scroll center transparent; }
+.favoriteLink.lit:hover { background:url("images/icons/star_lit_hover.png") no-repeat scroll center transparent; }
+
 #showtimesView #theaters { float: left; width: 300px; }
-    #showtimesView #theaters #theaterList { margin-top:10px; }
-        #showtimesView #theaters #theaterList a { display:block; padding: 10px; }
-        #showtimesView #theaters #theaterList a:not(:first-child) { margin-top:0px; }
-        #showtimesView #theaters #theaterList a.selected { background: #CCCCCC; border-top-left-radius: 5px; border-bottom-left-radius: 5px; -moz-border-bottom-left-radius: 5px; -moz-border-top-left-radius: 5px; -webkit-border-bottom-left-radius: 5px; -webkit-border-top-left-radius: 5px; }
-        #showtimesView #theaters #theaterList a:not(.selected) { color: #FFF; }
-            #showtimesView #theaters #theaterList a div.theaterName { font-weight: bold; margin-bottom: 2px; font-size: 110%; }
-            #showtimesView #theaters #theaterList a.selected div.theaterAddress { font-size: 90%; color: #535156; }
-            #showtimesView #theaters #theaterList a:not(.selected) div.theaterAddress { font-size: 90%; color: #ccc; }
+    #showtimesView #theaters .theaterList.favorites { }
+    #showtimesView #theaters .theaterList.favorites div.favoriteLink { float: left; width: 19px; height: 35px; margin-right: 7px; }
+    
+    #showtimesView #theaters .theaterList { margin-top:10px; }
+        #showtimesView #theaters .theaterList a { display:block; padding: 10px; }
+        #showtimesView #theaters .theaterList a:not(:first-child) { margin-top:0px; }
+        #showtimesView #theaters .theaterList a.selected { background: #CCCCCC; border-top-left-radius: 5px; border-bottom-left-radius: 5px; -moz-border-bottom-left-radius: 5px; -moz-border-top-left-radius: 5px; -webkit-border-bottom-left-radius: 5px; -webkit-border-top-left-radius: 5px; }
+        #showtimesView #theaters .theaterList a:not(.selected) { color: #FFF; }
+            #showtimesView #theaters .theaterList a div.theaterName { font-weight: bold; margin-bottom: 2px; font-size: 110%; }
+            #showtimesView #theaters .theaterList a.selected div.theaterAddress { font-size: 90%; color: #535156; }
+            #showtimesView #theaters .theaterList a:not(.selected) div.theaterAddress { font-size: 90%; color: #ccc; }
 
     #showtimesView #theaters #location { padding: 0; color: #fff; }
         #showtimesView #theaters #location #theatersNearYou { background: gray; }
@@ -105,10 +113,7 @@ header { text-align:center; height:33px; }
         #showtimesView #currentTheaterContainer .theater .theaterNameAndFavorite { overflow: auto; }
             #showtimesView #currentTheaterContainer .theater .theaterNameAndFavorite h1 { font-size: 150%; font-weight: bold; color: #465F82; float: left; }
             #showtimesView #currentTheaterContainer .theater .theaterNameAndFavorite a.favoriteLink { margin: 1px 0 0 0px; padding: 0 10px; display:block; float: left; width: 19px; height: 19px; }
-            #showtimesView #currentTheaterContainer .theater .theaterNameAndFavorite a.favoriteLink.default { background:url("images/icons/star_default.png") no-repeat scroll center transparent; }
-            #showtimesView #currentTheaterContainer .theater .theaterNameAndFavorite a.favoriteLink.default:hover { background:url("images/icons/star_default_hover.png") no-repeat scroll center transparent; }
-            #showtimesView #currentTheaterContainer .theater .theaterNameAndFavorite a.favoriteLink.lit { background:url("images/icons/star_lit.png") no-repeat scroll center transparent; }
-            #showtimesView #currentTheaterContainer .theater .theaterNameAndFavorite a.favoriteLink.lit:hover { background:url("images/icons/star_lit_hover.png") no-repeat scroll center transparent; }            
+           
         #showtimesView #currentTheaterContainer .theater p.address { margin-top:5px; }
         #showtimesView #currentTheaterContainer .theater .movie { margin-top:10px; }
         

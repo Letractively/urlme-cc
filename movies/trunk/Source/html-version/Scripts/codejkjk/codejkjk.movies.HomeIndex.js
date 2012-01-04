@@ -7,6 +7,8 @@
 // - theater view, make width same as width of box office and upcoming views. this way the movie details popup will show up in same location.
 // - setting min-height of theaterlist() yields zero. why? - maybe cuz at first it's invisible?
 // - be careful of .data().rtmovieid, which will return "234" if it's "0234"
+// - make a Current. just like Controls. for getting current theater id, favoritetheaters, tab, postal code, etc.
+// - Favorites list should not have borders if there are none
 
 codejkjk.movies.HomeIndex = {
     // page elements
@@ -17,14 +19,17 @@ codejkjk.movies.HomeIndex = {
         , ChangeOptionsContainer: function () { return $("#changeOptions"); }
         , CloseMovieDetailsLinkSelector: function () { return "#closeMovieDetailsLink"; }
         , CurrentNavItem: function () { return $("nav > a.selected"); }
-        , CurrentShowtimeDay: function () { return $("#currentShowtimeDay"); }
-        , CurrentTheater: function () { return $("#currentTheater"); }
+        , CurrentShowtimeDay: function () { return $("input#currentShowtimeDay"); }
+        , CurrentSelectedTheater: function() { return $(".theaterList > a.selected"); }
+        , CurrentTheater: function () { return $("input#currentTheater"); }
         , CurrentTheaterContainer: function () { return $("#currentTheaterContainer"); }
         , CurrentTheaterTemplate: function () { return $("#currentTheaterTemplate"); }
         , CurrentView: function () { return $(".content:visible"); }
         , CurrentZip: function () { return $("#currentZip"); }
         , DefaultNavItem: function() { return $("nav > a:first"); }
         , FavoriteLinksSelector: function() { return ".favoriteLink"; }
+        , FavoriteTheaterList: function () { return $("#favoriteTheaterList"); }
+        , FavoriteTheaterListTemplate: function () { return $("#favoriteTheaterListTemplate"); }
         , IMDbMoviesNotSet: function () { return $(".imdbNotSet"); }
         , MovieDetails: function () { return $("#movieDetails"); }
         , MovieDetailsLinksSelector: function () { return ".movieDetailsLink"; }
@@ -43,7 +48,7 @@ codejkjk.movies.HomeIndex = {
         , ShowtimeDayLinks: function () { return $(".showtimeDays > a"); }
         , ShowtimeDayLinksSelector: function () { return ".showtimeDays > a"; }
         , ShowtimeDayLinksContainer: function () { return $(".showtimeDays"); }
-        , TheaterLinksSelector: function () { return "#theaterList > a"; }
+        , TheaterLinksSelector: function () { return ".theaterList > a"; }
         , TheaterList: function () { return $("#theaterList"); }
         , TheaterListTemplate: function () { return $("#theaterListTemplate"); }
         , Theaters: function () { return $(".theater"); }
@@ -91,8 +96,12 @@ codejkjk.movies.HomeIndex = {
                 return now >= releaseDate;
             },
             IsCurrentTheater: function (i, iTheaterId) {
+                // alert(" current val = {0}, i =  {1}, len = {2}".format(codejkjk.movies.HomeIndex.Controls.CurrentTheater().val(), i, codejkjk.movies.HomeIndex.Controls.CurrentSelectedTheater().length));
                 return (codejkjk.movies.HomeIndex.Controls.CurrentTheater().val() == iTheaterId
-                         || (codejkjk.movies.HomeIndex.Controls.CurrentTheater().val() == "" && i == 1));
+                         || (codejkjk.movies.HomeIndex.Controls.CurrentTheater().val() == "" && i == 1 && codejkjk.movies.HomeIndex.Controls.CurrentSelectedTheater().length == 0));
+            },
+            IsCurrentTheaterDetails: function (iTheaterId) {
+                return codejkjk.movies.HomeIndex.Controls.CurrentSelectedTheater().attr("data-theaterid") == iTheaterId.toString();
             },
             GetHoursAndMinutes: function (minutes) {
                 var hrs = Math.floor(minutes / 60);
@@ -260,10 +269,24 @@ codejkjk.movies.HomeIndex = {
     },
 
     LoadTheaters: function (theaters) {
-        var removedTheaterMovies = localStorage.getItem("RemovedTheaterMovies") != null ? localStorage.getItem("RemovedTheaterMovies").split(',') : [];
+        // var removedTheaterMovies = localStorage.getItem("RemovedTheaterMovies") != null ? localStorage.getItem("RemovedTheaterMovies").split(',') : [];
 
+        var favoriteTheaterIds = localStorage.getItem("FavoriteTheaters");
+        favoriteTheaterIds = favoriteTheaterIds ? favoriteTheaterIds.split(',') : [];
+
+        // load favorite and not-favorite theaters
+        var favoriteTheaters = $.grep(theaters, function(theater, i) {
+            return favoriteTheaterIds.indexOf(theater.theaterId.toString()) >= 0;
+        });
+        codejkjk.movies.HomeIndex.Controls.FavoriteTheaterList().html(
+            codejkjk.movies.HomeIndex.Controls.FavoriteTheaterListTemplate().render(favoriteTheaters)
+        );
+
+        var notFavoriteTheaters = $.grep(theaters, function(theater, i) {
+            return favoriteTheaterIds.indexOf(theater.theaterId.toString()) == -1;
+        });
         codejkjk.movies.HomeIndex.Controls.TheaterList().html(
-            codejkjk.movies.HomeIndex.Controls.TheaterListTemplate().render(theaters)
+            codejkjk.movies.HomeIndex.Controls.TheaterListTemplate().render(notFavoriteTheaters)
         );
 
         codejkjk.movies.HomeIndex.Controls.CurrentTheaterContainer().html(
@@ -335,6 +358,10 @@ codejkjk.movies.HomeIndex = {
             }
             link.toggleClass("lit").toggleClass("default");
             localStorage.setItem("FavoriteTheaters", favoriteTheaters.join(','));
+            
+            // refresh theaters
+            var postalCode = localStorage.getItem("PostalCode") || 23226; // default to 23226
+            codejkjk.movies.Flixster.GetTheaters(codejkjk.movies.HomeIndex.Controls.CurrentZip().val(), postalCode, codejkjk.movies.HomeIndex.LoadTheaters);
         });
 
         // handle theater link clicks

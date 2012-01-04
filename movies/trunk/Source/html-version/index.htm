@@ -85,7 +85,7 @@
         <a href="/#/ZipCode/theater/{{=theaterId}}" data-theaterid="{{=theaterId}}">
     {{/if}}
         <div class="favoriteLink lit"></div>
-        <div class="theaterName">{{=$ctx.Snippet(name, 30)!}} - {{=theaterId}}</div>
+        <div class="theaterName">{{=$ctx.Snippet(name, 30)!}}</div>
         <div class="theaterAddress">{{=address}}</div>
     </a>
 </script>
@@ -95,7 +95,7 @@
     {{else}}
         <a href="/#/ZipCode/theater/{{=theaterId}}" data-theaterid="{{=theaterId}}">
     {{/if}}
-        <div class="theaterName">{{=$ctx.Snippet(name, 30)!}} - {{=theaterId}}</div>
+        <div class="theaterName">{{=$ctx.Snippet(name, 30)!}}</div>
         <div class="theaterAddress">{{=address}}</div>
     </a>
 </script>

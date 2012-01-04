@@ -343,13 +343,12 @@ codejkjk.movies.HomeIndex = {
             e.preventDefault();
             var link = $(this);
             var theaterId = link.closest("[data-theaterid]").attr("data-theaterid");
-            alert(theaterId);
             var favoriteTheaters = localStorage.getItem("FavoriteTheaters");
             favoriteTheaters = favoriteTheaters ? favoriteTheaters.split(',') : [];
             if (link.hasClass("lit")) {
                 // currently set to favorite, so remove from favorites list
                 if (favoriteTheaters.indexOf(theaterId) >= 0) {
-                    favoriteTheaters.splice(favoriteTheaters.indexOf(theaterId, 1));
+                    favoriteTheaters.splice(favoriteTheaters.indexOf(theaterId), 1);
                 }
             } else {
                 // currently NOT set to favorite, so add to favorites list

@@ -86,7 +86,9 @@ header { text-align:center; height:33px; }
     #showtimesView #theaters .theaterList.favorites div.favoriteLink { float: left; width: 19px; height: 35px; margin-right: 7px; }
     
     #showtimesView #theaters .theaterList { margin-top:10px; }
-        #showtimesView #theaters .theaterList a { display:block; padding: 10px; }
+        #showtimesView #theaters .theaterList a { display:block; }
+        #showtimesView #theaters #theaterList a { padding: 10px 10px 10px 15px; }
+        #showtimesView #theaters #favoriteTheaterList a { padding: 10px; }
         #showtimesView #theaters .theaterList a:not(:first-child) { margin-top:0px; }
         #showtimesView #theaters .theaterList a.selected { background: #CCCCCC; border-top-left-radius: 5px; border-bottom-left-radius: 5px; -moz-border-bottom-left-radius: 5px; -moz-border-top-left-radius: 5px; -webkit-border-bottom-left-radius: 5px; -webkit-border-top-left-radius: 5px; }
         #showtimesView #theaters .theaterList a:not(.selected) { color: #FFF; }

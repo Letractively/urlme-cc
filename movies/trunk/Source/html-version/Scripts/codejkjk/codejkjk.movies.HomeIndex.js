@@ -342,7 +342,8 @@ codejkjk.movies.HomeIndex = {
         $(document).on('click', codejkjk.movies.HomeIndex.Controls.FavoriteLinksSelector(), function(e) {
             e.preventDefault();
             var link = $(this);
-            var theaterId = link.closest(".theater").data().theaterid.toString();
+            var theaterId = link.closest("[data-theaterid]").attr("data-theaterid");
+            alert(theaterId);
             var favoriteTheaters = localStorage.getItem("FavoriteTheaters");
             favoriteTheaters = favoriteTheaters ? favoriteTheaters.split(',') : [];
             if (link.hasClass("lit")) {

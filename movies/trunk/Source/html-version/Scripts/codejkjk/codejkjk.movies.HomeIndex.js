@@ -5,6 +5,8 @@
 // - details view not positioned correctly from theater view
 // - theater h1, make h2 b/c there should only be one h1 on the page
 // - theater view, make width same as width of box office and upcoming views. this way the movie details popup will show up in same location.
+// - setting min-height of theaterlist() yields zero. why? - maybe cuz at first it's invisible?
+// - be careful of .data().rtmovieid, which will return "234" if it's "0234"
 
 codejkjk.movies.HomeIndex = {
     // page elements
@@ -117,6 +119,11 @@ codejkjk.movies.HomeIndex = {
             },
             Snippet: function(text, len) {
                 return text.snippet(len);
+            },
+            GetFavoriteLinkClass: function(theaterId) {
+                var favoriteTheaters = localStorage.getItem("FavoriteTheaters");
+                favoriteTheaters = favoriteTheaters ? favoriteTheaters.split(',') : [];
+                return favoriteTheaters.indexOf(theaterId.toString()) >= 0 ? "lit" : "default";
             }
         });
     },
@@ -311,6 +318,23 @@ codejkjk.movies.HomeIndex = {
         // handle favorite theater links
         $(document).on('click', codejkjk.movies.HomeIndex.Controls.FavoriteLinksSelector(), function(e) {
             e.preventDefault();
+            var link = $(this);
+            var theaterId = link.closest(".theater").data().theaterid.toString();
+            var favoriteTheaters = localStorage.getItem("FavoriteTheaters");
+            favoriteTheaters = favoriteTheaters ? favoriteTheaters.split(',') : [];
+            if (link.hasClass("lit")) {
+                // currently set to favorite, so remove from favorites list
+                if (favoriteTheaters.indexOf(theaterId) >= 0) {
+                    favoriteTheaters.splice(favoriteTheaters.indexOf(theaterId, 1));
+                }
+            } else {
+                // currently NOT set to favorite, so add to favorites list
+                if (favoriteTheaters.indexOf(theaterId) == -1) {
+                    favoriteTheaters.push(theaterId);
+                }
+            }
+            link.toggleClass("lit").toggleClass("default");
+            localStorage.setItem("FavoriteTheaters", favoriteTheaters.join(','));
         });
 
         // handle theater link clicks

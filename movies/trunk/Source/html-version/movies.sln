@@ -54,6 +54,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Icons", "Icons", "{A180B28C
 		Content\Images\Icons\expand_large.png = Content\Images\Icons\expand_large.png
 		Content\Images\Icons\expand_medium.png = Content\Images\Icons\expand_medium.png
 		Content\Images\Icons\external-link-icon.png = Content\Images\Icons\external-link-icon.png
+		Content\Images\Icons\star_default.png = Content\Images\Icons\star_default.png
+		Content\Images\Icons\star_default_hover.png = Content\Images\Icons\star_default_hover.png
+		Content\Images\Icons\star_lit.png = Content\Images\Icons\star_lit.png
+		Content\Images\Icons\star_lit_hover.png = Content\Images\Icons\star_lit_hover.png
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "rt-graphics", "rt-graphics", "{A9ED8518-412D-46BE-B0DA-320D410DD38C}"

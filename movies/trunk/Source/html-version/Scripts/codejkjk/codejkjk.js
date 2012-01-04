@@ -19,7 +19,7 @@ String.prototype.format = function () {
     });
 };
 
-String.prototype.snippet = function (length) {
+String.prototype.snippet = function (len) {
     var s = this;
     if (s.length > len) {
         return "<span alt='{0}' title='{0}'>{1}...</span>".format(s, s.substring(0, len));

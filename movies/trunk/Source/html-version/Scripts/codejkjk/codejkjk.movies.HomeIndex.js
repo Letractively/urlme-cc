@@ -113,6 +113,9 @@ codejkjk.movies.HomeIndex = {
             },
             GetIMDbMovieUrl: function (imdbId) {
                 return codejkjk.movies.IMDB.GetMovieUrl(imdbId);
+            },
+            Snippet: function(text) {
+                return text.snippet(500);
             }
         });
     },

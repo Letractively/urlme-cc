@@ -1,5 +1,5 @@
 html{font-size:12px;color:#000;background:#FFF;}body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,code,form,fieldset,legend,input,button,textarea,p,blockquote,th,td{margin:0;padding:0;}table{border-collapse:collapse;border-spacing:0;}fieldset,img{border:0;}address,caption,cite,code,dfn,em,strong,th,var,optgroup{font-style:inherit;font-weight:inherit;}del,ins{text-decoration:none;}li{list-style:none;}caption,th{text-align:left;}h1,h2,h3,h4,h5,h6{font-size:100%;font-weight:normal;}q:before,q:after{content:'';}abbr,acronym{border:0;font-variant:normal;}sup{vertical-align:baseline;}sub{vertical-align:baseline;}legend{color:#000;}input,button,textarea,select,optgroup,option{font-family:inherit;font-size:inherit;font-style:inherit;font-weight:inherit;}input,button,textarea,select{font-size:100%;}
-
+strong { font-weight: bold; }
 html { background: #535156; }
 
 body
@@ -45,16 +45,16 @@ header { text-align:center; height:33px; }
 .content { margin-top: 25px; display:none; width: 950px; overflow: auto; }
 
 /* styles common to both movie div in the lists and the movie details popup */
-.mpaaRating { font-weight: bold; margin-right:5px; }
 
-#movieDetails { font-size: 120%; border: 1px solid #999; display:none; padding: 15px; position: absolute; background: #fff; width: 900px; height: 200px; min-height: 350px; }
+#movieDetails { font-size: 110%; border: 1px solid #999; display:none; padding: 15px; position: absolute; background: #fff; width: 900px; min-height: 268px; }
     #movieDetails #closeMovieDetailsLink { color: #000; text-transform:uppercase; letter-spacing:2px; float: right; background: url("images/icons/close.png") no-repeat scroll right top transparent; display:inline-block; padding: 0 22px 17px 20px; }
     #movieDetails h2 { font-size: 130%; font-weight: bold; display:inline; }
     #movieDetails img.poster { width: 180px; height: 267px; float: left; margin-right: 15px; }
     #movieDetails p.description { margin-top: 10px; }
     #movieDetails a.trailerLink { margin-top: 15px; font-weight: bold; display:inline-block; }
     #movieDetails .ratingAndLength { margin-top: 15px; }
-    #movieDetails .ratings { margin-top: 15px; }
+        #movieDetails .ratingAndLength .mpaaRating { font-weight: bold; margin-right:5px; }
+    #movieDetails .ratings { margin-top: 15px; overflow:auto; }
     #movieDetails .releaseDate { margin-top: 15px; }
     #movieDetails .starring { margin-top: 15px; }
         #movieDetails .ratings a { float: left; height: 32px; margin-right: 10px; line-height: 32px; }
@@ -108,6 +108,7 @@ header { text-align:center; height:33px; }
         
             .content .movie .ratings { margin-top: 10px; }
             .content .movie .ratingAndLength { margin-top: 10px; }
+                .content .movie .ratingAndLength .mpaaRating { font-weight: bold; margin-right:5px; }
             .content .movie .movieDetailsLink { position: absolute; top: 0; right: 0; padding: 26px 15px 10px 10px; }
             .content .movie .showtimes { margin-top: 10px; }
             .content .movie .releaseDate { margin-top: 10px; }

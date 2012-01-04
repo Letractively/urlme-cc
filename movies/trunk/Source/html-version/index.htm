@@ -116,19 +116,19 @@
     <a href="#" id="closeMovieDetailsLink">Close</a>
     <img class="poster" src="{{=posters.detailed}}" />
     <h2>{{=title}}</h2>
-    <p class="description">{{=synopsis}}</p>
+    <p class="description">{{=$ctx.Snippet(synopsis)!}}</p>
     <a href="{{=links.alternate}}trailers" target="_blank" class="trailerLink external">View trailer</a>
-    <p class="ratingAndLength">Rated: <a href="{{=$ctx.GetParentalGuideUrl(alternate_ids.imdb)}}" class='mpaaRating external' target='_blank' alt='Link to Parents Guide on IMDb.com' title='Link to Parents Guide on IMDb.com'>{{=mpaa_rating}}</a>{{=$ctx.GetHoursAndMinutes(runtime)}}</p>
+    <p class="ratingAndLength"><strong>Rated</strong>: <a href="{{=$ctx.GetParentalGuideUrl(alternate_ids.imdb)}}" class='mpaaRating external' target='_blank' alt='Link to Parents Guide on IMDb.com' title='Link to Parents Guide on IMDb.com'>{{=mpaa_rating}}</a>{{=$ctx.GetHoursAndMinutes(runtime)}}</p>
     {{#if $ctx.IsReleasedMovie(release_dates.theater)}}
         <div class="ratings"><a href="{{=$ctx.GetIMDbMovieUrl(alternate_ids.imdb)}}" data-imdbmovieid="{{=alternate_ids.imdb}}" class='imdb imdbNotSet' target='_blank'></a><a href="{{=links.alternate}}" class='{{=$ctx.GetCriticsClass(ratings.critics_rating)}} rottenTomato' target='_blank'>{{=ratings.critics_score}}<sup>%</sup></a><a href="{{=links.alternate}}" class='{{=$ctx.GetAudienceClass(ratings.audience_rating)}} rottenTomato' target='_blank'>{{=ratings.audience_score}}<sup>%</sup></a></div>
     {{else}}
         <p class="releaseDate">Release date: {{=$ctx.FormatReleaseDate(release_dates.theater)}}</p>    
     {{/if}}
     <p class="starring">
-    Starring: 
-    {{#each abridged_cast}}
-        {{#if $itemNumber == 1 }}{{=name}}{{else}}, {{=name}}{{/if}}
-    {{/each}}
+        <strong>Starring</strong>: 
+        {{#each abridged_cast}}
+            {{#if $itemNumber == 1 }}{{=name}}{{else}}, {{=name}}{{/if}}
+        {{/each}}
     </p>
 </script>
 <script id="movieListTemplate" type="text/x-jquery-tmpl">

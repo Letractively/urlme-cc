@@ -56,9 +56,10 @@ header { text-align:center; height:33px; }
     #movieDetails .ratingAndLength { margin-top: 15px; }
     #movieDetails .ratings { margin-top: 15px; }
     #movieDetails .releaseDate { margin-top: 15px; }
+    #movieDetails .starring { margin-top: 15px; }
         #movieDetails .ratings a { float: left; height: 32px; margin-right: 10px; line-height: 32px; }
         #movieDetails .ratings .rottenTomato { padding-left: 39px; font-weight: bold; color: #506A16; }
-        #movieDetails .ratings .imdb { width: 20px; padding-left: 31px; color: Black; background: url("images/star_bigger.png") no-repeat scroll left center transparent; }
+        #movieDetails .ratings .imdb { width: 28px; padding-left: 41px; color: Black; background: url("images/star_bigger.png") no-repeat scroll left center transparent; }
         #movieDetails .ratings .criticsFresh { background: url("images/rt-graphics/critics-fresh_small.png") no-repeat scroll left center transparent; }
         #movieDetails .ratings .criticsRotten { background: url("images/rt-graphics/critics-rotten_small.png") no-repeat scroll left center transparent; }
         #movieDetails .ratings .audienceUpright { padding-left: 36px; background: url("images/rt-graphics/audience-upright_small.png") no-repeat scroll left center transparent; }

@@ -94,7 +94,7 @@
         <div class="theater rounded" data-theaterid="{{=theaterId}}">
     {{/if}}    
         <div class="theaterNameAndFavorite">
-            <h1>{{=name}}</h1><a class="favoriteLink" href="#"></a>
+            <h1>{{=name}}</h1><a class="favoriteLink {{=$ctx.GetFavoriteLinkClass(theaterId)}}" href="#"></a>
         </div>
         <p class="address">{{=address}}</p>
         <div class="showtimeDays"></div>

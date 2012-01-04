@@ -9,6 +9,7 @@
 // - be careful of .data().rtmovieid, which will return "234" if it's "0234"
 // - make a Current. just like Controls. for getting current theater id, favoritetheaters, tab, postal code, etc.
 // - Favorites list should not have borders if there are none
+// - clicking on the left col stars is buggy, does not maintain selected theater
 
 codejkjk.movies.HomeIndex = {
     // page elements
@@ -341,8 +342,10 @@ codejkjk.movies.HomeIndex = {
         // handle favorite theater links
         $(document).on('click', codejkjk.movies.HomeIndex.Controls.FavoriteLinksSelector(), function(e) {
             e.preventDefault();
+            // alert(codejkjk.movies.HomeIndex.Controls.CurrentTheater().val());
             var link = $(this);
             var theaterId = link.closest("[data-theaterid]").attr("data-theaterid");
+            // codejkjk.movies.HomeIndex.Controls.CurrentTheater().val(theaterId);
             var favoriteTheaters = localStorage.getItem("FavoriteTheaters");
             favoriteTheaters = favoriteTheaters ? favoriteTheaters.split(',') : [];
             if (link.hasClass("lit")) {

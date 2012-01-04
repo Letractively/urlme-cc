@@ -83,7 +83,7 @@
     {{else}}
         <a href="/#/ZipCode/theater/{{=theaterId}}" data-theaterid="{{=theaterId}}">
     {{/if}}
-        <div class="theaterName">{{=name}}</div>
+        <div class="theaterName">{{=$ctx.Snippet(name, 30)!}}</div>
         <div class="theaterAddress">{{=address}}</div>
     </a>
 </script>
@@ -93,7 +93,9 @@
     {{else}}
         <div class="theater rounded" data-theaterid="{{=theaterId}}">
     {{/if}}    
-        <h1>{{=name}}</h1>
+        <div class="theaterNameAndFavorite">
+            <h1>{{=name}}</h1><a class="favoriteLink" href="#"></a>
+        </div>
         <p class="address">{{=address}}</p>
         <div class="showtimeDays"></div>
         {{#each movies}}
@@ -116,7 +118,7 @@
     <a href="#" id="closeMovieDetailsLink">Close</a>
     <img class="poster" src="{{=posters.detailed}}" />
     <h2>{{=title}}</h2>
-    <p class="description">{{=$ctx.Snippet(synopsis)!}}</p>
+    <p class="description">{{=$ctx.Snippet(synopsis, 500)!}}</p>
     <a href="{{=links.alternate}}trailers" target="_blank" class="trailerLink external">View trailer</a>
     <p class="ratingAndLength"><strong>Rated</strong>: <a href="{{=$ctx.GetParentalGuideUrl(alternate_ids.imdb)}}" class='mpaaRating external' target='_blank' alt='Link to Parents Guide on IMDb.com' title='Link to Parents Guide on IMDb.com'>{{=mpaa_rating}}</a>{{=$ctx.GetHoursAndMinutes(runtime)}}</p>
     {{#if $ctx.IsReleasedMovie(release_dates.theater)}}

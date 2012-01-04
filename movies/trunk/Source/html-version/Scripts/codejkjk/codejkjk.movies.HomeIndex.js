@@ -22,6 +22,7 @@ codejkjk.movies.HomeIndex = {
         , CurrentView: function () { return $(".content:visible"); }
         , CurrentZip: function () { return $("#currentZip"); }
         , DefaultNavItem: function() { return $("nav > a:first"); }
+        , FavoriteLinksSelector: function() { return ".favoriteLink"; }
         , IMDbMoviesNotSet: function () { return $(".imdbNotSet"); }
         , MovieDetails: function () { return $("#movieDetails"); }
         , MovieDetailsLinksSelector: function () { return ".movieDetailsLink"; }
@@ -114,8 +115,8 @@ codejkjk.movies.HomeIndex = {
             GetIMDbMovieUrl: function (imdbId) {
                 return codejkjk.movies.IMDB.GetMovieUrl(imdbId);
             },
-            Snippet: function(text) {
-                return text.snippet(500);
+            Snippet: function(text, len) {
+                return text.snippet(len);
             }
         });
     },
@@ -307,6 +308,11 @@ codejkjk.movies.HomeIndex = {
     },
 
     BindControls: function () {
+        // handle favorite theater links
+        $(document).on('click', codejkjk.movies.HomeIndex.Controls.FavoriteLinksSelector(), function(e) {
+            e.preventDefault();
+        });
+
         // handle theater link clicks
         $(document).on('click', codejkjk.movies.HomeIndex.Controls.TheaterLinksSelector(), function (e) {
             e.preventDefault();

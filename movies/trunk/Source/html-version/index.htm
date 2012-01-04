@@ -59,7 +59,8 @@
                         <input type="text" placeholder="e.g., 23226"><button type="button">Set</button> or <a id="useNearbyPostalCode" href="#">see nearby</a>
                     </div>
                 </div>
-                <div id="theaterList"></div>
+                <div id="favoriteTheaterList" class="theaterList favorites"></div>
+                <div id="theaterList" class="theaterList"></div>
             </section>
             <section id="currentTheaterContainer"></section>
         </section>
@@ -77,6 +78,17 @@
         </section>
 
     </div>
+<script id="favoriteTheaterListTemplate" type="text/x-jquery-tmpl">
+    {{#if $ctx.IsCurrentTheater($itemNumber, theaterId) }}
+        <a class="selected glowing" href="/#/ZipCode/theater/{{=theaterId}}" data-theaterid="{{=theaterId}}">
+    {{else}}
+        <a href="/#/ZipCode/theater/{{=theaterId}}" data-theaterid="{{=theaterId}}">
+    {{/if}}
+        <div class="favoriteLink lit"></div>
+        <div class="theaterName">{{=$ctx.Snippet(name, 30)!}}</div>
+        <div class="theaterAddress">{{=address}}</div>
+    </a>
+</script>
 <script id="theaterListTemplate" type="text/x-jquery-tmpl">
     {{#if $ctx.IsCurrentTheater($itemNumber, theaterId) }}
         <a class="selected glowing" href="/#/ZipCode/theater/{{=theaterId}}" data-theaterid="{{=theaterId}}">
@@ -88,7 +100,7 @@
     </a>
 </script>
 <script id="currentTheaterTemplate" type="text/x-jquery-tmpl">
-    {{#if $ctx.IsCurrentTheater($itemNumber, theaterId) }}
+    {{#if $ctx.IsCurrentTheaterDetails(theaterId) }}
         <div class="theater selected rounded glowing" data-theaterid="{{=theaterId}}">
     {{else}}
         <div class="theater rounded" data-theaterid="{{=theaterId}}">

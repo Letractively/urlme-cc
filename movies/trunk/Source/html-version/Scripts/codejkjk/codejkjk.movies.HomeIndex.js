@@ -44,6 +44,7 @@ codejkjk.movies.HomeIndex = {
         , TheaterList: function () { return $("#theaterList"); }
         , TheaterListTemplate: function () { return $("#theaterListTemplate"); }
         , Theaters: function () { return $(".theater"); }
+        , UnsetIMDbMovieIds: function() { return $("[data-imdbmovieid='']"); }
         , UpcomingListTemplate: function () { return $("#upcomingListTemplate"); }
         , UpcomingView: function () { return $("#upcomingView"); }
         , UseNearbyPostalCodeLink: function () { return $("#useNearbyPostalCode"); }
@@ -163,11 +164,63 @@ codejkjk.movies.HomeIndex = {
         }
     },
 
+    SetRottenTomatoesMovieDetails: function (movie) {
+        var movies = $(".movie[data-rtmovieid='{0}']".format(movie.id));
+
+        // set movie poster
+        if (movie.posters && movie.posters.thumbnail) {
+            movies.find("img").attr("src", movie.posters.thumbnail);
+        }
+
+        if (movie.links && movie.links.alternate) {
+            movies.find('.rt_critics_rating,.rt_audience_rating').attr("href", movie.links.alternate);
+        } else {
+            movies.find('.rt_critics_rating,.rt_audience_rating').unbind().click(function (e) { e.preventDefault(); });
+        }
+
+        if (movie.ratings 
+            && movie.ratings.critics_rating
+            && movie.ratings.audience_rating
+            && movie.ratings.critics_score != -1
+            && movie.ratings.audience_score != -1
+            ) {
+            var criticsClass = movie.ratings.critics_rating.indexOf("Fresh") >= 0 ? "criticsFresh" : "criticsRotten";
+            var audienceClass = movie.ratings.audience_rating.indexOf("Upright") >= 0 ? "audienceUpright" : "audienceSpilled";
+            var criticsAlt = "Critics score on RottenTomatoes";
+            var audienceAlt = "Audience score on RottenTomatoes";
+
+            movies.find('.rt_critics_rating').removeClass('rt_critics_rating')
+                                         .addClass(criticsClass)
+                                         .html("{0}<sup>%</sup>".format(movie.ratings.critics_score))
+                                         .attr("alt", criticsAlt)
+                                         .attr("title", criticsAlt);
+            movies.find('.rt_audience_rating').removeClass('rt_audience_rating')
+                                         .addClass(audienceClass)
+                                         .html("{0}<sup>%</sup>".format(movie.ratings.audience_score))
+                                         .attr("alt", audienceAlt)
+                                         .attr("title", audienceAlt);
+        } else {
+            movies.find('.rt_critics_rating,.rt_audience_rating').addClass("unknownRating"); //.attr("alt,title", "Rating not available");
+        }
+
+        // load imdb movie ratings
+        if (movie.alternate_ids && movie.alternate_ids.imdb) {
+            movies.find(".imdb").attr("data-imdbmovieid", movie.alternate_ids.imdb);
+            movies.find(".imdb").addClass("imdbNotSet");
+            movies.find(".imdb").attr("href", codejkjk.movies.IMDB.GetMovieUrl(movie.alternate_ids.imdb));
+            movies.find('.mpaaRating').addClass("external").attr("href", codejkjk.movies.IMDB.GetParentalGuideUrl(movie.alternate_ids.imdb));
+        } else {
+            movies.find(".imdb").removeAttr("data-imdbmovieid");
+            movies.find('.mpaaRating').addClass("disabled").click(function (e) { e.preventDefault(); }); // prevent user from clicking on this
+            movies.find().addClass("unknownRating");
+        }
+        codejkjk.movies.HomeIndex.GetIMDbData();
+    },
+
     GetIMDbData: function () {
         codejkjk.movies.HomeIndex.Controls.IMDbMoviesNotSet().each(function () {
-            var movie = $(this);
-            //console.log(movie.data().imdbmovieid);
-            codejkjk.movies.IMDB.GetMovie(movie.data().imdbmovieid, codejkjk.movies.HomeIndex.SetIMDbMovieDetails);
+            var imdb = $(this);
+            codejkjk.movies.IMDB.GetMovie(imdb.attr("data-imdbmovieid"), codejkjk.movies.HomeIndex.SetIMDbMovieDetails);
         });
     },
 
@@ -232,64 +285,15 @@ codejkjk.movies.HomeIndex = {
         });
     },
     SetIMDbMovieDetails: function (imdbMovieId, movie) {
-        var movies = $(".movie[data-imdbmovieid='{0}']".format(imdbMovieId));
+        var ratings = $(".imdb[data-imdbmovieid='{0}']".format(imdbMovieId));
         var votes = "{0} votes on IMDb.com".format(movie.Votes);
 
         var rating = movie && movie.Rating;
 
         if (rating) {
-            movies.find(".imdb").html(rating).attr("alt", votes).attr("title", votes).removeClass("imdbNotSet");
+            ratings.html(rating).attr("alt", votes).attr("title", votes);
         }
-    },
-    SetRottenTomatoesMovieDetails: function (movie) {
-        var movies = $(".movie[data-rtmovieid='{0}']".format(movie.id));
-
-        // set movie poster
-        if (movie.posters && movie.posters.thumbnail) {
-            movies.find("img").attr("src", movie.posters.thumbnail);
-        }
-
-        if (movie.links && movie.links.alternate) {
-            movies.find('.rt_critics_rating,.rt_audience_rating').attr("href", movie.links.alternate);
-        } else {
-            movies.find('.rt_critics_rating,.rt_audience_rating').unbind().click(function (e) { e.preventDefault(); });
-        }
-
-        if (movie.ratings 
-            && movie.ratings.critics_rating
-            && movie.ratings.audience_rating
-            && movie.ratings.critics_score != -1
-            && movie.ratings.audience_score != -1
-            ) {
-            var criticsClass = movie.ratings.critics_rating.indexOf("Fresh") >= 0 ? "criticsFresh" : "criticsRotten";
-            var audienceClass = movie.ratings.audience_rating.indexOf("Upright") >= 0 ? "audienceUpright" : "audienceSpilled";
-            var criticsAlt = "Critics score on RottenTomatoes";
-            var audienceAlt = "Audience score on RottenTomatoes";
-
-            movies.find('.rt_critics_rating').removeClass('rt_critics_rating')
-                                         .addClass(criticsClass)
-                                         .html("{0}<sup>%</sup>".format(movie.ratings.critics_score))
-                                         .attr("alt", criticsAlt)
-                                         .attr("title", criticsAlt);
-            movies.find('.rt_audience_rating').removeClass('rt_audience_rating')
-                                         .addClass(audienceClass)
-                                         .html("{0}<sup>%</sup>".format(movie.ratings.audience_score))
-                                         .attr("alt", audienceAlt)
-                                         .attr("title", audienceAlt);
-        } else {
-            movies.find('.rt_critics_rating,.rt_audience_rating').addClass("unknownRating"); //.attr("alt,title", "Rating not available");
-        }
-
-        // load imdb movie ratings
-        if (movie.alternate_ids) {
-            movies.attr("data-imdbmovieid", movie.alternate_ids.imdb);
-            movies.find(".imdb").attr("href", codejkjk.movies.IMDB.GetMovieUrl(movie.alternate_ids.imdb));
-            codejkjk.movies.IMDB.GetMovie(movie.alternate_ids.imdb, codejkjk.movies.HomeIndex.SetIMDbMovieDetails);
-            movies.find('.mpaaRating').addClass("external").attr("href", codejkjk.movies.IMDB.GetParentalGuideUrl(movie.alternate_ids.imdb));
-        } else {
-            movies.find('.mpaaRating').addClass("disabled").click(function (e) { e.preventDefault(); }); // prevent user from clicking on this
-            movies.find().addClass("unknownRating");
-        }
+        ratings.removeClass("imdbNotSet");
     },
 
     UpdateZip: function (postalCode) {
@@ -331,8 +335,7 @@ codejkjk.movies.HomeIndex = {
                         codejkjk.movies.HomeIndex.Controls.MovieDetailsTemplate().render(movie)
                 ).show('slide', { direction: 'right' }, 250);
             });
-
-            // $(this).hide("slide", { direction: "down" }, 1000);
+            codejkjk.movies.HomeIndex.GetIMDbData();
         });
 
         // handle close movie details link

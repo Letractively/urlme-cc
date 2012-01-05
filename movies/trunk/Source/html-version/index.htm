@@ -51,12 +51,11 @@
         <!-- SHOWTIMES -->
         <section id="showtimesView" class="content" data-navitemtext="Showtimes">
             <input type="hidden" id="currentShowtimeDay" />
-            <input type="hidden" id="currentTheater" />
             <section id="theaters">
                 <div id="location">
                     Showtimes for <span id="currentZip"></span><a href="#" id="changeCurrentZipLink">Change</a>
                     <div id="changeOptions" class="rounded">
-                        <input type="text" placeholder="e.g., 23226"><button type="button">Set</button> or <a id="useNearbyPostalCode" href="#">see nearby</a>
+                        <input type="text" placeholder="e.g., 23226"><button type="button">Set</button> or <a id="useNearbyZipCode" href="#">see nearby</a>
                     </div>
                 </div>
                 <div id="favoriteTheaterList" class="theaterList favorites"></div>
@@ -79,7 +78,7 @@
 
     </div>
 <script id="favoriteTheaterListTemplate" type="text/x-jquery-tmpl">
-    {{#if $ctx.IsCurrentTheater($itemNumber, theaterId) }}
+    {{#if $ctx.IsCurrentTheater(theaterId) }}
         <a class="selected glowing" href="/#/ZipCode/theater/{{=theaterId}}" data-theaterid="{{=theaterId}}">
     {{else}}
         <a href="/#/ZipCode/theater/{{=theaterId}}" data-theaterid="{{=theaterId}}">
@@ -90,7 +89,7 @@
     </a>
 </script>
 <script id="theaterListTemplate" type="text/x-jquery-tmpl">
-    {{#if $ctx.IsCurrentTheater($itemNumber, theaterId) }}
+    {{#if $ctx.IsCurrentTheater(theaterId) }}
         <a class="selected glowing" href="/#/ZipCode/theater/{{=theaterId}}" data-theaterid="{{=theaterId}}">
     {{else}}
         <a href="/#/ZipCode/theater/{{=theaterId}}" data-theaterid="{{=theaterId}}">
@@ -100,7 +99,7 @@
     </a>
 </script>
 <script id="currentTheaterTemplate" type="text/x-jquery-tmpl">
-    {{#if $ctx.IsCurrentTheaterDetails(theaterId) }}
+    {{#if $ctx.IsCurrentTheater(theaterId) }}
         <div class="theater selected rounded glowing" data-theaterid="{{=theaterId}}">
     {{else}}
         <div class="theater rounded" data-theaterid="{{=theaterId}}">

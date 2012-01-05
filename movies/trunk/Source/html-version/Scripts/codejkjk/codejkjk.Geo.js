@@ -2,7 +2,7 @@
 
 codejkjk.Geo = {
     BaseUrl: "http://api.geonames.org/", // findNearbyPostalCodesJSON?lat=47&lng=9&username=codejkjk&callback=cb
-    GetPostalCode: function (callback) {
+    GetZipCode: function (callback) {
         if (navigator.geolocation) {
             console.log("navigator.geolocation " + navigator.geolocation);
             navigator.geolocation.getCurrentPosition(function (position) {
@@ -17,7 +17,7 @@ codejkjk.Geo = {
             }, function (error) {
                 // alert("Error: {0}".format(error.code));
                 alert("Error, please try again.");
-                return callback(localStorage.getItem("PostalCode") || 23226);
+                return callback(localStorage.getItem("ZipCode") || 23226);
             });
         }
     }

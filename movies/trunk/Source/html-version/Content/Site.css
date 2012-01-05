@@ -105,8 +105,8 @@ header { text-align:center; height:33px; }
             #showtimesView #theaters #location #changeOptions a { font-weight: bold; }
             #showtimesView #theaters #location #changeOptions button { padding: 3px; }
             #showtimesView #theaters #location #changeOptions input { padding: 4px; width: 80px; margin-right:4px; }
-        #showtimesView #theaters #location #nearPostalCode { position: absolute; right: 5px; } /* hide for now, until we get this thing working */
-            #showtimesView #theaters #location #nearPostalCode #postalCode { font-weight: bold; } /* hide for now, until we get this thing working */
+        #showtimesView #theaters #location #nearZipCode { position: absolute; right: 5px; } /* hide for now, until we get this thing working */
+            #showtimesView #theaters #location #nearZipCode #postalCode { font-weight: bold; } /* hide for now, until we get this thing working */
 
 #showtimesView #currentTheaterContainer { float: left; width: 646px; } /* orig: 681 > 671 */
     #showtimesView #currentTheaterContainer .theater { background: #ccc; padding: 15px; }

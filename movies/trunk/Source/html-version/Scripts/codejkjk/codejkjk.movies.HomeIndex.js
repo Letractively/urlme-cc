@@ -21,8 +21,6 @@ codejkjk.movies.HomeIndex = {
         , CloseMovieDetailsLinkSelector: function () { return "#closeMovieDetailsLink"; }
         , CurrentNavItem: function () { return $("nav > a.selected"); }
         , CurrentShowtimeDay: function () { return $("input#currentShowtimeDay"); }
-        , CurrentSelectedTheater: function() { return $(".theaterList > a.selected"); }
-        , CurrentTheater: function () { return $("input#currentTheater"); }
         , CurrentTheaterContainer: function () { return $("#currentTheaterContainer"); }
         , CurrentTheaterTemplate: function () { return $("#currentTheaterTemplate"); }
         , CurrentView: function () { return $(".content:visible"); }
@@ -39,12 +37,11 @@ codejkjk.movies.HomeIndex = {
         , Nav: function () { return $("nav"); }
         , NavLinks: function () { return $("nav > a"); }
         , NavTemplate: function () { return $("#navTemplate"); }
-        , NewPostalCodeInput: function () { return codejkjk.movies.HomeIndex.Controls.ChangeOptionsContainer().find("input[type=text]"); }
-        , PostalCodeContainer: function () { return $("#nearPostalCode"); }
+        , NewZipCodeInput: function () { return codejkjk.movies.HomeIndex.Controls.ChangeOptionsContainer().find("input[type=text]"); }
         , RemoveLinks: function () { return $(".actions").find(".removeLink"); }
         , SearchBox: function () { return $("#q"); }
         , SearchResultsView: function () { return $("#searchResultsView"); }
-        , SetPostalCodeButton: function () { return codejkjk.movies.HomeIndex.Controls.ChangeOptionsContainer().find("button"); }
+        , SetZipCodeButton: function () { return codejkjk.movies.HomeIndex.Controls.ChangeOptionsContainer().find("button"); }
         , ShowRemovedMoviesLinks: function () { return $(".showRemovedMoviesLink"); }
         , ShowtimeDayLinks: function () { return $(".showtimeDays > a"); }
         , ShowtimeDayLinksSelector: function () { return ".showtimeDays > a"; }
@@ -56,8 +53,25 @@ codejkjk.movies.HomeIndex = {
         , UnsetIMDbMovieIds: function() { return $("[data-imdbmovieid='']"); }
         , UpcomingListTemplate: function () { return $("#upcomingListTemplate"); }
         , UpcomingView: function () { return $("#upcomingView"); }
-        , UseNearbyPostalCodeLink: function () { return $("#useNearbyPostalCode"); }
+        , UseNearbyZipCodeLink: function () { return $("#useNearbyZipCode"); }
         , Views: function () { return $(".content"); }
+    },
+
+    Currents: {
+        ZipCode: function(val) {
+            if (val) { // set
+                localStorage.setItem("ZipCode", val);
+            } else { // get
+                return localStorage.getItem("ZipCode") || "23226"; // return str b/c if we ever want to change it to 02322, this will get converted to str as "3222" if we return as int
+            }
+        }
+        , Theater: function(val) {
+            if (val) { // set
+                localStorage.setItem("Theater", val);
+            } else { // get
+                return localStorage.getItem("Theater") || "";
+            }
+        }
     },
 
     Init: function () {
@@ -77,9 +91,8 @@ codejkjk.movies.HomeIndex = {
         // *** load showtimes view ***
         // init showtime date to today
         codejkjk.movies.HomeIndex.Controls.CurrentShowtimeDay().val(Date.today().toString("yyyyMMdd"));
-        var postalCode = localStorage.getItem("PostalCode") || 23226; // default to 23226
-        codejkjk.movies.HomeIndex.Controls.CurrentZip().html(postalCode);
-        codejkjk.movies.Flixster.GetTheaters(codejkjk.movies.HomeIndex.Controls.CurrentShowtimeDay().val(), postalCode, codejkjk.movies.HomeIndex.LoadTheaters);
+        codejkjk.movies.HomeIndex.Controls.CurrentZip().html(codejkjk.movies.HomeIndex.Currents.ZipCode());
+        codejkjk.movies.Flixster.GetTheaters(codejkjk.movies.HomeIndex.Controls.CurrentShowtimeDay().val(), codejkjk.movies.HomeIndex.Currents.ZipCode(), codejkjk.movies.HomeIndex.LoadTheaters);
 
         // *** load box office & upcoming views ***
         codejkjk.movies.RottenTomatoes.GetBoxOfficeMovies(codejkjk.movies.HomeIndex.LoadBoxOfficeMovies);
@@ -96,13 +109,8 @@ codejkjk.movies.HomeIndex = {
                 releaseDate = new Date(releaseDate);
                 return now >= releaseDate;
             },
-            IsCurrentTheater: function (i, iTheaterId) {
-                // alert(" current val = {0}, i =  {1}, len = {2}".format(codejkjk.movies.HomeIndex.Controls.CurrentTheater().val(), i, codejkjk.movies.HomeIndex.Controls.CurrentSelectedTheater().length));
-                return (codejkjk.movies.HomeIndex.Controls.CurrentTheater().val() == iTheaterId
-                         || (codejkjk.movies.HomeIndex.Controls.CurrentTheater().val() == "" && i == 1 && codejkjk.movies.HomeIndex.Controls.CurrentSelectedTheater().length == 0));
-            },
-            IsCurrentTheaterDetails: function (iTheaterId) {
-                return codejkjk.movies.HomeIndex.Controls.CurrentSelectedTheater().attr("data-theaterid") == iTheaterId.toString();
+            IsCurrentTheater: function (iTheaterId) {
+                return iTheaterId.toString() == codejkjk.movies.HomeIndex.Currents.Theater();
             },
             GetHoursAndMinutes: function (minutes) {
                 var hrs = Math.floor(minutes / 60);
@@ -275,21 +283,41 @@ codejkjk.movies.HomeIndex = {
         var favoriteTheaterIds = localStorage.getItem("FavoriteTheaters");
         favoriteTheaterIds = favoriteTheaterIds ? favoriteTheaterIds.split(',') : [];
 
-        // load favorite and not-favorite theaters
+        // determine favorite and not-favorite theaters
         var favoriteTheaters = $.grep(theaters, function(theater, i) {
             return favoriteTheaterIds.indexOf(theater.theaterId.toString()) >= 0;
         });
-        codejkjk.movies.HomeIndex.Controls.FavoriteTheaterList().html(
-            codejkjk.movies.HomeIndex.Controls.FavoriteTheaterListTemplate().render(favoriteTheaters)
-        );
-
         var notFavoriteTheaters = $.grep(theaters, function(theater, i) {
             return favoriteTheaterIds.indexOf(theater.theaterId.toString()) == -1;
         });
+
+        // establish current theater id before we render the html, so the jsRender helper can know which items it should show as active
+        if (!codejkjk.movies.HomeIndex.Currents.Theater()) {
+            // no current theater set, so choose first
+            var currentTheaterId = null;
+            if (favoriteTheaters.length > 0) { currentTheaterId = favoriteTheaters[0].theaterId; }
+            else { currentTheaterId = notFavoriteTheaters[0].theaterId; }
+            codejkjk.movies.HomeIndex.Currents.Theater(currentTheaterId);
+        } else { 
+            // make sure the theaterId is in the incoming list of theaters
+            var results = $.grep(theaters, function(theater, i) {
+                return theater.theaterId.toString() == codejkjk.movies.HomeIndex.Currents.Theater();
+            });
+            if (results.length == 0) { // current theaterId does NOT exist in incoming list of theaters, so get the first from favorites or nonfavorites if favorites is empty
+                var currentTheaterId = null;
+                if (favoriteTheaters.length > 0) { currentTheaterId = favoriteTheaters[0].theaterId; }
+                else { currentTheaterId = notFavoriteTheaters[0].theaterId; }
+                codejkjk.movies.HomeIndex.Currents.Theater(currentTheaterId);                
+            }
+        }
+
+        // render theaters
+        codejkjk.movies.HomeIndex.Controls.FavoriteTheaterList().html(
+            codejkjk.movies.HomeIndex.Controls.FavoriteTheaterListTemplate().render(favoriteTheaters)
+        );
         codejkjk.movies.HomeIndex.Controls.TheaterList().html(
             codejkjk.movies.HomeIndex.Controls.TheaterListTemplate().render(notFavoriteTheaters)
         );
-
         codejkjk.movies.HomeIndex.Controls.CurrentTheaterContainer().html(
             codejkjk.movies.HomeIndex.Controls.CurrentTheaterTemplate().render(theaters)
         );
@@ -331,21 +359,19 @@ codejkjk.movies.HomeIndex = {
         ratings.removeClass("imdbNotSet");
     },
 
-    UpdateZip: function (postalCode) {
-        localStorage.setItem("PostalCode", postalCode);
-        codejkjk.movies.HomeIndex.Controls.CurrentZip().html(postalCode);
-        codejkjk.movies.HomeIndex.Controls.CurrentTheater().val(""); // new zip, so clear out current theater value
-        codejkjk.movies.Flixster.GetTheaters(codejkjk.movies.HomeIndex.Controls.CurrentZip().val(), postalCode, codejkjk.movies.HomeIndex.LoadTheaters);
+    UpdateZip: function (zipCode) {
+        codejkjk.movies.HomeIndex.Currents.ZipCode(zipCode); // update current zip code
+        codejkjk.movies.HomeIndex.Controls.CurrentZip().html(zipCode);
+        codejkjk.movies.HomeIndex.Currents.Theater(""); // new zip, so clear out current theater value
+        codejkjk.movies.Flixster.GetTheaters(codejkjk.movies.HomeIndex.Controls.CurrentZip().val(), zipCode, codejkjk.movies.HomeIndex.LoadTheaters);
     },
 
     BindControls: function () {
         // handle favorite theater links
         $(document).on('click', codejkjk.movies.HomeIndex.Controls.FavoriteLinksSelector(), function(e) {
             e.preventDefault();
-            // alert(codejkjk.movies.HomeIndex.Controls.CurrentTheater().val());
             var link = $(this);
             var theaterId = link.closest("[data-theaterid]").attr("data-theaterid");
-            // codejkjk.movies.HomeIndex.Controls.CurrentTheater().val(theaterId);
             var favoriteTheaters = localStorage.getItem("FavoriteTheaters");
             favoriteTheaters = favoriteTheaters ? favoriteTheaters.split(',') : [];
             if (link.hasClass("lit")) {
@@ -363,16 +389,15 @@ codejkjk.movies.HomeIndex = {
             localStorage.setItem("FavoriteTheaters", favoriteTheaters.join(','));
             
             // refresh theaters
-            var postalCode = localStorage.getItem("PostalCode") || 23226; // default to 23226
-            codejkjk.movies.Flixster.GetTheaters(codejkjk.movies.HomeIndex.Controls.CurrentZip().val(), postalCode, codejkjk.movies.HomeIndex.LoadTheaters);
+            codejkjk.movies.Flixster.GetTheaters(codejkjk.movies.HomeIndex.Controls.CurrentZip().val(), codejkjk.movies.HomeIndex.Currents.ZipCode(), codejkjk.movies.HomeIndex.LoadTheaters);
         });
 
         // handle theater link clicks
         $(document).on('click', codejkjk.movies.HomeIndex.Controls.TheaterLinksSelector(), function (e) {
             e.preventDefault();
             var link = $(this);
-            var theaterId = link.data().theaterid;
-            codejkjk.movies.HomeIndex.Controls.CurrentTheater().val(theaterId);
+            var theaterId = link.attr("data-theaterid");
+            codejkjk.movies.HomeIndex.Currents.Theater(theaterId);
             $(codejkjk.movies.HomeIndex.Controls.TheaterLinksSelector()).removeClass("selected glowing");
             link.addClass("selected glowing");
             codejkjk.movies.HomeIndex.Controls.Theaters().removeClass("selected glowing");
@@ -440,26 +465,26 @@ codejkjk.movies.HomeIndex = {
             codejkjk.movies.HomeIndex.Controls.ChangeOptionsContainer().slideToggle('fast');
         });
 
-        // bind UseNearbyPostalCodeLink
-        codejkjk.movies.HomeIndex.Controls.UseNearbyPostalCodeLink().click(function (e) {
+        // bind UseNearbyZipCodeLink
+        codejkjk.movies.HomeIndex.Controls.UseNearbyZipCodeLink().click(function (e) {
             e.preventDefault();
             codejkjk.movies.HomeIndex.Controls.ChangeOptionsContainer().mask();
-            codejkjk.Geo.GetPostalCode(function (postalCode) {
-                codejkjk.movies.HomeIndex.UpdateZip(postalCode);
+            codejkjk.Geo.GetZipCode(function (zipCode) {
+                codejkjk.movies.HomeIndex.UpdateZip(zipCode);
             });
         });
 
         // handle button that sets manual set of zip
-        codejkjk.movies.HomeIndex.Controls.SetPostalCodeButton().click(function (e) {
+        codejkjk.movies.HomeIndex.Controls.SetZipCodeButton().click(function (e) {
             e.preventDefault();
-            var postalCode = codejkjk.movies.HomeIndex.Controls.NewPostalCodeInput().val();
-            codejkjk.movies.HomeIndex.UpdateZip(postalCode);
+            var zipCode = codejkjk.movies.HomeIndex.Controls.NewZipCodeInput().val();
+            codejkjk.movies.HomeIndex.UpdateZip(zipCode);
         });
 
         // handle Enter key on manual zip input box - triggers "Set" button click
-        codejkjk.movies.HomeIndex.Controls.NewPostalCodeInput().keydown(function (e) {
+        codejkjk.movies.HomeIndex.Controls.NewZipCodeInput().keydown(function (e) {
             if (e.keyCode == 13) {
-                codejkjk.movies.HomeIndex.Controls.SetPostalCodeButton().trigger('click');
+                codejkjk.movies.HomeIndex.Controls.SetZipCodeButton().trigger('click');
             }
         });
 

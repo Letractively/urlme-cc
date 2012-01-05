@@ -370,6 +370,8 @@ codejkjk.movies.HomeIndex = {
         // handle favorite theater links
         $(document).on('click', codejkjk.movies.HomeIndex.Controls.FavoriteLinksSelector(), function(e) {
             e.preventDefault();
+            e.stopPropagation();
+            alert('favorite clicked');
             var link = $(this);
             var theaterId = link.closest("[data-theaterid]").attr("data-theaterid");
             var favoriteTheaters = localStorage.getItem("FavoriteTheaters");
@@ -395,6 +397,7 @@ codejkjk.movies.HomeIndex = {
         // handle theater link clicks
         $(document).on('click', codejkjk.movies.HomeIndex.Controls.TheaterLinksSelector(), function (e) {
             e.preventDefault();
+            alert('theater clicked');
             var link = $(this);
             var theaterId = link.attr("data-theaterid");
             codejkjk.movies.HomeIndex.Currents.Theater(theaterId);

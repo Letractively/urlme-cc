@@ -10,6 +10,7 @@
 // - make a Current. just like Controls. for getting current theater id, favoritetheaters, tab, postal code, etc.
 // - Favorites list should not have borders if there are none
 // - clicking on the left col stars is buggy, does not maintain selected theater
+// - combine favorite theater list with not-favorite theater list with if condition for favoriteLink class (default vs. lit)
 
 codejkjk.movies.HomeIndex = {
     // page elements
@@ -371,7 +372,6 @@ codejkjk.movies.HomeIndex = {
         $(document).on('click', codejkjk.movies.HomeIndex.Controls.FavoriteLinksSelector(), function(e) {
             e.preventDefault();
             e.stopPropagation();
-            alert('favorite clicked');
             var link = $(this);
             var theaterId = link.closest("[data-theaterid]").attr("data-theaterid");
             var favoriteTheaters = localStorage.getItem("FavoriteTheaters");
@@ -397,7 +397,6 @@ codejkjk.movies.HomeIndex = {
         // handle theater link clicks
         $(document).on('click', codejkjk.movies.HomeIndex.Controls.TheaterLinksSelector(), function (e) {
             e.preventDefault();
-            alert('theater clicked');
             var link = $(this);
             var theaterId = link.attr("data-theaterid");
             codejkjk.movies.HomeIndex.Currents.Theater(theaterId);

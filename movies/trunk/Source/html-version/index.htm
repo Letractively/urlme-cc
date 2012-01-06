@@ -94,6 +94,7 @@
     {{else}}
         <a href="/#/ZipCode/theater/{{=theaterId}}" data-theaterid="{{=theaterId}}">
     {{/if}}
+        <div class="favoriteLink default"></div>
         <div class="theaterName">{{=$ctx.Snippet(name, 30)!}}</div>
         <div class="theaterAddress">{{=address}}</div>
     </a>

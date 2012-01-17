@@ -26,10 +26,11 @@ codejkjk.movies.HomeIndex = {
         , CurrentTheaterTemplate: function () { return $("#currentTheaterTemplate"); }
         , CurrentView: function () { return $(".content:visible"); }
         , CurrentZip: function () { return $("#currentZip"); }
-        , DefaultNavItem: function() { return $("nav > a:first"); }
-        , FavoriteLinksSelector: function() { return ".favoriteLink"; }
+        , DefaultNavItem: function () { return $("nav > a:first"); }
+        , FavoriteLinksSelector: function () { return ".favoriteLink"; }
         , FavoriteTheaterList: function () { return $("#favoriteTheaterList"); }
         , FavoriteTheaterListTemplate: function () { return $("#favoriteTheaterListTemplate"); }
+        , HideMovieLinksSelector: function () { return ".hideMovieLink"; }
         , IMDbMoviesNotSet: function () { return $(".imdbNotSet"); }
         , MovieDetails: function () { return $("#movieDetails"); }
         , MovieDetailsLinksSelector: function () { return ".movieDetailsLink"; }
@@ -51,7 +52,7 @@ codejkjk.movies.HomeIndex = {
         , TheaterList: function () { return $("#theaterList"); }
         , TheaterListTemplate: function () { return $("#theaterListTemplate"); }
         , Theaters: function () { return $(".theater"); }
-        , UnsetIMDbMovieIds: function() { return $("[data-imdbmovieid='']"); }
+        , UnsetIMDbMovieIds: function () { return $("[data-imdbmovieid='']"); }
         , UpcomingListTemplate: function () { return $("#upcomingListTemplate"); }
         , UpcomingView: function () { return $("#upcomingView"); }
         , UseNearbyZipCodeLink: function () { return $("#useNearbyZipCode"); }
@@ -59,18 +60,26 @@ codejkjk.movies.HomeIndex = {
     },
 
     Currents: {
-        ZipCode: function(val) {
+        ZipCode: function (val) {
             if (val) { // set
                 localStorage.setItem("ZipCode", val);
             } else { // get
                 return localStorage.getItem("ZipCode") || "23226"; // return str b/c if we ever want to change it to 02322, this will get converted to str as "3222" if we return as int
             }
         }
-        , Theater: function(val) {
+        , Theater: function (val) {
             if (val) { // set
                 localStorage.setItem("Theater", val);
             } else { // get
                 return localStorage.getItem("Theater") || "";
+            }
+        }
+        , HiddenTheaterMovies: function (val) {
+            if (val) { // set
+                localStorage.setItem("HiddenTheaterMovies", val);
+            } else {
+                var ret = localStorage.getItem("FavoriteTheaters");
+                return ret ? ret.split(',') : [];
             }
         }
     },
@@ -103,9 +112,9 @@ codejkjk.movies.HomeIndex = {
         codejkjk.movies.HomeIndex.Controls.CurrentNavItem().trigger('click');
     },
 
-    RegisterJsRenderHelpers: function() {
+    RegisterJsRenderHelpers: function () {
         $.views.registerHelpers({
-            IsReleasedMovie: function(releaseDate) {
+            IsReleasedMovie: function (releaseDate) {
                 var now = new Date();
                 releaseDate = new Date(releaseDate);
                 return now >= releaseDate;
@@ -136,10 +145,10 @@ codejkjk.movies.HomeIndex = {
             GetIMDbMovieUrl: function (imdbId) {
                 return codejkjk.movies.IMDB.GetMovieUrl(imdbId);
             },
-            Snippet: function(text, len) {
+            Snippet: function (text, len) {
                 return text.snippet(len);
             },
-            GetFavoriteLinkClass: function(theaterId) {
+            GetFavoriteLinkClass: function (theaterId) {
                 var favoriteTheaters = localStorage.getItem("FavoriteTheaters");
                 favoriteTheaters = favoriteTheaters ? favoriteTheaters.split(',') : [];
                 return favoriteTheaters.indexOf(theaterId.toString()) >= 0 ? "lit" : "default";
@@ -147,7 +156,7 @@ codejkjk.movies.HomeIndex = {
         });
     },
 
-    BuildNav: function() {
+    BuildNav: function () {
         // build nav
         var navItems = [{ text: "Top Box Office" }, { text: "Showtimes" }, { text: "Coming Soon"}];
         var currentNavItem = localStorage.getItem("View") || "Top Box Office";
@@ -208,7 +217,7 @@ codejkjk.movies.HomeIndex = {
             movies.find('.rt_critics_rating,.rt_audience_rating').unbind().click(function (e) { e.preventDefault(); });
         }
 
-        if (movie.ratings 
+        if (movie.ratings
             && movie.ratings.critics_rating
             && movie.ratings.audience_rating
             && movie.ratings.critics_score != -1
@@ -285,10 +294,10 @@ codejkjk.movies.HomeIndex = {
         favoriteTheaterIds = favoriteTheaterIds ? favoriteTheaterIds.split(',') : [];
 
         // determine favorite and not-favorite theaters
-        var favoriteTheaters = $.grep(theaters, function(theater, i) {
+        var favoriteTheaters = $.grep(theaters, function (theater, i) {
             return favoriteTheaterIds.indexOf(theater.theaterId.toString()) >= 0;
         });
-        var notFavoriteTheaters = $.grep(theaters, function(theater, i) {
+        var notFavoriteTheaters = $.grep(theaters, function (theater, i) {
             return favoriteTheaterIds.indexOf(theater.theaterId.toString()) == -1;
         });
 
@@ -299,16 +308,16 @@ codejkjk.movies.HomeIndex = {
             if (favoriteTheaters.length > 0) { currentTheaterId = favoriteTheaters[0].theaterId; }
             else { currentTheaterId = notFavoriteTheaters[0].theaterId; }
             codejkjk.movies.HomeIndex.Currents.Theater(currentTheaterId);
-        } else { 
+        } else {
             // make sure the theaterId is in the incoming list of theaters
-            var results = $.grep(theaters, function(theater, i) {
+            var results = $.grep(theaters, function (theater, i) {
                 return theater.theaterId.toString() == codejkjk.movies.HomeIndex.Currents.Theater();
             });
             if (results.length == 0) { // current theaterId does NOT exist in incoming list of theaters, so get the first from favorites or nonfavorites if favorites is empty
                 var currentTheaterId = null;
                 if (favoriteTheaters.length > 0) { currentTheaterId = favoriteTheaters[0].theaterId; }
                 else { currentTheaterId = notFavoriteTheaters[0].theaterId; }
-                codejkjk.movies.HomeIndex.Currents.Theater(currentTheaterId);                
+                codejkjk.movies.HomeIndex.Currents.Theater(currentTheaterId);
             }
         }
 
@@ -369,7 +378,7 @@ codejkjk.movies.HomeIndex = {
 
     BindControls: function () {
         // handle favorite theater links
-        $(document).on('click', codejkjk.movies.HomeIndex.Controls.FavoriteLinksSelector(), function(e) {
+        $(document).on('click', codejkjk.movies.HomeIndex.Controls.FavoriteLinksSelector(), function (e) {
             e.preventDefault();
             e.stopPropagation();
             var link = $(this);
@@ -389,7 +398,7 @@ codejkjk.movies.HomeIndex = {
             }
             link.toggleClass("lit").toggleClass("default");
             localStorage.setItem("FavoriteTheaters", favoriteTheaters.join(','));
-            
+
             // refresh theaters
             codejkjk.movies.Flixster.GetTheaters(codejkjk.movies.HomeIndex.Controls.CurrentZip().val(), codejkjk.movies.HomeIndex.Currents.ZipCode(), codejkjk.movies.HomeIndex.LoadTheaters);
         });
@@ -404,6 +413,14 @@ codejkjk.movies.HomeIndex = {
             link.addClass("selected glowing");
             codejkjk.movies.HomeIndex.Controls.Theaters().removeClass("selected glowing");
             $(".theater[data-theaterid='{0}']".format(theaterId)).addClass("selected glowing");
+        });
+
+        // handle hide movie links
+        $(document).on('click', codejkjk.movies.HomeIndex.Controls.HideMovieLinksSelector(), function (e) {
+            e.preventDefault();
+            // todo: save this theater movie key in localstorage
+            var movie = $(this);
+            movie.closest(".movie").fadeOut('fast');
         });
 
         // handle movie details links
@@ -499,7 +516,7 @@ codejkjk.movies.HomeIndex = {
                 $(this).blur();
             }
         });
-    },
+    }
 }
 
 $(document).ready(function () {

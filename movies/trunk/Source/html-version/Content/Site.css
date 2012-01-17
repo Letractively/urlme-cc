@@ -75,6 +75,7 @@ header { text-align:center; height:33px; }
     .movieList .movie:nth-child(odd) { margin-right: 15px; }
     .movieList .movie { margin-bottom: 10px; width: 447px; float: left; }
         .movieList .movie img { width: 61px; height: 91px; }
+        .movieList .movie .movieDetailsLink { position: absolute; top: 0; right: 0; padding: 26px 15px 10px 10px; }        
 
 .favoriteLink.default { background:url("images/icons/star_default.png") no-repeat scroll center transparent; }
 .favoriteLink.default:hover { background:url("images/icons/star_default_hover.png") no-repeat scroll center transparent; }
@@ -121,12 +122,15 @@ header { text-align:center; height:33px; }
             .content .movie .ratings { margin-top: 10px; }
             .content .movie .ratingAndLength { margin-top: 10px; }
                 .content .movie .ratingAndLength .mpaaRating { font-weight: bold; margin-right:5px; }
-            .content .movie .movieDetailsLink { position: absolute; top: 0; right: 0; padding: 26px 15px 10px 10px; }
             .content .movie .showtimes { margin-top: 10px; }
             .content .movie .releaseDate { margin-top: 10px; }
             .content .movie img { float: left; margin-right: 10px; width:61px; display:block; height: 91px; }
             .content .movie h2 { display:inline; font-weight: bold; margin-right: 10px; }
-            
+            .content .movie .actions { position: absolute; right: 8px; bottom: 17px; }
+                .content .movie .actions a { padding: 8px 10px; border: 1px solid #C5D8E6; font-size: 90%; }
+                .content .movie .actions a:first-child { margin-right: 5px; }
+                .content .movie .actions a:hover { border: 1px solid #465F82; }
+                
                 .content .movie .ratings a { float: left; height: 24px; margin-right: 10px; line-height: 24px; }
                 .content .movie .ratings .rottenTomato { padding-left: 31px; font-weight: bold; color: #506A16; }
                 .content .movie .ratings .imdb { width: 20px; padding-left: 31px; color: Black; background: url("images/star_small.png") no-repeat scroll left center transparent; }

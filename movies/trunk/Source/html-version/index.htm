@@ -116,9 +116,10 @@
                 <h2>{{=name}}</h2><a href="#" class='mpaaRating' target='_blank' alt='Link to Parents Guide on IMDb.com' title='Link to Parents Guide on IMDb.com'>{{=mpaaRating}}</a>{{=length}}
                 <p class="showtimes">{{=showtimes!}}</p>
                 <div class="ratings"><a data-imdbmovieid="" class='imdb' target='_blank'></a><a class='rt_critics_rating rottenTomato' target='_blank'></a><a class='rt_audience_rating rottenTomato' target='_blank'></a></div>
-                <a href="#" class="movieDetailsLink">
-                    <div class="rightArrow"></div>
-                </a>
+                <div class="actions">
+                    <a href="#" class="hideMovieLink rounded" data-theatermovie="{{=theaterId}}-{{=rtMovieId}}">Hide this movie</a>
+                    <a href="#" class="movieDetailsLink rounded">More movie details</a>
+                </div>
             </div>
         {{/each}}
     </div>

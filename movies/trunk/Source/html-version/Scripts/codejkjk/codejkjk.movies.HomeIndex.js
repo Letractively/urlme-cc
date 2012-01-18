@@ -78,7 +78,7 @@ codejkjk.movies.HomeIndex = {
             if (val) { // set
                 localStorage.setItem("HiddenTheaterMovies", val);
             } else {
-                var ret = localStorage.getItem("FavoriteTheaters");
+                var ret = localStorage.getItem("HiddenTheaterMovies");
                 return ret ? ret.split(',') : [];
             }
         }
@@ -418,8 +418,11 @@ codejkjk.movies.HomeIndex = {
         // handle hide movie links
         $(document).on('click', codejkjk.movies.HomeIndex.Controls.HideMovieLinksSelector(), function (e) {
             e.preventDefault();
-            // todo: save this theater movie key in localstorage
             var movie = $(this);
+            var hiddenTheaterMovies = codejkjk.movies.HomeIndex.Currents.HiddenTheaterMovies();
+            hiddenTheaterMovies.pushIfDoesNotExist(movie.data().theatermovie);
+            codejkjk.movies.HomeIndex.Currents.HiddenTheaterMovies(hiddenTheaterMovies.join(','));
+
             movie.closest(".movie").fadeOut('fast');
         });
 

@@ -110,8 +110,9 @@
         </div>
         <p class="address">{{=address}}</p>
         <div class="showtimeDays"></div>
+        <div class="showHiddenMoviesLinkContainer {{#if numHiddenMovies}} {{else}} hidden {{/if}}"><a href="#" class="showHiddenMoviesLink">Show hidden movies (<span class="numHiddenMovies">{{=numHiddenMovies}}</span>)</a></div>
         {{#each movies}}
-            <div class="movie rounded glowing" data-rtmovieid="{{=rtMovieId}}">
+            <div class="movie rounded glowing {{=movieClass}}" data-rtmovieid="{{=rtMovieId}}">
                 <img />
                 <h2>{{=name}}</h2><a href="#" class='mpaaRating' target='_blank' alt='Link to Parents Guide on IMDb.com' title='Link to Parents Guide on IMDb.com'>{{=mpaaRating}}</a>{{=length}}
                 <p class="showtimes">{{=showtimes!}}</p>

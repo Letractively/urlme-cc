@@ -139,6 +139,9 @@ header { text-align:center; height:33px; }
                 .content .movie .ratings .audienceUpright { padding-left: 28px; background: url("images/rt-graphics/audience-upright_smaller.png") no-repeat scroll left center transparent; }
                 .content .movie .ratings .audienceSpilled { background: url("images/rt-graphics/audience-spilled_smaller.png") no-repeat scroll left center transparent; }            
         
+        #showtimesView #currentTheaterContainer .theater .showHiddenMoviesLinkContainer { overflow:auto; }
+            #showtimesView #currentTheaterContainer .theater .showHiddenMoviesLinkContainer .showHiddenMoviesLink { text-align: right; font-weight: bold; display:inline-block; float:right; }
+        
         #showtimesView #currentTheaterContainer .theater .showtimeDays { margin:15px 0; font-size: 130%; }
             #showtimesView #currentTheaterContainer .theater .showtimeDays a:not(:first-child) { padding-left: 20px; }
             #showtimesView #currentTheaterContainer .theater .showtimeDays a::first-child { padding: 0; }

@@ -61,21 +61,21 @@ codejkjk.movies.HomeIndex = {
 
     Currents: {
         ZipCode: function (val) {
-            if (val) { // set
+            if (typeof val != "undefined") { // set
                 localStorage.setItem("ZipCode", val);
             } else { // get
                 return localStorage.getItem("ZipCode") || "23226"; // return str b/c if we ever want to change it to 02322, this will get converted to str as "3222" if we return as int
             }
         }
         , Theater: function (val) {
-            if (val) { // set
+            if (typeof val != "undefined") { // set
                 localStorage.setItem("Theater", val);
             } else { // get
                 return localStorage.getItem("Theater") || "";
             }
         }
         , HiddenTheaterMovies: function (val) {
-            if (val) { // set
+            if (typeof val != "undefined") { // set
                 localStorage.setItem("HiddenTheaterMovies", val);
             } else {
                 var ret = localStorage.getItem("HiddenTheaterMovies");
@@ -436,9 +436,9 @@ codejkjk.movies.HomeIndex = {
             codejkjk.movies.HomeIndex.Currents.HiddenTheaterMovies(hiddenTheaterMovies.join(','));
 
             movie.closest(".movie").fadeOut('fast', function () {
-                $(this).addClass("hidden");
+                $(this).addClass("hidden").removeAttr("style");
                 theater.find(".numHiddenMovies").text(theater.find(".movie.hidden").length);
-                theater.find(".showHiddenMoviesLinkContainer").show();
+                theater.find(".showHiddenMoviesLinkContainer").removeClass("hidden");
             });
 
         });
@@ -454,7 +454,6 @@ codejkjk.movies.HomeIndex = {
             // update localStorage; trim out the theater that this movie belongs to, all of its hidden movies
             var hiddenTheaterMovies = codejkjk.movies.HomeIndex.Currents.HiddenTheaterMovies();
             hiddenTheaterMovies = $.grep(hiddenTheaterMovies, function (hiddenTheaterMovie, i) {
-                console.log('comparing ' + theater.data().theaterid + " with " + hiddenTheaterMovie.split('-')[0]);
                 return hiddenTheaterMovie.split('-')[0] != theater.data().theaterid;
             });
             codejkjk.movies.HomeIndex.Currents.HiddenTheaterMovies(hiddenTheaterMovies.join(','))

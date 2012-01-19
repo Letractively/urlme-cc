@@ -44,7 +44,7 @@ codejkjk.movies.HomeIndex = {
         , SearchBox: function () { return $("#q"); }
         , SearchResultsView: function () { return $("#searchResultsView"); }
         , SetZipCodeButton: function () { return codejkjk.movies.HomeIndex.Controls.ChangeOptionsContainer().find("button"); }
-        , ShowRemovedMoviesLinks: function () { return $(".showRemovedMoviesLink"); }
+        , ShowHiddenMoviesLinksSelector: function () { return ".showHiddenMoviesLink"; }
         , ShowtimeDayLinks: function () { return $(".showtimeDays > a"); }
         , ShowtimeDayLinksSelector: function () { return ".showtimeDays > a"; }
         , ShowtimeDayLinksContainer: function () { return $(".showtimeDays"); }
@@ -288,7 +288,7 @@ codejkjk.movies.HomeIndex = {
     },
 
     LoadTheaters: function (theaters) {
-        // var removedTheaterMovies = localStorage.getItem("RemovedTheaterMovies") != null ? localStorage.getItem("RemovedTheaterMovies").split(',') : [];
+        var hiddenTheaterMovies = codejkjk.movies.HomeIndex.Currents.HiddenTheaterMovies();
 
         var favoriteTheaterIds = localStorage.getItem("FavoriteTheaters");
         favoriteTheaterIds = favoriteTheaterIds ? favoriteTheaterIds.split(',') : [];
@@ -320,6 +320,17 @@ codejkjk.movies.HomeIndex = {
                 codejkjk.movies.HomeIndex.Currents.Theater(currentTheaterId);
             }
         }
+
+        // loop thru theaters and set movieClass for each movie based on whether or not that movie's been previously hidden, per local storage memory
+        $.each(theaters, function (i, theater) {
+            var numHiddenTheaterMovies = 0;
+            $.each(theater.movies, function (j, theaterMovie) {
+                var movieClass = hiddenTheaterMovies.indexOf("{0}-{1}".format(theater.theaterId, theaterMovie.rtMovieId)) >= 0 ? "hidden" : "";
+                numHiddenTheaterMovies = movieClass == "hidden" ? ++numHiddenTheaterMovies : numHiddenTheaterMovies;
+                theaterMovie.movieClass = movieClass;
+            });
+            if (numHiddenTheaterMovies) { theater.numHiddenMovies = numHiddenTheaterMovies; }
+        });
 
         // render theaters
         codejkjk.movies.HomeIndex.Controls.FavoriteTheaterList().html(
@@ -419,11 +430,34 @@ codejkjk.movies.HomeIndex = {
         $(document).on('click', codejkjk.movies.HomeIndex.Controls.HideMovieLinksSelector(), function (e) {
             e.preventDefault();
             var movie = $(this);
+            var theater = movie.closest(".theater");
             var hiddenTheaterMovies = codejkjk.movies.HomeIndex.Currents.HiddenTheaterMovies();
             hiddenTheaterMovies.pushIfDoesNotExist(movie.data().theatermovie);
             codejkjk.movies.HomeIndex.Currents.HiddenTheaterMovies(hiddenTheaterMovies.join(','));
 
-            movie.closest(".movie").fadeOut('fast');
+            movie.closest(".movie").fadeOut('fast', function () {
+                $(this).addClass("hidden");
+                theater.find(".numHiddenMovies").text(theater.find(".movie.hidden").length);
+                theater.find(".showHiddenMoviesLinkContainer").show();
+            });
+
+        });
+
+        // handle "show hidden movies" links
+        $(document).on('click', codejkjk.movies.HomeIndex.Controls.ShowHiddenMoviesLinksSelector(), function (e) {
+            e.preventDefault();
+            var link = $(this);
+            var theater = link.closest(".theater");
+            theater.find(".movie.hidden").removeClass("hidden");
+            link.parent().addClass("hidden");
+
+            // update localStorage; trim out the theater that this movie belongs to, all of its hidden movies
+            var hiddenTheaterMovies = codejkjk.movies.HomeIndex.Currents.HiddenTheaterMovies();
+            hiddenTheaterMovies = $.grep(hiddenTheaterMovies, function (hiddenTheaterMovie, i) {
+                console.log('comparing ' + theater.data().theaterid + " with " + hiddenTheaterMovie.split('-')[0]);
+                return hiddenTheaterMovie.split('-')[0] != theater.data().theaterid;
+            });
+            codejkjk.movies.HomeIndex.Currents.HiddenTheaterMovies(hiddenTheaterMovies.join(','))
         });
 
         // handle movie details links

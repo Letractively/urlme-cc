@@ -112,7 +112,7 @@
         <div class="showtimeDays"></div>
         <div class="showHiddenMoviesLinkContainer {{#if numHiddenMovies}} {{else}} hidden {{/if}}"><a href="#" class="showHiddenMoviesLink">Show hidden movies (<span class="numHiddenMovies">{{=numHiddenMovies}}</span>)</a></div>
         {{#each movies}}
-            <div class="movie rounded glowing {{=movieClass}}" data-rtmovieid="{{=rtMovieId}}">
+            <div class="movie rounded glowing gradient {{=movieClass}}" data-rtmovieid="{{=rtMovieId}}">
                 <img />
                 <h2>{{=name}}</h2><a href="#" class='mpaaRating' target='_blank' alt='Link to Parents Guide on IMDb.com' title='Link to Parents Guide on IMDb.com'>{{=mpaaRating}}</a>{{=length}}
                 <p class="showtimes">{{=showtimes!}}</p>
@@ -142,13 +142,11 @@
     {{/if}}
     <p class="starring">
         <strong>Starring</strong>: 
-        {{#each abridged_cast}}
-            {{#if $itemNumber == 1 }}{{=name}}{{else}}, {{=name}}{{/if}}
-        {{/each}}
+        {{#each abridged_cast}}{{#if $itemNumber == 1 }}{{=name}}{{else}}, {{=name}}{{/if}}{{/each}}
     </p>
 </script>
 <script id="movieListTemplate" type="text/x-jquery-tmpl">
-    <div class="movie rounded glowing" data-rtmovieid="{{=id}}">
+    <div class="movie rounded glowing gradient" data-rtmovieid="{{=id}}">
         <img src="{{=posters.thumbnail}}" />
         <h2>{{=title}}</h2>
         <p class="ratingAndLength"><a href="{{=$ctx.GetParentalGuideUrl(alternate_ids.imdb)}}" class='mpaaRating external' target='_blank' alt='Link to Parents Guide on IMDb.com' title='Link to Parents Guide on IMDb.com'>{{=mpaa_rating}}</a>{{=$ctx.GetHoursAndMinutes(runtime)}}</p>
@@ -159,7 +157,7 @@
     </div>
 </script>
 <script id="upcomingListTemplate" type="text/x-jquery-tmpl">
-    <div class="movie rounded glowing" data-rtmovieid="{{=id}}">
+    <div class="movie rounded glowing gradient" data-rtmovieid="{{=id}}">
         <img src="{{=posters.thumbnail}}" />
         <h2>{{=title}}</h2>
         <p class="ratingAndLength"><a href="{{=$ctx.GetParentalGuideUrl(alternate_ids.imdb)}}" class='mpaaRating external' target='_blank' alt='Link to Parents Guide on IMDb.com' title='Link to Parents Guide on IMDb.com'>{{=mpaa_rating}}</a>{{=$ctx.GetHoursAndMinutes(runtime)}}</p>

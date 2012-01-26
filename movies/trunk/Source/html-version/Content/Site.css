@@ -70,7 +70,7 @@ header { text-align:center; height:33px; }
 .movieList { }
     /* #boxOfficeView .movie:not(:nth-child(1)) { margin-top:10px; } */
     .movieList .movie:nth-child(odd) { margin-right: 15px; }
-    .movieList .movie { margin-bottom: 10px; width: 447px; float: left; }
+    .movieList .movie { margin-bottom: 10px; width: 446px; float: left; }
         .movieList .movie img { width: 61px; height: 91px; }
         .movieList .movie .movieDetailsLink { position: absolute; top: 0; right: 0; padding: 26px 15px 10px 10px; }        
 
@@ -94,13 +94,13 @@ header { text-align:center; height:33px; }
             #showtimesView #theaters .theaterList a.selected div.theaterName { color: #FFF; }
             #showtimesView #theaters .theaterList a:not(.selected) div.theaterAddress { font-size: 90%; color: #535156; }
 
-    #showtimesView #theaters #location { padding: 0; color: #fff; }
+    #showtimesView #theaters #location { padding: 0; color: #465F82; }
         #showtimesView #theaters #location #theatersNearYou { background: gray; }
         #showtimesView #theaters #location #searchByZip { background: orange; }
         #showtimesView #theaters #location #currentZip { font-weight: bold; }
-        #showtimesView #theaters #location #changeCurrentZipLink { margin-left: 10px; color: #ccc; }
-        #showtimesView #theaters #location #changeOptions { margin-right: 10px; background: #ccc; display:none; padding: 8px; margin-top:5px; color: #535156; }
-            #showtimesView #theaters #location #changeOptions a { font-weight: bold; }
+        #showtimesView #theaters #location #changeCurrentZipLink { margin-left: 10px; color: #535156; }
+        #showtimesView #theaters #location #changeOptions { margin-right: 10px; background: #535156; display:none; padding: 8px; margin-top:5px; color: #999; }
+            #showtimesView #theaters #location #changeOptions a { font-weight: bold; color: #fff; }
             #showtimesView #theaters #location #changeOptions button { padding: 3px; }
             #showtimesView #theaters #location #changeOptions input { padding: 4px; width: 80px; margin-right:4px; }
         #showtimesView #theaters #location #nearZipCode { position: absolute; right: 5px; } /* hide for now, until we get this thing working */

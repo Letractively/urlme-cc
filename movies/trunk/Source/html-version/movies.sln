@@ -29,6 +29,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "codejkjk", "codejkjk", "{EB
 		Scripts\codejkjk\codejkjk.movies.Flixster.js = Scripts\codejkjk\codejkjk.movies.Flixster.js
 		Scripts\codejkjk\codejkjk.movies.HomeIndex.js = Scripts\codejkjk\codejkjk.movies.HomeIndex.js
 		Scripts\codejkjk\codejkjk.movies.IMDB.js = Scripts\codejkjk\codejkjk.movies.IMDB.js
+		Scripts\codejkjk\codejkjk.movies.Netflix.js = Scripts\codejkjk\codejkjk.movies.Netflix.js
 		Scripts\codejkjk\codejkjk.movies.RottenTomatoes.js = Scripts\codejkjk\codejkjk.movies.RottenTomatoes.js
 		Scripts\codejkjk\codejkjk.movies.SiteActions.js = Scripts\codejkjk\codejkjk.movies.SiteActions.js
 	EndProjectSection

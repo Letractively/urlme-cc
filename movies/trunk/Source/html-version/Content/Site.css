@@ -65,13 +65,13 @@ header { text-align:center; height:33px; }
 
 #go { width: 50px; height:34px; }
 
-.movie { position: relative; height: 91px; overflow:auto; padding: 10px; } /* or gray = #efefef */
+.movie { position: relative; overflow:auto; } /* or gray = #efefef */
 
 .movieList { }
     /* #boxOfficeView .movie:not(:nth-child(1)) { margin-top:10px; } */
-    .movieList .movie:nth-child(odd) { margin-right: 15px; }
-    .movieList .movie { margin-bottom: 10px; width: 446px; float: left; }
-        .movieList .movie img { width: 61px; height: 91px; }
+    .movieList .movie:not(:nth-child(4n+4)) { margin-right: 20px; }
+    .movieList .movie { margin-bottom: 15px; float: left; width: 180px; height: 350px; padding: 15px; }
+        .movieList .movie img { width: 180px; height: 267px; } /* thumbnail = 61 x 91 */
         .movieList .movie .movieDetailsLink { position: absolute; top: 0; right: 0; padding: 26px 15px 10px 10px; }        
 
 .favoriteLink.default { background:url("images/icons/star_default.png") no-repeat scroll center transparent; }
@@ -115,14 +115,15 @@ header { text-align:center; height:33px; }
             #showtimesView #currentTheaterContainer .theater .theaterNameAndFavorite a.favoriteLink { margin: 1px 0 0 0px; padding: 0 10px; display:block; float: left; width: 19px; height: 19px; }
            
         #showtimesView #currentTheaterContainer .theater p.address { margin-top:5px; color: #999; }
-        #showtimesView #currentTheaterContainer .theater .movie { margin-top:10px; }
+        #showtimesView #currentTheaterContainer .theater .movie { margin-top:10px; height: 91px; height: 91px; padding: 10px; }
+            #showtimesView #currentTheaterContainer .theater .movie img { float: left; }
         
             .content .movie .ratings { margin-top: 10px; }
             .content .movie .ratingAndLength { margin-top: 10px; }
                 .content .movie .ratingAndLength .mpaaRating { font-weight: bold; margin-right:5px; }
             .content .movie .showtimes { margin-top: 10px; }
             .content .movie .releaseDate { margin-top: 10px; }
-            .content .movie img { float: left; margin-right: 10px; width:61px; display:block; height: 91px; }
+            .content .movie img { margin-right: 10px; display:block; }
             .content .movie h2 { display:inline; font-weight: bold; margin-right: 10px; }
             .content .movie .actions { position: absolute; right: 8px; bottom: 17px; }
                 .content .movie .actions a { padding: 8px 10px; border: 1px solid #C5D8E6; font-size: 90%; }

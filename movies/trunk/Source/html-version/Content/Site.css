@@ -70,9 +70,8 @@ header { text-align:center; height:33px; }
 .movieList { }
     /* #boxOfficeView .movie:not(:nth-child(1)) { margin-top:10px; } */
     .movieList .movie:not(:nth-child(4n+4)) { margin-right: 20px; }
-    .movieList .movie { margin-bottom: 15px; float: left; width: 180px; height: 350px; padding: 15px; }
+    .movieList .movie { margin-bottom: 15px; float: left; width: 180px; padding: 20px; }
         .movieList .movie img { width: 180px; height: 267px; } /* thumbnail = 61 x 91 */
-        .movieList .movie .movieDetailsLink { position: absolute; top: 0; right: 0; padding: 26px 15px 10px 10px; }        
 
 .favoriteLink.default { background:url("images/icons/star_default.png") no-repeat scroll center transparent; }
 .favoriteLink.default:hover { background:url("images/icons/star_default_hover.png") no-repeat scroll center transparent; }
@@ -118,9 +117,9 @@ header { text-align:center; height:33px; }
         #showtimesView #currentTheaterContainer .theater .movie { margin-top:10px; height: 91px; height: 91px; padding: 10px; }
             #showtimesView #currentTheaterContainer .theater .movie img { float: left; }
         
-            .content .movie .ratings { margin-top: 10px; }
+            .content .movie .ratings { margin-top: 10px; overflow:auto; }
             .content .movie .ratingAndLength { margin-top: 10px; }
-                .content .movie .ratingAndLength .mpaaRating { font-weight: bold; margin-right:5px; }
+                .content .movie .ratingAndLength .mpaaRating { font-weight: bold; float: right; }
             .content .movie .showtimes { margin-top: 10px; }
             .content .movie .releaseDate { margin-top: 10px; }
             .content .movie img { margin-right: 10px; display:block; }
@@ -130,12 +129,12 @@ header { text-align:center; height:33px; }
                 .content .movie .actions a:first-child { margin-right: 5px; }
                 .content .movie .actions a:hover { border: 1px solid #465F82; }
                 
-                .content .movie .ratings a { float: left; height: 24px; margin-right: 10px; line-height: 24px; }
-                .content .movie .ratings .rottenTomato { padding-left: 31px; font-weight: bold; color: #506A16; }
-                .content .movie .ratings .imdb { width: 20px; padding-left: 31px; color: Black; background: url("images/star_small.png") no-repeat scroll left center transparent; }
+                .content .movie .ratings a { font-weight: bold; padding-left: 28px; float: left; height: 24px; line-height: 24px; }
+                .content .movie .ratings .rottenTomato { margin-left: 5px; padding-left: 27px; /* color: #506A16; */ }
+                .content .movie .ratings .imdb { background: url("images/star_small.png") no-repeat scroll left center transparent; }
                 .content .movie .ratings .criticsFresh { background: url("images/rt-graphics/critics-fresh_smaller.png") no-repeat scroll left center transparent; }
                 .content .movie .ratings .criticsRotten { background: url("images/rt-graphics/critics-rotten_smaller.png") no-repeat scroll left center transparent; }
-                .content .movie .ratings .audienceUpright { padding-left: 28px; background: url("images/rt-graphics/audience-upright_smaller.png") no-repeat scroll left center transparent; }
+                .content .movie .ratings .audienceUpright { padding-left: 25px; background: url("images/rt-graphics/audience-upright_smaller.png") no-repeat scroll left center transparent; }
                 .content .movie .ratings .audienceSpilled { background: url("images/rt-graphics/audience-spilled_smaller.png") no-repeat scroll left center transparent; }            
         
         #showtimesView #currentTheaterContainer .theater .showHiddenMoviesLinkContainer { overflow:auto; }

@@ -11,6 +11,7 @@
 // - Favorites list should not have borders if there are none
 // - clicking on the left col stars is buggy, does not maintain selected theater
 // - combine favorite theater list with not-favorite theater list with if condition for favoriteLink class (default vs. lit)
+// - critics & audience titles not always showing up
 
 codejkjk.movies.HomeIndex = {
     // page elements
@@ -204,7 +205,7 @@ codejkjk.movies.HomeIndex = {
     },
 
     SetRottenTomatoesMovieDetails: function (movie) {
-        var movies = $(".movie[data-rtmovieid='{0}']".format(movie.id));
+        var movies = $(".theater > .movie[data-rtmovieid='{0}']".format(movie.id));
 
         // set movie poster
         if (movie.posters && movie.posters.thumbnail) {

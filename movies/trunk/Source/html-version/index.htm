@@ -118,8 +118,8 @@
                 <p class="showtimes">{{=showtimes!}}</p>
                 <div class="ratings"><a data-imdbmovieid="" class='imdb' target='_blank'></a><a class='rt_critics_rating rottenTomato' target='_blank'></a><a class='rt_audience_rating rottenTomato' target='_blank'></a></div>
                 <div class="actions">
-                    <a href="#" class="hideMovieLink rounded" data-theatermovie="{{=$parent.parent.data.theaterId}}-{{=rtMovieId}}">Hide this movie</a>
-                    <a href="#" class="movieDetailsLink rounded">More movie details</a>
+                    <a href="#" class="hideMovieLink rounded" data-theatermovie="{{=$parent.parent.data.theaterId}}-{{=rtMovieId}}"><span class="x">&#10006;</span>Hide this movie</a>
+                    <a href="#" class="movieDetailsLink rounded"><span class="dotdotdot">&#8230;</span>More movie details</a>
                 </div>
             </div>
         {{/each}}

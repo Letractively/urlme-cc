@@ -127,6 +127,9 @@ header { text-align:center; height:33px; }
             .content .movie .actions { position: absolute; right: 8px; bottom: 17px; }
                 .content .movie .actions a { padding: 8px 10px; border: 1px solid #C5D8E6; font-size: 90%; }
                 .content .movie .actions a:first-child { margin-right: 5px; }
+                .content .movie .actions a > span { margin-right: 6px; } /* for "x" and "..." "icons", .x and .dotdotdot */
+                .content .movie .actions a.hideMovieLink .x { color: Red; }
+                .content .movie .actions a.movieDetailsLink .dotdotdot { font-weight:bold; }
                 .content .movie .actions a:hover { border: 1px solid #465F82; }
                 
                 .content .movie .ratings a { font-weight: bold; padding-left: 28px; float: left; height: 24px; line-height: 24px; }

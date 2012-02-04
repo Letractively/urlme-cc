@@ -152,7 +152,7 @@
             <p class="ratingAndLength">
                 {{=$ctx.GetHoursAndMinutes(runtime)}}<a href="{{=$ctx.GetParentalGuideUrl(alternate_ids.imdb)}}" class='mpaaRating external' target='_blank' alt='Link to Parents Guide on IMDb.com' title='Link to Parents Guide on IMDb.com'>{{=mpaa_rating}}</a>
             </p>
-            <div class="ratings"><a data-imdbmovieid="{{=alternate_ids.imdb}}" class='imdb imdbNotSet' href="{{=$ctx.GetIMDbMovieUrl(alternate_ids.imdb)}}" target='_blank'></a><a href="{{=links.alternate}}" class='{{=$ctx.GetCriticsClass(ratings.critics_rating)}} rottenTomato' target='_blank'>{{=ratings.critics_score}}<sup>%</sup></a><a href="{{=links.alternate}}" class='{{=$ctx.GetAudienceClass(ratings.audience_rating)}} rottenTomato' target='_blank'>{{=ratings.audience_score}}<sup>%</sup></a></div>
+            <div class="ratings"><a href="{{=links.alternate}}" class='{{=$ctx.GetCriticsClass(ratings.critics_rating)}} rottenTomato' target='_blank'>{{=ratings.critics_score}}<sup>%</sup></a><a href="{{=links.alternate}}" class='{{=$ctx.GetAudienceClass(ratings.audience_rating)}} rottenTomato' target='_blank'>{{=ratings.audience_score}}<sup>%</sup></a><a data-imdbmovieid="{{=alternate_ids.imdb}}" class='imdb imdbNotSet' href="{{=$ctx.GetIMDbMovieUrl(alternate_ids.imdb)}}" target='_blank'></a></div>
         </div>
     </div>
 </script>

@@ -464,19 +464,12 @@ codejkjk.movies.HomeIndex = {
             e.preventDefault();
             var link = $(this);
             var rtMovieId = link.closest("[data-rtmovieid]").data().rtmovieid;
-            var top = codejkjk.movies.HomeIndex.Controls.CurrentView().offset().top;
-            var left = codejkjk.movies.HomeIndex.Controls.CurrentView().offset().left + 80;
-            var width = codejkjk.movies.HomeIndex.Controls.CurrentView().width() - 80;
             codejkjk.movies.HomeIndex.Controls.CurrentView().addClass("seeThrough");
 
             codejkjk.movies.RottenTomatoes.GetMovie(rtMovieId, function (movie) {
-                codejkjk.movies.HomeIndex.Controls.MovieDetails()
-                    .css("top", top + "px")
-                    .css("left", left + "px")
-                    .css("width", width + "px")
-                    .html(
+                codejkjk.movies.HomeIndex.Controls.MovieDetails().html(
                         codejkjk.movies.HomeIndex.Controls.MovieDetailsTemplate().render(movie)
-                ).show('slide', { direction: 'right' }, 250);
+                ).show();
             });
             codejkjk.movies.HomeIndex.GetIMDbData();
         });

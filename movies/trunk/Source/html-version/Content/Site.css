@@ -44,8 +44,9 @@ header { text-align:center; height:33px; }
 
 /* styles common to both movie div in the lists and the movie details popup */
 
-#movieDetails { font-size: 110%; border: 1px solid #999; display:none; padding: 15px; position: absolute; background: #fff; width: 900px; min-height: 268px; }
-    #movieDetails #closeMovieDetailsLink { color: #000; text-transform:uppercase; letter-spacing:2px; float: right; background: url("images/icons/close.png") no-repeat scroll right top transparent; display:inline-block; padding: 0 22px 17px 20px; }
+#movieDetails { font-size: 110%; border: 1px solid #999; display:none; padding: 15px; position: fixed; background: #fff; width: 590px; min-height: 268px; top: 68px; left: 50%; margin-left: -295PX; }
+    #movieDetails #closeMovieDetailsLink { font-weight:bold; text-transform:uppercase; letter-spacing:2px; float: right; /* background: url("images/icons/close.png") no-repeat scroll right top transparent; */ display:inline-block; /* padding: 0 22px 17px 20px; */ }
+    #movieDetails #closeMovieDetailsLink .x { margin-left: 6px; color: Red; }
     #movieDetails h2 { font-size: 130%; font-weight: bold; display:inline; }
     #movieDetails img.poster { width: 180px; height: 267px; float: left; margin-right: 15px; }
     #movieDetails p.description { margin-top: 10px; }

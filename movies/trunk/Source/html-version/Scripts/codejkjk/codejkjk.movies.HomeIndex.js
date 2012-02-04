@@ -54,7 +54,6 @@ codejkjk.movies.HomeIndex = {
         , TheaterListTemplate: function () { return $("#theaterListTemplate"); }
         , Theaters: function () { return $(".theater"); }
         , UnsetIMDbMovieIds: function () { return $("[data-imdbmovieid='']"); }
-        , UpcomingListTemplate: function () { return $("#upcomingListTemplate"); }
         , UpcomingView: function () { return $("#upcomingView"); }
         , UseNearbyZipCodeLink: function () { return $("#useNearbyZipCode"); }
         , Views: function () { return $(".content"); }
@@ -115,7 +114,7 @@ codejkjk.movies.HomeIndex = {
 
     RegisterJsRenderHelpers: function () {
         $.views.registerHelpers({
-            IsReleasedMovie: function (releaseDate) {
+            IsReleased: function (releaseDate) {
                 var now = new Date();
                 releaseDate = new Date(releaseDate);
                 return now >= releaseDate;
@@ -273,7 +272,7 @@ codejkjk.movies.HomeIndex = {
 
     LoadUpcomingMovies: function (movies) {
         codejkjk.movies.HomeIndex.Controls.UpcomingView().html(
-            codejkjk.movies.HomeIndex.Controls.UpcomingListTemplate().render(movies)
+            codejkjk.movies.HomeIndex.Controls.MovieListTemplate().render(movies)
         );
         codejkjk.movies.HomeIndex.GetIMDbData();
     },

@@ -1,17 +1,15 @@
 ﻿registerNS("codejkjk.movies.HomeIndex");
 
 // todo:
-// - test details view from search results
-// - details view not positioned correctly from theater view
 // - theater h1, make h2 b/c there should only be one h1 on the page
 // - theater view, make width same as width of box office and upcoming views. this way the movie details popup will show up in same location.
 // - setting min-height of theaterlist() yields zero. why? - maybe cuz at first it's invisible?
 // - be careful of .data().rtmovieid, which will return "234" if it's "0234"
-// - make a Current. just like Controls. for getting current theater id, favoritetheaters, tab, postal code, etc.
 // - Favorites list should not have borders if there are none
 // - clicking on the left col stars is buggy, does not maintain selected theater
 // - combine favorite theater list with not-favorite theater list with if condition for favoriteLink class (default vs. lit)
 // - critics & audience titles not always showing up
+// - search for Sherlock - divs need max height, and error with parsing date
 
 codejkjk.movies.HomeIndex = {
     // page elements

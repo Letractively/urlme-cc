@@ -116,7 +116,7 @@
                 <img />
                 <h2>{{=name}}</h2><a href="#" class='mpaaRating' target='_blank' alt='Link to Parents Guide on IMDb.com' title='Link to Parents Guide on IMDb.com'>{{=mpaaRating}}</a>{{=length}}
                 <p class="showtimes">{{=showtimes!}}</p>
-                <div class="ratings"><a data-imdbmovieid="" class='imdb' target='_blank'></a><a class='rt_critics_rating rottenTomato' target='_blank'></a><a class='rt_audience_rating rottenTomato' target='_blank'></a></div>
+                <div class="ratings"><a class='rt_critics_rating rottenTomato' target='_blank'></a><a class='rt_audience_rating rottenTomato' target='_blank'></a><a data-imdbmovieid="" class='imdb' target='_blank'></a></div>
                 <div class="actions">
                     <a href="#" class="hideMovieLink rounded" data-theatermovie="{{=$parent.parent.data.theaterId}}-{{=rtMovieId}}"><span class="x">&#10006;</span>Hide this movie</a>
                     <a href="#" class="movieDetailsLink rounded"><span class="dotdotdot">+</span>More movie details</a>
@@ -129,7 +129,7 @@
     <a href="#" class="{{=className}}">{{=text}}</a>
 </script>
 <script id="movieDetailsTemplate" type="text/x-jquery-tmpl">
-    <a href="#" id="closeMovieDetailsLink">Close<span class="x">&#10006;</span></a>
+    <a href="#" id="closeMovieDetailsLink">Close</a>
     <img class="poster" src="{{=posters.detailed}}" />
     <h2>{{=title}}</h2>
     <p class="description">{{=$ctx.Snippet(synopsis, 400)!}}</p>
@@ -138,7 +138,7 @@
     {{#if $ctx.IsReleased(release_dates.theater)}}
         <div class="ratings"><a href="{{=$ctx.GetIMDbMovieUrl(alternate_ids.imdb)}}" data-imdbmovieid="{{=alternate_ids.imdb}}" class='imdb imdbNotSet' target='_blank'></a><a href="{{=links.alternate}}" class='{{=$ctx.GetCriticsClass(ratings.critics_rating)}} rottenTomato' target='_blank'>{{=ratings.critics_score}}<sup>%</sup></a><a href="{{=links.alternate}}" class='{{=$ctx.GetAudienceClass(ratings.audience_rating)}} rottenTomato' target='_blank'>{{=ratings.audience_score}}<sup>%</sup></a></div>
     {{else}}
-        <p class="releaseDate">Release date: {{=$ctx.FormatReleaseDate(release_dates.theater)}}</p>    
+        <p class="releaseDate">{{=$ctx.FormatReleaseDate(release_dates.theater)}}</p>    
     {{/if}}
     <p class="starring">
         <strong>Starring</strong>: 
@@ -146,6 +146,7 @@
     </p>
 </script>
 <script id="movieListTemplate" type="text/x-jquery-tmpl">
+    {{#if alternate_ids}}
     <div class="movie rounded glowing" data-rtmovieid="{{=id}}">
         <a class="movieDetailsLink" href="#"><img src="{{=posters.detailed}}" /></a>
         <div class="details gradient">
@@ -159,6 +160,7 @@
             {{/if}}
         </div>
     </div>
+    {{/if}}
 </script>
 </body>
 </html>

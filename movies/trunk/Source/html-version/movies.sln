@@ -4,6 +4,7 @@ Microsoft Visual Studio Solution File, Format Version 11.00
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{EF20B33B-4396-4860-AF4B-A95C7D665BD7}"
 	ProjectSection(SolutionItems) = preProject
 		index.htm = index.htm
+		mobile.htm = mobile.htm
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Scripts", "Scripts", "{850F1670-1C82-400F-9BD0-653CFF931C7A}"

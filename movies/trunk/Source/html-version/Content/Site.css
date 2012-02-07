@@ -13,7 +13,6 @@ body
 a:focus { outline: none; } /* firefox */
 a { text-decoration: none; color: #465F82; }
 span.divider { color: #CDCDCD; font-weight: normal; margin: 0 5px; }
-.seeThrough { opacity:0.5 }
 .leftShadow { -webkit-box-shadow: -5px 5px 5px #ccc; -moz-box-shadow: -5px 5px 5px #ccc; box-shadow: -5px 5px 5px #ccc; }
 .glowing { box-shadow: 2px 2px 2px #999; -webkit-box-shadow: 2px 2px 2px #999; -moz-box-shadow: 2px 2px 2px #999; }
 .rounded { border-radius: 5px; -moz-border-radius: 5px; -webkit-border-radius: 5px; }
@@ -44,7 +43,7 @@ header { text-align:center; height:33px; }
 
 /* styles common to both movie div in the lists and the movie details popup */
 
-#movieDetails { font-size: 110%; border: 1px solid #999; display:none; padding: 15px; position: fixed; background: #fff; width: 590px; min-height: 268px; top: 68px; left: 50%; margin-left: -295PX; }
+#movieDetails { z-index:1002; font-size: 110%; border: 1px solid #999; display:none; padding: 15px; position: fixed; background: #fff; width: 590px; min-height: 268px; top: 68px; left: 50%; margin-left: -295PX; }
     #movieDetails #closeMovieDetailsLink { font-weight:bold; text-transform:uppercase; letter-spacing:2px; float: right; /* background: url("images/icons/close.png") no-repeat scroll right top transparent; */ display:inline-block; /* padding: 0 22px 17px 20px; */ }
     #movieDetails #closeMovieDetailsLink .x { margin-left: 6px; color: Red; }
     #movieDetails h2 { font-size: 130%; font-weight: bold; display:inline; }
@@ -63,7 +62,7 @@ header { text-align:center; height:33px; }
         #movieDetails .ratings .criticsRotten { background: url("images/rt-graphics/critics-rotten_small.png") no-repeat scroll left center transparent; }
         #movieDetails .ratings .audienceUpright { padding-left: 36px; background: url("images/rt-graphics/audience-upright_small.png") no-repeat scroll left center transparent; }
         #movieDetails .ratings .audienceSpilled { background: url("images/rt-graphics/audience-spilled_small.png") no-repeat scroll left center transparent; }            
-
+#overlay { background:#666666; opacity:.5; z-index:1001; position:absolute; top:0; left:0; }
 
 #go { width: 50px; height:34px; }
 

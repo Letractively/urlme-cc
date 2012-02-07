@@ -42,6 +42,7 @@ codejkjk.movies.HomeIndex = {
         , NavLinks: function () { return $("nav > a"); }
         , NavTemplate: function () { return $("#navTemplate"); }
         , NewZipCodeInput: function () { return codejkjk.movies.HomeIndex.Controls.ChangeOptionsContainer().find("input[type=text]"); }
+        , Overlay: function () { return $("#overlay"); }
         , RemoveLinks: function () { return $(".actions").find(".removeLink"); }
         , SearchBox: function () { return $("#q"); }
         , SearchResultsView: function () { return $("#searchResultsView"); }
@@ -463,11 +464,16 @@ codejkjk.movies.HomeIndex = {
         // handle movie details links
         $(document).on('click', codejkjk.movies.HomeIndex.Controls.MovieDetailsLinksSelector(), function (e) {
             e.preventDefault();
+
+            // $("body").append("<div style='height:786px;width:1263px;background:#000;opacity:.6;z-index:1001;position:absolute;top:0;left:0'>hi</div>");
+
             var link = $(this);
             var rtMovieId = link.closest("[data-rtmovieid]").data().rtmovieid;
-            codejkjk.movies.HomeIndex.Controls.CurrentView().addClass("seeThrough");
 
             codejkjk.movies.RottenTomatoes.GetMovie(rtMovieId, function (movie) {
+                var overlayHeight = $(document).height() + "px";
+                var overlayWidth = $(document).width() + "px";
+                codejkjk.movies.HomeIndex.Controls.Overlay().css("height", overlayHeight).css("width", overlayWidth).show();
                 codejkjk.movies.HomeIndex.Controls.MovieDetails().html(
                         codejkjk.movies.HomeIndex.Controls.MovieDetailsTemplate().render(movie)
                 ).show();
@@ -475,10 +481,16 @@ codejkjk.movies.HomeIndex = {
             codejkjk.movies.HomeIndex.GetIMDbData();
         });
 
+        // handle clicking of overlay, which should hide movie details popup
+        codejkjk.movies.HomeIndex.Controls.Overlay().click(function () {
+            codejkjk.movies.HomeIndex.Controls.MovieDetails().hide();
+            $(this).hide();
+        });
+
         // handle close movie details link
         $(document).on("click", codejkjk.movies.HomeIndex.Controls.CloseMovieDetailsLinkSelector(), function (e) {
             e.preventDefault();
-            codejkjk.movies.HomeIndex.Controls.CurrentView().removeClass("seeThrough");
+            codejkjk.movies.HomeIndex.Controls.Overlay().hide();
             codejkjk.movies.HomeIndex.Controls.MovieDetails().hide();
         });
 

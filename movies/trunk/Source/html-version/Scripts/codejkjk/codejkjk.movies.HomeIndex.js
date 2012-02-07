@@ -10,6 +10,8 @@
 // - combine favorite theater list with not-favorite theater list with if condition for favoriteLink class (default vs. lit)
 // - critics & audience titles not always showing up
 // - search for Sherlock - divs need max height, and error with parsing date
+// - square off the theater list on the left hand side.
+// - green plus and get a bold one, more like an icon for show movie details.
 
 codejkjk.movies.HomeIndex = {
     // page elements

@@ -39,6 +39,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "codejkjk", "codejkjk", "{EB
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Content", "Content", "{033AF14F-4F03-4928-9CDF-081B8FB822D4}"
 	ProjectSection(SolutionItems) = preProject
+		Content\Mobile.css = Content\Mobile.css
 		Content\Site.css = Content\Site.css
 	EndProjectSection
 EndProject

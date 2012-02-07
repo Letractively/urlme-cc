@@ -12,6 +12,7 @@
 // - search for Sherlock - divs need max height, and error with parsing date
 // - square off the theater list on the left hand side.
 // - green plus and get a bold one, more like an icon for show movie details.
+// - movie details popup - make % fonts similar to movie listings page (all bold, blue links)
 
 codejkjk.movies.HomeIndex = {
     // page elements

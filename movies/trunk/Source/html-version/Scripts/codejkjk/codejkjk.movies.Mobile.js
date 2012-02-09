@@ -3,6 +3,8 @@
 codejkjk.movies.Mobile = {
     // page elements
     Controls: {
+        MovieList: function () { return $("#movieList"); }
+        , MovieTemplate: function () { return $("#movieTemplate"); }
     },
 
     Currents: {
@@ -16,6 +18,15 @@ codejkjk.movies.Mobile = {
         }
     },
 
+    Init: function () {
+        // load box office
+        codejkjk.movies.RottenTomatoes.GetBoxOfficeMovies(function (movies) {
+            codejkjk.movies.Mobile.Controls.MovieList().html(
+                codejkjk.movies.Mobile.Controls.MovieTemplate().render(movies)
+            ).listview('refresh');
+        });
+    },
+
     PageBeforeChange: function (e, data) {
         // handle changepage where the caller is asking us to load a page by url
         console.log("typeof data.toPage = {0}".format(typeof data.toPage));
@@ -24,16 +35,14 @@ codejkjk.movies.Mobile = {
             if (u.hash.search(re) !== -1) {
 
             }
-        }        
+        }
     }
 }
 
-$(function () {
-    $("#movieList").html(
-        $("#movieTemplate").render([{ title: "t1" }, { title: "t2" }])
-    ).listview('refresh');
-});
-
 $(document).bind("pagebeforechange", function (e, data) {
     codejkjk.movies.Mobile.PageBeforeChange(e, data);
+});
+
+$(document).ready(function () {
+    codejkjk.movies.Mobile.Init();
 });

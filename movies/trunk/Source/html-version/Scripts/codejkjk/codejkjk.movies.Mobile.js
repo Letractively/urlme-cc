@@ -33,6 +33,16 @@ codejkjk.movies.Mobile = {
                 codejkjk.movies.Mobile.GetIMDbData();
 
             });
+        } else if (pathName.indexOf("mobile_comingsoon.htm") >= 0) {
+            // load upcoming
+            codejkjk.movies.RottenTomatoes.GetUpcomingMovies(function (movies) {
+
+                codejkjk.movies.Mobile.Controls.MovieList().html(
+                    codejkjk.movies.Mobile.Controls.MovieTemplate().render(movies)
+                ).listview('refresh');
+                codejkjk.movies.Mobile.GetIMDbData();
+
+            });
         }
     },
 

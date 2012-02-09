@@ -31,10 +31,21 @@
 	</div><!-- /header -->
 
 	<div data-role="content">	
-		<p>Coming soon</p>		
+        <ul data-role="listview" data-theme="c" id="movieList">
+        </ul>
 	</div><!-- /content -->
 
 </div><!-- /page -->
+
+<script id="movieTemplate" type="text/x-jquery-tmpl">
+    {{#if alternate_ids}}
+    <li><a href="#">
+        <img src="{{=posters.thumbnail}}" />
+        <h3>{{=title}}<span class="rating">{{=mpaa_rating}}</span></h3>
+        <p class="releaseDate">{{=release_dates.theater}}</p>
+    </a></li>
+    {{/if}}
+</script>
 
 </body>
 </html>

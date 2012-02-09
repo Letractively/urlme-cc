@@ -7,10 +7,13 @@
 	<script src="http://code.jquery.com/jquery-1.6.4.min.js"></script>
 	<script src="http://code.jquery.com/mobile/1.0.1/jquery.mobile-1.0.1.min.js"></script>
     <script src="Scripts/codejkjk/codejkjk.js"></script>
+    <script src="Scripts/codejkjk/codejkjk.movies.Defaults.js"></script>
     <script src="Scripts/codejkjk/codejkjk.movies.Mobile.js"></script>
-
+    <script src="Scripts/codejkjk/codejkjk.movies.RottenTomatoes.js"></script>
+    <script src="Scripts/codejkjk/codejkjk.movies.Flixster.js"></script>
+    <script src="Scripts/codejkjk/codejkjk.movies.IMDB.js"></script>
     <script src="Scripts/Plugins/jsrender.js"></script>
-
+    <script src="Externals/local-cache/local-cache.js"></script>
     <link href="content/mobile.css" rel="stylesheet" type="text/css" />
 </head> 
 <body> 
@@ -20,9 +23,9 @@
         <input type="search" value="Search..." />
         <div data-role="navbar">
             <ul>
-                <li><a href="#" class="ui-btn-active" data-prefetch>Top Box Office</a></li>
-                <li><a href="mobile_showtimes.htm" data-prefetch>Showtimes</a></li>
-                <li><a href="mobile_comingsoon.htm" data-prefetch>Coming Soon</a></li>
+                <li><a href="#" class="ui-btn-active">Top Box Office</a></li>
+                <li><a href="mobile_showtimes.htm">Showtimes</a></li>
+                <li><a href="mobile_comingsoon.htm">Coming Soon</a></li>
             </ul>
         </div>
 	</div><!-- /header -->
@@ -38,7 +41,7 @@
 </div><!-- /page -->
 
 <script id="movieTemplate" type="text/x-jquery-tmpl">
-    <li><a href="#"><img src="" /><h3>{{=title}}</h3></a></li>
+    <li><a href="#"><img src="{{=posters.thumbnail}}" /><h3>{{=title}}</h3></a></li>
 </script>
 
 </body>

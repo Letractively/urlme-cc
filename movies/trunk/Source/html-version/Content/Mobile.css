@@ -3,5 +3,19 @@ strong { font-weight: bold; }
 
 .ui-li-has-thumb .ui-btn-inner a.ui-link-inherit { padding-left: 75px; min-height: 73px; }
 .ui-li-thumb, .ui-listview .ui-li-icon { max-height: 91px; }
+.ul-li-heading { float: left; }
+
+/* movie list */
+.rating { margin-left: 10px; color: #465F82; font-size: 12px; }
+
+.ratings { margin-top:10px; font-weight: bold; }
+.ratings span { float: left; height: 24px; line-height: 24px; }
+.ratings span:not(:first-child) { margin-left: 10px; }
+.ratings .imdb { padding-left:22px; background: url("images/imdb_icon_smallest.png") no-repeat scroll left center transparent; }
+.ratings .rottenTomato { padding-left: 21px; /* color: #506A16; */ }
+.ratings .criticsFresh { padding-left: 20px; background: url("images/rt-graphics/critics-fresh_smallest.png") no-repeat scroll left center transparent; }
+.ratings .criticsRotten { background: url("images/rt-graphics/critics-rotten_smallest.png") no-repeat scroll left center transparent; }
+.ratings .audienceUpright { padding-left: 17px; background: url("images/rt-graphics/audience-upright_smallest.png") no-repeat scroll left center transparent; }
+.ratings .audienceSpilled { background: url("images/rt-graphics/audience-spilled_smallest.png") no-repeat scroll left center transparent; } 
 
 /* debug */

@@ -32,16 +32,23 @@
 
 	<div data-role="content">	
         <ul data-role="listview" data-theme="c" id="movieList">
-            <li><a href="#"><img src="http://content7.flixster.com/movie/11/16/30/11163017_mob.jpg" /><h3>Chronicle</h3></a></li>
-            <li><a href="#"><img src="http://content7.flixster.com/movie/11/16/30/11163057_mob.jpg" /><h3>The Woman in Black</h3></a></li>
-            <li><a href="#"><img src="http://content6.flixster.com/movie/11/16/31/11163156_mob.jpg" /><h3>The Grey</h3></a></li>
         </ul>
 	</div><!-- /content -->
 
 </div><!-- /page -->
 
 <script id="movieTemplate" type="text/x-jquery-tmpl">
-    <li><a href="#"><img src="{{=posters.thumbnail}}" /><h3>{{=title}}</h3></a></li>
+    {{#if alternate_ids}}
+    <li><a href="#">
+        <img src="{{=posters.thumbnail}}" />
+        <h3>{{=title}}<span class="rating">{{=mpaa_rating}}</span></h3>
+        <p class="ratings">
+            <span class='{{=$ctx.GetCriticsClass(ratings.critics_rating)}} rottenTomato'>{{=ratings.critics_score}}<sup>%</sup></span>
+            <span class='{{=$ctx.GetAudienceClass(ratings.audience_rating)}} rottenTomato'>{{=ratings.audience_score}}<sup>%</sup></span>
+            <span data-imdbmovieid="{{=alternate_ids.imdb}}" class='imdb imdbNotSet'></span>
+        </p>
+    </a></li>
+    {{/if}}
 </script>
 
 </body>

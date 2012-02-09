@@ -6,6 +6,11 @@
 	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.0.1/jquery.mobile-1.0.1.min.css" />
 	<script src="http://code.jquery.com/jquery-1.6.4.min.js"></script>
 	<script src="http://code.jquery.com/mobile/1.0.1/jquery.mobile-1.0.1.min.js"></script>
+    <script src="Scripts/codejkjk/codejkjk.js"></script>
+    <script src="Scripts/codejkjk/codejkjk.movies.Mobile.js"></script>
+
+    <script src="Scripts/Plugins/jsrender.js"></script>
+
     <link href="content/mobile.css" rel="stylesheet" type="text/css" />
 </head> 
 <body> 
@@ -23,7 +28,7 @@
 	</div><!-- /header -->
 
 	<div data-role="content">	
-        <ul data-role="listview" data-theme="c">
+        <ul data-role="listview" data-theme="c" id="movieList">
             <li><a href="#"><img src="http://content7.flixster.com/movie/11/16/30/11163017_mob.jpg" /><h3>Chronicle</h3></a></li>
             <li><a href="#"><img src="http://content7.flixster.com/movie/11/16/30/11163057_mob.jpg" /><h3>The Woman in Black</h3></a></li>
             <li><a href="#"><img src="http://content6.flixster.com/movie/11/16/31/11163156_mob.jpg" /><h3>The Grey</h3></a></li>
@@ -31,6 +36,10 @@
 	</div><!-- /content -->
 
 </div><!-- /page -->
+
+<script id="movieTemplate" type="text/x-jquery-tmpl">
+    <li><a href="#"><img src="" /><h3>{{=title}}</h3></a></li>
+</script>
 
 </body>
 </html>

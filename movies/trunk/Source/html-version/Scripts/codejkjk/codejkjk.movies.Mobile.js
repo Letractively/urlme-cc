@@ -34,7 +34,6 @@ codejkjk.movies.Mobile = {
             codejkjk.movies.Mobile.Controls.Upcoming().html(
                     codejkjk.movies.Mobile.Controls.MovieTemplate().render(movies)
                 ).listview('refresh');
-            codejkjk.movies.Mobile.GetIMDbData();
         });
     },
 

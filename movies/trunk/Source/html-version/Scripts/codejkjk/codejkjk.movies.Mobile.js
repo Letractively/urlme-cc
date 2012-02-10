@@ -3,9 +3,10 @@
 codejkjk.movies.Mobile = {
     // page elements
     Controls: {
-        IMDbMoviesNotSet: function () { return $(".imdbNotSet"); }
-        , MovieList: function () { return $("#movieList"); }
+        BoxOffice: function () { return $("#topBoxOffice"); }
+        , IMDbMoviesNotSet: function () { return $(".imdbNotSet"); }
         , MovieTemplate: function () { return $("#movieTemplate"); }
+        , Upcoming: function () { return $("#comingSoon"); }
     },
 
     Currents: {
@@ -19,30 +20,46 @@ codejkjk.movies.Mobile = {
         }
     },
 
+    LoadBoxOfficeMovies: function () {
+        codejkjk.movies.RottenTomatoes.GetBoxOfficeMovies(function (movies) {
+            codejkjk.movies.Mobile.Controls.BoxOffice().html(
+                    codejkjk.movies.Mobile.Controls.MovieTemplate().render(movies)
+                ).listview('refresh');
+            codejkjk.movies.Mobile.GetIMDbData();
+        });
+    },
+
+    LoadUpcomingMovies: function () {
+        codejkjk.movies.RottenTomatoes.GetUpcomingMovies(function (movies) {
+            codejkjk.movies.Mobile.Controls.Upcoming().html(
+                    codejkjk.movies.Mobile.Controls.MovieTemplate().render(movies)
+                ).listview('refresh');
+            codejkjk.movies.Mobile.GetIMDbData();
+        });
+    },
+
+    LoadShowtimes: function () {
+
+    },
+
     Init: function () {
+        // this function is run once
         codejkjk.movies.Mobile.RegisterJsRenderHelpers();
+    },
 
-        var pathName = location.pathname;
-        if (pathName.indexOf("mobile.htm") >= 0) {
+    LoadUrl: function (url) {
+        if (url.indexOf("mobile.htm") >= 0) {
             // load box office
-            codejkjk.movies.RottenTomatoes.GetBoxOfficeMovies(function (movies) {
-
-                codejkjk.movies.Mobile.Controls.MovieList().html(
-                    codejkjk.movies.Mobile.Controls.MovieTemplate().render(movies)
-                ).listview('refresh');
-                codejkjk.movies.Mobile.GetIMDbData();
-
-            });
-        } else if (pathName.indexOf("mobile_comingsoon.htm") >= 0) {
+            console.log("loading box office");
+            codejkjk.movies.Mobile.LoadBoxOfficeMovies();
+        } else if (url.indexOf("mobile_comingsoon.htm") >= 0) {
             // load upcoming
-            codejkjk.movies.RottenTomatoes.GetUpcomingMovies(function (movies) {
-
-                codejkjk.movies.Mobile.Controls.MovieList().html(
-                    codejkjk.movies.Mobile.Controls.MovieTemplate().render(movies)
-                ).listview('refresh');
-                codejkjk.movies.Mobile.GetIMDbData();
-
-            });
+            console.log("loading upcoming");
+            codejkjk.movies.Mobile.LoadUpcomingMovies();
+        } else if (url.indexOf("mobile_showtimes.htm") >= 0) {
+            // load showtimes
+            console.log("loading showtimes");
+            codejkjk.movies.Mobile.LoadShowtimes();
         }
     },
 
@@ -90,6 +107,28 @@ codejkjk.movies.Mobile = {
         });
     },
 
+    PageChange: function (e, data) {
+        var pathName = $.mobile.path.parseUrl(data.toPage).pathname;
+    },
+
+    PageBeforeChange: function (e, data) {
+        // handle changepage where the caller is asking us to load a page by url
+        if (typeof data.toPage === "string") {
+            var pathName = $.mobile.path.parseUrl(data.toPage).pathname;
+
+            // console.log('in pagebefore change, pathname = ' + pathName);
+
+            // codejkjk.movies.Mobile.LoadUrl(pathName);
+
+            // e.preventDefault(); // is this a good thing?
+
+            //            var u = $.mobile.path.parseUrl(data.toPage), re = /^#movie-details/;
+            //            if (u.hash.search(re) !== -1) {
+
+            //            }
+        }
+    },
+
     GetIMDbData: function () {
         codejkjk.movies.Mobile.Controls.IMDbMoviesNotSet().each(function () {
             var imdb = $(this);
@@ -100,27 +139,36 @@ codejkjk.movies.Mobile = {
                 if (rating) {
                     ratings.html(rating);
                 }
-                ratings.removeClass("imdbNotSet");                
+                ratings.removeClass("imdbNotSet");
             });
         });
-    },
-
-    PageBeforeChange: function (e, data) {
-        // handle changepage where the caller is asking us to load a page by url
-        console.log("typeof data.toPage = {0}".format(typeof data.toPage));
-        if (typeof data.toPage === "string") {
-            var u = $.mobile.path.parseUrl(data.toPage), re = /^#movie-details/;
-            if (u.hash.search(re) !== -1) {
-
-            }
-        }
     }
 }
 
+$(document).bind("pageinit", function (e, data) {
+    // codejkjk.movies.Mobile.PageBeforeChange(e, data);
+    console.log('in pageinit, loc.pathname = ' + location.pathname + ', page1div len = ' + $("#topBoxOffice").length + ' page3div len = ' + $("#comingSoon").length);
+});
+
 $(document).bind("pagebeforechange", function (e, data) {
-    codejkjk.movies.Mobile.PageBeforeChange(e, data);
+    // codejkjk.movies.Mobile.PageBeforeChange(e, data);
+    console.log('in pagebeforechange, loc.pathname = ' + location.pathname + ', page1div len = ' + $("#topBoxOffice").length + ' page3div len = ' + $("#comingSoon").length);
+});
+
+$(document).bind("pagechange", function (e, data) {
+    // codejkjk.movies.Mobile.PageChange(e, data);
+    console.log('in pagechange, loc.pathname = ' + location.pathname + ', page1div len = ' + $("#topBoxOffice").length + ' page3div len = ' + $("#comingSoon").length);
+});
+
+$(document).bind("pageload", function (e, data) {
+    console.log('in pageload, data.url.pathname = ' + $.mobile.path.parseUrl(data.url).pathname + ', page1div len = ' + $("#topBoxOffice").length + ' page3div len = ' + $("#comingSoon").length);
+});
+
+$(document).bind("pageshow", function () {
+    console.log('in pageshow, loc.pathname = ' + location.pathname + ', page1div len = ' + $("#topBoxOffice").length + ' page3div len = ' + $("#comingSoon").length);
 });
 
 $(document).ready(function () {
+    // this is called once, when user visits any of the mobile pages
     codejkjk.movies.Mobile.Init();
 });

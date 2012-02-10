@@ -4,7 +4,13 @@ strong { font-weight: bold; }
 .ui-li-has-thumb .ui-btn-inner a.ui-link-inherit { padding-left: 75px; min-height: 73px; }
 .ui-li-thumb, .ui-listview .ui-li-icon { max-height: 91px; }
 .ul-li-heading { float: left; }
-.ui-btn-hover-c { background: -moz-linear-gradient(#FDFDFD, #EEEEEE) repeat scroll 0 0 #EEEEEE; border-color: #CCC; } /* copy of .ui-btn-up-c's background property. confusing to user if background changes on hover ("am I accidentally selecting this??") */
+.ui-btn-hover-c  
+{
+    background: -moz-linear-gradient(#FDFDFD, #EEEEEE) repeat scroll 0 0 #EEEEEE; 
+    background: -webkit-linear-gradient(top,#FDFDFD,#EEEEEE);
+    background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#FDFDFD), to(#EEEEEE));
+    border-color: #CCC; 
+} /* copy of .ui-btn-up-c's background property. confusing to user if background changes on hover ("am I accidentally selecting this??") */
 
 /* movie list */
 p { color: #535156; } /* bullet color */

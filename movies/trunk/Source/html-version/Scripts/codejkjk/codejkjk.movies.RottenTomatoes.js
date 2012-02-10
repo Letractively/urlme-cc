@@ -55,6 +55,7 @@ codejkjk.movies.RottenTomatoes = {
         $.ajax({
             url: url,
             dataType: "jsonp",
+            beforeSend: function (xhr) { xhr.setRequestHeader('Access-Control-Allow-Origin', '*'); },
             success: function (response) {
                 $.cacheItem(cacheKey, response.movies, { expires: codejkjk.movies.Defaults.CacheExpires });
                 return callback(response.movies); 

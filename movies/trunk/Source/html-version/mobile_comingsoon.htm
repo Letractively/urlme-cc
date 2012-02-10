@@ -12,6 +12,7 @@
     <script src="Scripts/codejkjk/codejkjk.movies.RottenTomatoes.js"></script>
     <script src="Scripts/codejkjk/codejkjk.movies.Flixster.js"></script>
     <script src="Scripts/codejkjk/codejkjk.movies.IMDB.js"></script>
+    <script src="Scripts/Plugins/date.js"></script>
     <script src="Scripts/Plugins/jsrender.js"></script>
     <script src="Externals/local-cache/local-cache.js"></script>
     <link href="content/mobile.css" rel="stylesheet" type="text/css" />
@@ -23,15 +24,14 @@
         <input type="search" value="Search..." />
         <div data-role="navbar">
             <ul>
-                <li><a href="mobile.htm">Top Box Office</a></li>
-                <li><a href="mobile_showtimes.htm">Showtimes</a></li>
-                <li><a href="#" class="ui-btn-active">Coming Soon</a></li>
+                <li><a href="mobile.htm" data-ajax="false">Top Box Office</a></li>
+                <li><a href="mobile_showtimes.htm" data-ajax="false">Showtimes</a></li>
+                <li><a href="#" class="ui-btn-active" data-ajax="false">Coming Soon</a></li>
             </ul>
         </div>
 	</div><!-- /header -->
 
 	<div data-role="content">
-        coming soon !!!1	
         <ul data-role="listview" data-theme="c" id="comingSoon">
         </ul>
 	</div><!-- /content -->
@@ -50,7 +50,7 @@
                 <span data-imdbmovieid="{{=alternate_ids.imdb}}" class='imdb imdbNotSet'></span>
             </p>
         {{else}}
-            <p class="releaseDate">{{=release_dates.theater}}</p>
+            <p class="releaseDate">{{=$ctx.FormatReleaseDate(release_dates.theater)}}</p>
         {{/if}}
     </a></li>
     {{/if}}

@@ -45,6 +45,8 @@ codejkjk.movies.Mobile = {
     Init: function () {
         // this function is run once
         codejkjk.movies.Mobile.RegisterJsRenderHelpers();
+
+        codejkjk.movies.Mobile.LoadUrl(location.pathname);
     },
 
     LoadUrl: function (url) {
@@ -107,9 +109,9 @@ codejkjk.movies.Mobile = {
         });
     },
 
-    PageChange: function (e, data) {
-        var pathName = $.mobile.path.parseUrl(data.toPage).pathname;
-    },
+    //    PageChange: function (e, data) {
+    //        var pathName = $.mobile.path.parseUrl(data.toPage).pathname;
+    //    },
 
     PageBeforeChange: function (e, data) {
         // handle changepage where the caller is asking us to load a page by url
@@ -145,28 +147,28 @@ codejkjk.movies.Mobile = {
     }
 }
 
-$(document).bind("pageinit", function (e, data) {
-    // codejkjk.movies.Mobile.PageBeforeChange(e, data);
-    console.log('in pageinit, loc.pathname = ' + location.pathname + ', page1div len = ' + $("#topBoxOffice").length + ' page3div len = ' + $("#comingSoon").length);
-});
+//$(document).bind("pageinit", function (e, data) {
+//    // codejkjk.movies.Mobile.PageBeforeChange(e, data);
+//    console.log('in pageinit, loc.pathname = ' + location.pathname + ', page1div len = ' + $("#topBoxOffice").length + ' page3div len = ' + $("#comingSoon").length);
+//});
 
-$(document).bind("pagebeforechange", function (e, data) {
-    // codejkjk.movies.Mobile.PageBeforeChange(e, data);
-    console.log('in pagebeforechange, loc.pathname = ' + location.pathname + ', page1div len = ' + $("#topBoxOffice").length + ' page3div len = ' + $("#comingSoon").length);
-});
+//$(document).bind("pagebeforechange", function (e, data) {
+//    // codejkjk.movies.Mobile.PageBeforeChange(e, data);
+//    console.log('in pagebeforechange, loc.pathname = ' + location.pathname + ', page1div len = ' + $("#topBoxOffice").length + ' page3div len = ' + $("#comingSoon").length);
+//});
 
-$(document).bind("pagechange", function (e, data) {
-    // codejkjk.movies.Mobile.PageChange(e, data);
-    console.log('in pagechange, loc.pathname = ' + location.pathname + ', page1div len = ' + $("#topBoxOffice").length + ' page3div len = ' + $("#comingSoon").length);
-});
+//$(document).bind("pagechange", function (e, data) {
+//    // codejkjk.movies.Mobile.PageChange(e, data);
+//    console.log('in pagechange, loc.pathname = ' + location.pathname + ', page1div len = ' + $("#topBoxOffice").length + ' page3div len = ' + $("#comingSoon").length);
+//});
 
-$(document).bind("pageload", function (e, data) {
-    console.log('in pageload, data.url.pathname = ' + $.mobile.path.parseUrl(data.url).pathname + ', page1div len = ' + $("#topBoxOffice").length + ' page3div len = ' + $("#comingSoon").length);
-});
+//$(document).bind("pageload", function (e, data) {
+//    console.log('in pageload, data.url.pathname = ' + $.mobile.path.parseUrl(data.url).pathname + ', page1div len = ' + $("#topBoxOffice").length + ' page3div len = ' + $("#comingSoon").length);
+//});
 
-$(document).bind("pageshow", function () {
-    console.log('in pageshow, loc.pathname = ' + location.pathname + ', page1div len = ' + $("#topBoxOffice").length + ' page3div len = ' + $("#comingSoon").length);
-});
+//$(document).bind("pageshow", function () {
+//    console.log('in pageshow, loc.pathname = ' + location.pathname + ', page1div len = ' + $("#topBoxOffice").length + ' page3div len = ' + $("#comingSoon").length);
+//});
 
 $(document).ready(function () {
     // this is called once, when user visits any of the mobile pages

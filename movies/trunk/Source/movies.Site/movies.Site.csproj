@@ -71,6 +71,7 @@
     <Content Include="Content\critics-fresh.png" />
     <Content Include="Content\critics-rotten.png" />
     <Content Include="Content\external-link-icon.png" />
+    <Content Include="Content\jquery.mobile-1.0.1.min.css" />
     <Content Include="Content\star.png" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
@@ -79,8 +80,7 @@
     <Content Include="Scripts\codejkjk.movies.HomeIndex.js" />
     <Content Include="Scripts\codejkjk.urlme.LinkList.js" />
     <Content Include="Scripts\codejkjk.movies.IMDB.js" />
-    <Content Include="Scripts\jquery-1.4.1.min-vsdoc.js" />
-    <Content Include="Scripts\jquery-1.4.1.min.js" />
+    <Content Include="Scripts\jquery-1.7.1.min.js" />
     <Content Include="Scripts\jquery.autocomplete.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">

@@ -1,37 +1,186 @@
+html{font-size:12px;color:#000;background:#FFF;}body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,code,form,fieldset,legend,input,button,textarea,p,blockquote,th,td{margin:0;padding:0;}table{border-collapse:collapse;border-spacing:0;}fieldset,img{border:0;}address,caption,cite,code,dfn,em,strong,th,var,optgroup{font-style:inherit;font-weight:inherit;}del,ins{text-decoration:none;}li{list-style:none;}caption,th{text-align:left;}h1,h2,h3,h4,h5,h6{font-size:100%;font-weight:normal;}q:before,q:after{content:'';}abbr,acronym{border:0;font-variant:normal;}sup{vertical-align:baseline;}sub{vertical-align:baseline;}legend{color:#000;}input,button,textarea,select,optgroup,option{font-family:inherit;font-size:inherit;font-style:inherit;font-weight:inherit;}input,button,textarea,select{font-size:100%;}
+strong { font-weight: bold; }
+html { background: #ccc; } /* dark gray = #535156 */
+
 body
 {
     font-size: 12px;
     font-family: Verdana, Tahoma, Arial, "Helvetica Neue", Helvetica, Sans-Serif;
-    color: #232323;
+    color: #535156;
     /* text-align: center; */
 }
+.hidden { display:none; }
+a:focus { outline: none; } /* firefox */
+a { text-decoration: none; color: #465F82; }
+span.divider { color: #CDCDCD; font-weight: normal; margin: 0 5px; }
+.leftShadow { -webkit-box-shadow: -5px 5px 5px #ccc; -moz-box-shadow: -5px 5px 5px #ccc; box-shadow: -5px 5px 5px #ccc; }
+.glowing { box-shadow: 2px 2px 2px #999; -webkit-box-shadow: 2px 2px 2px #999; -moz-box-shadow: 2px 2px 2px #999; }
+.rounded { border-radius: 5px; -moz-border-radius: 5px; -webkit-border-radius: 5px; }
+.rightArrow { border-top: 30px solid transparent; border-bottom: 30px solid transparent; border-left: 30px solid #C5D8E6; }
+/* orig: second hex in glowing = #eee */
+.gradient { background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#ffffff), to(#e8e8e8)); background: -webkit-linear-gradient(top, #ffffff, #e8e8e8); background: -moz-linear-gradient(top, #ffffff, #e8e8e8); }
 
-#container { margin: 0 auto; width: 467px; text-align:left; }
+#container { margin: 0 auto; width: 1000px; text-align:left; padding-top:10px; } /* same width as cnn.com */
 
-#movies { margin-top: 15px; }
+header { text-align:center; height:33px; }
+    header nav { float: left; font-size: 150%; margin-top:5px; margin-right: 10px; }
+        header nav a { margin-right: 20px; }
+        header nav a.selected { color: #fff; background: #465F82; padding: 5px 10px; }
 
-.notYetReleased { color: Gray; }
-.notYetReleased img { width: 80px; }
-.notYetReleased .notYetReleasedMessage { overflow: auto; margin-top: 10px; }
-.movie.unPinned .actions { display:none; } 
-.movie { overflow: hidden; margin-top:10px; position: relative; }
-.movie .actions { position: absolute; bottom: 10px; right: 5px; }
-.movie .actions a { padding: 5px; border: 1px solid gray; margin-left: 5px; text-decoration: none; color: Gray; }
-.movie.pinned .actions a.pinLink { color: Black; }
-.movie .actions a:hover { color: black; }
-.movie.unPinned:hover .actions { display:block; }
-.movie:first-child { margin-top:0px; }
-.movie img { float: left; }
-.movie .details { margin-left: 10px; float: left; font-size: 120%; }
-.movie .details .title { font-weight: bold; margin-right: 20px; }
-.movie .details .ratings { margin-top: 10px; overflow:auto; }
-.movie .details .links { font-size: 80%; margin-top:14px; }
-#loading { margin-top: 10px; }
-#loading img { margin-right: 10px; }
+    header #q  
+    {
+        padding: 5px; 
+        font-size: 15px; 
+        border: 1px solid #717171; 
+        width: 200px; 
+        outline: none; 
+        background: -webkit-gradient(linear, left top, left bottom, from(#F8F8F8), to(#ffffff));
+        background: -moz-linear-gradient(top,  #F8F8F8,  #ffffff);  
+        float: left;
+    }
+
+.content { margin-top: 25px; display:none; width: 1000px; overflow: auto; }
+
+/* styles common to both movie div in the lists and the movie details popup */
+
+#movieDetails { z-index:1002; font-size: 110%; border: 1px solid #999; display:none; padding: 15px; position: fixed; background: #fff; width: 590px; min-height: 268px; top: 68px; left: 50%; margin-left: -295PX; }
+    #movieDetails #closeMovieDetailsLink { font-weight:bold; text-transform:uppercase; letter-spacing:2px; float: right; /* background: url("images/icons/close.png") no-repeat scroll right top transparent; */ display:inline-block; /* padding: 0 22px 17px 20px; */ }
+    #movieDetails #closeMovieDetailsLink .x { margin-left: 6px; color: Red; }
+    #movieDetails h2 { font-size: 130%; font-weight: bold; display:inline; }
+    #movieDetails img.poster { width: 180px; height: 267px; float: left; margin-right: 15px; }
+    #movieDetails p.description { margin-top: 10px; }
+    #movieDetails a.trailerLink { margin-top: 15px; font-weight: bold; display:inline-block; }
+    #movieDetails .ratingAndLength { margin-top: 15px; }
+        #movieDetails .ratingAndLength .mpaaRating { font-weight: bold; margin-right:5px; }
+    #movieDetails .ratings { margin-top: 15px; overflow:auto; }
+    #movieDetails .releaseDate { margin-top: 15px; font-weight: bold; }
+    #movieDetails .starring { margin-top: 15px; }
+        #movieDetails .ratings a { float: left; height: 32px; margin-right: 10px; line-height: 32px; }
+        #movieDetails .ratings .rottenTomato { padding-left: 39px; font-weight: bold; color: #506A16; }
+        #movieDetails .ratings .imdb { width: 28px; padding-left: 41px; color: Black; background: url("images/imdb_icon_small.png") no-repeat scroll left center transparent; }
+        #movieDetails .ratings .criticsFresh { background: url("images/rt-graphics/critics-fresh_small.png") no-repeat scroll left center transparent; }
+        #movieDetails .ratings .criticsRotten { background: url("images/rt-graphics/critics-rotten_small.png") no-repeat scroll left center transparent; }
+        #movieDetails .ratings .audienceUpright { padding-left: 36px; background: url("images/rt-graphics/audience-upright_small.png") no-repeat scroll left center transparent; }
+        #movieDetails .ratings .audienceSpilled { background: url("images/rt-graphics/audience-spilled_small.png") no-repeat scroll left center transparent; }            
+#overlay { background:#666666; opacity:.5; z-index:1001; position:absolute; top:0; left:0; }
+
+#go { width: 50px; height:34px; }
+
+.movie { position: relative; overflow:auto; } /* or gray = #efefef */
+
+.movieList { }
+    /* #boxOfficeView .movie:not(:nth-child(1)) { margin-top:10px; } */
+    .movieList .movie:not(:nth-child(5n+5)) { margin-right: 24px; }
+    .movieList .movie { margin-bottom: 24px; float: left; width: 180px; }
+        .movieList .movie .details { padding: 10px; }
+        .movieList .movie img { width: 180px; height: 267px; } /* thumbnail = 61 x 91 */
+        .movieList .movie .ratingAndLength .mpaaRating { font-weight: bold; float: right; }
+        .movieList .movie .ratings a { font-weight: bold; float: left; height: 24px; line-height: 24px; }
+        .movieList .movie .ratings a:not(:first-child) { margin-left: 5px; }
+        .movieList .movie .ratings .imdb { padding-left:22px; background: url("images/imdb_icon_smallest.png") no-repeat scroll left center transparent; }
+        .movieList .movie .ratings .rottenTomato { padding-left: 21px; /* color: #506A16; */ }
+        .movieList .movie .ratings .criticsFresh { padding-left: 20px; background: url("images/rt-graphics/critics-fresh_smallest.png") no-repeat scroll left center transparent; }
+        .movieList .movie .ratings .criticsRotten { background: url("images/rt-graphics/critics-rotten_smallest.png") no-repeat scroll left center transparent; }
+        .movieList .movie .ratings .audienceUpright { padding-left: 17px; background: url("images/rt-graphics/audience-upright_smallest.png") no-repeat scroll left center transparent; }
+        .movieList .movie .ratings .audienceSpilled { background: url("images/rt-graphics/audience-spilled_smallest.png") no-repeat scroll left center transparent; }         
+
+.favoriteLink.default { background:url("images/icons/star_default.png") no-repeat scroll center transparent; }
+.favoriteLink.default:hover { background:url("images/icons/star_default_hover.png") no-repeat scroll center transparent; }
+.favoriteLink.lit { background:url("images/icons/star_lit.png") no-repeat scroll center transparent; }
+.favoriteLink.lit:hover { background:url("images/icons/star_lit_hover.png") no-repeat scroll center transparent; }
+
+#showtimesView #theaters { float: left; width: 300px; }
+    #showtimesView #theaters .theaterList.favorites { }
+    
+    .theaterList div.favoriteLink { float: left; width: 19px; height: 35px; margin-right: 7px; }
+    
+    #showtimesView #theaters .theaterList { margin-top:10px; }
+        #showtimesView #theaters .theaterList a { display:block; padding: 10px; }
+        #showtimesView #theaters .theaterList a:not(:first-child) { margin-top:0px; }
+        #showtimesView #theaters .theaterList a.selected { background: #535156; border-top-left-radius: 5px; border-bottom-left-radius: 5px; -moz-border-bottom-left-radius: 5px; -moz-border-top-left-radius: 5px; -webkit-border-bottom-left-radius: 5px; -webkit-border-top-left-radius: 5px; }
+        #showtimesView #theaters .theaterList a:not(.selected) { color: #465F82; }
+            #showtimesView #theaters .theaterList a div.theaterName { font-weight: bold; margin-bottom: 2px; font-size: 110%; }
+            #showtimesView #theaters .theaterList a.selected div.theaterAddress { font-size: 90%; color: #999; }
+            #showtimesView #theaters .theaterList a.selected div.theaterName { color: #FFF; }
+            #showtimesView #theaters .theaterList a:not(.selected) div.theaterAddress { font-size: 90%; color: #535156; }
+
+    #showtimesView #theaters #location { padding: 0; color: #465F82; }
+        #showtimesView #theaters #location #theatersNearYou { background: gray; }
+        #showtimesView #theaters #location #searchByZip { background: orange; }
+        #showtimesView #theaters #location #currentZip { font-weight: bold; }
+        #showtimesView #theaters #location #changeCurrentZipLink { margin-left: 10px; color: #535156; }
+        #showtimesView #theaters #location #changeOptions { margin-right: 10px; background: #535156; display:none; padding: 8px; margin-top:5px; color: #999; }
+            #showtimesView #theaters #location #changeOptions a { font-weight: bold; color: #fff; }
+            #showtimesView #theaters #location #changeOptions button { padding: 3px; }
+            #showtimesView #theaters #location #changeOptions input { padding: 4px; width: 80px; margin-right:4px; }
+        #showtimesView #theaters #location #nearZipCode { position: absolute; right: 5px; } /* hide for now, until we get this thing working */
+            #showtimesView #theaters #location #nearZipCode #postalCode { font-weight: bold; } /* hide for now, until we get this thing working */
+
+#showtimesView #currentTheaterContainer { float: left; width: 646px; } /* orig: 681 > 671 */
+    #showtimesView #currentTheaterContainer .theater { background: #535156; padding: 15px; }
+    #showtimesView #currentTheaterContainer .theater:not(.selected) { display: none; }
+    #showtimesView #currentTheaterContainer .theater.selected { display: block; }
+        #showtimesView #currentTheaterContainer .theater .theaterNameAndFavorite { overflow: auto; }
+            #showtimesView #currentTheaterContainer .theater .theaterNameAndFavorite h1 { font-size: 150%; font-weight: bold; color: #FFFFFF; float: left; }
+            #showtimesView #currentTheaterContainer .theater .theaterNameAndFavorite a.favoriteLink { margin: 1px 0 0 0px; padding: 0 10px; display:block; float: left; width: 19px; height: 19px; }
+           
+        #showtimesView #currentTheaterContainer .theater p.address { margin-top:5px; color: #999; }
+        #showtimesView #currentTheaterContainer .theater .movie { margin-top:10px; height: 91px; height: 91px; padding: 10px; }
+            #showtimesView #currentTheaterContainer .theater .movie img { float: left; }
+        
+            .content .movie .ratings { margin-top: 10px; overflow:auto; }
+            .content .movie .mpaaRating { font-weight: bold; }
+            .content .movie .showtimes { margin-top: 10px; }
+            .content .movie .releaseDate { margin-top: 10px; font-weight: bold; }
+            .content .movie img { margin-right: 10px; display:block; }
+            .content .movie h2 { display:inline; font-weight: bold; margin-right: 10px; }
+            .content .movie .actions { position: absolute; right: 8px; bottom: 17px; }
+                .content .movie .actions a { padding: 8px 10px; border: 1px solid #C5D8E6; font-size: 90%; }
+                .content .movie .actions a:first-child { margin-right: 5px; }
+                .content .movie .actions a > span { margin-right: 6px; } /* for "x" and "..." "icons", .x and .dotdotdot */
+                .content .movie .actions a.hideMovieLink .x { color: Red; }
+                .content .movie .actions a.movieDetailsLink .dotdotdot { font-weight:bold; }
+                .content .movie .actions a:hover { border: 1px solid #465F82; }
+
+/* begin: elements specific to theater view */
+#showtimesView #currentTheaterContainer .theater .showHiddenMoviesLinkContainer { overflow:auto; }
+    #showtimesView #currentTheaterContainer .theater .showHiddenMoviesLinkContainer .showHiddenMoviesLink { color: #FFF; text-align: right; font-weight: bold; display:inline-block; float:right; }
+#showtimesView #currentTheaterContainer .theater .showtimeDays { margin:15px 0; font-size: 130%; }
+    #showtimesView #currentTheaterContainer .theater .showtimeDays a:not(:first-child) { padding-left: 20px; }
+    #showtimesView #currentTheaterContainer .theater .showtimeDays a::first-child { padding: 0; }
+    #showtimesView #currentTheaterContainer .theater .showtimeDays a.active { color: #FFF; font-weight: bold; cursor:text; }                
+    #showtimesView #currentTheaterContainer .theater .showtimeDays a:not(.active) { color: #999; }
+    #showtimesView #currentTheaterContainer .theater .movie .ratings a { font-weight: bold; padding-left: 28px; float: left; height: 24px; line-height: 24px; }
+    #showtimesView #currentTheaterContainer .theater .movie .ratings a:not(:first-child) { margin-left: 5px; }
+    #showtimesView #currentTheaterContainer .theater .movie .ratings .rottenTomato { padding-left: 27px; /* color: #506A16; */ }
+    #showtimesView #currentTheaterContainer .theater .movie .ratings .imdb { background: url("images/star_small.png") no-repeat scroll left center transparent; }
+    #showtimesView #currentTheaterContainer .theater .movie .ratings .criticsFresh { background: url("images/rt-graphics/critics-fresh_smaller.png") no-repeat scroll left center transparent; }
+    #showtimesView #currentTheaterContainer .theater .movie .ratings .criticsRotten { background: url("images/rt-graphics/critics-rotten_smaller.png") no-repeat scroll left center transparent; }
+    #showtimesView #currentTheaterContainer .theater .movie .ratings .audienceUpright { padding-left: 25px; background: url("images/rt-graphics/audience-upright_smaller.png") no-repeat scroll left center transparent; }
+    #showtimesView #currentTheaterContainer .theater .movie .ratings .audienceSpilled { background: url("images/rt-graphics/audience-spilled_smaller.png") no-repeat scroll left center transparent; }                
+/* end: elements specific to theater view */
+
+#movies .notYetReleased { color: Gray; }
+#movies .notYetReleased .notYetReleasedMessage { overflow: auto; margin-top: 10px; }
+#movies .notYetReleased img { opacity:0.4; filter:alpha(opacity=40); /* For IE8 and earlier */ }
+#movies .movie.unPinned .actions { display:none; } 
+
+#movies .movie { overflow: hidden; margin-bottom:15px; position: relative; width: 415px; float: left; height:133px; }
+#movies .movie .actions { position: absolute; bottom: 10px; right: 5px; }
+#movies .movie .actions a { padding: 5px; border: 1px solid gray; margin-left: 5px; text-decoration: none; color: Gray; }
+#movies .movie.pinned .actions a.pinLink { color: Black; }
+#movies .movie .actions a:hover { color: black; }
+#movies .movie.unPinned:hover .actions { display:block; }
+/* .movie:first-child { margin-top:0px; } */
+#movies .movie img { float: left; max-width: 85px; }
+#movies .movie .details { margin-left: 10px; float: left; font-size: 120%; }
+#movies .movie .details .title { font-weight: bold; margin-right: 20px; }
+#movies .movie .details .ratings { margin-top: 10px; overflow:auto; }
+
 a.external { padding-right: 15px; }
-a.external:hover { background: url('/content/external-link-icon.png') no-repeat top right; }
-#go { padding: 10px; width: 50px; }
-.movie .details .ratings .star
+a.disabled { color: Black; cursor: text; }
+a.external:hover { background: url('images/icons/external-link-icon.png') no-repeat top right; }
+#movies .movie .ratings .star
 {
     color: black;
     display: inline-block;
@@ -44,37 +193,22 @@ a.external:hover { background: url('/content/external-link-icon.png') no-repeat 
     text-align: center;
     vertical-align: middle;
     width: 66px;    
-    background: url("/content/star.png") no-repeat scroll 0 0 transparent;
+    background: url("star.png") no-repeat scroll 0 0 transparent;
     margin-right:30px;
 }
-.movie .details .ratings .rating 
+#movies .movie .ratings a
 {
-    float: left;
+    float: left; text-decoration: none;
 }
-.movie .details .ratings .rottenTomato { height: 48px; padding-left: 54px; line-height: 48px; font-weight: bold; color: #506A16; margin-top:8px; margin-right: 14px; }
-.movie .details .ratings .criticsFresh { background: url("/content/critics-fresh.png") no-repeat scroll 0 0 transparent; }
-.movie .details .ratings .criticsRotten { background: url("/content/critics-rotten.png") no-repeat scroll 0 0 transparent; }
-.movie .details .ratings .audienceUpright { background: url("/content/audience-upright.png") no-repeat scroll 0 0 transparent; }
-.movie .details .ratings .audienceSpilled { background: url("/content/audience-spilled.png") no-repeat scroll 0 0 transparent; }
+#movies .movie .ratings .rottenTomato { height: 48px; padding-left: 54px; line-height: 49px; font-weight: bold; color: #506A16; margin-top:8px; margin-right: 14px; }
+#movies .movie .ratings .criticsFresh { background: url("critics-fresh.png") no-repeat scroll 0 0 transparent; }
+#movies .movie .ratings .criticsRotten { background: url("critics-rotten.png") no-repeat scroll 0 0 transparent; }
+#movies .movie .ratings .audienceUpright { background: url("audience-upright.png") no-repeat scroll 0 0 transparent; }
+#movies .movie .ratings .audienceSpilled { background: url("audience-spilled.png") no-repeat scroll 0 0 transparent; }
 
-#q  
-{
-    padding: 5px; 
-    font-size: 25px; 
-    border: 1px solid #717171; 
-    border-radius: 5px; 
-    width: 400px; 
-    outline: none; 
-    background: -webkit-gradient(linear, left top, left bottom, from(#F8F8F8), to(#ffffff));
-    background: -moz-linear-gradient(top,  #F8F8F8,  #ffffff);  
-    -webkit-box-shadow: 1px 1px 0px #efefef;
-    -moz-box-shadow: 1px 1px 0px #efefef;
-    box-shadow:  1px 1px 0px #efefef;
-    margin-right:5px;
-    float: left;
-}
-
+/*
 .button {
+	float:left;
 	display: inline-block;
 	outline: none;
 	cursor: pointer;
@@ -112,4 +246,54 @@ a.external:hover { background: url('/content/external-link-icon.png') no-repeat 
 	background: -webkit-gradient(linear, left top, left bottom, from(#0078a5), to(#00adee));
 	background: -moz-linear-gradient(top,  #0078a5,  #00adee);
 	filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#0078a5', endColorstr='#00adee');
+}
+*/
+
+/* This is for the jquery mask plugin */
+.loadmask { z-index: 100; position: absolute; top: 0; left: 0; -moz-opacity: 0.5; opacity: .50; filter: alpha(opacity=50); background-color: #CCC; width: 100%; height: 100%; zoom: 1; }
+.loadmask-msg { z-index: 20001; position: absolute; top: 0; left: 0; padding: 0; margin: 0; }
+.loadmask-msg div { padding: 0; margin: 0; background: transparent url('images/processing-bar.gif') no-repeat center center; border: 0; cursor: wait; width: 220px; height: 19px; }
+.masked { overflow: hidden !important; }
+.masked-relative { position: relative !important; }
+.masked-hidden { visibility: hidden !important; }
+
+/* css for tabs */
+ul#views {	height: 36px; padding: 0 0 0 20px; width: 960px; position: relative; overflow: hidden; }
+ul#views li { -webkit-border-radius: 6px; -moz-border-radius: 6px; border-radius: 6px; float: left; margin: 0 10px 0 0; background-color: #2B477D; border: solid 1px #415F9D; position: relative; z-index: 1; }
+ul#views li.active {	z-index: 3; }
+ul#views li.shadow { width: 100%; height: 2px; position: absolute; bottom: -3px; left: 0; border: none; background: none; z-index: 2; -webkit-box-shadow: #111 0 -2px 6px; -moz-box-shadow: #111 0 -2px 6px; box-shadow: #111 0 -2px 6px; }
+ul#views li a:link, ul#views li a:visited {
+	-webkit-border-radius: 6px;
+	-moz-border-radius: 6px;
+	border-radius: 6px;
+	display: block;
+	text-align: center;
+	width: 130px;
+	height: 40px;
+	line-height: 36px;
+	font-family: Arial, Helvetica, sans-serif;
+	text-transform: uppercase;
+	text-decoration: none;
+	font-size: 12px;
+	font-weight: bold;
+	color: #fff;
+	letter-spacing: 1px;
+	outline: none;
+	float: left;
+	background: #2B477D;
+	-webkit-transition: background-color 0.3s linear;
+	-moz-transition: background-color 0.3s linear;
+	-o-transition: background-color 0.3s linear;
+}
+
+ul#views li a:hover {
+	background-color: #5a87dd;
+}
+
+ul#views li.active a:link, ul#views li.active a:visited {
+	color: #2B477D;
+	-webkit-transition: background-color 0.2s linear;
+	background: -moz-linear-gradient(top center, #e8e8e8, #fff 60%) repeat scroll 0 0 #f2f2f2;
+	background: -webkit-gradient(linear,left bottom,left top,color-stop(.4, #fff),color-stop(.6, #e8e8e8));
+	background-color: #f2f2f2;
 }

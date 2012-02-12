@@ -3,6 +3,10 @@ Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "movies.Site", "..\movies.Site\movies.Site.csproj", "{355E8845-498C-4DA3-8935-F5CE4162077E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "movies.Core", "..\movies.Core\movies.Core.csproj", "{63346CED-35BF-407F-97AF-C6E3BD35A26B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "movies.Model", "..\movies.Model\movies.Model.csproj", "{7226B672-9854-451C-AADF-AF3DFB0BAE01}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -13,6 +17,14 @@ Global
 		{355E8845-498C-4DA3-8935-F5CE4162077E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{355E8845-498C-4DA3-8935-F5CE4162077E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{355E8845-498C-4DA3-8935-F5CE4162077E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{63346CED-35BF-407F-97AF-C6E3BD35A26B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{63346CED-35BF-407F-97AF-C6E3BD35A26B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{63346CED-35BF-407F-97AF-C6E3BD35A26B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{63346CED-35BF-407F-97AF-C6E3BD35A26B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7226B672-9854-451C-AADF-AF3DFB0BAE01}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7226B672-9854-451C-AADF-AF3DFB0BAE01}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7226B672-9854-451C-AADF-AF3DFB0BAE01}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7226B672-9854-451C-AADF-AF3DFB0BAE01}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

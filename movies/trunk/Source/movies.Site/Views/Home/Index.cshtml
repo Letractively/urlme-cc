@@ -1,19 +1,11 @@
 ﻿@{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Movie Ratings - Top Box Office";
 }
 
 @section ExtraHeadContent {
-    <link href="@Url.Content("~/content/site.css")" rel="stylesheet"/>
-    <link href="@Url.Content("~/content/jquery.mobile-1.0.1.min.css")" rel="stylesheet" type="text/css" />
-
-    <script src="@Url.Content("~/scripts/jquery-1.7.1.min.js")"></script>
-    <script src="@Url.Content("~/scripts/codejkjk.js")"></script>
     <script src="@Url.Content("~/scripts/codejkjk.movies.HomeIndex.js")"></script>
 }
 
 <div id="container">
-    <input type="text" id="q" name="q" autofocus placeholder="Search..." /><button id="go" class="button blue">Go</button>
-    <div id="loading"><img src="@this.Url.Content("~/content/ajax-loader.gif")" /><span id="loadingMessage"></span></div>
-    <div id="movies">
-    </div>
+    this is top box office page.
 </div>

@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
+using movies.Model;
 
 namespace movies.Site.Controllers
 {
@@ -13,6 +10,7 @@ namespace movies.Site.Controllers
 
         public ActionResult Index()
         {
+            var boxOfficeMovies = Movie.GetBoxOffice();
             return View();
         }
 

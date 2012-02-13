@@ -39,7 +39,7 @@ header { text-align:center; height:33px; }
         float: left;
     }
 
-.content { margin-top: 25px; width: 1000px; overflow: auto; }
+.content { margin-top: 25px; width: 1000px; overflow: auto; display: none; }
 
 /* styles common to both movie div in the lists and the movie details popup */
 

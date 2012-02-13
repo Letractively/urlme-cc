@@ -1,4 +1,4 @@
-﻿@model List<movies.Model.Movie>
+﻿@model movies.Site.ViewModels.Home.Index
 
 @{
     ViewBag.Title = "Movie Ratings - Top Box Office";
@@ -15,26 +15,13 @@
     </header>
         
     <!-- BOX OFFICE -->
-    <section id="boxOfficeView" class="content movieList rounded" data-navitemtext="Top Box Office">
-        @foreach (var movie in this.Model)
-        {
-            if (movie.Alternate_Ids != null)
-            {
-            <div class="movie rounded glowing" data-rtmovieid="@movie.Id">
-                <a class="movieDetailsLink" href="#"><img src="@movie.Posters.Detailed" /></a>
-                <div class="details gradient">
-                    <p class="ratingAndLength">
-                        @movie.Duration<a href="@movie.ParentalGuideUrl" class='mpaaRating external' target='_blank' title='Link to Parents Guide on IMDb.com'>@movie.Mpaa_Rating</a>
-                    </p>
-                    @if (movie.IsReleased) {
-                        <div class="ratings"><a href="@movie.Links.Alternate" class='@movie.CriticsClass rottenTomato' target='_blank' title="Critics score on RottenTomatoes">@movie.Ratings.Critics_Score<sup>%</sup></a><a href="@movie.Links.Alternate" class='@movie.AudienceClass rottenTomato' target='_blank' title="Audience score on RottenTomatoes">@movie.Ratings.Audience_Score<sup>%</sup></a><a class='imdb' href="@movie.IMDbMovieUrl" target='_blank' title="@string.Format("{0} votes on IMDb.com", movie.ImdbVotes)">@movie.ImdbRating</a></div>
-                    } else {
-                        <p class="releaseDate">@movie.ReleaseDate</p>
-                    }
-                </div>
-            </div>    
-            }
-        }
+    <section id="boxOfficeView" class="content movieList" data-navitemtext="Top Box Office">
+        @this.Html.Partial("MovieList", this.Model.BoxOfficeMovies)
+    </section>
+
+    <!-- UPCOMING -->
+    <section id="upcomingView" class="content movieList" data-navitemtext="Coming Soon">
+        @this.Html.Partial("MovieList", this.Model.UpcomingMovies)
     </section>
 
     <!-- SEARCH RESULTS -->

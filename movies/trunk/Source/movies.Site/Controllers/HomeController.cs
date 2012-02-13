@@ -10,8 +10,12 @@ namespace movies.Site.Controllers
 
         public ActionResult Index()
         {
-            var boxOfficeMovies = Movie.GetBoxOffice();
-            return View(boxOfficeMovies);
+            var vm = new ViewModels.Home.Index
+            {
+                BoxOfficeMovies = Movie.GetBoxOffice(),
+                UpcomingMovies = Movie.GetUpcoming()
+            };
+            return View(vm);
         }
     }
 }

@@ -9,6 +9,7 @@ namespace movies.Model
     #region Helper Classes
     public class MovieCollection
     {
+        public int Total { get; set; }
         public List<Movie> Movies { get; set; }
     }
     public class ReleaseDates
@@ -58,7 +59,7 @@ namespace movies.Model
         public string Id { get; set; }
         public string Title { get; set; }
         public string Mpaa_Rating { get; set; }
-        public int Runtime { get; set; }
+        public string Runtime { get; set; }
         public ReleaseDates Release_Dates { get; set; }
         public Ratings Ratings { get; set; }
         public string Synopsis { get; set; }
@@ -80,10 +81,15 @@ namespace movies.Model
         {
             get
             {
-                var hrs = Math.Floor((double)(this.Runtime / 60));
-                var mins = this.Runtime % 60;
+                if (!string.IsNullOrEmpty(this.Runtime))
+                {
+                    int runTime = int.Parse(this.Runtime);
+                    var hrs = Math.Floor((double)(runTime / 60));
+                    var mins = runTime % 60;
 
-                return string.Format("{0} hr. {1} min.", hrs, mins);
+                    return string.Format("{0} hr. {1} min.", hrs, mins);
+                }
+                return string.Empty;
             }
         }
         //Snippet: function (text, len) {
@@ -108,7 +114,6 @@ namespace movies.Model
                 {
                     List<Movie> ret = new List<Movie>();
                     string rtJson = API.RottenTomatoes.GetBoxOfficeJson();
-                    // Array arr;
 
                     JavaScriptSerializer jss = new JavaScriptSerializer();
                     var movieCollection = jss.Deserialize<MovieCollection>(rtJson);
@@ -126,6 +131,24 @@ namespace movies.Model
                             movie.ImdbVotes = imdbMovie.Votes;
                         }
                     }
+
+                    return ret;
+                });
+        }
+
+        public static List<Movie> GetUpcoming()
+        {
+            return Cache.GetValue<List<Movie>>(
+                "codejkjk.movies.Model.GetUpcoming",
+                () =>
+                {
+                    List<Movie> ret = new List<Movie>();
+                    string rtJson = API.RottenTomatoes.GetUpcomingJson();
+
+                    JavaScriptSerializer jss = new JavaScriptSerializer();
+                    var movieCollection = jss.Deserialize<MovieCollection>(rtJson);
+
+                    movieCollection.Movies.ForEach(x => ret.Add(x));
 
                     return ret;
                 });

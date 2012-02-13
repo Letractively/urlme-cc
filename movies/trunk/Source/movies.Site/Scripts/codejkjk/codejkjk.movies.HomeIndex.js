@@ -96,7 +96,7 @@ codejkjk.movies.HomeIndex = {
 
         codejkjk.movies.HomeIndex.BuildNav();
 
-        // codejkjk.movies.HomeIndex.BindControls();
+        codejkjk.movies.HomeIndex.BindControls();
 
         // codejkjk.movies.HomeIndex.RegisterJsRenderHelpers();
 
@@ -111,7 +111,7 @@ codejkjk.movies.HomeIndex = {
         //        codejkjk.movies.RottenTomatoes.GetUpcomingMovies(codejkjk.movies.HomeIndex.LoadUpcomingMovies);
 
         // load the view that's selected (remembered)
-        //        codejkjk.movies.HomeIndex.Controls.CurrentNavItem().trigger('click');
+        codejkjk.movies.HomeIndex.Controls.CurrentNavItem().trigger('click');
     },
 
     RegisterJsRenderHelpers: function () {

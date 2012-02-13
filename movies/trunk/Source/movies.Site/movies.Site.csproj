@@ -14,6 +14,7 @@
     <AssemblyName>movies.Site</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <MvcBuildViews>false</MvcBuildViews>
+    <UseIISExpress>false</UseIISExpress>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -114,7 +115,6 @@
     <Content Include="Content\Images\star_smallest.png" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
-    <Content Include="Scripts\codejkjk.urlme.LinkList.js" />
     <Content Include="Scripts\codejkjk\codejkjk.Geo.js" />
     <Content Include="Scripts\codejkjk\codejkjk.js" />
     <Content Include="Scripts\codejkjk\codejkjk.movies.HomeIndex.js" />

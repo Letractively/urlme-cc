@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using movies.Core;
-
-namespace movies.API
+﻿namespace movies.API
 {
     public class RottenTomatoes
     {

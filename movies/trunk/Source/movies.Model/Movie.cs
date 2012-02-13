@@ -95,20 +95,23 @@ namespace movies.Model
         //Snippet: function (text, len) {
         //    return text.snippet(len);
         //},
-        
-        public static Movie GetMovie(string rtMovieId)
-        {
-            return Cache.GetValue<Movie>(
-                string.Format("codejkjk.movies.Model.GetMovie-{0}", rtMovieId),
-                () =>
-                {
-                    return null;
-                });
-        }
 
-        public static List<Movie> GetBoxOffice()
+        //public static List<Movie> GetMovies(string rtMovieIds)
+        //{
+        //    return Cache.GetValue<List<Movie>>(
+        //        string.Format("codejkjk.movies.Model.GetMovies-{0}", rtMovieIds),
+        //        () =>
+        //        {
+        //            // movie could be in box office cached list, so load those first (potentially avoiding in a call to RT webservice for a movie we already have cached)
+        //            List<Movie> boxOfficeMovies = GetBoxOffice();
+
+        //            return null;
+        //        });
+        //}
+
+        public static Dictionary<string, Movie> GetBoxOffice()
         {
-            return Cache.GetValue<List<Movie>>(
+            return Cache.GetValue<Dictionary<string, Movie>>(
                 "codejkjk.movies.Model.GetBoxOffice",
                 () =>
                 {
@@ -123,22 +126,22 @@ namespace movies.Model
                     // for each movie, get imdb info
                     foreach (var movie in ret.Where(x => x.Alternate_Ids != null))
                     {
-                        string imdbJson = API.IMDb.GetMovieJson(movie.Alternate_Ids.Imdb);
-                        var imdbMovie = jss.Deserialize<ImdbMovie>(imdbJson);
-                        if (imdbMovie.Rating != "N/A")
-                        {
-                            movie.ImdbRating = imdbMovie.Rating;
-                            movie.ImdbVotes = imdbMovie.Votes;
-                        }
+                        //string imdbJson = API.IMDb.GetMovieJson(movie.Alternate_Ids.Imdb);
+                        //var imdbMovie = jss.Deserialize<ImdbMovie>(imdbJson);
+                        //if (imdbMovie.Rating != "N/A")
+                        //{
+                        //    movie.ImdbRating = imdbMovie.Rating;
+                        //    movie.ImdbVotes = imdbMovie.Votes;
+                        //}
                     }
 
-                    return ret;
+                    return ret.ToDictionary(key => key.Id, value => value);
                 });
         }
 
-        public static List<Movie> GetUpcoming()
+        public static Dictionary<string, Movie> GetUpcoming()
         {
-            return Cache.GetValue<List<Movie>>(
+            return Cache.GetValue<Dictionary<string, Movie>>(
                 "codejkjk.movies.Model.GetUpcoming",
                 () =>
                 {
@@ -150,7 +153,7 @@ namespace movies.Model
 
                     movieCollection.Movies.ForEach(x => ret.Add(x));
 
-                    return ret;
+                    return ret.ToDictionary(key => key.Id, value => value);
                 });
         }
     }

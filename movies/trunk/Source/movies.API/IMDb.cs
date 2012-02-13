@@ -2,8 +2,13 @@
 {
     public class IMDb
     {
-        private const string BaseUrl = "http://api.rottentomatoes.com/api/public/v1.0/";
-        private const string ApiKey = "pfrwfgnr53tpaydw8pnhrymy";
+        private const string BaseUrl = "http://www.imdbapi.com/?i=tt";
+
+        public static string GetMovieJson(string imdbMovieId)
+        {
+            string url = string.Format("{0}{1}", BaseUrl, imdbMovieId);
+            return Core.Net.HttpWebRequest.GetResponse(url);
+        }
 
         public static string GetParentalGuideUrl(string imdbMovieId)
         {

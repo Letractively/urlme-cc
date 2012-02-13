@@ -27,7 +27,7 @@
                         @movie.Duration<a href="@movie.ParentalGuideUrl" class='mpaaRating external' target='_blank' title='Link to Parents Guide on IMDb.com'>@movie.Mpaa_Rating</a>
                     </p>
                     @if (movie.IsReleased) {
-                        <div class="ratings"><a href="@movie.Links.Alternate" class='@movie.CriticsClass rottenTomato' target='_blank' title="Critics score on RottenTomatoes">@movie.Ratings.Critics_Score<sup>%</sup></a><a href="@movie.Links.Alternate" class='@movie.AudienceClass rottenTomato' target='_blank' title="Audience score on RottenTomatoes">@movie.Ratings.Audience_Score<sup>%</sup></a><a data-imdbmovieid="@movie.Alternate_Ids.Imdb" class='imdb imdbNotSet' href="@movie.IMDbMovieUrl" target='_blank'></a></div>
+                        <div class="ratings"><a href="@movie.Links.Alternate" class='@movie.CriticsClass rottenTomato' target='_blank' title="Critics score on RottenTomatoes">@movie.Ratings.Critics_Score<sup>%</sup></a><a href="@movie.Links.Alternate" class='@movie.AudienceClass rottenTomato' target='_blank' title="Audience score on RottenTomatoes">@movie.Ratings.Audience_Score<sup>%</sup></a><a class='imdb' href="@movie.IMDbMovieUrl" target='_blank' title="@string.Format("{0} votes on IMDb.com", movie.ImdbVotes)">@movie.ImdbRating</a></div>
                     } else {
                         <p class="releaseDate">@movie.ReleaseDate</p>
                     }

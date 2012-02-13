@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using movies.Core.Web.Caching;
 using System.Web.Script.Serialization;
 using System;
@@ -45,6 +46,11 @@ namespace movies.Model
         public string Reviews { get; set; }
         public string Similar { get; set; }
     }
+    public class ImdbMovie
+    {
+        public string Rating { get; set; }
+        public string Votes { get; set; }
+    }
     #endregion
 
     public class Movie
@@ -60,6 +66,8 @@ namespace movies.Model
         public AbridgedCast[] Abridged_Cast { get; set; }
         public AlternateIds Alternate_Ids { get; set; }
         public Links Links { get; set; }
+        public string ImdbRating { get; set; }
+        public string ImdbVotes { get; set; }
 
         // view helpers
         public bool IsReleased { get { return System.DateTime.Now >= this.Release_Dates.Theater; } }
@@ -81,8 +89,7 @@ namespace movies.Model
         //Snippet: function (text, len) {
         //    return text.snippet(len);
         //},
-
-
+        
         public static Movie GetMovie(string rtMovieId)
         {
             return Cache.GetValue<Movie>(
@@ -99,15 +106,28 @@ namespace movies.Model
                 "codejkjk.movies.Model.GetBoxOffice",
                 () =>
                 {
-                    List<Movie> movies = new List<Movie>();
-                    string json = API.RottenTomatoes.GetBoxOfficeJson();
+                    List<Movie> ret = new List<Movie>();
+                    string rtJson = API.RottenTomatoes.GetBoxOfficeJson();
                     // Array arr;
 
                     JavaScriptSerializer jss = new JavaScriptSerializer();
-                    var movieCollection = jss.Deserialize<MovieCollection>(json);
-                    movieCollection.Movies.ForEach(x => movies.Add(x));
+                    var movieCollection = jss.Deserialize<MovieCollection>(rtJson);
+                    
+                    movieCollection.Movies.ForEach(x => ret.Add(x));
 
-                    return movies;
+                    // for each movie, get imdb info
+                    foreach (var movie in ret.Where(x => x.Alternate_Ids != null))
+                    {
+                        string imdbJson = API.IMDb.GetMovieJson(movie.Alternate_Ids.Imdb);
+                        var imdbMovie = jss.Deserialize<ImdbMovie>(imdbJson);
+                        if (imdbMovie.Rating != "N/A")
+                        {
+                            movie.ImdbRating = imdbMovie.Rating;
+                            movie.ImdbVotes = imdbMovie.Votes;
+                        }
+                    }
+
+                    return ret;
                 });
         }
     }

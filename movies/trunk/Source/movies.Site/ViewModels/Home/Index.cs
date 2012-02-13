@@ -9,7 +9,7 @@ namespace movies.Site.ViewModels.Home
 {
     public class Index
     {
-        public List<Movie> BoxOfficeMovies { get; set; }
-        public List<Movie> UpcomingMovies { get; set; }
+        public Dictionary<string, Movie> BoxOfficeMovies { get; set; }
+        public Dictionary<string, Movie> UpcomingMovies { get; set; }
     }
 }

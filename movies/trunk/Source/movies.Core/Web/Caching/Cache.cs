@@ -9,7 +9,6 @@ namespace movies.Core.Web.Caching
     using System;
     using System.Collections;
     using System.Collections.Generic;
-    using System.Globalization;
     using System.Web;
     using System.Web.Caching;
 

@@ -39,7 +39,7 @@ header { text-align:center; height:33px; }
         float: left;
     }
 
-.content { margin-top: 25px; display:none; width: 1000px; overflow: auto; }
+.content { margin-top: 25px; width: 1000px; overflow: auto; }
 
 /* styles common to both movie div in the lists and the movie details popup */
 
@@ -66,7 +66,7 @@ header { text-align:center; height:33px; }
 
 #go { width: 50px; height:34px; }
 
-.movie { position: relative; overflow:auto; } /* or gray = #efefef */
+.movie { overflow:auto; } /* or gray = #efefef */
 
 .movieList { }
     /* #boxOfficeView .movie:not(:nth-child(1)) { margin-top:10px; } */
@@ -125,7 +125,7 @@ header { text-align:center; height:33px; }
             #showtimesView #currentTheaterContainer .theater .theaterNameAndFavorite a.favoriteLink { margin: 1px 0 0 0px; padding: 0 10px; display:block; float: left; width: 19px; height: 19px; }
            
         #showtimesView #currentTheaterContainer .theater p.address { margin-top:5px; color: #999; }
-        #showtimesView #currentTheaterContainer .theater .movie { margin-top:10px; height: 91px; height: 91px; padding: 10px; }
+        #showtimesView #currentTheaterContainer .theater .movie { position: relative; margin-top:10px; height: 91px; height: 91px; padding: 10px; }
             #showtimesView #currentTheaterContainer .theater .movie img { float: left; }
         
             .content .movie .ratings { margin-top: 10px; overflow:auto; }

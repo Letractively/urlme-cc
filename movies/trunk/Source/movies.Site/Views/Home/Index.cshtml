@@ -5,9 +5,45 @@
 }
 
 @section ExtraHeadContent {
-    <script src="@Url.Content("~/scripts/codejkjk.movies.HomeIndex.js")"></script>
+    <script src="@Url.Content("~/scripts/codejkjk/codejkjk.movies.HomeIndex.js")"></script>
 }
 
 <div id="container">
-    this is top box office page.
+    <header>
+        <nav></nav>
+        <input class="rounded glowing" id="q" type="text" placeholder="search + enter" />
+    </header>
+        
+    <!-- BOX OFFICE -->
+    <section id="boxOfficeView" class="content movieList rounded" data-navitemtext="Top Box Office">
+        @foreach (var movie in this.Model)
+        {
+            if (movie.Alternate_Ids != null)
+            {
+            <div class="movie rounded glowing" data-rtmovieid="@movie.Id">
+                <a class="movieDetailsLink" href="#"><img src="@movie.Posters.Detailed" /></a>
+                <div class="details gradient">
+                    <p class="ratingAndLength">
+                        @movie.Duration<a href="@movie.ParentalGuideUrl" class='mpaaRating external' target='_blank' title='Link to Parents Guide on IMDb.com'>@movie.Mpaa_Rating</a>
+                    </p>
+                    @if (movie.IsReleased) {
+                        <div class="ratings"><a href="@movie.Links.Alternate" class='@movie.CriticsClass rottenTomato' target='_blank' title="Critics score on RottenTomatoes">@movie.Ratings.Critics_Score<sup>%</sup></a><a href="@movie.Links.Alternate" class='@movie.AudienceClass rottenTomato' target='_blank' title="Audience score on RottenTomatoes">@movie.Ratings.Audience_Score<sup>%</sup></a><a data-imdbmovieid="@movie.Alternate_Ids.Imdb" class='imdb imdbNotSet' href="@movie.IMDbMovieUrl" target='_blank'></a></div>
+                    } else {
+                        <p class="releaseDate">@movie.ReleaseDate</p>
+                    }
+                </div>
+            </div>    
+            }
+        }
+    </section>
+
+    <!-- SEARCH RESULTS -->
+    <section id="searchResultsView" class="content movieList rounded">
+    </section>
+
+    <!-- MOVIE DETAILS -->
+    <section id="movieDetails" class="rounded">
+    </section>
+    <div id="overlay"></div>
+
 </div>

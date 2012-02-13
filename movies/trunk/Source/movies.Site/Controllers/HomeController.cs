@@ -11,8 +11,7 @@ namespace movies.Site.Controllers
         public ActionResult Index()
         {
             var boxOfficeMovies = Movie.GetBoxOffice();
-            return View();
+            return View(boxOfficeMovies);
         }
-
     }
 }

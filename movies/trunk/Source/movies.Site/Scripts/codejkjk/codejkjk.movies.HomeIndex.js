@@ -96,22 +96,22 @@ codejkjk.movies.HomeIndex = {
 
         codejkjk.movies.HomeIndex.BuildNav();
 
-        codejkjk.movies.HomeIndex.BindControls();
+        // codejkjk.movies.HomeIndex.BindControls();
 
-        codejkjk.movies.HomeIndex.RegisterJsRenderHelpers();
+        // codejkjk.movies.HomeIndex.RegisterJsRenderHelpers();
 
         // *** load showtimes view ***
         // init showtime date to today
-        codejkjk.movies.HomeIndex.Controls.CurrentShowtimeDay().val(Date.today().toString("yyyyMMdd"));
-        codejkjk.movies.HomeIndex.Controls.CurrentZip().html(codejkjk.movies.HomeIndex.Currents.ZipCode());
-        codejkjk.movies.Flixster.GetTheaters(codejkjk.movies.HomeIndex.Controls.CurrentShowtimeDay().val(), codejkjk.movies.HomeIndex.Currents.ZipCode(), codejkjk.movies.HomeIndex.LoadTheaters);
+        // codejkjk.movies.HomeIndex.Controls.CurrentShowtimeDay().val(Date.today().toString("yyyyMMdd"));
+        // codejkjk.movies.HomeIndex.Controls.CurrentZip().html(codejkjk.movies.HomeIndex.Currents.ZipCode());
+        // codejkjk.movies.Flixster.GetTheaters(codejkjk.movies.HomeIndex.Controls.CurrentShowtimeDay().val(), codejkjk.movies.HomeIndex.Currents.ZipCode(), codejkjk.movies.HomeIndex.LoadTheaters);
 
         // *** load box office & upcoming views ***
-        codejkjk.movies.RottenTomatoes.GetBoxOfficeMovies(codejkjk.movies.HomeIndex.LoadBoxOfficeMovies);
-        codejkjk.movies.RottenTomatoes.GetUpcomingMovies(codejkjk.movies.HomeIndex.LoadUpcomingMovies);
+        //        codejkjk.movies.RottenTomatoes.GetBoxOfficeMovies(codejkjk.movies.HomeIndex.LoadBoxOfficeMovies);
+        //        codejkjk.movies.RottenTomatoes.GetUpcomingMovies(codejkjk.movies.HomeIndex.LoadUpcomingMovies);
 
         // load the view that's selected (remembered)
-        codejkjk.movies.HomeIndex.Controls.CurrentNavItem().trigger('click');
+        //        codejkjk.movies.HomeIndex.Controls.CurrentNavItem().trigger('click');
     },
 
     RegisterJsRenderHelpers: function () {
@@ -562,5 +562,5 @@ codejkjk.movies.HomeIndex = {
 }
 
 $(document).ready(function () {
-    // codejkjk.movies.HomeIndex.Init();
+    codejkjk.movies.HomeIndex.Init();
 });

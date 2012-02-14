@@ -11,11 +11,8 @@ namespace movies.Site.Controllers
         [HttpGet]
         public ActionResult GetIMDbMovie(string imdbMovieId)
         {
-            if (!imdbMovieId.StartsWith("tt"))
-            {
-                imdbMovieId = "tt" + imdbMovieId;
-            }
-            return Content(API.IMDb.GetMovieJson(imdbMovieId));
+            return null;
+            // return Content(API.IMDb.GetMovieJson(imdbMovieId));
         }
     }
 }

@@ -124,7 +124,9 @@
     <Content Include="Scripts\Plugins\date.js" />
     <Content Include="Scripts\Plugins\jquery.mask.min.js" />
     <Content Include="Scripts\Plugins\jsrender.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -143,10 +145,6 @@
     <Content Include="Views\Home\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\movies.API\movies.API.csproj">
-      <Project>{36E52FBC-BFC5-4149-89AA-167247CE3D56}</Project>
-      <Name>movies.API</Name>
-    </ProjectReference>
     <ProjectReference Include="..\movies.Core\movies.Core.csproj">
       <Project>{63346CED-35BF-407F-97AF-C6E3BD35A26B}</Project>
       <Name>movies.Core</Name>

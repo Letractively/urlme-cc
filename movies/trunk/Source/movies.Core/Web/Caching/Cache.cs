@@ -232,6 +232,11 @@ namespace movies.Core.Web.Caching
         {
             return CacheItemManager.GetValue(key);
         }
+
+        public static bool KeyExists(string key)
+        {
+            return HttpRuntime.Cache.Get(key) != null;
+        }
         #endregion
     }
 }

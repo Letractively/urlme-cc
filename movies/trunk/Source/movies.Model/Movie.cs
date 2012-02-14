@@ -69,6 +69,7 @@ namespace movies.Model
         public Links Links { get; set; }
         public string ImdbRating { get; set; }
         public string ImdbVotes { get; set; }
+        public bool ImdbLoaded { get; set; }
 
         // view helpers
         public bool IsReleased { get { return System.DateTime.Now >= this.Release_Dates.Theater; } }
@@ -109,6 +110,31 @@ namespace movies.Model
                     var movieCollection = jss.Deserialize<MovieCollection>(rtJson);
                     
                     movieCollection.Movies.ForEach(x => ret.Add(x));
+
+                    // for each movie, get imdb info if it exists in cache
+                    foreach (var movie in ret.Where(x => x.Alternate_Ids != null))
+                    {
+                        if (Cache.KeyExists(string.Format("codejkjk.movies.Model.GetImdbMovie-{0}", movie.Alternate_Ids.Imdb)))
+                        {
+                            // get imdb movie from cache
+                            // set properties, including imdbloaded
+                            //string imdbJson = API.IMDb.GetMovieJson(movie.Alternate_Ids.Imdb);
+                            //var imdbMovie = jss.Deserialize<ImdbMovie>(imdbJson);
+                            //if (imdbMovie.Rating != "N/A")
+                            //{
+                            //    movie.ImdbRating = imdbMovie.Rating;
+                            //    movie.ImdbVotes = imdbMovie.Votes;
+                            //}
+
+                            movie.ImdbLoaded = true;
+                        }
+                        else
+                        {
+                            movie.ImdbLoaded = false;
+                        }
+
+
+                    }
 
                     return ret.ToDictionary(key => key.Id, value => value);
                 });

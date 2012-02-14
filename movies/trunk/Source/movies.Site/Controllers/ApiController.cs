@@ -8,13 +8,14 @@ namespace movies.Site.Controllers
 {
     public class ApiController : Controller
     {
-        //
-        // GET: /Api/
-
-        public ActionResult Index()
+        [HttpGet]
+        public ActionResult GetIMDbMovie(string imdbMovieId)
         {
-            return View();
+            if (!imdbMovieId.StartsWith("tt"))
+            {
+                imdbMovieId = "tt" + imdbMovieId;
+            }
+            return Content(API.IMDb.GetMovieJson(imdbMovieId));
         }
-
     }
 }

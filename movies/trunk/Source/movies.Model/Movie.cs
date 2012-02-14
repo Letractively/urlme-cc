@@ -96,19 +96,6 @@ namespace movies.Model
         //    return text.snippet(len);
         //},
 
-        //public static List<Movie> GetMovies(string rtMovieIds)
-        //{
-        //    return Cache.GetValue<List<Movie>>(
-        //        string.Format("codejkjk.movies.Model.GetMovies-{0}", rtMovieIds),
-        //        () =>
-        //        {
-        //            // movie could be in box office cached list, so load those first (potentially avoiding in a call to RT webservice for a movie we already have cached)
-        //            List<Movie> boxOfficeMovies = GetBoxOffice();
-
-        //            return null;
-        //        });
-        //}
-
         public static Dictionary<string, Movie> GetBoxOffice()
         {
             return Cache.GetValue<Dictionary<string, Movie>>(
@@ -122,18 +109,6 @@ namespace movies.Model
                     var movieCollection = jss.Deserialize<MovieCollection>(rtJson);
                     
                     movieCollection.Movies.ForEach(x => ret.Add(x));
-
-                    // for each movie, get imdb info
-                    foreach (var movie in ret.Where(x => x.Alternate_Ids != null))
-                    {
-                        //string imdbJson = API.IMDb.GetMovieJson(movie.Alternate_Ids.Imdb);
-                        //var imdbMovie = jss.Deserialize<ImdbMovie>(imdbJson);
-                        //if (imdbMovie.Rating != "N/A")
-                        //{
-                        //    movie.ImdbRating = imdbMovie.Rating;
-                        //    movie.ImdbVotes = imdbMovie.Votes;
-                        //}
-                    }
 
                     return ret.ToDictionary(key => key.Id, value => value);
                 });

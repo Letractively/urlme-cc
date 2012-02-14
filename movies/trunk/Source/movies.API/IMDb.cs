@@ -6,6 +6,7 @@
 
         public static string GetMovieJson(string imdbMovieId)
         {
+            // if (imdbMovieId.StartsWith("tt")
             string url = string.Format("{0}{1}", BaseUrl, imdbMovieId);
             return Core.Net.HttpWebRequest.GetResponse(url);
         }
@@ -19,7 +20,9 @@
 
         public static string GetMovieUrl(string imdbMovieId)
         {
-            return string.Format("http://www.imdb.com/title/tt{0}/", imdbMovieId);
+            if (!imdbMovieId.StartsWith("tt"))
+                imdbMovieId = "tt" + imdbMovieId;
+            return string.Format("http://www.imdb.com/title/{0}/", imdbMovieId);
         }
     }
 }

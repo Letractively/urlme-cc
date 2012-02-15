@@ -264,14 +264,17 @@ codejkjk.movies.HomeIndex = {
     GetIMDbData: function () {
         codejkjk.movies.HomeIndex.Controls.IMDbMoviesNotSet().each(function () {
             var imdb = $(this);
-            codejkjk.movies.Api.GetIMDbMovie(imdb.attr("data-imdbmovieid"), function (movie) {
+            var imdbMovieId = imdb.attr("data-imdbmovieid");
+            codejkjk.movies.Api.GetIMDbMovie(imdbMovieId, function (movie) {
                 var ratings = $(".imdb[data-imdbmovieid='{0}']".format(imdbMovieId));
 
                 if (movie.Rating && movie.Rating !== "N/A" && movie.Votes && movie.Votes !== "N/A") {
-                    var titlt = "{0} votes on IMDb.com".format(movie.Votes);
-                    ratings.html(rating).attr("title", title);
+                    var title = "{0} votes on IMDb.com".format(movie.Votes);
+                    ratings.html(movie.Rating).attr("title", title);
+                } else {
+                    ratings.html("n/a");
                 }
-                ratings.html(rating).removeClass("imdbNotSet");
+                ratings.removeClass("imdbNotSet");
             });
         });
     },

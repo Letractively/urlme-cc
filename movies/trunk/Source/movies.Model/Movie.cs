@@ -1,8 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
-using movies.Core.Web.Caching;
 using System.Web.Script.Serialization;
-using System;
+using movies.Core.Web.Caching;
+using movies.Core.Extensions;
 
 namespace movies.Model
 {
@@ -36,7 +37,7 @@ namespace movies.Model
     }
     public class AlternateIds
     {
-        public string Imdb { get; set; }
+        public string IMDb { get; set; }
     }
     public class Links
     {
@@ -47,7 +48,7 @@ namespace movies.Model
         public string Reviews { get; set; }
         public string Similar { get; set; }
     }
-    public class ImdbMovie
+    public class IMDbMovie
     {
         public string Rating { get; set; }
         public string Votes { get; set; }
@@ -67,17 +68,17 @@ namespace movies.Model
         public AbridgedCast[] Abridged_Cast { get; set; }
         public AlternateIds Alternate_Ids { get; set; }
         public Links Links { get; set; }
-        public string ImdbRating { get; set; }
-        public string ImdbVotes { get; set; }
-        public bool ImdbLoaded { get; set; }
+        public string IMDbRating { get; set; }
+        public string IMDbVotes { get; set; }
+        public bool IMDbLoaded { get; set; }
 
         // view helpers
         public bool IsReleased { get { return System.DateTime.Now >= this.Release_Dates.Theater; } }
         public string CriticsClass { get { return this.Ratings.Critics_Rating.Contains("Fresh") ? "criticsFresh" : "criticsRotten"; } }
         public string AudienceClass { get { return this.Ratings.Critics_Rating.Contains("Upright") ? "audienceUpright" : "audienceSpilled"; } }
         public string ReleaseDate { get { return this.Release_Dates.Theater.ToString("MMM d,yyyy"); } }
-        public string ParentalGuideUrl { get { return API.IMDb.GetParentalGuideUrl(this.Alternate_Ids.Imdb); } }
-        public string IMDbMovieUrl { get { return API.IMDb.GetMovieUrl(this.Alternate_Ids.Imdb); } }
+        public string ParentalGuideUrl { get { return API.IMDb.GetParentalGuideUrl(this.Alternate_Ids.IMDb); } }
+        public string IMDbMovieUrl { get { return API.IMDb.GetMovieUrl(this.Alternate_Ids.IMDb); } }
         public string Duration
         {
             get
@@ -97,47 +98,110 @@ namespace movies.Model
         //    return text.snippet(len);
         //},
 
+        public static IMDbMovie GetIMDbMovie(string imdbMovieId)
+        {
+            return Cache.GetValue<IMDbMovie>(
+                string.Format("codejkjk.movies.Model.GetIMDbMovie-{0}", imdbMovieId),
+                () =>
+                {
+                    string imdbJson = API.IMDb.GetMovieJson(imdbMovieId);
+                    return imdbJson.FromJson<IMDbMovie>();
+                });
+        }
+
+        public static Movie GetRottenTomatoesMovie(string rtMovieId)
+        {
+            Movie movie = Cache.GetValue<Movie>(
+                string.Format("codejkjk.movies.Model.GetRottenTomatoesMovie-{0}", rtMovieId),
+                () =>
+                {
+                    Movie ret = null;
+
+                    // check if this movie has been loaded yet
+                    if (Cache.KeyExists("codejkjk.movies.Model.GetBoxOffice"))
+                    {
+                        var boxOfficeMovies = GetBoxOffice();
+                        if (boxOfficeMovies.ContainsKey(rtMovieId))
+                        {
+                            ret = boxOfficeMovies[rtMovieId];
+                        }
+                    }
+                    else if (Cache.KeyExists("codejkjk.movies.Model.GetUpcoming"))
+                    {
+                        var upcomingMovies = GetUpcoming();
+                        if (upcomingMovies.ContainsKey(rtMovieId))
+                        {
+                            ret = upcomingMovies[rtMovieId];
+                        }
+                    }
+
+                    // didn't exist in above 2 cached lists
+                    if (ret == null)
+                    {
+                        string rtJson = API.RottenTomatoes.GetMovieJson(rtMovieId);
+                        ret = rtJson.FromJson<Movie>();
+                    }
+
+                    return ret;
+                });
+
+            // can we load imdb?
+            TryLoadIMDb(ref movie);
+
+            return movie;
+        }
+
         public static Dictionary<string, Movie> GetBoxOffice()
         {
-            return Cache.GetValue<Dictionary<string, Movie>>(
+            // get list of rt movies from cache
+            Dictionary<string, Movie> movies = Cache.GetValue<Dictionary<string, Movie>>(
                 "codejkjk.movies.Model.GetBoxOffice",
                 () =>
                 {
                     List<Movie> ret = new List<Movie>();
                     string rtJson = API.RottenTomatoes.GetBoxOfficeJson();
-
-                    JavaScriptSerializer jss = new JavaScriptSerializer();
-                    var movieCollection = jss.Deserialize<MovieCollection>(rtJson);
-                    
+                    var movieCollection = rtJson.FromJson<MovieCollection>();
+                    movieCollection.Movies.ForEach(x => x.IMDbLoaded = false); // init all imdbloaded to false
                     movieCollection.Movies.ForEach(x => ret.Add(x));
-
-                    // for each movie, get imdb info if it exists in cache
-                    foreach (var movie in ret.Where(x => x.Alternate_Ids != null))
-                    {
-                        if (Cache.KeyExists(string.Format("codejkjk.movies.Model.GetImdbMovie-{0}", movie.Alternate_Ids.Imdb)))
-                        {
-                            // get imdb movie from cache
-                            // set properties, including imdbloaded
-                            //string imdbJson = API.IMDb.GetMovieJson(movie.Alternate_Ids.Imdb);
-                            //var imdbMovie = jss.Deserialize<ImdbMovie>(imdbJson);
-                            //if (imdbMovie.Rating != "N/A")
-                            //{
-                            //    movie.ImdbRating = imdbMovie.Rating;
-                            //    movie.ImdbVotes = imdbMovie.Votes;
-                            //}
-
-                            movie.ImdbLoaded = true;
-                        }
-                        else
-                        {
-                            movie.ImdbLoaded = false;
-                        }
-
-
-                    }
-
                     return ret.ToDictionary(key => key.Id, value => value);
                 });
+
+            // for each movie, get imdb info if it exists in cache
+            foreach (var movie in movies.Values.Where(x => x.Alternate_Ids != null))
+            {
+                if (Cache.KeyExists(string.Format("codejkjk.movies.Model.GetIMDbMovie-{0}", movie.Alternate_Ids.IMDb)))
+                {
+                    var imdbMovie = GetIMDbMovie(movie.Alternate_Ids.IMDb);
+                    movie.IMDbRating = imdbMovie.Rating;
+                    movie.IMDbVotes = imdbMovie.Votes;
+                    movie.IMDbLoaded = true;
+                }
+                else
+                {
+                    movie.IMDbLoaded = false;
+                }
+            }
+
+            return movies;
+        }
+
+        private static void TryLoadIMDb(ref Movie movie)
+        {
+            // can we load imdb?
+            if (movie.Alternate_Ids != null && !movie.IMDbLoaded)
+            {
+                if (Cache.KeyExists(string.Format("codejkjk.movies.Model.GetIMDbMovie-{0}", movie.Alternate_Ids.IMDb)))
+                {
+                    var imdbMovie = GetIMDbMovie(movie.Alternate_Ids.IMDb);
+                    movie.IMDbRating = imdbMovie.Rating;
+                    movie.IMDbVotes = imdbMovie.Votes;
+                    movie.IMDbLoaded = true;
+                }
+                else
+                {
+                    movie.IMDbLoaded = false;
+                }
+            }
         }
 
         public static Dictionary<string, Movie> GetUpcoming()

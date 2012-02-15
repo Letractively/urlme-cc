@@ -11,6 +11,8 @@ namespace movies.Core.Web.Caching
     using System.Collections.Generic;
     using System.Web;
     using System.Web.Caching;
+    using System.Collections.Generic;
+    using System.Linq;
 
     /// <summary>
     /// Used to cache items in the HttpRuntime
@@ -27,7 +29,7 @@ namespace movies.Core.Web.Caching
         /// the default number of cache seconds
         /// </summary>
         private static readonly int cacheSeconds =
-            10; // 10800; // 3 hrs
+            60; // 10800; // 3 hrs
             // int.Parse((ConfigurationManager.Instance.AppSettings["CacheSeconds"] ?? "10").ToString());
         #endregion
 
@@ -237,6 +239,12 @@ namespace movies.Core.Web.Caching
         {
             return HttpRuntime.Cache.Get(key) != null;
         }
+
+        //public static bool CacheKeys()
+        //{
+        //    List<String> ret = new List<String>();
+            
+        //}
         #endregion
     }
 }

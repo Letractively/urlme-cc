@@ -3,16 +3,17 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using movies.Model;
+using movies.Core.Extensions;
 
 namespace movies.Site.Controllers
 {
     public class ApiController : Controller
     {
         [HttpGet]
-        public ActionResult GetIMDbMovie(string imdbMovieId)
+        public JsonResult GetIMDbMovie(string imdbMovieId)
         {
-            return null;
-            // return Content(API.IMDb.GetMovieJson(imdbMovieId));
+            return this.Json(Movie.GetIMDbMovie(imdbMovieId), JsonRequestBehavior.AllowGet);
         }
     }
 }

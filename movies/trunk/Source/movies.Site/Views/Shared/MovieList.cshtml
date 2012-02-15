@@ -1,19 +1,19 @@
 ﻿@model Dictionary<string, movies.Model.Movie>
 
-@foreach (var movie in this.Model)
+@foreach (var movie in this.Model.Values)
 {
-    if (movie.Value.Alternate_Ids != null)
+    if (movie.Alternate_Ids != null)
     {
-    <div class="movie rounded glowing" data-rtmovieid="@movie.Value.Id">
-        <a class="movieDetailsLink" href="#"><img src="@movie.Value.Posters.Detailed" /></a>
+    <div class="movie rounded glowing" data-rtmovieid="@movie.Id">
+        <a class="movieDetailsLink" href="#"><img src="@movie.Posters.Detailed" /></a>
         <div class="details gradient">
             <p class="ratingAndLength">
-                @movie.Value.Duration<a href="@movie.Value.ParentalGuideUrl" class='mpaaRating external' target='_blank' title='Link to Parents Guide on IMDb.com'>@movie.Value.Mpaa_Rating</a>
+                @movie.Duration<a href="@movie.ParentalGuideUrl" class='mpaaRating external' target='_blank' title='Link to Parents Guide on IMDb.com'>@movie.Mpaa_Rating</a>
             </p>
-            @if (movie.Value.IsReleased) {
-                <div class="ratings"><a href="@movie.Value.Links.Alternate" class='@movie.Value.CriticsClass rottenTomato' target='_blank' title="Critics score on RottenTomatoes">@movie.Value.Ratings.Critics_Score<sup>%</sup></a><a href="@movie.Value.Links.Alternate" class='@movie.Value.AudienceClass rottenTomato' target='_blank' title="Audience score on RottenTomatoes">@movie.Value.Ratings.Audience_Score<sup>%</sup></a><a class='imdb' href="@movie.Value.IMDbMovieUrl" target='_blank' title="@string.Format("{0} votes on IMDb.com", movie.Value.ImdbVotes)">@movie.Value.ImdbRating</a></div>
+            @if (movie.IsReleased) {
+                <div class="ratings"><a href="@movie.Links.Alternate" class='@movie.CriticsClass rottenTomato' target='_blank' title="Critics score on RottenTomatoes">@movie.Ratings.Critics_Score<sup>%</sup></a><a href="@movie.Links.Alternate" class='@movie.AudienceClass rottenTomato' target='_blank' title="Audience score on RottenTomatoes">@movie.Ratings.Audience_Score<sup>%</sup></a><a data-imdbmovieid="@movie.Alternate_Ids.IMDb" class='imdb @(movie.IMDbLoaded ? "" : "imdbNotSet")' href="@movie.IMDbMovieUrl" target='_blank' title="@string.Format("{0} votes on IMDb.com", movie.IMDbVotes)">@movie.IMDbRating</a></div>
             } else {
-                <p class="releaseDate">@movie.Value.ReleaseDate</p>
+                <p class="releaseDate">@movie.ReleaseDate</p>
             }
         </div>
     </div>    

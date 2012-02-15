@@ -119,6 +119,8 @@
     <Content Include="Scripts\codejkjk\codejkjk.Geo.js" />
     <Content Include="Scripts\codejkjk\codejkjk.js" />
     <Content Include="Scripts\codejkjk\codejkjk.movies.HomeIndex.js" />
+    <Content Include="Scripts\codejkjk\codejkjk.movies.Api.js" />
+    <Content Include="Scripts\codejkjk\codejkjk.movies.Defaults.js" />
     <Content Include="Scripts\jquery-1.7.1.min.js" />
     <Content Include="Scripts\jquery.mobile-1.0.1.min.js" />
     <Content Include="Scripts\Plugins\date.js" />

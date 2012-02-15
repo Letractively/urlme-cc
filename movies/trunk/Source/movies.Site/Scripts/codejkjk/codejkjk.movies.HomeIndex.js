@@ -98,6 +98,9 @@ codejkjk.movies.HomeIndex = {
 
         codejkjk.movies.HomeIndex.BindControls();
 
+        // if load IMDb movies that aren't set
+        codejkjk.movies.HomeIndex.GetIMDbData();
+
         // codejkjk.movies.HomeIndex.RegisterJsRenderHelpers();
 
         // *** load showtimes view ***
@@ -261,7 +264,15 @@ codejkjk.movies.HomeIndex = {
     GetIMDbData: function () {
         codejkjk.movies.HomeIndex.Controls.IMDbMoviesNotSet().each(function () {
             var imdb = $(this);
-            codejkjk.movies.IMDB.GetMovie(imdb.attr("data-imdbmovieid"), codejkjk.movies.HomeIndex.SetIMDbMovieDetails);
+            codejkjk.movies.Api.GetIMDbMovie(imdb.attr("data-imdbmovieid"), function (movie) {
+                var ratings = $(".imdb[data-imdbmovieid='{0}']".format(imdbMovieId));
+
+                if (movie.Rating && movie.Rating !== "N/A" && movie.Votes && movie.Votes !== "N/A") {
+                    var titlt = "{0} votes on IMDb.com".format(movie.Votes);
+                    ratings.html(rating).attr("title", title);
+                }
+                ratings.html(rating).removeClass("imdbNotSet");
+            });
         });
     },
 
@@ -371,15 +382,7 @@ codejkjk.movies.HomeIndex = {
         });
     },
     SetIMDbMovieDetails: function (imdbMovieId, movie) {
-        var ratings = $(".imdb[data-imdbmovieid='{0}']".format(imdbMovieId));
-        var votes = "{0} votes on IMDb.com".format(movie.Votes);
 
-        var rating = movie && movie.Rating;
-
-        if (rating) {
-            ratings.html(rating).attr("alt", votes).attr("title", votes);
-        }
-        ratings.removeClass("imdbNotSet");
     },
 
     UpdateZip: function (zipCode) {

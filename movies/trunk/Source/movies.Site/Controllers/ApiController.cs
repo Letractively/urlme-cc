@@ -15,5 +15,11 @@ namespace movies.Site.Controllers
         {
             return this.Json(Movie.GetIMDbMovie(imdbMovieId), JsonRequestBehavior.AllowGet);
         }
+
+        [HttpGet]
+        public JsonResult GetRottenTomatoesMovie(string rtMovieId)
+        {
+            return this.Json(Movie.GetRottenTomatoesMovie(rtMovieId), JsonRequestBehavior.AllowGet);
+        }
     }
 }

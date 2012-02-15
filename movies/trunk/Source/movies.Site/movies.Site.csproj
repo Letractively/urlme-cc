@@ -114,6 +114,8 @@
     <Content Include="Content\Images\star_bigger.png" />
     <Content Include="Content\Images\star_small.png" />
     <Content Include="Content\Images\star_smallest.png" />
+    <Content Include="Content\jquery.mobile-1.0.1.min.css" />
+    <Content Include="Content\Mobile.css" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="Scripts\codejkjk\codejkjk.Geo.js" />

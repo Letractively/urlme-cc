@@ -13,6 +13,11 @@
     <script src="@Url.Content("~/scripts/codejkjk/codejkjk.movies.Defaults.js")"></script>
     <script src="@Url.Content("~/scripts/codejkjk/codejkjk.movies.Api.js")"></script>
     <script src="@Url.Content("~/scripts/plugins/jsrender.js")"></script>
+    <script src="@Url.Content("~/scripts/plugins/zeroclipboard/zeroclipboard.js")"></script>
+    <script type="text/javascript">
+        // var clip = new ZeroClipboard.Client();
+        ZeroClipboard.setMoviePath('@Url.Content("~/scripts/plugins/zeroclipboard/zeroclipboard.swf")');
+    </script>
     <script type="text/javascript">
 
         var _gaq = _gaq || [];
@@ -50,6 +55,9 @@
         <p class="starring">
             <strong>Starring</strong>: 
             {{#each abridged_cast}}{{#if $itemNumber == 1 }}{{=name}}{{else}}, {{=name}}{{/if}}{{/each}}
+        </p>
+        <p class="share">
+            <strong>Share</strong>: <input type="text" id="movieUrl" value="@Url.Content("~/"){{=MovieSlug}}" /><span id="copyButton">Copy</span>
         </p>
     </script>
 </body>

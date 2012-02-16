@@ -128,6 +128,9 @@
     <Content Include="Scripts\Plugins\date.js" />
     <Content Include="Scripts\Plugins\jquery.mask.min.js" />
     <Content Include="Scripts\Plugins\jsrender.js" />
+    <Content Include="Scripts\Plugins\zeroclipboard\test.html" />
+    <Content Include="Scripts\Plugins\zeroclipboard\ZeroClipboard.js" />
+    <Content Include="Scripts\Plugins\zeroclipboard\ZeroClipboard.swf" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>

@@ -480,6 +480,17 @@ codejkjk.movies.HomeIndex = {
                 codejkjk.movies.HomeIndex.Controls.MovieDetails().html(
                         codejkjk.movies.HomeIndex.Controls.MovieDetailsTemplate().render(movie)
                 ).show();
+
+                console.log("setting clip stuff");
+
+//                $("#movieDetails").append("<div id='copy2'>copy !!1</div>");
+//                var clip = new ZeroClipboard.Client();
+//                clip.setText('copy me!');
+//                clip.addEventListener('mouseOver', function (client) {
+//                    alert("mouse over");
+//                });
+//                clip.glue($("#copy2"));
+
                 codejkjk.movies.HomeIndex.GetIMDbData();
             });
         });

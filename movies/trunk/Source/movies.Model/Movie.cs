@@ -80,6 +80,7 @@ namespace movies.Model
         public string ReleaseDate { get { return this.release_dates.theater.ToString("MMM d, yyyy"); } }
         public string ParentalGuideUrl { get { return API.IMDb.GetParentalGuideUrl(this.alternate_ids.imdb); } }
         public string IMDbMovieUrl { get { return API.IMDb.GetMovieUrl(this.alternate_ids.imdb); } }
+        public string MovieSlug { get { return this.title.Slugify() + "/" + this.id; } }
         public string Duration
         {
             get

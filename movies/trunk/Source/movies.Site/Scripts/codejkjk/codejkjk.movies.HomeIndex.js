@@ -471,12 +471,10 @@ codejkjk.movies.HomeIndex = {
         $(document).on('click', codejkjk.movies.HomeIndex.Controls.MovieDetailsLinksSelector(), function (e) {
             e.preventDefault();
 
-            // $("body").append("<div style='height:786px;width:1263px;background:#000;opacity:.6;z-index:1001;position:absolute;top:0;left:0'>hi</div>");
-
             var link = $(this);
-            var rtMovieId = link.closest("[data-rtmovieid]").data().rtmovieid;
+            var rtMovieId = link.attr("[data-rtmovieid]");
 
-            codejkjk.movies.RottenTomatoes.GetMovie(rtMovieId, function (movie) {
+            codejkjk.movies.Api.GetRottenTomatoesMovie(rtMovieId, function (movie) {
                 var overlayHeight = $(document).height() + "px";
                 var overlayWidth = $(document).width() + "px";
                 codejkjk.movies.HomeIndex.Controls.Overlay().css("height", overlayHeight).css("width", overlayWidth).show();

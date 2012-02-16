@@ -1,0 +1,22 @@
+﻿@model movies.Model.Movie
+
+@{
+    ViewBag.Title = "Movie Details - " + this.Model.title;
+}
+
+@section ExtraHeadContent {
+    <script src="@Url.Content("~/scripts/codejkjk/codejkjk.movies.MovieIndex.js")"></script>
+}
+
+<div id="container">
+    <header>
+        <nav></nav>
+        <input class="rounded glowing" id="q" type="text" placeholder="search + enter" />
+    </header>
+
+    <!-- MOVIE DETAILS -->
+    <section id="movieDetails" class="rounded">
+    </section>
+    <div id="overlay"></div>
+
+</div>

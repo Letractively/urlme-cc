@@ -54,8 +54,9 @@ header { text-align:center; height:33px; }
         #movieDetails .ratingAndLength .mpaaRating { font-weight: bold; margin-right:5px; }
     #movieDetails .ratings { margin-top: 15px; overflow:auto; }
     #movieDetails .releaseDate { margin-top: 15px; font-weight: bold; }
-    #movieDetails .share { margin-top: 15px; }
-        #movieDetails .share #copyButton { cursor: pointer; display:inline-block; text-align: center; border: 1px solid black; background: #e8e8e8; margin-left: 5px; padding: 5px; }
+    #movieDetails .share { clear: left; margin-top: 15px; }
+        #movieDetails .share #copyButton { text-align: center; border: 1px solid black; background: #e8e8e8; margin-left: 5px; padding: 5px; }
+        #movieDetails .share #copySuccess { color: Green; display:none; margin-left: 10px; }
         #movieDetails .share #copyButton:hover { background: #eee; }
         #movieDetails .share #copyButton:active { background: #aaa; }
         #movieDetails .share input[type='text'] { padding: 5px; width: 250px; }

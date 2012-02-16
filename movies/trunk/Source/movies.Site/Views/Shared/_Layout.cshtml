@@ -37,19 +37,19 @@
     </script>
     <script id="movieDetailsTemplate" type="text/x-jquery-tmpl">
         <a href="#" id="closeMovieDetailsLink">Close</a>
-        <img class="poster" src="{{=Posters.Detailed}}" />
+        <img class="poster" src="{{=posters.detailed}}" />
         <h2>{{=title}}</h2>
-        <p class="description">{{=$ctx.Snippet(Synopsis, 400)!}}</p>
-        <a href="{{=Links.Alternate}}trailers" target="_blank" class="trailerLink external">View trailer</a>
-        <p class="ratingAndLength"><strong>Rated</strong>: <a href="{{=$ctx.GetParentalGuideUrl(Alternate_Ids.IMDb)}}" class='mpaaRating external' target='_blank' alt='Link to Parents Guide on IMDb.com' title='Link to Parents Guide on IMDb.com'>{{=mpaa_rating}}</a>{{=$ctx.GetHoursAndMinutes(Runtime)}}</p>
-        {{#if $ctx.IsReleased(Release_Dates.Theater)}}
-            <div class="ratings"><a href="{{=links.alternate}}" class='{{=$ctx.GetCriticsClass(ratings.critics_rating)}} rottenTomato' target='_blank'>{{=ratings.critics_score}}<sup>%</sup></a><a href="{{=links.alternate}}" class='{{=$ctx.GetAudienceClass(ratings.audience_rating)}} rottenTomato' target='_blank'>{{=ratings.audience_score}}<sup>%</sup></a><a href="{{=$ctx.GetIMDbMovieUrl(alternate_ids.imdb)}}" data-imdbmovieid="{{=alternate_ids.imdb}}" class='imdb imdbNotSet' target='_blank'></a></div>
+        <p class="description">{{=$ctx.Snippet(synopsis, 400)!}}</p>
+        <a href="{{=links.alternate}}trailers" target="_blank" class="trailerLink external">View trailer</a>
+        <p class="ratingAndLength"><strong>Rated</strong>: <a href="{{=ParentalGuideUrl}}" class='mpaaRating external' target='_blank' title='Link to Parents Guide on IMDb.com'>{{=mpaa_rating}}</a>{{=Duration}}</p>
+        {{#if IsReleased}}
+            <div class="ratings"><a href="{{=links.alternate}}" class='{{=CriticsClass}} rottenTomato' target='_blank'>{{=ratings.critics_score}}<sup>%</sup></a><a href="{{=links.alternate}}" class='{{=AudienceClass}} rottenTomato' target='_blank'>{{=ratings.audience_score}}<sup>%</sup></a><a href="{{=IMDbMovieUrl}}" data-imdbmovieid="{{=alternate_ids.imdb}}" class='imdb {{=IMDbClass}}' target='_blank'>{{=IMDbRating}}</a></div>
         {{else}}
-            <p class="releaseDate">{{=$ctx.FormatReleaseDate(Release_Dates.Theater)}}</p>    
+            <p class="releaseDate">{{=ReleaseDate}}</p>    
         {{/if}}
         <p class="starring">
             <strong>Starring</strong>: 
-            {{#each Abridged_Cast}}{{#if $itemNumber == 1 }}{{=Name}}{{else}}, {{=Name}}{{/if}}{{/each}}
+            {{#each abridged_cast}}{{#if $itemNumber == 1 }}{{=name}}{{else}}, {{=name}}{{/if}}{{/each}}
         </p>
     </script>
 </body>

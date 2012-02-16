@@ -4,7 +4,7 @@ codejkjk.movies.Api = {
     BaseUrl: apiBaseUrl, // defined in js-containing view
     GetIMDbMovie: function (imdbMovieId, callback) {
         // first, check cache
-//        var cacheKey = "imdb-{0}".format(imdbMovieId);
+        var cacheKey = "imdb-{0}".format(imdbMovieId);
 //        var cached = $.cacheItem(cacheKey);
 //        if (cached) {
 //            return callback(cached);
@@ -15,7 +15,7 @@ codejkjk.movies.Api = {
     },
     GetRottenTomatoesMovie: function (rtMovieId, callback) {
         // first, check cache
-//        var cacheKey = "rt-{0}".format(rtMovieId);
+        var cacheKey = "rt-{0}".format(rtMovieId);
 //        var cached = $.cacheItem(cacheKey);
 //        if (cached) {
 //            return callback(cached);

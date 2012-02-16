@@ -27,7 +27,7 @@ namespace movies.Core.Web.Caching
         /// the default number of cache seconds
         /// </summary>
         private static readonly int cacheSeconds =
-            60; // 10800; // 3 hrs
+            14400; // 4 hrs
             // int.Parse((ConfigurationManager.Instance.AppSettings["CacheSeconds"] ?? "10").ToString());
         #endregion
 

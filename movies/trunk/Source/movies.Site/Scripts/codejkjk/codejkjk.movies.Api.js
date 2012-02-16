@@ -5,10 +5,10 @@ codejkjk.movies.Api = {
     GetIMDbMovie: function (imdbMovieId, callback) {
         // first, check cache
         var cacheKey = "imdb-{0}".format(imdbMovieId);
-//        var cached = $.cacheItem(cacheKey);
-//        if (cached) {
-//            return callback(cached);
-//        }
+        var cached = $.cacheItem(cacheKey);
+        if (cached) {
+            return callback(cached);
+        }
 
         var url = "{0}get_imdb_movie.json/{1}".format(codejkjk.movies.Api.BaseUrl, imdbMovieId);
         codejkjk.movies.Api.AjaxGetMovie(url, callback, cacheKey);
@@ -16,10 +16,10 @@ codejkjk.movies.Api = {
     GetRottenTomatoesMovie: function (rtMovieId, callback) {
         // first, check cache
         var cacheKey = "rt-{0}".format(rtMovieId);
-//        var cached = $.cacheItem(cacheKey);
-//        if (cached) {
-//            return callback(cached);
-//        }
+        var cached = $.cacheItem(cacheKey);
+        if (cached) {
+            return callback(cached);
+        }
 
         var url = "{0}get_rt_movie.json/{1}".format(codejkjk.movies.Api.BaseUrl, rtMovieId);
         codejkjk.movies.Api.AjaxGetMovie(url, callback, cacheKey);

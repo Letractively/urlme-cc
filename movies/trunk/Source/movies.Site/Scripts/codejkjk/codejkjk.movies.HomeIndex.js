@@ -491,7 +491,7 @@ codejkjk.movies.HomeIndex = {
                 clip.glue('copyButton');
 
                 clip.addEventListener('complete', function (client, text) {
-                    codejkjk.movies.HomeIndex.Controls.CopySuccess().show().delay(3000).fadeOut('fast');
+                    codejkjk.movies.HomeIndex.Controls.CopySuccess().show().delay(2500).fadeOut('fast');
                 });
 
                 codejkjk.movies.HomeIndex.GetIMDbData();

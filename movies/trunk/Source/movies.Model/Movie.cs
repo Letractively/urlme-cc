@@ -10,82 +10,83 @@ namespace movies.Model
     #region Helper Classes
     public class MovieCollection
     {
-        public int Total { get; set; }
-        public List<Movie> Movies { get; set; }
+        public int total { get; set; }
+        public List<Movie> movies { get; set; }
     }
     public class ReleaseDates
     {
-        public DateTime Theater { get; set; }
+        public DateTime theater { get; set; }
     }
     public class Ratings
     {
-        public string Critics_Rating { get; set; }
-        public int Critics_Score { get; set; }
-        public string Audience_Rating { get; set; }
-        public int Audience_Score { get; set; }
+        public string critics_rating { get; set; }
+        public int critics_score { get; set; }
+        public string audience_rating { get; set; }
+        public int audience_score { get; set; }
     }
     public class Posters
     {
-        public string Thumbnail { get; set; }
-        public string Profile { get; set; }
-        public string Detailed { get; set; }
-        public string Original { get; set; }
+        public string thumbnail { get; set; }
+        public string profile { get; set; }
+        public string detailed { get; set; }
+        public string original { get; set; }
     }
     public class AbridgedCast
     {
-        public string Name { get; set; }
+        public string name { get; set; }
     }
     public class AlternateIds
     {
-        public string IMDb { get; set; }
+        public string imdb { get; set; }
     }
     public class Links
     {
-        public string Self { get; set; }
-        public string Alternate { get; set; }
-        public string Cast { get; set; }
-        public string Clips { get; set; }
-        public string Reviews { get; set; }
-        public string Similar { get; set; }
+        public string self { get; set; }
+        public string alternate { get; set; }
+        public string cast { get; set; }
+        public string clips { get; set; }
+        public string reviews { get; set; }
+        public string similar { get; set; }
     }
     public class IMDbMovie
     {
-        public string Rating { get; set; }
-        public string Votes { get; set; }
+        public string rating { get; set; }
+        public string votes { get; set; }
     }
     #endregion
 
     public class Movie
     {
-        public string Id { get; set; }
-        public string Title { get; set; }
-        public string Mpaa_Rating { get; set; }
-        public string Runtime { get; set; }
-        public ReleaseDates Release_Dates { get; set; }
-        public Ratings Ratings { get; set; }
-        public string Synopsis { get; set; }
-        public Posters Posters { get; set; }
-        public AbridgedCast[] Abridged_Cast { get; set; }
-        public AlternateIds Alternate_Ids { get; set; }
-        public Links Links { get; set; }
+        public string id { get; set; }
+        public string title { get; set; }
+        public string mpaa_rating { get; set; }
+        public string runtime { get; set; }
+        public ReleaseDates release_dates { get; set; }
+        public Ratings ratings { get; set; }
+        public string synopsis { get; set; }
+        public Posters posters { get; set; }
+        public AbridgedCast[] abridged_cast { get; set; }
+        public AlternateIds alternate_ids { get; set; }
+        public Links links { get; set; }
+
+        // view helpers (items NOT inherently provided by RT api)
         public string IMDbRating { get; set; }
         public string IMDbVotes { get; set; }
         public bool IMDbLoaded { get; set; }
-
-        // view helpers
-        public bool IsReleased { get { return System.DateTime.Now >= this.Release_Dates.Theater; } }
-        public string CriticsClass { get { return this.Ratings.Critics_Rating.Contains("Fresh") ? "criticsFresh" : "criticsRotten"; } }
-        public string AudienceClass { get { return this.Ratings.Critics_Rating.Contains("Upright") ? "audienceUpright" : "audienceSpilled"; } }
-        public string ReleaseDate { get { return this.Release_Dates.Theater.ToString("MMM d,yyyy"); } }
-        public string ParentalGuideUrl { get { return API.IMDb.GetParentalGuideUrl(this.Alternate_Ids.IMDb); } }
-        public string IMDbMovieUrl { get { return API.IMDb.GetMovieUrl(this.Alternate_Ids.IMDb); } }
+        public string IMDbClass { get { return this.IMDbLoaded ? "" : "imdbNotSet"; } }
+        public bool IsReleased { get { return System.DateTime.Now >= this.release_dates.theater; } }
+        public string CriticsClass { get { return string.IsNullOrEmpty(this.ratings.critics_rating) ? null : this.ratings.critics_rating.Contains("Fresh") ? "criticsFresh" : "criticsRotten"; } }
+        public string AudienceClass { get { return string.IsNullOrEmpty(this.ratings.audience_rating) ? null : this.ratings.audience_rating.Contains("Upright") ? "audienceUpright" : "audienceSpilled"; } }
+        public string ReleaseDate { get { return this.release_dates.theater.ToString("MMM d, yyyy"); } }
+        public string ParentalGuideUrl { get { return API.IMDb.GetParentalGuideUrl(this.alternate_ids.imdb); } }
+        public string IMDbMovieUrl { get { return API.IMDb.GetMovieUrl(this.alternate_ids.imdb); } }
         public string Duration
         {
             get
             {
-                if (!string.IsNullOrEmpty(this.Runtime))
+                if (!string.IsNullOrEmpty(this.runtime))
                 {
-                    int runTime = int.Parse(this.Runtime);
+                    int runTime = int.Parse(this.runtime);
                     var hrs = Math.Floor((double)(runTime / 60));
                     var mins = runTime % 60;
 
@@ -161,19 +162,19 @@ namespace movies.Model
                     List<Movie> ret = new List<Movie>();
                     string rtJson = API.RottenTomatoes.GetBoxOfficeJson();
                     var movieCollection = rtJson.FromJson<MovieCollection>();
-                    movieCollection.Movies.ForEach(x => x.IMDbLoaded = false); // init all imdbloaded to false
-                    movieCollection.Movies.ForEach(x => ret.Add(x));
-                    return ret.ToDictionary(key => key.Id, value => value);
+                    movieCollection.movies.ForEach(x => x.IMDbLoaded = false); // init all imdbloaded to false
+                    movieCollection.movies.ForEach(x => ret.Add(x));
+                    return ret.ToDictionary(key => key.id, value => value);
                 });
 
             // for each movie, get imdb info if it exists in cache
-            foreach (var movie in movies.Values.Where(x => x.Alternate_Ids != null))
+            foreach (var movie in movies.Values.Where(x => x.alternate_ids != null))
             {
-                if (Cache.KeyExists(string.Format("codejkjk.movies.Model.GetIMDbMovie-{0}", movie.Alternate_Ids.IMDb)))
+                if (Cache.KeyExists(string.Format("codejkjk.movies.Model.GetIMDbMovie-{0}", movie.alternate_ids.imdb)))
                 {
-                    var imdbMovie = GetIMDbMovie(movie.Alternate_Ids.IMDb);
-                    movie.IMDbRating = imdbMovie.Rating;
-                    movie.IMDbVotes = imdbMovie.Votes;
+                    var imdbMovie = GetIMDbMovie(movie.alternate_ids.imdb);
+                    movie.IMDbRating = imdbMovie.rating;
+                    movie.IMDbVotes = imdbMovie.votes;
                     movie.IMDbLoaded = true;
                 }
                 else
@@ -188,13 +189,13 @@ namespace movies.Model
         private static void TryLoadIMDb(ref Movie movie)
         {
             // can we load imdb?
-            if (movie.Alternate_Ids != null && !movie.IMDbLoaded)
+            if (movie.alternate_ids != null && !movie.IMDbLoaded)
             {
-                if (Cache.KeyExists(string.Format("codejkjk.movies.Model.GetIMDbMovie-{0}", movie.Alternate_Ids.IMDb)))
+                if (Cache.KeyExists(string.Format("codejkjk.movies.Model.GetIMDbMovie-{0}", movie.alternate_ids.imdb)))
                 {
-                    var imdbMovie = GetIMDbMovie(movie.Alternate_Ids.IMDb);
-                    movie.IMDbRating = imdbMovie.Rating;
-                    movie.IMDbVotes = imdbMovie.Votes;
+                    var imdbMovie = GetIMDbMovie(movie.alternate_ids.imdb);
+                    movie.IMDbRating = imdbMovie.rating;
+                    movie.IMDbVotes = imdbMovie.votes;
                     movie.IMDbLoaded = true;
                 }
                 else
@@ -216,9 +217,9 @@ namespace movies.Model
                     JavaScriptSerializer jss = new JavaScriptSerializer();
                     var movieCollection = jss.Deserialize<MovieCollection>(rtJson);
 
-                    movieCollection.Movies.ForEach(x => ret.Add(x));
+                    movieCollection.movies.ForEach(x => ret.Add(x));
 
-                    return ret.ToDictionary(key => key.Id, value => value);
+                    return ret.ToDictionary(key => key.id, value => value);
                 });
         }
     }

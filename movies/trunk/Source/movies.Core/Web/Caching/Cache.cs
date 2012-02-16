@@ -11,8 +11,6 @@ namespace movies.Core.Web.Caching
     using System.Collections.Generic;
     using System.Web;
     using System.Web.Caching;
-    using System.Collections.Generic;
-    using System.Linq;
 
     /// <summary>
     /// Used to cache items in the HttpRuntime

@@ -270,9 +270,9 @@ codejkjk.movies.HomeIndex = {
             codejkjk.movies.Api.GetIMDbMovie(imdbMovieId, function (movie) {
                 var ratings = $(".imdb[data-imdbmovieid='{0}']".format(imdbMovieId));
 
-                if (movie.Rating && movie.Rating !== "N/A" && movie.Votes && movie.Votes !== "N/A") {
-                    var title = "{0} votes on IMDb.com".format(movie.Votes);
-                    ratings.html(movie.Rating).attr("title", title);
+                if (movie.rating && movie.rating !== "N/A" && movie.votes && movie.votes !== "N/A") {
+                    var title = "{0} votes on IMDb.com".format(movie.votes);
+                    ratings.html(movie.rating).attr("title", title);
                 } else {
                     ratings.html("n/a");
                 }
@@ -386,9 +386,6 @@ codejkjk.movies.HomeIndex = {
             codejkjk.movies.RottenTomatoes.GetMovie(rtMovieIdToLoad, codejkjk.movies.HomeIndex.SetRottenTomatoesMovieDetails);
         });
     },
-    SetIMDbMovieDetails: function (imdbMovieId, movie) {
-
-    },
 
     UpdateZip: function (zipCode) {
         codejkjk.movies.HomeIndex.Currents.ZipCode(zipCode); // update current zip code
@@ -483,8 +480,8 @@ codejkjk.movies.HomeIndex = {
                 codejkjk.movies.HomeIndex.Controls.MovieDetails().html(
                         codejkjk.movies.HomeIndex.Controls.MovieDetailsTemplate().render(movie)
                 ).show();
+                codejkjk.movies.HomeIndex.GetIMDbData();
             });
-            codejkjk.movies.HomeIndex.GetIMDbData();
         });
 
         // handle clicking of overlay, which should hide movie details popup

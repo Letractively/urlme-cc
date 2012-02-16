@@ -116,6 +116,9 @@
     <Content Include="Content\Images\star_smallest.png" />
     <Content Include="Content\jquery.mobile-1.0.1.min.css" />
     <Content Include="Content\Mobile.css" />
+    <Content Include="Externals\local-cache\json2.js" />
+    <Content Include="Externals\local-cache\local-cache-browser-test.html" />
+    <Content Include="Externals\local-cache\local-cache.js" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="Scripts\codejkjk\codejkjk.Geo.js" />

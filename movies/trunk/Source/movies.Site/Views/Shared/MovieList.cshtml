@@ -4,8 +4,8 @@
 {
     if (movie.Alternate_Ids != null)
     {
-    <div class="movie rounded glowing" data-rtmovieid="@movie.Id">
-        <a class="movieDetailsLink" href="#"><img src="@movie.Posters.Detailed" /></a>
+    <div class="movie rounded glowing">
+        <a data-rtmovieid="@movie.Id" class="movieDetailsLink" href="#"><img src="@movie.Posters.Detailed" /></a>
         <div class="details gradient">
             <p class="ratingAndLength">
                 @movie.Duration<a href="@movie.ParentalGuideUrl" class='mpaaRating external' target='_blank' title='Link to Parents Guide on IMDb.com'>@movie.Mpaa_Rating</a>

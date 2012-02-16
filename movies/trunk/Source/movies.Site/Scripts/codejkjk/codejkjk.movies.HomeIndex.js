@@ -22,6 +22,8 @@ codejkjk.movies.HomeIndex = {
         , ChangeCurrentZipLink: function () { return $("#changeCurrentZipLink"); }
         , ChangeOptionsContainer: function () { return $("#changeOptions"); }
         , CloseMovieDetailsLinkSelector: function () { return "#closeMovieDetailsLink"; }
+        , CopyButton: function () { return $("#copyButton"); }
+        , CopySuccess: function () { return $("#copySuccess"); }
         , CurrentNavItem: function () { return $("nav > a.selected"); }
         , CurrentShowtimeDay: function () { return $("input#currentShowtimeDay"); }
         , CurrentTheaterContainer: function () { return $("#currentTheaterContainer"); }
@@ -38,6 +40,7 @@ codejkjk.movies.HomeIndex = {
         , MovieDetailsLinksSelector: function () { return ".movieDetailsLink"; }
         , MovieDetailsTemplate: function () { return $("#movieDetailsTemplate"); }
         , MovieListTemplate: function () { return $("#movieListTemplate"); }
+        , MovieUrl: function () { return $("#movieUrl"); }
         , Nav: function () { return $("nav"); }
         , NavLinks: function () { return $("nav > a"); }
         , NavTemplate: function () { return $("#navTemplate"); }
@@ -483,13 +486,13 @@ codejkjk.movies.HomeIndex = {
 
                 console.log("setting clip stuff");
 
-//                $("#movieDetails").append("<div id='copy2'>copy !!1</div>");
-//                var clip = new ZeroClipboard.Client();
-//                clip.setText('copy me!');
-//                clip.addEventListener('mouseOver', function (client) {
-//                    alert("mouse over");
-//                });
-//                clip.glue($("#copy2"));
+                var clip = new ZeroClipboard.Client();
+                clip.setText(codejkjk.movies.HomeIndex.Controls.MovieUrl().val());
+                clip.glue('copyButton');
+
+                clip.addEventListener('complete', function (client, text) {
+                    codejkjk.movies.HomeIndex.Controls.CopySuccess().show().delay(3000).fadeOut('fast');
+                });
 
                 codejkjk.movies.HomeIndex.GetIMDbData();
             });

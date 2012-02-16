@@ -101,7 +101,7 @@ codejkjk.movies.HomeIndex = {
         // if load IMDb movies that aren't set
         codejkjk.movies.HomeIndex.GetIMDbData();
 
-        // codejkjk.movies.HomeIndex.RegisterJsRenderHelpers();
+        codejkjk.movies.HomeIndex.RegisterJsRenderHelpers();
 
         // *** load showtimes view ***
         // init showtime date to today
@@ -145,10 +145,12 @@ codejkjk.movies.HomeIndex = {
                 return Date.parse(date).toString("MMM d, yyyy");
             },
             GetParentalGuideUrl: function (imdbId) {
-                return codejkjk.movies.IMDB.GetParentalGuideUrl(imdbId);
+                //return codejkjk.movies.IMDB.GetParentalGuideUrl(imdbId);
+                return "";
             },
             GetIMDbMovieUrl: function (imdbId) {
-                return codejkjk.movies.IMDB.GetMovieUrl(imdbId);
+                // return codejkjk.movies.IMDB.GetMovieUrl(imdbId);
+                return "";
             },
             Snippet: function (text, len) {
                 return text.snippet(len);
@@ -472,7 +474,7 @@ codejkjk.movies.HomeIndex = {
             e.preventDefault();
 
             var link = $(this);
-            var rtMovieId = link.attr("[data-rtmovieid]");
+            var rtMovieId = link.attr("data-rtmovieid");
 
             codejkjk.movies.Api.GetRottenTomatoesMovie(rtMovieId, function (movie) {
                 var overlayHeight = $(document).height() + "px";

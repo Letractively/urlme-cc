@@ -59,7 +59,7 @@ div.growlUI h2 { font-size: 16px; color: white; padding: 5px 5px 5px 75px; text-
 .add-link-form { font-size: 120%; margin-bottom: 15px; }
 .add-link-form .new-path-input { padding: 5px; width: 125px; }
 .add-link-form .new-destination-url-input { padding: 5px; width: 325px; }
-.add-link-form .add-button { padding: 5px 10px 5px 10px; }
+.add-link-form input[type='button'] { padding: 5px 10px 5px 10px; }
 .add-link-form .hints { color: #483A3A; }
 
 .user-box { position: absolute; right: 10px; top: 10px; }

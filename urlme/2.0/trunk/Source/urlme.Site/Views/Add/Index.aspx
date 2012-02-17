@@ -5,9 +5,13 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml" >
 <head id="Head1" runat="server">
-    <link href="../../Content/Site.css" rel="stylesheet" type="text/css" />
-    <script src="../../Scripts/jquery-1.4.1.min.js" type="text/javascript"></script>
-    <script src="../../Scripts/codejkjk.js" type="text/javascript"></script>
+    <link href="<%= this.Html.ResolveClientUrl("~/Content/Site.css") %>" rel="stylesheet" type="text/css" />
+    <script src="<%= this.Html.ResolveClientUrl("~/Scripts/jquery-1.7.1.min.js") %>"></script>
+    <script src="<%= this.Html.ResolveClientUrl("~/Scripts/codejkjk.js") %>"></script>
+    <script src="<%= this.Html.ResolveClientUrl("~/Scripts/plugins/zeroclipboard/zeroclipboard.js") %>"></script>
+    <script type="text/javascript">
+        ZeroClipboard.setMoviePath('<%= this.Html.ResolveClientUrl("~/Scripts/plugins/zeroclipboard/zeroclipboard.swf") %>');
+    </script>
     <script type="text/javascript">
         var _gaq = _gaq || [];
         _gaq.push(['_setAccount', 'UA-18542179-1']);
@@ -33,14 +37,14 @@
             <div class="add-link-form">
                 <div style="margin-bottom:10px;"><input value="<%= Request.QueryString["url"] %>" id="NewDestinationUrl" name="NewDestinationUrl" type="text" class="new-destination-url-input" /></div>
                 <div style="margin-bottom:10px;"><strong>Add</strong>: <span class="hints">http://urlme.cc/</span><input id="NewPath" name="NewPath" type="text" class="new-path-input" /></div>
-                <div><input type="button" id="AddAndClose" value="Add & close" class="add-button" />&nbsp;<input type="button" id="CancelAndClose" value="Cancel & close" class="add-button" />&nbsp;<span id="Error"></span></div>
+                <div><input type="button" id="AddAndClose" value="Add & close" />&nbsp;<input type="button" id="AddCopyAndClose" value="Add, copy & close" />&nbsp;<input type="button" id="CancelAndClose" value="Cancel" />&nbsp;<span id="Error"></span></div>
             </div>
         <% } %>
 
     <% }
        else
        { %>
-       You should sign in first. Visit <a target="_blank" href="http://urlme.cc">http://urlme.cc</a> and sign in, <a href="#" onclick="window.close();return false;">close this window</a>, then try again.
+       You should sign in first. Visit <a target="_blank" href="http://urlme.cc">http://urlme.cc</a> and sign in, <a href="#" onclick="location.href = location.href;return false;">refresh this window</a>, then try again.
     <% } %>
 
     </div>
@@ -48,6 +52,7 @@
     <script type="text/javascript">
         var bookmarkletServiceUrl = "<%=this.Html.ResolveClientUrl("~/service/add") %>";
     </script>
-    <script src="../../Scripts/codejkjk.urlme.Bookmarklet.js" type="text/javascript"></script>
+    
+    <script src="<%= this.Html.ResolveClientUrl("~/Scripts/codejkjk.urlme.Bookmarklet.js") %>" type="text/javascript"></script>
     </body>
 </html>

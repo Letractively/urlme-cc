@@ -10,6 +10,16 @@ codejkjk.urlme.Bookmarklet = {
             window.close();
         });
         $("#AddAndClose").click(function () { codejkjk.urlme.Bookmarklet.AddAndCloseClicked(); });
+
+        $("#NewPath").keyup(function () {
+            var clip = new ZeroClipboard.Client();
+            clip.setText('http://urlme.cc/' + $("#NewPath").val());
+            clip.setHandCursor(false);
+            clip.glue('AddCopyAndClose');
+            clip.addEventListener('complete', function (client, text) {
+                $("#AddAndClose").trigger('click');
+            });
+        });
     },
     AddAndCloseClicked: function () {
         // todo: VALIDATE

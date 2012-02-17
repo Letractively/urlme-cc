@@ -7,9 +7,9 @@ version: 2.8.1
 html{color:#000;background:#FFF;}body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,code,form,fieldset,legend,input,button,textarea,p,blockquote{margin:0;padding:0;}fieldset,img{border:0;}address,caption,cite,code,dfn,em,strong,th,var,optgroup{font-style:inherit;font-weight:inherit;}del,ins{text-decoration:none;}li{list-style:none;}caption,th{text-align:left;}h1,h2,h3,h4,h5,h6{font-size:100%;font-weight:normal;}q:before,q:after{content:'';}abbr,acronym{border:0;font-variant:normal;}sup{vertical-align:baseline;}sub{vertical-align:baseline;}legend{color:#000;}input,button,textarea,select,optgroup,option{font-family:inherit;font-size:inherit;font-style:inherit;font-weight:inherit;}input,button,textarea,select{*font-size:100%;}
 /* th,td{margin:0;padding:0;}
 table{border-collapse:collapse;border-spacing:0;} */
-td { padding: 2px 5px 3px 5px; }
-tr.even { background-color: #F0F0F0; }
 li { list-style-type: decimal; margin-bottom: 10px; margin-left: 18px; padding-left: 5px; width: 565px; }
+
+/* tr:hover .delete-link { display:inline-block; } */
 
 strong { font-weight: bold; }
 
@@ -17,6 +17,7 @@ div { overflow: auto; }
 
 body { font-family:Arial; font-size: 12px; }
 
+a { text-decoration: none; }
 a:link { color: #3366b4; }
 a:visited { color: #3366b4; }
 a:hover { color: #3366b4; }
@@ -27,13 +28,18 @@ h2 { color: #8FB98B; font-size: 140%; margin-bottom: 15px; font-weight: bold; } 
 h3 { font-size: 120%; font-style: italic; margin-bottom: 10px; }
 
 ol.First { margin-bottom: 20px; border-bottom: 1px solid #cdcdcd; padding-bottom: 15px; width: 565px; }
+
+/* table props */
+td { padding: 5px; }
+tr:nth-child(even) { background-color: #F0F0F0; }
 td.created { padding-right: 20px; }
 th.link { width: 350px; }
 th.hits { width: 45px; }
-th.delete { width: 61px; }
+th.delete { width: 155px; }
+td .copyButton { height: 16px; background: url(copy.png) no-repeat left; padding-left: 22px; margin-right: 10px; display:inline-block; }
 
 a.external { color: #483A3A; border-bottom: 1px dashed #cdcdcd; text-decoration: none; background: transparent url(external-link.png) top right no-repeat; padding-right: 15px; }
-a.delete-link { background: transparent url(delete.png) no-repeat left; padding-left: 22px; display:none; }
+a.delete-link { background: transparent url(delete.png) no-repeat left; padding-left: 22px; }
 
 .main-content { padding:20px; }
 

@@ -22,12 +22,12 @@
     @{ int i = 0; }
     @foreach (var item in Model)
     {
-        <tr @((i % 2 == 1) ? "class=\"even\"" : "")>
+        <tr>
             <td>
                 <a href="@item.DestinationUrl">http://urlme.cc/@item.Path</a>&nbsp;&nbsp;&nbsp;(<a href="@item.DestinationUrl" class="external" target="_blank">new tab</a>)
             </td>
             <td>
-                @this.Html.ActionLink("Delete", "delete", new { controller = "link", id = item.LinkId }, new { @class = "delete-link" })
+                <a href="#" id="copyButton-{@item.LinkId}" class="copyButton">Copy urlme</a>@this.Html.ActionLink("Delete", "delete", new { controller = "link", id = item.LinkId }, new { @class = "delete-link" })
             </td>
             <td>
                 @this.Html.MakeSnippet(item.DestinationUrl, 60)
@@ -43,5 +43,4 @@
     }
     </tbody>
 </table>
-<script src="../../Scripts/jquery.hoverIntent.min.js" type="text/javascript"></script>
-<script src="../../Scripts/codejkjk.urlme.LinkList.js" type="text/javascript"></script>
+<script src="@this.Url.Content("~/Scripts/codejkjk.urlme.LinkList.js")" type="text/javascript"></script>

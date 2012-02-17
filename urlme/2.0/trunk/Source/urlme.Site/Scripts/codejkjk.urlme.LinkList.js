@@ -6,14 +6,14 @@ codejkjk.urlme.Default = {
     },
 
     BindDeleteLinks: function () {
-        $("tr").hoverIntent({
-            over: function () {
-                $(this).find(".delete-link").show();
-            },
-            out: function () {
-                $(this).find(".delete-link").hide(); // fadeOut(50);
-            }
-        });
+//        $("tr").hoverIntent({
+//            over: function () {
+//                $(this).find(".delete-link").show();
+//            },
+//            out: function () {
+//                $(this).find(".delete-link").hide(); // fadeOut(50);
+//            }
+//        });
     }
 };
 

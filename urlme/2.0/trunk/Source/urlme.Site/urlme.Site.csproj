@@ -14,6 +14,7 @@
     <AssemblyName>urlme.Site</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <MvcBuildViews>false</MvcBuildViews>
+    <UseIISExpress>false</UseIISExpress>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -87,6 +88,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\check.png" />
+    <Content Include="Content\copy.png" />
     <Content Include="Content\delete.png" />
     <Content Include="Content\external-link.png" />
     <Content Include="Content\logo.jpg" />
@@ -110,16 +112,18 @@
     <Content Include="Scripts\codejkjk.urlme.Bookmarklet.js" />
     <Content Include="Scripts\codejkjk.urlme.LinkList.js" />
     <Content Include="Scripts\codejkjk.urlme.HomeIndex.js" />
+    <Content Include="Scripts\jquery-1.7.1.min.js" />
     <Content Include="Scripts\jquery.blockUI.js" />
     <Content Include="Scripts\jquery.dataTables.min.js" />
     <Content Include="Scripts\jquery.hoverIntent.min.js" />
+    <Content Include="Scripts\Plugins\zeroclipboard\test.html" />
+    <Content Include="Scripts\Plugins\zeroclipboard\ZeroClipboard.js" />
+    <Content Include="Scripts\Plugins\zeroclipboard\ZeroClipboard.swf" />
     <Content Include="Views\Add\Index.aspx" />
     <Content Include="Views\Help\Index.aspx" />
     <Content Include="Views\Home\DisplayTemplates\Link.ascx" />
     <Content Include="Views\Home\Index.aspx" />
     <None Include="Views\Shared\LinkList.cshtml" />
-    <Content Include="Views\Shared\LinkStatList0.ascx" />
-    <Content Include="Views\Shared\LinkList0.ascx" />
     <Content Include="Views\Shared\Login.ascx" />
     <Content Include="Views\Shared\SortBy.ascx" />
     <Content Include="Views\Shared\Welcome.ascx" />
@@ -133,21 +137,9 @@
     <Content Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
-    <Content Include="Scripts\jquery-1.4.1.js" />
-    <Content Include="Scripts\jquery-1.4.1.min.js" />
-    <Content Include="Scripts\jquery-1.4.1-vsdoc.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
-    <Content Include="Scripts\jquery.validate-vsdoc.js" />
-    <Content Include="Scripts\MicrosoftAjax.js" />
-    <Content Include="Scripts\MicrosoftAjax.debug.js" />
-    <Content Include="Scripts\MicrosoftMvcAjax.js" />
-    <Content Include="Scripts\MicrosoftMvcAjax.debug.js" />
-    <Content Include="Scripts\MicrosoftMvcValidation.js" />
-    <Content Include="Scripts\MicrosoftMvcValidation.debug.js" />
     <Content Include="Views\Web.config" />
-    <Content Include="Scripts\jquery-1.4.1.min-vsdoc.js" />
-    <Content Include="Scripts\jquery.validate.min-vsdoc.js" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\urlme.Core\urlme.Core.csproj">
@@ -178,12 +170,11 @@
     <VisualStudio>
       <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
         <WebProjectProperties>
-          <UseIIS>False</UseIIS>
+          <UseIIS>True</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>50509</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>
-          </IISUrl>
+          <IISUrl>http://localhost/urlme</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>http://localhost/urlme/</CustomServerUrl>

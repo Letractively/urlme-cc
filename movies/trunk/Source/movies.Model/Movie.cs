@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Script.Serialization;
-using movies.Core.Web.Caching;
 using movies.Core.Extensions;
+using movies.Core.Web.Caching;
 
 namespace movies.Model
 {
@@ -68,6 +68,7 @@ namespace movies.Model
         public AbridgedCast[] abridged_cast { get; set; }
         public AlternateIds alternate_ids { get; set; }
         public Links links { get; set; }
+        public string showtimes { get; set; } // for showtimes view
 
         // view helpers (items NOT inherently provided by RT api)
         public string IMDbRating { get; set; }

@@ -21,5 +21,11 @@ namespace movies.Site.Controllers
         {
             return this.Json(Movie.GetRottenTomatoesMovie(rtMovieId), JsonRequestBehavior.AllowGet);
         }
+
+        [HttpGet]
+        public JsonResult GetShowtimes(string date, string zip)
+        {
+            return this.Json(PostalCode.GetShowtimes(date, zip), JsonRequestBehavior.AllowGet);
+        }
     }
 }

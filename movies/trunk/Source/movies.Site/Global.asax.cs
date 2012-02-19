@@ -34,6 +34,12 @@ namespace movies
             );
 
             routes.MapRoute(
+                "Api-Get_Movie", // Route name
+                "api/get_showtimes.json/{date}/{zip}", // URL with parameters
+                new { controller = "Api", action = "GetShowtimes" } // Parameter defaults
+            );
+
+            routes.MapRoute(
                 "MovieDetails", // Route name
                 "movie/{titleSlug}/{rtMovieId}", // URL with parameters
                 new { controller = "Api", action = "GetRottenTomatoesMovie" } // Parameter defaults

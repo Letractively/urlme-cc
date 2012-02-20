@@ -24,6 +24,22 @@
         @this.Html.Partial("MovieList", this.Model.UpcomingMovies)
     </section>
 
+    <!-- SHOWTIMES -->
+    <section id="showtimesView" class="content" data-navitemtext="Showtimes">
+        <input type="hidden" id="currentShowtimeDay" />
+        <section id="theaters">
+            <div id="location">
+                Showtimes for <span id="currentZip"></span><a href="#" id="changeCurrentZipLink">Change</a>
+                <div id="changeOptions" class="rounded">
+                    <input type="text" placeholder="e.g., 23226"><button type="button">Set</button> or <a id="useNearbyZipCode" href="#">see nearby</a>
+                </div>
+            </div>
+            <div id="favoriteTheaterList" class="theaterList favorites"></div>
+            <div id="theaterList" class="theaterList"></div>
+        </section>
+        <section id="currentTheaterContainer"></section>
+    </section>
+
     <!-- SEARCH RESULTS -->
     <section id="searchResultsView" class="content movieList rounded">
     </section>

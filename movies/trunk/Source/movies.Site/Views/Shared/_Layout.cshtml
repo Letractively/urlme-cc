@@ -13,6 +13,7 @@
     <script src="@Url.Content("~/scripts/codejkjk/codejkjk.movies.Defaults.js")"></script>
     <script src="@Url.Content("~/scripts/codejkjk/codejkjk.movies.Api.js")"></script>
     <script src="@Url.Content("~/scripts/plugins/jsrender.js")"></script>
+    <script src="@Url.Content("~/scripts/plugins/date.js")"></script>
     <script src="@Url.Content("~/scripts/plugins/zeroclipboard/zeroclipboard.js")"></script>
     <script type="text/javascript">
         // var clip = new ZeroClipboard.Client();
@@ -39,6 +40,54 @@
 
     <script id="navTemplate" type="text/x-jquery-tmpl">
         <a href="#" class="{{=className}}">{{=text}}</a>
+    </script>
+    <script id="favoriteTheaterListTemplate" type="text/x-jquery-tmpl">
+        {{#if $ctx.IsCurrentTheater(theaterId) }}
+            <a class="selected glowing" href="/#/ZipCode/theater/{{=theaterId}}" data-theaterid="{{=theaterId}}">
+        {{else}}
+            <a href="/#/ZipCode/theater/{{=theaterId}}" data-theaterid="{{=theaterId}}">
+        {{/if}}
+            <div class="favoriteLink lit"></div>
+            <div class="theaterName">{{=$ctx.Snippet(name, 30)!}}</div>
+            <div class="theaterAddress">{{=address}}</div>
+        </a>
+    </script>
+    <script id="theaterListTemplate" type="text/x-jquery-tmpl">
+        {{#if $ctx.IsCurrentTheater(theaterId) }}
+            <a class="selected glowing" href="/#/ZipCode/theater/{{=theaterId}}" data-theaterid="{{=theaterId}}">
+        {{else}}
+            <a href="/#/ZipCode/theater/{{=theaterId}}" data-theaterid="{{=theaterId}}">
+        {{/if}}
+            <div class="favoriteLink default"></div>
+            <div class="theaterName">{{=$ctx.Snippet(name, 30)!}}</div>
+            <div class="theaterAddress">{{=address}}</div>
+        </a>
+    </script>
+    <script id="currentTheaterTemplate" type="text/x-jquery-tmpl">
+        {{#if $ctx.IsCurrentTheater(theaterId) }}
+            <div class="theater selected rounded glowing" data-theaterid="{{=theaterId}}">
+        {{else}}
+            <div class="theater rounded" data-theaterid="{{=theaterId}}">
+        {{/if}}    
+            <div class="theaterNameAndFavorite">
+                <h1>{{=name}}</h1><a class="favoriteLink {{=$ctx.GetFavoriteLinkClass(theaterId)}}" href="#"></a>
+            </div>
+            <p class="address">{{=address}}</p>
+            <div class="showtimeDays"></div>
+            <div class="showHiddenMoviesLinkContainer {{#if numHiddenMovies}} {{else}} hidden {{/if}}"><a href="#" class="showHiddenMoviesLink">Show hidden movies (<span class="numHiddenMovies">{{=numHiddenMovies}}</span>)</a></div>
+            {{#each movies}}
+                <div class="movie rounded glowing gradient {{=movieClass}}" data-rtmovieid="{{=rtMovieId}}">
+                    <img />
+                    <h2>{{=name}}</h2><a href="#" class='mpaaRating' target='_blank' title='Link to Parents Guide on IMDb.com'>{{=mpaaRating}}</a>{{=length}}
+                    <p class="showtimes">{{=showtimes!}}</p>
+                    <div class="ratings"><a class='rt_critics_rating rottenTomato' target='_blank'></a><a class='rt_audience_rating rottenTomato' target='_blank'></a><a data-imdbmovieid="" class='imdb' target='_blank'></a></div>
+                    <div class="actions">
+                        <a href="#" class="hideMovieLink rounded" data-theatermovie="{{=$parent.parent.data.theaterId}}-{{=rtMovieId}}"><span class="x">&#10006;</span>Hide this movie</a>
+                        <a href="#" class="movieDetailsLink rounded"><span class="dotdotdot">+</span>More movie details</a>
+                    </div>
+                </div>
+            {{/each}}
+        </div>
     </script>
     <script id="movieDetailsTemplate" type="text/x-jquery-tmpl">
         <a href="#" id="closeMovieDetailsLink">Close</a>

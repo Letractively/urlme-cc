@@ -17,15 +17,21 @@ namespace movies.Site.Controllers
         }
 
         [HttpGet]
+        public JsonResult SearchMovies(string q)
+        {
+            return this.Json(Movie.SearchMovies(q), JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpGet]
         public JsonResult GetRottenTomatoesMovie(string rtMovieId)
         {
             return this.Json(Movie.GetRottenTomatoesMovie(rtMovieId), JsonRequestBehavior.AllowGet);
         }
 
         [HttpGet]
-        public JsonResult GetShowtimes(string date, string zip)
+        public ActionResult GetShowtimes(string date, string zip)
         {
-            return this.Json(PostalCode.GetShowtimes(date, zip), JsonRequestBehavior.AllowGet);
+            return Content(PostalCode.GetShowtimes(date, zip));
         }
     }
 }

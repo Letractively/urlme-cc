@@ -104,7 +104,7 @@ namespace movies.Model
         public static IMDbMovie GetIMDbMovie(string imdbMovieId)
         {
             return Cache.GetValue<IMDbMovie>(
-                string.Format("codejkjk.movies.Model.GetIMDbMovie-{0}", imdbMovieId),
+                string.Format("codejkjk.movies.Model.Movie.GetIMDbMovie-{0}", imdbMovieId),
                 () =>
                 {
                     string imdbJson = API.IMDb.GetMovieJson(imdbMovieId);
@@ -115,13 +115,13 @@ namespace movies.Model
         public static Movie GetRottenTomatoesMovie(string rtMovieId)
         {
             Movie movie = Cache.GetValue<Movie>(
-                string.Format("codejkjk.movies.Model.GetRottenTomatoesMovie-{0}", rtMovieId),
+                string.Format("codejkjk.movies.Model.Movie.GetRottenTomatoesMovie-{0}", rtMovieId),
                 () =>
                 {
                     Movie ret = null;
 
                     // check if this movie has been loaded yet
-                    if (Cache.KeyExists("codejkjk.movies.Model.GetBoxOffice"))
+                    if (Cache.KeyExists("codejkjk.movies.Model.Movie.GetBoxOffice"))
                     {
                         var boxOfficeMovies = GetBoxOffice();
                         if (boxOfficeMovies.ContainsKey(rtMovieId))
@@ -129,7 +129,7 @@ namespace movies.Model
                             ret = boxOfficeMovies[rtMovieId];
                         }
                     }
-                    else if (Cache.KeyExists("codejkjk.movies.Model.GetUpcoming"))
+                    else if (Cache.KeyExists("codejkjk.movies.Model.Movie.GetUpcoming"))
                     {
                         var upcomingMovies = GetUpcoming();
                         if (upcomingMovies.ContainsKey(rtMovieId))
@@ -154,11 +154,16 @@ namespace movies.Model
             return movie;
         }
 
+        public static List<Movie> SearchMovies(string q)
+        {
+            return null;
+        }
+
         public static Dictionary<string, Movie> GetBoxOffice()
         {
             // get list of rt movies from cache
             Dictionary<string, Movie> movies = Cache.GetValue<Dictionary<string, Movie>>(
-                "codejkjk.movies.Model.GetBoxOffice",
+                "codejkjk.movies.Model.Movie.GetBoxOffice",
                 () =>
                 {
                     List<Movie> ret = new List<Movie>();
@@ -172,7 +177,7 @@ namespace movies.Model
             // for each movie, get imdb info if it exists in cache
             foreach (var movie in movies.Values.Where(x => x.alternate_ids != null))
             {
-                if (Cache.KeyExists(string.Format("codejkjk.movies.Model.GetIMDbMovie-{0}", movie.alternate_ids.imdb)))
+                if (Cache.KeyExists(string.Format("codejkjk.movies.Model.Movie.GetIMDbMovie-{0}", movie.alternate_ids.imdb)))
                 {
                     var imdbMovie = GetIMDbMovie(movie.alternate_ids.imdb);
                     movie.IMDbRating = imdbMovie.rating;
@@ -193,7 +198,7 @@ namespace movies.Model
             // can we load imdb?
             if (movie.alternate_ids != null && !movie.IMDbLoaded)
             {
-                if (Cache.KeyExists(string.Format("codejkjk.movies.Model.GetIMDbMovie-{0}", movie.alternate_ids.imdb)))
+                if (Cache.KeyExists(string.Format("codejkjk.movies.Model.Movie.GetIMDbMovie-{0}", movie.alternate_ids.imdb)))
                 {
                     var imdbMovie = GetIMDbMovie(movie.alternate_ids.imdb);
                     movie.IMDbRating = imdbMovie.rating;
@@ -210,7 +215,7 @@ namespace movies.Model
         public static Dictionary<string, Movie> GetUpcoming()
         {
             return Cache.GetValue<Dictionary<string, Movie>>(
-                "codejkjk.movies.Model.GetUpcoming",
+                "codejkjk.movies.Model.Movie.GetUpcoming",
                 () =>
                 {
                     List<Movie> ret = new List<Movie>();

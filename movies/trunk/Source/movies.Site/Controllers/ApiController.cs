@@ -17,9 +17,9 @@ namespace movies.Site.Controllers
         }
 
         [HttpGet]
-        public JsonResult SearchMovies(string q)
+        public ActionResult SearchMovies(string q)
         {
-            return this.Json(Movie.SearchMovies(q), JsonRequestBehavior.AllowGet);
+            return Content(Movie.SearchMovies(q));
         }
 
         [HttpGet]

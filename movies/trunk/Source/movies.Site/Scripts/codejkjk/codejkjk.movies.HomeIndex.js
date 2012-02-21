@@ -258,7 +258,7 @@ codejkjk.movies.HomeIndex = {
     LoadSearchResults: function (html) {
         codejkjk.movies.HomeIndex.Controls.NavLinks().removeClass("selected glowing rounded");
         $(".content").hide();
-        codejkjk.movies.HomeIndex.Controls.SearchResultsView().html(movies);
+        codejkjk.movies.HomeIndex.Controls.SearchResultsView().html(html);
         codejkjk.movies.HomeIndex.Controls.SearchResultsView().show();
         codejkjk.movies.HomeIndex.GetIMDbData();
     },
@@ -349,7 +349,7 @@ codejkjk.movies.HomeIndex = {
         codejkjk.movies.HomeIndex.Currents.ZipCode(zipCode); // update current zip code
         codejkjk.movies.HomeIndex.Controls.CurrentZip().html(zipCode);
         codejkjk.movies.HomeIndex.Currents.Theater(""); // new zip, so clear out current theater value
-        codejkjk.movies.Api.GetTheaters(codejkjk.movies.HomeIndex.Controls.CurrentZip().val(), zipCode, codejkjk.movies.HomeIndex.LoadTheaters);
+        codejkjk.movies.Api.GetTheaters(codejkjk.movies.HomeIndex.Controls.CurrentShowtimeDay().val(), zipCode, codejkjk.movies.HomeIndex.LoadTheaters);
     },
 
     BindControls: function () {
@@ -376,7 +376,7 @@ codejkjk.movies.HomeIndex = {
             localStorage.setItem("FavoriteTheaters", favoriteTheaters.join(','));
 
             // refresh theaters
-            codejkjk.movies.Api.GetTheaters(codejkjk.movies.HomeIndex.Controls.CurrentZip().val(), codejkjk.movies.HomeIndex.Currents.ZipCode(), codejkjk.movies.HomeIndex.LoadTheaters);
+            codejkjk.movies.Api.GetTheaters(codejkjk.movies.HomeIndex.Controls.CurrentShowtimeDay().val(), codejkjk.movies.HomeIndex.Currents.ZipCode(), codejkjk.movies.HomeIndex.LoadTheaters);
         });
 
         // handle theater link clicks

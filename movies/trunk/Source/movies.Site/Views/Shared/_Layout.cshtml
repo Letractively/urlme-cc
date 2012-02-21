@@ -12,9 +12,11 @@
     <script src="@Url.Content("~/externals/local-cache/local-cache.js")"></script>
     <script src="@Url.Content("~/scripts/codejkjk/codejkjk.movies.Defaults.js")"></script>
     <script src="@Url.Content("~/scripts/codejkjk/codejkjk.movies.Api.js")"></script>
+    <script src="@Url.Content("~/scripts/codejkjk/codejkjk.Geo.js")"></script>
     <script src="@Url.Content("~/scripts/plugins/jsrender.js")"></script>
     <script src="@Url.Content("~/scripts/plugins/date.js")"></script>
     <script src="@Url.Content("~/scripts/plugins/zeroclipboard/zeroclipboard.js")"></script>
+    <script src="@Url.Content("~/scripts/plugins/jquery.mask.min.js")"></script>
     <script type="text/javascript">
         // var clip = new ZeroClipboard.Client();
         ZeroClipboard.setMoviePath('@Url.Content("~/scripts/plugins/zeroclipboard/zeroclipboard.swf")');
@@ -83,7 +85,7 @@
                     <div class="ratings"><a class='rt_critics_rating rottenTomato' target='_blank'></a><a class='rt_audience_rating rottenTomato' target='_blank'></a><a data-imdbmovieid="" class='imdb' target='_blank'></a></div>
                     <div class="actions">
                         <a href="#" class="hideMovieLink rounded" data-theatermovie="{{=$parent.parent.data.theaterId}}-{{=rtMovieId}}"><span class="x">&#10006;</span>Hide this movie</a>
-                        <a href="#" class="movieDetailsLink rounded"><span class="dotdotdot">+</span>More movie details</a>
+                        <a href="#" class="movieDetailsLink rounded" data-rtmovieid="{{=rtMovieId}}"><span class="dotdotdot">+</span>More movie details</a>
                     </div>
                 </div>
             {{/each}}
@@ -106,7 +108,7 @@
             {{#each abridged_cast}}{{#if $itemNumber == 1 }}{{=name}}{{else}}, {{=name}}{{/if}}{{/each}}
         </p>
         <p class="share">
-            <strong>Share</strong>: <input type="text" id="movieUrl" value="@Url.Content("~/movie/"){{=MovieSlug}}" /><span id="copyButton">Copy</span><span id="copySuccess">Copied to clipboard!</span>
+            <strong>Share</strong>: <input type="text" id="movieUrl" value="http://urlme.cc/m/{{=MovieSlug}}" /><span id="copyButton">Copy</span><span id="copySuccess">Copied to clipboard!</span>
         </p>
     </script>
 </body>

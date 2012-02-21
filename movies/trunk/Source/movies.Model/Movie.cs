@@ -79,8 +79,8 @@ namespace movies.Model
         public string CriticsClass { get { return string.IsNullOrEmpty(this.ratings.critics_rating) ? null : this.ratings.critics_rating.Contains("Fresh") ? "criticsFresh" : "criticsRotten"; } }
         public string AudienceClass { get { return string.IsNullOrEmpty(this.ratings.audience_rating) ? null : this.ratings.audience_rating.Contains("Upright") ? "audienceUpright" : "audienceSpilled"; } }
         public string ReleaseDate { get { return this.release_dates.theater.ToString("MMM d, yyyy"); } }
-        public string ParentalGuideUrl { get { return API.IMDb.GetParentalGuideUrl(this.alternate_ids.imdb); } }
-        public string IMDbMovieUrl { get { return API.IMDb.GetMovieUrl(this.alternate_ids.imdb); } }
+        public string ParentalGuideUrl { get { return this.alternate_ids != null ? API.IMDb.GetParentalGuideUrl(this.alternate_ids.imdb) : null; } }
+        public string IMDbMovieUrl { get { return this.alternate_ids != null ? API.IMDb.GetMovieUrl(this.alternate_ids.imdb) : null; } }
         public string MovieSlug { get { return this.title.Slugify() + "/" + this.id; } }
         public string Duration
         {

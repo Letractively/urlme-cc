@@ -150,6 +150,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Models\" />
+    <Folder Include="Views\Mobile\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Home\Index.cshtml" />
@@ -168,7 +169,7 @@
     <Content Include="Views\Shared\MovieList.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\Movie\Index.cshtml" />
+    <Content Include="Views\Shared\_MobileLayout.cshtml" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />

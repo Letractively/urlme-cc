@@ -95,8 +95,6 @@ codejkjk.movies.HomeIndex = {
             return;
         }
 
-        // init history plugin
-
         codejkjk.movies.HomeIndex.BuildNav();
 
         codejkjk.movies.HomeIndex.BindControls();
@@ -114,6 +112,11 @@ codejkjk.movies.HomeIndex = {
 
         // load the view that's selected (remembered)
         codejkjk.movies.HomeIndex.Controls.CurrentNavItem().trigger('click');
+
+        // is this on a /movie/the_matrix/23531432 view? if so, show movie details overlay
+        if (overlayRtMovieId) { // defined in js-referencing view
+            codejkjk.movies.HomeIndex.ShowMovieDetails(overlayRtMovieId);
+        }
     },
 
     RegisterJsRenderHelpers: function () {
@@ -352,6 +355,27 @@ codejkjk.movies.HomeIndex = {
         codejkjk.movies.Api.GetTheaters(codejkjk.movies.HomeIndex.Controls.CurrentShowtimeDay().val(), zipCode, codejkjk.movies.HomeIndex.LoadTheaters);
     },
 
+    ShowMovieDetails: function (rtMovieId) {
+        codejkjk.movies.Api.GetRottenTomatoesMovie(rtMovieId, function (movie) {
+            var overlayHeight = $(document).height() + "px";
+            var overlayWidth = $(document).width() + "px";
+            codejkjk.movies.HomeIndex.Controls.Overlay().css("height", overlayHeight).css("width", overlayWidth).show();
+            codejkjk.movies.HomeIndex.Controls.MovieDetails().html(
+                        codejkjk.movies.HomeIndex.Controls.MovieDetailsTemplate().render(movie)
+                ).show();
+
+            var clip = new ZeroClipboard.Client();
+            clip.setText(codejkjk.movies.HomeIndex.Controls.MovieUrl().val());
+            clip.glue('copyButton');
+
+            clip.addEventListener('complete', function (client, text) {
+                codejkjk.movies.HomeIndex.Controls.CopySuccess().show().delay(2500).fadeOut('fast');
+            });
+
+            codejkjk.movies.HomeIndex.GetIMDbData();
+        });
+    },
+
     BindControls: function () {
         // handle favorite theater links
         $(document).on('click', codejkjk.movies.HomeIndex.Controls.FavoriteLinksSelector(), function (e) {
@@ -431,26 +455,7 @@ codejkjk.movies.HomeIndex = {
             var link = $(this);
             var rtMovieId = link.attr("data-rtmovieid");
 
-            codejkjk.movies.Api.GetRottenTomatoesMovie(rtMovieId, function (movie) {
-                var overlayHeight = $(document).height() + "px";
-                var overlayWidth = $(document).width() + "px";
-                codejkjk.movies.HomeIndex.Controls.Overlay().css("height", overlayHeight).css("width", overlayWidth).show();
-                codejkjk.movies.HomeIndex.Controls.MovieDetails().html(
-                        codejkjk.movies.HomeIndex.Controls.MovieDetailsTemplate().render(movie)
-                ).show();
-
-                console.log("setting clip stuff");
-
-                var clip = new ZeroClipboard.Client();
-                clip.setText(codejkjk.movies.HomeIndex.Controls.MovieUrl().val());
-                clip.glue('copyButton');
-
-                clip.addEventListener('complete', function (client, text) {
-                    codejkjk.movies.HomeIndex.Controls.CopySuccess().show().delay(2500).fadeOut('fast');
-                });
-
-                codejkjk.movies.HomeIndex.GetIMDbData();
-            });
+            codejkjk.movies.HomeIndex.ShowMovieDetails(rtMovieId);
         });
 
         // handle clicking of overlay, which should hide movie details popup

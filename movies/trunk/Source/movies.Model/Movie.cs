@@ -154,9 +154,19 @@ namespace movies.Model
             return movie;
         }
 
-        public static List<Movie> SearchMovies(string q)
+        public static string SearchMovies(string q)
         {
-            return null;
+            List<Movie> movies = Cache.GetValue<List<Movie>>(
+                string.Format("codejkjk.movies.Model.Movie.SearchMovies-{0}", q),
+                () =>
+                {
+                    List<Movie> ret = new List<Movie>();
+                    string rtJson = API.RottenTomatoes.GetBoxOfficeJson();
+                    var movieCollection = rtJson.FromJson<MovieCollection>();
+                    movieCollection.movies.ForEach(x => x.IMDbLoaded = false); // init all imdbloaded to false
+                    movieCollection.movies.ForEach(x => ret.Add(x));
+                    return ret.ToDictionary(key => key.id, value => value);
+                });
         }
 
         public static Dictionary<string, Movie> GetBoxOffice()

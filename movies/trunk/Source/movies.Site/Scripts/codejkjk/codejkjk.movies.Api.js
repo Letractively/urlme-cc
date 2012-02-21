@@ -60,7 +60,7 @@ codejkjk.movies.Api = {
 
         var url = "{0}search_movies.json?q={1}".format(codejkjk.movies.Api.BaseUrl, encodeURI(q));
         codejkjk.movies.Api.AjaxGetMovies(url, callback, cacheKey);
-    },    
+    },
     GetIMDbMovie: function (imdbMovieId, callback) {
         // first, check cache
         var cacheKey = "imdb-{0}".format(imdbMovieId);
@@ -83,13 +83,15 @@ codejkjk.movies.Api = {
         var url = "{0}get_rt_movie.json/{1}".format(codejkjk.movies.Api.BaseUrl, rtMovieId);
         codejkjk.movies.Api.AjaxGetMovie(url, callback, cacheKey);
     },
-    AjaxGetMovies: function (url, callback, cacheKey) {
+    AjaxGet: function (url, callback, responseDataType, cacheKey) {
         $.ajax({
             url: url,
-            dataType: "json",
+            dataType: responseDataType,
             success: function (response) {
-                $.cacheItem(cacheKey, response.movies, { expires: codejkjk.movies.Defaults.CacheExpires });
-                return callback(response.movies);
+                if (cacheKey) {
+                    $.cacheItem(cacheKey, response, { expires: codejkjk.movies.Defaults.CacheExpires });
+                }
+                return callback(response);
             },
             error: function () { return null; }
         });

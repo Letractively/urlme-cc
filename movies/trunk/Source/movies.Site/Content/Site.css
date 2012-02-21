@@ -59,7 +59,7 @@ header { text-align:center; height:33px; }
         #movieDetails .share #copySuccess { color: Green; display:none; margin-left: 10px; }
         #movieDetails .share #copyButton:hover { background: #eee; }
         #movieDetails .share #copyButton:active { background: #aaa; }
-        #movieDetails .share input[type='text'] { padding: 5px; width: 250px; }
+        #movieDetails .share input[type='text'] { padding: 5px; width: 345px; }
     #movieDetails .starring { margin-top: 15px; }
         #movieDetails .ratings a { float: left; height: 32px; margin-right: 10px; line-height: 32px; }
         #movieDetails .ratings .rottenTomato { padding-left: 39px; font-weight: bold; color: #506A16; }

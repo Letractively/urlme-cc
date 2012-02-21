@@ -59,7 +59,7 @@ codejkjk.movies.Api = {
         }
 
         var url = "{0}search_movies.json?q={1}".format(codejkjk.movies.Api.BaseUrl, encodeURI(q));
-        codejkjk.movies.Api.AjaxGetMovies(url, callback, cacheKey);
+        codejkjk.movies.Api.AjaxGet(url, callback, 'html', cacheKey);
     },
     GetIMDbMovie: function (imdbMovieId, callback) {
         // first, check cache

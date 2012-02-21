@@ -255,12 +255,10 @@ codejkjk.movies.HomeIndex = {
         });
     },
 
-    LoadSearchResults: function (movies) {
+    LoadSearchResults: function (html) {
         codejkjk.movies.HomeIndex.Controls.NavLinks().removeClass("selected glowing rounded");
         $(".content").hide();
-        codejkjk.movies.HomeIndex.Controls.SearchResultsView().html(
-            codejkjk.movies.HomeIndex.Controls.MovieListTemplate().render(movies)
-        );
+        codejkjk.movies.HomeIndex.Controls.SearchResultsView().html(movies);
         codejkjk.movies.HomeIndex.Controls.SearchResultsView().show();
         codejkjk.movies.HomeIndex.GetIMDbData();
     },

@@ -11,7 +11,7 @@
             return Core.Net.HttpWebRequest.GetResponse(url);
         }
 
-        public static string SearchMovies(string q)
+        public static string SearchMoviesJson(string q)
         {
             string url = string.Format("{0}movies.json?page_limit=20&page=1&country=us&apikey={1}&q={2}", BaseUrl, ApiKey, q);
             return Core.Net.HttpWebRequest.GetResponse(url);

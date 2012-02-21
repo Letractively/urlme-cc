@@ -19,7 +19,7 @@ namespace movies.Site.Controllers
         [HttpGet]
         public ActionResult SearchMovies(string q)
         {
-            return Content(Movie.SearchMovies(q));
+            return PartialView("MovieList", Movie.SearchMovies(q));
         }
 
         [HttpGet]

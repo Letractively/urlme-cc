@@ -154,19 +154,37 @@ namespace movies.Model
             return movie;
         }
 
-        public static string SearchMovies(string q)
+        public static Dictionary<string, Movie> SearchMovies(string q)
         {
-            List<Movie> movies = Cache.GetValue<List<Movie>>(
+            Dictionary<string, Movie> movies = Cache.GetValue<Dictionary<string, Movie>>(
                 string.Format("codejkjk.movies.Model.Movie.SearchMovies-{0}", q),
                 () =>
                 {
                     List<Movie> ret = new List<Movie>();
-                    string rtJson = API.RottenTomatoes.GetBoxOfficeJson();
+                    string rtJson = API.RottenTomatoes.SearchMoviesJson(q);
                     var movieCollection = rtJson.FromJson<MovieCollection>();
                     movieCollection.movies.ForEach(x => x.IMDbLoaded = false); // init all imdbloaded to false
                     movieCollection.movies.ForEach(x => ret.Add(x));
                     return ret.ToDictionary(key => key.id, value => value);
                 });
+
+            // for each movie, get imdb info if it exists in cache
+            foreach (var movie in movies.Values.Where(x => x.alternate_ids != null))
+            {
+                if (Cache.KeyExists(string.Format("codejkjk.movies.Model.Movie.GetIMDbMovie-{0}", movie.alternate_ids.imdb)))
+                {
+                    var imdbMovie = GetIMDbMovie(movie.alternate_ids.imdb);
+                    movie.IMDbRating = imdbMovie.rating;
+                    movie.IMDbVotes = imdbMovie.votes;
+                    movie.IMDbLoaded = true;
+                }
+                else
+                {
+                    movie.IMDbLoaded = false;
+                }
+            }
+
+            return movies;
         }
 
         public static Dictionary<string, Movie> GetBoxOffice()

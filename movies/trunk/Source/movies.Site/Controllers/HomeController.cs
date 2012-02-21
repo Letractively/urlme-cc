@@ -13,9 +13,21 @@ namespace movies.Site.Controllers
             var vm = new ViewModels.Home.Index
             {
                 BoxOfficeMovies = Movie.GetBoxOffice(),
-                UpcomingMovies = Movie.GetUpcoming()
+                UpcomingMovies = Movie.GetUpcoming(),
+                OverlayRtMovieId = null
             };
             return View(vm);
+        }
+
+        public ActionResult IndexWithMovieOverlay(string titleSlug, string rtMovieId)
+        {
+            var vm = new ViewModels.Home.Index
+            {
+                BoxOfficeMovies = Movie.GetBoxOffice(),
+                UpcomingMovies = Movie.GetUpcoming(),
+                OverlayRtMovieId = rtMovieId
+            };
+            return View("Index", vm);
         }
     }
 }

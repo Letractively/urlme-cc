@@ -48,7 +48,7 @@ namespace movies
             routes.MapRoute(
                 "MovieDetails", // Route name
                 "movie/{titleSlug}/{rtMovieId}", // URL with parameters
-                new { controller = "Api", action = "GetRottenTomatoesMovie" } // Parameter defaults
+                new { controller = "Home", action = "IndexWithMovieOverlay" } // Parameter defaults
             );  
             
             routes.MapRoute(

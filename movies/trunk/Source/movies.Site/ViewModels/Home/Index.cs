@@ -11,5 +11,6 @@ namespace movies.Site.ViewModels.Home
     {
         public Dictionary<string, Movie> BoxOfficeMovies { get; set; }
         public Dictionary<string, Movie> UpcomingMovies { get; set; }
+        public string OverlayRtMovieId { get; set; }
     }
 }

@@ -7,4 +7,22 @@
 @section ExtraHeadContent {
 }
 
-mobile view!!!!
+<div data-role="page">
+	<div data-role="header">
+        <input type="search" value="Search..." />
+        <div data-role="navbar">
+            <ul>
+                <li><a href="~/" class="ui-btn-active" data-prefetch>Top Box Office</a></li>
+                <li><a href="~/showtimes" data-prefetch>Showtimes</a></li>
+                <li><a href="~/comingsoon" data-prefetch>Coming Soon</a></li>
+            </ul>
+        </div>
+	</div><!-- /header -->
+
+	<div data-role="content">	
+        <ul data-role="listview" data-theme="c" id="topBoxOffice">
+            @this.Html.Partial("MovieList.Mobile", this.Model.BoxOfficeMovies)
+        </ul>
+	</div><!-- /content -->
+
+</div><!-- /page -->

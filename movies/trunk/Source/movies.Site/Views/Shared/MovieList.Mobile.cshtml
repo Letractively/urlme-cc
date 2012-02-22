@@ -1,0 +1,21 @@
+﻿@model Dictionary<string, movies.Model.Movie>
+
+@foreach (var movie in this.Model.Values)
+{
+    if (movie.alternate_ids != null)
+    {
+    <li><a href="#">
+        <img src="@movie.posters.thumbnail" />
+        <h3>@movie.title<span class="rating">@movie.mpaa_rating</span></h3>
+        @if (movie.IsReleased) {
+            <p class="ratings">
+                <span class='@movie.CriticsClass rottenTomato'>@movie.ratings.critics_score<sup>%</sup></span>
+                <span class='@movie.AudienceClass rottenTomato'>@movie.ratings.audience_score<sup>%</sup></span>
+                <span data-imdbmovieid="@movie.alternate_ids.imdb" class='imdb @movie.IMDbClass'>@(movie.IMDbRating != null ? movie.IMDbRating.ToLower() : "")</span>
+            </p>
+        } else {
+            <p class="releaseDate">@movie.ReleaseDate</p>
+        }
+    </a></li>
+    }
+}

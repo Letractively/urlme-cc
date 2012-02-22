@@ -19,6 +19,30 @@ namespace movies.Site.Controllers
             return View(vm);
         }
 
+        /* mobile - showtimes */
+        public ActionResult Showtimes()
+        {
+            var vm = new ViewModels.Home.Index
+            {
+                BoxOfficeMovies = Movie.GetBoxOffice(),
+                UpcomingMovies = Movie.GetUpcoming(),
+                OverlayRtMovieId = null
+            };
+            return View(vm);
+        }
+
+        /* mobile - coming soon */
+        public ActionResult ComingSoon()
+        {
+            var vm = new ViewModels.Home.Index
+            {
+                BoxOfficeMovies = Movie.GetBoxOffice(),
+                UpcomingMovies = Movie.GetUpcoming(),
+                OverlayRtMovieId = null
+            };
+            return View(vm);
+        }
+
         public ActionResult IndexWithMovieOverlay(string titleSlug, string rtMovieId)
         {
             var vm = new ViewModels.Home.Index

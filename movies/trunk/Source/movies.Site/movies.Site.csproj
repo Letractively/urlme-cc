@@ -34,6 +34,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="FiftyOne.Foundation">
+      <HintPath>..\Solutions\packages\51Degrees.mobi.2.0.6.2\lib\NET40\FiftyOne.Foundation.dll</HintPath>
+    </Reference>
     <Reference Include="System.Web.Helpers" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
@@ -129,6 +132,7 @@
     <Content Include="Scripts\codejkjk\codejkjk.movies.HomeIndex.js" />
     <Content Include="Scripts\codejkjk\codejkjk.movies.Api.js" />
     <Content Include="Scripts\codejkjk\codejkjk.movies.Defaults.js" />
+    <Content Include="Scripts\codejkjk\codejkjk.movies.Mobile.js" />
     <Content Include="Scripts\jquery-1.7.1.min.js" />
     <Content Include="Scripts\jquery.mobile-1.0.1.min.js" />
     <Content Include="Scripts\Plugins\date.js" />
@@ -137,6 +141,10 @@
     <Content Include="Scripts\Plugins\zeroclipboard\test.html" />
     <Content Include="Scripts\Plugins\zeroclipboard\ZeroClipboard.js" />
     <Content Include="Scripts\Plugins\zeroclipboard\ZeroClipboard.swf" />
+    <Content Include="Views\Home\mobile.htm" />
+    <Content Include="Views\Home\mobile2.htm" />
+    <Content Include="Views\Home\mobile_comingsoon.htm" />
+    <Content Include="Views\Home\mobile_showtimes.htm" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -153,7 +161,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Models\" />
-    <Folder Include="Views\Mobile\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Home\Index.cshtml" />
@@ -176,6 +183,15 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Shared\_Layout.Mobile.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="App_Data\51Degrees.mobi.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Shared\MovieList.Mobile.cshtml" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />

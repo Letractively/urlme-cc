@@ -13,6 +13,8 @@
 // - square off the theater list on the left hand side.
 // - green plus and get a bold one, more like an icon for show movie details.
 // - movie details popup - make % fonts similar to movie listings page (all bold, blue links)
+// - movie details page, make overlay visible and popup visible on load so it doesn't take a sec to popup
+// - movie details pages, make these links and not div.show()'s
 
 codejkjk.movies.HomeIndex = {
     // page elements

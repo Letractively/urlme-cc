@@ -9,7 +9,7 @@
 
 <div data-role="page">
 	<div data-role="header">
-        <input type="search" value="Search..." />
+        <input type="text" placeholder="Search..." />
         <div data-role="navbar">
             <ul>
                 <li><a href="~/" @(this.Model.PrefetchLinks ? "data-prefetch" : "") data-ajax="@this.Model.UseAjaxForLinks.ToString().ToLower()">Top Box Office</a></li>

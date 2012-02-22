@@ -1,7 +1,5 @@
 ﻿registerNS("codejkjk.movies.Mobile");
 
-var init = false;
-
 codejkjk.movies.Mobile = {
     // page elements
     Controls: {
@@ -22,49 +20,15 @@ codejkjk.movies.Mobile = {
         }
     },
 
-    LoadBoxOfficeMovies: function () {
-        codejkjk.movies.RottenTomatoes.GetBoxOfficeMovies(function (movies) {
-            codejkjk.movies.Mobile.Controls.BoxOffice().html(
-                    codejkjk.movies.Mobile.Controls.MovieTemplate().render(movies)
-                ).listview('refresh');
-            codejkjk.movies.Mobile.GetIMDbData();
-        });
-    },
-
-    LoadUpcomingMovies: function () {
-        codejkjk.movies.RottenTomatoes.GetUpcomingMovies(function (movies) {
-            codejkjk.movies.Mobile.Controls.Upcoming().html(
-                    codejkjk.movies.Mobile.Controls.MovieTemplate().render(movies)
-                ).listview('refresh');
-        });
-    },
-
     LoadShowtimes: function () {
 
     },
 
     Init: function () {
-        // this function is run once
         codejkjk.movies.Mobile.RegisterJsRenderHelpers();
 
-        codejkjk.movies.Mobile.LoadUrl(location.pathname);
-        init = true;
-    },
-
-    LoadUrl: function (url) {
-        if (url.indexOf("mobile.htm") >= 0) {
-            // load box office
-            console.log("loading box office");
-            codejkjk.movies.Mobile.LoadBoxOfficeMovies();
-        } else if (url.indexOf("mobile_comingsoon.htm") >= 0) {
-            // load upcoming
-            console.log("loading upcoming");
-            codejkjk.movies.Mobile.LoadUpcomingMovies();
-        } else if (url.indexOf("mobile_showtimes.htm") >= 0) {
-            // load showtimes
-            console.log("loading showtimes");
-            codejkjk.movies.Mobile.LoadShowtimes();
-        }
+        // if load IMDb movies that aren't set from server-side box office and upcoming movie loads
+        codejkjk.movies.Mobile.GetIMDbData();
     },
 
     RegisterJsRenderHelpers: function () {
@@ -75,7 +39,7 @@ codejkjk.movies.Mobile = {
                 return now >= releaseDate;
             },
             IsCurrentTheater: function (iTheaterId) {
-                return iTheaterId.toString() == codejkjk.movies.HomeIndex.Currents.Theater();
+                return iTheaterId.toString() == codejkjk.movies.Mobile.Currents.Theater();
             },
             GetHoursAndMinutes: function (minutes) {
                 var hrs = Math.floor(minutes / 60);
@@ -111,40 +75,18 @@ codejkjk.movies.Mobile = {
         });
     },
 
-    PageChange: function (e, data) {
-        if (init) {
-            var pathName = location.pathname;
-            codejkjk.movies.Mobile.LoadUrl(pathName);
-        }
-    },
-
-    PageBeforeChange: function (e, data) {
-        // handle changepage where the caller is asking us to load a page by url
-        if (typeof data.toPage === "string") {
-            var pathName = $.mobile.path.parseUrl(data.toPage).pathname;
-
-            // console.log('in pagebefore change, pathname = ' + pathName);
-
-            // codejkjk.movies.Mobile.LoadUrl(pathName);
-
-            // e.preventDefault(); // is this a good thing?
-
-            //            var u = $.mobile.path.parseUrl(data.toPage), re = /^#movie-details/;
-            //            if (u.hash.search(re) !== -1) {
-
-            //            }
-        }
-    },
-
     GetIMDbData: function () {
         codejkjk.movies.Mobile.Controls.IMDbMoviesNotSet().each(function () {
             var imdb = $(this);
-            codejkjk.movies.IMDB.GetMovie(imdb.attr("data-imdbmovieid"), function (imdbMovieId, movie) {
+            var imdbMovieId = imdb.attr("data-imdbmovieid");
+            codejkjk.movies.Api.GetIMDbMovie(imdbMovieId, function (movie) {
                 var ratings = $(".imdb[data-imdbmovieid='{0}']".format(imdbMovieId));
 
-                var rating = movie && movie.Rating;
-                if (rating) {
-                    ratings.html(rating);
+                if (movie.rating && movie.rating !== "N/A" && movie.votes && movie.votes !== "N/A") {
+                    var title = "{0} votes on IMDb.com".format(movie.votes);
+                    ratings.html(movie.rating).attr("title", title);
+                } else {
+                    ratings.html("n/a");
                 }
                 ratings.removeClass("imdbNotSet");
             });
@@ -152,30 +94,6 @@ codejkjk.movies.Mobile = {
     }
 }
 
-//$(document).bind("pageinit", function (e, data) {
-//    // codejkjk.movies.Mobile.PageBeforeChange(e, data);
-//    console.log('in pageinit, loc.pathname = ' + location.pathname + ', page1div len = ' + $("#topBoxOffice").length + ' page3div len = ' + $("#comingSoon").length);
-//});
-
-//$(document).bind("pagebeforechange", function (e, data) {
-//    // codejkjk.movies.Mobile.PageBeforeChange(e, data);
-//    console.log('in pagebeforechange, loc.pathname = ' + location.pathname + ', page1div len = ' + $("#topBoxOffice").length + ' page3div len = ' + $("#comingSoon").length);
-//});
-
-$(document).bind("pagechange", function (e, data) {
-    codejkjk.movies.Mobile.PageChange(e, data);
-    // console.log('in pagechange, loc.pathname = ' + location.pathname + ', page1div len = ' + $("#topBoxOffice").length + ' page3div len = ' + $("#comingSoon").length);
-});
-
-//$(document).bind("pageload", function (e, data) {
-//    console.log('in pageload, data.url.pathname = ' + $.mobile.path.parseUrl(data.url).pathname + ', page1div len = ' + $("#topBoxOffice").length + ' page3div len = ' + $("#comingSoon").length);
-//});
-
-//$(document).bind("pageshow", function () {
-//    console.log('in pageshow, loc.pathname = ' + location.pathname + ', page1div len = ' + $("#topBoxOffice").length + ' page3div len = ' + $("#comingSoon").length);
-//});
-
 $(document).ready(function () {
-    // this is called once, when user visits any of the mobile pages
     codejkjk.movies.Mobile.Init();
 });

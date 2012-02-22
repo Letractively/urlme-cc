@@ -36,10 +36,11 @@ td.created { padding-right: 20px; }
 th.link { width: 350px; }
 th.hits { width: 45px; }
 th.delete { width: 155px; }
-td .copyButton { height: 16px; background: url(copy.png) no-repeat left; padding-left: 22px; margin-right: 10px; display:inline-block; }
+td a.copyButton { height: 16px; background: url(copy.png) no-repeat left; padding-left: 22px; margin-right: 10px; display:inline-block; width: 63px; height: 17px; line-height: 17px;}
+td a.delete-link { background: transparent url(delete.png) no-repeat left; padding-left: 22px; height: 17px; line-height: 17px; }
 
 a.external { color: #483A3A; border-bottom: 1px dashed #cdcdcd; text-decoration: none; background: transparent url(external-link.png) top right no-repeat; padding-right: 15px; }
-a.delete-link { background: transparent url(delete.png) no-repeat left; padding-left: 22px; }
+
 
 .main-content { padding:20px; }
 

@@ -18,7 +18,10 @@ span.divider { color: #CDCDCD; font-weight: normal; margin: 0 5px; }
 .rounded { border-radius: 5px; -moz-border-radius: 5px; -webkit-border-radius: 5px; }
 .rightArrow { border-top: 30px solid transparent; border-bottom: 30px solid transparent; border-left: 30px solid #C5D8E6; }
 /* orig: second hex in glowing = #eee */
-.gradient { background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#ffffff), to(#e8e8e8)); background: -webkit-linear-gradient(top, #ffffff, #e8e8e8); background: -moz-linear-gradient(top, #ffffff, #e8e8e8); }
+.gradient { background: white; /* fallback */
+            background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#ffffff), to(#e8e8e8)); 
+            background: -webkit-linear-gradient(top, #ffffff, #e8e8e8); 
+            background: -moz-linear-gradient(top, #ffffff, #e8e8e8); }
 
 #container { margin: 0 auto; width: 1000px; text-align:left; padding-top:10px; } /* same width as cnn.com */
 

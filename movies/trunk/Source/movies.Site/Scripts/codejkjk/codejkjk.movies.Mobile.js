@@ -3,14 +3,27 @@
 codejkjk.movies.Mobile = {
     // page elements
     Controls: {
-        BoxOffice: function () { return $("#topBoxOffice"); }
-        , IMDbMoviesNotSet: function () { return $(".imdbNotSet"); }
-        , MovieTemplate: function () { return $("#movieTemplate"); }
-        , Upcoming: function () { return $("#comingSoon"); }
+        IMDbMoviesNotSet: function () { return $(".imdbNotSet"); }
+        , Theaters: function () { return $("#theaters"); }
+        , TheaterTemplate: function () { return $("#theaterTemplate"); }
     },
 
     Currents: {
-        HiddenTheaterMovies: function (val) {
+        ZipCode: function (val) {
+            if (typeof val != "undefined") { // set
+                localStorage.setItem("ZipCode", val);
+            } else { // get
+                return localStorage.getItem("ZipCode") || "23226"; // return str b/c if we ever want to change it to 02322, this will get converted to str as "3222" if we return as int
+            }
+        }
+        , Theater: function (val) {
+            if (typeof val != "undefined") { // set
+                localStorage.setItem("Theater", val);
+            } else { // get
+                return localStorage.getItem("Theater") || "";
+            }
+        }
+        , HiddenTheaterMovies: function (val) {
             if (typeof val != "undefined") { // set
                 localStorage.setItem("HiddenTheaterMovies", val);
             } else {
@@ -20,12 +33,19 @@ codejkjk.movies.Mobile = {
         }
     },
 
-    LoadShowtimes: function () {
-
+    LoadTheaters: function () {
+        // codejkjk.movies.HomeIndex.Controls.CurrentShowtimeDay().val(Date.today().toString("yyyyMMdd"));
+        // codejkjk.movies.HomeIndex.Controls.CurrentZip().html(codejkjk.movies.HomeIndex.Currents.ZipCode());
+        // codejkjk.movies.Api.GetTheaters(codejkjk.movies.HomeIndex.Controls.CurrentShowtimeDay().val(), codejkjk.movies.HomeIndex.Currents.ZipCode(), codejkjk.movies.HomeIndex.LoadTheaters);
+        codejkjk.movies.Api.GetTheaters(Date.today().toString("yyyyMMdd"), "23226", 
     },
 
     Init: function () {
         codejkjk.movies.Mobile.RegisterJsRenderHelpers();
+
+        if (codejkjk.movies.Mobile.Controls.Theaters().length) {
+            codejkjk.movies.Mobile.LoadTheaters();
+        }
 
         // if load IMDb movies that aren't set from server-side box office and upcoming movie loads
         codejkjk.movies.Mobile.GetIMDbData();

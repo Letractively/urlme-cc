@@ -24,10 +24,10 @@
     {
         <tr>
             <td>
-                <a href="@item.DestinationUrl">http://urlme.cc/@item.Path</a>&nbsp;&nbsp;&nbsp;(<a href="@item.DestinationUrl" class="external" target="_blank">new tab</a>)
+                <a href="@item.DestinationUrl" class="copyText">http://urlme.cc/@item.Path</a>&nbsp;&nbsp;&nbsp;(<a href="@item.DestinationUrl" class="external" target="_blank">new tab</a>)
             </td>
             <td>
-                <a href="#" id="copyButton-{@item.LinkId}" class="copyButton">Copy urlme</a>@this.Html.ActionLink("Delete", "delete", new { controller = "link", id = item.LinkId }, new { @class = "delete-link" })
+                <a href="#" id="copyButton-@item.LinkId" class="copyButton">Copy urlme</a>@this.Html.ActionLink("Delete", "delete", new { controller = "link", id = item.LinkId }, new { @class = "delete-link" })
             </td>
             <td>
                 @this.Html.MakeSnippet(item.DestinationUrl, 60)

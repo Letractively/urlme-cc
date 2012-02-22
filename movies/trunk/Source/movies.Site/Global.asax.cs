@@ -49,6 +49,18 @@ namespace movies
                 "MovieDetails", // Route name
                 "movie/{titleSlug}/{rtMovieId}", // URL with parameters
                 new { controller = "Home", action = "IndexWithMovieOverlay" } // Parameter defaults
+            );
+
+            routes.MapRoute(
+                "Mobile-Showtimes", // Route name
+                "showtimes", // URL with parameters
+                new { controller = "Home", action = "Showtimes" } // Parameter defaults
+            );
+
+            routes.MapRoute(
+                "Mobile-ComingSoon", // Route name
+                "comingsoon", // URL with parameters
+                new { controller = "Home", action = "ComingSoon" } // Parameter defaults
             );  
             
             routes.MapRoute(

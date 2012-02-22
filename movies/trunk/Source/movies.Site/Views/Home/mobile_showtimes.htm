@@ -24,9 +24,9 @@
         <input type="search" value="Search..." />
         <div data-role="navbar">
             <ul>
-                <li><a href="mobile.htm" data-prefetch>Top Box Office</a></li>
-                <li><a href="#" class="ui-btn-active" data-prefetch>Showtimes</a></li>
-                <li><a href="mobile_comingsoon.htm" data-prefetch>Coming Soon</a></li>
+                <li><a href="mobile.htm" @(this.Model.PrefetchLinks ? "data-prefetch" : "") data-ajax="@this.Model.UseAjaxForLinks.ToString().ToLower()">Top Box Office</a></li>
+                <li><a href="#" class="ui-btn-active" @(this.Model.PrefetchLinks ? "data-prefetch" : "") data-ajax="@this.Model.UseAjaxForLinks.ToString().ToLower()">Showtimes</a></li>
+                <li><a href="mobile_comingsoon.htm" @(this.Model.PrefetchLinks ? "data-prefetch" : "") data-ajax="@this.Model.UseAjaxForLinks.ToString().ToLower()">Coming Soon</a></li>
             </ul>
         </div>
 	</div><!-- /header -->

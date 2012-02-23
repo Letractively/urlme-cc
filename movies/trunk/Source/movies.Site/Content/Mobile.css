@@ -1,4 +1,5 @@
 html{font-size:12px;color:#000;background:#FFF;}body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,code,form,fieldset,legend,input,button,textarea,p,blockquote,th,td{margin:0;padding:0;}table{border-collapse:collapse;border-spacing:0;}fieldset,img{border:0;}address,caption,cite,code,dfn,em,strong,th,var,optgroup{font-style:inherit;font-weight:inherit;}del,ins{text-decoration:none;}li{list-style:none;}caption,th{text-align:left;}h1,h2,h3,h4,h5,h6{font-size:100%;font-weight:normal;}q:before,q:after{content:'';}abbr,acronym{border:0;font-variant:normal;}sup{vertical-align:baseline;}sub{vertical-align:baseline;}legend{color:#000;}input,button,textarea,select,optgroup,option{font-family:inherit;font-size:inherit;font-style:inherit;font-weight:inherit;}input,button,textarea,select{font-size:100%;}
+html{font-family:Arial;}
 strong { font-weight: bold; }
 
 .ui-li-has-thumb .ui-btn-inner a.ui-link-inherit { padding-left: 75px; min-height: 73px; }
@@ -12,20 +13,46 @@ strong { font-weight: bold; }
     border-color: #CCC; 
 } /* copy of .ui-btn-up-c's background property. confusing to user if background changes on hover ("am I accidentally selecting this??") */
 
+/* rt icons */
+.rottenTomato { background: url("images/rt-sprite.png") no-repeat scroll left center transparent; }
+
+.ratings > .rating { display:inline-block; }
+.ratings > .rating span { float: left; display:inline-block; }
+
+/* .rating { display:inline-block; width: 20px; height: 20px; } */
+
+.ratings.small > .rating > .icon { width: 24px; height: 24px; margin-right: 6px; }
+.ratings.small > .rating > span:not(.icon) { font-size: 16px; } /* text */
+.ratings.small > .rating > span:not(.icon):after { content: '%'; vertical-align: super; font-size: 10px; } /* text */
+.ratings.small > .rating:not(:first-child) { margin-left: 20px; }
+.ratings.small > .rating > .rottenTomato { width: 24px; height: 24px; }
+.ratings.small > .rating > .rottenTomato.criticsFresh { background-position: -287px -49px; }
+.ratings.small > .rating > .rottenTomato.criticsRotten { background-position: -288px -96px; }
+.ratings.small > .rating > .rottenTomato.audienceUpright { background-position: -291px -24px; }
+.ratings.small > .rating > .rottenTomato.audienceSpilled { background-position: -288px -119px; } 
+
+.ratings { margin-top:10px; font-weight: bold; }
+.ratings .imdb { padding-left:22px; background: url("images/imdb_icon_smallest.png") no-repeat scroll left center transparent; }
+
+/* 
+.rottenTomato.tiny { height: 16px; width: 16px; margin-right: 2px; }
+.rottenTomato.criticsFresh.tiny { background-position: -256px -144px; }
+.rottenTomato.criticsRotten.tiny { background-position: -274px -144px; }
+.rottenTomato.audienceUpright.tiny { background-position: -290px -144px; }
+.rottenTomato.audienceSpilled.tiny { background-position: -220px -144px; } 
+*/
+
+.rottenTomato.large { height: 50px; padding-left: 55px; font-size: 48px; }
+/* .rottenTomato.large:after { font-size: 24px; } */
+.rottenTomato.criticsFresh.large { background-position: 0 0; }
+.rottenTomato.criticsRotten.large { background-position: 0 -50px; }
+.rottenTomato.audienceUpright.large { background-position: 0 -150px; }
+.rottenTomato.audienceSpilled.large { background-position: 0 -250px; } 
+
 /* movie list */
 p { color: #535156; } /* bullet color */
 
-.rating { margin-left: 10px; color: #465F82; font-size: 12px; }
-
-.ratings { margin-top:10px; font-weight: bold; }
-.ratings span { float: left; height: 24px; line-height: 24px; }
-.ratings span:not(:first-child) { margin-left: 10px; }
-.ratings .imdb { padding-left:22px; background: url("images/imdb_icon_smallest.png") no-repeat scroll left center transparent; }
-.ratings .rottenTomato { padding-left: 21px; /* color: #506A16; */ }
-.ratings .criticsFresh { padding-left: 20px; background: url("images/rt-graphics/critics-fresh_smallest.png") no-repeat scroll left center transparent; }
-.ratings .criticsRotten { background: url("images/rt-graphics/critics-rotten_smallest.png") no-repeat scroll left center transparent; }
-.ratings .audienceUpright { padding-left: 17px; background: url("images/rt-graphics/audience-upright_smallest.png") no-repeat scroll left center transparent; }
-.ratings .audienceSpilled { background: url("images/rt-graphics/audience-spilled_smallest.png") no-repeat scroll left center transparent; } 
+.mpaaRating { margin-left: 10px; color: #465F82; font-size: 12px; }
 
 .releaseDate { margin-top: 10px; font-size: 12px; }
 /* debug */

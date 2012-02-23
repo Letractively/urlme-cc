@@ -44,6 +44,22 @@ header { text-align:center; height:33px; }
 
 .content { margin-top: 25px; width: 1000px; overflow: auto; display: none; }
 
+/* rt icons */
+.rottenTomato { background: url("images/rt-sprite.png") no-repeat scroll left center transparent; }
+.rottenTomato:after { content: '%'; vertical-align: super; }
+
+.rottenTomato.tiny { height: 16px; padding-left: 21px; font-size: 12px; }
+.rottenTomato.tiny:after { font-size: 9px; }
+.rottenTomato.criticsFresh.tiny { background-position: -256px -144px; }
+.rottenTomato.criticsRotten.tiny { background-position: -272px -144px; }
+
+.rottenTomato.large { height: 50px; padding-left: 55px; font-size: 48px; }
+.rottenTomato.large:after { font-size: 24px; }
+.rottenTomato.criticsFresh.large { background-position: 0 0; }
+.rottenTomato.criticsRotten.large { background-position: 0 -50px; }
+.rottenTomato.audienceUpright.large { background-position: 0 -150px; }
+.rottenTomato.audienceSpilled.large { background-position: 0 -250px; } 
+
 /* styles common to both movie div in the lists and the movie details popup */
 
 #movieDetails { z-index:1002; font-size: 110%; border: 1px solid #999; display:none; padding: 15px; position: fixed; background: #fff; width: 590px; min-height: 268px; top: 68px; left: 50%; margin-left: -295PX; }

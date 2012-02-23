@@ -24,7 +24,7 @@ strong { font-weight: bold; }
 .ratings.small > .rating > .icon { width: 24px; height: 24px; margin-right: 6px; }
 .ratings.small > .rating > span:not(.icon) { font-size: 16px; } /* text */
 .ratings.small > .rating > span:not(.icon):after { content: '%'; vertical-align: super; font-size: 10px; } /* text */
-.ratings.small > .rating:not(:first-child) { margin-left: 20px; }
+.ratings.small > .rating:not(:first-child) { margin-left: 10px; }
 .ratings.small > .rating > .rottenTomato { width: 24px; height: 24px; }
 .ratings.small > .rating > .rottenTomato.criticsFresh { background-position: -287px -49px; }
 .ratings.small > .rating > .rottenTomato.criticsRotten { background-position: -288px -96px; }

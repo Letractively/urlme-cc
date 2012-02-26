@@ -16,20 +16,20 @@ strong { font-weight: bold; }
 /* rt icons */
 .rottenTomato { background: url("images/rt-sprite.png") no-repeat scroll left center transparent; }
 
-.ratings > .rating { display:inline-block; }
-.ratings > .rating span { float: left; display:inline-block; }
+.ratings > span { float: left; display:inline-block; }
 
 /* .rating { display:inline-block; width: 20px; height: 20px; } */
 
-.ratings.small > .rating > .icon { width: 24px; height: 24px; margin-right: 6px; }
-.ratings.small > .rating > span:not(.icon) { font-size: 16px; } /* text */
-.ratings.small > .rating > span:not(.icon):after { content: '%'; vertical-align: super; font-size: 10px; } /* text */
-.ratings.small > .rating:not(:first-child) { margin-left: 10px; }
-.ratings.small > .rating > .rottenTomato { width: 24px; height: 24px; }
-.ratings.small > .rating > .rottenTomato.criticsFresh { background-position: -287px -49px; }
-.ratings.small > .rating > .rottenTomato.criticsRotten { background-position: -288px -96px; }
-.ratings.small > .rating > .rottenTomato.audienceUpright { background-position: -291px -24px; }
-.ratings.small > .rating > .rottenTomato.audienceSpilled { background-position: -288px -119px; } 
+.ratings.small { font-size: 15px; }
+.ratings.small > .icon { width: 24px; height: 24px; margin-right: 6px; }
+.ratings.small > span:not(.icon) { margin-top:3px; }
+.ratings.small > span:not(.icon):after { content: '%'; vertical-align: super; font-size: 8px; } /* text */
+.ratings.small > .icon:not(:first-child) { margin-left: 12px; }
+.ratings.small > .icon.rottenTomato { width: 24px; height: 24px; }
+.ratings.small > .icon.rottenTomato.criticsFresh { background-position: -287px -49px; }
+.ratings.small > .icon.rottenTomato.criticsRotten { background-position: -288px -96px; }
+.ratings.small > .icon.rottenTomato.audienceUpright { background-position: -291px -24px; }
+.ratings.small > .icon.rottenTomato.audienceSpilled { background-position: -288px -119px; } 
 
 .ratings { margin-top:10px; font-weight: bold; }
 .ratings .imdb { padding-left:22px; background: url("images/imdb_icon_smallest.png") no-repeat scroll left center transparent; }

@@ -9,8 +9,8 @@
         <h3>@movie.title<span class="mpaaRating">@movie.mpaa_rating</span></h3>
         @if (movie.IsReleased) {
             <p class="ratings small">
-                <span class="rating"><span class='@movie.CriticsClass rottenTomato icon'></span><span>@movie.ratings.critics_score</span></span>
-                <span class="rating"><span class='@movie.AudienceClass rottenTomato icon'></span><span>@movie.ratings.audience_score</span></span>
+                <span class='@movie.CriticsClass rottenTomato icon'></span><span>@movie.ratings.critics_score</span>
+                <span class='@movie.AudienceClass rottenTomato icon'></span><span>@movie.ratings.audience_score</span>
                 @*
                 <span class="rating"><span data-imdbmovieid="@movie.alternate_ids.imdb" class='imdb @movie.IMDbClass icon'></span>@(movie.IMDbRating != null ? movie.IMDbRating.ToLower() : "")</span>*@
             </p>

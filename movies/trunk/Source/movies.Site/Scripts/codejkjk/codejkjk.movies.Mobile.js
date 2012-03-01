@@ -37,7 +37,7 @@ codejkjk.movies.Mobile = {
         // codejkjk.movies.HomeIndex.Controls.CurrentShowtimeDay().val(Date.today().toString("yyyyMMdd"));
         // codejkjk.movies.HomeIndex.Controls.CurrentZip().html(codejkjk.movies.HomeIndex.Currents.ZipCode());
         // codejkjk.movies.Api.GetTheaters(codejkjk.movies.HomeIndex.Controls.CurrentShowtimeDay().val(), codejkjk.movies.HomeIndex.Currents.ZipCode(), codejkjk.movies.HomeIndex.LoadTheaters);
-        codejkjk.movies.Api.GetTheaters(Date.today().toString("yyyyMMdd"), "23226", 
+        // codejkjk.movies.Api.GetTheaters(Date.today().toString("yyyyMMdd"), "23226", 
     },
 
     Init: function () {

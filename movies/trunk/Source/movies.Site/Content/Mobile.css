@@ -14,7 +14,7 @@ strong { font-weight: bold; }
 } /* copy of .ui-btn-up-c's background property. confusing to user if background changes on hover ("am I accidentally selecting this??") */
 
 /* rt icons */
-.rottenTomato { background: url("images/rt-sprite.png") no-repeat scroll left center transparent; }
+.rottenTomato { background: url("content/images/rt-sprite.png") no-repeat scroll left center transparent; }
 
 .ratings > span { float: left; display:inline-block; }
 
@@ -32,7 +32,7 @@ strong { font-weight: bold; }
 .ratings.small > .icon.rottenTomato.audienceSpilled { background-position: -288px -119px; } 
 
 .ratings { margin-top:10px; font-weight: bold; }
-.ratings .imdb { padding-left:22px; background: url("images/imdb_icon_smallest.png") no-repeat scroll left center transparent; }
+.ratings .imdb { padding-left:22px; background: url("content/images/imdb_icon_smallest.png") no-repeat scroll left center transparent; }
 
 /* 
 .rottenTomato.tiny { height: 16px; width: 16px; margin-right: 2px; }

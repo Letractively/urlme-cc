@@ -11,7 +11,7 @@
             <p class="ratings small">
                 <span class='@movie.CriticsClass rottenTomato icon'></span><span>@movie.ratings.critics_score</span>
                 <span class='@movie.AudienceClass rottenTomato icon'></span><span>@movie.ratings.audience_score</span>
-                <span class='imdb icon'></span><span data-imdbkey="@movie.title^@movie.release_dates.theater.Year" data-imdbmovieid="@movie.alternate_ids.imdb" class="@movie.IMDbClass">@(movie.IMDbRating != null ? movie.IMDbRating.ToLower() : "")</span>
+                <span class='imdb icon'></span><span data-imdbq="@movie.IMDbQ" data-imdbmovieid="@movie.alternate_ids.imdb" class="@movie.IMDbClass">@(movie.IMDbRating != null ? movie.IMDbRating.ToLower() : "")</span>
                 @*
                 <span class="rating"><span data-imdbmovieid="@movie.alternate_ids.imdb" class='imdb @movie.IMDbClass icon'></span>@(movie.IMDbRating != null ? movie.IMDbRating.ToLower() : "")</span>*@
             </p>

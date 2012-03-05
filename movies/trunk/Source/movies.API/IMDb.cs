@@ -2,7 +2,8 @@
 {
     public class IMDb
     {
-        private const string BaseUrl = "http://www.imdbapi.com/?i=tt"; // option 2 = "http://www.deanclatworthy.com/imdb/?q="
+        private const string BaseUrl = "http://www.imdbapi.com/?i=tt";
+        private const string BaseUrl2 = "http://www.deanclatworthy.com/imdb/?q=";
 
         public static string GetMovieJson(string imdbMovieId)
         {

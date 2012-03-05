@@ -29,6 +29,12 @@ namespace movies
             );
 
             routes.MapRoute(
+                "Api-Get_IMDb_Movie2", // Route name
+                "api/get_imdb_movie2.json", // URL with parameters
+                new { controller = "Api", action = "GetIMDbMovie2" } // Parameter defaults
+            );
+
+            routes.MapRoute(
                 "Api-Get_Movie", // Route name
                 "api/get_rt_movie.json/{rtMovieId}", // URL with parameters
                 new { controller = "Api", action = "GetRottenTomatoesMovie" } // Parameter defaults

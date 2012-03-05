@@ -81,6 +81,12 @@ namespace movies.Model
         public string ReleaseDate { get { return this.release_dates.theater.ToString("MMM d, yyyy"); } }
         public string ParentalGuideUrl { get { return this.alternate_ids != null ? API.IMDb.GetParentalGuideUrl(this.alternate_ids.imdb) : null; } }
         public string IMDbMovieUrl { get { return this.alternate_ids != null ? API.IMDb.GetMovieUrl(this.alternate_ids.imdb) : null; } }
+        public string IMDbQ
+        {
+            get {
+                return string.Format("{0}&year={1}", this.title.Replace(" ", "+"), release_dates.theater.ToString("yyyy")); 
+            }
+        }
         public string MovieSlug { get { return this.title.Slugify() + "/" + this.id; } }
         public string Duration
         {
@@ -101,13 +107,24 @@ namespace movies.Model
         //    return text.snippet(len);
         //},
 
-        public static IMDbMovie GetIMDbMovie(string imdbMovieId)
+        //public static IMDbMovie GetIMDbMovie(string imdbMovieId)
+        //{
+        //    return Cache.GetValue<IMDbMovie>(
+        //        string.Format("codejkjk.movies.Model.Movie.GetIMDbMovie-{0}", imdbMovieId),
+        //        () =>
+        //        {
+        //            string imdbJson = API.IMDb.GetMovieJson(imdbMovieId);
+        //            return imdbJson.FromJson<IMDbMovie>();
+        //        });
+        //}
+
+        public static IMDbMovie GetIMDbMovie2(string q)
         {
             return Cache.GetValue<IMDbMovie>(
-                string.Format("codejkjk.movies.Model.Movie.GetIMDbMovie-{0}", imdbMovieId),
+                string.Format("codejkjk.movies.Model.Movie.GetIMDbMovie2-{0}", q),
                 () =>
                 {
-                    string imdbJson = API.IMDb.GetMovieJson(imdbMovieId);
+                    string imdbJson = API.IMDb.GetMovieJson2(q);
                     return imdbJson.FromJson<IMDbMovie>();
                 });
         }
@@ -171,9 +188,9 @@ namespace movies.Model
             // for each movie, get imdb info if it exists in cache
             foreach (var movie in movies.Values.Where(x => x.alternate_ids != null))
             {
-                if (Cache.KeyExists(string.Format("codejkjk.movies.Model.Movie.GetIMDbMovie-{0}", movie.alternate_ids.imdb)))
+                if (Cache.KeyExists(string.Format("codejkjk.movies.Model.Movie.GetIMDbMovie2-{0}", movie.alternate_ids.imdb)))
                 {
-                    var imdbMovie = GetIMDbMovie(movie.alternate_ids.imdb);
+                    var imdbMovie = GetIMDbMovie2(movie.alternate_ids.imdb);
                     movie.IMDbRating = imdbMovie.rating;
                     movie.IMDbVotes = imdbMovie.votes;
                     movie.IMDbLoaded = true;
@@ -205,9 +222,9 @@ namespace movies.Model
             // for each movie, get imdb info if it exists in cache
             foreach (var movie in movies.Values.Where(x => x.alternate_ids != null))
             {
-                if (Cache.KeyExists(string.Format("codejkjk.movies.Model.Movie.GetIMDbMovie-{0}", movie.alternate_ids.imdb)))
+                if (Cache.KeyExists(string.Format("codejkjk.movies.Model.Movie.GetIMDbMovie2-{0}", movie.alternate_ids.imdb)))
                 {
-                    var imdbMovie = GetIMDbMovie(movie.alternate_ids.imdb);
+                    var imdbMovie = GetIMDbMovie2(movie.IMDbQ);
                     movie.IMDbRating = imdbMovie.rating;
                     movie.IMDbVotes = imdbMovie.votes;
                     movie.IMDbLoaded = true;
@@ -226,9 +243,9 @@ namespace movies.Model
             // can we load imdb?
             if (movie.alternate_ids != null && !movie.IMDbLoaded)
             {
-                if (Cache.KeyExists(string.Format("codejkjk.movies.Model.Movie.GetIMDbMovie-{0}", movie.alternate_ids.imdb)))
+                if (Cache.KeyExists(string.Format("codejkjk.movies.Model.Movie.GetIMDbMovie2-{0}", movie.alternate_ids.imdb)))
                 {
-                    var imdbMovie = GetIMDbMovie(movie.alternate_ids.imdb);
+                    var imdbMovie = GetIMDbMovie2(movie.IMDbQ);
                     movie.IMDbRating = imdbMovie.rating;
                     movie.IMDbVotes = imdbMovie.votes;
                     movie.IMDbLoaded = true;

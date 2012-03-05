@@ -101,6 +101,7 @@
     <Content Include="Content\Images\imdb_icon_smallest.png" />
     <Content Include="Content\Images\processing-bar.gif" />
     <Content Include="Content\Images\rt-sprite.png" />
+    <Content Include="Content\Images\rt-sprite2.png" />
     <Content Include="Content\Images\star.png" />
     <Content Include="Content\Images\star_bigger.png" />
     <Content Include="Content\Images\star_small.png" />

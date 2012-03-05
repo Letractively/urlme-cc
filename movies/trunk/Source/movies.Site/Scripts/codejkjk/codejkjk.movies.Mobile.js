@@ -100,7 +100,7 @@ codejkjk.movies.Mobile = {
             var imdb = $(this);
             var imdbMovieId = imdb.attr("data-imdbmovieid");
             codejkjk.movies.Api.GetIMDbMovie(imdbMovieId, function (movie) {
-                var ratings = $(".imdb[data-imdbmovieid='{0}']".format(imdbMovieId));
+                var ratings = $(".imdbNotSet[data-imdbmovieid='{0}']".format(imdbMovieId));
 
                 if (movie.rating && movie.rating !== "N/A" && movie.votes && movie.votes !== "N/A") {
                     var title = "{0} votes on IMDb.com".format(movie.votes);

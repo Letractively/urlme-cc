@@ -23,3 +23,6 @@
 2012-03-01T02:37:31.2410000Z - 4872 - Info - Created provider from embedded device data 'FiftyOne.Foundation.Mobile.Detection.Binary.Resources.51Degrees.mobi-Lite.dat'.
 2012-03-01T02:38:46.5150000Z - 4872 - Info - Created provider from embedded device data 'FiftyOne.Foundation.Mobile.Detection.Binary.Resources.51Degrees.mobi-Lite.dat'.
 2012-03-01T02:45:09.3070000Z - 4872 - Info - Created provider from embedded device data 'FiftyOne.Foundation.Mobile.Detection.Binary.Resources.51Degrees.mobi-Lite.dat'.
+2012-03-05T14:32:13.6720000Z - 6988 - Info - Created provider from embedded device data 'FiftyOne.Foundation.Mobile.Detection.Binary.Resources.51Degrees.mobi-Lite.dat'.
+2012-03-05T14:35:45.8710000Z - 6988 - Info - Created provider from embedded device data 'FiftyOne.Foundation.Mobile.Detection.Binary.Resources.51Degrees.mobi-Lite.dat'.
+2012-03-05T14:38:06.2860000Z - 6988 - Info - Created provider from embedded device data 'FiftyOne.Foundation.Mobile.Detection.Binary.Resources.51Degrees.mobi-Lite.dat'.

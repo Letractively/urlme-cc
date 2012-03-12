@@ -99,19 +99,19 @@ codejkjk.movies.Mobile = {
         codejkjk.movies.Mobile.Controls.IMDbMoviesNotSet().each(function () {
             var imdb = $(this);
             var q = imdb.attr("data-imdbq");
-            codejkjk.movies.Api.GetIMDbMovie2(q, function (movie) {
+            codejkjk.movies.Api.GetIMDbMovie(q, function (movie) {
                 var ratings = $(".imdbNotSet[data-imdbq='{0}']".format(q));
 
                 if (movie.rating) {
                     ratings.html(movie.rating);
                 }
-                
-//                if (movie.rating && movie.rating !== "N/A" && movie.votes && movie.votes !== "N/A") {
-//                    var title = "{0} votes on IMDb.com".format(movie.votes);
-//                    ratings.html(movie.rating).attr("title", title);
-//                } else {
-//                    ratings.html("n/a");
-//                }
+
+                if (movie.rating && movie.rating !== "N/A" && movie.votes && movie.votes !== "N/A") {
+                    var title = "{0} votes on IMDb.com".format(movie.votes);
+                    ratings.html(movie.rating).attr("title", title);
+                } else {
+                    ratings.html("n/a");
+                }
                 ratings.removeClass("imdbNotSet");
             });
         });

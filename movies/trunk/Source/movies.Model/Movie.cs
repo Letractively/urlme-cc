@@ -84,7 +84,8 @@ namespace movies.Model
         public string IMDbQ
         {
             get {
-                return string.Format("{0}&year={1}", this.title.Replace(" ", "+"), release_dates.theater.ToString("yyyy")); 
+                return this.alternate_ids.imdb;
+                // return string.Format("{0}&year={1}", this.title.Replace(" ", "+"), release_dates.theater.ToString("yyyy")); 
             }
         }
         public string MovieSlug { get { return this.title.Slugify() + "/" + this.id; } }
@@ -107,16 +108,16 @@ namespace movies.Model
         //    return text.snippet(len);
         //},
 
-        //public static IMDbMovie GetIMDbMovie(string imdbMovieId)
-        //{
-        //    return Cache.GetValue<IMDbMovie>(
-        //        string.Format("codejkjk.movies.Model.Movie.GetIMDbMovie-{0}", imdbMovieId),
-        //        () =>
-        //        {
-        //            string imdbJson = API.IMDb.GetMovieJson(imdbMovieId);
-        //            return imdbJson.FromJson<IMDbMovie>();
-        //        });
-        //}
+        public static IMDbMovie GetIMDbMovie(string imdbMovieId)
+        {
+            return Cache.GetValue<IMDbMovie>(
+                string.Format("codejkjk.movies.Model.Movie.GetIMDbMovie-{0}", imdbMovieId),
+                () =>
+                {
+                    string imdbJson = API.IMDb.GetMovieJson(imdbMovieId);
+                    return imdbJson.FromJson<IMDbMovie>();
+                });
+        }
 
         public static IMDbMovie GetIMDbMovie2(string q)
         {

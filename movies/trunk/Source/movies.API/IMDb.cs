@@ -17,7 +17,7 @@
         // q = The+Grey&year=2012
         public static string GetMovieJson2(string q)
         {
-            string url = string.Format("{0}{1}", BaseUrl, q);
+            string url = string.Format("{0}{1}", BaseUrl2, q);
             return Core.Net.HttpWebRequest.GetResponse(url);
         }
 

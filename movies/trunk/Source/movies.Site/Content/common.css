@@ -1,0 +1,17 @@
+/* rt & imdb icons */
+.rottenTomato,.imdb { background: url("content/images/rt-sprite2.png") no-repeat scroll left center transparent; }
+
+.ratings { margin-top:10px; font-weight: bold; }
+.ratings > span { float: left; display:inline-block; }
+
+/* small set */
+.ratings.small { font-size: 15px; }
+.ratings.small > .icon { width: 24px; height: 24px; margin-right: 6px; }
+.ratings.small > span:not(.icon) { margin-top:3px; }
+.ratings.small > span:not(.icon):not(:last-child):after { content: '%'; vertical-align: super; font-size: 8px; } /* text */
+.ratings.small > .icon:not(:first-child) { margin-left: 12px; }
+.ratings.small > .icon.imdb { background-position: -1px -125px; margin-right: 8px; }
+.ratings.small > .icon.rottenTomato.criticsFresh { background-position: -287px -49px; }
+.ratings.small > .icon.rottenTomato.criticsRotten { background-position: -288px -96px; }
+.ratings.small > .icon.rottenTomato.audienceUpright { background-position: -291px -24px; }
+.ratings.small > .icon.rottenTomato.audienceSpilled { background-position: -288px -119px; }

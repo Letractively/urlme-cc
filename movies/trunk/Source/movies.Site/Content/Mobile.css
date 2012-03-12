@@ -12,6 +12,7 @@ strong { font-weight: bold; }
     background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#FDFDFD), to(#EEEEEE));
     border-color: #CCC; 
 } /* copy of .ui-btn-up-c's background property. confusing to user if background changes on hover ("am I accidentally selecting this??") */
+.ui-icon { z-index: 1000; }
 
 /* rt & imdb icons */
 .rottenTomato,.imdb { background: url("content/images/rt-sprite2.png") no-repeat scroll left center transparent; }

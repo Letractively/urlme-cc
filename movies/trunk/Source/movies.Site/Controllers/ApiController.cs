@@ -10,11 +10,11 @@ namespace movies.Site.Controllers
 {
     public class ApiController : Controller
     {
-        //[HttpGet]
-        //public JsonResult GetIMDbMovie(string imdbMovieId)
-        //{
-        //    return this.Json(Movie.GetIMDbMovie(imdbMovieId), JsonRequestBehavior.AllowGet);
-        //}
+        [HttpGet]
+        public JsonResult GetIMDbMovie(string imdbMovieId)
+        {
+            return this.Json(Movie.GetIMDbMovie(imdbMovieId), JsonRequestBehavior.AllowGet);
+        }
 
         [HttpGet]
         public JsonResult GetIMDbMovie2(string q)

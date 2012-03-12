@@ -40,12 +40,6 @@ namespace urlme.Site
             );
 
             routes.MapRouteLowercase(
-                "Movies-Redirect",
-                "m/{titleSlug}/{rtMovieId}",
-                new { controller = "Movie", action = "Redirect" }
-            );
-
-            routes.MapRouteLowercase(
                 "Stats-sortbypath",
                 "Stats/",
                 new { controller = "Stats", action = "Index", sort = SortOptions.path.ToString() },

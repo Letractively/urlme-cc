@@ -53,12 +53,6 @@ namespace movies
             );
 
             routes.MapRoute(
-                "MovieDetails", // Route name
-                "movie/{titleSlug}/{rtMovieId}", // URL with parameters
-                new { controller = "Home", action = "IndexWithMovieOverlay" } // Parameter defaults
-            );
-
-            routes.MapRoute(
                 "Mobile-Showtimes", // Route name
                 "showtimes", // URL with parameters
                 new { controller = "Home", action = "Showtimes" } // Parameter defaults
@@ -69,6 +63,12 @@ namespace movies
                 "comingsoon", // URL with parameters
                 new { controller = "Home", action = "ComingSoon" } // Parameter defaults
             );
+
+            routes.MapRoute(
+                "MovieDetails", // Route name
+                "{titleSlug}/{rtMovieId}", // URL with parameters
+                new { controller = "Home", action = "IndexWithMovieOverlay" } // Parameter defaults
+            );   
 
             routes.MapRoute(
                 "Default", // Route name
@@ -103,6 +103,7 @@ namespace movies
 
             var mobileCssBundle = new Bundle("~/mobile-css-bundle", new CssMinify());
             mobileCssBundle.AddFile("~/content/jquery.mobile-1.0.1.min.css");
+            mobileCssBundle.AddFile("~/content/common.css");
             mobileCssBundle.AddFile("~/content/mobile.css");
             BundleTable.Bundles.Add(mobileCssBundle);
         }

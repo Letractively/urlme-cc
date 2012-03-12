@@ -14,40 +14,6 @@ strong { font-weight: bold; }
 } /* copy of .ui-btn-up-c's background property. confusing to user if background changes on hover ("am I accidentally selecting this??") */
 .ui-icon { z-index: 1000; }
 
-/* rt & imdb icons */
-.rottenTomato,.imdb { background: url("content/images/rt-sprite2.png") no-repeat scroll left center transparent; }
-
-.ratings > span { float: left; display:inline-block; }
-
-/* small set */
-.ratings.small { font-size: 15px; }
-.ratings.small > .icon { width: 24px; height: 24px; margin-right: 6px; }
-.ratings.small > span:not(.icon) { margin-top:3px; }
-.ratings.small > span:not(.icon):not(:last-child):after { content: '%'; vertical-align: super; font-size: 8px; } /* text */
-.ratings.small > .icon:not(:first-child) { margin-left: 12px; }
-.ratings.small > .icon.imdb { background-position: -1px -125px; }
-.ratings.small > .icon.rottenTomato.criticsFresh { background-position: -287px -49px; }
-.ratings.small > .icon.rottenTomato.criticsRotten { background-position: -288px -96px; }
-.ratings.small > .icon.rottenTomato.audienceUpright { background-position: -291px -24px; }
-.ratings.small > .icon.rottenTomato.audienceSpilled { background-position: -288px -119px; } 
-
-.ratings { margin-top:10px; font-weight: bold; }
-
-/* 
-.rottenTomato.tiny { height: 16px; width: 16px; margin-right: 2px; }
-.rottenTomato.criticsFresh.tiny { background-position: -256px -144px; }
-.rottenTomato.criticsRotten.tiny { background-position: -274px -144px; }
-.rottenTomato.audienceUpright.tiny { background-position: -290px -144px; }
-.rottenTomato.audienceSpilled.tiny { background-position: -220px -144px; } 
-*/
-
-.rottenTomato.large { height: 50px; padding-left: 55px; font-size: 48px; }
-/* .rottenTomato.large:after { font-size: 24px; } */
-.rottenTomato.criticsFresh.large { background-position: 0 0; }
-.rottenTomato.criticsRotten.large { background-position: 0 -50px; }
-.rottenTomato.audienceUpright.large { background-position: 0 -150px; }
-.rottenTomato.audienceSpilled.large { background-position: 0 -250px; } 
-
 /* movie list */
 p { color: #535156; } /* bullet color */
 

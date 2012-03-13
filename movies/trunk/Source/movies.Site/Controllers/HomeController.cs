@@ -15,7 +15,7 @@ namespace movies.Site.Controllers
                 BoxOfficeMovies = Movie.GetBoxOffice(),
                 UpcomingMovies = Movie.GetUpcoming(),
                 OverlayRtMovieId = null,
-                UseAjaxForLinks = false,
+                UseAjaxForLinks = true,
                 PrefetchLinks = true
             };
             return View(vm);
@@ -29,7 +29,7 @@ namespace movies.Site.Controllers
                 BoxOfficeMovies = Movie.GetBoxOffice(),
                 UpcomingMovies = Movie.GetUpcoming(),
                 OverlayRtMovieId = null,
-                UseAjaxForLinks = false,
+                UseAjaxForLinks = true,
                 PrefetchLinks = true
             };
             return View(vm);
@@ -43,23 +43,10 @@ namespace movies.Site.Controllers
                 BoxOfficeMovies = Movie.GetBoxOffice(),
                 UpcomingMovies = Movie.GetUpcoming(),
                 OverlayRtMovieId = null,
-                UseAjaxForLinks = false,
+                UseAjaxForLinks = true,
                 PrefetchLinks = true
             };
             return View(vm);
-        }
-
-        public ActionResult IndexWithMovieOverlay(string titleSlug, string rtMovieId)
-        {
-            var vm = new ViewModels.Home.Index
-            {
-                BoxOfficeMovies = Movie.GetBoxOffice(),
-                UpcomingMovies = Movie.GetUpcoming(),
-                OverlayRtMovieId = rtMovieId,
-                UseAjaxForLinks = false,
-                PrefetchLinks = false
-            };
-            return View("Index", vm);
         }
     }
 }

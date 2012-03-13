@@ -84,6 +84,7 @@ namespace movies.Model
         public string IMDbQ
         {
             get {
+                // TODO : this could be null
                 return this.alternate_ids.imdb;
                 // return string.Format("{0}&year={1}", this.title.Replace(" ", "+"), release_dates.theater.ToString("yyyy")); 
             }

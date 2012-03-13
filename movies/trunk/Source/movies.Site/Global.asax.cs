@@ -67,7 +67,7 @@ namespace movies
             routes.MapRoute(
                 "MovieDetails", // Route name
                 "{titleSlug}/{rtMovieId}", // URL with parameters
-                new { controller = "Home", action = "IndexWithMovieOverlay" } // Parameter defaults
+                new { controller = "Movie", action = "Index" } // Parameter defaults
             );   
 
             routes.MapRoute(
@@ -90,7 +90,7 @@ namespace movies
 
             var mobileJsBundle = new Bundle("~/mobile-js-bundle", new JsMinify());
             mobileJsBundle.AddFile("~/scripts/jquery-1.7.1.min.js");
-            mobileJsBundle.AddFile("~/scripts/jquery.mobile-1.0.1.min.js");
+            mobileJsBundle.AddFile("~/content/jquery.mobile-1.1.0-rc.1/jquery.mobile-1.1.0-rc.1.min.js");
             mobileJsBundle.AddFile("~/scripts/codejkjk/codejkjk.js");
             mobileJsBundle.AddFile("~/scripts/codejkjk/codejkjk.movies.Defaults.js");
             mobileJsBundle.AddFile("~/scripts/codejkjk/codejkjk.movies.Api.js");
@@ -102,7 +102,7 @@ namespace movies
             BundleTable.Bundles.Add(mobileJsBundle);
 
             var mobileCssBundle = new Bundle("~/mobile-css-bundle", new CssMinify());
-            mobileCssBundle.AddFile("~/content/jquery.mobile-1.0.1.min.css");
+            mobileCssBundle.AddFile("~/content/jquery.mobile-1.1.0-rc.1/jquery.mobile-1.1.0-rc.1.min.css");
             mobileCssBundle.AddFile("~/content/common.css");
             mobileCssBundle.AddFile("~/content/mobile.css");
             BundleTable.Bundles.Add(mobileCssBundle);

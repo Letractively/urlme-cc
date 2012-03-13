@@ -73,12 +73,14 @@
   <ItemGroup>
     <Compile Include="Controllers\ApiController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\MovieController.cs" />
     <Compile Include="Controllers\TempController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModels\Home\Index.cs" />
+    <Compile Include="ViewModels\Movie\Index.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\common.css" />
@@ -108,6 +110,15 @@
     <Content Include="Content\Images\star_small.png" />
     <Content Include="Content\Images\star_smallest.png" />
     <Content Include="Content\jquery.mobile-1.0.1.min.css" />
+    <Content Include="Content\jquery.mobile-1.1.0-rc.1\images\ajax-loader.gif" />
+    <Content Include="Content\jquery.mobile-1.1.0-rc.1\images\ajax-loader.png" />
+    <Content Include="Content\jquery.mobile-1.1.0-rc.1\images\icons-18-black.png" />
+    <Content Include="Content\jquery.mobile-1.1.0-rc.1\images\icons-18-white.png" />
+    <Content Include="Content\jquery.mobile-1.1.0-rc.1\images\icons-36-black.png" />
+    <Content Include="Content\jquery.mobile-1.1.0-rc.1\images\icons-36-white.png" />
+    <Content Include="Content\jquery.mobile-1.1.0-rc.1\jquery.mobile-1.1.0-rc.1.min.css" />
+    <Content Include="Content\jquery.mobile-1.1.0-rc.1\jquery.mobile-1.1.0-rc.1.min.js" />
+    <Content Include="Content\jquery.mobile-1.1.0-rc.1\jquery.mobile.structure-1.1.0-rc.1.min.css" />
     <Content Include="Content\Mobile.css" />
     <Content Include="Externals\local-cache\json2.js" />
     <Content Include="Externals\local-cache\local-cache-browser-test.html" />
@@ -146,7 +157,9 @@
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Content Include="Views\Movie\Index.Mobile.cshtml" />
+  </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Home\Index.cshtml" />
   </ItemGroup>

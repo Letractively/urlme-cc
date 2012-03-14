@@ -84,8 +84,7 @@ namespace movies.Model
         public string IMDbQ
         {
             get {
-                // TODO : this could be null
-                return this.alternate_ids.imdb;
+                return this.alternate_ids == null ? null : this.alternate_ids.imdb;
                 // return string.Format("{0}&year={1}", this.title.Replace(" ", "+"), release_dates.theater.ToString("yyyy")); 
             }
         }
@@ -116,17 +115,6 @@ namespace movies.Model
                 () =>
                 {
                     string imdbJson = API.IMDb.GetMovieJson(imdbMovieId);
-                    return imdbJson.FromJson<IMDbMovie>();
-                });
-        }
-
-        public static IMDbMovie GetIMDbMovie2(string q)
-        {
-            return Cache.GetValue<IMDbMovie>(
-                string.Format("codejkjk.movies.Model.Movie.GetIMDbMovie2-{0}", q),
-                () =>
-                {
-                    string imdbJson = API.IMDb.GetMovieJson2(q);
                     return imdbJson.FromJson<IMDbMovie>();
                 });
         }
@@ -190,9 +178,9 @@ namespace movies.Model
             // for each movie, get imdb info if it exists in cache
             foreach (var movie in movies.Values.Where(x => x.alternate_ids != null))
             {
-                if (Cache.KeyExists(string.Format("codejkjk.movies.Model.Movie.GetIMDbMovie2-{0}", movie.alternate_ids.imdb)))
+                if (Cache.KeyExists(string.Format("codejkjk.movies.Model.Movie.GetIMDbMovie-{0}", movie.alternate_ids.imdb)))
                 {
-                    var imdbMovie = GetIMDbMovie2(movie.alternate_ids.imdb);
+                    var imdbMovie = GetIMDbMovie(movie.alternate_ids.imdb);
                     movie.IMDbRating = imdbMovie.rating;
                     movie.IMDbVotes = imdbMovie.votes;
                     movie.IMDbLoaded = true;
@@ -224,9 +212,9 @@ namespace movies.Model
             // for each movie, get imdb info if it exists in cache
             foreach (var movie in movies.Values.Where(x => x.alternate_ids != null))
             {
-                if (Cache.KeyExists(string.Format("codejkjk.movies.Model.Movie.GetIMDbMovie2-{0}", movie.alternate_ids.imdb)))
+                if (Cache.KeyExists(string.Format("codejkjk.movies.Model.Movie.GetIMDbMovie-{0}", movie.alternate_ids.imdb)))
                 {
-                    var imdbMovie = GetIMDbMovie2(movie.IMDbQ);
+                    var imdbMovie = GetIMDbMovie(movie.IMDbQ);
                     movie.IMDbRating = imdbMovie.rating;
                     movie.IMDbVotes = imdbMovie.votes;
                     movie.IMDbLoaded = true;
@@ -245,9 +233,9 @@ namespace movies.Model
             // can we load imdb?
             if (movie.alternate_ids != null && !movie.IMDbLoaded)
             {
-                if (Cache.KeyExists(string.Format("codejkjk.movies.Model.Movie.GetIMDbMovie2-{0}", movie.alternate_ids.imdb)))
+                if (Cache.KeyExists(string.Format("codejkjk.movies.Model.Movie.GetIMDbMovie-{0}", movie.alternate_ids.imdb)))
                 {
-                    var imdbMovie = GetIMDbMovie2(movie.IMDbQ);
+                    var imdbMovie = GetIMDbMovie(movie.IMDbQ);
                     movie.IMDbRating = imdbMovie.rating;
                     movie.IMDbVotes = imdbMovie.votes;
                     movie.IMDbLoaded = true;

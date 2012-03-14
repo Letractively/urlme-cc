@@ -17,12 +17,6 @@ namespace movies.Site.Controllers
         }
 
         [HttpGet]
-        public JsonResult GetIMDbMovie2(string q)
-        {
-            return this.Json(Movie.GetIMDbMovie2(q), JsonRequestBehavior.AllowGet);
-        }
-
-        [HttpGet]
         public ActionResult SearchMovies(string q)
         {
             return PartialView("MovieList", Movie.SearchMovies(q));

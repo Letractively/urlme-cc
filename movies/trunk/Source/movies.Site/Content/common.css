@@ -1,5 +1,5 @@
 /* rt & imdb icons */
-.rottenTomato,.imdb { background: url("content/images/rt-sprite2.png") no-repeat scroll left center transparent; }
+.rottenTomato,.imdb { background: url("content/images/rt-sprite3.png") no-repeat scroll left center transparent; }
 
 .ratings { margin-top:10px; font-weight: bold; }
 .ratings > span { float: left; display:inline-block; }
@@ -15,3 +15,14 @@
 .ratings.small > .icon.rottenTomato.criticsRotten { background-position: -288px -96px; }
 .ratings.small > .icon.rottenTomato.audienceUpright { background-position: -291px -24px; }
 .ratings.small > .icon.rottenTomato.audienceSpilled { background-position: -288px -119px; }
+
+.ratings.medium { font-size: 18px; }
+.ratings.medium > .icon { width: 32px; height: 32px; margin-right: 13px; }
+.ratings.medium > span:not(.icon) { margin-top:5px; }
+.ratings.medium > span:not(.icon):not(:last-child):after { content: '%'; vertical-align: super; font-size: 10px; } /* text */
+.ratings.medium > .icon:not(:first-child) { margin-left: 12px; }
+.ratings.medium > .icon.imdb { background-position: -160px -130px; }
+.ratings.medium > .icon.rottenTomato.criticsFresh { background-position: -63px -128px; }
+.ratings.medium > .icon.rottenTomato.criticsRotten { background-position: -95px -128px; } /* */
+.ratings.medium > .icon.rottenTomato.audienceUpright { background-position: -32px -128px; }
+.ratings.medium > .icon.rottenTomato.audienceSpilled { background-position: -127px -127px; }

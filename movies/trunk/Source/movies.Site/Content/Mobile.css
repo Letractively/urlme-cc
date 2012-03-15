@@ -15,9 +15,17 @@ strong { font-weight: bold; }
 .ui-icon { z-index: 1000; }
 
 /* movie list */
-p { color: #535156; } /* bullet color */
+p { color: #535156; } /* grey bullet color */
 
-.mpaaRating { margin-left: 10px; color: #465F82; font-size: 12px; }
+.mpaaRating { margin-left: 10px; color: #465F82; font-size: 12px; font-weight: bold; }
 
 .releaseDate { margin-top: 10px; font-size: 12px; }
-/* debug */
+
+/* MovieIndexMobile page */
+#MovieIndexMobile img { float: left; margin-right: 10px; margin-bottom: 10px; }
+#MovieIndexMobile p { margin-bottom: 10px; font-size: 18px; }
+#MovieIndexMobile .ratings { margin:0px; float: left; }
+    #MovieIndexMobile .ratings > .icon { clear: left; margin-left: 0; }
+    #MovieIndexMobile .ratings > span { margin-bottom: 10px; }
+#MovieIndexMobile .description { clear: left; }
+#MovieIndexMobile .mpaaRating { font-size: 18px; margin: 0; }

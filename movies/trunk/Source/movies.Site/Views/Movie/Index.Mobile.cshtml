@@ -8,7 +8,7 @@
 @section ExtraHeadContent {
 }
 
-<div data-role="page">
+<div data-role="page" id="MovieIndexMobile">
 	<div data-role="header">
         <input type="text" placeholder="Search..." />
         <div data-role="navbar">
@@ -22,12 +22,11 @@
 
 	<div data-role="content">	
         <img class="poster" src="@this.Model.Movie.posters.detailed" />
-        <p class="description">@this.Html.Raw(this.Model.Movie.synopsis.Snippet(400))</p>
-        <a href="@(this.Model.Movie.links.alternate)trailers" target="_blank" class="trailerLink external">View trailer</a>
-        <p class="ratingAndLength"><strong>Rated</strong>: <a href="@this.Model.Movie.ParentalGuideUrl" class='mpaaRating external' target='_blank'>@this.Model.Movie.mpaa_rating</a>@this.Model.Movie.Duration</p>
+        <p><span class='mpaaRating'>@this.Model.Movie.mpaa_rating</span></p>
+        <p>@this.Model.Movie.Duration</p>
         @if (this.Model.Movie.IsReleased)
         {
-            <p class="ratings small">
+            <p class="ratings medium">
                 <span class='@this.Model.Movie.CriticsClass rottenTomato icon'></span><span>@this.Model.Movie.ratings.critics_score</span>
                 <span class='@this.Model.Movie.AudienceClass rottenTomato icon'></span><span>@this.Model.Movie.ratings.audience_score</span>
                 <span class='imdb icon'></span><span data-imdbq="@this.Model.Movie.IMDbQ" data-imdbmovieid="@this.Model.Movie.alternate_ids.imdb" class="@this.Model.Movie.IMDbClass">@(this.Model.Movie.IMDbRating != null ? this.Model.Movie.IMDbRating.ToLower() : "")</span>
@@ -37,6 +36,8 @@
         {
             <p class="releaseDate">@this.Model.Movie.ReleaseDate</p>    
         }
+        <p class="description">@this.Html.Raw(this.Model.Movie.synopsis.Snippet(400))</p>
+        <a href="@(this.Model.Movie.links.alternate)trailers" target="_blank" class="trailerLink external">View trailer</a>
         <p class="starring">
             <strong>Starring</strong>: 
             

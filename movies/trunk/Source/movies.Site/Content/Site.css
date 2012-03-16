@@ -1,6 +1,6 @@
-html{font-size:12px;color:#000;background:#FFF;}body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,code,form,fieldset,legend,input,button,textarea,p,blockquote,th,td{margin:0;padding:0;}table{border-collapse:collapse;border-spacing:0;}fieldset,img{border:0;}address,caption,cite,code,dfn,em,strong,th,var,optgroup{font-style:inherit;font-weight:inherit;}del,ins{text-decoration:none;}li{list-style:none;}caption,th{text-align:left;}h1,h2,h3,h4,h5,h6{font-size:100%;font-weight:normal;}q:before,q:after{content:'';}abbr,acronym{border:0;font-variant:normal;}sup{vertical-align:baseline;}sub{vertical-align:baseline;}legend{color:#000;}input,button,textarea,select,optgroup,option{font-family:inherit;font-size:inherit;font-style:inherit;font-weight:inherit;}input,button,textarea,select{font-size:100%;}
+html{font-size:12px;color:#000;}body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,code,form,fieldset,legend,input,button,textarea,p,blockquote,th,td{margin:0;padding:0;}table{border-collapse:collapse;border-spacing:0;}fieldset,img{border:0;}address,caption,cite,code,dfn,em,strong,th,var,optgroup{font-style:inherit;font-weight:inherit;}del,ins{text-decoration:none;}li{list-style:none;}caption,th{text-align:left;}h1,h2,h3,h4,h5,h6{font-size:100%;font-weight:normal;}q:before,q:after{content:'';}abbr,acronym{border:0;font-variant:normal;}sup{vertical-align:baseline;}sub{vertical-align:baseline;}legend{color:#000;}input,button,textarea,select,optgroup,option{font-family:inherit;font-size:inherit;font-style:inherit;font-weight:inherit;}input,button,textarea,select{font-size:100%;}
 strong { font-weight: bold; }
-html { background: #ccc; } /* dark gray = #535156 */
+html { background: url("bg.png") repeat-x scroll 0 0 #CCCCCC; /* #ccc; */ } /* dark gray = #535156 */
 
 body
 {
@@ -11,7 +11,7 @@ body
 }
 .hidden { display:none; }
 a:focus { outline: none; } /* firefox */
-a { text-decoration: none; color: #465F82; }
+a { text-decoration: none; color: #535156 /* #465F82 */; }
 span.divider { color: #CDCDCD; font-weight: normal; margin: 0 5px; }
 .leftShadow { -webkit-box-shadow: -5px 5px 5px #ccc; -moz-box-shadow: -5px 5px 5px #ccc; box-shadow: -5px 5px 5px #ccc; }
 .glowing { box-shadow: 2px 2px 2px #999; -webkit-box-shadow: 2px 2px 2px #999; -moz-box-shadow: 2px 2px 2px #999; }
@@ -25,13 +25,15 @@ span.divider { color: #CDCDCD; font-weight: normal; margin: 0 5px; }
 
 #container { margin: 0 auto; width: 1000px; text-align:left; padding-top:10px; } /* same width as cnn.com */
 
-header { text-align:center; height:33px; }
-    header nav { float: left; font-size: 150%; margin-top:5px; margin-right: 10px; }
+header { text-align:center; overflow: auto; height: 80px;}
+    header a.logo { float: left; background: url('logo2.png'); width: 224px; height: 80px; display:inline-block; }
+    header nav { float: left; font-size: 150%; margin: 30px 10px 0 25px; }
         header nav a { margin-right: 20px; }
-        header nav a.selected { color: #fff; background: #465F82; padding: 5px 10px; }
+        header nav a.selected { color: #fff; background: #029DB7/* #465F82 */; padding: 5px 10px; }
 
     header #q  
     {
+        margin-top:27px;
         padding: 5px; 
         font-size: 15px; 
         border: 1px solid #717171; 

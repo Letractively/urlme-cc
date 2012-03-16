@@ -16,7 +16,7 @@ namespace movies.Site.Controllers
                 UpcomingMovies = Movie.GetUpcoming(),
                 OverlayRtMovieId = null,
                 UseAjaxForLinks = true,
-                PrefetchLinks = true
+                PrefetchLinks = false
             };
             return View(vm);
         }
@@ -30,7 +30,7 @@ namespace movies.Site.Controllers
                 UpcomingMovies = Movie.GetUpcoming(),
                 OverlayRtMovieId = null,
                 UseAjaxForLinks = true,
-                PrefetchLinks = true
+                PrefetchLinks = false
             };
             return View(vm);
         }
@@ -44,7 +44,7 @@ namespace movies.Site.Controllers
                 UpcomingMovies = Movie.GetUpcoming(),
                 OverlayRtMovieId = null,
                 UseAjaxForLinks = true,
-                PrefetchLinks = true
+                PrefetchLinks = false
             };
             return View(vm);
         }

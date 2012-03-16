@@ -85,6 +85,7 @@
   <ItemGroup>
     <Content Include="Content\bg.png" />
     <Content Include="Content\common.css" />
+    <Content Include="Content\favicon.jpg" />
     <Content Include="Content\Images\ajax-loader.gif" />
     <Content Include="Content\Images\ajax-loader.png" />
     <Content Include="Content\Images\icons-18-black.png" />

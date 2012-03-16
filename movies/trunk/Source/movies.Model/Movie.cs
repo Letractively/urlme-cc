@@ -104,6 +104,13 @@ namespace movies.Model
                 return string.Empty;
             }
         }
+        public string DurationCompact
+        {
+            get
+            {
+                return "0" + this.Duration.Replace(" ", "").Replace("hr.", ":").Replace("min.", "");
+            }
+        }
         //Snippet: function (text, len) {
         //    return text.snippet(len);
         //},

@@ -17,7 +17,7 @@ namespace movies.Site.Controllers
             {
                 var vm = new ViewModels.Movie.Index {
                     UseAjaxForLinks = true,
-                    PrefetchLinks = true,
+                    PrefetchLinks = false,
                     Movie = Model.Movie.GetRottenTomatoesMovie(rtMovieId)
                 };
                 return View("Index", vm);
@@ -30,7 +30,7 @@ namespace movies.Site.Controllers
                     UpcomingMovies = Model.Movie.GetUpcoming(),
                     OverlayRtMovieId = rtMovieId,
                     UseAjaxForLinks = true,
-                    PrefetchLinks = true
+                    PrefetchLinks = false
                 };
                 return View("~/views/home/index", vm);
             }

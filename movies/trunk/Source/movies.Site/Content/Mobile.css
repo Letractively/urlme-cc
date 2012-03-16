@@ -2,6 +2,8 @@ html{font-size:12px;color:#000;background:#FFF;}body,div,dl,dt,dd,ul,ol,li,h1,h2
 html{font-family:Arial;}
 strong { font-weight: bold; }
 
+header a.logo { background: url('content/logo2.png'); width: 224px; height: 80px; display:inline-block; }
+
 .ui-li-has-thumb .ui-btn-inner a.ui-link-inherit { padding-left: 75px; min-height: 73px; }
 .ui-li-thumb, .ui-listview .ui-li-icon { max-height: 91px; }
 .ul-li-heading { float: left; }
@@ -27,5 +29,6 @@ p { color: #535156; } /* grey bullet color */
 #MovieIndexMobile .ratings { margin:0px; float: left; }
     #MovieIndexMobile .ratings > .icon { clear: left; margin-left: 0; }
     #MovieIndexMobile .ratings > span { margin-bottom: 10px; }
-#MovieIndexMobile .description { clear: left; }
-#MovieIndexMobile .mpaaRating { font-size: 18px; margin: 0; }
+#MovieIndexMobile .links { clear: left; }
+    #MovieIndexMobile .links a:first-child { margin-right:20px; }
+#MovieIndexMobile .mpaaRating { font-size: 24px; margin: 0; }

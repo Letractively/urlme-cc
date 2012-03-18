@@ -1,7 +1,7 @@
 /* rt & imdb icons */
 .rottenTomato,.imdb { background: url("content/images/rt-sprite3.png") no-repeat scroll left center transparent; }
 
-.ratings { margin-top:10px; font-weight: bold; }
+.ratings { margin-top:10px; font-weight: bold; overflow:auto; }
 .ratings > span { float: left; display:inline-block; }
 
 /* small set */

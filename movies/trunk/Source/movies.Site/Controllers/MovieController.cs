@@ -32,7 +32,7 @@ namespace movies.Site.Controllers
                     UseAjaxForLinks = true,
                     PrefetchLinks = false
                 };
-                return View("~/views/home/index", vm);
+                return View("~/views/home/index.cshtml", vm);
             }
         }
     }

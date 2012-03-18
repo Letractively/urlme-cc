@@ -5,14 +5,21 @@
     if (movie.alternate_ids != null)
     {
     <div class="movie rounded glowing">
-        <a data-rtmovieid="@movie.id" class="movieDetailsLink" href="#"><img src="@movie.posters.detailed" /></a>
+        <a href="~/@movie.MovieSlug"><img src="@movie.posters.detailed" /></a>
         <div class="details gradient">
             <p class="ratingAndLength">
-                @movie.Duration<a href="@movie.ParentalGuideUrl" class='mpaaRating external' target='_blank' title='Link to Parents Guide on IMDb.com'>@movie.mpaa_rating</a>
+                @movie.Duration<a href="@movie.ParentalGuideUrl" class='mpaaRating' target='_blank' title='Link to Parents Guide on IMDb.com'>@movie.mpaa_rating</a>
             </p>
-            @if (movie.IsReleased) {
-                <div class="ratings"><a href="@movie.links.alternate" class='@movie.CriticsClass rottenTomato' target='_blank' title="Critics score on RottenTomatoes">@movie.ratings.critics_score<sup>%</sup></a><a href="@movie.links.alternate" class='@movie.AudienceClass rottenTomato' target='_blank' title="Audience score on RottenTomatoes">@movie.ratings.audience_score<sup>%</sup></a><a data-imdbmovieid="@movie.alternate_ids.imdb" class='imdb @movie.IMDbClass' href="@movie.IMDbMovieUrl" target='_blank' title="@string.Format("{0} votes on IMDb.com", movie.IMDbVotes)">@(movie.IMDbRating != null ? movie.IMDbRating.ToLower() : "")</a></div>
-            } else {
+            @if (movie.IsReleased)
+            {
+                <p class="ratings small">
+                    <span class='@movie.CriticsClass rottenTomato icon'></span><span>@movie.ratings.critics_score</span>
+                    <span class='@movie.AudienceClass rottenTomato icon'></span><span>@movie.ratings.audience_score</span>
+                    <span class='imdb icon'></span><span data-imdbq="@movie.IMDbQ" data-imdbmovieid="@movie.alternate_ids.imdb" class="@movie.IMDbClass">@(movie.IMDbRating != null ? movie.IMDbRating.ToLower() : "")</span>
+                </p>                
+            }
+            else
+            {
                 <p class="releaseDate">@movie.ReleaseDate</p>
             }
         </div>

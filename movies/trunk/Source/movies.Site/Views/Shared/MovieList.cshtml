@@ -5,7 +5,7 @@
     if (movie.alternate_ids != null)
     {
     <div class="movie rounded glowing">
-        <a href="~/@movie.MovieSlug"><img src="@movie.posters.detailed" /></a>
+        <a class="poster shadow" href="~/@movie.MovieSlug" style="background:url('@movie.posters.detailed');"></a>
         <div class="details gradient">
             <p class="ratingAndLength">
                 @movie.Duration<a href="@movie.ParentalGuideUrl" class='mpaaRating' target='_blank' title='Link to Parents Guide on IMDb.com'>@movie.mpaa_rating</a>

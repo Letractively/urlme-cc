@@ -123,7 +123,6 @@
     <Content Include="Content\jquery.mobile-1.1.0-rc.1\jquery.mobile-1.1.0-rc.1.min.js" />
     <Content Include="Content\jquery.mobile-1.1.0-rc.1\jquery.mobile.structure-1.1.0-rc.1.min.css" />
     <Content Include="Content\logo.png" />
-    <Content Include="Content\logo2.png" />
     <Content Include="Content\logo_mobile.png" />
     <Content Include="Content\Mobile.css" />
     <Content Include="Externals\local-cache\json2.js" />

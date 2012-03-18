@@ -22,6 +22,7 @@ span.divider { color: #CDCDCD; font-weight: normal; margin: 0 5px; }
             background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#ffffff), to(#e8e8e8)); 
             background: -webkit-linear-gradient(top, #ffffff, #e8e8e8); 
             background: -moz-linear-gradient(top, #ffffff, #e8e8e8); }
+.shadow { -moz-box-shadow: inset 0 0 30px #303030; -webkit-box-shadow: inset 0 0 30px #303030; box-shadow: inset 0 0 30px #303030; } /* orig: 1b1b1b */
 
 #container { margin: 0 auto; width: 1000px; text-align:left; padding-top:10px; } /* same width as cnn.com */
 
@@ -102,6 +103,8 @@ header { text-align:center; overflow: auto; height: 80px;}
     /* #boxOfficeView .movie:not(:nth-child(1)) { margin-top:10px; } */
     .movieList .movie:not(:nth-child(5n+5)) { margin-right: 24px; }
     .movieList .movie { margin-bottom: 24px; float: left; width: 180px; }
+        .movieList .movie a.poster { width: 180px; height: 267px; display:inline-block; }
+        .movieList .movie a.poster:hover { -moz-box-shadow: none; -webkit-box-shadow: none; box-shadow: none; }
         .movieList .movie .details { padding: 10px; }
         .movieList .movie img { width: 180px; height: 267px; } /* thumbnail = 61 x 91 */
         .movieList .movie .ratingAndLength .mpaaRating { font-weight: bold; float: right; }

@@ -3,26 +3,17 @@
 <head>
     <title>@ViewBag.Title</title>
     <link rel="icon" href="~/content/favicon.jpg" />
-    <link href="~/content/site.css" rel="stylesheet"/>
-    <link href="~/content/jquery.mobile-1.0.1.min.css" rel="stylesheet" />
     <script type="text/javascript">
         var apiBaseUrl = '@Url.Content("~/api/")';
     </script>
-    <script src="~/scripts/jquery-1.7.1.min.js"></script>
-    <script src="~/scripts/codejkjk/codejkjk.js"></script>
-    <script src="~/externals/local-cache/local-cache.js"></script>
-    <script src="~/scripts/codejkjk/codejkjk.movies.Defaults.js"></script>
-    <script src="~/scripts/codejkjk/codejkjk.movies.Api.js"></script>
-    <script src="~/scripts/codejkjk/codejkjk.Geo.js"></script>
-    <script src="~/scripts/plugins/jsrender.js"></script>
-    <script src="~/scripts/plugins/date.js"></script>
-    <script src="~/scripts/plugins/zeroclipboard/zeroclipboard.js"></script>
-    <script src="~/scripts/plugins/jquery.mask.min.js"></script>
+    <script src="@System.Web.Optimization.BundleTable.Bundles.ResolveBundleUrl("~/desktop-js-bundle")"></script>
+    <link href="@System.Web.Optimization.BundleTable.Bundles.ResolveBundleUrl("~/desktop-css-bundle")" rel="stylesheet" />
     <script type="text/javascript">
         // var clip = new ZeroClipboard.Client();
         ZeroClipboard.setMoviePath('@Url.Content("~/scripts/plugins/zeroclipboard/zeroclipboard.swf")');
     </script>
     @RenderSection("ExtraHeadContent", required: false)
+
 <script type="text/javascript">
     var _gaq = _gaq || [];
     _gaq.push(['_setAccount', 'UA-29837388-1']);

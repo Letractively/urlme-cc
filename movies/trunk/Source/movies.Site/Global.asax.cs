@@ -100,6 +100,24 @@ namespace movies
             mobileCssBundle.AddFile("~/content/common.css");
             mobileCssBundle.AddFile("~/content/mobile.css");
             BundleTable.Bundles.Add(mobileCssBundle);
+
+            var desktopJsBundle = new Bundle("~/desktop-js-bundle", new JsMinify());
+            desktopJsBundle.AddFile("~/scripts/jquery-1.7.1.min.js");
+            desktopJsBundle.AddFile("~/scripts/codejkjk/codejkjk.js");
+            desktopJsBundle.AddFile("~/scripts/codejkjk/codejkjk.movies.Defaults.js");
+            desktopJsBundle.AddFile("~/scripts/codejkjk/codejkjk.movies.Api.js");
+            desktopJsBundle.AddFile("~/scripts/codejkjk/codejkjk.Geo.js");
+            desktopJsBundle.AddFile("~/scripts/plugins/date.js");
+            desktopJsBundle.AddFile("~/scripts/plugins/jsrender.js");
+            desktopJsBundle.AddFile("~/externals/local-cache/local-cache.js");
+            desktopJsBundle.AddFile("~/scripts/plugins/zeroclipboard/zeroclipboard.js");
+            desktopJsBundle.AddFile("~/scripts/plugins/jquery.mask.min.js");
+            BundleTable.Bundles.Add(desktopJsBundle);
+
+            var desktopCssBundle = new Bundle("~/desktop-css-bundle", new CssMinify());
+            desktopCssBundle.AddFile("~/content/common.css");
+            desktopCssBundle.AddFile("~/content/site.css");
+            BundleTable.Bundles.Add(desktopCssBundle);
         }
     }
 }

@@ -76,11 +76,11 @@
                     <p class="ratings smaller">
                         <span class='rt_critics_rating rottenTomato icon'></span><span></span>
                         <span class='rt_audience_rating rottenTomato icon'></span><span></span>
-                        <span class='imdb icon'></span><span data-imdbq="{{=IMDbQ}}" data-imdbmovieid="" class="imdb">{{=IMDbRating}}</span>
+                        <span class='imdb icon'></span><span data-imdbq="{{=IMDbQ}}" class="imdb">{{=IMDbRating}}</span>
                     </p>
                     <div class="actions">
                         <a href="#" class="hideMovieLink rounded" data-theatermovie="{{=$parent.parent.data.theaterId}}-{{=rtMovieId}}"><span class="x">&#10006;</span>Hide this movie</a>
-                        <a href="#" class="movieDetailsLink rounded" data-rtmovieid="{{=rtMovieId}}"><span class="dotdotdot">+</span>More movie details</a>
+                        <a href="http://seeitornot.co/{{=MovieSlug}}" class="rounded"><span class="dotdotdot">+</span>More movie details</a>
                     </div>
                 </div>
             {{/each}}

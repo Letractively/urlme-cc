@@ -34,8 +34,8 @@ namespace movies.Site.Controllers
                 }
             }
 
-            var upcomingMovies = Model.Movie.GetUpcoming();
-            foreach (var movie in upcomingMovies.Values)
+            var inTheatersMovies = Model.Movie.GetInTheaters();
+            foreach (var movie in inTheatersMovies.Values)
             {
                 if (movie.IMDbQ != null)
                 {

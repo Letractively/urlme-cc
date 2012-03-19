@@ -144,10 +144,6 @@
     <Content Include="Scripts\Plugins\zeroclipboard\test.html" />
     <Content Include="Scripts\Plugins\zeroclipboard\ZeroClipboard.js" />
     <Content Include="Scripts\Plugins\zeroclipboard\ZeroClipboard.swf" />
-    <Content Include="Views\Home\mobile.htm" />
-    <Content Include="Views\Home\mobile2.htm" />
-    <Content Include="Views\Home\mobile_comingsoon.htm" />
-    <Content Include="Views\Home\mobile_showtimes.htm" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>

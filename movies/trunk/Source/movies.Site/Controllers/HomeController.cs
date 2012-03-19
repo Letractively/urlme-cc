@@ -1,5 +1,7 @@
 ﻿using System.Web.Mvc;
 using movies.Model;
+using movies.Core.Web.Caching;
+using System.Collections.Generic;
 
 namespace movies.Site.Controllers
 {
@@ -19,6 +21,29 @@ namespace movies.Site.Controllers
                 PrefetchLinks = false
             };
             return View(vm);
+        }
+
+        public ActionResult CacheImdbData()
+        {
+            var boxOfficeMovies = Model.Movie.GetBoxOffice();
+            foreach (var movie in boxOfficeMovies.Values)
+            {
+                if (movie.IMDbQ != null)
+                {
+                    Model.Movie.GetIMDbMovie(movie.IMDbQ);
+                }
+            }
+
+            var upcomingMovies = Model.Movie.GetUpcoming();
+            foreach (var movie in upcomingMovies.Values)
+            {
+                if (movie.IMDbQ != null)
+                {
+                    Model.Movie.GetIMDbMovie(movie.IMDbQ);
+                }
+            }
+
+            return Content("Done!");
         }
 
         /* mobile - showtimes */

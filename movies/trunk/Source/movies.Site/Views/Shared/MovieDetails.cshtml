@@ -2,7 +2,7 @@
 
 <a href="#" id="closeMovieDetailsLink">Close</a>
 <img class="poster" src="@this.Model.posters.detailed" />
-<h2>{{=title}}</h2>
+<h2>@this.Model.title</h2>
 <p class="description">@this.Model.synopsis</p>
 <a href="@(this.Model.links.alternate)trailers" target="_blank" class="trailerLink external">View trailer</a>
 <p class="ratingAndLength"><strong>Rated</strong>: <a href="@this.Model.ParentalGuideUrl" class='mpaaRating external' target='_blank' title='Link to Parents Guide on IMDb.com'>@this.Model.mpaa_rating</a>@this.Model.Duration</p>

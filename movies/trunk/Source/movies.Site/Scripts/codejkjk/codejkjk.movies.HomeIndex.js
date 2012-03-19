@@ -111,6 +111,11 @@ codejkjk.movies.HomeIndex = {
 
         // load the view that's selected (remembered)
         codejkjk.movies.HomeIndex.Controls.CurrentNavItem().trigger('click');
+
+        // if we have a movie overlay to show, show it; showMovieOverlay is a bool set in js-referencing view
+        if (showMovieOverlay) {
+            codejkjk.movies.HomeIndex.ShowMovieDetails();
+        }
     },
 
     RegisterJsRenderHelpers: function () {
@@ -350,14 +355,14 @@ codejkjk.movies.HomeIndex = {
         codejkjk.movies.Api.GetTheaters(codejkjk.movies.HomeIndex.Controls.CurrentShowtimeDay().val(), zipCode, codejkjk.movies.HomeIndex.LoadTheaters);
     },
 
-    ShowMovieDetails: function (rtMovieId) {
-        codejkjk.movies.Api.GetRottenTomatoesMovie(rtMovieId, function (movie) {
+    ShowMovieDetails: function () {
+        // codejkjk.movies.Api.GetRottenTomatoesMovie(rtMovieId, function (movie) {
             var overlayHeight = $(document).height() + "px";
             var overlayWidth = $(document).width() + "px";
             codejkjk.movies.HomeIndex.Controls.Overlay().css("height", overlayHeight).css("width", overlayWidth).show();
-            codejkjk.movies.HomeIndex.Controls.MovieDetails().html(
-                        codejkjk.movies.HomeIndex.Controls.MovieDetailsTemplate().render(movie)
-                ).show();
+            codejkjk.movies.HomeIndex.Controls.MovieDetails().show(); //html(
+            //codejkjk.movies.HomeIndex.Controls.MovieDetailsTemplate().render(movie)
+            //).show();
 
             var clip = new ZeroClipboard.Client();
             clip.setText(codejkjk.movies.HomeIndex.Controls.MovieUrl().val());
@@ -366,7 +371,7 @@ codejkjk.movies.HomeIndex = {
             clip.addEventListener('complete', function (client, text) {
                 codejkjk.movies.HomeIndex.Controls.CopySuccess().show().delay(2500).fadeOut('fast');
             });
-        });
+        // });
     },
 
     BindControls: function () {

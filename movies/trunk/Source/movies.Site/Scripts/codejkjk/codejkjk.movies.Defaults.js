@@ -2,6 +2,6 @@
 
 codejkjk.movies.Defaults = {
     CacheExpires: { hours: 4 }
-    , AllowCache: false
+    , AllowCache: true
     // , more defaults...
 };

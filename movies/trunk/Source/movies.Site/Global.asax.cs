@@ -59,6 +59,12 @@ namespace movies
             );
 
             routes.MapRoute(
+                "Task-CacheImdbData", // Route name
+                "cacheimdbdata", // URL with parameters
+                new { controller = "Home", action = "CacheImdbData" } // Parameter defaults
+            );     
+
+            routes.MapRoute(
                 "MovieDetails", // Route name
                 "{titleSlug}/{rtMovieId}", // URL with parameters
                 new { controller = "Movie", action = "Index" } // Parameter defaults

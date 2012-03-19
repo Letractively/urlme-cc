@@ -28,7 +28,7 @@ namespace movies.Site.Controllers
                 {
                     BoxOfficeMovies = Model.Movie.GetBoxOffice(),
                     UpcomingMovies = Model.Movie.GetUpcoming(),
-                    OverlayRtMovieId = rtMovieId,
+                    OverlayMovie = Model.Movie.GetRottenTomatoesMovie(rtMovieId),
                     UseAjaxForLinks = true,
                     PrefetchLinks = false
                 };

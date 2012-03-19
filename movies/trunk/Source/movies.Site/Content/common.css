@@ -26,3 +26,14 @@
 .ratings.medium > .icon.rottenTomato.criticsRotten { background-position: -95px -128px; } /* */
 .ratings.medium > .icon.rottenTomato.audienceUpright { background-position: -32px -128px; }
 .ratings.medium > .icon.rottenTomato.audienceSpilled { background-position: -127px -127px; }
+
+.ratings.smaller { font-size: 14px; }
+.ratings.smaller > .icon { width: 14px; height: 14px; margin-right: 4px; margin-top:1px; }
+.ratings.smaller > span:not(.icon) { margin-top:0; }
+.ratings.smaller > span:not(.icon):not(:last-child):after { content: '%'; vertical-align: super; font-size: 8px; } /* text */
+.ratings.smaller > .icon:not(:first-child) { margin-left: 8px; }
+.ratings.smaller > .icon.imdb { background-position: -277px -161px; }
+.ratings.smaller > .icon.rottenTomato.criticsFresh { background-position: -257px -144px; }
+.ratings.smaller > .icon.rottenTomato.criticsRotten { background-position: -273px -144px; }
+.ratings.smaller > .icon.rottenTomato.audienceUpright { background-position: -289px -145px; }
+.ratings.smaller > .icon.rottenTomato.audienceSpilled { background-position: -209px -144px; }

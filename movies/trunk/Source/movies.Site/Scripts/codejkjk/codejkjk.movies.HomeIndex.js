@@ -224,12 +224,12 @@ codejkjk.movies.HomeIndex = {
         var audienceTitle = "Audience score on RottenTomatoes";
         movies.find('.rt_critics_rating').removeClass('rt_critics_rating')
                                          .addClass(movie.CriticsClass)
-                                         .html("{0}<sup>%</sup>".format(movie.ratings.critics_score))
-                                         .attr("title", criticsTitle);
+                                         .attr("title", criticsTitle)
+                                         .next().html("{0}".format(movie.ratings.critics_score));
         movies.find('.rt_audience_rating').removeClass('rt_audience_rating')
                                          .addClass(movie.AudienceClass)
-                                         .html("{0}<sup>%</sup>".format(movie.ratings.audience_score))
-                                         .attr("title", audienceTitle);
+                                         .attr("title", audienceTitle)
+                                         .next().html("{0}".format(movie.ratings.audience_score));
 
         // load imdb movie ratings
         if (movie.alternate_ids && movie.alternate_ids.imdb) {

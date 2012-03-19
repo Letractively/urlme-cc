@@ -3,21 +3,14 @@
     public class IMDb
     {
         private const string BaseUrl = "http://www.imdbapi.com/?i=tt";
-        private const string BaseUrl2 = "http://www.deanclatworthy.com/imdb/?q=";
+        private const string BaseUrl2 = "http://www.deanclatworthy.com/imdb/?id=tt";
 
         public static string GetMovieJson(string imdbMovieId)
         {
             // baseurl already has tt, so, make sure tt is not in passed-in imdbMovieId
             imdbMovieId = imdbMovieId.Replace("tt", "");
 
-            string url = string.Format("{0}{1}", BaseUrl, imdbMovieId);
-            return Core.Net.HttpWebRequest.GetResponse(url);
-        }
-
-        // q = The+Grey&year=2012
-        public static string GetMovieJson2(string q)
-        {
-            string url = string.Format("{0}{1}", BaseUrl2, q);
+            string url = string.Format("{0}{1}", BaseUrl2, imdbMovieId);
             return Core.Net.HttpWebRequest.GetResponse(url);
         }
 

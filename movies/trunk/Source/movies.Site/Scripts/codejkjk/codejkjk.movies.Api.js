@@ -6,7 +6,7 @@ codejkjk.movies.Api = {
         // first, check cache
         var cacheKey = "flixster-{0}-{1}".format(dateStr, zip);
         var cached = $.cacheItem(cacheKey);
-        if (cached) {
+        if (cached && codejkjk.movies.Defaults.AllowCache) {
             return callback(cached);
         }
 
@@ -54,7 +54,7 @@ codejkjk.movies.Api = {
         // first, check cache
         var cacheKey = "rt-SearchMovies-{0}".format(q);
         var cached = $.cacheItem(cacheKey);
-        if (cached) {
+        if (cached && codejkjk.movies.Defaults.AllowCache) {
             return callback(cached);
         }
 
@@ -65,7 +65,7 @@ codejkjk.movies.Api = {
         // first, check cache
         var cacheKey = "imdb-{0}".format(imdbMovieId);
         var cached = $.cacheItem(cacheKey);
-        if (cached) {
+        if (cached && codejkjk.movies.Defaults.AllowCache) {
             return callback(cached);
         }
 
@@ -76,7 +76,7 @@ codejkjk.movies.Api = {
         // first, check cache
         var cacheKey = "rt-{0}".format(rtMovieId);
         var cached = $.cacheItem(cacheKey);
-        if (cached) {
+        if (cached && codejkjk.movies.Defaults.AllowCache) {
             return callback(cached);
         }
 

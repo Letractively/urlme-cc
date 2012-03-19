@@ -14,7 +14,7 @@ namespace movies.Site.Controllers
             {
                 BoxOfficeMovies = Movie.GetBoxOffice(),
                 UpcomingMovies = Movie.GetUpcoming(),
-                OverlayRtMovieId = null,
+                OverlayMovie = null,
                 UseAjaxForLinks = true,
                 PrefetchLinks = false
             };
@@ -28,7 +28,7 @@ namespace movies.Site.Controllers
             {
                 BoxOfficeMovies = Movie.GetBoxOffice(),
                 UpcomingMovies = Movie.GetUpcoming(),
-                OverlayRtMovieId = null,
+                OverlayMovie = null,
                 UseAjaxForLinks = true,
                 PrefetchLinks = false
             };
@@ -42,7 +42,7 @@ namespace movies.Site.Controllers
             {
                 BoxOfficeMovies = Movie.GetBoxOffice(),
                 UpcomingMovies = Movie.GetUpcoming(),
-                OverlayRtMovieId = null,
+                OverlayMovie = null,
                 UseAjaxForLinks = true,
                 PrefetchLinks = false
             };

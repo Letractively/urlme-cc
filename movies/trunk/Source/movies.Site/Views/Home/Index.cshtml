@@ -6,7 +6,7 @@
 
 @section ExtraHeadContent {
     <script type="text/javascript">
-        var overlayRtMovieId = '@this.Model.OverlayRtMovieId';
+        // var overlayRtMovieId = '';
     </script>
     <script src="~/scripts/codejkjk/codejkjk.movies.HomeIndex.js"></script>
 }
@@ -48,9 +48,12 @@
     <section id="searchResultsView" class="content movieList rounded">
     </section>
 
-    <!-- MOVIE DETAILS -->
-    <section id="movieDetails" class="rounded">
-    </section>
-    <div id="overlay"></div>
-
+    @if (this.Model.OverlayMovie != null)
+    {
+        <!-- MOVIE DETAILS -->
+        <section id="movieDetails" class="rounded">
+            @this.Html.Partial("MovieDetails", this.Model.OverlayMovie)
+        </section>
+        <div id="overlay"></div>        
+    }
 </div>

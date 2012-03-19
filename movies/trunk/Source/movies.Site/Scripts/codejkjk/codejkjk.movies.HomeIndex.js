@@ -101,9 +101,6 @@ codejkjk.movies.HomeIndex = {
 
         codejkjk.movies.HomeIndex.BindControls();
 
-        // if load IMDb movies that aren't set from server-side box office and upcoming movie loads
-        codejkjk.movies.HomeIndex.GetIMDbData();
-
         codejkjk.movies.HomeIndex.RegisterJsRenderHelpers();
 
         // *** load showtimes view ***
@@ -114,11 +111,6 @@ codejkjk.movies.HomeIndex = {
 
         // load the view that's selected (remembered)
         codejkjk.movies.HomeIndex.Controls.CurrentNavItem().trigger('click');
-
-        // is this on a /movie/the_matrix/23531432 view? if so, show movie details overlay
-        if (overlayRtMovieId) { // defined in js-referencing view
-            codejkjk.movies.HomeIndex.ShowMovieDetails(overlayRtMovieId);
-        }
     },
 
     RegisterJsRenderHelpers: function () {
@@ -243,6 +235,7 @@ codejkjk.movies.HomeIndex = {
     },
 
     GetIMDbData: function () {
+        return;
         codejkjk.movies.HomeIndex.Controls.IMDbMoviesNotSet().each(function () {
             var imdb = $(this);
             var imdbMovieId = imdb.attr("data-imdbmovieid");
@@ -373,8 +366,6 @@ codejkjk.movies.HomeIndex = {
             clip.addEventListener('complete', function (client, text) {
                 codejkjk.movies.HomeIndex.Controls.CopySuccess().show().delay(2500).fadeOut('fast');
             });
-
-            codejkjk.movies.HomeIndex.GetIMDbData();
         });
     },
 

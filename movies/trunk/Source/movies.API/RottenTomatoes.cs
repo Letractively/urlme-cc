@@ -11,6 +11,12 @@
             return Core.Net.HttpWebRequest.GetResponse(url);
         }
 
+        public static string GetInTheatersJson()
+        {
+            string url = string.Format("{0}lists/movies/in_theaters.json?page_limit=20&page=1&country=us&apikey={1}", BaseUrl, ApiKey);
+            return Core.Net.HttpWebRequest.GetResponse(url);
+        }
+
         public static string SearchMoviesJson(string q)
         {
             string url = string.Format("{0}movies.json?page_limit=20&page=1&country=us&apikey={1}&q={2}", BaseUrl, ApiKey, q);

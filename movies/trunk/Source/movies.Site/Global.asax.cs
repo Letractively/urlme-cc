@@ -107,7 +107,18 @@ namespace movies
             mobileCssBundle.AddFile("~/content/mobile.css");
             BundleTable.Bundles.Add(mobileCssBundle);
 
-            var desktopJsBundle = new Bundle("~/desktop-js-bundle", new JsMinify());
+            var desktopJsBundle = new Bundle("~/desktop-js-bundle", new CssMinify());
+            //var desktopBootstrap = new BundleFileSetOrdering("desktopbootstrap");
+            //desktopBootstrap.Files.Add("~/scripts/jquery-1.7.1.min.js");
+            //desktopBootstrap.Files.Add("~/scripts/codejkjk/codejkjk.js");
+            //desktopBootstrap.Files.Add("~/scripts/codejkjk/codejkjk.movies.Defaults.js");
+            //desktopBootstrap.Files.Add("~/scripts/codejkjk/codejkjk.movies.Api.js");
+            //desktopBootstrap.Files.Add("~/scripts/codejkjk/codejkjk.Geo.js");
+            //desktopBootstrap.Files.Add("~/scripts/plugins/date.js");
+            //desktopBootstrap.Files.Add("~/scripts/plugins/jsrender.js");
+            //desktopBootstrap.Files.Add("~/externals/local-cache/local-cache.js");
+            //desktopBootstrap.Files.Add("~/scripts/plugins/zeroclipboard/zeroclipboard.js");
+            //desktopBootstrap.Files.Add("~/scripts/plugins/jquery.mask.min.js");
             desktopJsBundle.AddFile("~/scripts/jquery-1.7.1.min.js");
             desktopJsBundle.AddFile("~/scripts/codejkjk/codejkjk.js");
             desktopJsBundle.AddFile("~/scripts/codejkjk/codejkjk.movies.Defaults.js");
@@ -119,6 +130,9 @@ namespace movies
             desktopJsBundle.AddFile("~/scripts/plugins/zeroclipboard/zeroclipboard.js");
             desktopJsBundle.AddFile("~/scripts/plugins/jquery.mask.min.js");
             BundleTable.Bundles.Add(desktopJsBundle);
+            //BundleTable.Bundles.FileSetOrderList.Add(desktopBootstrap);
+            //desktopJsBundle.AddDirectory(
+            //BundleTable.Bundles.Add(desktopBootstrap);
 
             var desktopCssBundle = new Bundle("~/desktop-css-bundle", new CssMinify());
             desktopCssBundle.AddFile("~/content/common.css");

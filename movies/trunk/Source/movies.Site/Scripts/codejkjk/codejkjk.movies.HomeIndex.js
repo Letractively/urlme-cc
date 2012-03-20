@@ -364,13 +364,13 @@ codejkjk.movies.HomeIndex = {
             //codejkjk.movies.HomeIndex.Controls.MovieDetailsTemplate().render(movie)
             //).show();
 
-            var clip = new ZeroClipboard.Client();
-            clip.setText(codejkjk.movies.HomeIndex.Controls.MovieUrl().val());
-            clip.glue('copyButton');
+//            var clip = new ZeroClipboard.Client();
+//            clip.setText(codejkjk.movies.HomeIndex.Controls.MovieUrl().val());
+//            clip.glue('copyButton');
 
-            clip.addEventListener('complete', function (client, text) {
-                codejkjk.movies.HomeIndex.Controls.CopySuccess().show().delay(2500).fadeOut('fast');
-            });
+//            clip.addEventListener('complete', function (client, text) {
+//                codejkjk.movies.HomeIndex.Controls.CopySuccess().show().delay(2500).fadeOut('fast');
+//            });
         // });
     },
 

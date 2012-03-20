@@ -357,21 +357,21 @@ codejkjk.movies.HomeIndex = {
 
     ShowMovieDetails: function () {
         // codejkjk.movies.Api.GetRottenTomatoesMovie(rtMovieId, function (movie) {
-            var overlayHeight = $(document).height() + "px";
-            var overlayWidth = $(document).width() + "px";
-            codejkjk.movies.HomeIndex.Controls.Overlay().css("height", overlayHeight).css("width", overlayWidth).show();
-            codejkjk.movies.HomeIndex.Controls.MovieDetails().show(); //html(
-            //codejkjk.movies.HomeIndex.Controls.MovieDetailsTemplate().render(movie)
-            //).show();
+        var overlayHeight = $(document).height() + "px";
+        var overlayWidth = $(document).width() + "px";
+        codejkjk.movies.HomeIndex.Controls.Overlay().css("height", overlayHeight).css("width", overlayWidth).show();
+        codejkjk.movies.HomeIndex.Controls.MovieDetails().show(); //html(
+        //codejkjk.movies.HomeIndex.Controls.MovieDetailsTemplate().render(movie)
+        //).show();
 
-//            var clip = new ZeroClipboard.Client();
-//            clip.setText(codejkjk.movies.HomeIndex.Controls.MovieUrl().val());
-//            clip.glue('copyButton');
+        var clip = new ZeroClipboard.Client();
+        clip.setText(codejkjk.movies.HomeIndex.Controls.MovieUrl().val());
+        clip.glue('copyButton');
 
-//            clip.addEventListener('complete', function (client, text) {
-//                codejkjk.movies.HomeIndex.Controls.CopySuccess().show().delay(2500).fadeOut('fast');
-//            });
-        // });
+        clip.addEventListener('complete', function (client, text) {
+            codejkjk.movies.HomeIndex.Controls.CopySuccess().show().delay(2500).fadeOut('fast');
+        });
+         // });
     },
 
     BindControls: function () {

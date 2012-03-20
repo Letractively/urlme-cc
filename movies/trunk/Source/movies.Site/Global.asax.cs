@@ -107,7 +107,7 @@ namespace movies
             mobileCssBundle.AddFile("~/content/mobile.css");
             BundleTable.Bundles.Add(mobileCssBundle);
 
-            var desktopJsBundle = new Bundle("~/desktop-js-bundle", new CssMinify());
+            var desktopJsBundle = new Bundle("~/desktop-js-bundle", new JsMinify());
             //var desktopBootstrap = new BundleFileSetOrdering("desktopbootstrap");
             //desktopBootstrap.Files.Add("~/scripts/jquery-1.7.1.min.js");
             //desktopBootstrap.Files.Add("~/scripts/codejkjk/codejkjk.js");
@@ -119,6 +119,7 @@ namespace movies
             //desktopBootstrap.Files.Add("~/externals/local-cache/local-cache.js");
             //desktopBootstrap.Files.Add("~/scripts/plugins/zeroclipboard/zeroclipboard.js");
             //desktopBootstrap.Files.Add("~/scripts/plugins/jquery.mask.min.js");
+            
             desktopJsBundle.AddFile("~/scripts/jquery-1.7.1.min.js");
             desktopJsBundle.AddFile("~/scripts/codejkjk/codejkjk.js");
             desktopJsBundle.AddFile("~/scripts/codejkjk/codejkjk.movies.Defaults.js");

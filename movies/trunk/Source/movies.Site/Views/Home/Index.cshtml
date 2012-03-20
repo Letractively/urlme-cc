@@ -6,8 +6,7 @@
 
 @section ExtraHeadContent {
     <script type="text/javascript">
-        // var overlayRtMovieId = '';
-        var showMovieOverlay = @(this.Model.OverlayMovie == null ? "true" : "true");
+        var showMovieOverlay = @((this.Model.OverlayMovie != null).ToString().ToLower());
     </script>
     <script src="~/scripts/codejkjk/codejkjk.movies.HomeIndex.js"></script>
 }

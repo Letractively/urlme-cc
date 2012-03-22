@@ -13,9 +13,9 @@
             @if (movie.IsReleased)
             {
                 <p class="ratings smaller">
-                    <span class='@movie.CriticsClass rottenTomato icon'></span><span>@movie.ratings.critics_score</span>
-                    <span class='@movie.AudienceClass rottenTomato icon'></span><span>@movie.ratings.audience_score</span>
-                    <span class='imdb icon'></span><span data-imdbq="@movie.IMDbQ" class="@movie.IMDbClass">@(movie.IMDbRating != null ? movie.IMDbRating.ToLower() : "")</span>
+                    <span data-rtratingtitle="@movie.ratings.critics_rating" class="rottenTomato icon"></span><span>@movie.ratings.critics_score</span>
+                    <span data-rtratingtitle="@movie.ratings.audience_rating" class="rottenTomato icon"></span><span>@movie.ratings.audience_score</span>
+                    <span class='imdb icon'></span><span data-imdbq="@movie.IMDbQ" class="@movie.IMDbClass">@movie.IMDbRating</span>
                 </p>
             }
             else

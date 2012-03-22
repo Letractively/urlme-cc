@@ -34,10 +34,10 @@
         <a href="#" class="{{=className}}">{{=text}}</a>
     </script>
     <script id="favoriteTheaterListTemplate" type="text/x-jquery-tmpl">
-        {{#if $ctx.IsCurrentTheater(theaterId) }}
-            <a class="selected glowing" href="/#/ZipCode/theater/{{=theaterId}}" data-theaterid="{{=theaterId}}">
+        {{#if $ctx.IsCurrentTheater(id) }}
+            <a class="selected glowing" href="/#/ZipCode/theater/{{=id}}" data-theaterid="{{=id}}">
         {{else}}
-            <a href="/#/ZipCode/theater/{{=theaterId}}" data-theaterid="{{=theaterId}}">
+            <a href="/#/ZipCode/theater/{{=id}}" data-theaterid="{{=id}}">
         {{/if}}
             <div class="favoriteLink lit"></div>
             <div class="theaterName">{{=$ctx.Snippet(name, 30)!}}</div>
@@ -45,10 +45,10 @@
         </a>
     </script>
     <script id="theaterListTemplate" type="text/x-jquery-tmpl">
-        {{#if $ctx.IsCurrentTheater(theaterId) }}
-            <a class="selected glowing" href="/#/ZipCode/theater/{{=theaterId}}" data-theaterid="{{=theaterId}}">
+        {{#if $ctx.IsCurrentTheater(id) }}
+            <a class="selected glowing" href="/#/ZipCode/theater/{{=id}}" data-theaterid="{{=id}}">
         {{else}}
-            <a href="/#/ZipCode/theater/{{=theaterId}}" data-theaterid="{{=theaterId}}">
+            <a href="/#/ZipCode/theater/{{=id}}" data-theaterid="{{=id}}">
         {{/if}}
             <div class="favoriteLink default"></div>
             <div class="theaterName">{{=$ctx.Snippet(name, 30)!}}</div>
@@ -56,31 +56,30 @@
         </a>
     </script>
     <script id="currentTheaterTemplate" type="text/x-jquery-tmpl">
-        {{#if $ctx.IsCurrentTheater(theaterId) }}
-            <div class="theater selected rounded glowing" data-theaterid="{{=theaterId}}">
+        {{#if $ctx.IsCurrentTheater(id) }}
+            <div class="theater selected rounded glowing" data-theaterid="{{=id}}">
         {{else}}
-            <div class="theater rounded" data-theaterid="{{=theaterId}}">
+            <div class="theater rounded" data-theaterid="{{=id}}">
         {{/if}}    
             <div class="theaterNameAndFavorite">
-                <h1>{{=name}}</h1><a class="favoriteLink {{=$ctx.GetFavoriteLinkClass(theaterId)}}" href="#"></a>
+                <h1>{{=name}}</h1><a class="favoriteLink {{=$ctx.GetFavoriteLinkClass(id)}}" href="#"></a>
             </div>
             <p class="address">{{=address}}</p>
             <div class="showtimeDays"></div>
             <div class="showHiddenMoviesLinkContainer {{#if numHiddenMovies}} {{else}} hidden {{/if}}"><a href="#" class="showHiddenMoviesLink">Show hidden movies (<span class="numHiddenMovies">{{=numHiddenMovies}}</span>)</a></div>
             {{#each movies}}
-                <div class="movie rounded glowing gradient {{=movieClass}}" data-rtmovieid="{{=rtMovieId}}">
-                    <img />
-                    <h2>{{=name}}</h2><a href="#" class='mpaaRating' target='_blank' title='Link to Parents Guide on IMDb.com'>{{=mpaaRating}}</a>{{=length}}
-                    <p class="showtimes">{{=showtimes!}}</p>
-                    <div style="display:none;" class="ratings"><a class='rt_critics_rating rottenTomato' target='_blank'></a><a class='rt_audience_rating rottenTomato' target='_blank'></a><a data-imdbmovieid="" class='imdb' target='_blank'></a></div>
-                    <p class="ratings smaller">
-                        <span class='rt_critics_rating rottenTomato icon'></span><span></span>
-                        <span class='rt_audience_rating rottenTomato icon'></span><span></span>
-                        <span class='imdb icon'></span><span data-imdbq="{{=IMDbQ}}" class="imdb">{{=IMDbRating}}</span>
+                <div class="movie rounded glowing gradient {{=movieClass}}" data-rtmovieid="{{=id}}">
+                    <img src="{{=imageUrl}}" />
+                    <h2>{{=title}}</h2><span class='mpaaRating'>{{=mpaaRating}}</span>{{=duration}}
+                    <p class="showtimes">{{=showtimesHtml!}}</p>
+                    <p class="ratings small">
+                        <span data-rtratingtitle="{{=criticsRating}}" class="rottenTomato icon"></span><span>{{=criticsScore}}</span>
+                        <span data-rtratingtitle="{{=audienceRating}}" class="rottenTomato icon"></span><span>{{=audienceScore}}</span>
+                        <span class='imdb icon'></span><span data-imdbq="{{=imdbQ}}" class="{{=imdbClass}}">{{=imdbRating}}</span>
                     </p>
                     <div class="actions">
-                        <a href="#" class="hideMovieLink rounded" data-theatermovie="{{=$parent.parent.data.theaterId}}-{{=rtMovieId}}"><span class="x">&#10006;</span>Hide this movie</a>
-                        <a href="http://seeitornot.co/{{=MovieSlug}}" class="rounded"><span class="dotdotdot">+</span>More movie details</a>
+                        <a href="#" class="hideMovieLink rounded" data-theatermovie="{{=$parent.parent.data.id}}-{{=id}}"><span class="x">&#10006;</span>Hide this movie</a>
+                        <a href="http://seeitornot.co/{{=movieSlug}}" class="rounded"><span class="dotdotdot">+</span>More movie details</a>
                     </div>
                 </div>
             {{/each}}
@@ -95,8 +94,8 @@
         <p class="ratingAndLength"><strong>Rated</strong>: <a href="{{=ParentalGuideUrl}}" class='mpaaRating external' target='_blank' title='Link to Parents Guide on IMDb.com'>{{=mpaa_rating}}</a>{{=Duration}}</p>
         {{#if IsReleased}}
             <p class="ratings small">
-                <span class='{{=CriticsClass}} rottenTomato icon'></span><span>{{=ratings.critics_score}}</span>
-                <span class='{{=AudienceClass}} rottenTomato icon'></span><span>{{=ratings.audience_score}}</span>
+                <span data-rtratingtitle="{{=ratings.critics_rating}}" class="rottenTomato icon"></span><span>{{=ratings.critics_score}}</span>
+                <span data-rtratingtitle="{{=ratings.audience_rating}}" class="rottenTomato icon"></span><span>{{=ratings.audience_score}}</span>
                 <span class='imdb icon'></span><span data-imdbq="{{=IMDbQ}}" class="{{=IMDbClass}}">{{=IMDbRating}}</span>
             </p>
         {{else}}

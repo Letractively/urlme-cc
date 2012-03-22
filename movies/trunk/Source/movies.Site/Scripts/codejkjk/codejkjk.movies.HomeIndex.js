@@ -36,8 +36,10 @@ codejkjk.movies.HomeIndex = {
         , FavoriteLinksSelector: function () { return ".favoriteLink"; }
         , FavoriteTheaterList: function () { return $("#favoriteTheaterList"); }
         , FavoriteTheaterListTemplate: function () { return $("#favoriteTheaterListTemplate"); }
+        , FirstNavLink: function () { return $("nav > a:first"); }
         , HideMovieLinksSelector: function () { return ".hideMovieLink"; }
         , IMDbMoviesNotSet: function () { return $(".imdbNotSet"); }
+        , Logo: function () { return $("#logo"); }
         , MovieDetails: function () { return $("#movieDetails"); }
         , MovieDetailsLinksSelector: function () { return ".movieDetailsLink"; }
         , MovieDetailsTemplate: function () { return $("#movieDetailsTemplate"); }
@@ -203,42 +205,6 @@ codejkjk.movies.HomeIndex = {
         }
     },
 
-    SetRottenTomatoesMovieDetails: function (movie) {
-        var movies = $(".theater > .movie[data-rtmovieid='{0}']".format(movie.id));
-
-        // set movie poster
-        if (movie.posters && movie.posters.thumbnail) {
-            movies.find("img").attr("src", movie.posters.thumbnail);
-        }
-
-        if (movie.links && movie.links.alternate) {
-            movies.find('.rt_critics_rating,.rt_audience_rating').attr("href", movie.links.alternate);
-        } else {
-            movies.find('.rt_critics_rating,.rt_audience_rating').unbind().click(function (e) { e.preventDefault(); });
-        }
-
-        var criticsTitle = "Critics score on RottenTomatoes";
-        var audienceTitle = "Audience score on RottenTomatoes";
-        movies.find('.rt_critics_rating').removeClass('rt_critics_rating')
-                                         .addClass(movie.CriticsClass)
-                                         .attr("title", criticsTitle)
-                                         .next().html("{0}".format(movie.ratings.critics_score));
-        movies.find('.rt_audience_rating').removeClass('rt_audience_rating')
-                                         .addClass(movie.AudienceClass)
-                                         .attr("title", audienceTitle)
-                                         .next().html("{0}".format(movie.ratings.audience_score));
-
-        // load imdb movie ratings
-        if (movie.alternate_ids && movie.alternate_ids.imdb) {
-            movies.find(".imdb").attr("data-imdbmovieid", movie.alternate_ids.imdb);
-            movies.find(".imdb").addClass("imdbNotSet");
-            movies.find(".imdb").attr("href", movie.IMDbMovieUrl);
-            movies.find('.mpaaRating').addClass("external").attr("href", movie.ParentalGuideUrl);
-        }
-
-        codejkjk.movies.HomeIndex.GetIMDbData();
-    },
-
     GetIMDbData: function () {
         return;
         codejkjk.movies.HomeIndex.Controls.IMDbMoviesNotSet().each(function () {
@@ -266,7 +232,45 @@ codejkjk.movies.HomeIndex = {
         codejkjk.movies.HomeIndex.GetIMDbData();
     },
 
-    LoadTheaters: function (theaters) {
+    //    SetRottenTomatoesMovieDetails: function (movie) {
+    //        var movies = $(".theater > .movie[data-rtmovieid='{0}']".format(movie.id));
+
+    //        // set movie poster
+    //        if (movie.posters && movie.posters.thumbnail) {
+    //            movies.find("img").attr("src", movie.posters.thumbnail);
+    //        }
+
+    //        if (movie.links && movie.links.alternate) {
+    //            movies.find('.rt_critics_rating,.rt_audience_rating').attr("href", movie.links.alternate);
+    //        } else {
+    //            movies.find('.rt_critics_rating,.rt_audience_rating').unbind().click(function (e) { e.preventDefault(); });
+    //        }
+
+    //        var criticsTitle = "Critics score on RottenTomatoes";
+    //        var audienceTitle = "Audience score on RottenTomatoes";
+    //        movies.find('.rt_critics_rating').removeClass('rt_critics_rating')
+    //                                         .addClass(movie.CriticsClass)
+    //                                         .attr("title", criticsTitle)
+    //                                         .next().html("{0}".format(movie.ratings.critics_score));
+    //        movies.find('.rt_audience_rating').removeClass('rt_audience_rating')
+    //                                         .addClass(movie.AudienceClass)
+    //                                         .attr("title", audienceTitle)
+    //                                         .next().html("{0}".format(movie.ratings.audience_score));
+
+    //        // load imdb movie ratings
+    //        if (movie.alternate_ids && movie.alternate_ids.imdb) {
+    //            movies.find(".imdb").attr("data-imdbmovieid", movie.alternate_ids.imdb);
+    //            movies.find(".imdb").addClass("imdbNotSet");
+    //            movies.find(".imdb").attr("href", movie.IMDbMovieUrl);
+    //            movies.find('.mpaaRating').addClass("external").attr("href", movie.ParentalGuideUrl);
+    //        }
+
+    //        codejkjk.movies.HomeIndex.GetIMDbData();
+    //    },
+
+    LoadTheaters: function (postalCode) {
+        var theaters = postalCode.theaters;
+
         var hiddenTheaterMovies = codejkjk.movies.HomeIndex.Currents.HiddenTheaterMovies();
 
         var favoriteTheaterIds = localStorage.getItem("FavoriteTheaters");
@@ -274,28 +278,28 @@ codejkjk.movies.HomeIndex = {
 
         // determine favorite and not-favorite theaters
         var favoriteTheaters = $.grep(theaters, function (theater, i) {
-            return favoriteTheaterIds.indexOf(theater.theaterId.toString()) >= 0;
+            return favoriteTheaterIds.indexOf(theater.id.toString()) >= 0;
         });
         var notFavoriteTheaters = $.grep(theaters, function (theater, i) {
-            return favoriteTheaterIds.indexOf(theater.theaterId.toString()) == -1;
+            return favoriteTheaterIds.indexOf(theater.id.toString()) == -1;
         });
 
         // establish current theater id before we render the html, so the jsRender helper can know which items it should show as active
         if (!codejkjk.movies.HomeIndex.Currents.Theater()) {
             // no current theater set, so choose first
             var currentTheaterId = null;
-            if (favoriteTheaters.length > 0) { currentTheaterId = favoriteTheaters[0].theaterId; }
-            else { currentTheaterId = notFavoriteTheaters[0].theaterId; }
+            if (favoriteTheaters.length > 0) { currentTheaterId = favoriteTheaters[0].id; }
+            else { currentTheaterId = notFavoriteTheaters[0].id; }
             codejkjk.movies.HomeIndex.Currents.Theater(currentTheaterId);
         } else {
             // make sure the theaterId is in the incoming list of theaters
             var results = $.grep(theaters, function (theater, i) {
-                return theater.theaterId.toString() == codejkjk.movies.HomeIndex.Currents.Theater();
+                return theater.id.toString() == codejkjk.movies.HomeIndex.Currents.Theater();
             });
             if (results.length == 0) { // current theaterId does NOT exist in incoming list of theaters, so get the first from favorites or nonfavorites if favorites is empty
                 var currentTheaterId = null;
-                if (favoriteTheaters.length > 0) { currentTheaterId = favoriteTheaters[0].theaterId; }
-                else { currentTheaterId = notFavoriteTheaters[0].theaterId; }
+                if (favoriteTheaters.length > 0) { currentTheaterId = favoriteTheaters[0].id; }
+                else { currentTheaterId = notFavoriteTheaters[0].id; }
                 codejkjk.movies.HomeIndex.Currents.Theater(currentTheaterId);
             }
         }
@@ -304,7 +308,7 @@ codejkjk.movies.HomeIndex = {
         $.each(theaters, function (i, theater) {
             var numHiddenTheaterMovies = 0;
             $.each(theater.movies, function (j, theaterMovie) {
-                var movieClass = hiddenTheaterMovies.indexOf("{0}-{1}".format(theater.theaterId, theaterMovie.rtMovieId)) >= 0 ? "hidden" : "";
+                var movieClass = hiddenTheaterMovies.indexOf("{0}-{1}".format(theater.id, theaterMovie.id)) >= 0 ? "hidden" : "";
                 numHiddenTheaterMovies = movieClass == "hidden" ? ++numHiddenTheaterMovies : numHiddenTheaterMovies;
                 theaterMovie.movieClass = movieClass;
             });
@@ -332,20 +336,6 @@ codejkjk.movies.HomeIndex = {
         // now that the theater links are filled, set the currentTheater container's height to match height of theater links container
         var theaterListHeight = codejkjk.movies.HomeIndex.Controls.TheaterList().height() + 20;
         codejkjk.movies.HomeIndex.Controls.Theaters().css("min-height", theaterListHeight + "px");
-
-        // fill movie data with rotten tomatoes
-
-        // build list of rotten tomato id's
-        var rtMovieIdsToLoad = [];
-        $.each(theaters, function (i, theater) {
-            $.each(theater.movies, function (j, movie) {
-                if (rtMovieIdsToLoad.indexOf(movie.rtMovieId) == -1) { rtMovieIdsToLoad.push(movie.rtMovieId); }
-            });
-        });
-
-        $.each(rtMovieIdsToLoad, function (i, rtMovieIdToLoad) {
-            codejkjk.movies.Api.GetRottenTomatoesMovie(rtMovieIdToLoad, codejkjk.movies.HomeIndex.SetRottenTomatoesMovieDetails);
-        });
     },
 
     UpdateZip: function (zipCode) {
@@ -371,10 +361,16 @@ codejkjk.movies.HomeIndex = {
         clip.addEventListener('complete', function (client, text) {
             codejkjk.movies.HomeIndex.Controls.CopySuccess().show().delay(2500).fadeOut('fast');
         });
-         // });
+        // });
     },
 
     BindControls: function () {
+        // handle logo click, which will trigger click of first tab
+        codejkjk.movies.HomeIndex.Controls.Logo().click(function (e) {
+            e.preventDefault();
+            codejkjk.movies.HomeIndex.Controls.FirstNavLink().trigger('click');
+        });
+
         // handle favorite theater links
         $(document).on('click', codejkjk.movies.HomeIndex.Controls.FavoriteLinksSelector(), function (e) {
             e.preventDefault();

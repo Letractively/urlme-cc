@@ -8,8 +8,8 @@
 <p class="ratingAndLength"><strong>Rated</strong>: <a href="@this.Model.ParentalGuideUrl" class='mpaaRating external' target='_blank' title='Link to Parents Guide on IMDb.com'>@this.Model.mpaa_rating</a>@this.Model.Duration</p>
 @if (this.Model.IsReleased) {
     <p class="ratings small">
-        <span class='@this.Model.CriticsClass rottenTomato icon'></span><span>@this.Model.ratings.critics_score</span>
-        <span class='@this.Model.AudienceClass rottenTomato icon'></span><span>@this.Model.ratings.audience_score</span>
+        <span data-rtratingtitle="@this.Model.ratings.critics_rating" class="rottenTomato icon"></span><span>@this.Model.ratings.critics_score</span>
+        <span data-rtratingtitle="@this.Model.ratings.audience_rating" class="rottenTomato icon"></span><span>@this.Model.ratings.audience_score</span>
         <span class='imdb icon'></span><span>@this.Model.IMDbRating</span>
     </p>
 } else {

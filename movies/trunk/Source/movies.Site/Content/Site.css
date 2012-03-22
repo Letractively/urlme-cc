@@ -5,7 +5,7 @@ html { background: url("content/bg.png") repeat-x scroll 0 0 #CCCCCC; /* #ccc; *
 body
 {
     font-size: 12px;
-    font-family: Verdana, Tahoma, Arial, "Helvetica Neue", Helvetica, Sans-Serif;
+    font-family: Arial, "Helvetica Neue", Helvetica, Sans-Serif;
     color: #535156;
     /* text-align: center; */
 }
@@ -27,7 +27,7 @@ span.divider { color: #CDCDCD; font-weight: normal; margin: 0 5px; }
 #container { margin: 0 auto; width: 1000px; text-align:left; padding-top:10px; } /* same width as cnn.com */
 
 header { text-align:center; overflow: auto; height: 80px;}
-    header a.logo { float: left; background: url('content/logo.png'); width: 224px; height: 80px; display:inline-block; }
+    header #logo { float: left; background: url('content/logo.png'); width: 224px; height: 80px; display:inline-block; }
     header nav { float: left; font-size: 150%; margin: 30px 10px 0 25px; }
         header nav a { margin-right: 20px; }
         header nav a.selected { color: #fff; background: #029DB7/* #465F82 */; padding: 5px 10px; }
@@ -103,9 +103,9 @@ header { text-align:center; overflow: auto; height: 80px;}
     /* #boxOfficeView .movie:not(:nth-child(1)) { margin-top:10px; } */
     .movieList .movie:not(:nth-child(5n+5)) { margin-right: 24px; }
     .movieList .movie { margin-bottom: 24px; float: left; width: 180px; }
-        .movieList .movie a.poster { width: 180px; height: 267px; display:inline-block; }
+        .movieList .movie a.poster { width: 180px; height: 267px; float: left; }
         .movieList .movie a.poster:hover { -moz-box-shadow: none; -webkit-box-shadow: none; box-shadow: none; }
-        .movieList .movie .details { padding: 10px; }
+        .movieList .movie .details { padding: 10px; width: 160px; float: left; }
         .movieList .movie img { width: 180px; height: 267px; } /* thumbnail = 61 x 91 */
         .movieList .movie .ratingAndLength .mpaaRating { font-weight: bold; float: right; }
         /* .movieList .movie .ratings a { font-weight: bold; float: left; height: 24px; line-height: 24px; }
@@ -118,10 +118,10 @@ header { text-align:center; overflow: auto; height: 80px;}
         .movieList .movie .ratings .audienceSpilled { background: url("content/content/images/rt-graphics/audience-spilled_smallest.png") no-repeat scroll left center transparent; }         
         */
 
-.favoriteLink.default { background:url("content/content/images/icons/star_default.png") no-repeat scroll center transparent; }
-.favoriteLink.default:hover { background:url("content/content/images/icons/star_default_hover.png") no-repeat scroll center transparent; }
-.favoriteLink.lit { background:url("content/content/images/icons/star_lit.png") no-repeat scroll center transparent; }
-.favoriteLink.lit:hover { background:url("content/content/images/icons/star_lit_hover.png") no-repeat scroll center transparent; }
+.favoriteLink.default { background:url("content/images/icons/star_default.png") no-repeat scroll center transparent; }
+.favoriteLink.default:hover { background:url("content/images/icons/star_default_hover.png") no-repeat scroll center transparent; }
+.favoriteLink.lit { background:url("content/images/icons/star_lit.png") no-repeat scroll center transparent; }
+.favoriteLink.lit:hover { background:url("content/images/icons/star_lit_hover.png") no-repeat scroll center transparent; }
 
 #showtimesView #theaters { float: left; width: 300px; }
     #showtimesView #theaters .theaterList.favorites { }
@@ -160,6 +160,7 @@ header { text-align:center; overflow: auto; height: 80px;}
            
         #showtimesView #currentTheaterContainer .theater p.address { margin-top:5px; color: #999; }
         #showtimesView #currentTheaterContainer .theater .movie { position: relative; margin-top:10px; height: 91px; height: 91px; padding: 10px; }
+            #showtimesView #currentTheaterContainer .theater .movie .mpaaRating { margin-right: 15px; }
             #showtimesView #currentTheaterContainer .theater .movie img { float: left; }
         
             /* .content .movie .ratings { margin-top: 10px; overflow:auto; } */

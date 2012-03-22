@@ -36,14 +36,14 @@ namespace movies
 
             routes.MapRoute(
                 "Api-Search_Movies", // Route name
-                "api/search_movies.json", // URL with parameters
+                "api/search_movies.html", // URL with parameters
                 new { controller = "Api", action = "SearchMovies" } // Parameter defaults
             );
 
             routes.MapRoute(
                 "Api-Get_Showtimes", // Route name
-                "api/get_showtimes.html/{date}/{zip}", // URL with parameters
-                new { controller = "Api", action = "GetShowtimes" } // Parameter defaults
+                "api/get_showtimes.json/{date}/{zip}", // URL with parameters
+                new { controller = "Api", action = "GetPostalCode" } // Parameter defaults
             );
 
             routes.MapRoute(

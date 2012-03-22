@@ -68,16 +68,14 @@ namespace movies.Model
         public AbridgedCast[] abridged_cast { get; set; }
         public AlternateIds alternate_ids { get; set; }
         public Links links { get; set; }
-        public string showtimes { get; set; } // for showtimes view
 
         // view helpers (items NOT inherently provided by RT api)
-        public string IMDbRating { get; set; }
-        public string IMDbVotes { get; set; }
+        public string ShowtimesHtml { get; set; }
+        public string IMDbRating { get; set; } // need? cuz each movie has imdbmovie obj. hmmmm
+        public string IMDbVotes { get; set; } // need?
         public bool IMDbLoaded { get; set; }
         public string IMDbClass { get { return this.IMDbLoaded ? "" : "imdbNotSet"; } }
         public bool IsReleased { get { return System.DateTime.Now >= this.release_dates.theater; } }
-        public string CriticsClass { get { return string.IsNullOrEmpty(this.ratings.critics_rating) ? null : this.ratings.critics_rating.Contains("Fresh") ? "criticsFresh" : "criticsRotten"; } }
-        public string AudienceClass { get { return string.IsNullOrEmpty(this.ratings.audience_rating) ? null : this.ratings.audience_rating.Contains("Upright") ? "audienceUpright" : "audienceSpilled"; } }
         public string ReleaseDate { get { return this.release_dates.theater.ToString("MMM d, yyyy"); } }
         public string ParentalGuideUrl { get { return this.alternate_ids != null ? API.IMDb.GetParentalGuideUrl(this.alternate_ids.imdb) : null; } }
         public string IMDbMovieUrl { get { return this.alternate_ids != null ? API.IMDb.GetMovieUrl(this.alternate_ids.imdb) : null; } }

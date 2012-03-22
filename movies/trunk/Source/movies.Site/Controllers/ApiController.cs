@@ -29,9 +29,9 @@ namespace movies.Site.Controllers
         }
 
         [HttpGet]
-        public ActionResult GetShowtimes(string date, string zip)
+        public JsonResult GetPostalCode(string date, string zip)
         {
-            return Content(PostalCode.GetShowtimes(date, zip));
+            return this.Json(PostalCode.Get(date, zip), JsonRequestBehavior.AllowGet);
         }
     }
 }

@@ -10,45 +10,8 @@ codejkjk.movies.Api = {
             return callback(cached);
         }
 
-        var url = "{0}get_showtimes.html/{1}/{2}".format(codejkjk.movies.Api.BaseUrl, dateStr, zip);
-
-        $.ajax({
-            url: url,
-            success: function (html) {
-                var theaters = [];
-                var theaterDivs = $('div.theater', html);
-                $.each(theaterDivs, function (i, theaterDiv) {
-                    var theaterDivElem = $(theaterDiv);
-                    var theaterName = theaterDivElem.find("a:first").attr("title");
-                    var theaterAddress = $.trim(theaterDivElem.find("span:first").html().split('-')[1]);
-                    var theaterMapUrl = theaterDivElem.find("span:first").find("a").attr("href");
-                    var theaterUrl = theaterDivElem.find("a:first").attr("href");
-                    var theaterId = theaterUrl.substring(theaterUrl.lastIndexOf('/') + 1);
-
-                    var movies = [];
-                    theaterDivElem.find('div.showtime').each(function () {
-                        var showtime = $(this);
-                        var rtMovieId = showtime.find("a.trailer").attr("movieid"); // rottentomatoes movie id
-                        if (rtMovieId) {
-                            var movieName = $.trim(showtime.find("a:first").html()); // movie title
-                            var mpaaRating = $.trim(showtime.find("span:first").html().split(' - ')[0]).replace("- Rated ", "");
-                            var movieLength = $.trim(showtime.find("span:first").html().split(' - ')[1]);
-                            showtime.find("h3").remove(); // remove header info, which leaves the showtimes as remaining text w/in this showtime div
-                            var showtimes = showtime.html();
-
-                            movies.push({ rtMovieId: rtMovieId, name: movieName, showtimes: showtimes, length: movieLength, mpaaRating: mpaaRating });
-                        }
-
-                    });
-
-                    theaters.push({ theaterId: theaterId, name: theaterName, address: theaterAddress, mapUrl: theaterMapUrl, movies: movies });
-                }); // next theaterDiv
-
-                $.cacheItem(cacheKey, theaters, { expires: { hours: 6} });
-                return callback(theaters);
-            },
-            error: function () { return null; }
-        });
+        var url = "{0}get_showtimes.json/{1}/{2}".format(codejkjk.movies.Api.BaseUrl, dateStr, zip);
+        codejkjk.movies.Api.AjaxGet(url, callback, 'json', cacheKey);
     },
     SearchMovies: function (q, callback) {
         // first, check cache
@@ -58,7 +21,7 @@ codejkjk.movies.Api = {
             return callback(cached);
         }
 
-        var url = "{0}search_movies.json?q={1}".format(codejkjk.movies.Api.BaseUrl, encodeURI(q));
+        var url = "{0}search_movies.html?q={1}".format(codejkjk.movies.Api.BaseUrl, encodeURI(q));
         codejkjk.movies.Api.AjaxGet(url, callback, 'html', cacheKey);
     },
     GetIMDbMovie: function (imdbMovieId, callback) {

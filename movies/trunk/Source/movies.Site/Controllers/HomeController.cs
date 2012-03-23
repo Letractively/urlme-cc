@@ -14,6 +14,7 @@ namespace movies.Site.Controllers
         {
             var vm = new ViewModels.Home.Index
             {
+                OpeningMovies = Movie.GetOpening(),
                 BoxOfficeMovies = Movie.GetBoxOffice(),
                 UpcomingMovies = Movie.GetUpcoming(),
                 OverlayMovie = null,
@@ -43,6 +44,15 @@ namespace movies.Site.Controllers
                 }
             }
 
+            var openingMovies = Model.Movie.GetOpening();
+            foreach (var movie in openingMovies.Values)
+            {
+                if (movie.IMDbQ != null)
+                {
+                    Model.Movie.GetIMDbMovie(movie.IMDbQ);
+                }
+            }
+
             return Content("Done!");
         }
 
@@ -51,6 +61,7 @@ namespace movies.Site.Controllers
         {
             var vm = new ViewModels.Home.Index
             {
+                OpeningMovies = Movie.GetOpening(),
                 BoxOfficeMovies = Movie.GetBoxOffice(),
                 UpcomingMovies = Movie.GetUpcoming(),
                 OverlayMovie = null,
@@ -65,6 +76,7 @@ namespace movies.Site.Controllers
         {
             var vm = new ViewModels.Home.Index
             {
+                OpeningMovies = Movie.GetOpening(),
                 BoxOfficeMovies = Movie.GetBoxOffice(),
                 UpcomingMovies = Movie.GetUpcoming(),
                 OverlayMovie = null,

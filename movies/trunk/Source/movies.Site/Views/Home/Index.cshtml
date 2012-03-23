@@ -7,6 +7,7 @@
 @section ExtraHeadContent {
     <script type="text/javascript">
         var showMovieOverlay = @((this.Model.OverlayMovie != null).ToString().ToLower());
+        var baseUrl = '@this.Url.Content("~/")';
     </script>
     <script src="~/scripts/codejkjk/codejkjk.movies.HomeIndex.js"></script>
 }
@@ -17,6 +18,11 @@
         <nav></nav>
         <input class="rounded glowing" id="q" type="text" placeholder="search + enter" />
     </header>
+
+    <!-- OPENING -->
+    <section id="openingView" class="content movieList" data-navitemtext="Opening">
+        @this.Html.Partial("MovieList", this.Model.OpeningMovies)
+    </section>
 
     <!-- BOX OFFICE -->
     <section id="boxOfficeView" class="content movieList" data-navitemtext="Top Box Office">

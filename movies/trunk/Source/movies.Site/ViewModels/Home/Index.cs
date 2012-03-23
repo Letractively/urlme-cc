@@ -4,6 +4,7 @@ namespace movies.Site.ViewModels.Home
 {
     public class Index
     {
+        public Dictionary<string, Model.Movie> OpeningMovies { get; set; }
         public Dictionary<string, Model.Movie> BoxOfficeMovies { get; set; }
         public Dictionary<string, Model.Movie> UpcomingMovies { get; set; }
         public Model.Movie OverlayMovie { get; set; }

@@ -26,6 +26,7 @@ namespace movies.Site.Controllers
             {
                 var vm = new ViewModels.Home.Index
                 {
+                    OpeningMovies = Model.Movie.GetOpening(),
                     BoxOfficeMovies = Model.Movie.GetBoxOffice(),
                     UpcomingMovies = Model.Movie.GetUpcoming(),
                     OverlayMovie = Model.Movie.GetRottenTomatoesMovie(rtMovieId),

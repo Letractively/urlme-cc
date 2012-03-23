@@ -15,6 +15,7 @@
 // - movie details popup - make % fonts similar to movie listings page (all bold, blue links)
 // - movie details page, make overlay visible and popup visible on load so it doesn't take a sec to popup
 // - movie details pages, make these links and not div.show()'s
+// - smoother experience for when user clicks on logo
 
 codejkjk.movies.HomeIndex = {
     // page elements
@@ -41,8 +42,6 @@ codejkjk.movies.HomeIndex = {
         , IMDbMoviesNotSet: function () { return $(".imdbNotSet"); }
         , Logo: function () { return $("#logo"); }
         , MovieDetails: function () { return $("#movieDetails"); }
-        , MovieDetailsLinksSelector: function () { return ".movieDetailsLink"; }
-        , MovieDetailsTemplate: function () { return $("#movieDetailsTemplate"); }
         , MovieListTemplate: function () { return $("#movieListTemplate"); }
         , MovieUrl: function () { return $("#movieUrl"); }
         , Nav: function () { return $("nav"); }
@@ -160,8 +159,8 @@ codejkjk.movies.HomeIndex = {
 
     BuildNav: function () {
         // build nav
-        var navItems = [{ text: "Top Box Office" }, { text: "Showtimes" }, { text: "Coming Soon"}];
-        var currentNavItem = localStorage.getItem("View") || "Top Box Office";
+        var navItems = [{ text: "Opening" }, { text: "Showtimes" }, { text: "Top Box Office" }, { text: "Coming Soon"}];
+        var currentNavItem = localStorage.getItem("View") || "Opening";
         $.each(navItems, function (i, navItem) {
             navItem.className = navItem.text == currentNavItem ? "selected glowing rounded" : "";
         });
@@ -231,42 +230,6 @@ codejkjk.movies.HomeIndex = {
         codejkjk.movies.HomeIndex.Controls.SearchResultsView().show();
         codejkjk.movies.HomeIndex.GetIMDbData();
     },
-
-    //    SetRottenTomatoesMovieDetails: function (movie) {
-    //        var movies = $(".theater > .movie[data-rtmovieid='{0}']".format(movie.id));
-
-    //        // set movie poster
-    //        if (movie.posters && movie.posters.thumbnail) {
-    //            movies.find("img").attr("src", movie.posters.thumbnail);
-    //        }
-
-    //        if (movie.links && movie.links.alternate) {
-    //            movies.find('.rt_critics_rating,.rt_audience_rating').attr("href", movie.links.alternate);
-    //        } else {
-    //            movies.find('.rt_critics_rating,.rt_audience_rating').unbind().click(function (e) { e.preventDefault(); });
-    //        }
-
-    //        var criticsTitle = "Critics score on RottenTomatoes";
-    //        var audienceTitle = "Audience score on RottenTomatoes";
-    //        movies.find('.rt_critics_rating').removeClass('rt_critics_rating')
-    //                                         .addClass(movie.CriticsClass)
-    //                                         .attr("title", criticsTitle)
-    //                                         .next().html("{0}".format(movie.ratings.critics_score));
-    //        movies.find('.rt_audience_rating').removeClass('rt_audience_rating')
-    //                                         .addClass(movie.AudienceClass)
-    //                                         .attr("title", audienceTitle)
-    //                                         .next().html("{0}".format(movie.ratings.audience_score));
-
-    //        // load imdb movie ratings
-    //        if (movie.alternate_ids && movie.alternate_ids.imdb) {
-    //            movies.find(".imdb").attr("data-imdbmovieid", movie.alternate_ids.imdb);
-    //            movies.find(".imdb").addClass("imdbNotSet");
-    //            movies.find(".imdb").attr("href", movie.IMDbMovieUrl);
-    //            movies.find('.mpaaRating').addClass("external").attr("href", movie.ParentalGuideUrl);
-    //        }
-
-    //        codejkjk.movies.HomeIndex.GetIMDbData();
-    //    },
 
     LoadTheaters: function (postalCode) {
         var theaters = postalCode.theaters;
@@ -346,13 +309,10 @@ codejkjk.movies.HomeIndex = {
     },
 
     ShowMovieDetails: function () {
-        // codejkjk.movies.Api.GetRottenTomatoesMovie(rtMovieId, function (movie) {
         var overlayHeight = $(document).height() + "px";
         var overlayWidth = $(document).width() + "px";
         codejkjk.movies.HomeIndex.Controls.Overlay().css("height", overlayHeight).css("width", overlayWidth).show();
         codejkjk.movies.HomeIndex.Controls.MovieDetails().show(); //html(
-        //codejkjk.movies.HomeIndex.Controls.MovieDetailsTemplate().render(movie)
-        //).show();
 
         var clip = new ZeroClipboard.Client();
         clip.setText(codejkjk.movies.HomeIndex.Controls.MovieUrl().val());
@@ -369,6 +329,7 @@ codejkjk.movies.HomeIndex = {
         codejkjk.movies.HomeIndex.Controls.Logo().click(function (e) {
             e.preventDefault();
             codejkjk.movies.HomeIndex.Controls.FirstNavLink().trigger('click');
+            window.location = baseUrl;
         });
 
         // handle favorite theater links
@@ -442,27 +403,19 @@ codejkjk.movies.HomeIndex = {
             codejkjk.movies.HomeIndex.Currents.HiddenTheaterMovies(hiddenTheaterMovies.join(','))
         });
 
-        // handle movie details links
-        $(document).on('click', codejkjk.movies.HomeIndex.Controls.MovieDetailsLinksSelector(), function (e) {
-            e.preventDefault();
-
-            var link = $(this);
-            var rtMovieId = link.attr("data-rtmovieid");
-
-            codejkjk.movies.HomeIndex.ShowMovieDetails(rtMovieId);
-        });
-
         // handle clicking of overlay, which should hide movie details popup
         codejkjk.movies.HomeIndex.Controls.Overlay().click(function () {
-            codejkjk.movies.HomeIndex.Controls.MovieDetails().hide();
-            $(this).hide();
+//            codejkjk.movies.HomeIndex.Controls.MovieDetails().hide();
+//            $(this).hide();
+            window.location = baseUrl;
         });
 
         // handle close movie details link
         $(document).on("click", codejkjk.movies.HomeIndex.Controls.CloseMovieDetailsLinkSelector(), function (e) {
             e.preventDefault();
-            codejkjk.movies.HomeIndex.Controls.Overlay().hide();
-            codejkjk.movies.HomeIndex.Controls.MovieDetails().hide();
+//            codejkjk.movies.HomeIndex.Controls.Overlay().hide();
+//            codejkjk.movies.HomeIndex.Controls.MovieDetails().hide();
+            window.location = baseUrl;
         });
 
         // handle nav item clicks

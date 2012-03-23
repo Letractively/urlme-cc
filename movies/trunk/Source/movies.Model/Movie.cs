@@ -233,6 +233,40 @@ namespace movies.Model
             return movies;
         }
 
+        public static Dictionary<string, Movie> GetOpening()
+        {
+            // get list of rt movies from cache
+            Dictionary<string, Movie> movies = Cache.GetValue<Dictionary<string, Movie>>(
+                "codejkjk.movies.Model.Movie.GetOpening",
+                () =>
+                {
+                    List<Movie> ret = new List<Movie>();
+                    string rtJson = API.RottenTomatoes.GetOpeningJson();
+                    var movieCollection = rtJson.FromJson<MovieCollection>();
+                    movieCollection.movies.ForEach(x => x.IMDbLoaded = false); // init all imdbloaded to false
+                    movieCollection.movies.ForEach(x => ret.Add(x));
+                    return ret.ToDictionary(key => key.id, value => value);
+                });
+
+            // for each movie, get imdb info if it exists in cache
+            foreach (var movie in movies.Values.Where(x => x.alternate_ids != null))
+            {
+                if (Cache.KeyExists(string.Format("codejkjk.movies.Model.Movie.GetIMDbMovie-{0}", movie.alternate_ids.imdb)))
+                {
+                    var imdbMovie = GetIMDbMovie(movie.IMDbQ);
+                    movie.IMDbRating = imdbMovie.rating;
+                    movie.IMDbVotes = imdbMovie.votes;
+                    movie.IMDbLoaded = true;
+                }
+                else
+                {
+                    movie.IMDbLoaded = false;
+                }
+            }
+
+            return movies;
+        }
+
         public static Dictionary<string, Movie> GetInTheaters()
         {
             // get list of rt movies from cache

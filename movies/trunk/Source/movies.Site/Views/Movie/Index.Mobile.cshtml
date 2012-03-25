@@ -29,17 +29,13 @@
         <p>@this.Model.Movie.DurationCompact</p>
         @if (this.Model.Movie.IsReleased)
         {
-            <p class="ratings medium">
-                <span class='@this.Model.Movie.CriticsClass rottenTomato icon'></span><span>@this.Model.Movie.ratings.critics_score</span>
-                <span class='@this.Model.Movie.AudienceClass rottenTomato icon'></span><span>@this.Model.Movie.ratings.audience_score</span>
-                <span class='imdb icon'></span><span data-imdbq="@this.Model.Movie.IMDbQ" data-imdbmovieid="@this.Model.Movie.alternate_ids.imdb" class="@this.Model.Movie.IMDbClass">@(this.Model.Movie.IMDbRating != null ? this.Model.Movie.IMDbRating.ToLower() : "")</span>
-            </p>            
+            this.Html.RenderPartial("Ratings", new movies.Site.ViewModels.Shared.Ratings { Movie = this.Model.Movie, RatingSize = movies.Site.Enumerations.RatingSizes.medium });
         }
         else
         {
             <p class="releaseDate">@this.Model.Movie.ReleaseDate</p>    
         }
-        <p class="links"><a href="@(this.Model.Movie.links.alternate)trailers" target="_blank" class="external">Trailer</a><a href="@this.Model.Movie.ParentalGuideUrl" target="_blank" class="external">Parental Guide</a></p>
+        <p class="links"><a href="@(this.Model.Movie.links.alternate)trailers" target="_blank">Trailer</a><a href="@this.Model.Movie.ParentalGuideUrl" target="_blank">Parental Guide</a></p>
         <p class="description"><strong>Synopsis</strong>: @this.Model.Movie.synopsis</p>
         <p class="starring">
             <strong>Starring</strong>: 

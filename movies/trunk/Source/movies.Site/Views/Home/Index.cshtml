@@ -15,6 +15,7 @@
 <div id="container">
     <header>
         <a id="logo" href="#"></a>
+        <div id="fbLikeContainer"><div class="fb-like" data-href="http://www.facebook.com/SeeItOrNot" data-send="false" data-layout="button_count" data-width="75" data-show-faces="false" data-font="arial"></div></div>
         <nav></nav>
         <input class="rounded glowing" id="q" type="text" placeholder="search + enter" />
     </header>
@@ -57,7 +58,7 @@
     @if (this.Model.OverlayMovie != null)
     {
         <!-- MOVIE DETAILS -->
-        <section id="movieDetails" class="rounded">
+        <section id="movieDetails" class="rounded gradient">
             @this.Html.Partial("MovieDetails", this.Model.OverlayMovie)
         </section>
         <div id="overlay"></div>        

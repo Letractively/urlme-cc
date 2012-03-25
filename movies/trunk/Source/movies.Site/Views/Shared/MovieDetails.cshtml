@@ -1,20 +1,14 @@
 ﻿@model movies.Model.Movie
 
 <a href="#" id="closeMovieDetailsLink">Close</a>
-<img class="poster" src="@this.Model.posters.detailed" />
-<h2>@this.Model.title</h2>
-<p class="description">@this.Model.synopsis</p>
-<a href="@(this.Model.links.alternate)trailers" target="_blank" class="trailerLink external">View trailer</a>
-<p class="ratingAndLength"><strong>Rated</strong>: <a href="@this.Model.ParentalGuideUrl" class='mpaaRating external' target='_blank' title='Link to Parents Guide on IMDb.com'>@this.Model.mpaa_rating</a>@this.Model.Duration</p>
+<img class="poster ronded" src="@this.Model.posters.detailed" />
+<p class="ratingAndLength"><span class='mpaaRating'>@this.Model.mpaa_rating</span>@this.Model.Duration</p>
 @if (this.Model.IsReleased) {
-    <p class="ratings small">
-        <span data-rtratingtitle="@this.Model.ratings.critics_rating" class="rottenTomato icon"></span><span>@this.Model.ratings.critics_score</span>
-        <span data-rtratingtitle="@this.Model.ratings.audience_rating" class="rottenTomato icon"></span><span>@this.Model.ratings.audience_score</span>
-        <span class='imdb icon'></span><span>@this.Model.IMDbRating</span>
-    </p>
+    this.Html.RenderPartial("Ratings", new movies.Site.ViewModels.Shared.Ratings { Movie = this.Model, RatingSize = movies.Site.Enumerations.RatingSizes.medium });
 } else {
     <p class="releaseDate">@this.Model.ReleaseDate</p>
 }
+<p class="description">@this.Model.synopsis</p>
 <p class="starring">
     <strong>Starring</strong>: 
     @{ int i = 0; }
@@ -24,6 +18,7 @@
         i++;
     }
 </p>
+<p class="links"><a href="@(this.Model.links.alternate)trailers" target="_blank" class="trailerLink">Trailer</a><a href="@this.Model.ParentalGuideUrl" target="_blank">Parental Guide</a><a href="@this.Model.links.alternate" target="_blank">RottenTomatoes.com Link</a><a href="@this.Model.IMDbMovieUrl" target="_blank">IMDb.com Link</a></p>
 <p class="share">
     <strong>Share</strong>: <input type="text" id="movieUrl" value="http://seeitornot.co/@this.Model.MovieSlug" /><span id="copyButton">Copy</span><span id="copySuccess">Copied to clipboard!</span>
 </p>

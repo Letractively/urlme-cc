@@ -15,7 +15,10 @@
 // - movie details popup - make % fonts similar to movie listings page (all bold, blue links)
 // - movie details page, make overlay visible and popup visible on load so it doesn't take a sec to popup
 // - movie details pages, make these links and not div.show()'s
-// - smoother experience for when user clicks on logo
+// - smoother experience for when user clicks on logo 
+// - button for View Trailer on movie details popup - gray, yellow, or green. similar to Copy button?
+// - no more "Top Box Office," instead, "In theaters", AND mark recent movies with Just Released - Today / 2 Days Ago (maybe w/ a star or an icon??)
+// - hide "poster not found" movies
 
 codejkjk.movies.HomeIndex = {
     // page elements

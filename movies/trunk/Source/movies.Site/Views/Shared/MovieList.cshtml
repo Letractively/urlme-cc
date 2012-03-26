@@ -1,6 +1,6 @@
 ﻿@model Dictionary<string, movies.Model.Movie>
 
-@foreach (var movie in this.Model.Values.Where(x => !x.posters.detailed.Contains("poster_default.gif")))
+@foreach (var movie in this.Model.Values)
 {
     if (movie.alternate_ids != null)
     {

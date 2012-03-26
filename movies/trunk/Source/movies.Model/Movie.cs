@@ -177,7 +177,7 @@ namespace movies.Model
                     var movieCollection = rtJson.FromJson<MovieCollection>();
                     movieCollection.movies.ForEach(x => x.IMDbLoaded = false); // init all imdbloaded to false
                     movieCollection.movies.ForEach(x => ret.Add(x));
-                    return ret.ToDictionary(key => key.id, value => value);
+                    return ret.Where(x => x.alternate_ids != null && !x.posters.detailed.Contains("poster_default.gif") && x.mpaa_rating != "Unrated").ToDictionary(key => key.id, value => value);
                 });
 
             // for each movie, get imdb info if it exists in cache
@@ -211,7 +211,7 @@ namespace movies.Model
                     var movieCollection = rtJson.FromJson<MovieCollection>();
                     movieCollection.movies.ForEach(x => x.IMDbLoaded = false); // init all imdbloaded to false
                     movieCollection.movies.ForEach(x => ret.Add(x));
-                    return ret.ToDictionary(key => key.id, value => value);
+                    return ret.Where(x => x.alternate_ids != null && !x.posters.detailed.Contains("poster_default.gif") && x.mpaa_rating != "Unrated").ToDictionary(key => key.id, value => value);
                 });
 
             // for each movie, get imdb info if it exists in cache
@@ -245,7 +245,7 @@ namespace movies.Model
                     var movieCollection = rtJson.FromJson<MovieCollection>();
                     movieCollection.movies.ForEach(x => x.IMDbLoaded = false); // init all imdbloaded to false
                     movieCollection.movies.ForEach(x => ret.Add(x));
-                    return ret.ToDictionary(key => key.id, value => value);
+                    return ret.Where(x => x.alternate_ids != null && !x.posters.detailed.Contains("poster_default.gif") && x.mpaa_rating != "Unrated").ToDictionary(key => key.id, value => value);
                 });
 
             // for each movie, get imdb info if it exists in cache
@@ -279,7 +279,7 @@ namespace movies.Model
                     var movieCollection = rtJson.FromJson<MovieCollection>();
                     movieCollection.movies.ForEach(x => x.IMDbLoaded = false); // init all imdbloaded to false
                     movieCollection.movies.ForEach(x => ret.Add(x));
-                    return ret.ToDictionary(key => key.id, value => value);
+                    return ret.Where(x => x.alternate_ids != null && !x.posters.detailed.Contains("poster_default.gif") && x.mpaa_rating != "Unrated").ToDictionary(key => key.id, value => value);
                 });
 
             // for each movie, get imdb info if it exists in cache
@@ -334,7 +334,7 @@ namespace movies.Model
 
                     movieCollection.movies.ForEach(x => ret.Add(x));
 
-                    return ret.ToDictionary(key => key.id, value => value);
+                    return ret.Where(x => x.alternate_ids != null && !x.posters.detailed.Contains("poster_default.gif") && x.mpaa_rating != "Unrated").ToDictionary(key => key.id, value => value);
                 });
         }
     }

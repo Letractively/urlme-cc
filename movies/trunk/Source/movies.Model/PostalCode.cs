@@ -63,6 +63,12 @@ namespace movies.Model
                     HtmlNode root = doc.DocumentNode;
                     foreach (HtmlNode theaterDiv in root.SelectNodes("//div[@class='theater clearfix']"))
                     {
+                        // does theater have showtimes?
+                        if (theaterDiv.SelectNodes("div/div") == null)
+                        {
+                            continue; // to next theater
+                        }
+
                         var theaterLinkNode = theaterDiv.SelectSingleNode("h2/a");
 
                         // theater info: title, theaterId, address, mapUrl

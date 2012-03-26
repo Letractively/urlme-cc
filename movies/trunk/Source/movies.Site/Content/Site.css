@@ -59,7 +59,9 @@ header { text-align:center; overflow: auto; height: 80px; }
     #movieDetails img.poster { width: 180px; height: 267px; float: left; margin-right: 25px; }
     #movieDetails p.description { margin-top: 15px; overflow: auto; max-height: 136px; }
     #movieDetails .links { margin-top: 15px; font-weight: bold; display:inline-block; }
-        #movieDetails .links > a { color: #2489CE; text-decoration: underline; }
+        #movieDetails .links > a { color: #2489CE; /* text-decoration: underline; */ }
+        #movieDetails .links > a.trailerLink { padding-left: 22px; background: url('content/images/icons/video.png') no-repeat center left; }
+        #movieDetails .links > a.parentalGuideLink { padding-left: 22px; background: url('content/images/icons/caution.gif') no-repeat center left; }
         #movieDetails .links > a:not(:last-child) { margin-right: 20px; }
     #movieDetails .ratingAndLength { font-size: 18px; }
         #movieDetails .ratingAndLength .mpaaRating { font-weight: bold; margin-right: 25px; }

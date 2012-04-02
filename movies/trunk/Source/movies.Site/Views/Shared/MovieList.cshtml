@@ -1,4 +1,5 @@
 ﻿@model Dictionary<string, movies.Model.Movie>
+@using movies.Model
 
 @foreach (var movie in this.Model.Values)
 {
@@ -12,7 +13,7 @@
             </p>
             @if (movie.IsReleased)
             {
-                this.Html.RenderPartial("Ratings", new movies.Site.ViewModels.Shared.Ratings { Movie = movie, RatingSize = movies.Site.Enumerations.RatingSizes.smaller });
+                this.Html.RenderPartial("Ratings", new movies.Site.ViewModels.Shared.Ratings { Movie = movie, RatingSize = Enumerations.RatingSizes.smaller });
             }
             else
             {

@@ -44,6 +44,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Enumerations.cs" />
     <Compile Include="Movie.cs" />
     <Compile Include="PostalCode.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

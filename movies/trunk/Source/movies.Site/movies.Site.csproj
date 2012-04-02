@@ -75,7 +75,6 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MovieController.cs" />
     <Compile Include="Controllers\TempController.cs" />
-    <Compile Include="Enumerations.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -95,6 +94,7 @@
     <Content Include="Content\Images\icons-36-black.png" />
     <Content Include="Content\Images\icons-36-white.png" />
     <Content Include="Content\Images\Icons\caution.gif" />
+    <Content Include="Content\Images\Icons\clock.png" />
     <Content Include="Content\Images\Icons\close.png" />
     <Content Include="Content\Images\Icons\collapse_large.png" />
     <Content Include="Content\Images\Icons\collapse_medium.png" />

@@ -1,5 +1,6 @@
 ﻿@model movies.Site.ViewModels.Movie.Index
 @using movies.Core.Extensions
+@using movies.Model
 
 @{
     ViewBag.Title = "Movie Details - " + this.Model.Movie.title;
@@ -29,7 +30,7 @@
         <p>@this.Model.Movie.DurationCompact</p>
         @if (this.Model.Movie.IsReleased)
         {
-            this.Html.RenderPartial("Ratings", new movies.Site.ViewModels.Shared.Ratings { Movie = this.Model.Movie, RatingSize = movies.Site.Enumerations.RatingSizes.medium });
+            this.Html.RenderPartial("Ratings", new movies.Site.ViewModels.Shared.Ratings { Movie = this.Model.Movie, RatingSize = Enumerations.RatingSizes.medium });
         }
         else
         {

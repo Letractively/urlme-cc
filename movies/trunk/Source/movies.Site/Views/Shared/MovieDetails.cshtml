@@ -1,26 +1,30 @@
 ﻿@model movies.Model.Movie
+@using movies.Model
 
 <a href="#" id="closeMovieDetailsLink">Close</a>
-<img class="poster ronded" src="@this.Model.posters.detailed" />
-<p class="ratingAndLength"><span class='mpaaRating'>@this.Model.mpaa_rating</span>@this.Model.Duration</p>
-@if (this.Model.IsReleased) {
-    this.Html.RenderPartial("Ratings", new movies.Site.ViewModels.Shared.Ratings { Movie = this.Model, RatingSize = movies.Site.Enumerations.RatingSizes.medium });
-} else {
-    <p class="releaseDate">@this.Model.ReleaseDate</p>
-}
-<p class="description">@this.Model.synopsis</p>
-<p class="starring">
-    <strong>Starring</strong>: 
-    @{ int i = 0; }
-    @foreach (var ac in this.Model.abridged_cast)
-    {
-        @(i == 0 ? ac.name : ", " + ac.name)
-        i++;
+<div class="topHalf">
+    <img class="poster ronded" src="@this.Model.posters.detailed" />
+    <p class="ratingAndLength"><span class='mpaaRating'>@this.Model.mpaa_rating</span>@this.Model.Duration</p>
+    @if (this.Model.IsReleased) {
+        this.Html.RenderPartial("Ratings", new movies.Site.ViewModels.Shared.Ratings { Movie = this.Model, RatingSize = Enumerations.RatingSizes.medium });
+    } else {
+        <p class="releaseDate">@this.Model.ReleaseDate</p>
     }
-</p>
+    <p class="description">@this.Model.synopsis</p>
+    <p class="starring">
+        <strong>Starring</strong>: 
+        @{ int i = 0; }
+        @foreach (var ac in this.Model.abridged_cast)
+        {
+            @(i == 0 ? ac.name : ", " + ac.name)
+            i++;
+        }
+    </p>
+</div>
 <p class="links">
     <a href="@(this.Model.links.alternate)trailers" target="_blank" class="trailerLink">Trailer</a>
     <a href="@this.Model.ParentalGuideUrl" target="_blank" class="parentalGuideLink">Parental Guide</a>
+    <a href="#" class="showtimesLink">Showtimes</a>
     @if (!this.Model.IsReleased) // if it's not released, then the ratings will NOT show up, and the ratings are also links to RT.com and IMDb.com. therefore, provide them here for the user
     {
     <a href="@this.Model.links.alternate" target="_blank">RottenTomatoes.com Link</a>

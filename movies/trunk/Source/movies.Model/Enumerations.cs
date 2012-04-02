@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace movies.Site
+namespace movies.Model
 {
     public class Enumerations
     {
@@ -11,6 +11,14 @@ namespace movies.Site
             small,
             smaller,
             medium
+        }
+
+        public enum MovieLists
+        {
+            Opening,
+            BoxOffice,
+            InTheaters,
+            Upcoming
         }
     }
 }

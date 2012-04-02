@@ -162,8 +162,8 @@ codejkjk.movies.HomeIndex = {
 
     BuildNav: function () {
         // build nav
-        var navItems = [{ text: "Opening" }, { text: "Showtimes" }, { text: "Top Box Office" }, { text: "Coming Soon"}];
-        var currentNavItem = localStorage.getItem("View") || "Opening";
+        var navItems = [{ text: "What's Hot" }, { text: "Showtimes" }, { text: "Coming Soon"}];
+        var currentNavItem = localStorage.getItem("View") || navItems[0].text;
         $.each(navItems, function (i, navItem) {
             navItem.className = navItem.text == currentNavItem ? "selected glowing rounded" : "";
         });
@@ -433,7 +433,7 @@ codejkjk.movies.HomeIndex = {
             codejkjk.movies.HomeIndex.Controls.NavLinks().removeClass("selected glowing rounded");
             link.addClass("selected glowing rounded");
             codejkjk.movies.HomeIndex.Controls.Views().hide();
-            $("[data-navitemtext='{0}']".format(navItemText)).show();
+            $('[data-navitemtext="{0}"]'.format(navItemText)).show();
             // store this nav tab, so it opens on this one next time user visits this site
             localStorage.setItem("View", link.html());
         });

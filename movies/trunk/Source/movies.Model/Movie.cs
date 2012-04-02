@@ -133,17 +133,17 @@ namespace movies.Model
                     Movie ret = null;
 
                     // check if this movie has been loaded yet
-                    if (Cache.KeyExists("codejkjk.movies.Model.Movie.GetBoxOffice"))
+                    if (Cache.KeyExists(string.Format("codejkjk.movies.Model.Movie.{0}", Enumerations.MovieLists.BoxOffice.ToString())))
                     {
-                        var boxOfficeMovies = GetBoxOffice();
+                        var boxOfficeMovies = GetMovies(Enumerations.MovieLists.BoxOffice);
                         if (boxOfficeMovies.ContainsKey(rtMovieId))
                         {
                             ret = boxOfficeMovies[rtMovieId];
                         }
                     }
-                    else if (Cache.KeyExists("codejkjk.movies.Model.Movie.GetUpcoming"))
+                    else if (Cache.KeyExists(string.Format("codejkjk.movies.Model.Movie.{0}", Enumerations.MovieLists.Upcoming)))
                     {
-                        var upcomingMovies = GetUpcoming();
+                        var upcomingMovies = GetMovies(Enumerations.MovieLists.Upcoming);
                         if (upcomingMovies.ContainsKey(rtMovieId))
                         {
                             ret = upcomingMovies[rtMovieId];
@@ -199,15 +199,30 @@ namespace movies.Model
             return movies;
         }
 
-        public static Dictionary<string, Movie> GetBoxOffice()
+        public static Dictionary<string, Movie> GetMovies(Enumerations.MovieLists movielist)
         {
             // get list of rt movies from cache
             Dictionary<string, Movie> movies = Cache.GetValue<Dictionary<string, Movie>>(
-                "codejkjk.movies.Model.Movie.GetBoxOffice",
+                string.Format("codejkjk.movies.Model.Movie.{0}", movielist.ToString()),
                 () =>
                 {
                     List<Movie> ret = new List<Movie>();
-                    string rtJson = API.RottenTomatoes.GetBoxOfficeJson();
+                    string rtJson = string.Empty;
+                    switch (movielist)
+                    {
+                        case Enumerations.MovieLists.BoxOffice:
+                            rtJson = API.RottenTomatoes.GetBoxOfficeJson();
+                            break;
+                        case Enumerations.MovieLists.InTheaters:
+                            rtJson = API.RottenTomatoes.GetInTheatersJson();
+                            break;
+                        case Enumerations.MovieLists.Opening:
+                            rtJson = API.RottenTomatoes.GetOpeningJson();
+                            break;
+                        case Enumerations.MovieLists.Upcoming:
+                            rtJson = API.RottenTomatoes.GetUpcomingJson();
+                            break;
+                    }
                     var movieCollection = rtJson.FromJson<MovieCollection>();
                     movieCollection.movies.ForEach(x => x.IMDbLoaded = false); // init all imdbloaded to false
                     movieCollection.movies.ForEach(x => ret.Add(x));
@@ -215,7 +230,7 @@ namespace movies.Model
                 });
 
             // for each movie, get imdb info if it exists in cache
-            foreach (var movie in movies.Values.Where(x => x.alternate_ids != null))
+            foreach (var movie in movies.Values)
             {
                 if (Cache.KeyExists(string.Format("codejkjk.movies.Model.Movie.GetIMDbMovie-{0}", movie.alternate_ids.imdb)))
                 {
@@ -230,75 +245,7 @@ namespace movies.Model
                 }
             }
 
-            return movies;
-        }
-
-        public static Dictionary<string, Movie> GetOpening()
-        {
-            // get list of rt movies from cache
-            Dictionary<string, Movie> movies = Cache.GetValue<Dictionary<string, Movie>>(
-                "codejkjk.movies.Model.Movie.GetOpening",
-                () =>
-                {
-                    List<Movie> ret = new List<Movie>();
-                    string rtJson = API.RottenTomatoes.GetOpeningJson();
-                    var movieCollection = rtJson.FromJson<MovieCollection>();
-                    movieCollection.movies.ForEach(x => x.IMDbLoaded = false); // init all imdbloaded to false
-                    movieCollection.movies.ForEach(x => ret.Add(x));
-                    return ret.Where(x => x.alternate_ids != null && !x.posters.detailed.Contains("poster_default.gif") && x.mpaa_rating != "Unrated").ToDictionary(key => key.id, value => value);
-                });
-
-            // for each movie, get imdb info if it exists in cache
-            foreach (var movie in movies.Values.Where(x => x.alternate_ids != null))
-            {
-                if (Cache.KeyExists(string.Format("codejkjk.movies.Model.Movie.GetIMDbMovie-{0}", movie.alternate_ids.imdb)))
-                {
-                    var imdbMovie = GetIMDbMovie(movie.IMDbQ);
-                    movie.IMDbRating = imdbMovie.rating;
-                    movie.IMDbVotes = imdbMovie.votes;
-                    movie.IMDbLoaded = true;
-                }
-                else
-                {
-                    movie.IMDbLoaded = false;
-                }
-            }
-
-            return movies;
-        }
-
-        public static Dictionary<string, Movie> GetInTheaters()
-        {
-            // get list of rt movies from cache
-            Dictionary<string, Movie> movies = Cache.GetValue<Dictionary<string, Movie>>(
-                "codejkjk.movies.Model.Movie.GetInTheaters",
-                () =>
-                {
-                    List<Movie> ret = new List<Movie>();
-                    string rtJson = API.RottenTomatoes.GetInTheatersJson();
-                    var movieCollection = rtJson.FromJson<MovieCollection>();
-                    movieCollection.movies.ForEach(x => x.IMDbLoaded = false); // init all imdbloaded to false
-                    movieCollection.movies.ForEach(x => ret.Add(x));
-                    return ret.Where(x => x.alternate_ids != null && !x.posters.detailed.Contains("poster_default.gif") && x.mpaa_rating != "Unrated").ToDictionary(key => key.id, value => value);
-                });
-
-            // for each movie, get imdb info if it exists in cache
-            foreach (var movie in movies.Values.Where(x => x.alternate_ids != null))
-            {
-                if (Cache.KeyExists(string.Format("codejkjk.movies.Model.Movie.GetIMDbMovie-{0}", movie.alternate_ids.imdb)))
-                {
-                    var imdbMovie = GetIMDbMovie(movie.IMDbQ);
-                    movie.IMDbRating = imdbMovie.rating;
-                    movie.IMDbVotes = imdbMovie.votes;
-                    movie.IMDbLoaded = true;
-                }
-                else
-                {
-                    movie.IMDbLoaded = false;
-                }
-            }
-
-            return movies;
+            return movies;         
         }
 
         private static void TryLoadIMDb(ref Movie movie)
@@ -318,24 +265,6 @@ namespace movies.Model
                     movie.IMDbLoaded = false;
                 }
             }
-        }
-
-        public static Dictionary<string, Movie> GetUpcoming()
-        {
-            return Cache.GetValue<Dictionary<string, Movie>>(
-                "codejkjk.movies.Model.Movie.GetUpcoming",
-                () =>
-                {
-                    List<Movie> ret = new List<Movie>();
-                    string rtJson = API.RottenTomatoes.GetUpcomingJson();
-
-                    JavaScriptSerializer jss = new JavaScriptSerializer();
-                    var movieCollection = jss.Deserialize<MovieCollection>(rtJson);
-
-                    movieCollection.movies.ForEach(x => ret.Add(x));
-
-                    return ret.Where(x => x.alternate_ids != null && !x.posters.detailed.Contains("poster_default.gif") && x.mpaa_rating != "Unrated").ToDictionary(key => key.id, value => value);
-                });
         }
     }
 }

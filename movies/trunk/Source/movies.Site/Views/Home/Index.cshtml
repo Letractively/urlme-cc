@@ -16,18 +16,20 @@
     <header>
         <a id="logo" href="#"></a>
         <div id="fbLikeContainer"><div class="fb-like" data-href="http://www.facebook.com/SeeItOrNot" data-send="false" data-layout="button_count" data-width="75" data-show-faces="false" data-font="arial"></div></div>
-        <nav></nav>
-        <input class="rounded glowing" id="q" type="text" placeholder="search + enter" />
+        <div id="navAndSearch">
+            <nav></nav>
+            <input class="rounded glowing" id="q" type="text" placeholder="search + enter" />
+        </div>
     </header>
 
-    <!-- OPENING -->
-    <section id="openingView" class="content movieList" data-navitemtext="Opening">
+    <!-- WHAT'S HOT -->
+    <section id="whatsHotView" class="content movieList" data-navitemtext="What's Hot">
+        @*<h2>Opening This Week</h2>*@
         @this.Html.Partial("MovieList", this.Model.OpeningMovies)
-    </section>
-
-    <!-- BOX OFFICE -->
-    <section id="boxOfficeView" class="content movieList" data-navitemtext="Top Box Office">
+        @*<h2>Top Box Office</h2>*@
         @this.Html.Partial("MovieList", this.Model.BoxOfficeMovies)
+        @*<h2>Also in Theaters</h2>*@
+        @this.Html.Partial("MovieList", this.Model.InTheatersMovies)
     </section>
 
     <!-- UPCOMING -->

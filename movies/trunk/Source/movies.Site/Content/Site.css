@@ -29,11 +29,12 @@ span.divider { color: #CDCDCD; font-weight: normal; margin: 0 5px; }
 
 header { text-align:center; overflow: auto; height: 80px; }
     header #logo { float: left; background: url('content/logo.png'); width: 224px; height: 80px; display:inline-block; }
-    header nav { float: left; font-size: 150%; margin: 30px 10px 0 5px; }
-        header nav a { margin-right: 20px; }
-        header nav a.selected { color: #fff; background: #029DB7/* #465F82 */; padding: 5px 10px; }
+    header #navAndSearch { float: right; }
+    header #navAndSearch nav { float: left; font-size: 150%; margin: 30px 10px 0 5px; }
+        header #navAndSearch nav a { margin-right: 20px; }
+        header #navAndSearch nav a.selected { color: #fff; background: #029DB7/* #465F82 */; padding: 5px 10px; }
 
-    header #q  
+    header #navAndSearch #q  
     {
         margin-top:27px;
         padding: 5px; 
@@ -53,27 +54,31 @@ header { text-align:center; overflow: auto; height: 80px; }
 /* styles common to both movie div in the lists and the movie details popup */
 
 #movieDetails { z-index:1002; font-size: 110%; border: 1px solid #999; padding: 25px; position: fixed; width: 590px; min-height: 268px; top: 68px; left: 50%; margin-left: -295PX; }
+    #movieDetails .topHalf { overflow: auto; }
+    #movieDetails a { display: inline-block; }
     #movieDetails #closeMovieDetailsLink { font-weight:bold; text-transform:uppercase; letter-spacing:1px; float: right; /* background: url("content/content/images/icons/close.png") no-repeat scroll right top transparent; */ display:inline-block; /* padding: 0 22px 17px 20px; */ }
     #movieDetails #closeMovieDetailsLink .x { margin-left: 6px; color: Red; }
     #movieDetails h2 { font-size: 130%; font-weight: bold; display:inline; }
     #movieDetails img.poster { width: 180px; height: 267px; float: left; margin-right: 25px; }
-    #movieDetails p.description { margin-top: 15px; overflow: auto; max-height: 136px; }
-    #movieDetails .links { margin-top: 15px; font-weight: bold; display:inline-block; }
-        #movieDetails .links > a { color: #2489CE; /* text-decoration: underline; */ }
+    #movieDetails p.description { margin-top: 12px; overflow: auto; max-height: 136px; }
+    #movieDetails .links { margin-top: 15px; font-weight: bold; }
+        #movieDetails .links > a { color: #2489CE; height:16px; line-height: 17px; /* text-decoration: underline; */ }
         #movieDetails .links > a.trailerLink { padding-left: 22px; background: url('content/images/icons/video.png') no-repeat center left; }
         #movieDetails .links > a.parentalGuideLink { padding-left: 22px; background: url('content/images/icons/caution.gif') no-repeat center left; }
+        #movieDetails .links > a.showtimesLink { padding-left: 22px; background: url('content/images/icons/clock.png') no-repeat center left; }            
         #movieDetails .links > a:not(:last-child) { margin-right: 20px; }
     #movieDetails .ratingAndLength { font-size: 18px; }
         #movieDetails .ratingAndLength .mpaaRating { font-weight: bold; margin-right: 25px; }
     #movieDetails .ratings { margin-top: 15px; overflow:auto; }
     #movieDetails .releaseDate { margin-top: 15px; font-weight: bold; }
-    #movieDetails .share { clear: left; margin-top: 15px; }
+    #movieDetails .share { margin-top: 15px; }
         #movieDetails .share #copyButton { text-align: center; border: 1px solid black; background: #e8e8e8; margin-left: 5px; padding: 5px; }
         #movieDetails .share #copySuccess { color: Green; display:none; margin-left: 10px; }
         #movieDetails .share #copyButton:hover { background: #eee; }
         #movieDetails .share #copyButton:active { background: #aaa; }
         #movieDetails .share input[type='text'] { padding: 5px; width: 330px; }
     #movieDetails .starring { margin-top: 15px; }
+        
 
 #overlay { background:#666666; opacity:.5; z-index:1001; position:absolute; top:0; left:0; }
 

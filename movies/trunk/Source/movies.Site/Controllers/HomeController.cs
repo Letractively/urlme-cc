@@ -14,9 +14,11 @@ namespace movies.Site.Controllers
         {
             var vm = new ViewModels.Home.Index
             {
-                OpeningMovies = Movie.GetOpening(),
-                BoxOfficeMovies = Movie.GetBoxOffice(),
-                UpcomingMovies = Movie.GetUpcoming(),
+                OpeningMovies = Movie.GetMovies(Enumerations.MovieLists.Opening),
+                BoxOfficeMovies = Movie.GetMovies(Enumerations.MovieLists.BoxOffice),
+                InTheatersMovies = Movie.GetMovies(Enumerations.MovieLists.InTheaters),
+                UpcomingMovies = Movie.GetMovies(Enumerations.MovieLists.Upcoming),
+                
                 OverlayMovie = null,
                 UseAjaxForLinks = true,
                 PrefetchLinks = false
@@ -26,7 +28,7 @@ namespace movies.Site.Controllers
 
         public ActionResult CacheImdbData()
         {
-            var boxOfficeMovies = Model.Movie.GetBoxOffice();
+            var boxOfficeMovies = Model.Movie.GetMovies(Enumerations.MovieLists.BoxOffice);
             foreach (var movie in boxOfficeMovies.Values)
             {
                 if (movie.IMDbQ != null)
@@ -35,7 +37,7 @@ namespace movies.Site.Controllers
                 }
             }
 
-            var inTheatersMovies = Model.Movie.GetInTheaters();
+            var inTheatersMovies = Model.Movie.GetMovies(Enumerations.MovieLists.InTheaters);
             foreach (var movie in inTheatersMovies.Values)
             {
                 if (movie.IMDbQ != null)
@@ -44,7 +46,7 @@ namespace movies.Site.Controllers
                 }
             }
 
-            var openingMovies = Model.Movie.GetOpening();
+            var openingMovies = Model.Movie.GetMovies(Enumerations.MovieLists.Opening);
             foreach (var movie in openingMovies.Values)
             {
                 if (movie.IMDbQ != null)
@@ -53,7 +55,7 @@ namespace movies.Site.Controllers
                 }
             }
 
-            return Content("Done!");
+            return Content("Done! - " + System.DateTime.Now);
         }
 
         /* mobile - showtimes */
@@ -61,9 +63,11 @@ namespace movies.Site.Controllers
         {
             var vm = new ViewModels.Home.Index
             {
-                OpeningMovies = Movie.GetOpening(),
-                BoxOfficeMovies = Movie.GetBoxOffice(),
-                UpcomingMovies = Movie.GetUpcoming(),
+                OpeningMovies = Movie.GetMovies(Enumerations.MovieLists.Opening),
+                BoxOfficeMovies = Movie.GetMovies(Enumerations.MovieLists.BoxOffice),
+                InTheatersMovies = Movie.GetMovies(Enumerations.MovieLists.InTheaters),
+                UpcomingMovies = Movie.GetMovies(Enumerations.MovieLists.Upcoming),
+
                 OverlayMovie = null,
                 UseAjaxForLinks = true,
                 PrefetchLinks = false
@@ -76,9 +80,11 @@ namespace movies.Site.Controllers
         {
             var vm = new ViewModels.Home.Index
             {
-                OpeningMovies = Movie.GetOpening(),
-                BoxOfficeMovies = Movie.GetBoxOffice(),
-                UpcomingMovies = Movie.GetUpcoming(),
+                OpeningMovies = Movie.GetMovies(Enumerations.MovieLists.Opening),
+                BoxOfficeMovies = Movie.GetMovies(Enumerations.MovieLists.BoxOffice),
+                InTheatersMovies = Movie.GetMovies(Enumerations.MovieLists.InTheaters),
+                UpcomingMovies = Movie.GetMovies(Enumerations.MovieLists.Upcoming),
+
                 OverlayMovie = null,
                 UseAjaxForLinks = true,
                 PrefetchLinks = false

@@ -62,6 +62,7 @@ codejkjk.movies.HomeIndex = {
         , ShowtimeDayLinksSelector: function () { return ".showtimeDays > a"; }
         , ShowtimeDayLinksContainer: function () { return $(".showtimeDays"); }
         , ShowtimesLinks: function () { return $(".showtimesLink"); }
+        , TheatersForMovieList: function () { return $("#theatersForMovieList"); }
         , TheaterLinksSelector: function () { return ".theaterList > a"; }
         , TheaterList: function () { return $("#theaterList"); }
         , TheaterListTemplate: function () { return $("#theaterListTemplate"); }
@@ -96,7 +97,7 @@ codejkjk.movies.HomeIndex = {
             }
         }
         , RtMovieId: function () {
-            return codejkjk.movies.Controls.CurrentRtMovieId().val();
+            return codejkjk.movies.HomeIndex.Controls.CurrentRtMovieId().val();
         }
     },
 
@@ -461,42 +462,33 @@ codejkjk.movies.HomeIndex = {
         // handle showtimes links on movie detail popups
         codejkjk.movies.HomeIndex.Controls.ShowtimesLinks().click(function (e) {
             e.preventDefault();
-            codejkjk.Geo.GetZipCode(function (zipCode) {
-                alert('stay tuned for getting showtimes for zip ' + zipCode);
+            var link = $(this);
+            var theaterList = codejkjk.movies.HomeIndex.Controls.TheatersForMovieList();
+
+            // if it's expanded, then simply hide it and return out of this handler
+            if (!theaterList.hasClass("hidden")) {
+                // simply collapse it
+                theaterList.addClass("hidden");
                 return;
-                codejkjk.movies.Api.GetTheatersForMovie(codejkjk.movies.HomeIndex.Controls.CurrentShowtimeDay().val(), zipCode, function (postalCode) {
-                    //                    var theaters = postalCode.theaters;
-                    //                    
-                    //                    // filter out theaters that do NOT contain the movie
-                    //                    theaters = $.grep(theaters, function (theater, i) {
-                    ////                        $.each(theater.movies, function (j, theaterMovie) {
-                    ////                            var movieClass = hiddenTheaterMovies.indexOf("{0}-{1}".format(theater.id, theaterMovie.id)) >= 0 ? "hidden" : "";
-                    ////                            numHiddenTheaterMovies = movieClass == "hidden" ? ++numHiddenTheaterMovies : numHiddenTheaterMovies;
-                    ////                            theaterMovie.movieClass = movieClass;
-                    ////                        });
-                    //                        return 
-                    //                    });
+            }
 
-                    //                    // render theaters
-                    //                    codejkjk.movies.HomeIndex.Controls.FavoriteTheaterList().html(
-                    //                        codejkjk.movies.HomeIndex.Controls.FavoriteTheaterListTemplate().render(favoriteTheaters)
-                    //                    );
-                    //                    codejkjk.movies.HomeIndex.Controls.TheaterList().html(
-                    //                        codejkjk.movies.HomeIndex.Controls.TheaterListTemplate().render(notFavoriteTheaters)
-                    //                    );
+            // made it this far? then load her up !!11
+            if (!theaterList.hasClass("loaded")) {
+                // first thing, add loading class
+                link.addClass("loading");
+                codejkjk.Geo.GetZipCode(function (zipCode) {
+                    codejkjk.movies.Api.GetTheatersForMovie(codejkjk.movies.HomeIndex.Controls.CurrentShowtimeDay().val(), zipCode, codejkjk.movies.HomeIndex.Currents.RtMovieId(), function (theatersHtml) {
+                        theaterList.html(theatersHtml);
 
-                    //                    codejkjk.movies.HomeIndex.BuildShowtimeDayLinks();
-
-                    //                    if (codejkjk.movies.HomeIndex.Controls.ChangeOptionsContainer().is(":visible")) {
-                    //                        codejkjk.movies.HomeIndex.Controls.ChangeOptionsContainer().unmask();
-                    //                        codejkjk.movies.HomeIndex.Controls.ChangeCurrentZipLink().trigger('click');
-                    //                    }
-
-                    //                    // now that the theater links are filled, set the currentTheater container's height to match height of theater links container
-                    //                    var theaterListHeight = codejkjk.movies.HomeIndex.Controls.TheaterList().height() + 20;
-                    //                    codejkjk.movies.HomeIndex.Controls.Theaters().css("min-height", theaterListHeight + "px");
+                        // remove loading class
+                        link.removeClass("loading");
+                        theaterList.removeClass("hidden");
+                        theaterList.addClass("loaded");
+                    });
                 });
-            });
+            } else { // already been loaded previously, so just show it
+                theaterList.removeClass("hidden");
+            }
         });
 
         // bind UseNearbyZipCodeLink

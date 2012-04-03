@@ -34,7 +34,7 @@ namespace movies.Model
             public string address { get; set; }
             public string mapUrl { get; set; }
             public string theaterUrl { get; set; }
-
+            public Model.PostalCode.Movie movie { get; set; } // in case we're filtering on just one movie
             public List<Model.PostalCode.Movie> movies { get; set; }
         }
 

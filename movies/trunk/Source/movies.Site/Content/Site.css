@@ -50,7 +50,7 @@ header { text-align:center; height: 80px; }
     header #fbLikeContainer { width: 85px; float: left; margin-top: 50px; margin: 30px 0 0 20px; /* position: fixed; top: 50px; left: 20px; */ }
 
 .content { margin-top: 25px; width: 1000px; overflow: auto; display: none; }
-    .content h2 { background: #535156; padding: 10px; font-size: 14px; font-weight: bold; color: #fff; margin-bottom: 10px; }
+    #whatsHotView h2 { background: #535156; padding: 10px; font-size: 14px; font-weight: bold; color: #fff; margin-bottom: 10px; }
 
 /* styles common to both movie div in the lists and the movie details popup */
 
@@ -59,14 +59,17 @@ header { text-align:center; height: 80px; }
     #movieDetails a { display: inline-block; }
     #movieDetails #closeMovieDetailsLink { font-weight:bold; text-transform:uppercase; letter-spacing:1px; float: right; /* background: url("content/content/images/icons/close.png") no-repeat scroll right top transparent; */ display:inline-block; /* padding: 0 22px 17px 20px; */ }
     #movieDetails #closeMovieDetailsLink .x { margin-left: 6px; color: Red; }
-    #movieDetails h2 { font-size: 130%; font-weight: bold; display:inline; }
     #movieDetails img.poster { width: 180px; height: 267px; float: left; margin-right: 25px; }
     #movieDetails p.description { margin-top: 12px; overflow: auto; max-height: 136px; }
+    #movieDetails #theatersForMovieList { margin-top: 15px; overflow: auto; max-height: 200px; }
+        #movieDetails #theatersForMovieList h2 { font-size: 110%; font-weight: bold; margin-bottom: 5px; }
+        #movieDetails #theatersForMovieList h2:not(:first-child) { margin-top: 10px; }
     #movieDetails .links { margin-top: 15px; font-weight: bold; }
         #movieDetails .links > a { color: #2489CE; height:16px; line-height: 17px; /* text-decoration: underline; */ }
         #movieDetails .links > a.trailerLink { padding-left: 22px; background: url('content/images/icons/video.png') no-repeat center left; }
         #movieDetails .links > a.parentalGuideLink { padding-left: 22px; background: url('content/images/icons/caution.gif') no-repeat center left; }
         #movieDetails .links > a.showtimesLink { padding-left: 22px; background: url('content/images/icons/clock.png') no-repeat center left; }            
+        #movieDetails .links > a.showtimesLink.loading { background: url('content/images/ajax-loader-blue-ribbon.gif') no-repeat center left; }
         #movieDetails .links > a:not(:last-child) { margin-right: 20px; }
     #movieDetails .ratingAndLength { font-size: 18px; }
         #movieDetails .ratingAndLength .mpaaRating { font-weight: bold; margin-right: 25px; }

@@ -1,10 +1,9 @@
 ﻿@model Dictionary<string, movies.Model.Movie>
 @using movies.Model
 
+<div class="movieList">
 @foreach (var movie in this.Model.Values)
 {
-    if (movie.alternate_ids != null)
-    {
     <div class="movie rounded glowing">
         <a class="poster shadow" href="~/@movie.MovieSlug" style="background:url('@movie.posters.detailed');"></a>
         <div class="details gradient">
@@ -21,8 +20,8 @@
             }
         </div>
     </div>    
-    }
 }
+</div>
 
 
 

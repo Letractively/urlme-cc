@@ -60,6 +60,7 @@ codejkjk.movies.HomeIndex = {
         , ShowtimeDayLinks: function () { return $(".showtimeDays > a"); }
         , ShowtimeDayLinksSelector: function () { return ".showtimeDays > a"; }
         , ShowtimeDayLinksContainer: function () { return $(".showtimeDays"); }
+        , ShowtimesLinks: function () { return $(".showtimesLink"); }
         , TheaterLinksSelector: function () { return ".theaterList > a"; }
         , TheaterList: function () { return $("#theaterList"); }
         , TheaterListTemplate: function () { return $("#theaterListTemplate"); }
@@ -408,16 +409,16 @@ codejkjk.movies.HomeIndex = {
 
         // handle clicking of overlay, which should hide movie details popup
         codejkjk.movies.HomeIndex.Controls.Overlay().click(function () {
-//            codejkjk.movies.HomeIndex.Controls.MovieDetails().hide();
-//            $(this).hide();
+            //            codejkjk.movies.HomeIndex.Controls.MovieDetails().hide();
+            //            $(this).hide();
             window.location = baseUrl;
         });
 
         // handle close movie details link
         $(document).on("click", codejkjk.movies.HomeIndex.Controls.CloseMovieDetailsLinkSelector(), function (e) {
             e.preventDefault();
-//            codejkjk.movies.HomeIndex.Controls.Overlay().hide();
-//            codejkjk.movies.HomeIndex.Controls.MovieDetails().hide();
+            //            codejkjk.movies.HomeIndex.Controls.Overlay().hide();
+            //            codejkjk.movies.HomeIndex.Controls.MovieDetails().hide();
             window.location = baseUrl;
         });
 
@@ -451,6 +452,47 @@ codejkjk.movies.HomeIndex = {
         codejkjk.movies.HomeIndex.Controls.ChangeCurrentZipLink().click(function (e) {
             e.preventDefault();
             codejkjk.movies.HomeIndex.Controls.ChangeOptionsContainer().slideToggle('fast');
+        });
+
+        // handle showtimes links on movie detail popups
+        codejkjk.movies.HomeIndex.Controls.ShowtimesLinks().click(function (e) {
+            e.preventDefault();
+            codejkjk.Geo.GetZipCode(function (zipCode) {
+                alert('stay tuned for getting showtimes for zip ' + zipCode);
+                return; 
+                codejkjk.movies.Api.GetTheaters(codejkjk.movies.HomeIndex.Controls.CurrentShowtimeDay().val(), zipCode, function (postalCode) {
+//                    var theaters = postalCode.theaters;
+//                    
+//                    // filter out theaters that do NOT contain the movie
+//                    theaters = $.grep(theaters, function (theater, i) {
+////                        $.each(theater.movies, function (j, theaterMovie) {
+////                            var movieClass = hiddenTheaterMovies.indexOf("{0}-{1}".format(theater.id, theaterMovie.id)) >= 0 ? "hidden" : "";
+////                            numHiddenTheaterMovies = movieClass == "hidden" ? ++numHiddenTheaterMovies : numHiddenTheaterMovies;
+////                            theaterMovie.movieClass = movieClass;
+////                        });
+//                        return 
+//                    });
+
+//                    // render theaters
+//                    codejkjk.movies.HomeIndex.Controls.FavoriteTheaterList().html(
+//                        codejkjk.movies.HomeIndex.Controls.FavoriteTheaterListTemplate().render(favoriteTheaters)
+//                    );
+//                    codejkjk.movies.HomeIndex.Controls.TheaterList().html(
+//                        codejkjk.movies.HomeIndex.Controls.TheaterListTemplate().render(notFavoriteTheaters)
+//                    );
+
+//                    codejkjk.movies.HomeIndex.BuildShowtimeDayLinks();
+
+//                    if (codejkjk.movies.HomeIndex.Controls.ChangeOptionsContainer().is(":visible")) {
+//                        codejkjk.movies.HomeIndex.Controls.ChangeOptionsContainer().unmask();
+//                        codejkjk.movies.HomeIndex.Controls.ChangeCurrentZipLink().trigger('click');
+//                    }
+
+//                    // now that the theater links are filled, set the currentTheater container's height to match height of theater links container
+//                    var theaterListHeight = codejkjk.movies.HomeIndex.Controls.TheaterList().height() + 20;
+//                    codejkjk.movies.HomeIndex.Controls.Theaters().css("min-height", theaterListHeight + "px");
+                });
+            });
         });
 
         // bind UseNearbyZipCodeLink

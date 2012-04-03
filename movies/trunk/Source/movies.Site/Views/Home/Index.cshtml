@@ -23,12 +23,12 @@
     </header>
 
     <!-- WHAT'S HOT -->
-    <section id="whatsHotView" class="content movieList" data-navitemtext="What's Hot">
-        @*<h2>Opening This Week</h2>*@
+    <section id="whatsHotView" class="content" data-navitemtext="What's Hot">
+        <h2 class="rounded">Opening This Week</h2>
         @this.Html.Partial("MovieList", this.Model.OpeningMovies)
-        @*<h2>Top Box Office</h2>*@
+        <h2 class="rounded">Top Box Office</h2>
         @this.Html.Partial("MovieList", this.Model.BoxOfficeMovies)
-        @*<h2>Also in Theaters</h2>*@
+        <h2 class="rounded">Also in Theaters</h2>
         @this.Html.Partial("MovieList", this.Model.InTheatersMovies)
     </section>
 

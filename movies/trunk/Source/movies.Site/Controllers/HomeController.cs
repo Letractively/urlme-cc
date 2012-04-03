@@ -23,6 +23,16 @@ namespace movies.Site.Controllers
                 UseAjaxForLinks = true,
                 PrefetchLinks = false
             };
+
+            // remove any movies in InTheatersMovies that are already in Box Office
+            foreach (var boxOfficeMovie in vm.BoxOfficeMovies)
+            {
+                if (vm.InTheatersMovies.ContainsKey(boxOfficeMovie.Key))
+                {
+                    vm.InTheatersMovies.Remove(boxOfficeMovie.Key);
+                }
+            }
+
             return View(vm);
         }
 

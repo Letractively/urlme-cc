@@ -1,6 +1,7 @@
 ﻿@model movies.Model.Movie
 @using movies.Model
 
+<input type="hidden" id="currentRtMovieId" value="@this.Model.id" />
 <a href="#" id="closeMovieDetailsLink">Close</a>
 <div class="topHalf">
     <img class="poster ronded" src="@this.Model.posters.detailed" />

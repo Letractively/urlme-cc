@@ -31,6 +31,7 @@ codejkjk.movies.HomeIndex = {
         , CopyButton: function () { return $("#copyButton"); }
         , CopySuccess: function () { return $("#copySuccess"); }
         , CurrentNavItem: function () { return $("nav > a.selected"); }
+        , CurrentRtMovieId: function () { return $("#currentRtMovieId"); }
         , CurrentShowtimeDay: function () { return $("input#currentShowtimeDay"); }
         , CurrentTheaterContainer: function () { return $("#currentTheaterContainer"); }
         , CurrentTheaterTemplate: function () { return $("#currentTheaterTemplate"); }
@@ -93,6 +94,9 @@ codejkjk.movies.HomeIndex = {
                 var ret = localStorage.getItem("HiddenTheaterMovies");
                 return ret ? ret.split(',') : [];
             }
+        }
+        , RtMovieId: function () {
+            return codejkjk.movies.Controls.CurrentRtMovieId().val();
         }
     },
 
@@ -459,38 +463,38 @@ codejkjk.movies.HomeIndex = {
             e.preventDefault();
             codejkjk.Geo.GetZipCode(function (zipCode) {
                 alert('stay tuned for getting showtimes for zip ' + zipCode);
-                return; 
-                codejkjk.movies.Api.GetTheaters(codejkjk.movies.HomeIndex.Controls.CurrentShowtimeDay().val(), zipCode, function (postalCode) {
-//                    var theaters = postalCode.theaters;
-//                    
-//                    // filter out theaters that do NOT contain the movie
-//                    theaters = $.grep(theaters, function (theater, i) {
-////                        $.each(theater.movies, function (j, theaterMovie) {
-////                            var movieClass = hiddenTheaterMovies.indexOf("{0}-{1}".format(theater.id, theaterMovie.id)) >= 0 ? "hidden" : "";
-////                            numHiddenTheaterMovies = movieClass == "hidden" ? ++numHiddenTheaterMovies : numHiddenTheaterMovies;
-////                            theaterMovie.movieClass = movieClass;
-////                        });
-//                        return 
-//                    });
+                return;
+                codejkjk.movies.Api.GetTheatersForMovie(codejkjk.movies.HomeIndex.Controls.CurrentShowtimeDay().val(), zipCode, function (postalCode) {
+                    //                    var theaters = postalCode.theaters;
+                    //                    
+                    //                    // filter out theaters that do NOT contain the movie
+                    //                    theaters = $.grep(theaters, function (theater, i) {
+                    ////                        $.each(theater.movies, function (j, theaterMovie) {
+                    ////                            var movieClass = hiddenTheaterMovies.indexOf("{0}-{1}".format(theater.id, theaterMovie.id)) >= 0 ? "hidden" : "";
+                    ////                            numHiddenTheaterMovies = movieClass == "hidden" ? ++numHiddenTheaterMovies : numHiddenTheaterMovies;
+                    ////                            theaterMovie.movieClass = movieClass;
+                    ////                        });
+                    //                        return 
+                    //                    });
 
-//                    // render theaters
-//                    codejkjk.movies.HomeIndex.Controls.FavoriteTheaterList().html(
-//                        codejkjk.movies.HomeIndex.Controls.FavoriteTheaterListTemplate().render(favoriteTheaters)
-//                    );
-//                    codejkjk.movies.HomeIndex.Controls.TheaterList().html(
-//                        codejkjk.movies.HomeIndex.Controls.TheaterListTemplate().render(notFavoriteTheaters)
-//                    );
+                    //                    // render theaters
+                    //                    codejkjk.movies.HomeIndex.Controls.FavoriteTheaterList().html(
+                    //                        codejkjk.movies.HomeIndex.Controls.FavoriteTheaterListTemplate().render(favoriteTheaters)
+                    //                    );
+                    //                    codejkjk.movies.HomeIndex.Controls.TheaterList().html(
+                    //                        codejkjk.movies.HomeIndex.Controls.TheaterListTemplate().render(notFavoriteTheaters)
+                    //                    );
 
-//                    codejkjk.movies.HomeIndex.BuildShowtimeDayLinks();
+                    //                    codejkjk.movies.HomeIndex.BuildShowtimeDayLinks();
 
-//                    if (codejkjk.movies.HomeIndex.Controls.ChangeOptionsContainer().is(":visible")) {
-//                        codejkjk.movies.HomeIndex.Controls.ChangeOptionsContainer().unmask();
-//                        codejkjk.movies.HomeIndex.Controls.ChangeCurrentZipLink().trigger('click');
-//                    }
+                    //                    if (codejkjk.movies.HomeIndex.Controls.ChangeOptionsContainer().is(":visible")) {
+                    //                        codejkjk.movies.HomeIndex.Controls.ChangeOptionsContainer().unmask();
+                    //                        codejkjk.movies.HomeIndex.Controls.ChangeCurrentZipLink().trigger('click');
+                    //                    }
 
-//                    // now that the theater links are filled, set the currentTheater container's height to match height of theater links container
-//                    var theaterListHeight = codejkjk.movies.HomeIndex.Controls.TheaterList().height() + 20;
-//                    codejkjk.movies.HomeIndex.Controls.Theaters().css("min-height", theaterListHeight + "px");
+                    //                    // now that the theater links are filled, set the currentTheater container's height to match height of theater links container
+                    //                    var theaterListHeight = codejkjk.movies.HomeIndex.Controls.TheaterList().height() + 20;
+                    //                    codejkjk.movies.HomeIndex.Controls.Theaters().css("min-height", theaterListHeight + "px");
                 });
             });
         });

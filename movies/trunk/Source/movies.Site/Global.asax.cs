@@ -47,6 +47,12 @@ namespace movies
             );
 
             routes.MapRoute(
+                "Api-Get_Showtimes_For_Movie", // Route name
+                "api/get_showtimes_for_movie.html/{date}/{zip}/{rtMovieId}", // URL with parameters
+                new { controller = "Api", action = "GetPostalCodeForMovie" } // Parameter defaults
+            );
+
+            routes.MapRoute(
                 "Mobile-Showtimes", // Route name
                 "showtimes", // URL with parameters
                 new { controller = "Home", action = "Showtimes" } // Parameter defaults

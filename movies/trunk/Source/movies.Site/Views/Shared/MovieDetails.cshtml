@@ -2,9 +2,9 @@
 @using movies.Model
 
 <input type="hidden" id="currentRtMovieId" value="@this.Model.id" />
-<a href="#" id="closeMovieDetailsLink">Close</a>
 <div class="topHalf">
-    <img class="poster ronded" src="@this.Model.posters.detailed" />
+    <a href="#" id="closeMovieDetailsLink">Close</a>
+    <img class="poster rounded" src="@this.Model.posters.detailed" />
     <p class="ratingAndLength"><span class='mpaaRating'>@this.Model.mpaa_rating</span>@this.Model.Duration</p>
     @if (this.Model.IsReleased) {
         this.Html.RenderPartial("Ratings", new movies.Site.ViewModels.Shared.Ratings { Movie = this.Model, RatingSize = Enumerations.RatingSizes.medium });
@@ -31,6 +31,9 @@
     <a href="@this.Model.links.alternate" target="_blank">RottenTomatoes.com Link</a>
     <a href="@this.Model.IMDbMovieUrl" target="_blank">IMDb.com Link</a>
     }
+</p>
+<p id="theatersForMovieList" class="hidden">
+
 </p>
 <p class="share">
     <strong>Share</strong>: <input type="text" id="movieUrl" value="http://seeitornot.co/@this.Model.MovieSlug" /><span id="copyButton">Copy</span><span id="copySuccess">Copied to clipboard!</span>

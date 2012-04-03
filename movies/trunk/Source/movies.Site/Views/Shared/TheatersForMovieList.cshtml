@@ -1,0 +1,17 @@
+﻿@model movies.Model.PostalCode
+@using movies.Model
+
+@foreach (var theater in this.Model.theaters)
+{
+    <h2>@theater.name</h2>
+    <p>@this.Html.Raw(theater.movie.showtimesHtml)</p>
+}
+
+
+
+
+
+
+
+
+

@@ -87,6 +87,8 @@
     <Content Include="Content\bg.png" />
     <Content Include="Content\common.css" />
     <Content Include="Content\favicon.jpg" />
+    <Content Include="Content\Images\ajax-loader-blue-ribbon.gif" />
+    <Content Include="Content\Images\ajax-loader-gray-ribbon.gif" />
     <Content Include="Content\Images\ajax-loader.gif" />
     <Content Include="Content\Images\ajax-loader.png" />
     <Content Include="Content\Images\icons-18-black.png" />
@@ -207,6 +209,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Shared\Ratings.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Shared\TheatersForMovieList.cshtml" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />

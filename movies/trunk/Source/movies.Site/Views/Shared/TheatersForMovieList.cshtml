@@ -1,7 +1,7 @@
-﻿@model movies.Model.PostalCode
+﻿@model List<movies.Model.PostalCode.Theater>
 @using movies.Model
 
-@foreach (var theater in this.Model.theaters)
+@foreach (var theater in this.Model)
 {
     <h2>@theater.name</h2>
     if (theater.movies.Count == 1)

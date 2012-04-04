@@ -43,16 +43,22 @@ namespace movies.Site.Controllers
             // add to filtered theater list
             foreach (var theater in postalCode.theaters)
             {
-                theater.movies = theater.movies.Where(x => x.id == rtMovieId).ToList();
-                if (theater.movies.Any())
+                if (theater.movies.Where(x => x.id == rtMovieId).ToList().Any())
                 {
-                    filteredTheaters.Add(theater);
+                    filteredTheaters.Add(new PostalCode.Theater
+                    {
+                        address = theater.address,
+                        id = theater.id,
+                        mapUrl = theater.mapUrl,
+                        movies = theater.movies.Where(x => x.id == rtMovieId).ToList(),
+                        name = theater.name,
+                        theaterUrl = theater.theaterUrl
+                    });
                 }
             }
 
             // set return val's theater list to filtered list
-            postalCode.theaters = filteredTheaters;
-            return PartialView("TheatersForMovieList", postalCode);
+            return PartialView("TheatersForMovieList", filteredTheaters);
         }
     }
 }

@@ -25,7 +25,7 @@
 <p class="links">
     <a href="@(this.Model.links.alternate)trailers" target="_blank" class="trailerLink">Trailer</a>
     <a href="@this.Model.ParentalGuideUrl" target="_blank" class="parentalGuideLink">Parental Guide</a>
-    <a href="#" class="showtimesLink">Showtimes</a>
+    @if (this.Model.IsReleased) {<a href="#" class="showtimesLink">Showtimes</a>}
     @if (!this.Model.IsReleased) // if it's not released, then the ratings will NOT show up, and the ratings are also links to RT.com and IMDb.com. therefore, provide them here for the user
     {
     <a href="@this.Model.links.alternate" target="_blank">RottenTomatoes.com Link</a>

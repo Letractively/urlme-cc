@@ -4,7 +4,18 @@
 @foreach (var theater in this.Model.theaters)
 {
     <h2>@theater.name</h2>
-    <p>@this.Html.Raw(theater.movie.showtimesHtml)</p>
+    if (theater.movies.Count == 1)
+    {
+        <p>@this.Html.Raw(theater.movies.ElementAt(0).showtimesHtml)</p>
+    }
+    else
+    {
+        foreach (var movie in theater.movies)
+        {
+            <h3>@movie.title</h3>
+            <p>@this.Html.Raw(movie.showtimesHtml)</p>
+        }        
+    }
 }
 
 

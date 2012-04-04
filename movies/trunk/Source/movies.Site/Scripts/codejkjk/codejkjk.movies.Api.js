@@ -15,7 +15,7 @@ codejkjk.movies.Api = {
     },
     GetTheatersForMovie: function (dateStr, zip, rtMovieId, callback) {
         // first, check cache
-        var cacheKey = "flixster-{0}-{1}-{2}".format(dateStr, zip);
+        var cacheKey = "flixster-{0}-{1}-{2}".format(dateStr, zip, rtMovieId);
         var cached = $.cacheItem(cacheKey);
         if (cached && codejkjk.movies.Defaults.AllowCache) {
             return callback(cached);

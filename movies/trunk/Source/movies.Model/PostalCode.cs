@@ -34,7 +34,6 @@ namespace movies.Model
             public string address { get; set; }
             public string mapUrl { get; set; }
             public string theaterUrl { get; set; }
-            public Model.PostalCode.Movie movie { get; set; } // in case we're filtering on just one movie
             public List<Model.PostalCode.Movie> movies { get; set; }
         }
 
@@ -95,6 +94,7 @@ namespace movies.Model
                         {
                             // parse out rt movie id
                             var movieHrefNode = showtimeDiv.SelectSingleNode("h3/a");
+                            string movieTitle = movieHrefNode.InnerHtml.Trim();
                             string rtMovieId = movieHrefNode.Attributes["href"].Value.Substring(movieHrefNode.Attributes["href"].Value.LastIndexOf("/") + 1);
                             var fullMovie = Model.Movie.GetRottenTomatoesMovie(rtMovieId);
 
@@ -117,7 +117,7 @@ namespace movies.Model
                                 movieSlug = fullMovie.MovieSlug,
                                 mpaaRating = fullMovie.mpaa_rating,
                                 showtimesHtml = fullMovie.ShowtimesHtml,
-                                title = fullMovie.title,
+                                title = movieTitle,
                                 imdbClass = fullMovie.IMDbClass,
                                 imdbQ = fullMovie.IMDbQ
                             };

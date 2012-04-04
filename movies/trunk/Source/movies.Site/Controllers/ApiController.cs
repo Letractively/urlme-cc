@@ -43,10 +43,9 @@ namespace movies.Site.Controllers
             // add to filtered theater list
             foreach (var theater in postalCode.theaters)
             {
-                var movie = theater.movies.SingleOrDefault(x => x.id == rtMovieId);
-                if (movie != null)
+                theater.movies = theater.movies.Where(x => x.id == rtMovieId).ToList();
+                if (theater.movies.Any())
                 {
-                    theater.movie = movie;
                     filteredTheaters.Add(theater);
                 }
             }

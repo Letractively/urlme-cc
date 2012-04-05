@@ -21,8 +21,8 @@ namespace urlme.Site.Controllers
                 case CrudLinkResults.Success:
                     feedback = "Success!";
                     break;
-                case CrudLinkResults.PathAlreadyExists:
-                    feedback = "Error: path already exists.";
+                case CrudLinkResults.PathAlreadyExistsByOwner:
+                    feedback = "Alert: path already exists.";
                     break;
                 case CrudLinkResults.InsufficientInput:
                     feedback = "Error: please provide both.";

@@ -148,7 +148,7 @@ namespace urlme.Model
                 else
                 {
                     // red light. link already exists
-                    ret = CrudLinkResults.PathAlreadyExists;
+                    ret = CrudLinkResults.PathAlreadyExistsByOwner;
                 }
             }
             return ret;

@@ -76,6 +76,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LinkController.cs" />
     <Compile Include="Controllers\MailController.cs" />
+    <Compile Include="Controllers\ObjectController.cs" />
     <Compile Include="Controllers\ServiceController.cs" />
     <Compile Include="Controllers\StatsController.cs" />
     <Compile Include="Global.asax.cs">
@@ -112,6 +113,7 @@
     <Content Include="Scripts\codejkjk.urlme.Bookmarklet.js" />
     <Content Include="Scripts\codejkjk.urlme.LinkList.js" />
     <Content Include="Scripts\codejkjk.urlme.HomeIndex.js" />
+    <Content Include="Scripts\codejkjk.SiteActions.js" />
     <Content Include="Scripts\jquery-1.7.1.min.js" />
     <Content Include="Scripts\jquery.blockUI.js" />
     <Content Include="Scripts\jquery.dataTables.min.js" />

@@ -14,7 +14,8 @@ namespace urlme.Model.Enums
         [StringValue("Error. Please try again.")]
         Failure,
         [StringValue("Error: path already exists.")]
-        PathAlreadyExists,
+        PathAlreadyExistsByOwner,
+        PathAlreadyExistsByNonOwner,
         [StringValue("Error: please provide both.")]
         InsufficientInput
     }

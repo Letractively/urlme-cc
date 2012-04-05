@@ -9,6 +9,7 @@
     <link href="<%= this.Html.ResolveClientUrl("~/Content/smoothness/jquery-ui-1.8.5.custom.css") %>" rel="stylesheet" type="text/css" />
     <script src="<%= this.Html.ResolveClientUrl("~/Scripts/jquery-1.7.1.min.js") %>"></script>
     <script src="<%= this.Html.ResolveClientUrl("~/Scripts/codejkjk.js") %>"></script>
+    <script src="<%= this.Html.ResolveClientUrl("~/Scripts/codejkjk.SiteActions.js") %>"></script>
     <script src="<%= this.Html.ResolveClientUrl("~/Scripts/plugins/zeroclipboard/zeroclipboard.js") %>"></script>
     <script type="text/javascript">
         ZeroClipboard.setMoviePath('<%= this.Html.ResolveClientUrl("~/Scripts/plugins/zeroclipboard/zeroclipboard.swf") %>');

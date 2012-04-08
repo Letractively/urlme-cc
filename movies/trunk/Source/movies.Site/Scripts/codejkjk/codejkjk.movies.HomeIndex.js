@@ -15,8 +15,6 @@
 // - movie details popup - make % fonts similar to movie listings page (all bold, blue links)
 // - movie details page, make overlay visible and popup visible on load so it doesn't take a sec to popup
 // - movie details pages, make these links and not div.show()'s
-// - smoother experience for when user clicks on logo 
-// - button for View Trailer on movie details popup - gray, yellow, or green. similar to Copy button?
 // - no more "Top Box Office," instead, "In theaters", AND mark recent movies with Just Released - Today / 2 Days Ago (maybe w/ a star or an icon??)
 // - hide "poster not found" movies
 
@@ -27,7 +25,7 @@ codejkjk.movies.HomeIndex = {
         , BoxOfficeView: function () { return $("#boxOfficeView"); }
         , ChangeCurrentZipLink: function () { return $("#changeCurrentZipLink"); }
         , ChangeOptionsContainer: function () { return $("#changeOptions"); }
-        , CloseMovieDetailsLinkSelector: function () { return "#closeMovieDetailsLink"; }
+        , CloseMovieDetailsLinkSelector: function () { return ".closeMovieDetails"; }
         , CopyButton: function () { return $("#copyButton"); }
         , CopySuccess: function () { return $("#copySuccess"); }
         , CurrentNavItem: function () { return $("nav > a.selected"); }
@@ -50,9 +48,9 @@ codejkjk.movies.HomeIndex = {
         , MovieUrl: function () { return $("#movieUrl"); }
         , Nav: function () { return $("nav"); }
         , NavLinks: function () { return $("nav > a"); }
-        , NavTemplate: function () { return $("#navTemplate"); }
         , NewZipCodeInput: function () { return codejkjk.movies.HomeIndex.Controls.ChangeOptionsContainer().find("input[type=text]"); }
         , Overlay: function () { return $("#overlay"); }
+        , OverlaySelector: function () { return "#overlay"; }
         , RemoveLinks: function () { return $(".actions").find(".removeLink"); }
         , SearchBox: function () { return $("#q"); }
         , SearchResultsView: function () { return $("#searchResultsView"); }
@@ -62,6 +60,7 @@ codejkjk.movies.HomeIndex = {
         , ShowtimeDayLinksSelector: function () { return ".showtimeDays > a"; }
         , ShowtimeDayLinksContainer: function () { return $(".showtimeDays"); }
         , ShowtimesLinks: function () { return $(".showtimesLink"); }
+        , ShowtimesLinksSelector: function () { return ".showtimesLink"; }
         , TheatersForMovieList: function () { return $("#theatersForMovieList"); }
         , TheaterLinksSelector: function () { return ".theaterList > a"; }
         , TheaterList: function () { return $("#theaterList"); }
@@ -102,15 +101,14 @@ codejkjk.movies.HomeIndex = {
     },
 
     Init: function () {
-        if (typeof localStorage == 'undefined' || !navigator.geolocation) {
+        // check if browser can support this site
+        var History = window.History;
+        if (typeof localStorage == 'undefined' || !navigator.geolocation || !History.enabled) {
             document.writeln("Please use a more recent browser to view this site.  I recommend <a href='http://www.google.com/chrome'>Chrome</a>.");
             return;
         }
 
-        codejkjk.movies.HomeIndex.BuildNav();
-
         codejkjk.movies.HomeIndex.BindControls();
-
         codejkjk.movies.HomeIndex.RegisterJsRenderHelpers();
 
         // *** load showtimes view ***
@@ -119,12 +117,57 @@ codejkjk.movies.HomeIndex = {
         codejkjk.movies.HomeIndex.Controls.CurrentZip().html(codejkjk.movies.HomeIndex.Currents.ZipCode());
         codejkjk.movies.Api.GetTheaters(codejkjk.movies.HomeIndex.Controls.CurrentShowtimeDay().val(), codejkjk.movies.HomeIndex.Currents.ZipCode(), codejkjk.movies.HomeIndex.LoadTheaters);
 
-        // load the view that's selected (remembered)
-        codejkjk.movies.HomeIndex.Controls.CurrentNavItem().trigger('click');
+        // setup History
+        // handle any state changes
+        History.Adapter.bind(window, 'statechange', function () {
+            var state = History.getState();
+            codejkjk.movies.HomeIndex.HandlePushState(state.url);
+        });
 
-        // if we have a movie overlay to show, show it; showMovieOverlay is a bool set in js-referencing view
-        if (showMovieOverlay) {
-            codejkjk.movies.HomeIndex.ShowMovieDetails();
+        // handle "a" clicks - prevent their default and isntead push state
+        $("a").click(function (e) {
+            e.preventDefault();
+            History.pushState(null, null, $(this).attr("href"));
+        });
+
+        // handle this page's load
+        var initState = History.getState();
+        codejkjk.movies.HomeIndex.HandlePushState(initState.url);
+    },
+
+    ShowSection: function (path) {
+        // primary nav change
+        // clear out search val if user previously searched for something
+        codejkjk.movies.HomeIndex.Controls.SearchBox().val("");
+
+        var link = codejkjk.movies.HomeIndex.Controls.Nav().find("a[href='{0}']".format(path)); // logo does not have inner html, which is what we use later to select view to show
+        codejkjk.movies.HomeIndex.Controls.NavLinks().removeClass("selected glowing rounded");
+        link.addClass("selected glowing rounded");
+        codejkjk.movies.HomeIndex.Controls.Views().hide();
+
+        // show view
+        $('section[data-navitemtext="{0}"]'.format(link.html())).show();
+    },
+
+    HandlePushState: function (url) {
+        var paths = url.replace('//', '').split('/');
+        var firstPath = '/' + paths[1]; // "", "comingsoon", "showtimes" (all navs), or "hunger-games" (movie)
+        if (firstPath === "/" || firstPath === "/comingsoon" || firstPath === "/showtimes") {
+            codejkjk.movies.HomeIndex.ShowSection(firstPath);
+        }
+        else {
+            // movie details link
+            if (showMovieOverlay) {
+                // movie details is already in dom, b/c user went to movie link directly
+                codejkjk.movies.HomeIndex.ShowSection("/");
+                codejkjk.movies.HomeIndex.ShowMovieDetails();
+            } else {
+                // user went to movie link by clicking on a poster, so ajax-load it
+                codejkjk.movies.Api.GetMovieHtml(paths[2], function (html) {
+                    codejkjk.movies.HomeIndex.Controls.MovieDetails().html(html);
+                    codejkjk.movies.HomeIndex.ShowMovieDetails();
+                });
+            }
         }
     },
 
@@ -164,24 +207,6 @@ codejkjk.movies.HomeIndex = {
                 return favoriteTheaters.indexOf(theaterId.toString()) >= 0 ? "lit" : "default";
             }
         });
-    },
-
-    BuildNav: function () {
-        // build nav
-        var navItems = [{ text: "What's Hot" }, { text: "Showtimes" }, { text: "Coming Soon"}];
-        var currentNavItem = localStorage.getItem("View") || navItems[0].text;
-        $.each(navItems, function (i, navItem) {
-            navItem.className = navItem.text == currentNavItem ? "selected glowing rounded" : "";
-        });
-
-        codejkjk.movies.HomeIndex.Controls.Nav().html(
-            codejkjk.movies.HomeIndex.Controls.NavTemplate().render(navItems)
-        );
-
-        // if for whatever reason there is not a current nav item, set the first to be it
-        if (codejkjk.movies.HomeIndex.Controls.CurrentNavItem().length == 0) {
-            codejkjk.movies.HomeIndex.Controls.DefaultNavItem().addClass("selected glowing rounded");
-        }
     },
 
     BuildShowtimeDayLinks: function () {
@@ -321,7 +346,7 @@ codejkjk.movies.HomeIndex = {
         var overlayHeight = $(document).height() + "px";
         var overlayWidth = $(document).width() + "px";
         codejkjk.movies.HomeIndex.Controls.Overlay().css("height", overlayHeight).css("width", overlayWidth).show();
-        codejkjk.movies.HomeIndex.Controls.MovieDetails().show(); //html(
+        codejkjk.movies.HomeIndex.Controls.MovieDetails().show();
 
         var clip = new ZeroClipboard.Client();
         clip.setText(codejkjk.movies.HomeIndex.Controls.MovieUrl().val());
@@ -330,17 +355,9 @@ codejkjk.movies.HomeIndex = {
         clip.addEventListener('complete', function (client, text) {
             codejkjk.movies.HomeIndex.Controls.CopySuccess().show().delay(2500).fadeOut('fast');
         });
-        // });
     },
 
     BindControls: function () {
-        // handle logo click, which will trigger click of first tab
-        codejkjk.movies.HomeIndex.Controls.Logo().click(function (e) {
-            e.preventDefault();
-            codejkjk.movies.HomeIndex.Controls.FirstNavLink().trigger('click');
-            window.location = baseUrl;
-        });
-
         // handle favorite theater links
         $(document).on('click', codejkjk.movies.HomeIndex.Controls.FavoriteLinksSelector(), function (e) {
             e.preventDefault();
@@ -412,36 +429,11 @@ codejkjk.movies.HomeIndex = {
             codejkjk.movies.HomeIndex.Currents.HiddenTheaterMovies(hiddenTheaterMovies.join(','))
         });
 
-        // handle clicking of overlay, which should hide movie details popup
-        codejkjk.movies.HomeIndex.Controls.Overlay().click(function () {
-            //            codejkjk.movies.HomeIndex.Controls.MovieDetails().hide();
-            //            $(this).hide();
-            window.location = baseUrl;
-        });
-
-        // handle close movie details link
+        // handle close movie details link AND overlay click
         $(document).on("click", codejkjk.movies.HomeIndex.Controls.CloseMovieDetailsLinkSelector(), function (e) {
-            e.preventDefault();
-            //            codejkjk.movies.HomeIndex.Controls.Overlay().hide();
-            //            codejkjk.movies.HomeIndex.Controls.MovieDetails().hide();
-            window.location = baseUrl;
-        });
-
-        // handle nav item clicks
-        codejkjk.movies.HomeIndex.Controls.NavLinks().click(function (e) {
-            e.preventDefault();
-
-            // clear out search val if user previously searched for something
-            codejkjk.movies.HomeIndex.Controls.SearchBox().val("");
-
-            var link = $(this);
-            var navItemText = link.html();
-            codejkjk.movies.HomeIndex.Controls.NavLinks().removeClass("selected glowing rounded");
-            link.addClass("selected glowing rounded");
-            codejkjk.movies.HomeIndex.Controls.Views().hide();
-            $('[data-navitemtext="{0}"]'.format(navItemText)).show();
-            // store this nav tab, so it opens on this one next time user visits this site
-            localStorage.setItem("View", link.html());
+            codejkjk.movies.HomeIndex.Controls.Overlay().hide();
+            codejkjk.movies.HomeIndex.Controls.MovieDetails().hide();
+            codejkjk.movies.HomeIndex.Controls.CurrentNavItem().trigger('click');
         });
 
         // handle showtime day link clicks (Today, Tomorrow, etc)
@@ -460,7 +452,7 @@ codejkjk.movies.HomeIndex = {
         });
 
         // handle showtimes links on movie detail popups
-        codejkjk.movies.HomeIndex.Controls.ShowtimesLinks().click(function (e) {
+        $(document).on('click', codejkjk.movies.HomeIndex.Controls.ShowtimesLinksSelector(), function (e) {
             e.preventDefault();
             var link = $(this);
             var theaterList = codejkjk.movies.HomeIndex.Controls.TheatersForMovieList();

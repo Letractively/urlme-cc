@@ -28,6 +28,13 @@ namespace movies.Site.Controllers
             return this.Json(Movie.GetRottenTomatoesMovie(rtMovieId), JsonRequestBehavior.AllowGet);
         }
 
+        public ActionResult GetMovieHtml(string rtMovieId)
+        {
+            var movie = Model.Movie.GetRottenTomatoesMovie(rtMovieId);
+
+            return PartialView("MovieDetails", movie);
+        }
+
         [HttpGet]
         public JsonResult GetPostalCode(string date, string zip)
         {

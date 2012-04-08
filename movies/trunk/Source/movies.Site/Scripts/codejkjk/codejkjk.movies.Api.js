@@ -56,6 +56,17 @@ codejkjk.movies.Api = {
         var url = "{0}get_rt_movie.json/{1}".format(codejkjk.movies.Api.BaseUrl, rtMovieId);
         codejkjk.movies.Api.AjaxGetMovie(url, callback, cacheKey);
     },
+    GetMovieHtml: function (rtMovieId, callback) {
+        // first, check cache
+        var cacheKey = "rt-html-{0}".format(rtMovieId);
+        var cached = $.cacheItem(cacheKey);
+        if (cached && codejkjk.movies.Defaults.AllowCache) {
+            return callback(cached);
+        }
+
+        var url = "{0}get_rt_movie.html/{1}".format(codejkjk.movies.Api.BaseUrl, rtMovieId);
+        codejkjk.movies.Api.AjaxGet(url, callback, 'html', cacheKey);
+    },
     AjaxGet: function (url, callback, responseDataType, cacheKey) {
         $.ajax({
             url: url,

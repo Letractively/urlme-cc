@@ -3,7 +3,7 @@
 
 <input type="hidden" id="currentRtMovieId" value="@this.Model.id" />
 <div class="topHalf">
-    <a href="#" id="closeMovieDetailsLink">Close</a>
+    <span class="closeMovieDetails">Close</span>
     <img class="poster rounded" src="@this.Model.posters.detailed" />
     <p class="ratingAndLength"><span class='mpaaRating'>@this.Model.mpaa_rating</span>@this.Model.Duration</p>
     @if (this.Model.IsReleased) {

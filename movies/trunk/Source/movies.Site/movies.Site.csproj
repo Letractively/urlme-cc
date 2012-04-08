@@ -145,6 +145,7 @@
     <Content Include="Scripts\jquery-1.7.1.min.js" />
     <Content Include="Scripts\jquery.mobile-1.0.1.min.js" />
     <Content Include="Scripts\Plugins\date.js" />
+    <Content Include="Scripts\Plugins\jquery.history.js" />
     <Content Include="Scripts\Plugins\jquery.mask.min.js" />
     <Content Include="Scripts\Plugins\jsrender.js" />
     <Content Include="Scripts\Plugins\zeroclipboard\test.html" />

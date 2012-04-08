@@ -20,7 +20,7 @@ namespace movies.Site.Controllers
                 return View("Index", vm);
             }
             else
-            {
+            { // desktop
                 var vm = new ViewModels.Home.Index
                 {
                     OpeningMovies = Movie.GetMovies(Enumerations.MovieLists.Opening),
@@ -28,9 +28,7 @@ namespace movies.Site.Controllers
                     InTheatersMovies = Movie.GetMovies(Enumerations.MovieLists.InTheaters),
                     UpcomingMovies = Movie.GetMovies(Enumerations.MovieLists.Upcoming),
 
-                    OverlayMovie = Model.Movie.GetRottenTomatoesMovie(rtMovieId),
-                    UseAjaxForLinks = true,
-                    PrefetchLinks = false
+                    OverlayMovie = Model.Movie.GetRottenTomatoesMovie(rtMovieId)
                 };
                 return View("~/views/home/index.cshtml", vm);
             }

@@ -14,10 +14,14 @@
 
 <div id="container">
     <header>
-        <a id="logo" href="#"></a>
+        <a id="logo" class="logo" href="~/"></a>
         <div id="fbLikeContainer"><div class="fb-like" data-href="http://www.facebook.com/SeeItOrNot" data-send="false" data-layout="button_count" data-width="75" data-show-faces="false" data-font="arial"></div></div>
         <div id="navAndSearch">
-            <nav></nav>
+            <nav>
+                <a href="~/">What's Hot</a>
+                <a href="~/showtimes">Showtimes</a>
+                <a href="~/comingsoon">Coming Soon</a>
+            </nav>
             <input class="rounded glowing" id="q" type="text" placeholder="search + enter" />
         </div>
     </header>
@@ -57,12 +61,12 @@
     <section id="searchResultsView" class="content movieList rounded">
     </section>
 
+    <!-- MOVIE DETAILS -->
+    <section id="movieDetails" class="rounded gradient">
     @if (this.Model.OverlayMovie != null)
     {
-        <!-- MOVIE DETAILS -->
-        <section id="movieDetails" class="rounded gradient">
-            @this.Html.Partial("MovieDetails", this.Model.OverlayMovie)
-        </section>
-        <div id="overlay"></div>        
+        this.Html.RenderPartial("MovieDetails", this.Model.OverlayMovie);
     }
+    </section>
+    <div id="overlay" class="closeMovieDetails"></div>
 </div>

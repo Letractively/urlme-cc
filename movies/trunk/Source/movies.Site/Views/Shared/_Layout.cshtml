@@ -40,9 +40,6 @@
     </script>
     @RenderBody()
 
-    <script id="navTemplate" type="text/x-jquery-tmpl">
-        <a href="#" class="{{=className}}">{{=text}}</a>
-    </script>
     <script id="favoriteTheaterListTemplate" type="text/x-jquery-tmpl">
         {{#if $ctx.IsCurrentTheater(id) }}
             <a class="selected glowing" href="/#/ZipCode/theater/{{=id}}" data-theaterid="{{=id}}">

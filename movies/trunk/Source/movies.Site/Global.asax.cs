@@ -35,6 +35,12 @@ namespace movies
             );
 
             routes.MapRoute(
+                "Api-Get_Movie_Html", // Route name
+                "api/get_rt_movie.html/{rtMovieId}", // URL with parameters
+                new { controller = "Api", action = "GetMovieHtml" } // Parameter defaults
+            );
+
+            routes.MapRoute(
                 "Api-Search_Movies", // Route name
                 "api/search_movies.html", // URL with parameters
                 new { controller = "Api", action = "SearchMovies" } // Parameter defaults
@@ -53,16 +59,29 @@ namespace movies
             );
 
             routes.MapRoute(
-                "Mobile-Showtimes", // Route name
+                "Home-Showtimes", // Route name
                 "showtimes", // URL with parameters
-                new { controller = "Home", action = "Showtimes" } // Parameter defaults
+                new { controller = "Home", action = "Index" } // Parameter defaults
             );
 
             routes.MapRoute(
-                "Mobile-ComingSoon", // Route name
+                "Home-ComingSoon", // Route name
                 "comingsoon", // URL with parameters
-                new { controller = "Home", action = "ComingSoon" } // Parameter defaults
-            );
+                new { controller = "Home", action = "Index" } // Parameter defaults
+            );            
+            
+            // TODO: re-enable mobile routes
+            //routes.MapRoute(
+            //    "Mobile-Showtimes", // Route name
+            //    "showtimes", // URL with parameters
+            //    new { controller = "Home", action = "Showtimes" } // Parameter defaults
+            //);
+
+            //routes.MapRoute(
+            //    "Mobile-ComingSoon", // Route name
+            //    "comingsoon", // URL with parameters
+            //    new { controller = "Home", action = "ComingSoon" } // Parameter defaults
+            //);
 
             routes.MapRoute(
                 "Task-CacheImdbData", // Route name
@@ -114,18 +133,6 @@ namespace movies
             BundleTable.Bundles.Add(mobileCssBundle);
 
             var desktopJsBundle = new Bundle("~/desktop-js-bundle", new JsMinify());
-            //var desktopBootstrap = new BundleFileSetOrdering("desktopbootstrap");
-            //desktopBootstrap.Files.Add("~/scripts/jquery-1.7.1.min.js");
-            //desktopBootstrap.Files.Add("~/scripts/codejkjk/codejkjk.js");
-            //desktopBootstrap.Files.Add("~/scripts/codejkjk/codejkjk.movies.Defaults.js");
-            //desktopBootstrap.Files.Add("~/scripts/codejkjk/codejkjk.movies.Api.js");
-            //desktopBootstrap.Files.Add("~/scripts/codejkjk/codejkjk.Geo.js");
-            //desktopBootstrap.Files.Add("~/scripts/plugins/date.js");
-            //desktopBootstrap.Files.Add("~/scripts/plugins/jsrender.js");
-            //desktopBootstrap.Files.Add("~/externals/local-cache/local-cache.js");
-            //desktopBootstrap.Files.Add("~/scripts/plugins/zeroclipboard/zeroclipboard.js");
-            //desktopBootstrap.Files.Add("~/scripts/plugins/jquery.mask.min.js");
-            
             desktopJsBundle.AddFile("~/scripts/jquery-1.7.1.min.js");
             desktopJsBundle.AddFile("~/scripts/codejkjk/codejkjk.js");
             desktopJsBundle.AddFile("~/scripts/codejkjk/codejkjk.movies.Defaults.js");
@@ -136,10 +143,8 @@ namespace movies
             desktopJsBundle.AddFile("~/externals/local-cache/local-cache.js");
             desktopJsBundle.AddFile("~/scripts/plugins/zeroclipboard/zeroclipboard.js");
             desktopJsBundle.AddFile("~/scripts/plugins/jquery.mask.min.js");
+            desktopJsBundle.AddFile("~/scripts/plugins/jquery.history.js");
             BundleTable.Bundles.Add(desktopJsBundle);
-            //BundleTable.Bundles.FileSetOrderList.Add(desktopBootstrap);
-            //desktopJsBundle.AddDirectory(
-            //BundleTable.Bundles.Add(desktopBootstrap);
 
             var desktopCssBundle = new Bundle("~/desktop-css-bundle", new CssMinify());
             desktopCssBundle.AddFile("~/content/common.css");

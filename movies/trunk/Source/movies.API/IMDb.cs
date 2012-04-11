@@ -11,7 +11,7 @@
             imdbMovieId = imdbMovieId.Replace("tt", "");
 
             string url = string.Format("{0}{1}", BaseUrl2, imdbMovieId);
-            return Core.Net.HttpWebRequest.GetResponse(url);
+            return Core.Net.HttpWebRequest.GetResponse(url).Replace("{\"code\":2,\"error\":\"Exceeded API usage limit\"}", "");
         }
 
         public static string GetParentalGuideUrl(string imdbMovieId)

@@ -22,6 +22,7 @@ codejkjk.movies.HomeIndex = {
     // page elements
     Controls: {
         ActionLinks: function () { return $(".actions").find("a"); }
+        , BackToMovieDetailsLinkSelector: function () { return "#backToMovieDetails"; }
         , BoxOfficeView: function () { return $("#boxOfficeView"); }
         , ChangeCurrentZipLink: function () { return $("#changeCurrentZipLink"); }
         , ChangeOptionsContainer: function () { return $("#changeOptions"); }
@@ -43,8 +44,10 @@ codejkjk.movies.HomeIndex = {
         , HideMovieLinksSelector: function () { return ".hideMovieLink"; }
         , IMDbMoviesNotSet: function () { return $(".imdbNotSet"); }
         , Logo: function () { return $("#logo"); }
+        , MovieDetailsPopup: function () { return $("#movieDetailsPopup"); }
         , MovieDetails: function () { return $("#movieDetails"); }
         , MovieListTemplate: function () { return $("#movieListTemplate"); }
+        , MovieShowtimes: function () { return $("#movieShowtimes"); }
         , MovieUrl: function () { return $("#movieUrl"); }
         , Nav: function () { return $("nav"); }
         , NavLinks: function () { return $("nav > a"); }
@@ -125,7 +128,7 @@ codejkjk.movies.HomeIndex = {
         });
 
         // handle "a" clicks - prevent their default and isntead push state
-        $("a").click(function (e) {
+        $("a:not(.noPush)").click(function (e) {
             e.preventDefault();
             History.pushState(null, null, $(this).attr("href"));
         });
@@ -157,14 +160,14 @@ codejkjk.movies.HomeIndex = {
         }
         else {
             // movie details link
-            if (showMovieOverlay) {
+            if (codejkjk.movies.HomeIndex.Currents.RtMovieId()) {
                 // movie details is already in dom, b/c user went to movie link directly
                 codejkjk.movies.HomeIndex.ShowSection("/");
                 codejkjk.movies.HomeIndex.ShowMovieDetails();
             } else {
                 // user went to movie link by clicking on a poster, so ajax-load it
                 codejkjk.movies.Api.GetMovieHtml(paths[2], function (html) {
-                    codejkjk.movies.HomeIndex.Controls.MovieDetails().html(html);
+                    codejkjk.movies.HomeIndex.Controls.MovieDetailsPopup().html(html);
                     codejkjk.movies.HomeIndex.ShowMovieDetails();
                 });
             }
@@ -346,7 +349,7 @@ codejkjk.movies.HomeIndex = {
         var overlayHeight = $(document).height() + "px";
         var overlayWidth = $(document).width() + "px";
         codejkjk.movies.HomeIndex.Controls.Overlay().css("height", overlayHeight).css("width", overlayWidth).show();
-        codejkjk.movies.HomeIndex.Controls.MovieDetails().show();
+        codejkjk.movies.HomeIndex.Controls.MovieDetailsPopup().show();
 
         var clip = new ZeroClipboard.Client();
         clip.setText(codejkjk.movies.HomeIndex.Controls.MovieUrl().val());
@@ -432,7 +435,7 @@ codejkjk.movies.HomeIndex = {
         // handle close movie details link AND overlay click
         $(document).on("click", codejkjk.movies.HomeIndex.Controls.CloseMovieDetailsLinkSelector(), function (e) {
             codejkjk.movies.HomeIndex.Controls.Overlay().hide();
-            codejkjk.movies.HomeIndex.Controls.MovieDetails().hide();
+            codejkjk.movies.HomeIndex.Controls.MovieDetailsPopup().hide().html("");
             codejkjk.movies.HomeIndex.Controls.CurrentNavItem().trigger('click');
         });
 
@@ -451,21 +454,26 @@ codejkjk.movies.HomeIndex = {
             codejkjk.movies.HomeIndex.Controls.ChangeOptionsContainer().slideToggle('fast');
         });
 
+        // handle "back to The Hunger Games" link on movie showtimes link on movie popup
+        $(document).on('click', codejkjk.movies.HomeIndex.Controls.BackToMovieDetailsLinkSelector(), function (e) {
+            e.preventDefault();
+
+            codejkjk.movies.HomeIndex.Controls.MovieDetails().show();
+            codejkjk.movies.HomeIndex.Controls.MovieShowtimes().addClass("hidden");
+        });
+
         // handle showtimes links on movie detail popups
         $(document).on('click', codejkjk.movies.HomeIndex.Controls.ShowtimesLinksSelector(), function (e) {
             e.preventDefault();
+
             var link = $(this);
+            var movieShowtimesContainer = codejkjk.movies.HomeIndex.Controls.MovieShowtimes();
             var theaterList = codejkjk.movies.HomeIndex.Controls.TheatersForMovieList();
 
-            // if it's expanded, then simply hide it and return out of this handler
-            if (!theaterList.hasClass("hidden")) {
-                // simply collapse it
-                theaterList.addClass("hidden");
-                return;
-            }
-
-            // made it this far? then load her up !!11
-            if (!theaterList.hasClass("loaded")) {
+            if (movieShowtimesContainer.hasClass("loaded")) { // already been loaded previously, so just show it
+                codejkjk.movies.HomeIndex.Controls.MovieDetails().hide();
+                movieShowtimesContainer.removeClass("hidden");
+            } else {
                 // first thing, add loading class
                 link.addClass("loading");
                 codejkjk.Geo.GetZipCode(function (zipCode) {
@@ -474,12 +482,10 @@ codejkjk.movies.HomeIndex = {
 
                         // remove loading class
                         link.removeClass("loading");
-                        theaterList.removeClass("hidden");
-                        theaterList.addClass("loaded");
+                        codejkjk.movies.HomeIndex.Controls.MovieDetails().hide();
+                        movieShowtimesContainer.removeClass("hidden").addClass("loaded");
                     });
                 });
-            } else { // already been loaded previously, so just show it
-                theaterList.removeClass("hidden");
             }
         });
 

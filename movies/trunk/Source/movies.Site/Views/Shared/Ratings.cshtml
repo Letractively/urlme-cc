@@ -1,9 +1,9 @@
 ﻿@model movies.Site.ViewModels.Shared.Ratings
 
 <p class="ratings @this.Model.RatingSize.ToString()">
-    <a class="rtLink" href="@this.Model.Movie.links.alternate">
-        <span data-rtratingtitle="@this.Model.Movie.ratings.critics_rating" class="rottenTomato icon"></span><span class="text">@this.Model.Movie.ratings.critics_score</span>
-        <span data-rtratingtitle="@this.Model.Movie.ratings.audience_rating" class="rottenTomato icon"></span><span class="text">@this.Model.Movie.ratings.audience_score</span>
+    <a href="@this.Model.Movie.links.alternate">
+        <span data-rtratingtitle="@this.Model.Movie.ratings.critics_rating" class="rottenTomato icon"></span><span class="rt text">@this.Model.Movie.ratings.critics_score</span>
+        <span data-rtratingtitle="@this.Model.Movie.ratings.audience_rating" class="rottenTomato icon"></span><span class="rt text">@this.Model.Movie.ratings.audience_score</span>
     </a>
     <a class="imdbLink" href="@this.Model.Movie.IMDbMovieUrl">
         <span class='imdb icon'></span><span class="text">@this.Model.Movie.IMDbRating</span>

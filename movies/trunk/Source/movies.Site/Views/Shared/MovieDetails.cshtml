@@ -1,40 +1,43 @@
 ﻿@model movies.Model.Movie
 @using movies.Model
 
-<input type="hidden" id="currentRtMovieId" value="@this.Model.id" />
-<div class="topHalf">
-    <span class="closeMovieDetails">Close</span>
-    <img class="poster rounded" src="@this.Model.posters.detailed" />
-    <p class="ratingAndLength"><span class='mpaaRating'>@this.Model.mpaa_rating</span>@this.Model.Duration</p>
-    @if (this.Model.IsReleased) {
-        this.Html.RenderPartial("Ratings", new movies.Site.ViewModels.Shared.Ratings { Movie = this.Model, RatingSize = Enumerations.RatingSizes.medium });
-    } else {
-        <p class="releaseDate">@this.Model.ReleaseDate</p>
-    }
-    <p class="description">@this.Model.synopsis</p>
-    <p class="starring">
-        <strong>Starring</strong>: 
-        @{ int i = 0; }
-        @foreach (var ac in this.Model.abridged_cast)
+<div id="movieDetails">
+    <input type="hidden" id="currentRtMovieId" value="@this.Model.id" />
+    <div class="topHalf">
+        <span class="closeMovieDetails">Close</span>
+        <img class="poster rounded" src="@this.Model.posters.detailed" />
+        <p class="ratingAndLength"><span class='mpaaRating'>@this.Model.mpaa_rating</span>@this.Model.Duration</p>
+        @if (this.Model.IsReleased) {
+            this.Html.RenderPartial("Ratings", new movies.Site.ViewModels.Shared.Ratings { Movie = this.Model, RatingSize = Enumerations.RatingSizes.medium });
+        } else {
+            <p class="releaseDate">@this.Model.ReleaseDate</p>
+        }
+        <p class="description">@this.Model.synopsis</p>
+        <p class="starring">
+            <strong>Starring</strong>: 
+            @{ int i = 0; }
+            @foreach (var ac in this.Model.abridged_cast)
+            {
+                @(i == 0 ? ac.name : ", " + ac.name)
+                i++;
+            }
+        </p>
+    </div>
+    <p class="links">
+        <a href="@(this.Model.links.alternate)trailers" target="_blank" class="trailerLink">Trailer</a>
+        <a href="@this.Model.ParentalGuideUrl" target="_blank" class="parentalGuideLink">Parental Guide</a>
+        @if (this.Model.IsReleased) {<a href="#" class="showtimesLink">Showtimes</a>}
+        @if (!this.Model.IsReleased) // if it's not released, then the ratings will NOT show up, and the ratings are also links to RT.com and IMDb.com. therefore, provide them here for the user
         {
-            @(i == 0 ? ac.name : ", " + ac.name)
-            i++;
+        <a href="@this.Model.links.alternate" target="_blank">RottenTomatoes.com Link</a>
+        <a href="@this.Model.IMDbMovieUrl" target="_blank">IMDb.com Link</a>
         }
     </p>
+    <p class="share">
+        <strong>Share</strong>: <input type="text" id="movieUrl" value="http://seeitornot.co/@this.Model.MovieSlug" /><span id="copyButton">Copy</span><span id="copySuccess">Copied to clipboard!</span>
+    </p>
 </div>
-<p class="links">
-    <a href="@(this.Model.links.alternate)trailers" target="_blank" class="trailerLink">Trailer</a>
-    <a href="@this.Model.ParentalGuideUrl" target="_blank" class="parentalGuideLink">Parental Guide</a>
-    @if (this.Model.IsReleased) {<a href="#" class="showtimesLink">Showtimes</a>}
-    @if (!this.Model.IsReleased) // if it's not released, then the ratings will NOT show up, and the ratings are also links to RT.com and IMDb.com. therefore, provide them here for the user
-    {
-    <a href="@this.Model.links.alternate" target="_blank">RottenTomatoes.com Link</a>
-    <a href="@this.Model.IMDbMovieUrl" target="_blank">IMDb.com Link</a>
-    }
-</p>
-<p id="theatersForMovieList" class="hidden">
-
-</p>
-<p class="share">
-    <strong>Share</strong>: <input type="text" id="movieUrl" value="http://seeitornot.co/@this.Model.MovieSlug" /><span id="copyButton">Copy</span><span id="copySuccess">Copied to clipboard!</span>
-</p>
+<div id="movieShowtimes" class="hidden">
+    <a id="backToMovieDetails" href="#" class="noPush">←&nbsp&nbsp;Back to @this.Model.title</a>
+    <p id="theatersForMovieList"></p>
+</div>

@@ -42,24 +42,22 @@
 
     <script id="favoriteTheaterListTemplate" type="text/x-jquery-tmpl">
         {{#if $ctx.IsCurrentTheater(id) }}
-            <a class="selected glowing" href="/#/ZipCode/theater/{{=id}}" data-theaterid="{{=id}}">
+            <a class="selected glowing noPush" href="#" data-theaterid="{{=id}}">
         {{else}}
-            <a href="/#/ZipCode/theater/{{=id}}" data-theaterid="{{=id}}">
+            <a class="noPush" href="#" data-theaterid="{{=id}}">
         {{/if}}
             <div class="favoriteLink lit"></div>
             <div class="theaterName">{{=$ctx.Snippet(name, 30)!}}</div>
-            <div class="theaterAddress">{{=address}}</div>
         </a>
     </script>
     <script id="theaterListTemplate" type="text/x-jquery-tmpl">
         {{#if $ctx.IsCurrentTheater(id) }}
-            <a class="selected glowing" href="/#/ZipCode/theater/{{=id}}" data-theaterid="{{=id}}">
+            <a class="selected glowing noPush" href="#" data-theaterid="{{=id}}">
         {{else}}
-            <a href="/#/ZipCode/theater/{{=id}}" data-theaterid="{{=id}}">
+            <a class="noPush" href="#" data-theaterid="{{=id}}">
         {{/if}}
             <div class="favoriteLink default"></div>
             <div class="theaterName">{{=$ctx.Snippet(name, 30)!}}</div>
-            <div class="theaterAddress">{{=address}}</div>
         </a>
     </script>
     <script id="currentTheaterTemplate" type="text/x-jquery-tmpl">
@@ -80,9 +78,9 @@
                     <h2>{{=title}}</h2><span class='mpaaRating'>{{=mpaaRating}}</span>{{=duration}}
                     <p class="showtimes">{{=showtimesHtml!}}</p>
                     <p class="ratings small">
-                        <span data-rtratingtitle="{{=criticsRating}}" class="rottenTomato icon"></span><span>{{=criticsScore}}</span>
-                        <span data-rtratingtitle="{{=audienceRating}}" class="rottenTomato icon"></span><span>{{=audienceScore}}</span>
-                        <span class='imdb icon'></span><span data-imdbq="{{=imdbQ}}" class="{{=imdbClass}}">{{=imdbRating}}</span>
+                        <span data-rtratingtitle="{{=criticsRating}}" class="rottenTomato icon"></span><span class="rt text">{{=criticsScore}}</span>
+                        <span data-rtratingtitle="{{=audienceRating}}" class="rottenTomato icon"></span><span class="rt text">{{=audienceScore}}</span>
+                        <span class='imdb icon'></span><span class="text">{{=IMDbRating}}</span>
                     </p>
                     <div class="actions">
                         <a href="#" class="hideMovieLink rounded" data-theatermovie="{{=$parent.parent.data.id}}-{{=id}}"><span class="x">&#10006;</span>Hide this movie</a>
@@ -91,30 +89,6 @@
                 </div>
             {{/each}}
         </div>
-    </script>
-    <script id="movieDetailsTemplate" type="text/x-jquery-tmpl">
-        <a href="#" id="closeMovieDetailsLink">Close</a>
-        <img class="poster" src="{{=posters.detailed}}" />
-        <h2>{{=title}}</h2>
-        <p class="description">{{=$ctx.Snippet(synopsis, 400)!}}</p>
-        <a href="{{=links.alternate}}trailers" target="_blank" class="trailerLink external">View trailer</a>
-        <p class="ratingAndLength"><strong>Rated</strong>: <a href="{{=ParentalGuideUrl}}" class='mpaaRating external' target='_blank' title='Link to Parents Guide on IMDb.com'>{{=mpaa_rating}}</a>{{=Duration}}</p>
-        {{#if IsReleased}}
-            <p class="ratings small">
-                <span data-rtratingtitle="{{=ratings.critics_rating}}" class="rottenTomato icon"></span><span>{{=ratings.critics_score}}</span>
-                <span data-rtratingtitle="{{=ratings.audience_rating}}" class="rottenTomato icon"></span><span>{{=ratings.audience_score}}</span>
-                <span class='imdb icon'></span><span data-imdbq="{{=IMDbQ}}" class="{{=IMDbClass}}">{{=IMDbRating}}</span>
-            </p>
-        {{else}}
-            <p class="releaseDate">{{=ReleaseDate}}</p>    
-        {{/if}}
-        <p class="starring">
-            <strong>Starring</strong>: 
-            {{#each abridged_cast}}{{#if $itemNumber == 1 }}{{=name}}{{else}}, {{=name}}{{/if}}{{/each}}
-        </p>
-        <p class="share">
-            <strong>Share</strong>: <input type="text" id="movieUrl" value="http://seeitornot.co/{{=MovieSlug}}" /><span id="copyButton">Copy</span><span id="copySuccess">Copied to clipboard!</span>
-        </p>
     </script>
 </body>
 </html>

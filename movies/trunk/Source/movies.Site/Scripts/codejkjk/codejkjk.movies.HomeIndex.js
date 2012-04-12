@@ -17,6 +17,7 @@
 // - movie details pages, make these links and not div.show()'s
 // - no more "Top Box Office," instead, "In theaters", AND mark recent movies with Just Released - Today / 2 Days Ago (maybe w/ a star or an icon??)
 // - hide "poster not found" movies
+// - get rid of "noPush" class. instead, do :not[href(startsWith)'http']
 
 codejkjk.movies.HomeIndex = {
     // page elements

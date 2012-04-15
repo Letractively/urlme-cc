@@ -1,0 +1,18 @@
+﻿@model movies.Model.Movie
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>SeeItOrNot - @Model.title</title>
+    <meta name="description" content="Movie details for @this.Model.title" />
+    <meta name="keywords" content="movie,ratings" />
+    <script type="text/javascript">
+        location.href = location.href.replace("/seo/", "/");
+    </script>
+</head>
+</html>

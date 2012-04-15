@@ -4,29 +4,41 @@
 <div id="movieDetails">
     <input type="hidden" id="currentRtMovieId" value="@this.Model.id" />
     <div class="topHalf">
-        <span class="closeMovieDetails">Close</span>
         <img class="poster rounded" src="@this.Model.posters.detailed" />
-        <p class="ratingAndLength"><span class='mpaaRating'>@this.Model.mpaa_rating</span>@this.Model.Duration</p>
-        @if (this.Model.IsReleased) {
-            this.Html.RenderPartial("Ratings", new movies.Site.ViewModels.Shared.Ratings { Movie = this.Model, RatingSize = Enumerations.RatingSizes.medium });
-        } else {
-            <p class="releaseDate">@this.Model.ReleaseDate</p>
-        }
-        <p class="description">@this.Model.synopsis</p>
-        <p class="starring">
-            <strong>Starring</strong>: 
-            @{ int i = 0; }
-            @foreach (var ac in this.Model.abridged_cast)
+        <div class="right">
+            <span class="closeMovieDetails">Close</span>
+            <h1>@this.Model.title</h1>
+            <div class="ratingAndLength">
+                <span class='mpaaRating'>@this.Model.mpaa_rating</span>
+                <span class="length">@this.Model.Duration</span>
+                <div class="fbLikeContainer"><div class="fb-like" data-href="http://seeitornot.co/seo/@this.Model.MovieSlug" data-send="false" data-layout="button_count" data-width="75" data-show-faces="false" data-font="arial"></div></div>
+            </div>
+        
+            @if (this.Model.IsReleased)
             {
-                @(i == 0 ? ac.name : ", " + ac.name)
-                i++;
+                this.Html.RenderPartial("Ratings", new movies.Site.ViewModels.Shared.Ratings { Movie = this.Model, RatingSize = Enumerations.RatingSizes.medium });
             }
-        </p>
+            else
+            {
+                <p class="releaseDate">@this.Model.ReleaseDate</p>
+            }
+            <p class="description">@this.Model.synopsis</p>
+            <p class="starring">
+                <strong>Starring</strong>: 
+                @{ int i = 0; }
+                @foreach (var ac in this.Model.abridged_cast)
+                {
+                    @(i == 0 ? ac.name : ", " + ac.name)
+                    i++;
+                }
+            </p>
+        </div>
     </div>
     <p class="links">
         <a href="@(this.Model.links.alternate)trailers" target="_blank" class="trailerLink noPush">Trailer</a>
         <a href="@this.Model.ParentalGuideUrl" target="_blank" class="parentalGuideLink noPush">Parental Guide</a>
-        @if (this.Model.IsReleased) {<a href="#" class="showtimesLink">Showtimes</a>}
+        @if (this.Model.IsReleased)
+        {<a href="#" class="showtimesLink">Showtimes</a>}
         @if (!this.Model.IsReleased) // if it's not released, then the ratings will NOT show up, and the ratings are also links to RT.com and IMDb.com. therefore, provide them here for the user
         {
         <a class="noPush" href="@this.Model.links.alternate" target="_blank">RottenTomatoes.com Link</a>

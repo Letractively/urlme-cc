@@ -166,11 +166,7 @@ codejkjk.movies.HomeIndex = {
                 codejkjk.movies.HomeIndex.ShowSection("/");
                 codejkjk.movies.HomeIndex.ShowMovieDetails();
             } else {
-                // user went to movie link by clicking on a poster, so ajax-load it
-                codejkjk.movies.Api.GetMovieHtml(paths[2], function (html) {
-                    codejkjk.movies.HomeIndex.Controls.MovieDetailsPopup().html(html);
-                    codejkjk.movies.HomeIndex.ShowMovieDetails();
-                });
+                codejkjk.movies.HomeIndex.ShowMovieDetails(paths[2]);
             }
         }
     },
@@ -346,12 +342,29 @@ codejkjk.movies.HomeIndex = {
         codejkjk.movies.Api.GetTheaters(codejkjk.movies.HomeIndex.Controls.CurrentShowtimeDay().val(), zipCode, codejkjk.movies.HomeIndex.LoadTheaters);
     },
 
-    ShowMovieDetails: function () {
+    ShowMovieDetails: function (rtMovieIdToAjaxLoad) {
+        // show overlay
         var overlayHeight = $(document).height() + "px";
         var overlayWidth = $(document).width() + "px";
         codejkjk.movies.HomeIndex.Controls.Overlay().css("height", overlayHeight).css("width", overlayWidth).show();
-        codejkjk.movies.HomeIndex.Controls.MovieDetailsPopup().show();
 
+        if (rtMovieIdToAjaxLoad) {
+            // user went to movie link by clicking on a poster, so ajax-load it
+            codejkjk.movies.HomeIndex.Controls.MovieDetailsPopup().html("<div class='loading'></div>");
+            codejkjk.movies.HomeIndex.Controls.MovieDetailsPopup().show();
+
+            codejkjk.movies.Api.GetMovieHtml(rtMovieIdToAjaxLoad, function (html) {
+                codejkjk.movies.HomeIndex.Controls.MovieDetailsPopup().html(html);
+                codejkjk.movies.HomeIndex.InitZeroClipboard();
+            });            
+        } else {
+            // movie details are already in dom, so just init zeroclipboard b/c it's ready to go
+            codejkjk.movies.HomeIndex.Controls.MovieDetailsPopup().show();
+            codejkjk.movies.HomeIndex.InitZeroClipboard();
+        }
+    },
+
+    InitZeroClipboard: function () {
         var clip = new ZeroClipboard.Client();
         clip.setText(codejkjk.movies.HomeIndex.Controls.MovieUrl().val());
         clip.glue('copyButton');

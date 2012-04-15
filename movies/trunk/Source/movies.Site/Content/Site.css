@@ -17,6 +17,7 @@ span.divider { color: #CDCDCD; font-weight: normal; margin: 0 5px; }
 .glowing { box-shadow: 2px 2px 2px #999; -webkit-box-shadow: 2px 2px 2px #999; -moz-box-shadow: 2px 2px 2px #999; }
 .rounded { border-radius: 5px; -moz-border-radius: 5px; -webkit-border-radius: 5px; }
 .rightArrow { border-top: 30px solid transparent; border-bottom: 30px solid transparent; border-left: 30px solid #C5D8E6; }
+.loading { background: url('content/images/ajax-loader-blue-ribbon.gif') no-repeat center left; width: 16px; height: 16px; display:inline-block; }
 /* orig: second hex in glowing = #eee */
 .gradient { background: white; /* fallback */
             background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#ffffff), to(#e8e8e8)); 
@@ -54,13 +55,15 @@ header { text-align:center; height: 80px; }
 
 /* styles common to both movie div in the lists and the movie details popup */
 
-#movieDetailsPopup { display:none; z-index:1002; font-size: 110%; border: 1px solid #999; padding: 25px; position: fixed; width: 590px; min-height: 268px; top: 68px; left: 50%; margin-left: -295PX; }
+#movieDetailsPopup { display:none; z-index:1002; font-size: 110%; border: 1px solid #999; padding: 25px; position: fixed; width: 590px; min-height: 346px; top: 68px; left: 50%; margin-left: -295PX; }
     #movieDetailsPopup .topHalf { overflow: auto; }
+    #movieDetailsPopup .topHalf img.poster { width: 180px; height: 267px; float: left; margin-right: 25px; }
+        #movieDetailsPopup .topHalf .right { float: left; width: 385px; }
+            #movieDetailsPopup .topHalf .right h1 { font-size: 140%; font-weight: bold; }
+            #movieDetailsPopup .topHalf .right p.description { margin-top: 12px; overflow: auto; max-height: 100px; }            
     #movieDetailsPopup a { display: inline-block; }
     #movieDetailsPopup .closeMovieDetails { cursor: pointer; font-weight:bold; text-transform:uppercase; letter-spacing:1px; float: right; /* background: url("content/content/images/icons/close.png") no-repeat scroll right top transparent; */ display:inline-block; /* padding: 0 22px 17px 20px; */ }
     #movieDetailsPopup .closeMovieDetails .x { margin-left: 6px; color: Red; }
-    #movieDetailsPopup img.poster { width: 180px; height: 267px; float: left; margin-right: 25px; }
-    #movieDetailsPopup p.description { margin-top: 12px; overflow: auto; max-height: 136px; }
     #movieDetailsPopup #movieShowtimes { }
         #movieDetailsPopup #movieShowtimes #backToMovieDetails { font-weight: bold; color: #2489CE; }
         #movieDetailsPopup #movieShowtimes #theatersForMovieList { margin-top:15px; overflow: auto; max-height: 330px; }
@@ -70,13 +73,15 @@ header { text-align:center; height: 80px; }
     #movieDetailsPopup .links { margin-top: 15px; font-weight: bold; }
         #movieDetailsPopup .links > a { color: #2489CE; height:16px; line-height: 17px; /* text-decoration: underline; */ }
         #movieDetailsPopup .links > a.trailerLink { padding-left: 22px; background: url('content/images/icons/video.png') no-repeat center left; }
-        #movieDetailsPopup .links > a.parentalGuideLink { padding-left: 22px; background: url('content/images/icons/caution.gif') no-repeat center left; }
+        #movieDetailsPopup .links > a.parentalGuideLink { padding-left: 22px; background: url('content/images/icons/caution2.png') no-repeat center left; }
         #movieDetailsPopup .links > a.showtimesLink { padding-left: 22px; background: url('content/images/icons/clock.png') no-repeat center left; }            
         #movieDetailsPopup .links > a.showtimesLink.loading { background: url('content/images/ajax-loader-blue-ribbon.gif') no-repeat center left; }
         #movieDetailsPopup .links > a:not(:last-child) { margin-right: 20px; }
-    #movieDetailsPopup .ratingAndLength { font-size: 18px; }
-        #movieDetailsPopup .ratingAndLength .mpaaRating { font-weight: bold; margin-right: 25px; }
-    #movieDetailsPopup .ratings { margin-top: 15px; overflow:auto; }
+    #movieDetailsPopup .ratingAndLength { overflow: auto; font-size: 18px; margin-top: 15px; }
+        #movieDetailsPopup .ratingAndLength .mpaaRating { font-weight: bold; margin-right: 25px; float:left; }
+        #movieDetailsPopup .ratingAndLength .length { float: left; margin-right: 25px; }
+        #movieDetailsPopup .ratingAndLength .fbLikeContainer { float: left; width: 85px; float: left; /* margin-top: 50px; margin: 30px 0 0 20px; */ /* position: fixed; top: 50px; left: 20px; */ }
+    #movieDetailsPopup .ratings { clear: left; margin-top: 15px; overflow:auto; }
     #movieDetailsPopup .releaseDate { margin-top: 15px; font-weight: bold; }
     #movieDetailsPopup .share { margin-top: 15px; }
         #movieDetailsPopup .share #copyButton { text-align: center; border: 1px solid black; background: #e8e8e8; margin-left: 5px; padding: 5px; }

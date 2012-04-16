@@ -2,15 +2,19 @@
 
 @{
     Layout = null;
+    var seoTitle = string.Format("{0} ({1}) - SeeItOrNot", Model.title, @Model.release_dates.theater.ToString("yyyy"));
+    var seoDescription = Model.synopsis;
+    var seoKeywords = "reviews, showtimes, user ratings, synopsis, trailers, credits";
 }
 
 <!DOCTYPE html>
 
 <html>
 <head>
-    <title>SeeItOrNot - @Model.title</title>
-    <meta name="description" content="Movie details for @this.Model.title" />
-    <meta name="keywords" content="movie,ratings" />
+    <title>@seoTitle</title>
+    <meta name="title" content="@seoTitle" />
+    <meta name="description" content="@seoDescription" />
+    <meta name="keywords" content="@seoKeywords" />
     <script type="text/javascript">
         location.href = location.href.replace("/seo/", "/");
     </script>

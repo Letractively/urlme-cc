@@ -355,6 +355,7 @@ codejkjk.movies.HomeIndex = {
 
             codejkjk.movies.Api.GetMovieHtml(rtMovieIdToAjaxLoad, function (html) {
                 codejkjk.movies.HomeIndex.Controls.MovieDetailsPopup().html(html);
+                FB.XFBML.parse();
                 codejkjk.movies.HomeIndex.InitZeroClipboard();
             });            
         } else {

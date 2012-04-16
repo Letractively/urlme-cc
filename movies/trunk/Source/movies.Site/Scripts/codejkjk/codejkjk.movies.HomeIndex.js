@@ -129,7 +129,7 @@ codejkjk.movies.HomeIndex = {
         });
 
         // handle "a" clicks - prevent their default and isntead push state
-        $("a:not(.noPush)").click(function (e) {
+        $(document).on('click', 'a:not(.noPush)', function (e) {
             e.preventDefault();
             History.pushState(null, null, $(this).attr("href"));
         });

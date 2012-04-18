@@ -17,7 +17,7 @@ span.divider { color: #CDCDCD; font-weight: normal; margin: 0 5px; }
 .glowing { box-shadow: 2px 2px 2px #999; -webkit-box-shadow: 2px 2px 2px #999; -moz-box-shadow: 2px 2px 2px #999; }
 .rounded { border-radius: 5px; -moz-border-radius: 5px; -webkit-border-radius: 5px; }
 .rightArrow { border-top: 30px solid transparent; border-bottom: 30px solid transparent; border-left: 30px solid #C5D8E6; }
-.loading { background: url('content/images/ajax-loader-blue-ribbon.gif') no-repeat center left; width: 16px; height: 16px; display:inline-block; }
+div.loading { background: url('content/images/ajax-loader-blue-ribbon.gif') no-repeat center left; width: 16px; height: 16px; display:inline-block; }
 /* orig: second hex in glowing = #eee */
 .gradient { background: white; /* fallback */
             background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#ffffff), to(#e8e8e8)); 

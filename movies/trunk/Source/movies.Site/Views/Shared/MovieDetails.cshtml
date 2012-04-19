@@ -37,8 +37,10 @@
     <p class="links">
         <a href="@(this.Model.links.alternate)trailers" target="_blank" class="trailerLink noPush">Trailer</a>
         <a href="@this.Model.ParentalGuideUrl" target="_blank" class="parentalGuideLink noPush">Parental Guide</a>
-        @if (this.Model.IsReleased)
-        {<a href="#" class="showtimesLink">Showtimes for Today</a>}
+        @if (this.Model.IsInTheaters)
+        {<a href="#" class="showtimesLink noPush">Showtimes for Today</a>}
+        @if (this.Model.IsAtRedBox)
+        {<a href="#" class="nearbyRedboxLink noPush">Nearby RedBox Availability</a>}                                                                  
         @if (!this.Model.IsReleased) // if it's not released, then the ratings will NOT show up, and the ratings are also links to RT.com and IMDb.com. therefore, provide them here for the user
         {
         <a class="noPush" href="@this.Model.links.alternate" target="_blank">RottenTomatoes.com Link</a>
@@ -51,6 +53,11 @@
 </div>
 <div id="movieShowtimes" class="hidden">
     <span class="closeMovieDetails">Close</span>
-    <a id="backToMovieDetails" href="#" class="noPush">←&nbsp&nbsp;Back to @this.Model.title</a>
+    <a class="backToMovieDetails" href="#" class="noPush">←&nbsp&nbsp;Back to @this.Model.title</a>
     <p id="theatersForMovieList"></p>
+</div>
+<div id="redboxAvails" class="hidden">
+    <span class="closeMovieDetails">Close</span>
+    <a class="backToMovieDetails" href="#" class="noPush">←&nbsp&nbsp;Back to @this.Model.title</a>
+    <p id="redboxAvailsList"></p>
 </div>

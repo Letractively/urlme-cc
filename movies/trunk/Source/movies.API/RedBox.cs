@@ -17,5 +17,11 @@
             string url = string.Format("{0}v3/products/movies/comingsoon?apiKey={1}", BaseUrl, ApiKey);
             return Core.Net.HttpWebRequest.GetResponse(url);
         }
+
+        public static string GetXml()
+        {
+            string url = string.Format("{0}v3/products/movies?apiKey={1}", BaseUrl, ApiKey);
+            return Core.Net.HttpWebRequest.GetResponse(url);
+        }
     }
 }

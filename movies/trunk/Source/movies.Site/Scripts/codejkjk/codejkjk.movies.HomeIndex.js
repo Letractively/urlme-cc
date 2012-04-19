@@ -23,7 +23,7 @@ codejkjk.movies.HomeIndex = {
     // page elements
     Controls: {
         ActionLinks: function () { return $(".actions").find("a"); }
-        , BackToMovieDetailsLinkSelector: function () { return "#backToMovieDetails"; }
+        , BackToMovieDetailsLinkSelector: function () { return ".backToMovieDetails"; }
         , BoxOfficeView: function () { return $("#boxOfficeView"); }
         , ChangeCurrentZipLink: function () { return $("#changeCurrentZipLink"); }
         , ChangeOptionsContainer: function () { return $("#changeOptions"); }
@@ -52,9 +52,13 @@ codejkjk.movies.HomeIndex = {
         , MovieUrl: function () { return $("#movieUrl"); }
         , Nav: function () { return $("nav"); }
         , NavLinks: function () { return $("nav > a"); }
+        , NearbyRedboxLinks: function () { return $(".nearbyRedboxLink"); }
+        , NearbyRedboxLinksSelector: function () { return ".nearbyRedboxLink"; }
         , NewZipCodeInput: function () { return codejkjk.movies.HomeIndex.Controls.ChangeOptionsContainer().find("input[type=text]"); }
         , Overlay: function () { return $("#overlay"); }
         , OverlaySelector: function () { return "#overlay"; }
+        , RedboxAvails: function () { return $("#redboxAvails"); }
+        , RedboxAvailsList: function () { return $("#redboxAvailsList"); }
         , RemoveLinks: function () { return $(".actions").find(".removeLink"); }
         , SearchBox: function () { return $("#q"); }
         , SearchResultsView: function () { return $("#searchResultsView"); }
@@ -357,7 +361,7 @@ codejkjk.movies.HomeIndex = {
                 codejkjk.movies.HomeIndex.Controls.MovieDetailsPopup().html(html);
                 FB.XFBML.parse();
                 codejkjk.movies.HomeIndex.InitZeroClipboard();
-            });            
+            });
         } else {
             // movie details are already in dom, so just init zeroclipboard b/c it's ready to go
             codejkjk.movies.HomeIndex.Controls.MovieDetailsPopup().show();
@@ -469,12 +473,12 @@ codejkjk.movies.HomeIndex = {
             codejkjk.movies.HomeIndex.Controls.ChangeOptionsContainer().slideToggle('fast');
         });
 
-        // handle "back to The Hunger Games" link on movie showtimes link on movie popup
+        // handle "back to The Hunger Games" link on movie showtimes link / redbox availability on movie popup
         $(document).on('click', codejkjk.movies.HomeIndex.Controls.BackToMovieDetailsLinkSelector(), function (e) {
             e.preventDefault();
 
             codejkjk.movies.HomeIndex.Controls.MovieDetails().show();
-            codejkjk.movies.HomeIndex.Controls.MovieShowtimes().addClass("hidden");
+            $(this).closest("div").addClass("hidden");
         });
 
         // handle showtimes links on movie detail popups
@@ -501,6 +505,34 @@ codejkjk.movies.HomeIndex = {
                         movieShowtimesContainer.removeClass("hidden").addClass("loaded");
                     });
                 });
+            }
+        });
+
+        // handle showtimes links on movie detail popups
+        $(document).on('click', codejkjk.movies.HomeIndex.Controls.NearbyRedboxLinksSelector(), function (e) {
+            e.preventDefault();
+
+            var link = $(this);
+            var redboxAvailsContainer = codejkjk.movies.HomeIndex.Controls.RedboxAvails();
+            var redboxAvailsList = codejkjk.movies.HomeIndex.Controls.RedboxAvailsList();
+
+            if (redboxAvailsContainer.hasClass("loaded")) {
+                // already been loaded previously, so just show it
+                codejkjk.movies.HomeIndex.Controls.MovieDetails().hide();
+                redboxAvailsContainer.removeClass("hidden");
+            } else {
+                // first thing, add loading class
+                link.addClass("loading");
+                // codejkjk.Geo.GetZipCode(function (zipCode) {
+                // codejkjk.movies.Api.GetTheatersForMovie(codejkjk.movies.HomeIndex.Controls.CurrentShowtimeDay().val(), zipCode, codejkjk.movies.HomeIndex.Currents.RtMovieId(), function (theatersHtml) {
+                redboxAvailsList.html("This feature coming soon...");
+
+                // remove loading class
+                link.removeClass("loading");
+                codejkjk.movies.HomeIndex.Controls.MovieDetails().hide();
+                redboxAvailsContainer.removeClass("hidden").addClass("loaded");
+                // });
+                // });
             }
         });
 

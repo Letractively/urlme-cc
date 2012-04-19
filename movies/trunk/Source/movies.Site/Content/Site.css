@@ -65,7 +65,7 @@ header { text-align:center; height: 80px; }
     #movieDetailsPopup .closeMovieDetails { cursor: pointer; font-weight:bold; text-transform:uppercase; letter-spacing:1px; float: right; /* background: url("content/content/images/icons/close.png") no-repeat scroll right top transparent; */ display:inline-block; /* padding: 0 22px 17px 20px; */ }
     #movieDetailsPopup .closeMovieDetails .x { margin-left: 6px; color: Red; }
     #movieDetailsPopup #movieShowtimes { }
-        #movieDetailsPopup #movieShowtimes #backToMovieDetails { font-weight: bold; color: #2489CE; }
+        #movieDetailsPopup .backToMovieDetails { font-weight: bold; color: #2489CE; }
         #movieDetailsPopup #movieShowtimes #theatersForMovieList { margin-top:15px; overflow: auto; max-height: 330px; }
             #movieDetailsPopup #movieShowtimes #theatersForMovieList h2 { font-size: 110%; font-weight: bold; }
             #movieDetailsPopup #movieShowtimes #theatersForMovieList h2:not(:first-child) { margin-top: 10px; }
@@ -76,6 +76,8 @@ header { text-align:center; height: 80px; }
         #movieDetailsPopup .links > a.parentalGuideLink { padding-left: 22px; background: url('content/images/icons/caution2.png') no-repeat center left; }
         #movieDetailsPopup .links > a.showtimesLink { padding-left: 22px; background: url('content/images/icons/clock.png') no-repeat center left; }            
         #movieDetailsPopup .links > a.showtimesLink.loading { background: url('content/images/ajax-loader-blue-ribbon.gif') no-repeat center left; }
+        #movieDetailsPopup .links > a.nearbyRedboxLink { padding-left: 22px; background: url('content/images/icons/redbox.gif') no-repeat center left; }            
+        #movieDetailsPopup .links > a.nearbyRedboxLink.loading { background: url('content/images/ajax-loader-blue-ribbon.gif') no-repeat center left; }        
         #movieDetailsPopup .links > a:not(:last-child) { margin-right: 20px; }
     #movieDetailsPopup .ratingAndLength { overflow: auto; font-size: 18px; margin-top: 15px; }
         #movieDetailsPopup .ratingAndLength .mpaaRating { font-weight: bold; margin-right: 25px; float:left; }

@@ -20,7 +20,8 @@ namespace movies.Model
             InTheaters,
             Upcoming,
             RedBoxTop20,
-            RedBoxComingSoon
+            RedBoxComingSoon,
+            RedBox
         }
     }
 }

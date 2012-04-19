@@ -5,7 +5,6 @@ codejkjk.Geo = {
     GetZipCode: function (callback) {
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(function (position) {
-                console.log("in getCurrentPosition callback");
                 var url = "{0}findNearbyPostalCodesJSON?lat={1}&lng={2}&username=codejkjk".format(codejkjk.Geo.BaseUrl, position.coords.latitude, position.coords.longitude);
                 $.ajax({
                     url: url,
@@ -17,6 +16,17 @@ codejkjk.Geo = {
                 // alert("Error: {0}".format(error.code));
                 alert("Error, please try again.");
                 return callback(localStorage.getItem("ZipCode") || 23226);
+            });
+        }
+    },
+    GetLatLong: function (callback) {
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(function (position) {
+                return callback(position.coords.latitude, position.coords.longitude);
+            }, function (error) {
+                // alert("Error: {0}".format(error.code));
+                alert("Error, please try again.");
+                return callback(null, null);
             });
         }
     }

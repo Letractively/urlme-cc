@@ -27,9 +27,29 @@ namespace movies.Site.Controllers
                     BoxOfficeMovies = Movie.GetMovies(Enumerations.MovieLists.BoxOffice),
                     InTheatersMovies = Movie.GetMovies(Enumerations.MovieLists.InTheaters),
                     UpcomingMovies = Movie.GetMovies(Enumerations.MovieLists.Upcoming),
+                    RedBoxTop20Movies = Movie.GetMovies(Enumerations.MovieLists.RedBoxTop20),
 
                     OverlayMovie = Model.Movie.GetRottenTomatoesMovie(rtMovieId)
                 };
+
+                // remove any movies in InTheatersMovies that are already in Box Office
+                foreach (var movie in vm.BoxOfficeMovies)
+                {
+                    if (vm.InTheatersMovies.ContainsKey(movie.Key))
+                    {
+                        vm.InTheatersMovies.Remove(movie.Key);
+                    }
+                }
+
+                // remove any movies in InTheatersMovies that are in Opening
+                foreach (var movie in vm.BoxOfficeMovies)
+                {
+                    if (vm.OpeningMovies.ContainsKey(movie.Key))
+                    {
+                        vm.InTheatersMovies.Remove(movie.Key);
+                    }
+                }
+
                 return View("~/views/home/index.cshtml", vm);
             }
         }

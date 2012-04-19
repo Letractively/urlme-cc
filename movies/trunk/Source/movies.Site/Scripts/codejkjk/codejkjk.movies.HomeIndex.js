@@ -156,7 +156,7 @@ codejkjk.movies.HomeIndex = {
     HandlePushState: function (url) {
         var paths = url.replace('//', '').split('/');
         var firstPath = '/' + paths[1]; // "", "comingsoon", "showtimes" (all navs), or "hunger-games" (movie)
-        if (firstPath === "/" || firstPath === "/comingsoon" || firstPath === "/showtimes") {
+        if (firstPath === "/" || firstPath === "/comingsoon" || firstPath === "/showtimes" || firstPath === "/redbox") {
             codejkjk.movies.HomeIndex.ShowSection(firstPath);
         }
         else {

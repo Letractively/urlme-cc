@@ -21,6 +21,7 @@
                 <a href="~/">What's Hot</a>
                 <a href="~/showtimes">Showtimes</a>
                 <a href="~/comingsoon">Coming Soon</a>
+                <a href="~/redbox">RedBox</a>
             </nav>
             <input class="rounded glowing" id="q" type="text" placeholder="search + enter" />
         </div>
@@ -39,6 +40,11 @@
     <!-- UPCOMING -->
     <section id="upcomingView" class="content movieList" data-navitemtext="Coming Soon">
         @this.Html.Partial("MovieList", this.Model.UpcomingMovies)
+    </section>
+
+    <!-- REDBOX -->
+    <section id="redBoxView" class="content movieList" data-navitemtext="RedBox">
+        RedBox coming soon...
     </section>
 
     <!-- SHOWTIMES -->

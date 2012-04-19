@@ -65,6 +65,12 @@ namespace movies
             );
 
             routes.MapRoute(
+                "Home-RedBox", // Route name
+                "redbox", // URL with parameters
+                new { controller = "Home", action = "Index" } // Parameter defaults
+            );
+
+            routes.MapRoute(
                 "Home-ComingSoon", // Route name
                 "comingsoon", // URL with parameters
                 new { controller = "Home", action = "Index" } // Parameter defaults

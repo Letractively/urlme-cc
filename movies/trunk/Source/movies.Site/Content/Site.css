@@ -51,7 +51,7 @@ header { text-align:center; height: 80px; }
     header #fbLikeContainer { width: 85px; float: left; margin-top: 50px; margin: 30px 0 0 20px; /* position: fixed; top: 50px; left: 20px; */ }
 
 .content { margin-top: 25px; width: 1000px; overflow: auto; display: none; }
-    #whatsHotView h2 { background: #535156; padding: 10px; font-size: 14px; font-weight: bold; color: #fff; margin-bottom: 10px; }
+    #whatsHotView h2, #redBoxView h2 { background: #535156; padding: 10px; font-size: 14px; font-weight: bold; color: #fff; margin-bottom: 10px; }
 
 /* styles common to both movie div in the lists and the movie details popup */
 

@@ -44,7 +44,8 @@
 
     <!-- REDBOX -->
     <section id="redBoxView" class="content movieList" data-navitemtext="RedBox">
-        RedBox coming soon...
+        <h2 class="rounded">Top 20</h2>
+        @this.Html.Partial("MovieList", this.Model.RedBoxTop20Movies)
     </section>
 
     <!-- SHOWTIMES -->

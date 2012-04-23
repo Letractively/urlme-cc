@@ -21,7 +21,7 @@
                 <a href="~/">What's Hot</a>
                 <a href="~/showtimes">Showtimes</a>
                 <a href="~/comingsoon">Coming Soon</a>
-                <a href="~/redbox">RedBox</a>
+                <a href="~/redbox">Redbox</a>
             </nav>
             <input class="rounded glowing" id="q" type="text" placeholder="search + enter" />
         </div>
@@ -29,11 +29,11 @@
 
     <!-- WHAT'S HOT -->
     <section id="whatsHotView" class="content" data-navitemtext="What's Hot">
-        <h2 class="rounded">Top Box Office</h2>
+        <h2 class="rounded glowing">Top Box Office</h2>
         @this.Html.Partial("MovieList", this.Model.BoxOfficeMovies)
-        <h2 class="rounded">Opening This Week</h2>
+        <h2 class="rounded glowing">Opening This Week</h2>
         @this.Html.Partial("MovieList", this.Model.OpeningMovies)
-        <h2 class="rounded">Also in Theaters</h2>
+        <h2 class="rounded glowing">Also in Theaters</h2>
         @this.Html.Partial("MovieList", this.Model.InTheatersMovies)
     </section>
 
@@ -43,8 +43,16 @@
     </section>
 
     <!-- REDBOX -->
-    <section id="redBoxView" class="content movieList" data-navitemtext="RedBox">
-        <h2 class="rounded">Top 20</h2>
+    <section id="redboxView" class="content movieList" data-navitemtext="Redbox">
+        <div id="redboxBrowserContainer">
+            <div id="redboxBrowser" class="rounded glowing">
+                <a href="#" id="browse">Browse Nearby Redbox</a>
+                <div id="redboxLocationOptions" class="hidden">
+                    <a href="#" id="seeNearbyRedboxes">See nearby</a>&nbsp;&nbsp;or&nbsp;&nbsp;<input type="text" placeholder="e.g., 23226" /><button>Search</button> 
+                </div>    
+            </div>
+        </div>
+        <h2 class="rounded glowing">Top 20</h2>
         @this.Html.Partial("MovieList", this.Model.RedBoxTop20Movies)
     </section>
 

@@ -35,6 +35,13 @@ namespace movies.Site.Controllers
             return PartialView("MovieDetails", movie);
         }
 
+        public ActionResult GetRedboxesHtml(string latitude, string longitude)
+        {
+            var redboxes = Model.Redbox.GetStores(latitude, longitude);
+
+            return PartialView("Redboxes", redboxes);
+        }
+
         [HttpGet]
         public JsonResult GetPostalCode(string date, string zip)
         {

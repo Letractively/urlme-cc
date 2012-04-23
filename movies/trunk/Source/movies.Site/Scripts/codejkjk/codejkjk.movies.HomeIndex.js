@@ -25,6 +25,7 @@ codejkjk.movies.HomeIndex = {
         ActionLinks: function () { return $(".actions").find("a"); }
         , BackToMovieDetailsLinkSelector: function () { return ".backToMovieDetails"; }
         , BoxOfficeView: function () { return $("#boxOfficeView"); }
+        , BrowseLinkSelector: function () { return "#browse"; }
         , ChangeCurrentZipLink: function () { return $("#changeCurrentZipLink"); }
         , ChangeOptionsContainer: function () { return $("#changeOptions"); }
         , CloseMovieDetailsLinkSelector: function () { return ".closeMovieDetails"; }
@@ -52,16 +53,17 @@ codejkjk.movies.HomeIndex = {
         , MovieUrl: function () { return $("#movieUrl"); }
         , Nav: function () { return $("nav"); }
         , NavLinks: function () { return $("nav > a"); }
-        , NearbyRedboxLinks: function () { return $(".nearbyRedboxLink"); }
         , NearbyRedboxLinksSelector: function () { return ".nearbyRedboxLink"; }
         , NewZipCodeInput: function () { return codejkjk.movies.HomeIndex.Controls.ChangeOptionsContainer().find("input[type=text]"); }
         , Overlay: function () { return $("#overlay"); }
         , OverlaySelector: function () { return "#overlay"; }
         , RedboxAvails: function () { return $("#redboxAvails"); }
         , RedboxAvailsList: function () { return $("#redboxAvailsList"); }
+        , RedboxLocationChooser: function () { return $("#redboxLocationChooser"); }
         , RemoveLinks: function () { return $(".actions").find(".removeLink"); }
         , SearchBox: function () { return $("#q"); }
         , SearchResultsView: function () { return $("#searchResultsView"); }
+        , SeeNearbyRedboxesSelector: function () { return "#seeNearbyRedboxes"; }
         , SetZipCodeButton: function () { return codejkjk.movies.HomeIndex.Controls.ChangeOptionsContainer().find("button"); }
         , ShowHiddenMoviesLinksSelector: function () { return ".showHiddenMoviesLink"; }
         , ShowtimeDayLinks: function () { return $(".showtimeDays > a"); }
@@ -133,7 +135,7 @@ codejkjk.movies.HomeIndex = {
         });
 
         // handle "a" clicks - prevent their default and isntead push state
-        $(document).on('click', 'a:not(.noPush)', function (e) {
+        $(document).on('click', 'a[href^="/"]', function (e) {
             e.preventDefault();
             History.pushState(null, null, $(this).attr("href"));
         });
@@ -380,6 +382,21 @@ codejkjk.movies.HomeIndex = {
     },
 
     BindControls: function () {
+        // handle "Browse Nearby Redbox"
+        $(document).on('click', codejkjk.movies.HomeIndex.Controls.BrowseLinkSelector(), function (e) {
+            e.preventDefault();
+            $(this).next("div").toggleClass("hidden");
+        });
+
+        $(document).on('click', codejkjk.movies.HomeIndex.Controls.SeeNearbyRedboxesSelector(), function (e) {
+            e.preventDefault();
+            codejkjk.Geo.GetLatLong(function (lat, long) {
+                codejkjk.movies.Api.GetRedboxesHtml(lat, long, function (html) {
+                    alert(html);
+                });
+            });
+        });
+
         // handle favorite theater links
         $(document).on('click', codejkjk.movies.HomeIndex.Controls.FavoriteLinksSelector(), function (e) {
             e.preventDefault();

@@ -67,6 +67,17 @@ codejkjk.movies.Api = {
         var url = "{0}get_rt_movie.html/{1}".format(codejkjk.movies.Api.BaseUrl, rtMovieId);
         codejkjk.movies.Api.AjaxGet(url, callback, 'html', cacheKey);
     },
+    GetRedboxesHtml: function (lat, long, callback) {
+        // first, check cache
+        var cacheKey = "rb-html-{0}-{1}".format(lat, long);
+        var cached = $.cacheItem(cacheKey);
+        if (cached && codejkjk.movies.Defaults.AllowCache) {
+            return callback(cached);
+        }
+
+        var url = "{0}get_rbs.html/{1},{2}".format(codejkjk.movies.Api.BaseUrl, lat, long);
+        codejkjk.movies.Api.AjaxGet(url, callback, 'html', cacheKey);        
+    },
     AjaxGet: function (url, callback, responseDataType, cacheKey) {
         $.ajax({
             url: url,

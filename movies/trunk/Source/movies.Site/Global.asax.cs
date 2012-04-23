@@ -58,6 +58,13 @@ namespace movies
                 new { controller = "Api", action = "GetPostalCodeForMovie" } // Parameter defaults
             );
 
+            // get_rbs.html/{1},{2}
+            routes.MapRoute(
+                "Api-Get_Redboxes", // Route name
+                "api/get_rbs.html/{latitude},{longitude}", // URL with parameters
+                new { controller = "Api", action = "GetRedboxesHtml" } // Parameter defaults
+            );
+
             routes.MapRoute(
                 "Home-Showtimes", // Route name
                 "showtimes", // URL with parameters

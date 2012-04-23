@@ -1,7 +1,7 @@
 ﻿@model movies.Model.Movie
 @using movies.Model
 
-<div id="movieDetails">
+<div id="movieDetails" data-redboxproductid="@Model.RedboxProductId">
     <input type="hidden" id="currentRtMovieId" value="@this.Model.id" />
     <div class="topHalf">
         <img class="poster rounded" src="@this.Model.posters.detailed" />
@@ -35,16 +35,16 @@
         </div>
     </div>
     <p class="links">
-        <a href="@(this.Model.links.alternate)trailers" target="_blank" class="trailerLink noPush">Trailer</a>
-        <a href="@this.Model.ParentalGuideUrl" target="_blank" class="parentalGuideLink noPush">Parental Guide</a>
+        <a href="@(this.Model.links.alternate)trailers" target="_blank" class="trailerLink">Trailer</a>
+        <a href="@this.Model.ParentalGuideUrl" target="_blank" class="parentalGuideLink">Parental Guide</a>
         @if (this.Model.IsInTheaters)
-        {<a href="#" class="showtimesLink noPush">Showtimes for Today</a>}
+        {<a href="#" class="showtimesLink">Showtimes for Today</a>}
         @if (this.Model.IsAtRedBox)
-        {<a href="#" class="nearbyRedboxLink noPush">Nearby RedBox Availability</a>}                                                                  
+        {<a href="#" class="nearbyRedboxLink">Nearby RedBox Availability</a>}                                                                  
         @if (!this.Model.IsReleased) // if it's not released, then the ratings will NOT show up, and the ratings are also links to RT.com and IMDb.com. therefore, provide them here for the user
         {
-        <a class="noPush" href="@this.Model.links.alternate" target="_blank">RottenTomatoes.com Link</a>
-        <a class="noPush" href="@this.Model.IMDbMovieUrl" target="_blank">IMDb.com Link</a>
+        <a href="@this.Model.links.alternate" target="_blank">RottenTomatoes.com Link</a>
+        <a href="@this.Model.IMDbMovieUrl" target="_blank">IMDb.com Link</a>
         }
     </p>
     <p class="share">
@@ -53,11 +53,11 @@
 </div>
 <div id="movieShowtimes" class="hidden">
     <span class="closeMovieDetails">Close</span>
-    <a class="backToMovieDetails" href="#" class="noPush">←&nbsp&nbsp;Back to @this.Model.title</a>
+    <a class="backToMovieDetails" href="#">←&nbsp&nbsp;@this.Model.title</a>
     <p id="theatersForMovieList"></p>
 </div>
 <div id="redboxAvails" class="hidden">
     <span class="closeMovieDetails">Close</span>
-    <a class="backToMovieDetails" href="#" class="noPush">←&nbsp&nbsp;Back to @this.Model.title</a>
+    <a class="backToMovieDetails" href="#">←&nbsp&nbsp;@this.Model.title</a>
     <p id="redboxAvailsList"></p>
 </div>

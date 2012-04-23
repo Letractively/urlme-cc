@@ -1,3 +1,7 @@
+/* blue color from Fischer's logo = #2489CE */
+/* jQuery mobile's blue = #2489CE */
+
+
 html{font-size:12px;color:#000;}body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,code,form,fieldset,legend,input,button,textarea,p,blockquote,th,td{margin:0;padding:0;}table{border-collapse:collapse;border-spacing:0;}fieldset,img{border:0;}address,caption,cite,code,dfn,em,strong,th,var,optgroup{font-style:inherit;font-weight:inherit;}del,ins{text-decoration:none;}li{list-style:none;}caption,th{text-align:left;}h1,h2,h3,h4,h5,h6{font-size:100%;font-weight:normal;}q:before,q:after{content:'';}abbr,acronym{border:0;font-variant:normal;}sup{vertical-align:baseline;}sub{vertical-align:baseline;}legend{color:#000;}input,button,textarea,select,optgroup,option{font-family:inherit;font-size:inherit;font-style:inherit;font-weight:inherit;}input,button,textarea,select{font-size:100%;}
 strong { font-weight: bold; }
 html { background: url("content/bg.png") repeat-x scroll 0 0 #CCCCCC; /* #ccc; */ } /* dark gray = #535156 */
@@ -32,8 +36,8 @@ header { text-align:center; height: 80px; }
     header #logo { float: left; background: url('content/logo.png'); width: 224px; height: 80px; display:inline-block; }
     header #navAndSearch { float: right; }
     header #navAndSearch nav { float: left; font-size: 150%; margin: 30px 10px 0 5px; }
-        header #navAndSearch nav a { margin-right: 15px; color: #029DB7; }
-        header #navAndSearch nav a.selected { color: #fff; background: #029DB7/* #465F82 */; padding: 5px 10px; }
+        header #navAndSearch nav a { margin-right: 15px; color: #2489CE; }
+        header #navAndSearch nav a.selected { color: #fff; background: #2489CE/* #465F82 */; padding: 5px 10px; }
 
     header #navAndSearch #q  
     {
@@ -51,7 +55,7 @@ header { text-align:center; height: 80px; }
     header #fbLikeContainer { width: 85px; float: left; margin-top: 50px; margin: 30px 0 0 20px; /* position: fixed; top: 50px; left: 20px; */ }
 
 .content { margin-top: 25px; width: 1000px; overflow: auto; display: none; }
-    #whatsHotView h2, #redBoxView h2 { background: #535156; padding: 10px; font-size: 14px; font-weight: bold; color: #fff; margin-bottom: 10px; }
+    #whatsHotView h2, #redboxView h2 { margin-right: 4px; background: #535156; padding: 10px; font-size: 14px; font-weight: bold; color: #fff; margin-bottom: 10px; }
 
 /* styles common to both movie div in the lists and the movie details popup */
 
@@ -115,6 +119,17 @@ header { text-align:center; height: 80px; }
 .favoriteLink.lit { background:url("content/images/icons/star_lit.png") no-repeat scroll center transparent; }
 .favoriteLink.lit:hover { background:url("content/images/icons/star_lit_hover.png") no-repeat scroll center transparent; }
 
+#redboxView { margin-top:10px; }
+    #redboxView #redboxBrowserContainer { overflow:auto; padding-bottom: 4px; }
+        #redboxView #redboxBrowserContainer #redboxBrowser { font-size: 120%; background: #fff; float: left; overflow: auto; }
+            #redboxView #redboxBrowserContainer #redboxBrowser a#browse { padding: 8px 10px 8px 10px; display:inline-block; margin: 0; font-weight: bold; height: 28px; padding-left: 30px; font-size: 110%; background: url('http://www.redbox.com/Content/images/kiosk_icon.gif') no-repeat center left; line-height: 27px; border-left: 8px solid transparent; }
+            #redboxView #redboxBrowserContainer #redboxBrowser div { }
+            #redboxView #redboxBrowserContainer #redboxBrowser #redboxLocationOptions { padding: 0 10px 8px 10px; }
+                #redboxView #redboxBrowserContainer #redboxBrowser #redboxLocationOptions a { font-weight: bold; color: #2489CE }
+                #redboxView #redboxBrowserContainer #redboxBrowser #redboxLocationOptions button { padding: 5px; }
+                #redboxView #redboxBrowserContainer #redboxBrowser #redboxLocationOptions input { padding: 4px; width: 80px; margin-right:4px; }
+    #redboxView h2 { margin-top: 6px; clear: left; }
+
 #showtimesView #theaters { float: left; width: 300px; }
     #showtimesView #theaters .theaterList.favorites { }
     
@@ -130,14 +145,14 @@ header { text-align:center; height: 80px; }
             #showtimesView #theaters .theaterList a.selected div.theaterName { color: #FFF; }
             #showtimesView #theaters .theaterList a:not(.selected) div.theaterAddress { font-size: 90%; color: #535156; }
 
-    #showtimesView #theaters #location { padding: 0; color: #465F82; }
+    #showtimesView #theaters #location { padding: 0; font-size: 110%; }
         #showtimesView #theaters #location #theatersNearYou { background: gray; }
         #showtimesView #theaters #location #searchByZip { background: orange; }
         #showtimesView #theaters #location #currentZip { font-weight: bold; }
-        #showtimesView #theaters #location #changeCurrentZipLink { margin-left: 10px; color: #535156; }
+        #showtimesView #theaters #location #changeCurrentZipLink { margin-left: 10px; color: #535156; font-weight: bold; }
         #showtimesView #theaters #location #changeOptions { margin-right: 10px; background: #535156; display:none; padding: 8px; margin-top:5px; color: #999; }
             #showtimesView #theaters #location #changeOptions a { font-weight: bold; color: #fff; }
-            #showtimesView #theaters #location #changeOptions button { padding: 3px; }
+            #showtimesView #theaters #location #changeOptions button { padding: 5px; }
             #showtimesView #theaters #location #changeOptions input { padding: 4px; width: 80px; margin-right:4px; }
         #showtimesView #theaters #location #nearZipCode { position: absolute; right: 5px; } /* hide for now, until we get this thing working */
             #showtimesView #theaters #location #nearZipCode #postalCode { font-weight: bold; } /* hide for now, until we get this thing working */

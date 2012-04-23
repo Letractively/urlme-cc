@@ -2,11 +2,11 @@
 @{ var isDesktop = !Request.Browser.IsMobileDevice; }
 
 <p class="ratings @this.Model.RatingSize.ToString()">
-    @if (isDesktop) {<text><a class="noPush" href="@this.Model.Movie.links.alternate"></text>}
+    @if (isDesktop) {<text><a href="@this.Model.Movie.links.alternate"></text>}
         <span data-rtratingtitle="@this.Model.Movie.ratings.critics_rating" class="rottenTomato icon"></span><span class="rt text">@this.Model.Movie.ratings.critics_score</span>
         <span data-rtratingtitle="@this.Model.Movie.ratings.audience_rating" class="rottenTomato icon"></span><span class="rt text">@this.Model.Movie.ratings.audience_score</span>
     @this.Html.Raw(isDesktop ? "</a>" : "")
-    @if (isDesktop) {<text><a class="noPush" href="@this.Model.Movie.IMDbMovieUrl"></text>}
+    @if (isDesktop) {<text><a href="@this.Model.Movie.IMDbMovieUrl"></text>}
         <span class='imdb icon'></span><span class="text">@this.Model.Movie.IMDbRating</span>
     @this.Html.Raw(isDesktop ? "</a>" : "")
 </p>

@@ -62,7 +62,9 @@ codejkjk.movies.HomeIndex = {
         , Redboxes: function () { return $("#redboxes"); }
         , RedboxLocationChooser: function () { return $("#redboxLocationChooser"); }
         , RemoveLinks: function () { return $(".actions").find(".removeLink"); }
+        , RedboxZipCodeInput: function () { return $("#redboxZip"); }
         , SearchBox: function () { return $("#q"); }
+        , SearchRedboxZipCodeButton: function () { return $("#redboxZip").next("button"); }
         , SearchResultsView: function () { return $("#searchResultsView"); }
         , SeeNearbyRedboxesSelector: function () { return "#seeNearbyRedboxes"; }
         , SetZipCodeButton: function () { return codejkjk.movies.HomeIndex.Controls.ChangeOptionsContainer().find("button"); }
@@ -89,6 +91,20 @@ codejkjk.movies.HomeIndex = {
                 localStorage.setItem("ZipCode", val);
             } else { // get
                 return localStorage.getItem("ZipCode") || "23226"; // return str b/c if we ever want to change it to 02322, this will get converted to str as "3222" if we return as int
+            }
+        }
+        , RedboxZipCode: function (val) {
+            if (typeof val != "undefined") { // set
+                localStorage.setItem("RedboxZipCode", val);
+            } else { // get
+                return localStorage.getItem("RedboxZipCode") || "23226"; // return str b/c if we ever want to change it to 02322, this will get converted to str as "3222" if we return as int
+            }
+        }
+        , Redbox: function (val) {
+            if (typeof val != "undefined") { // set
+                localStorage.setItem("Redbox", val);
+            } else { // get
+                return localStorage.getItem("Redbox") || "";
             }
         }
         , Theater: function (val) {
@@ -349,6 +365,18 @@ codejkjk.movies.HomeIndex = {
         codejkjk.movies.Api.GetTheaters(codejkjk.movies.HomeIndex.Controls.CurrentShowtimeDay().val(), zipCode, codejkjk.movies.HomeIndex.LoadTheaters);
     },
 
+    UpdateRedboxZip: function (zipCode) {
+        codejkjk.movies.HomeIndex.Currents.RedboxZipCode(zipCode); // update current redbox zip code
+        // codejkjk.movies.HomeIndex.Controls.CurrentZip().html(zipCode);
+        codejkjk.movies.HomeIndex.Currents.Redbox(""); // new zip, so clear out current redbox store id value
+
+        codejkjk.Geo.GetLatLongFromZip(zipCode, function (lat, long) {
+            codejkjk.movies.Api.GetRedboxesHtml(lat, long, function (html) {
+                codejkjk.movies.HomeIndex.Controls.Redboxes().html(html);
+            });
+        });
+    },
+
     ShowMovieDetails: function (rtMovieIdToAjaxLoad) {
         // show overlay
         var overlayHeight = $(document).height() + "px";
@@ -570,10 +598,24 @@ codejkjk.movies.HomeIndex = {
             codejkjk.movies.HomeIndex.UpdateZip(zipCode);
         });
 
+        // handle button that sets manual set of zip for redbox search
+        codejkjk.movies.HomeIndex.Controls.SearchRedboxZipCodeButton().click(function (e) {
+            e.preventDefault();
+            var zipCode = codejkjk.movies.HomeIndex.Controls.RedboxZipCodeInput().val();
+            codejkjk.movies.HomeIndex.UpdateRedboxZip(zipCode);
+        });
+
         // handle Enter key on manual zip input box - triggers "Set" button click
         codejkjk.movies.HomeIndex.Controls.NewZipCodeInput().keydown(function (e) {
             if (e.keyCode == 13) {
                 codejkjk.movies.HomeIndex.Controls.SetZipCodeButton().trigger('click');
+            }
+        });
+
+        // handle Enter key on manual zip input box for redbox search - triggers "Search" button click
+        codejkjk.movies.HomeIndex.Controls.RedboxZipCodeInput().keydown(function (e) {
+            if (e.keyCode == 13) {
+                codejkjk.movies.HomeIndex.Controls.SearchRedboxZipCodeButton().trigger('click');
             }
         });
 

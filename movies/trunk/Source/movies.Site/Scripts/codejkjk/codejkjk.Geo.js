@@ -19,6 +19,19 @@ codejkjk.Geo = {
             });
         }
     },
+    GetLatLongFromZip: function (zip, callback) {
+        var url = "{0}postalCodeSearchJSON?postalCode={1}&username=codejkjk".format(codejkjk.Geo.BaseUrl, zip);
+        $.ajax({
+            url: url,
+            dataType: "jsonp",
+            success: function (resp) {
+                var lat = resp.postalCodes[0].lat;
+                var long = resp.postalCodes[0].lng;
+                return callback(lat, long); 
+            }, // todo: check if postalCodes[0]
+            error: function () { return null; }
+        });        
+    },
     GetLatLong: function (callback) {
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(function (position) {

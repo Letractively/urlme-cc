@@ -59,6 +59,7 @@ codejkjk.movies.HomeIndex = {
         , OverlaySelector: function () { return "#overlay"; }
         , RedboxAvails: function () { return $("#redboxAvails"); }
         , RedboxAvailsList: function () { return $("#redboxAvailsList"); }
+        , Redboxes: function () { return $("#redboxes"); }
         , RedboxLocationChooser: function () { return $("#redboxLocationChooser"); }
         , RemoveLinks: function () { return $(".actions").find(".removeLink"); }
         , SearchBox: function () { return $("#q"); }
@@ -392,7 +393,7 @@ codejkjk.movies.HomeIndex = {
             e.preventDefault();
             codejkjk.Geo.GetLatLong(function (lat, long) {
                 codejkjk.movies.Api.GetRedboxesHtml(lat, long, function (html) {
-                    alert(html);
+                    codejkjk.movies.HomeIndex.Controls.Redboxes().html(html);
                 });
             });
         });

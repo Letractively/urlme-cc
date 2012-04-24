@@ -39,7 +39,7 @@ namespace movies.Site.Controllers
         {
             var redboxes = Model.Redbox.GetStores(latitude, longitude);
 
-            return PartialView("Redboxes", redboxes);
+            return PartialView("Redboxes", redboxes.Take(6).ToList());
         }
 
         [HttpGet]

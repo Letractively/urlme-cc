@@ -14,13 +14,15 @@ namespace movies.Model
 
         #region Properties
         public string StoreId { get; set; }
-        public string StoreType { get; set; }
         public string Latitude { get; set; }
         public string Longitude { get; set; }
         public string Retailer { get; set; }
         public string IndoorOutdoor { get; set; }
         public string Address { get; set; }
-        public double Distance { get; set; }
+        public string City { get; set; }
+        public string State { get; set; }
+        public string Zip { get; set; }
+        public string Distance { get; set; }
         public List<Redbox.Movie> Products { get; set; }
         #endregion
 
@@ -54,12 +56,29 @@ namespace movies.Model
                 string.Format("codejkjk.movies.Model.Redbox.GetStores-{0}-{1}", latitude, longitude),
                 () =>
                 {
+                    var ret = new List<Redbox>();
                     string xml = API.RedBox.GetRedboxesXml(latitude, longitude);
                     DataSet ds = new DataSet();
                     ds.ReadXml(new StringReader(xml));
+                    foreach (DataRow store in ds.Tables["Store"].Select("commStatus = 'Online'"))
+                    {
+                        DataRow location = store.GetChildRows("Store_Location").FirstOrDefault();
+                        var redbox = new Redbox {
+                            StoreId = store["storeId"].ToString(),
+                            Retailer = store["Retailer"].ToString(),
+                            IndoorOutdoor = store["storeType"].ToString(),
+                            Distance = store["DistanceFromSearchLocation"].ToString(),
+                            Latitude = location["lat"].ToString(),
+                            Longitude = location["long"].ToString(),
+                            Address = location["Address"].ToString(),
+                            City = location["City"].ToString(),
+                            State = location["State"].ToString(),
+                            Zip = location["Zipcode"].ToString()
+                        };
+                        ret.Add(redbox);
+                    }
 
-                    return null;
-                    // return API.Flixster.GetTheatersHtml(date, zip);
+                    return ret;
                 });
         }
     }

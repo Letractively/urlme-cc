@@ -130,7 +130,7 @@ header { text-align:center; height: 80px; }
             /* list of redboxes */
             #redboxView #redboxBrowserContainer #redboxBrowser #redboxes { overflow:auto; margin-left: 10px; }
                 #redboxView #redboxBrowserContainer #redboxBrowser #redboxes .redbox { float: left; margin: 0 15px 10px 0; }
-                    #redboxView #redboxBrowserContainer #redboxBrowser #redboxes .redbox .browseRedbox { border: 1px solid red; color: red; padding: 6px 8px; display:inline-block; margin-top: 5px; }
+                    #redboxView #redboxBrowserContainer #redboxBrowser #redboxes .redbox .browseRedbox { border: 1px solid #DC211E; color: #DC211E; padding: 6px 8px; display:inline-block; margin-top: 5px; }
                     #redboxView #redboxBrowserContainer #redboxBrowser #redboxes .redbox h3 { font-weight: bold; margin-bottom: 5px; }
                     #redboxView #redboxBrowserContainer #redboxBrowser #redboxes .redbox p.indoorOutdoor { color: #999; font-size: 90%; margin-top: 5px; }
                     #redboxView #redboxBrowserContainer #redboxBrowser #redboxes .redbox p.distance { color: #999; font-size: 90%; margin-top: 5px; }

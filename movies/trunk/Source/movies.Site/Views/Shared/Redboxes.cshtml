@@ -1,0 +1,15 @@
+﻿@model List<movies.Model.Redbox>
+
+@{ var isDesktop = !Request.Browser.IsMobileDevice; }
+
+@foreach (var redbox in Model)
+{
+<div class="redbox">
+    <h3>@redbox.Retailer</h3>
+    <p class="address">@redbox.Address</p>
+    <p class="address">@string.Format("{0}, {1} {2}", redbox.City, redbox.State, redbox.Zip.Substring(0, 5))</p>
+    <p class="distance">@redbox.Distance mi. away</p>
+    <p class="indoorOutdoor">@redbox.IndoorOutdoor</p>
+    <a class="browseRedbox rounded" href="#">Browse</a>
+</div>
+}

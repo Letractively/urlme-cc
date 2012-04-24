@@ -44,7 +44,7 @@
         /// Get redbox inventory
         /// </summary>
         // https://api.redbox.com/v3/inventory/stores/AF2A04F9-BD59-4497-9939-A536B1FB95A3?apiKey=7e6905a9f6b8edcd13092f51e1412b37
-        public static string GetRedboxInventory(string storeId)
+        public static string GetRedboxInventoryXml(string storeId)
         {
             string url = string.Format("{0}v3/inventory/stores/{1}?apiKey={2}", BaseUrl, storeId, ApiKey);
             return Core.Net.HttpWebRequest.GetResponse(url);

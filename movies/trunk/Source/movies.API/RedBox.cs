@@ -26,7 +26,8 @@
         // way too much data, but, should probably use this for landing page / search auto-suggest
         public static string GetXml()
         {
-            string url = string.Format("{0}v3/products/movies?apiKey={1}", BaseUrl, ApiKey);
+            // string url = string.Format("{0}v3/products/movies?apiKey={1}", BaseUrl, ApiKey);
+            string url = string.Format("{0}v3/products/movies/default?apiKey={1}&includeComingSoon=false", BaseUrl, ApiKey);
             return Core.Net.HttpWebRequest.GetResponse(url);
         }
 

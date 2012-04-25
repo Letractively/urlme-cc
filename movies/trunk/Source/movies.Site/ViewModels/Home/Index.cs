@@ -10,6 +10,7 @@ namespace movies.Site.ViewModels.Home
         public Dictionary<string, Model.Movie> InTheatersMovies { get; set; }
         public Dictionary<string, Model.Movie> RedBoxTop20Movies { get; set; }
         public Dictionary<string, Model.Movie> RedBoxComingSoonMovies { get; set; }
+        public Dictionary<string, Model.Movie> RedboxMovies { get; set; }
 
         public Model.Movie OverlayMovie { get; set; }
         public bool UseAjaxForLinks { get; set; }

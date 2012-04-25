@@ -80,7 +80,7 @@ namespace movies.Model
         public string IMDbClass { get { return this.IMDbLoaded ? "" : "imdbNotSet"; } }
         public bool IsReleased { get { return System.DateTime.Now >= this.release_dates.theater; } }
         public bool IsInTheaters { get { return Movie.GetMovies(Enumerations.MovieLists.BoxOffice).ContainsKey(this.id) || Movie.GetMovies(Enumerations.MovieLists.InTheaters).ContainsKey(this.id) || (Movie.GetMovies(Enumerations.MovieLists.Opening).ContainsKey(this.id) && this.IsReleased); } }
-        public bool IsAtRedBox { get { return Movie.GetMovies(Enumerations.MovieLists.RedBoxTop20).ContainsKey(this.id); } }
+        public bool IsAtRedBox { get { return Movie.GetMovies(Enumerations.MovieLists.RedboxTop20).ContainsKey(this.id); } }
         public string ReleaseDate { get { return this.release_dates.theater.ToString("MMM d, yyyy"); } }
         public string ParentalGuideUrl { get { return this.alternate_ids != null ? API.IMDb.GetParentalGuideUrl(this.alternate_ids.imdb) : null; } }
         public string IMDbMovieUrl { get { return this.alternate_ids != null ? API.IMDb.GetMovieUrl(this.alternate_ids.imdb) : null; } }
@@ -227,7 +227,7 @@ namespace movies.Model
                         case Enumerations.MovieLists.Upcoming:
                             rtJson = API.RottenTomatoes.GetUpcomingJson();
                             break;
-                        case Enumerations.MovieLists.RedBoxTop20:
+                        case Enumerations.MovieLists.RedboxTop20:
                             string xml = API.RedBox.GetTop20Xml();
                             DataSet ds = new DataSet();
                             ds.ReadXml(new StringReader(xml));
@@ -271,27 +271,27 @@ namespace movies.Model
                         //        }
                         //    }
                         //    return ret.Where(x => x.alternate_ids != null && !x.posters.detailed.Contains("poster_default.gif") && x.mpaa_rating != "Unrated").ToDictionary(key => key.id, value => value);
-                        //case Enumerations.MovieLists.RedBox:
-                        //    string xml3 = API.RedBox.GetXml();
-                        //    DataSet ds3 = new DataSet();
-                        //    ds3.ReadXml(new StringReader(xml3));
-                        //    DataTable rbMovies2 = ds3.Tables["Movie"];
-                        //    // for each coming soon movie, get rotten tomatoes equivalent
-                        //    foreach (DataRow movie in rbMovies2.Rows)
-                        //    {
-                        //        var searchJson = API.RottenTomatoes.SearchMoviesJson(movie["Title"].ToString());
-                        //        var resultsCollection = searchJson.FromJson<MovieCollection>();
-                        //        var match = resultsCollection.movies.FirstOrDefault(x => x.release_dates.theater.Year == int.Parse(movie["ReleaseYear"].ToString()));
-                        //        if (match != null)
-                        //        {
-                        //            match.IMDbLoaded = false;
-                        //            if (ret.FirstOrDefault(x => x.id == match.id) == null)
-                        //            {
-                        //                ret.Add(match);
-                        //            }
-                        //        }
-                        //    }
-                        //    return ret.Where(x => x.alternate_ids != null && !x.posters.detailed.Contains("poster_default.gif") && x.mpaa_rating != "Unrated").ToDictionary(key => key.id, value => value);
+                        case Enumerations.MovieLists.Redbox:
+                            string xml3 = API.RedBox.GetXml();
+                            DataSet ds3 = new DataSet();
+                            ds3.ReadXml(new StringReader(xml3));
+                            DataTable rbMovies2 = ds3.Tables["Movie"];
+                            // for each coming soon movie, get rotten tomatoes equivalent
+                            foreach (DataRow movie in rbMovies2.Select("Title <> '' and ReleaseYear <> ''"))
+                            {
+                                var searchJson = API.RottenTomatoes.SearchMoviesJson(movie["Title"].ToString());
+                                var resultsCollection = searchJson.FromJson<MovieCollection>();
+                                var match = resultsCollection.movies.FirstOrDefault(x => x.release_dates.theater.Year == int.Parse(movie["ReleaseYear"].ToString()));
+                                if (match != null)
+                                {
+                                    match.IMDbLoaded = false;
+                                    if (ret.FirstOrDefault(x => x.id == match.id) == null)
+                                    {
+                                        ret.Add(match);
+                                    }
+                                }
+                            }
+                            return ret.Where(x => x.alternate_ids != null && !x.posters.detailed.Contains("poster_default.gif") && x.mpaa_rating != "Unrated").ToDictionary(key => key.id, value => value);
                     }
                     var movieCollection = rtJson.FromJson<MovieCollection>();
                     movieCollection.movies.ForEach(x => x.IMDbLoaded = false); // init all imdbloaded to false

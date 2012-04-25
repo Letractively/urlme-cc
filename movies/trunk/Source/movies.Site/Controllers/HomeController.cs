@@ -18,7 +18,8 @@ namespace movies.Site.Controllers
                 BoxOfficeMovies = Movie.GetMovies(Enumerations.MovieLists.BoxOffice),
                 InTheatersMovies = Movie.GetMovies(Enumerations.MovieLists.InTheaters),
                 UpcomingMovies = Movie.GetMovies(Enumerations.MovieLists.Upcoming),
-                RedBoxTop20Movies = Movie.GetMovies(Enumerations.MovieLists.RedBoxTop20),
+                // RedBoxTop20Movies = Movie.GetMovies(Enumerations.MovieLists.RedboxTop20),
+                RedboxMovies = Movie.GetMovies(Enumerations.MovieLists.Redbox),
                 
                 OverlayMovie = null,
                 UseAjaxForLinks = true,
@@ -75,32 +76,32 @@ namespace movies.Site.Controllers
                 }
             }
 
-            var redBoxTop20Movies = Model.Movie.GetMovies(Enumerations.MovieLists.RedBoxTop20);
-            foreach (var movie in redBoxTop20Movies.Values)
-            {
-                if (movie.IMDbQ != null)
-                {
-                    Model.Movie.GetIMDbMovie(movie.IMDbQ);
-                }
-            }
-
-            var redBoxComingSoonMovies = Model.Movie.GetMovies(Enumerations.MovieLists.RedBoxComingSoon);
-            foreach (var movie in redBoxComingSoonMovies.Values)
-            {
-                if (movie.IMDbQ != null)
-                {
-                    Model.Movie.GetIMDbMovie(movie.IMDbQ);
-                }
-            }
-
-            //var redBoxMovies = Model.Movie.GetMovies(Enumerations.MovieLists.RedBox);
-            //foreach (var movie in redBoxMovies.Values)
+            //var redBoxTop20Movies = Model.Movie.GetMovies(Enumerations.MovieLists.RedBoxTop20);
+            //foreach (var movie in redBoxTop20Movies.Values)
             //{
             //    if (movie.IMDbQ != null)
             //    {
             //        Model.Movie.GetIMDbMovie(movie.IMDbQ);
             //    }
             //}
+
+            //var redBoxComingSoonMovies = Model.Movie.GetMovies(Enumerations.MovieLists.RedBoxComingSoon);
+            //foreach (var movie in redBoxComingSoonMovies.Values)
+            //{
+            //    if (movie.IMDbQ != null)
+            //    {
+            //        Model.Movie.GetIMDbMovie(movie.IMDbQ);
+            //    }
+            //}
+
+            var redBoxMovies = Model.Movie.GetMovies(Enumerations.MovieLists.Redbox);
+            foreach (var movie in redBoxMovies.Values)
+            {
+                if (movie.IMDbQ != null)
+                {
+                    Model.Movie.GetIMDbMovie(movie.IMDbQ);
+                }
+            }
 
             return Content("Done! - " + System.DateTime.Now);
         }
@@ -114,7 +115,7 @@ namespace movies.Site.Controllers
                 BoxOfficeMovies = Movie.GetMovies(Enumerations.MovieLists.BoxOffice),
                 InTheatersMovies = Movie.GetMovies(Enumerations.MovieLists.InTheaters),
                 UpcomingMovies = Movie.GetMovies(Enumerations.MovieLists.Upcoming),
-                RedBoxTop20Movies = Movie.GetMovies(Enumerations.MovieLists.RedBoxTop20),
+                RedBoxTop20Movies = Movie.GetMovies(Enumerations.MovieLists.RedboxTop20),
 
                 OverlayMovie = null,
                 UseAjaxForLinks = true,
@@ -132,7 +133,7 @@ namespace movies.Site.Controllers
                 BoxOfficeMovies = Movie.GetMovies(Enumerations.MovieLists.BoxOffice),
                 InTheatersMovies = Movie.GetMovies(Enumerations.MovieLists.InTheaters),
                 UpcomingMovies = Movie.GetMovies(Enumerations.MovieLists.Upcoming),
-                RedBoxTop20Movies = Movie.GetMovies(Enumerations.MovieLists.RedBoxTop20),
+                RedBoxTop20Movies = Movie.GetMovies(Enumerations.MovieLists.RedboxTop20),
 
                 OverlayMovie = null,
                 UseAjaxForLinks = true,

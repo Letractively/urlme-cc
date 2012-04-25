@@ -27,7 +27,8 @@ namespace movies.Site.Controllers
                     BoxOfficeMovies = Movie.GetMovies(Enumerations.MovieLists.BoxOffice),
                     InTheatersMovies = Movie.GetMovies(Enumerations.MovieLists.InTheaters),
                     UpcomingMovies = Movie.GetMovies(Enumerations.MovieLists.Upcoming),
-                    RedBoxTop20Movies = Movie.GetMovies(Enumerations.MovieLists.RedBoxTop20),
+                    // RedBoxTop20Movies = Movie.GetMovies(Enumerations.MovieLists.RedboxTop20),
+                    RedboxMovies = Movie.GetMovies(Enumerations.MovieLists.Redbox),
 
                     OverlayMovie = Model.Movie.GetRottenTomatoesMovie(rtMovieId)
                 };

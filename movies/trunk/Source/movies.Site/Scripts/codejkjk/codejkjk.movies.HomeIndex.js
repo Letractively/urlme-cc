@@ -138,6 +138,13 @@ codejkjk.movies.HomeIndex = {
         codejkjk.movies.HomeIndex.BindControls();
         codejkjk.movies.HomeIndex.RegisterJsRenderHelpers();
 
+        // *** load redbox view ***
+        var lat = geoplugin_latitude();
+        var long = geoplugin_longitude();
+        codejkjk.movies.Api.GetRedboxesHtml(lat, long, function (html) {
+            // codejkjk.movies.HomeIndex.Controls.Redboxes().html(html);
+        });
+
         // *** load showtimes view ***
         // init showtime date to today
         codejkjk.movies.HomeIndex.Controls.CurrentShowtimeDay().val(Date.today().toString("yyyyMMdd"));

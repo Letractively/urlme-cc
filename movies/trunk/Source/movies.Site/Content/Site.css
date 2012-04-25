@@ -122,15 +122,17 @@ header { text-align:center; height: 80px; }
 #redboxView { margin-top:10px; }
     #redboxView #redboxBrowserContainer { overflow:auto; padding-bottom: 4px; }
         #redboxView #redboxBrowserContainer #redboxBrowser { font-size: 120%; background: #fff; float: left; overflow: auto; }
-            #redboxView #redboxBrowserContainer #redboxBrowser a#browse { padding: 8px 10px 8px 10px; display:inline-block; margin: 0; font-weight: bold; height: 28px; padding-left: 30px; font-size: 110%; background: url('http://www.redbox.com/Content/images/kiosk_icon.gif') no-repeat center left; line-height: 27px; border-left: 8px solid transparent; }
+            #redboxView #redboxBrowserContainer #redboxBrowser #browsingInside { padding: 10px 12px 10px 30px; display:inline-block; margin: 0; height: 28px; padding-left: 30px; font-size: 110%; background: url('http://www.redbox.com/Content/images/kiosk_icon.gif') no-repeat center left; line-height: 27px; border-left: 10px solid transparent; }
+                #redboxView #redboxBrowserContainer #redboxBrowser #browsingInside #currentKiosk { font-weight: bold; }
+                #redboxView #redboxBrowserContainer #redboxBrowser #browsingInside a { color: #2489CE; margin-left: 15px; }
             #redboxView #redboxBrowserContainer #redboxBrowser #redboxLocationOptions { padding: 0 10px 8px 10px; }
-                #redboxView #redboxBrowserContainer #redboxBrowser #redboxLocationOptions a { font-weight: bold; color: #2489CE }
+                #redboxView #redboxBrowserContainer #redboxBrowser #redboxLocationOptions a { font-weight: bold; color: #2489CE; }
                 #redboxView #redboxBrowserContainer #redboxBrowser #redboxLocationOptions button { padding: 5px; }
                 #redboxView #redboxBrowserContainer #redboxBrowser #redboxLocationOptions input { padding: 4px; width: 80px; margin-right:4px; }
             /* list of redboxes */
             #redboxView #redboxBrowserContainer #redboxBrowser #redboxes { overflow:auto; margin-left: 10px; }
                 #redboxView #redboxBrowserContainer #redboxBrowser #redboxes .redbox { float: left; margin: 0 15px 10px 0; }
-                    #redboxView #redboxBrowserContainer #redboxBrowser #redboxes .redbox .browseRedbox { border: 1px solid #DC211E; color: #DC211E; padding: 6px 8px; display:inline-block; margin-top: 5px; }
+                    #redboxView #redboxBrowserContainer #redboxBrowser #redboxes .redbox a.browseRedbox { border: 1px solid #DC211E; color: #DC211E; padding: 6px 8px; display:inline-block; margin-top: 10px; }
                     #redboxView #redboxBrowserContainer #redboxBrowser #redboxes .redbox h3 { font-weight: bold; margin-bottom: 5px; }
                     #redboxView #redboxBrowserContainer #redboxBrowser #redboxes .redbox p.indoorOutdoor { color: #999; font-size: 90%; margin-top: 5px; }
                     #redboxView #redboxBrowserContainer #redboxBrowser #redboxes .redbox p.distance { color: #999; font-size: 90%; margin-top: 5px; }

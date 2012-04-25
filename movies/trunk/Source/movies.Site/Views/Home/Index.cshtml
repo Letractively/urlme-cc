@@ -9,6 +9,7 @@
         var showMovieOverlay = @((this.Model.OverlayMovie != null).ToString().ToLower());
         var baseUrl = '@this.Url.Content("~/")';
     </script>
+    <script language="JavaScript" src="http://www.geoplugin.net/javascript.gp" type="text/javascript"></script>
     <script src="~/scripts/codejkjk/codejkjk.movies.HomeIndex.js"></script>
 }
 
@@ -46,7 +47,7 @@
     <section id="redboxView" class="content movieList" data-navitemtext="Redbox">
         <div id="redboxBrowserContainer">
             <div id="redboxBrowser" class="rounded glowing">
-                <a href="#" id="browse">Browse Nearby Redbox</a>
+                <div id="browsingInside">Browsing inside: <span id="currentKiosk">All Redbox kiosks</span><a href="#">pick a location</a></div>
                 <div id="redboxLocationOptions" class="hidden">
                     <input type="text" placeholder="e.g., 23226" id="redboxZip" /><button>Search</button>&nbsp;&nbsp;or&nbsp;&nbsp;<a href="#" id="seeNearbyRedboxes">see nearby</a>
                 </div>  

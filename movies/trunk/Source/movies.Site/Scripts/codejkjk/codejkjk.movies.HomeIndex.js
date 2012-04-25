@@ -181,6 +181,11 @@ codejkjk.movies.HomeIndex = {
 
         // show view
         $('section[data-navitemtext="{0}"]'.format(link.html())).show();
+
+        // init image lazyload jquery plugin
+        $("img.lazy").lazyload({
+            effect: "fadeIn"
+        });
     },
 
     HandlePushState: function (url) {

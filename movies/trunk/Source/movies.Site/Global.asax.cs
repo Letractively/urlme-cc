@@ -141,6 +141,7 @@ namespace movies
             mobileJsBundle.AddFile("~/scripts/codejkjk/codejkjk.Geo.js");
             mobileJsBundle.AddFile("~/scripts/plugins/date.js");
             mobileJsBundle.AddFile("~/scripts/plugins/jsrender.js");
+            // mobileJsBundle.AddFile("~/scripts/plugins/lazyload/jquery.lazyload.min.js");
             mobileJsBundle.AddFile("~/externals/local-cache/local-cache.js");
             mobileJsBundle.AddFile("~/scripts/codejkjk/codejkjk.movies.Mobile.js");
             BundleTable.Bundles.Add(mobileJsBundle);
@@ -161,6 +162,7 @@ namespace movies
             desktopJsBundle.AddFile("~/scripts/plugins/jsrender.js");
             desktopJsBundle.AddFile("~/externals/local-cache/local-cache.js");
             desktopJsBundle.AddFile("~/scripts/plugins/zeroclipboard/zeroclipboard.js");
+            // desktopJsBundle.AddFile("~/scripts/plugins/lazyload/jquery.lazyload.min.js");
             desktopJsBundle.AddFile("~/scripts/plugins/jquery.mask.min.js");
             desktopJsBundle.AddFile("~/scripts/plugins/jquery.history.js");
             BundleTable.Bundles.Add(desktopJsBundle);

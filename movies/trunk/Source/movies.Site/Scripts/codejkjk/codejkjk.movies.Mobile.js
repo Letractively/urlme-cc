@@ -46,6 +46,10 @@ codejkjk.movies.Mobile = {
         if (codejkjk.movies.Mobile.Controls.Theaters().length) {
             codejkjk.movies.Mobile.LoadTheaters();
         }
+
+        $("img.lazy").lazyload({
+            effect: "fadeIn"
+        });
     },
 
     RegisterJsRenderHelpers: function () {
@@ -122,8 +126,8 @@ $(document).ready(function () {
 $(document).on('pageinit', function (e) {
     // alert('loading imdb');
     // if load IMDb movies that aren't set from server-side box office and upcoming movie loads
-    codejkjk.movies.Mobile.GetIMDbData();
+    // codejkjk.movies.Mobile.GetIMDbData();
 });
 
 // if load IMDb movies that aren't set from server-side box office and upcoming movie loads
-codejkjk.movies.Mobile.GetIMDbData();
+// codejkjk.movies.Mobile.GetIMDbData();

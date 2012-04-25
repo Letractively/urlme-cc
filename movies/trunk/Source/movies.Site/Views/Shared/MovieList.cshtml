@@ -5,7 +5,9 @@
 @foreach (var movie in this.Model.Values)
 {
     <div class="movie rounded glowing">
-        <a class="poster shadow movieDetailsLink" href="~/@movie.MovieSlug" style="background:url('@movie.posters.detailed');"></a>
+        <a class="poster shadow movieDetailsLink" href="~/@movie.MovieSlug"> 
+            <img class="lazy" data-original="@movie.posters.detailed" src="~/scripts/plugins/lazyload/grey.gif" />
+        </a>
         <div class="details gradient">
             <p class="ratingAndLength">
                 @movie.Duration<a href="@movie.ParentalGuideUrl" class='mpaaRating' target='_blank' title='Link to Parents Guide on IMDb.com'>@movie.mpaa_rating</a>

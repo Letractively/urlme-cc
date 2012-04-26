@@ -104,7 +104,6 @@ header { text-align:center; height: 80px; }
 .movie { overflow:auto; } /* or gray = #efefef */
 
 .movieList { overflow:auto; }
-    /* #boxOfficeView .movie:not(:nth-child(1)) { margin-top:10px; } */
     .movieList .movie:not(:nth-child(5n+5)) { margin-right: 24px; }
     .movieList .movie { margin-bottom: 24px; float: left; width: 180px; }
         .movieList .movie a.poster { width: 180px; height: 267px; float: left; }
@@ -138,6 +137,16 @@ header { text-align:center; height: 80px; }
                     #redboxView #redboxBrowserContainer #redboxBrowser #redboxes .redbox p.distance { color: #999; font-size: 90%; margin-top: 5px; }
                     #redboxView #redboxBrowserContainer #redboxBrowser #redboxes .redbox p.address { font-size: 90%; }
     #redboxView h2 { margin-top: 6px; clear: left; }
+    
+#redboxMovieList { overflow:auto; margin-top:20px; }
+    #redboxMovieList .movie:not(:nth-child(7n+7)) { margin-right: 24px; }
+    #redboxMovieList .movie { margin-bottom: 24px; float: left; width: 106px; }
+        #redboxMovieList .movie a.poster { width: 106px; height: 150px; float: left; }
+        #redboxMovieList .movie a.poster:hover { -moz-box-shadow: none; -webkit-box-shadow: none; box-shadow: none; }
+        /* #redboxMovieList .movie .details { padding: 10px; width: 160px; float: left; } */
+        #redboxMovieList .movie img { width: 106px; height: 150px; } /* thumbnail = 61 x 91 */
+        /* #redboxMovieList .movie .ratingAndLength { height: 15px; }
+            #redboxMovieList .movie .ratingAndLength .mpaaRating { font-weight: bold; float: right; } */    
 
 #showtimesView #theaters { float: left; width: 300px; }
     #showtimesView #theaters .theaterList.favorites { }

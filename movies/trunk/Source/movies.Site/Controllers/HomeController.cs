@@ -19,7 +19,7 @@ namespace movies.Site.Controllers
                 InTheatersMovies = Movie.GetMovies(Enumerations.MovieLists.InTheaters),
                 UpcomingMovies = Movie.GetMovies(Enumerations.MovieLists.Upcoming),
                 // RedBoxTop20Movies = Movie.GetMovies(Enumerations.MovieLists.RedboxTop20),
-                RedboxMovies = Movie.GetMovies(Enumerations.MovieLists.Redbox),
+                RedboxMovies = Redbox.GetMovies(),
                 
                 OverlayMovie = null,
                 UseAjaxForLinks = true,
@@ -94,14 +94,14 @@ namespace movies.Site.Controllers
             //    }
             //}
 
-            var redBoxMovies = Model.Movie.GetMovies(Enumerations.MovieLists.Redbox);
-            foreach (var movie in redBoxMovies.Values)
-            {
-                if (movie.IMDbQ != null)
-                {
-                    Model.Movie.GetIMDbMovie(movie.IMDbQ);
-                }
-            }
+            //var redBoxMovies = Model.Movie.GetMovies(Enumerations.MovieLists.Redbox);
+            //foreach (var movie in redBoxMovies.Values)
+            //{
+            //    if (movie.IMDbQ != null)
+            //    {
+            //        Model.Movie.GetIMDbMovie(movie.IMDbQ);
+            //    }
+            //}
 
             return Content("Done! - " + System.DateTime.Now);
         }
@@ -115,7 +115,7 @@ namespace movies.Site.Controllers
                 BoxOfficeMovies = Movie.GetMovies(Enumerations.MovieLists.BoxOffice),
                 InTheatersMovies = Movie.GetMovies(Enumerations.MovieLists.InTheaters),
                 UpcomingMovies = Movie.GetMovies(Enumerations.MovieLists.Upcoming),
-                RedBoxTop20Movies = Movie.GetMovies(Enumerations.MovieLists.RedboxTop20),
+                RedboxMovies = Redbox.GetMovies(),
 
                 OverlayMovie = null,
                 UseAjaxForLinks = true,
@@ -133,7 +133,7 @@ namespace movies.Site.Controllers
                 BoxOfficeMovies = Movie.GetMovies(Enumerations.MovieLists.BoxOffice),
                 InTheatersMovies = Movie.GetMovies(Enumerations.MovieLists.InTheaters),
                 UpcomingMovies = Movie.GetMovies(Enumerations.MovieLists.Upcoming),
-                RedBoxTop20Movies = Movie.GetMovies(Enumerations.MovieLists.RedboxTop20),
+                RedboxMovies = Redbox.GetMovies(),
 
                 OverlayMovie = null,
                 UseAjaxForLinks = true,

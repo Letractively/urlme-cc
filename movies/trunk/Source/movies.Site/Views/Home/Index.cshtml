@@ -45,7 +45,7 @@
     </section>
 
     <!-- REDBOX -->
-    <section id="redboxView" class="content movieList" data-navitemtext="Redbox">
+    <section id="redboxView" class="content" data-navitemtext="Redbox">
         <div id="redboxBrowserContainer">
             <div id="redboxBrowser" class="rounded glowing">
                 <div id="browsingInside">Browsing inside: <span id="currentKiosk">All Redbox kiosks</span><a href="#">pick a location</a></div>
@@ -55,7 +55,16 @@
                 <div id="redboxes"></div>  
             </div>
         </div>
-        @this.Html.Partial("MovieList", this.Model.RedboxMovies)
+        
+        <div id="redboxMovieList">
+        @foreach (var m in Model.RedboxMovies)
+        {
+            <div class="movie">
+                <img class="lazy" data-original="@m.ThumbnailUrl" src="~/scripts/plugins/lazyload/grey.gif" />
+                <div>@(@m.IsNewRelease ? "New Release" : "Old")</div>
+            </div>    
+        }
+        </div>
     </section>
 
     <!-- SHOWTIMES -->

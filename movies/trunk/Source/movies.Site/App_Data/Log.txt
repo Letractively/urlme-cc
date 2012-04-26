@@ -349,3 +349,11 @@
 2012-04-25T04:31:09.3708912Z - 2228 - Info - Created provider from embedded device data 'FiftyOne.Foundation.Mobile.Detection.Binary.Resources.51Degrees.mobi-Lite.dat'.
 2012-04-25T04:32:59.9621512Z - 3420 - Info - Created provider from embedded device data 'FiftyOne.Foundation.Mobile.Detection.Binary.Resources.51Degrees.mobi-Lite.dat'.
 2012-04-25T04:41:35.7123184Z - 3420 - Info - Created provider from embedded device data 'FiftyOne.Foundation.Mobile.Detection.Binary.Resources.51Degrees.mobi-Lite.dat'.
+2012-04-26T02:59:37.1550000Z - 4372 - Info - Created provider from embedded device data 'FiftyOne.Foundation.Mobile.Detection.Binary.Resources.51Degrees.mobi-Lite.dat'.
+2012-04-26T03:02:51.3640000Z - 4372 - Info - Created provider from embedded device data 'FiftyOne.Foundation.Mobile.Detection.Binary.Resources.51Degrees.mobi-Lite.dat'.
+2012-04-26T03:04:17.5710000Z - 4372 - Info - Created provider from embedded device data 'FiftyOne.Foundation.Mobile.Detection.Binary.Resources.51Degrees.mobi-Lite.dat'.
+2012-04-26T03:36:52.4370000Z - 4372 - Info - Created provider from embedded device data 'FiftyOne.Foundation.Mobile.Detection.Binary.Resources.51Degrees.mobi-Lite.dat'.
+2012-04-26T04:00:05.2070000Z - 4372 - Info - Created provider from embedded device data 'FiftyOne.Foundation.Mobile.Detection.Binary.Resources.51Degrees.mobi-Lite.dat'.
+2012-04-26T04:10:12.2030000Z - 4372 - Info - Created provider from embedded device data 'FiftyOne.Foundation.Mobile.Detection.Binary.Resources.51Degrees.mobi-Lite.dat'.
+2012-04-26T04:11:04.7830000Z - 4372 - Info - Created provider from embedded device data 'FiftyOne.Foundation.Mobile.Detection.Binary.Resources.51Degrees.mobi-Lite.dat'.
+2012-04-26T04:19:40.0740000Z - 4372 - Info - Created provider from embedded device data 'FiftyOne.Foundation.Mobile.Detection.Binary.Resources.51Degrees.mobi-Lite.dat'.

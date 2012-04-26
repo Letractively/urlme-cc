@@ -31,8 +31,42 @@ namespace movies.Model
         {
             public string Title { get; set; }
             public bool Available { get; set; }
+            public string ThumbnailUrl { get; set; }
+            public bool IsNewRelease { get; set; }
         }
         #endregion
+
+        public static List<Redbox.Movie> GetMovies()
+        {
+            return Cache.GetValue<List<Redbox.Movie>>(
+                "codejkjk.movies.Model.Redbox.GetMovies",
+                () =>
+                {
+                    var ret = new List<Redbox.Movie>();
+                    string xml = API.RedBox.GetXml();
+                    DataSet ds = new DataSet();
+                    ds.ReadXml(new StringReader(xml));
+                    DataTable rbMovies2 = ds.Tables["Movie"];
+                    foreach (DataRow movie in rbMovies2.Select("Title <> '' and ReleaseYear <> ''"))
+                    {
+                        string thumbnailUrl = movie.GetChildRows("Movie_BoxArtImages")[0].GetChildRows("BoxArtImages_link").FirstOrDefault(x => x["rel"].ToString().ToLower() == "http://api.redbox.com/Links/BoxArt/Thumb150".ToLower())["href"].ToString();
+                        var newRelease = movie.GetChildRows("Movie_Flags")[0].GetChildRows("Flags_Flag").FirstOrDefault(x => x["type"].ToString().ToLower() == "newrelease");
+                        string newReleaseStart = newRelease["beginDate"].ToString();
+                        string newReleaseEnd = newRelease["endDate"].ToString();
+                        DateTime now = System.DateTime.Now;
+                        bool isNewRelease = !string.IsNullOrEmpty(newReleaseStart) && !string.IsNullOrEmpty(newReleaseEnd) && now >= DateTime.Parse(newReleaseStart) && now < DateTime.Parse(newReleaseEnd).AddDays(1);
+
+                        var rbMovie = new Redbox.Movie
+                        {
+                            Title = movie["Title"].ToString(),
+                            ThumbnailUrl = thumbnailUrl,
+                            IsNewRelease = isNewRelease
+                        };
+                        ret.Add(rbMovie);
+                    }
+                    return ret;
+                });
+        }
 
         //public List<Redbox> GetStoresHavingProductId(string latitude, string longitude, string redboxProductId)
         //{

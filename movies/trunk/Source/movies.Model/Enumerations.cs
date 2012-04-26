@@ -18,10 +18,7 @@ namespace movies.Model
             Opening,
             BoxOffice,
             InTheaters,
-            Upcoming,
-            RedboxTop20,
-            RedboxComingSoon,
-            Redbox
+            Upcoming
         }
     }
 }

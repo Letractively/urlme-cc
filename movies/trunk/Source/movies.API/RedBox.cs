@@ -24,6 +24,7 @@
         }
 
         // way too much data, but, should probably use this for landing page / search auto-suggest
+        // https://api.redbox.com/v3/products/movies/default?apiKey=7e6905a9f6b8edcd13092f51e1412b37&includingComingSoon=false
         public static string GetXml()
         {
             // string url = string.Format("{0}v3/products/movies?apiKey={1}", BaseUrl, ApiKey);

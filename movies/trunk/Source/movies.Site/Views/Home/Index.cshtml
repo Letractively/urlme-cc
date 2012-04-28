@@ -59,9 +59,19 @@
         <div id="redboxMovieList">
         @foreach (var m in Model.RedboxMovies)
         {
-            <div class="movie">
-                <img class="lazy" data-original="@m.ThumbnailUrl" src="~/scripts/plugins/lazyload/grey.gif" />
-                <div>@(@m.IsNewRelease ? "New Release" : "Old")</div>
+            <div class="movie rounded @(m.IsNewRelease ? "new" : string.Empty)">
+                <a href="@m.MovieSlug">
+                    @if (m.IsNewRelease)
+                    {
+                        <span class="redGradient noHover">New</span>
+                    }
+                    else
+                    {
+                        <span>&nbsp;</span>
+                    }
+                    <img class="lazy" data-original="@m.ThumbnailUrl" src="~/scripts/plugins/lazyload/grey.gif" />
+                    <span class="redGradient">Find</span>
+                </a>
             </div>    
         }
         </div>

@@ -6,6 +6,7 @@ using movies.Core.Web.Caching;
 using HtmlAgilityPack;
 using System.Data;
 using System.IO;
+using movies.Core.Extensions;
 
 namespace movies.Model
 {
@@ -33,6 +34,8 @@ namespace movies.Model
             public bool Available { get; set; }
             public string ThumbnailUrl { get; set; }
             public bool IsNewRelease { get; set; }
+            public string MovieSlug { get { return "rb/" + this.Title.Slugify() + "/" + this.ProductId; } }
+            public string ProductId { get; set; }
         }
         #endregion
 
@@ -60,7 +63,8 @@ namespace movies.Model
                         {
                             Title = movie["Title"].ToString(),
                             ThumbnailUrl = thumbnailUrl,
-                            IsNewRelease = isNewRelease
+                            IsNewRelease = isNewRelease,
+                            ProductId = movie["productId"].ToString()
                         };
                         ret.Add(rbMovie);
                     }

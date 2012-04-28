@@ -180,12 +180,16 @@ codejkjk.movies.HomeIndex = {
         codejkjk.movies.HomeIndex.Controls.Views().hide();
 
         // show view
-        $('section[data-navitemtext="{0}"]'.format(link.html())).show();
+        var sectionToShow = $('section[data-navitemtext="{0}"]'.format(link.html())).show();
+        sectionToShow.show();
 
         // init image lazyload jquery plugin
-        $("img.lazy").lazyload({
-            effect: "fadeIn"
-        });
+        if (!sectionToShow.hasClass("lazyLoaded")) {
+            $("img.lazy").lazyload({
+                effect: "fadeIn"
+            });
+            sectionToShow.addClass("lazyLoaded");
+        }
     },
 
     HandlePushState: function (url) {
@@ -294,10 +298,12 @@ codejkjk.movies.HomeIndex = {
 
     LoadSearchResults: function (html) {
         codejkjk.movies.HomeIndex.Controls.NavLinks().removeClass("selected glowing rounded");
-        $(".content").hide();
         codejkjk.movies.HomeIndex.Controls.SearchResultsView().html(html);
-        codejkjk.movies.HomeIndex.Controls.SearchResultsView().show();
         codejkjk.movies.HomeIndex.GetIMDbData();
+
+        $("img.lazy").lazyload({
+            effect: "fadeIn"
+        });
     },
 
     LoadTheaters: function (postalCode) {
@@ -636,6 +642,10 @@ codejkjk.movies.HomeIndex = {
             var code = (e.keyCode ? e.keyCode : e.which);
             if (code == 13) {
                 var q = $(this).val();
+                // loading 
+                codejkjk.movies.HomeIndex.Controls.SearchResultsView().html("<div class='loading'></div>");
+                $(".content").hide();
+                codejkjk.movies.HomeIndex.Controls.SearchResultsView().show();
                 codejkjk.movies.Api.SearchMovies(q, codejkjk.movies.HomeIndex.LoadSearchResults);
                 $(this).blur();
             }

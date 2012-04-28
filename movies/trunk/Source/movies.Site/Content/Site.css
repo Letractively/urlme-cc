@@ -27,6 +27,17 @@ div.loading { background: url('content/images/ajax-loader-blue-ribbon.gif') no-r
             background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#ffffff), to(#e8e8e8)); 
             background: -webkit-linear-gradient(top, #ffffff, #e8e8e8); 
             background: -moz-linear-gradient(top, #ffffff, #e8e8e8); }
+.redGradient { background: #DC3035; /* fallback */
+            background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#DC3035), to(#A20608)); 
+            background: -webkit-linear-gradient(top, #DC3035, #A20608); 
+            background: -moz-linear-gradient(top, #DC3035, #A20608); }
+.redGradient:not(.noHover):hover { background: #BE050E; /* fallback */
+            background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#BE050E), to(#EB242F)); 
+            background: -webkit-linear-gradient(top, #BE050E, #EB242F); 
+            background: -moz-linear-gradient(top, #BE050E, #EB242F); }            
+
+/* #DC3035, #A20608 */
+            
 .shadow { -moz-box-shadow: inset 0 0 30px #303030; -webkit-box-shadow: inset 0 0 30px #303030; box-shadow: inset 0 0 30px #303030; } /* orig: 1b1b1b */
 .mpaaRating { color: #465F82; }
 
@@ -118,7 +129,7 @@ header { text-align:center; height: 80px; }
 .favoriteLink.lit { background:url("content/images/icons/star_lit.png") no-repeat scroll center transparent; }
 .favoriteLink.lit:hover { background:url("content/images/icons/star_lit_hover.png") no-repeat scroll center transparent; }
 
-#redboxView { margin-top:10px; }
+#redboxView { margin-top:10px; width: 1019px; }
     #redboxView #redboxBrowserContainer { overflow:auto; padding-bottom: 4px; }
         #redboxView #redboxBrowserContainer #redboxBrowser { font-size: 120%; background: #fff; float: left; overflow: auto; }
             #redboxView #redboxBrowserContainer #redboxBrowser #browsingInside { padding: 10px 12px 10px 30px; display:inline-block; margin: 0; height: 28px; padding-left: 30px; font-size: 110%; background: url('http://www.redbox.com/Content/images/kiosk_icon.gif') no-repeat center left; line-height: 27px; border-left: 10px solid transparent; }
@@ -128,6 +139,7 @@ header { text-align:center; height: 80px; }
                 #redboxView #redboxBrowserContainer #redboxBrowser #redboxLocationOptions a { font-weight: bold; color: #2489CE; }
                 #redboxView #redboxBrowserContainer #redboxBrowser #redboxLocationOptions button { padding: 5px; }
                 #redboxView #redboxBrowserContainer #redboxBrowser #redboxLocationOptions input { padding: 4px; width: 80px; margin-right:4px; }
+            
             /* list of redboxes */
             #redboxView #redboxBrowserContainer #redboxBrowser #redboxes { overflow:auto; margin-left: 10px; }
                 #redboxView #redboxBrowserContainer #redboxBrowser #redboxes .redbox { float: left; margin: 0 15px 10px 0; }
@@ -138,15 +150,17 @@ header { text-align:center; height: 80px; }
                     #redboxView #redboxBrowserContainer #redboxBrowser #redboxes .redbox p.address { font-size: 90%; }
     #redboxView h2 { margin-top: 6px; clear: left; }
     
+/* --- Redbox Movie List --- */
 #redboxMovieList { overflow:auto; margin-top:20px; }
-    #redboxMovieList .movie:not(:nth-child(7n+7)) { margin-right: 24px; }
+    #redboxMovieList .movie:not(:nth-child(8n+8)) { margin-right: 24px; }
     #redboxMovieList .movie { margin-bottom: 24px; float: left; width: 106px; }
-        #redboxMovieList .movie a.poster { width: 106px; height: 150px; float: left; }
-        #redboxMovieList .movie a.poster:hover { -moz-box-shadow: none; -webkit-box-shadow: none; box-shadow: none; }
-        /* #redboxMovieList .movie .details { padding: 10px; width: 160px; float: left; } */
-        #redboxMovieList .movie img { width: 106px; height: 150px; } /* thumbnail = 61 x 91 */
-        /* #redboxMovieList .movie .ratingAndLength { height: 15px; }
-            #redboxMovieList .movie .ratingAndLength .mpaaRating { font-weight: bold; float: right; } */    
+        #redboxMovieList .movie > a { width: 106px; overflow: auto; display:block; height: 194px; }
+            #redboxMovieList .movie > a > span:first-child { display: block; padding: 2px 5px; font-weight: bold; color: #fff; text-transform: uppercase; }
+            /* new span */
+            #redboxMovieList .movie.new > a > span:first-child { border-top-right-radius: 5px; float: left; }
+            #redboxMovieList .movie > a > img { width: 106px; height: 150px; } /* thumbnail = 61 x 91 */
+            /* find it */
+            #redboxMovieList .movie > a > span:last-child { text-align: center; display: block; padding: 5px 8px; font-weight: bold; color: #fff; text-transform: uppercase; }
 
 #showtimesView #theaters { float: left; width: 300px; }
     #showtimesView #theaters .theaterList.favorites { }

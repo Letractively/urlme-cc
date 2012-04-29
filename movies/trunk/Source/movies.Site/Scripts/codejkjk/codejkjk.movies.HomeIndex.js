@@ -32,6 +32,7 @@ codejkjk.movies.HomeIndex = {
         , CopyButton: function () { return $("#copyButton"); }
         , CopySuccess: function () { return $("#copySuccess"); }
         , CurrentNavItem: function () { return $("nav > a.selected"); }
+        , CurrentRbProductId: function () { return $("#currentRbProductId"); }
         , CurrentRtMovieId: function () { return $("#currentRtMovieId"); }
         , CurrentShowtimeDay: function () { return $("input#currentShowtimeDay"); }
         , CurrentTheaterContainer: function () { return $("#currentTheaterContainer"); }
@@ -125,6 +126,9 @@ codejkjk.movies.HomeIndex = {
         , RtMovieId: function () {
             return codejkjk.movies.HomeIndex.Controls.CurrentRtMovieId().val();
         }
+        , RbProductId: function () {
+            return codejkjk.movies.HomeIndex.Controls.CurrentRbProductId().val();
+        }
     },
 
     Init: function () {
@@ -194,18 +198,32 @@ codejkjk.movies.HomeIndex = {
 
     HandlePushState: function (url) {
         var paths = url.replace('//', '').split('/');
-        var firstPath = '/' + paths[1]; // "", "comingsoon", "showtimes" (all navs), or "hunger-games" (movie)
+        var firstPath = '/' + paths[1]; // "", "comingsoon", "showtimes" (all navs), "rb" (redbox movie) or "hunger-games" (movie)
         if (firstPath === "/" || firstPath === "/comingsoon" || firstPath === "/showtimes" || firstPath === "/redbox") {
             codejkjk.movies.HomeIndex.ShowSection(firstPath);
         }
         else {
+            // /rb/wreckage/3235233 or /hunger-games/9999888768
             // movie details link
-            if (codejkjk.movies.HomeIndex.Currents.RtMovieId()) {
-                // movie details is already in dom, b/c user went to movie link directly
-                codejkjk.movies.HomeIndex.ShowSection("/");
-                codejkjk.movies.HomeIndex.ShowMovieDetails();
-            } else {
-                codejkjk.movies.HomeIndex.ShowMovieDetails(paths[2]);
+            var part1 = paths[1];
+            if (part1 === "rb") { // redbox movie
+                var rbProductId = paths[2]; // redbox product id
+                if (codejkjk.movies.HomeIndex.Currents.RbProductId()) {
+                    // movie details is already in dom, b/c user went to movie link directly
+                    codejkjk.movies.HomeIndex.ShowSection("/");
+                    codejkjk.movies.HomeIndex.ShowRedboxMovieDetails();
+                } else {
+                    codejkjk.movies.HomeIndex.ShowRedboxMovieDetails(rbProductId);
+                }
+            } else { // rt movie
+                var rtMovieId = paths[2]; // rt movie id
+                if (codejkjk.movies.HomeIndex.Currents.RtMovieId()) {
+                    // movie details is already in dom, b/c user went to movie link directly
+                    codejkjk.movies.HomeIndex.ShowSection("/");
+                    codejkjk.movies.HomeIndex.ShowMovieDetails();
+                } else {
+                    codejkjk.movies.HomeIndex.ShowMovieDetails(rtMovieId);
+                }
             }
         }
     },

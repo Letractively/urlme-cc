@@ -24,8 +24,7 @@ namespace movies.Model
             public int audienceScore { get; set; }
             public string imdbRating { get; set; }
             public string movieSlug { get; set; }
-            public string imdbClass { get; set; }
-            public string imdbQ { get; set; }
+            public string IMDbRating { get; set; }
         }
         public class Theater
         {
@@ -37,15 +36,15 @@ namespace movies.Model
             public List<Model.PostalCode.Movie> movies { get; set; }
         }
 
-        public static string GetShowtimes(string date, string zip)
-        {
-            return Cache.GetValue<string>(
-                string.Format("codejkjk.movies.Model.PostalCode.GetShowtimes-{0}-{1}", date, zip),
-                () =>
-                {
-                    return API.Flixster.GetTheatersHtml(date, zip);
-                });
-        }
+        //public static string GetShowtimes(string date, string zip)
+        //{
+        //    return Cache.GetValue<string>(
+        //        string.Format("codejkjk.movies.Model.PostalCode.GetShowtimes-{0}-{1}", date, zip),
+        //        () =>
+        //        {
+        //            return API.Flixster.GetTheatersHtml(date, zip);
+        //        });
+        //}
 
         public static PostalCode Get(string date, string zip)
         {
@@ -109,7 +108,7 @@ namespace movies.Model
                                 audienceRating = fullMovie.ratings.audience_rating,
                                 audienceScore = fullMovie.ratings.audience_score,
                                 criticsRating = fullMovie.ratings.critics_rating,
-                                criticsScore = fullMovie.ratings.audience_score,
+                                criticsScore = fullMovie.ratings.critics_score,
                                 duration = fullMovie.Duration,
                                 id = fullMovie.id,
                                 imageUrl = fullMovie.posters.thumbnail,
@@ -118,8 +117,7 @@ namespace movies.Model
                                 mpaaRating = fullMovie.mpaa_rating,
                                 showtimesHtml = fullMovie.ShowtimesHtml,
                                 title = movieTitle,
-                                imdbClass = fullMovie.IMDbClass,
-                                imdbQ = fullMovie.IMDbQ
+                                IMDbRating = fullMovie.IMDbRating
                             };
 
                             // add to movie list, which we'll add to theater later

@@ -80,7 +80,6 @@ namespace movies.Model
         public string IMDbClass { get { return this.IMDbLoaded ? "" : "imdbNotSet"; } }
         public bool IsReleased { get { return System.DateTime.Now >= this.release_dates.theater; } }
         public bool IsInTheaters { get { return Movie.GetMovies(Enumerations.MovieLists.BoxOffice).ContainsKey(this.id) || Movie.GetMovies(Enumerations.MovieLists.InTheaters).ContainsKey(this.id) || (Movie.GetMovies(Enumerations.MovieLists.Opening).ContainsKey(this.id) && this.IsReleased); } }
-        // public bool IsAtRedBox { get { return Movie.GetMovies(Enumerations.MovieLists.RedboxTop20).ContainsKey(this.id); } }
         public string ReleaseDate { get { return this.release_dates.theater.ToString("MMM d, yyyy"); } }
         public string ParentalGuideUrl { get { return this.alternate_ids != null ? API.IMDb.GetParentalGuideUrl(this.alternate_ids.imdb) : null; } }
         public string IMDbMovieUrl { get { return this.alternate_ids != null ? API.IMDb.GetMovieUrl(this.alternate_ids.imdb) : null; } }

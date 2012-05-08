@@ -14,8 +14,23 @@
     <script src="~/scripts/plugins/lazyload/jquery.lazyload.min.js"></script>
 }
 
-<div id="container">
-    <header>
+@*<div id="container">*@
+<header>
+    <a id="logo" class="logo" href="~/"></a>
+    <div id="fbLikeContainer"><div class="fb-like" data-href="http://www.facebook.com/SeeItOrNot" data-send="false" data-layout="button_count" data-width="75" data-show-faces="false" data-font="arial"></div></div>
+    <input id="q" class="rounded" type="text" placeholder="Search..." />
+</header>
+<div class="navBar blueGradient bottomShadow">
+    <nav>
+        <a href="~/">What's Hot</a>
+        <a href="~/showtimes">Showtimes</a>
+        <a href="~/comingsoon">Coming Soon</a>
+        <a href="~/redbox">Redbox</a>            
+    </nav>
+</div>@*end: navBar*@
+<div id="body" class="rounded">
+@*        
+    <header>    
         <a id="logo" class="logo" href="~/"></a>
         <div id="fbLikeContainer"><div class="fb-like" data-href="http://www.facebook.com/SeeItOrNot" data-send="false" data-layout="button_count" data-width="75" data-show-faces="false" data-font="arial"></div></div>
         <div id="navAndSearch">
@@ -27,7 +42,7 @@
             </nav>
             <input class="rounded glowing" id="q" type="text" placeholder="search + enter" />
         </div>
-    </header>
+    </header>*@
 
     <!-- WHAT'S HOT -->
     <section id="whatsHotView" class="content" data-navitemtext="What's Hot">

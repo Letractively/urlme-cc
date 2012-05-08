@@ -55,7 +55,7 @@ header { background:#fff; overflow: auto; }
     nav > a { font-weight: bold; color: #fff; text-decoration: none; margin-right: 25px; text-shadow: 0 -1px 1px #2d62ae; font-size: 16px;}
     nav > a.selected { text-decoration: underline; }
 
-#body { border: 1px solid #e6e6e6; background: #fff; padding: 20px; width: 960px; margin: 10px auto 0 auto; }
+#body { border: 1px solid #e6e6e6; background: #fff; padding: 20px; width: 996px; margin: 10px auto 0 auto; }
 
     /*header #navAndSearch { float: right; }
     header #navAndSearch nav { float: left; font-size: 150%; margin: 30px 10px 0 5px; }

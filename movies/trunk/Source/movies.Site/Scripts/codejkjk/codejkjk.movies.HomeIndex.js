@@ -179,8 +179,8 @@ codejkjk.movies.HomeIndex = {
         codejkjk.movies.HomeIndex.Controls.SearchBox().val("");
 
         var link = codejkjk.movies.HomeIndex.Controls.Nav().find("a[href='{0}']".format(path)); // logo does not have inner html, which is what we use later to select view to show
-        codejkjk.movies.HomeIndex.Controls.NavLinks().removeClass("selected glowing rounded");
-        link.addClass("selected glowing rounded");
+        codejkjk.movies.HomeIndex.Controls.NavLinks().removeClass("selected");
+        link.addClass("selected");
         codejkjk.movies.HomeIndex.Controls.Views().hide();
 
         // show view
@@ -315,7 +315,7 @@ codejkjk.movies.HomeIndex = {
     },
 
     LoadSearchResults: function (html) {
-        codejkjk.movies.HomeIndex.Controls.NavLinks().removeClass("selected glowing rounded");
+        codejkjk.movies.HomeIndex.Controls.NavLinks().removeClass("selected");
         codejkjk.movies.HomeIndex.Controls.SearchResultsView().html(html);
         codejkjk.movies.HomeIndex.GetIMDbData();
 

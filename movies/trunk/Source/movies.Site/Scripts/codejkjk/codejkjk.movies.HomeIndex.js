@@ -423,7 +423,7 @@ codejkjk.movies.HomeIndex = {
         } else {
             codejkjk.movies.HomeIndex.Controls.CurrentZip().html(zipCode);
         }
-        
+
         codejkjk.movies.HomeIndex.Currents.Theater(""); // new zip, so clear out current theater value
         codejkjk.movies.Api.GetTheaters(codejkjk.movies.HomeIndex.Controls.CurrentShowtimeDay().val(), zipCode, codejkjk.movies.HomeIndex.LoadTheaters);
     },
@@ -579,7 +579,15 @@ codejkjk.movies.HomeIndex = {
         // handle "change" link for zip
         codejkjk.movies.HomeIndex.Controls.ChangeCurrentZipLink().click(function (e) {
             e.preventDefault();
-            codejkjk.movies.HomeIndex.Controls.ChangeOptionsContainer().slideToggle('fast');
+            var setFocus = !codejkjk.movies.HomeIndex.Controls.ChangeOptionsContainer().is(":visible");
+            if (setFocus) {
+                codejkjk.movies.HomeIndex.Controls.InputShowtimesZip().val("");
+            }
+            codejkjk.movies.HomeIndex.Controls.ChangeOptionsContainer().slideToggle('fast', function () {
+                if (setFocus) {
+                    codejkjk.movies.HomeIndex.Controls.InputShowtimesZip().focus();
+                }
+            });
         });
 
         // handle "back to The Hunger Games" link on movie showtimes link / redbox availability on movie popup

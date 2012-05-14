@@ -95,7 +95,15 @@ namespace movies.Model
                             var movieHrefNode = showtimeDiv.SelectSingleNode("h3/a");
                             string movieTitle = movieHrefNode.InnerHtml.Trim();
                             string rtMovieId = movieHrefNode.Attributes["href"].Value.Substring(movieHrefNode.Attributes["href"].Value.LastIndexOf("/") + 1);
-                            var fullMovie = Model.Movie.GetRottenTomatoesMovie(rtMovieId);
+                            Model.Movie fullMovie = null;
+                            try
+                            {
+                                fullMovie = Model.Movie.GetRottenTomatoesMovie(rtMovieId);
+                            }
+                            catch (Exception e)
+                            {
+                                continue;
+                            }
 
                             // parse out showtimes html for this movie
                             var h3ToRemove = showtimeDiv.SelectSingleNode("h3");

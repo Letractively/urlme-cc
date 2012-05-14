@@ -193,7 +193,7 @@ header { background:#fff; overflow: auto; }
         #showtimesView #theaters #location #theatersNearYou { background: gray; }
         #showtimesView #theaters #location #searchByZip { background: orange; }
         #showtimesView #theaters #location #currentZip { font-weight: bold; }
-        #showtimesView #theaters #location #changeCurrentZipLink { margin-left: 10px; color: #535156; font-weight: bold; }
+        #showtimesView #theaters #location #changeCurrentZipLink { margin-left: 10px; color: #2489CE; font-weight: bold; }
         #showtimesView #theaters #location #changeOptions { margin-right: 10px; background: #535156; display:none; padding: 8px; margin-top:5px; color: #999; }
             #showtimesView #theaters #location #changeOptions a { font-weight: bold; color: #fff; }
             #showtimesView #theaters #location #changeOptions button { padding: 5px; }

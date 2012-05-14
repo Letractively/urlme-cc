@@ -15,9 +15,9 @@
         <input type="text" placeholder="Search..." />
         <div data-role="navbar">
             <ul>
-                <li><a href="~/" @(this.Model.PrefetchLinks ? "data-prefetch" : "") data-ajax="@this.Model.UseAjaxForLinks.ToString().ToLower()">Top Box Office</a></li>
+                <li><a href="~/" @(this.Model.PrefetchLinks ? "data-prefetch" : "") data-ajax="@this.Model.UseAjaxForLinks.ToString().ToLower()">What's Hot</a></li>
                 <li><a href="~/showtimes" @(this.Model.PrefetchLinks ? "data-prefetch" : "") data-ajax="@this.Model.UseAjaxForLinks.ToString().ToLower()">Showtimes</a></li>
-                <li><a href="~/comingsoon" class="ui-btn-active" @(this.Model.PrefetchLinks ? "data-prefetch" : "") data-ajax="@this.Model.UseAjaxForLinks.ToString().ToLower()">Coming Soon</a></li>
+                @*<li><a href="~/comingsoon" class="ui-btn-active" @(this.Model.PrefetchLinks ? "data-prefetch" : "") data-ajax="@this.Model.UseAjaxForLinks.ToString().ToLower()">Coming Soon</a></li>*@
             </ul>
         </div>
 	</div><!-- /header -->

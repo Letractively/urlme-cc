@@ -2,6 +2,15 @@
 
 codejkjk.Geo = {
     BaseUrl: "http://api.geonames.org/", // findNearbyPostalCodesJSON?lat=47&lng=9&username=codejkjk&callback=cb
+    GetZipCodeFromLatLong: function (lat, long, callback) {
+        var url = "{0}findNearbyPostalCodesJSON?lat={1}&lng={2}&username=codejkjk".format(codejkjk.Geo.BaseUrl, lat, long);
+        $.ajax({
+            url: url,
+            dataType: "jsonp",
+            success: function (resp) { return callback(resp.postalCodes[0].postalCode); }, // todo: check if postalCodes[0]
+            error: function () { return null; }
+        });
+    },
     GetZipCode: function (callback) {
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(function (position) {

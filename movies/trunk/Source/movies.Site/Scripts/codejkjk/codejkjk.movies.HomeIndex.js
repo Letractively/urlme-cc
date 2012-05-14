@@ -142,23 +142,31 @@ codejkjk.movies.HomeIndex = {
         var input = document.getElementById('inputShowtimesZip');
         var autocomplete = new google.maps.places.Autocomplete(input);
 
-        //        google.maps.event.addListener(autocomplete, 'place_changed', function () {
-        //            var place = autocomplete.getPlace();
+        google.maps.event.addListener(autocomplete, 'place_changed', function () {
+            codejkjk.movies.HomeIndex.Controls.ChangeOptionsContainer().mask();
+            var place = autocomplete.getPlace();
+            var formattedAddress = place.formatted_address.replace(", USA", "");
+            var latLong = place.geometry.location.toString();
+            latLong = latLong.replace("(", "").replace(")", "").replace(" ", "");
+            var lat = latLong.split(',')[0];
+            var long = latLong.split(',')[1];
+            codejkjk.Geo.GetZipCodeFromLatLong(lat, long, function (zipCode) {
+                codejkjk.movies.HomeIndex.UpdateZip(zipCode, formattedAddress);
+            });
 
-        //            var address = '';
-        //            if (place.address_components) {
-        //                address = [(place.address_components[0] &&
-        //                        place.address_components[0].short_name || ''),
-        //                       (place.address_components[1] &&
-        //                        place.address_components[1].short_name || ''),
-        //                       (place.address_components[2] &&
-        //                        place.address_components[2].short_name || '')
-        //                      ].join(' ');
-        //            }
+            //            var address = '';
+            //            if (place.address_components) {
+            //                address = [(place.address_components[0] &&
+            //                        place.address_components[0].short_name || ''),
+            //                       (place.address_components[1] &&
+            //                        place.address_components[1].short_name || ''),
+            //                       (place.address_components[2] &&
+            //                        place.address_components[2].short_name || '')
+            //                      ].join(' ');
+            //            }
 
-        //            $("p").html(JSON.stringify(place.address_components));
-        //            $("p").append("<br/><br/>", JSON.stringify(place.geometry.location));
-        //        });
+            //            $("p").append("<br/><br/>", JSON.stringify(place.geometry.location));
+        });
 
         codejkjk.movies.HomeIndex.BindControls();
         codejkjk.movies.HomeIndex.RegisterJsRenderHelpers();
@@ -408,9 +416,14 @@ codejkjk.movies.HomeIndex = {
         codejkjk.movies.HomeIndex.Controls.Theaters().css("min-height", theaterListHeight + "px");
     },
 
-    UpdateZip: function (zipCode) {
+    UpdateZip: function (zipCode, friendlyTitle) {
         codejkjk.movies.HomeIndex.Currents.ZipCode(zipCode); // update current zip code
-        codejkjk.movies.HomeIndex.Controls.CurrentZip().html(zipCode);
+        if (typeof friendlyTitle != "undefined") {
+            codejkjk.movies.HomeIndex.Controls.CurrentZip().html(friendlyTitle);
+        } else {
+            codejkjk.movies.HomeIndex.Controls.CurrentZip().html(zipCode);
+        }
+        
         codejkjk.movies.HomeIndex.Currents.Theater(""); // new zip, so clear out current theater value
         codejkjk.movies.Api.GetTheaters(codejkjk.movies.HomeIndex.Controls.CurrentShowtimeDay().val(), zipCode, codejkjk.movies.HomeIndex.LoadTheaters);
     },

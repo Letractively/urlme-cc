@@ -202,7 +202,7 @@ header { background:#fff; overflow: auto; }
         #showtimesView #theaters #location #nearZipCode { position: absolute; right: 5px; } /* hide for now, until we get this thing working */
             #showtimesView #theaters #location #nearZipCode #postalCode { font-weight: bold; } /* hide for now, until we get this thing working */
 
-#showtimesView #currentTheaterContainer { float: left; width: 646px; } /* orig: 681 > 671 */
+#showtimesView #currentTheaterContainer { float: left; width: 697px; } /* orig: 681 > 671 */
     #showtimesView #currentTheaterContainer .theater { background: #535156; padding: 15px; }
     #showtimesView #currentTheaterContainer .theater:not(.selected) { display: none; }
     #showtimesView #currentTheaterContainer .theater.selected { display: block; }

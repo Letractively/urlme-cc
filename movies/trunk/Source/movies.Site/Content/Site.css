@@ -197,7 +197,8 @@ header { background:#fff; overflow: auto; }
         #showtimesView #theaters #location #changeOptions { margin-right: 10px; background: #535156; display:none; padding: 8px; margin-top:5px; color: #999; }
             #showtimesView #theaters #location #changeOptions a { font-weight: bold; color: #fff; }
             #showtimesView #theaters #location #changeOptions button { padding: 5px; }
-            #showtimesView #theaters #location #changeOptions input { padding: 4px; width: 80px; margin-right:4px; }
+            #showtimesView #theaters #location #changeOptions input { padding: 4px; width: 262px; margin-right:4px; }
+            #showtimesView #theaters #location #changeOptions > div { margin-top:5px; }
         #showtimesView #theaters #location #nearZipCode { position: absolute; right: 5px; } /* hide for now, until we get this thing working */
             #showtimesView #theaters #location #nearZipCode #postalCode { font-weight: bold; } /* hide for now, until we get this thing working */
 

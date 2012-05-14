@@ -55,7 +55,7 @@ codejkjk.movies.HomeIndex = {
         , Nav: function () { return $("nav"); }
         , NavLinks: function () { return $("nav > a"); }
         , NearbyRedboxLinksSelector: function () { return ".nearbyRedboxLink"; }
-        , NewZipCodeInput: function () { return codejkjk.movies.HomeIndex.Controls.ChangeOptionsContainer().find("input[type=text]"); }
+        , InputShowtimesZip: function () { return $("#inputShowtimesZip"); }
         , Overlay: function () { return $("#overlay"); }
         , OverlaySelector: function () { return "#overlay"; }
         , RedboxAvails: function () { return $("#redboxAvails"); }
@@ -68,7 +68,6 @@ codejkjk.movies.HomeIndex = {
         , SearchRedboxZipCodeButton: function () { return $("#redboxZip").next("button"); }
         , SearchResultsView: function () { return $("#searchResultsView"); }
         , SeeNearbyRedboxesSelector: function () { return "#seeNearbyRedboxes"; }
-        , SetZipCodeButton: function () { return codejkjk.movies.HomeIndex.Controls.ChangeOptionsContainer().find("button"); }
         , ShowHiddenMoviesLinksSelector: function () { return ".showHiddenMoviesLink"; }
         , ShowtimeDayLinks: function () { return $(".showtimeDays > a"); }
         , ShowtimeDayLinksSelector: function () { return ".showtimeDays > a"; }
@@ -140,36 +139,29 @@ codejkjk.movies.HomeIndex = {
         }
 
         // init google maps Places autosearch
-//        var input = document.getElementById('searchTextField');
-//        var autocomplete = new google.maps.places.Autocomplete(input);
+        var input = document.getElementById('inputShowtimesZip');
+        var autocomplete = new google.maps.places.Autocomplete(input);
 
-//        google.maps.event.addListener(autocomplete, 'place_changed', function () {
-//            var place = autocomplete.getPlace();
+        //        google.maps.event.addListener(autocomplete, 'place_changed', function () {
+        //            var place = autocomplete.getPlace();
 
-//            var address = '';
-//            if (place.address_components) {
-//                address = [(place.address_components[0] &&
-//                        place.address_components[0].short_name || ''),
-//                       (place.address_components[1] &&
-//                        place.address_components[1].short_name || ''),
-//                       (place.address_components[2] &&
-//                        place.address_components[2].short_name || '')
-//                      ].join(' ');
-//            }
+        //            var address = '';
+        //            if (place.address_components) {
+        //                address = [(place.address_components[0] &&
+        //                        place.address_components[0].short_name || ''),
+        //                       (place.address_components[1] &&
+        //                        place.address_components[1].short_name || ''),
+        //                       (place.address_components[2] &&
+        //                        place.address_components[2].short_name || '')
+        //                      ].join(' ');
+        //            }
 
-//            $("p").html(JSON.stringify(place.address_components));
-//            $("p").append("<br/><br/>", JSON.stringify(place.geometry.location));
-//        });
+        //            $("p").html(JSON.stringify(place.address_components));
+        //            $("p").append("<br/><br/>", JSON.stringify(place.geometry.location));
+        //        });
 
         codejkjk.movies.HomeIndex.BindControls();
         codejkjk.movies.HomeIndex.RegisterJsRenderHelpers();
-
-        // *** load redbox view ***
-        var lat = geoplugin_latitude();
-        var long = geoplugin_longitude();
-        codejkjk.movies.Api.GetRedboxesHtml(lat, long, function (html) {
-            // codejkjk.movies.HomeIndex.Controls.Redboxes().html(html);
-        });
 
         // *** load showtimes view ***
         // init showtime date to today
@@ -649,25 +641,11 @@ codejkjk.movies.HomeIndex = {
             });
         });
 
-        // handle button that sets manual set of zip
-        codejkjk.movies.HomeIndex.Controls.SetZipCodeButton().click(function (e) {
-            e.preventDefault();
-            var zipCode = codejkjk.movies.HomeIndex.Controls.NewZipCodeInput().val();
-            codejkjk.movies.HomeIndex.UpdateZip(zipCode);
-        });
-
         // handle button that sets manual set of zip for redbox search
         codejkjk.movies.HomeIndex.Controls.SearchRedboxZipCodeButton().click(function (e) {
             e.preventDefault();
             var zipCode = codejkjk.movies.HomeIndex.Controls.RedboxZipCodeInput().val();
             codejkjk.movies.HomeIndex.UpdateRedboxZip(zipCode);
-        });
-
-        // handle Enter key on manual zip input box - triggers "Set" button click
-        codejkjk.movies.HomeIndex.Controls.NewZipCodeInput().keydown(function (e) {
-            if (e.keyCode == 13) {
-                codejkjk.movies.HomeIndex.Controls.SetZipCodeButton().trigger('click');
-            }
         });
 
         // handle Enter key on manual zip input box for redbox search - triggers "Search" button click

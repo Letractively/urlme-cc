@@ -76,6 +76,8 @@ namespace movies.Site.Controllers
                 }
             }
 
+            var redboxMovies = Model.Redbox.GetMovies();
+
             //var redBoxTop20Movies = Model.Movie.GetMovies(Enumerations.MovieLists.RedBoxTop20);
             //foreach (var movie in redBoxTop20Movies.Values)
             //{

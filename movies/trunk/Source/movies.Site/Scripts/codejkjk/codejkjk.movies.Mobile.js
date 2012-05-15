@@ -4,6 +4,8 @@ codejkjk.movies.Mobile = {
     // page elements
     Controls: {
         IMDbMoviesNotSet: function () { return $(".imdbNotSet"); }
+        , ShowtimesOptionsLinkSelector: function () { return "#showtimesOptionsLink"; }
+        , ShowtimesOptionsSelector: function () { return "#showtimesOptions"; }
         , Theaters: function () { return $("#theaters"); }
         , TheaterTemplate: function () { return $("#theaterTemplate"); }
     },
@@ -38,6 +40,17 @@ codejkjk.movies.Mobile = {
         // codejkjk.movies.HomeIndex.Controls.CurrentZip().html(codejkjk.movies.HomeIndex.Currents.ZipCode());
         // codejkjk.movies.Api.GetTheaters(codejkjk.movies.HomeIndex.Controls.CurrentShowtimeDay().val(), codejkjk.movies.HomeIndex.Currents.ZipCode(), codejkjk.movies.HomeIndex.LoadTheaters);
         // codejkjk.movies.Api.GetTheaters(Date.today().toString("yyyyMMdd"), "23226", 
+    },
+
+    BindControls: function () {
+        $(document).on('click', codejkjk.movies.Mobile.Controls.ShowtimesOptionsLinkSelector(), function (e) {
+            e.preventDefault();
+            alert('link clicked');
+        });
+    },
+
+    Init: function () {
+        codejkjk.movies.Mobile.BindControls();
     },
 
     PageChanged: function () {
@@ -129,9 +142,10 @@ codejkjk.movies.Mobile = {
     }
 }
 
-//$(document).ready(function () {
-//    codejkjk.movies.Mobile.Init();
-//});
+$(document).ready(function () {
+    codejkjk.movies.Mobile.Init();
+});
+
 $(document).on('pagechange', function (e) {
     codejkjk.movies.Mobile.PageChanged();
 });

@@ -13,7 +13,7 @@ codejkjk.movies.Mobile = {
             if (typeof val != "undefined") { // set
                 localStorage.setItem("ZipCode", val);
             } else { // get
-                return localStorage.getItem("ZipCode") || "23226"; // return str b/c if we ever want to change it to 02322, this will get converted to str as "3222" if we return as int
+                return localStorage.getItem("ZipCode"); // return str b/c if we ever want to change it to 02322, this will get converted to str as "3222" if we return as int
             }
         }
         , Theater: function (val) {
@@ -40,11 +40,21 @@ codejkjk.movies.Mobile = {
         // codejkjk.movies.Api.GetTheaters(Date.today().toString("yyyyMMdd"), "23226", 
     },
 
-    Init: function () {
+    PageChanged: function () {
         codejkjk.movies.Mobile.RegisterJsRenderHelpers();
 
-        if (codejkjk.movies.Mobile.Controls.Theaters().length) {
-            codejkjk.movies.Mobile.LoadTheaters();
+        if ($("#showtimes").is(":visible")) {
+            // do showtime stuff
+            if (codejkjk.movies.Mobile.Currents.ZipCode()) {
+                // zipcode set
+
+            } else {
+                // no zipcode set
+
+            }
+        }
+        else {
+            // do top box office stuff
         }
 
         $("img.lazy").lazyload({
@@ -119,14 +129,11 @@ codejkjk.movies.Mobile = {
     }
 }
 
-$(document).ready(function () {
-    codejkjk.movies.Mobile.Init();
-});
-
-$(document).on('pageinit', function (e) {
-    // alert('loading imdb');
-    // if load IMDb movies that aren't set from server-side box office and upcoming movie loads
-    // codejkjk.movies.Mobile.GetIMDbData();
+//$(document).ready(function () {
+//    codejkjk.movies.Mobile.Init();
+//});
+$(document).on('pagechange', function (e) {
+    codejkjk.movies.Mobile.PageChanged();
 });
 
 // if load IMDb movies that aren't set from server-side box office and upcoming movie loads

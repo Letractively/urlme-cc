@@ -87,12 +87,13 @@
                     <a href="/{{=movieSlug}}">                    
                         <img src="{{=imageUrl}}" />
                         <div class="details">
-                            <h2>{{=title}}</h2><span class='mpaaRating'>{{=mpaaRating}}</span><span style="display:none;">{{=duration}}</span>
+                            <h2>{{=title}}</h2><span class='mpaaRating'>{{=mpaaRating}}</span>
                             <p class="ratings small">
                                 <span data-rtratingtitle="{{=criticsRating}}" class="rottenTomato icon"></span><span class="rt text">{{=criticsScore}}</span>
                                 <span data-rtratingtitle="{{=audienceRating}}" class="rottenTomato icon"></span><span class="rt text">{{=audienceScore}}</span>
                                 <span class='imdb icon'></span><span class="text">{{=IMDbRating}}</span>
-                            </p>                        
+                            </p> 
+                            <p>{{=duration}}</p> 
                         </div>
                     </a>
                     <p class="showtimes">{{=showtimesHtml!}}</p>

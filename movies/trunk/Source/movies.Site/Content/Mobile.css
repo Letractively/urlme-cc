@@ -7,6 +7,7 @@ div.logo a { margin:0 auto; display:block; background: url('content/logo_mobile.
 
 .hidden { display: none; }
 
+/* jquery mobile overrides */
 .ui-li-has-thumb .ui-btn-inner a.ui-link-inherit { padding-left: 75px; min-height: 73px; }
 .ui-li-thumb, .ui-listview .ui-li-icon { max-height: 91px; }
 .ul-li-heading { float: left; }
@@ -18,6 +19,7 @@ div.logo a { margin:0 auto; display:block; background: url('content/logo_mobile.
     border-color: #CCC; 
 } /* copy of .ui-btn-up-c's background property. confusing to user if background changes on hover ("am I accidentally selecting this??") */
 .ui-icon { z-index: 1000; }
+.ui-header .ui-btn-left, .ui-header .ui-btn-right { top: -2px; }
 
 /* movie list */
 p { color: #535156; } /* grey bullet color */

@@ -5,7 +5,7 @@ codejkjk.movies.Mobile = {
     Controls: {
         IMDbMoviesNotSet: function () { return $(".imdbNotSet"); }
         , ShowtimesOptionsLinkSelector: function () { return "#showtimesOptionsLink"; }
-        , ShowtimesOptionsSelector: function () { return "#showtimesOptions"; }
+        , ShowtimesOptions: function () { return $("#showtimesOptions"); }
         , Theaters: function () { return $("#theaters"); }
         , TheaterTemplate: function () { return $("#theaterTemplate"); }
     },
@@ -45,7 +45,7 @@ codejkjk.movies.Mobile = {
     BindControls: function () {
         $(document).on('click', codejkjk.movies.Mobile.Controls.ShowtimesOptionsLinkSelector(), function (e) {
             e.preventDefault();
-            alert('link clicked');
+            codejkjk.movies.Mobile.Controls.ShowtimesOptions().slideToggle('fast');
         });
     },
 
@@ -61,9 +61,9 @@ codejkjk.movies.Mobile = {
             if (codejkjk.movies.Mobile.Currents.ZipCode()) {
                 // zipcode set
 
-            } else {
-                // no zipcode set
-
+            } else if (!codejkjk.movies.Mobile.Controls.ShowtimesOptions().is(":visible")) {
+                // no zipcode set & showtimesoptions container is invisible, so show it
+                codejkjk.movies.Mobile.Controls.ShowtimesOptions().slideToggle('fast');
             }
         }
         else {

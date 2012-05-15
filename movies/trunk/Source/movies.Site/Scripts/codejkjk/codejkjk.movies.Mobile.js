@@ -55,6 +55,10 @@ codejkjk.movies.Mobile = {
     BindControls: function () {
         $(document).on('click', codejkjk.movies.Mobile.Controls.ShowtimesOptionsLinkSelector(), function (e) {
             e.preventDefault();
+            var clearInput = !codejkjk.movies.Mobile.Controls.ShowtimesOptions().is(":visible");
+            if (clearInput) {
+                codejkjk.movies.Mobile.Controls.InputShowtimesZip().val("");
+            }
             codejkjk.movies.Mobile.Controls.ShowtimesOptions().slideToggle('fast');
         });
     },
@@ -76,7 +80,7 @@ codejkjk.movies.Mobile = {
             var lat = latLong.split(',')[0];
             var long = latLong.split(',')[1];
             codejkjk.Geo.GetZipCodeFromLatLong(lat, long, function (zipCode) {
-                // codejkjk.movies.HomeIndex.UpdateZip(zipCode, formattedAddress);
+                codejkjk.movies.Mobile.UpdateZip(zipCode, formattedAddress);
             });
         });
     },
@@ -118,6 +122,7 @@ codejkjk.movies.Mobile = {
             codejkjk.movies.Mobile.Controls.CurrentShowtimesZip().html(zip);
         }
         codejkjk.movies.Mobile.Controls.ShowtimesHeader().show();
+        codejkjk.movies.Mobile.Controls.ShowtimesOptions().hide();
 
         // codejkjk.movies.HomeIndex.Currents.Theater(""); // new zip, so clear out current theater value
         // codejkjk.movies.Api.GetTheaters(codejkjk.movies.HomeIndex.Controls.CurrentShowtimeDay().val(), zip, codejkjk.movies.HomeIndex.LoadTheaters);

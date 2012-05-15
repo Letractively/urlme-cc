@@ -153,19 +153,6 @@ codejkjk.movies.HomeIndex = {
             codejkjk.Geo.GetZipCodeFromLatLong(lat, long, function (zipCode) {
                 codejkjk.movies.HomeIndex.UpdateZip(zipCode, formattedAddress);
             });
-
-            //            var address = '';
-            //            if (place.address_components) {
-            //                address = [(place.address_components[0] &&
-            //                        place.address_components[0].short_name || ''),
-            //                       (place.address_components[1] &&
-            //                        place.address_components[1].short_name || ''),
-            //                       (place.address_components[2] &&
-            //                        place.address_components[2].short_name || '')
-            //                      ].join(' ');
-            //            }
-
-            //            $("p").append("<br/><br/>", JSON.stringify(place.geometry.location));
         });
 
         codejkjk.movies.HomeIndex.BindControls();

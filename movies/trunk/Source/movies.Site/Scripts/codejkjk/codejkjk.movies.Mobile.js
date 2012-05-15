@@ -4,6 +4,7 @@ codejkjk.movies.Mobile = {
     // page elements
     Controls: {
         IMDbMoviesNotSet: function () { return $(".imdbNotSet"); }
+        , InputShowtimesZip: function () { return $("#inputShowtimesZip"); }
         , CurrentShowtimesZip: function () { return $("#currentShowtimesZip"); }
         , ShowtimesHeader: function () { return $("#showtimesHeader"); }
         , ShowtimesOptionsLinkSelector: function () { return "#showtimesOptionsLink"; }
@@ -62,11 +63,36 @@ codejkjk.movies.Mobile = {
         codejkjk.movies.Mobile.BindControls();
     },
 
+    InitGooglePlaces: function (inputId) {
+        var input = document.getElementById(inputId);
+        var autocomplete = new google.maps.places.Autocomplete(input);
+
+        google.maps.event.addListener(autocomplete, 'place_changed', function () {
+//            codejkjk.movies.HomeIndex.Controls.ChangeOptionsContainer().mask();
+//            var place = autocomplete.getPlace();
+//            var formattedAddress = place.formatted_address.replace(", USA", "");
+//            var latLong = place.geometry.location.toString();
+//            latLong = latLong.replace("(", "").replace(")", "").replace(" ", "");
+//            var lat = latLong.split(',')[0];
+//            var long = latLong.split(',')[1];
+//            codejkjk.Geo.GetZipCodeFromLatLong(lat, long, function (zipCode) {
+//                codejkjk.movies.HomeIndex.UpdateZip(zipCode, formattedAddress);
+//            });
+        });
+    },
+
     PageChanged: function () {
         codejkjk.movies.Mobile.RegisterJsRenderHelpers();
 
         if ($("#homeShowtimesMobile").is(":visible")) {
             // do showtime stuff
+
+            // InputShowtimesZip mapped to google places api?
+            if (!codejkjk.movies.Mobile.Controls.InputShowtimesZip().hasClass("gPlacesLoaded")) {
+                codejkjk.movies.Mobile.InitGooglePlaces("inputShowtimesZip");
+                codejkjk.movies.Mobile.Controls.InputShowtimesZip().addClass("gPlacesLoaded");
+            }
+
             if (codejkjk.movies.Mobile.Currents.ZipCode()) {
                 // zipcode already set
                 codejkjk.movies.Mobile.UpdateZip(codejkjk.movies.Mobile.Currents.ZipCode(), codejkjk.movies.Mobile.Currents.ZipCodeFriendlyTitle());

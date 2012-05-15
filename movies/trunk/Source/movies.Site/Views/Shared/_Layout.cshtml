@@ -85,13 +85,15 @@
             {{#each movies}}
                 <div class="movie rounded glowing gradient {{=movieClass}}" data-rtmovieid="{{=id}}">
                     <img src="{{=imageUrl}}" />
-                    <h2>{{=title}}</h2><span class='mpaaRating'>{{=mpaaRating}}</span>{{=duration}}
-                    <p class="showtimes">{{=showtimesHtml!}}</p>
-                    <p class="ratings small">
-                        <span data-rtratingtitle="{{=criticsRating}}" class="rottenTomato icon"></span><span class="rt text">{{=criticsScore}}</span>
-                        <span data-rtratingtitle="{{=audienceRating}}" class="rottenTomato icon"></span><span class="rt text">{{=audienceScore}}</span>
-                        <span class='imdb icon'></span><span class="text">{{=IMDbRating}}</span>
-                    </p>
+                    <div class="details">
+                        <h2>{{=title}}</h2><span class='mpaaRating'>{{=mpaaRating}}</span>{{=duration}}
+                        <p class="ratings small">
+                            <span data-rtratingtitle="{{=criticsRating}}" class="rottenTomato icon"></span><span class="rt text">{{=criticsScore}}</span>
+                            <span data-rtratingtitle="{{=audienceRating}}" class="rottenTomato icon"></span><span class="rt text">{{=audienceScore}}</span>
+                            <span class='imdb icon'></span><span class="text">{{=IMDbRating}}</span>
+                        </p>                        
+                    </div>
+                    <p style="clear:left;" class="showtimes">{{=showtimesHtml!}}</p>
                     <div class="actions">
                         <a href="#" class="hideMovieLink rounded" data-theatermovie="{{=$parent.parent.data.id}}-{{=id}}"><span class="x">&#10006;</span>Hide this movie</a>
                         <a href="/{{=movieSlug}}" class="rounded"><span class="dotdotdot">+</span>More movie details</a>

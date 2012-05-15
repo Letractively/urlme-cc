@@ -74,7 +74,7 @@ namespace movies
             routes.MapRoute(
                 "Home-Showtimes", // Route name
                 "showtimes", // URL with parameters
-                new { controller = "Home", action = "Index" } // Parameter defaults
+                new { controller = "Home", action = "Showtimes" } // Parameter defaults
             );
 
             routes.MapRoute(

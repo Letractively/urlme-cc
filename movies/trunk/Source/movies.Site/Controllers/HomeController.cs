@@ -17,14 +17,18 @@ namespace movies.Site.Controllers
                 OpeningMovies = Movie.GetMovies(Enumerations.MovieLists.Opening),
                 BoxOfficeMovies = Movie.GetMovies(Enumerations.MovieLists.BoxOffice),
                 InTheatersMovies = Movie.GetMovies(Enumerations.MovieLists.InTheaters),
-                UpcomingMovies = Movie.GetMovies(Enumerations.MovieLists.Upcoming),
-                // RedBoxTop20Movies = Movie.GetMovies(Enumerations.MovieLists.RedboxTop20),
-                RedboxMovies = Redbox.GetMovies(),
                 
                 OverlayMovie = null,
                 UseAjaxForLinks = true,
                 PrefetchLinks = false
             };
+
+            // load upcoming and redbox only if for desktop view
+            if (!Request.Browser.IsMobileDevice)
+            {
+                vm.UpcomingMovies = Movie.GetMovies(Enumerations.MovieLists.Upcoming);
+                vm.RedboxMovies = Redbox.GetMovies();
+            }
 
             // remove any movies in InTheatersMovies that are already in Box Office
             foreach (var movie in vm.BoxOfficeMovies)
@@ -44,7 +48,15 @@ namespace movies.Site.Controllers
                 }
             }
 
-            return View(vm);
+            if (Request.Browser.IsMobileDevice)
+            {
+                return View("Index.Mobile", vm);
+            }
+            else
+            {
+                return View("Index", vm);
+            }
+            
         }
 
         public ActionResult CacheImdbData()
@@ -111,19 +123,23 @@ namespace movies.Site.Controllers
         /* mobile - showtimes */
         public ActionResult Showtimes()
         {
-            var vm = new ViewModels.Home.Index
+            if (Request.Browser.IsMobileDevice)
             {
-                OpeningMovies = Movie.GetMovies(Enumerations.MovieLists.Opening),
-                BoxOfficeMovies = Movie.GetMovies(Enumerations.MovieLists.BoxOffice),
-                InTheatersMovies = Movie.GetMovies(Enumerations.MovieLists.InTheaters),
-                UpcomingMovies = Movie.GetMovies(Enumerations.MovieLists.Upcoming),
-                RedboxMovies = Redbox.GetMovies(),
+                // mobile, only set what we need to
+                var vm = new ViewModels.Home.Index
+                {
+                    OverlayMovie = null,
+                    UseAjaxForLinks = true,
+                    PrefetchLinks = false
+                };
 
-                OverlayMovie = null,
-                UseAjaxForLinks = true,
-                PrefetchLinks = false
-            };
-            return View(vm);
+                return View("Showtimes.Mobile", vm);
+            }
+            else
+            {
+                // desktop, return whatever Index does, b/c there's js to look at the path to determine which section to show
+                return Index();
+            }
         }
 
         /* mobile - coming soon */

@@ -11,6 +11,7 @@ codejkjk.movies.Mobile = {
         , ShowtimesOptions: function () { return $("#showtimesOptions"); }
         , Theaters: function () { return $("#theaters"); }
         , TheaterTemplate: function () { return $("#theaterTemplate"); }
+        , UseCurrentLocationForShowtimesSelector: function () { return "#useCurrentLocationForShowtimes"; }
     },
 
     Currents: {
@@ -53,6 +54,7 @@ codejkjk.movies.Mobile = {
     },
 
     BindControls: function () {
+        // "options" link for showtimes
         $(document).on('click', codejkjk.movies.Mobile.Controls.ShowtimesOptionsLinkSelector(), function (e) {
             e.preventDefault();
             var clearInput = !codejkjk.movies.Mobile.Controls.ShowtimesOptions().is(":visible");
@@ -61,9 +63,17 @@ codejkjk.movies.Mobile = {
             }
             codejkjk.movies.Mobile.Controls.ShowtimesOptions().slideToggle('fast');
         });
+        // "use current location" click for showtimes zip
+        $(document).on('click', codejkjk.movies.Mobile.Controls.UseCurrentLocationForShowtimesSelector(), function (e) {
+            e.preventDefault();
+            codejkjk.Geo.GetZipCode(function (zipCode) {
+                codejkjk.movies.Mobile.UpdateZip(zipCode);
+            });
+        });
     },
 
     Init: function () {
+        // init happens only once. make it count.
         codejkjk.movies.Mobile.BindControls();
     },
 
@@ -124,7 +134,7 @@ codejkjk.movies.Mobile = {
         codejkjk.movies.Mobile.Controls.ShowtimesHeader().show();
         codejkjk.movies.Mobile.Controls.ShowtimesOptions().hide();
 
-        // codejkjk.movies.HomeIndex.Currents.Theater(""); // new zip, so clear out current theater value
+        codejkjk.movies.Mobile.Currents.Theater(""); // new zip, so clear out current theater value
         // codejkjk.movies.Api.GetTheaters(codejkjk.movies.HomeIndex.Controls.CurrentShowtimeDay().val(), zip, codejkjk.movies.HomeIndex.LoadTheaters);
     },
 

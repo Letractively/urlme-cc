@@ -68,16 +68,16 @@ codejkjk.movies.Mobile = {
         var autocomplete = new google.maps.places.Autocomplete(input);
 
         google.maps.event.addListener(autocomplete, 'place_changed', function () {
-//            codejkjk.movies.HomeIndex.Controls.ChangeOptionsContainer().mask();
-//            var place = autocomplete.getPlace();
-//            var formattedAddress = place.formatted_address.replace(", USA", "");
-//            var latLong = place.geometry.location.toString();
-//            latLong = latLong.replace("(", "").replace(")", "").replace(" ", "");
-//            var lat = latLong.split(',')[0];
-//            var long = latLong.split(',')[1];
-//            codejkjk.Geo.GetZipCodeFromLatLong(lat, long, function (zipCode) {
-//                codejkjk.movies.HomeIndex.UpdateZip(zipCode, formattedAddress);
-//            });
+            // codejkjk.movies.Mobile.Controls.ShowtimesOptions().mask();
+            var place = autocomplete.getPlace();
+            var formattedAddress = place.formatted_address.replace(", USA", "");
+            var latLong = place.geometry.location.toString();
+            latLong = latLong.replace("(", "").replace(")", "").replace(" ", "");
+            var lat = latLong.split(',')[0];
+            var long = latLong.split(',')[1];
+            codejkjk.Geo.GetZipCodeFromLatLong(lat, long, function (zipCode) {
+                // codejkjk.movies.HomeIndex.UpdateZip(zipCode, formattedAddress);
+            });
         });
     },
 

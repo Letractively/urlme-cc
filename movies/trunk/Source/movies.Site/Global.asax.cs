@@ -145,6 +145,7 @@ namespace movies
             mobileJsBundle.AddFile("~/scripts/codejkjk/codejkjk.movies.Defaults.js");
             mobileJsBundle.AddFile("~/scripts/codejkjk/codejkjk.movies.Api.js");
             mobileJsBundle.AddFile("~/scripts/codejkjk/codejkjk.Geo.js");
+            mobileJsBundle.AddFile("~/scripts/plugins/jquery.mask.min.js");
             mobileJsBundle.AddFile("~/scripts/plugins/date.js");
             mobileJsBundle.AddFile("~/scripts/plugins/jsrender.js");
             // mobileJsBundle.AddFile("~/scripts/plugins/lazyload/jquery.lazyload.min.js");

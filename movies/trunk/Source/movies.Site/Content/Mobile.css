@@ -34,4 +34,7 @@ p { color: #535156; } /* grey bullet color */
     #MovieIndexMobile .links a:first-child { margin-right:20px; }
 #MovieIndexMobile .mpaaRating { font-size: 24px; margin: 0; }
 
+/* google places */
+.pac-item { font-size: 18px; padding: 5px; }
+
 #homeShowtimesMobile #showtimesOptions > div { margin-top: 10px; font-size: 120%; }

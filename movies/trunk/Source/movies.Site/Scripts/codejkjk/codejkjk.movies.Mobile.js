@@ -4,6 +4,7 @@ codejkjk.movies.Mobile = {
     // page elements
     Controls: {
         IMDbMoviesNotSet: function () { return $(".imdbNotSet"); }
+        , CurrentShowtimesZip: function () { return $("#currentShowtimesZip"); }
         , ShowtimesOptionsLinkSelector: function () { return "#showtimesOptionsLink"; }
         , ShowtimesOptions: function () { return $("#showtimesOptions"); }
         , Theaters: function () { return $("#theaters"); }
@@ -18,6 +19,13 @@ codejkjk.movies.Mobile = {
                 return localStorage.getItem("ZipCode"); // return str b/c if we ever want to change it to 02322, this will get converted to str as "3222" if we return as int
             }
         }
+        , ZipCodeFriendlyTitle: function (val) {
+            if (typeof val != "undefined") { // set
+                localStorage.setItem("ZipCodeFriendlyTitle", val);
+            } else { // get
+                return localStorage.getItem("ZipCodeFriendlyTitle"); // return str b/c if we ever want to change it to 02322, this will get converted to str as "3222" if we return as int
+            }
+        }        
         , Theater: function (val) {
             if (typeof val != "undefined") { // set
                 localStorage.setItem("Theater", val);
@@ -60,7 +68,7 @@ codejkjk.movies.Mobile = {
             // do showtime stuff
             if (codejkjk.movies.Mobile.Currents.ZipCode()) {
                 // zipcode set
-
+                codejkjk.movies.Mobile.UpdateZip(codejkjk.movies.Mobile.Currents.ZipCode(), codejkjk.movies.Mobile.Currents.ZipCodeFriendlyTitle());
             } else if (!codejkjk.movies.Mobile.Controls.ShowtimesOptions().is(":visible")) {
                 // no zipcode set & showtimesoptions container is invisible, so show it
                 codejkjk.movies.Mobile.Controls.ShowtimesOptions().slideToggle('fast');
@@ -73,6 +81,18 @@ codejkjk.movies.Mobile = {
         $("img.lazy").lazyload({
             effect: "fadeIn"
         });
+    },
+
+    UpdateZip: function (zip, friendlyTitle) {
+        codejkjk.movies.Mobile.Currents.ZipCode(zip); // update current zip code
+        if (typeof friendlyTitle != "undefined" && friendlyTitle) {
+            codejkjk.movies.Mobile.Controls.CurrentShowtimesZip().html(friendlyTitle);
+        } else {
+            codejkjk.movies.Mobile.Controls.CurrentShowtimesZip().html(zip);
+        }
+
+        // codejkjk.movies.HomeIndex.Currents.Theater(""); // new zip, so clear out current theater value
+        // codejkjk.movies.Api.GetTheaters(codejkjk.movies.HomeIndex.Controls.CurrentShowtimeDay().val(), zip, codejkjk.movies.HomeIndex.LoadTheaters);
     },
 
     RegisterJsRenderHelpers: function () {

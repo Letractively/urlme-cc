@@ -33,3 +33,5 @@ p { color: #535156; } /* grey bullet color */
 #MovieIndexMobile .links { clear: left; }
     #MovieIndexMobile .links a:first-child { margin-right:20px; }
 #MovieIndexMobile .mpaaRating { font-size: 24px; margin: 0; }
+
+#homeShowtimesMobile #showtimesOptions > div { margin-top: 10px; }

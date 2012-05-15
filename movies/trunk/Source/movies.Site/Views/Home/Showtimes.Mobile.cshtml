@@ -8,6 +8,7 @@
 }
 
 <div data-role="page" id="homeShowtimesMobile">
+    <input type="hidden" id="currentShowtimeDay" />
     <div class="logo">
         <a href="~/"></a>
     </div>
@@ -22,16 +23,21 @@
         </div>
 	</div><!-- /header -->
     @*showtimes for...*@
-	<div data-role="header" id="showtimesHeader" style="display:none;">
+	<div data-role="header" id="showtimesHeader" style="display:none;" data-theme="c">
         <h1>Showtimes for <span id="currentShowtimesZip"></span></h1>
         <a href="#" id="showtimesOptionsLink" data-icon="gear" class="ui-btn-right">Options</a>
+    </div>
+	<div data-role="header" id="theaterHeader" style="display:none;" data-theme="c">
+        <h2><span id="currentTheater"></span></h2>
+        <a href="#" id="theaterBackLink" data-icon="arrow-l" class="ui-btn-left">Back</a>
     </div>
     <div data-role="content">	
         <div id="showtimesOptions" style="display:none;">
             <input type="text" id="inputShowtimesZip" placeholder="Search for city or zip...">
             <div>or <a id="useCurrentLocationForShowtimes" href="#">use current location</a></div>
         </div>
-        <ul data-role="listview" data-theme="c" id="theaters">
+        <ul data-role="listview" data-theme="c" id="favoriteTheaterList"></ul>
+        <ul data-role="listview" data-theme="c" id="theaterList"></ul>
         </ul>
 	</div><!-- /content -->
 </div><!-- /page -->

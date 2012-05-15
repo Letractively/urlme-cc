@@ -5,6 +5,8 @@ strong { font-weight: bold; }
 div.logo { height: 80px; padding: 10px; background-color: #000; }
 div.logo a { margin:0 auto; display:block; background: url('content/logo_mobile.png'); background-repeat:no-repeat; height: 80px; width: 224px;}
 
+.hidden { display: none; }
+
 .ui-li-has-thumb .ui-btn-inner a.ui-link-inherit { padding-left: 75px; min-height: 73px; }
 .ui-li-thumb, .ui-listview .ui-li-icon { max-height: 91px; }
 .ul-li-heading { float: left; }

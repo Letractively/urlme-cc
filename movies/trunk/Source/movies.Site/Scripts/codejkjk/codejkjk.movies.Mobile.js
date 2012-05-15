@@ -62,6 +62,7 @@ codejkjk.movies.Mobile = {
     },
 
     LoadTheaters: function (postalCode) {
+        $.mobile.showPageLoadingMsg();
         var theaters = postalCode.theaters;
         var hiddenTheaterMovies = codejkjk.movies.Mobile.Currents.HiddenTheaterMovies();
 
@@ -128,6 +129,7 @@ codejkjk.movies.Mobile = {
         // now that the theater links are filled, set the currentTheater container's height to match height of theater links container
         // var theaterListHeight = codejkjk.movies.Mobile.Controls.TheaterList().height() + 20;
         // codejkjk.movies.Mobile.Controls.Theaters().css("min-height", theaterListHeight + "px");
+        $.mobile.hidePageLoadingMsg();
     },
 
     BindControls: function () {
@@ -156,6 +158,7 @@ codejkjk.movies.Mobile = {
             codejkjk.movies.Mobile.Controls.TheaterList().hide();
             codejkjk.movies.Mobile.Controls.FavoriteTheaterList().hide();
             codejkjk.movies.Mobile.Controls.TheaterHeader().show();
+            codejkjk.movies.Mobile.Controls.ShowtimesHeader().hide();
         });
         // theater back link
         $(document).on('click', codejkjk.movies.Mobile.Controls.TheaterBackLinkSelector(), function (e) {
@@ -163,6 +166,7 @@ codejkjk.movies.Mobile = {
             codejkjk.movies.Mobile.Controls.TheaterList().show();
             codejkjk.movies.Mobile.Controls.FavoriteTheaterList().show();
             codejkjk.movies.Mobile.Controls.TheaterHeader().hide();
+            codejkjk.movies.Mobile.Controls.ShowtimesHeader().show();
         });
     },
 

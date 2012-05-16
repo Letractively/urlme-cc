@@ -11,16 +11,21 @@ codejkjk.movies.Mobile = {
         , InputShowtimesZip: function () { return $("#inputShowtimesZip"); }
         , CurrentShowtimesZip: function () { return $("#currentShowtimesZip"); }
         , CurrentTheater: function () { return $("#currentTheater"); }
-        , TheaterLinkSelector: function () { return ".theaterLink"; }
+        , CurrentTheaterMovie: function () { return $("#currentTheaterMovie"); }
         , ShowtimesHeader: function () { return $("#showtimesHeader"); }
         , ShowtimesOptionsLinkSelector: function () { return "#showtimesOptionsLink"; }
         , ShowtimesOptions: function () { return $("#showtimesOptions"); }
+        , TheaterMovie: function () { return $("#theaterMovie"); }
+        , TheaterMovieHeader: function () { return $("#theaterMovieHeader"); }
+        , TheaterMovieLinkSelector: function () { return ".theaterMovieLink"; }
+        , TheaterLinkSelector: function () { return ".theaterLink"; }
+        , TheaterMovieBackLinkSelector: function () { return "#theaterMovieBackLink"; }
         , TheaterBackLinkSelector: function () { return "#theaterBackLink"; }
         , TheaterHeader: function () { return $("#theaterHeader"); }
         , TheaterList: function () { return $("#theaterList"); }
         , TheaterLists: function () { return $(".theaterListContent"); }
         , TheaterListTemplate: function () { return $("#theaterListTemplate"); }
-        , TheaterMovieList: function () { return $("#theaterMovieList"); }
+        , TheaterMovieList: function () { return $("#theaterMovieListContent > ul"); }
         , TheaterMovieTemplate: function () { return $("#theaterMovieTemplate"); }
         , Theaters: function () { return $("#theaters"); }
         , TheaterTemplate: function () { return $("#theaterTemplate"); }
@@ -334,6 +339,30 @@ codejkjk.movies.Mobile = {
                 ).show().listview('refresh');
                 $.mobile.hidePageLoadingMsg();
             });
+        });
+        // theater movie link
+        $(document).on('click', codejkjk.movies.Mobile.Controls.TheaterMovieLinkSelector(), function (e) {
+            e.preventDefault();
+            $.mobile.showPageLoadingMsg();
+            var link = $(this);
+            var movieName = link.find("h3").text();
+            var rtMovieId = link.attr("data-rtmovieid");
+            codejkjk.movies.Mobile.Controls.CurrentTheaterMovie().html(movieName);
+            codejkjk.movies.Mobile.Controls.TheaterHeader().hide();
+            codejkjk.movies.Mobile.Controls.TheaterMovieHeader().show();
+
+            // load single theater movie
+            codejkjk.movies.Api.GetMovieMobileHtml(rtMovieId, function (html) {
+                codejkjk.movies.Mobile.Controls.TheaterMovie().html(html).show(); // show after filling
+                $.mobile.hidePageLoadingMsg();
+            });
+        });
+        // theater movie back link
+        $(document).on('click', codejkjk.movies.Mobile.Controls.TheaterMovieBackLinkSelector(), function (e) {
+            e.preventDefault();
+            codejkjk.movies.Mobile.Controls.TheaterHeader().show();
+            codejkjk.movies.Mobile.Controls.TheaterMovieList().show();
+            codejkjk.movies.Mobile.Controls.TheaterMovie().hide();
         });
         // theater back link
         $(document).on('click', codejkjk.movies.Mobile.Controls.TheaterBackLinkSelector(), function (e) {

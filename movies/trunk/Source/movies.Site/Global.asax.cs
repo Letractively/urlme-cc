@@ -47,6 +47,12 @@ namespace movies
             );
 
             routes.MapRoute(
+                "Api-Get_Movie_Mobile_Html", // Route name
+                "api/get_rt_movie_mobile.html/{rtMovieId}", // URL with parameters
+                new { controller = "Api", action = "GetMovieMobileHtml" } // Parameter defaults
+            );
+
+            routes.MapRoute(
                 "Api-Search_Movies", // Route name
                 "api/search_movies.html", // URL with parameters
                 new { controller = "Api", action = "SearchMovies" } // Parameter defaults

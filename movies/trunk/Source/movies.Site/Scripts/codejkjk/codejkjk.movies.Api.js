@@ -78,6 +78,17 @@ codejkjk.movies.Api = {
         var url = "{0}get_rt_movie.html/{1}".format(codejkjk.movies.Api.BaseUrl, rtMovieId);
         codejkjk.movies.Api.AjaxGet(url, callback, 'html', cacheKey);
     },
+    GetMovieMobileHtml: function (rtMovieId, callback) {
+        // first, check cache
+        var cacheKey = "rt-mobile-html-{0}".format(rtMovieId);
+        var cached = $.cacheItem(cacheKey);
+        if (cached && codejkjk.movies.Defaults.AllowCache) {
+            return callback(cached);
+        }
+
+        var url = "{0}get_rt_movie_mobile.html/{1}".format(codejkjk.movies.Api.BaseUrl, rtMovieId);
+        codejkjk.movies.Api.AjaxGet(url, callback, 'html', cacheKey);
+    },
     GetRedboxesHtml: function (lat, long, callback) {
         // first, check cache
         var cacheKey = "rb-html-{0}-{1}".format(lat, long);

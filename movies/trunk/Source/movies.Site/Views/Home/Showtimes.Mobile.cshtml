@@ -41,7 +41,12 @@
     <div data-role="content" class="theaterListContent">
         <ul data-role="listview" data-theme="c" id="theaterList"></ul>
     </div>
-    <div data-role="content">        
-        <ul data-role="listview" data-theme="c" id="theaterMovieList"></ul>
-	</div><!-- /content -->
+    <div data-role="content" id="theaterMovieListContent">        
+        <ul data-role="listview" data-theme="c"></ul>
+	</div>
+	<div data-role="header" id="theaterMovieHeader" style="display:none;" data-theme="c">
+        <h2><span id="currentTheaterMovie"></span></h2>
+        <a href="#" id="theaterMovieBackLink" data-icon="arrow-l" class="ui-btn-left">Back</a>
+    </div>
+    <div data-role="content" id="theaterMovie" style="display:none;"></div>
 </div><!-- /page -->

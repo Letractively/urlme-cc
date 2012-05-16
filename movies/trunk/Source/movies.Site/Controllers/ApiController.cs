@@ -59,7 +59,7 @@ namespace movies.Site.Controllers
         {
             var postalCode = PostalCode.Get(date, zip);
             var theater = postalCode.theaters.FirstOrDefault(x => x.id == theaterId);
-            return this.Json(theater.movies, JsonRequestBehavior.AllowGet);
+            return this.Json(theater, JsonRequestBehavior.AllowGet);
         }
 
         [HttpGet]

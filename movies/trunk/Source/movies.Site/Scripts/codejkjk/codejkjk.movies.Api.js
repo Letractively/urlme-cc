@@ -13,6 +13,17 @@ codejkjk.movies.Api = {
         var url = "{0}get_showtimes.json/{1}/{2}".format(codejkjk.movies.Api.BaseUrl, dateStr, zip);
         codejkjk.movies.Api.AjaxGet(url, callback, 'json', cacheKey);
     },
+    GetTheaterMovies: function (dateStr, zip, theaterId, callback) {
+        // first, check cache
+        var cacheKey = "flixster-{0}-{1}-{2}".format(dateStr, theaterId, zip);
+        var cached = $.cacheItem(cacheKey);
+        if (cached && codejkjk.movies.Defaults.AllowCache) {
+            return callback(cached);
+        }
+
+        var url = "{0}get_theater_movies.json/{1}/{2}/{3}".format(codejkjk.movies.Api.BaseUrl, dateStr, zip, theaterId);
+        codejkjk.movies.Api.AjaxGet(url, callback, 'json', cacheKey);
+    },
     GetTheatersForMovie: function (dateStr, zip, rtMovieId, callback) {
         // first, check cache
         var cacheKey = "flixster-{0}-{1}-{2}".format(dateStr, zip, rtMovieId);

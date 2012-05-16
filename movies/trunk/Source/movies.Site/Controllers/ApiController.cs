@@ -55,6 +55,14 @@ namespace movies.Site.Controllers
         }
 
         [HttpGet]
+        public JsonResult GetTheaterMovies(string date, string zip, string theaterId)
+        {
+            var postalCode = PostalCode.Get(date, zip);
+            var theater = postalCode.theaters.FirstOrDefault(x => x.id == theaterId);
+            return this.Json(theater.movies, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpGet]
         public ActionResult GetPostalCodeForMovie(string date, string zip, string rtMovieId)
         {
             var postalCode = PostalCode.Get(date, zip);

@@ -146,12 +146,22 @@ codejkjk.movies.Mobile = {
         // theater link clicks
         $(document).on('click', codejkjk.movies.Mobile.Controls.TheaterLinkSelector(), function (e) {
             e.preventDefault();
+            $.mobile.showPageLoadingMsg();
             var link = $(this);
             var theaterName = link.find("h3").text();
+            var theaterId = link.attr("data-theaterid");
             codejkjk.movies.Mobile.Controls.CurrentTheater().html(theaterName);
             codejkjk.movies.Mobile.Controls.TheaterLists().hide();
             codejkjk.movies.Mobile.Controls.TheaterHeader().show();
             codejkjk.movies.Mobile.Controls.ShowtimesHeader().hide();
+
+            // load theater movies
+            codejkjk.movies.Api.GetTheaterMovies(codejkjk.movies.Mobile.Currents.ShowtimeDay(), codejkjk.movies.Mobile.Currents.ZipCode(), theaterId, function (theater) {
+                codejkjk.movies.Mobile.Controls.TheaterMovieList().html(
+                    codejkjk.movies.Mobile.Controls.TheaterMovieTemplate().render(theater)
+                ).show().listview('refresh');
+                $.mobile.hidePageLoadingMsg();
+            });
         });
         // theater back link
         $(document).on('click', codejkjk.movies.Mobile.Controls.TheaterBackLinkSelector(), function (e) {
@@ -159,6 +169,7 @@ codejkjk.movies.Mobile = {
             codejkjk.movies.Mobile.Controls.TheaterLists().show();
             codejkjk.movies.Mobile.Controls.TheaterHeader().hide();
             codejkjk.movies.Mobile.Controls.ShowtimesHeader().show();
+            codejkjk.movies.Mobile.Controls.TheaterMovieList().hide();
         });
     },
 

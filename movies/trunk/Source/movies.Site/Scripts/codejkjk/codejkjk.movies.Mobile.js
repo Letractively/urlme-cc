@@ -5,6 +5,7 @@ codejkjk.movies.Mobile = {
     Controls: {
         FavoriteLinksSelector: function () { return ".favoriteLink"; }
         , FavoriteTheaterList: function () { return $("#favoriteTheaterList"); }
+        , FavoriteTheaterListContent: function () { return $("#favoriteTheaterListContent"); }
         , FavoriteTheaterListTemplate: function () { return $("#favoriteTheaterListTemplate"); }
         , IMDbMoviesNotSet: function () { return $(".imdbNotSet"); }
         , InputShowtimesZip: function () { return $("#inputShowtimesZip"); }
@@ -17,7 +18,7 @@ codejkjk.movies.Mobile = {
         , TheaterBackLinkSelector: function () { return "#theaterBackLink"; }
         , TheaterHeader: function () { return $("#theaterHeader"); }
         , TheaterList: function () { return $("#theaterList"); }
-        , TheaterLists: function () { return $(".theaterList"); }
+        , TheaterLists: function () { return $(".theaterListContent"); }
         , TheaterListTemplate: function () { return $("#theaterListTemplate"); }
         , TheaterMovieList: function () { return $("#theaterMovieList"); }
         , TheaterMovieTemplate: function () { return $("#theaterMovieTemplate"); }
@@ -112,12 +113,17 @@ codejkjk.movies.Mobile = {
         });
 
         // render theaters
-        codejkjk.movies.Mobile.Controls.FavoriteTheaterList().html(
-            codejkjk.movies.Mobile.Controls.FavoriteTheaterListTemplate().render(favoriteTheaters)
-        ).show().listview('refresh');
+        if (favoriteTheaters.length) {
+            codejkjk.movies.Mobile.Controls.FavoriteTheaterList().html(
+                codejkjk.movies.Mobile.Controls.FavoriteTheaterListTemplate().render(favoriteTheaters)
+            ).listview('refresh').parent().show();
+            codejkjk.movies.Mobile.Controls.FavoriteTheaterListContent().show();
+        } else {
+            codejkjk.movies.Mobile.Controls.FavoriteTheaterListContent().hide();
+        }
         codejkjk.movies.Mobile.Controls.TheaterList().html(
             codejkjk.movies.Mobile.Controls.TheaterListTemplate().render(notFavoriteTheaters)
-        ).show().listview('refresh');
+        ).listview('refresh').parent().show();
 
         if (codejkjk.movies.Mobile.Controls.ShowtimesOptions().is(":visible")) {
             codejkjk.movies.Mobile.Controls.ShowtimesOptions().slideToggle('fast');
@@ -332,7 +338,11 @@ codejkjk.movies.Mobile = {
         // theater back link
         $(document).on('click', codejkjk.movies.Mobile.Controls.TheaterBackLinkSelector(), function (e) {
             e.preventDefault();
-            codejkjk.movies.Mobile.Controls.TheaterLists().show();
+            if (codejkjk.movies.Mobile.Controls.FavoriteTheaterListContent().find("li").length) {
+                codejkjk.movies.Mobile.Controls.TheaterLists().show();
+            } else {
+                codejkjk.movies.Mobile.Controls.TheaterLists().last().show();
+            }
             codejkjk.movies.Mobile.Controls.TheaterHeader().hide();
             codejkjk.movies.Mobile.Controls.ShowtimesHeader().show();
             codejkjk.movies.Mobile.Controls.TheaterMovieList().hide();

@@ -43,6 +43,6 @@ p { color: #535156; } /* grey bullet color */
 .pac-item { font-size: 18px; padding: 5px; }
 
 #homeShowtimesMobile #showtimesOptions > div { margin-top: 10px; font-size: 120%; }
-#homeShowtimesMobile .theaterList .favoriteLink { float: left; height: 36px; width: 19px; padding: 0 10px; margin-left: -10px; }
-#homeShowtimesMobile .theaterList .favoriteLink.lit { background:url('content/images/icons/star_lit.png') no-repeat center center transparent; }
-#homeShowtimesMobile .theaterList .favoriteLink.default { background:url('content/images/icons/star_default.png') no-repeat center center transparent; }
+#homeShowtimesMobile .theaterListContent .favoriteLink { float: left; height: 36px; width: 19px; padding: 0 10px; margin-left: -10px; }
+#homeShowtimesMobile .theaterListContent .favoriteLink.lit { background:url('content/images/icons/star_lit.png') no-repeat center center transparent; }
+#homeShowtimesMobile .theaterListContent .favoriteLink.default { background:url('content/images/icons/star_default.png') no-repeat center center transparent; }

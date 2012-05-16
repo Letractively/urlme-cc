@@ -11,6 +11,7 @@ div.logo a { margin:0 auto; display:block; background: url('content/logo_mobile.
 .ui-li-has-thumb .ui-btn-inner a.ui-link-inherit { padding-left: 75px; min-height: 73px; }
 .ui-li-thumb, .ui-listview .ui-li-icon { max-height: 91px; }
 .ul-li-heading { float: left; }
+#showtimesHeader > h1 { margin: .6em 10px .8em; text-align: left; } 
 .ui-btn-hover-c  
 {
     background: -moz-linear-gradient(#FDFDFD, #EEEEEE) repeat scroll 0 0 #EEEEEE; 

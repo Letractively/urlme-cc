@@ -3,7 +3,8 @@
 codejkjk.movies.Mobile = {
     // page elements
     Controls: {
-        FavoriteTheaterList: function () { return $("#favoriteTheaterList"); }
+        FavoriteLinksSelector: function () { return ".favoriteLink"; }
+        , FavoriteTheaterList: function () { return $("#favoriteTheaterList"); }
         , FavoriteTheaterListTemplate: function () { return $("#favoriteTheaterListTemplate"); }
         , IMDbMoviesNotSet: function () { return $(".imdbNotSet"); }
         , InputShowtimesZip: function () { return $("#inputShowtimesZip"); }
@@ -124,53 +125,6 @@ codejkjk.movies.Mobile = {
 
         // now that the theater links are filled, set the currentTheater container's height to match height of theater links container
         $.mobile.hidePageLoadingMsg();
-    },
-
-    BindControls: function () {
-        // "options" link for showtimes
-        $(document).on('click', codejkjk.movies.Mobile.Controls.ShowtimesOptionsLinkSelector(), function (e) {
-            e.preventDefault();
-            var clearInput = !codejkjk.movies.Mobile.Controls.ShowtimesOptions().is(":visible");
-            if (clearInput) {
-                codejkjk.movies.Mobile.Controls.InputShowtimesZip().val("");
-            }
-            codejkjk.movies.Mobile.Controls.ShowtimesOptions().slideToggle('fast');
-        });
-        // "use current location" click for showtimes zip
-        $(document).on('click', codejkjk.movies.Mobile.Controls.UseCurrentLocationForShowtimesSelector(), function (e) {
-            e.preventDefault();
-            codejkjk.Geo.GetZipCode(function (zipCode) {
-                codejkjk.movies.Mobile.UpdateZip(zipCode);
-            });
-        });
-        // theater link clicks
-        $(document).on('click', codejkjk.movies.Mobile.Controls.TheaterLinkSelector(), function (e) {
-            e.preventDefault();
-            $.mobile.showPageLoadingMsg();
-            var link = $(this);
-            var theaterName = link.find("h3").text();
-            var theaterId = link.attr("data-theaterid");
-            codejkjk.movies.Mobile.Controls.CurrentTheater().html(theaterName);
-            codejkjk.movies.Mobile.Controls.TheaterLists().hide();
-            codejkjk.movies.Mobile.Controls.TheaterHeader().show();
-            codejkjk.movies.Mobile.Controls.ShowtimesHeader().hide();
-
-            // load theater movies
-            codejkjk.movies.Api.GetTheaterMovies(codejkjk.movies.Mobile.Currents.ShowtimeDay(), codejkjk.movies.Mobile.Currents.ZipCode(), theaterId, function (theater) {
-                codejkjk.movies.Mobile.Controls.TheaterMovieList().html(
-                    codejkjk.movies.Mobile.Controls.TheaterMovieTemplate().render(theater)
-                ).show().listview('refresh');
-                $.mobile.hidePageLoadingMsg();
-            });
-        });
-        // theater back link
-        $(document).on('click', codejkjk.movies.Mobile.Controls.TheaterBackLinkSelector(), function (e) {
-            e.preventDefault();
-            codejkjk.movies.Mobile.Controls.TheaterLists().show();
-            codejkjk.movies.Mobile.Controls.TheaterHeader().hide();
-            codejkjk.movies.Mobile.Controls.ShowtimesHeader().show();
-            codejkjk.movies.Mobile.Controls.TheaterMovieList().hide();
-        });
     },
 
     Init: function () {
@@ -308,6 +262,80 @@ codejkjk.movies.Mobile = {
                 }
                 ratings.removeClass("imdbNotSet");
             });
+        });
+    },
+
+    BindControls: function () {
+        // handle favorite theater links
+        $(document).on('click', codejkjk.movies.Mobile.Controls.FavoriteLinksSelector(), function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+            var link = $(this);
+            var theaterId = link.closest("[data-theaterid]").attr("data-theaterid");
+            var favoriteTheaters = localStorage.getItem("FavoriteTheaters");
+            favoriteTheaters = favoriteTheaters ? favoriteTheaters.split(',') : [];
+            if (link.hasClass("lit")) {
+                // currently set to favorite, so remove from favorites list
+                if (favoriteTheaters.indexOf(theaterId) >= 0) {
+                    favoriteTheaters.splice(favoriteTheaters.indexOf(theaterId), 1);
+                }
+            } else {
+                // currently NOT set to favorite, so add to favorites list
+                if (favoriteTheaters.indexOf(theaterId) == -1) {
+                    favoriteTheaters.push(theaterId);
+                }
+            }
+            link.toggleClass("lit").toggleClass("default");
+            localStorage.setItem("FavoriteTheaters", favoriteTheaters.join(','));
+
+            // refresh theaters
+            $.mobile.showPageLoadingMsg();
+            codejkjk.movies.Api.GetTheaters(codejkjk.movies.Mobile.Currents.ShowtimeDay(), codejkjk.movies.Mobile.Currents.ZipCode(), codejkjk.movies.Mobile.LoadTheaters);
+        });
+
+        // "options" link for showtimes
+        $(document).on('click', codejkjk.movies.Mobile.Controls.ShowtimesOptionsLinkSelector(), function (e) {
+            e.preventDefault();
+            var clearInput = !codejkjk.movies.Mobile.Controls.ShowtimesOptions().is(":visible");
+            if (clearInput) {
+                codejkjk.movies.Mobile.Controls.InputShowtimesZip().val("");
+            }
+            codejkjk.movies.Mobile.Controls.ShowtimesOptions().slideToggle('fast');
+        });
+        // "use current location" click for showtimes zip
+        $(document).on('click', codejkjk.movies.Mobile.Controls.UseCurrentLocationForShowtimesSelector(), function (e) {
+            e.preventDefault();
+            codejkjk.Geo.GetZipCode(function (zipCode) {
+                codejkjk.movies.Mobile.UpdateZip(zipCode);
+            });
+        });
+        // theater link clicks
+        $(document).on('click', codejkjk.movies.Mobile.Controls.TheaterLinkSelector(), function (e) {
+            e.preventDefault();
+            $.mobile.showPageLoadingMsg();
+            var link = $(this);
+            var theaterName = link.find("h3").text();
+            var theaterId = link.attr("data-theaterid");
+            codejkjk.movies.Mobile.Controls.CurrentTheater().html(theaterName);
+            codejkjk.movies.Mobile.Controls.TheaterLists().hide();
+            codejkjk.movies.Mobile.Controls.TheaterHeader().show();
+            codejkjk.movies.Mobile.Controls.ShowtimesHeader().hide();
+
+            // load theater movies
+            codejkjk.movies.Api.GetTheaterMovies(codejkjk.movies.Mobile.Currents.ShowtimeDay(), codejkjk.movies.Mobile.Currents.ZipCode(), theaterId, function (theater) {
+                codejkjk.movies.Mobile.Controls.TheaterMovieList().html(
+                    codejkjk.movies.Mobile.Controls.TheaterMovieTemplate().render(theater)
+                ).show().listview('refresh');
+                $.mobile.hidePageLoadingMsg();
+            });
+        });
+        // theater back link
+        $(document).on('click', codejkjk.movies.Mobile.Controls.TheaterBackLinkSelector(), function (e) {
+            e.preventDefault();
+            codejkjk.movies.Mobile.Controls.TheaterLists().show();
+            codejkjk.movies.Mobile.Controls.TheaterHeader().hide();
+            codejkjk.movies.Mobile.Controls.ShowtimesHeader().show();
+            codejkjk.movies.Mobile.Controls.TheaterMovieList().hide();
         });
     }
 }

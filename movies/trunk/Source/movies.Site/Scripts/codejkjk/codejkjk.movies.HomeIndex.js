@@ -467,6 +467,7 @@ codejkjk.movies.HomeIndex = {
             $(this).next("div").toggleClass("hidden");
         });
 
+        // handle "see nearby redboxes" links
         $(document).on('click', codejkjk.movies.HomeIndex.Controls.SeeNearbyRedboxesSelector(), function (e) {
             e.preventDefault();
             codejkjk.Geo.GetLatLong(function (lat, long) {

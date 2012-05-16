@@ -17,6 +17,8 @@ codejkjk.movies.Mobile = {
         , TheaterHeader: function () { return $("#theaterHeader"); }
         , TheaterList: function () { return $("#theaterList"); }
         , TheaterListTemplate: function () { return $("#theaterListTemplate"); }
+        , TheaterMovieList: function () { return $("#theaterMovieList"); }
+        , TheaterMovieTemplate: function () { return $("#theaterMovieTemplate"); }
         , Theaters: function () { return $("#theaters"); }
         , TheaterTemplate: function () { return $("#theaterTemplate"); }
         , UseCurrentLocationForShowtimesSelector: function () { return "#useCurrentLocationForShowtimes"; }
@@ -115,20 +117,12 @@ codejkjk.movies.Mobile = {
         codejkjk.movies.Mobile.Controls.TheaterList().html(
             codejkjk.movies.Mobile.Controls.TheaterListTemplate().render(notFavoriteTheaters)
         ).listview('refresh');
-        //        codejkjk.movies.Mobile.Controls.CurrentTheaterContainer().html(
-        //            codejkjk.movies.Mobile.Controls.CurrentTheaterTemplate().render(theaters)
-        //        );
-
-        // codejkjk.movies.Mobile.BuildShowtimeDayLinks();
 
         if (codejkjk.movies.Mobile.Controls.ShowtimesOptions().is(":visible")) {
-            // codejkjk.movies.Mobile.Controls.ChangeOptionsContainer().unmask();
             codejkjk.movies.Mobile.Controls.ShowtimesOptions().slideToggle('fast');
         }
 
         // now that the theater links are filled, set the currentTheater container's height to match height of theater links container
-        // var theaterListHeight = codejkjk.movies.Mobile.Controls.TheaterList().height() + 20;
-        // codejkjk.movies.Mobile.Controls.Theaters().css("min-height", theaterListHeight + "px");
         $.mobile.hidePageLoadingMsg();
     },
 
@@ -236,7 +230,7 @@ codejkjk.movies.Mobile = {
         codejkjk.movies.Mobile.Controls.ShowtimesHeader().show();
         codejkjk.movies.Mobile.Controls.ShowtimesOptions().hide();
 
-        codejkjk.movies.Mobile.Currents.Theater(""); // new zip, so clear out current theater value
+        // codejkjk.movies.Mobile.Currents.Theater(""); // new zip, so clear out current theater value
         codejkjk.movies.Api.GetTheaters(codejkjk.movies.Mobile.Currents.ShowtimeDay(), zip, codejkjk.movies.Mobile.LoadTheaters);
     },
 

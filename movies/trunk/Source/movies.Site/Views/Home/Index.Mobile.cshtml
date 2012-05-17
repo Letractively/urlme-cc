@@ -9,6 +9,9 @@
 @section ExtraHeadContent {
 }
 
+<input type="hidden" id="currentShowtimeDay" />
+
+@* *** What's Hot *** *@
 <div data-role="page" id="whatsHot">
     @{ Html.RenderPartial("PageHeader", new PageHeader { ActiveMenu = Enumerations.MobileMenuItems.whatsHot, PrefetchLinks = Model.PrefetchLinks, UseAjaxForLinks = Model.UseAjaxForLinks }); }
     <div data-role="header" data-theme="c">
@@ -37,46 +40,49 @@
     </div>
 </div>
 
+@* *** Showtimes *** *@
 <div data-role="page" id="showtimes">
     @{ Html.RenderPartial("PageHeader", new PageHeader { ActiveMenu = Enumerations.MobileMenuItems.showtimes, PrefetchLinks = Model.PrefetchLinks, UseAjaxForLinks = Model.UseAjaxForLinks }); }
-    <input type="hidden" id="currentShowtimeDay" />
-    @*showtimes for...*@
-	<div data-role="header" id="showtimesHeader" style="display:none;" data-theme="c">
-        <h1>Theaters near <span id="currentShowtimesZip"></span></h1>
-        <a href="#" id="showtimesOptionsLink" data-icon="gear" class="ui-btn-right">Options</a>
-    </div>
-	<div data-role="header" id="theaterHeader" style="display:none;" data-theme="c">
-        <h2><span id="currentTheater"></span></h2>
-        <a href="#" id="theaterBackLink" data-icon="arrow-l" class="ui-btn-left">Back</a>
-    </div>
-    <div data-role="content" id="showtimesOptions" style="display:none;">
+    <div data-role="content">
         <input type="text" id="inputShowtimesZip" placeholder="Search for city or zip...">
-        <div>or <a id="useCurrentLocationForShowtimes" href="#">use current location</a></div>
-    </div>
-    <div data-role="content" id="favoriteTheaterListContent" class="theaterListContent">	
-        <ul data-role="listview" data-theme="c" id="favoriteTheaterList"></ul>
-    </div>
-    <div data-role="content" class="theaterListContent">
-        <ul data-role="listview" data-theme="c" id="theaterList"></ul>
-    </div>
-    <div data-role="content" id="theaterMovieListContent">        
-        <ul data-role="listview" data-theme="c"></ul>
-	</div>
-	<div data-role="header" id="theaterMovieHeader" style="display:none;" data-theme="c">
-        <h2><span id="currentTheaterMovie"></span></h2>
-        <a href="#" id="theaterMovieBackLink" data-icon="arrow-l" class="ui-btn-left">Back</a>
-    </div>
-    <div data-role="content" id="theaterMovie" style="display:none;"></div>
+        <div>or <a href="#">use current location</a></div>
+    </div>	
 </div>
 
+@* *** Theater List *** *@
 <div data-role="page" id="theaterList">
     @{ Html.RenderPartial("PageHeader", new PageHeader { ActiveMenu = Enumerations.MobileMenuItems.showtimes, PrefetchLinks = Model.PrefetchLinks, UseAjaxForLinks = Model.UseAjaxForLinks }); }
+    <div data-role="header" data-theme="c">
+        <h1>Theaters near <span id="currentShowtimesZip"></span></h1>
+        <a href="#" data-icon="gear" class="ui-btn-right">Options</a>
+    </div>
+    <div data-role="content">	
+        <ul data-role="listview" data-theme="c"></ul>
+    </div>
+    <div data-role="content">
+        <ul data-role="listview" data-theme="c"></ul>
+    </div>
 </div>
 
+@* *** Theater Movie List *** *@
 <div data-role="page" id="theaterMovieList">
     @{ Html.RenderPartial("PageHeader", new PageHeader { ActiveMenu = Enumerations.MobileMenuItems.showtimes, PrefetchLinks = Model.PrefetchLinks, UseAjaxForLinks = Model.UseAjaxForLinks }); }
+    <div data-role="header" data-theme="c">
+        <h2><span></span></h2>
+        <a href="#" data-icon="arrow-l" class="ui-btn-left">Back</a>
+    </div>
+    
+    <div data-role="content">
+        <ul data-role="listview" data-theme="c"></ul>
+	</div>
 </div>
 
+@* *** Single Theater Movie *** *@
 <div data-role="page" id="theaterMovie">
     @{ Html.RenderPartial("PageHeader", new PageHeader { ActiveMenu = Enumerations.MobileMenuItems.showtimes, PrefetchLinks = Model.PrefetchLinks, UseAjaxForLinks = Model.UseAjaxForLinks }); }
+    <div data-role="header" data-theme="c">
+        <h2><span></span></h2>
+        <a href="#" data-icon="arrow-l" class="ui-btn-left">Back</a>
+    </div>
+    <div data-role="content"></div>
 </div>

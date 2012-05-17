@@ -51,4 +51,5 @@ p { color: #535156; } /* grey bullet color */
 #showtimes .movie img { float: left; margin: 0; }
 #showtimes .movie .showtimes { padding: 0 0 0 10px; word-wrap: break-word; }
 #showtimes #theaterMovieListContent li { overflow: auto; }
-    /* #showtimes .movie .details { padding-top:10px; float: left; padding-left:10px; } */
+
+#showtimes div[data-role='content'] { display:none; }

@@ -1,0 +1,16 @@
+﻿@model movies.Site.ViewModels.Shared.PageHeader
+@using movies.Model;
+
+<div class="logo">
+    <a href="~/"></a>
+</div>
+<div data-role="header">
+    <input type="text" placeholder="Search..." />
+    <div data-role="navbar">
+        <ul>
+            
+            <li><a href="#whatsHot" class="@(Model.ActiveMenu == Enumerations.MobileMenuItems.whatsHot ? "ui-btn-active ui-state-persist" : string.Empty)" @(Model.PrefetchLinks ? "data-prefetch" : "") data-ajax="@Model.UseAjaxForLinks.ToString().ToLower()">What's Hot</a></li>
+            <li><a href="#showtimes" class="@(Model.ActiveMenu == Enumerations.MobileMenuItems.showtimes ? "ui-btn-active ui-state-persist" : string.Empty)" @(Model.PrefetchLinks ? "data-prefetch" : "") data-ajax="@Model.UseAjaxForLinks.ToString().ToLower()">Showtimes</a></li>
+        </ul>
+    </div>
+</div><!-- /header -->

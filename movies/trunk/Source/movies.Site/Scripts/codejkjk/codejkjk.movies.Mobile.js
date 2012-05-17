@@ -1,5 +1,7 @@
 ﻿registerNS("codejkjk.movies.Mobile");
 
+var jsRenderHelpersRendered= false;
+
 codejkjk.movies.Mobile = {
     // page elements
     Controls: {
@@ -162,9 +164,13 @@ codejkjk.movies.Mobile = {
     },
 
     PageChanged: function () {
-        codejkjk.movies.Mobile.RegisterJsRenderHelpers();
+        if (!jsRenderHelpersRendered) {
+            codejkjk.movies.Mobile.RegisterJsRenderHelpers();            
+            jsRenderHelpersRendered = true;
+        }
 
-        if ($("#homeShowtimesMobile").is(":visible")) {
+        var hash = location.hash;
+        if (hash == "#showtimes") {
             // do showtime stuff
             // init showtime day if it hasn't been set yet
             if (!codejkjk.movies.Mobile.Currents.ShowtimeDay()) {
@@ -184,9 +190,8 @@ codejkjk.movies.Mobile = {
                 // no zipcode set & showtimesoptions container is invisible, so show it
                 codejkjk.movies.Mobile.Controls.ShowtimesOptions().slideToggle('fast');
             }
-        }
-        else {
-            // do top box office stuff
+        } else {
+
         }
 
         $("img.lazy").lazyload({
@@ -383,7 +388,7 @@ $(document).ready(function () {
     codejkjk.movies.Mobile.Init();
 });
 
-$(document).on('pagechange', function (e) {
+$(document).on('pagechange', function (e, o) {
     codejkjk.movies.Mobile.PageChanged();
 });
 

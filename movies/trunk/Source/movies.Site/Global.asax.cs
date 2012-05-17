@@ -162,7 +162,7 @@ namespace movies
             mobileJsBundle.AddFile("~/scripts/plugins/jsrender.js");
             // mobileJsBundle.AddFile("~/scripts/plugins/lazyload/jquery.lazyload.min.js");
             mobileJsBundle.AddFile("~/externals/local-cache/local-cache.js");
-            mobileJsBundle.AddFile("~/scripts/codejkjk/codejkjk.movies.Mobile.js");
+            // mobileJsBundle.AddFile("~/scripts/codejkjk/codejkjk.movies.Mobile.js");
             BundleTable.Bundles.Add(mobileJsBundle);
 
             var mobileCssBundle = new Bundle("~/mobile-css-bundle", new CssMinify());

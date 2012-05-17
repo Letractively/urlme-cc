@@ -33,9 +33,9 @@
     <script id="favoriteTheaterListTemplate" type="text/x-jquery-tmpl">
         <li>
         {{#if $ctx.IsCurrentTheater(id) }}
-            <a class="theaterLink selected" href="#" data-theaterid="{{=id}}">
+            <a class="theaterLink selected" href="#theater" data-theaterid="{{=id}}">
         {{else}}
-            <a class="theaterLink" href="#" data-theaterid="{{=id}}">
+            <a class="theaterLink" href="#theater" data-theaterid="{{=id}}">
         {{/if}}
             <div class="favoriteLink lit"></div>
             <h3>{{=$ctx.Snippet(name, 30)!}}</h3>
@@ -45,9 +45,9 @@
     <script id="theaterListTemplate" type="text/x-jquery-tmpl">
         <li>
         {{#if $ctx.IsCurrentTheater(id) }}
-            <a class="theaterLink selected" href="#" data-theaterid="{{=id}}">
+            <a class="theaterLink selected" href="#theater" data-theaterid="{{=id}}">
         {{else}}
-            <a class="theaterLink" href="#" data-theaterid="{{=id}}">
+            <a class="theaterLink" href="#theater" data-theaterid="{{=id}}">
         {{/if}}
             <div class="favoriteLink default"></div>
             <h3>{{=$ctx.Snippet(name, 30)!}}</h3>

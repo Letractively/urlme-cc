@@ -33,9 +33,9 @@
     <script id="favoriteTheaterListTemplate" type="text/x-jquery-tmpl">
         <li>
         {{#if $ctx.IsCurrentTheater(id) }}
-            <a class="theaterLink selected" href="#theater" data-theaterid="{{=id}}">
+            <a class="theaterLink selected" href="#theater?{{=zipCode}},{{=id}}" data-theaterid="{{=id}}">
         {{else}}
-            <a class="theaterLink" href="#theater" data-theaterid="{{=id}}">
+            <a class="theaterLink" href="#theater?{{=zipCode}},{{=id}}" data-theaterid="{{=id}}">
         {{/if}}
             <div class="favoriteLink lit"></div>
             <h3>{{=$ctx.Snippet(name, 30)!}}</h3>
@@ -45,9 +45,9 @@
     <script id="theaterListTemplate" type="text/x-jquery-tmpl">
         <li>
         {{#if $ctx.IsCurrentTheater(id) }}
-            <a class="theaterLink selected" href="#theater" data-theaterid="{{=id}}">
+            <a class="theaterLink selected" href="#theater?{{=zipCode}},{{=id}}" data-theaterid="{{=id}}">
         {{else}}
-            <a class="theaterLink" href="#theater" data-theaterid="{{=id}}">
+            <a class="theaterLink" href="#theater?{{=zipCode}},{{=id}}" data-theaterid="{{=id}}">
         {{/if}}
             <div class="favoriteLink default"></div>
             <h3>{{=$ctx.Snippet(name, 30)!}}</h3>
@@ -57,7 +57,7 @@
     <script id="theaterMovieTemplate" type="text/x-jquery-tmpl">
         {{#each movies}}
         <li class="movie {{=movieClass}}">
-            <a href="#" class="theaterMovieLink" data-rtmovieid="{{=id}}">                    
+            <a href="#theatermovie?{{=id}}" class="theaterMovieLink" data-rtmovieid="{{=id}}">                    
                 <img src="{{=imageUrl}}" />
                 <div class="details">
                     <h3>{{=title}}<span class='mpaaRating'>{{=mpaaRating}}</span></h3>

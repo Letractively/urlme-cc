@@ -33,6 +33,7 @@ namespace movies.Model
             public string address { get; set; }
             public string mapUrl { get; set; }
             public string theaterUrl { get; set; }
+            public string zipCode { get; set; }
             public List<Model.PostalCode.Movie> movies { get; set; }
         }
 
@@ -84,7 +85,8 @@ namespace movies.Model
                             name = theaterTitle,
                             address = theaterAddress,
                             theaterUrl = theaterHref,
-                            mapUrl = mapUrl
+                            mapUrl = mapUrl,
+                            zipCode = zip
                         };
 
                         // showtimes info

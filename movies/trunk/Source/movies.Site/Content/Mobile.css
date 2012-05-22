@@ -42,14 +42,16 @@ p { color: #535156; } /* grey bullet color */
 /* google places */
 .pac-item { font-size: 18px; padding: 5px; }
 
-#showtimes #showtimesOptions > div { margin-top: 10px; font-size: 120%; }
-#showtimes .theaterListContent .favoriteLink { float: left; height: 36px; width: 19px; padding: 0 10px; margin-left: -10px; }
-#showtimes .theaterListContent .favoriteLink.lit { background:url('content/images/icons/star_lit.png') no-repeat center center transparent; }
-#showtimes .theaterListContent .favoriteLink.default { background:url('content/images/icons/star_default.png') no-repeat center center transparent; }
+#showtimes > div[data-role='content'] > div { margin-top: 10px; font-size: 120%; }
+#theaters .favoriteLink { float: left; height: 36px; width: 19px; padding: 0 10px; margin-left: -10px; }
+#theaters .favoriteLink.lit { background:url('content/images/icons/star_lit.png') no-repeat center center transparent; }
+#theaters .favoriteLink.default { background:url('content/images/icons/star_default.png') no-repeat center center transparent; }
         
-#showtimes .movie p { margin-top: 10px; }
-#showtimes .movie img { float: left; margin: 0; }
-#showtimes .movie .showtimes { padding: 0 0 0 10px; word-wrap: break-word; }
-#showtimes #theaterMovieListContent li { overflow: auto; }
+#theater .movie p { margin-top: 10px; }
+#theater .movie img { float: left; margin: 0; }
+#theater .movie .showtimes { padding: 0 0 0 10px; word-wrap: break-word; }
 
-#showtimes div[data-role='content'] { display:none; }
+/* todo --- */
+#theater li { overflow: auto; }
+
+#showtimes #options, #showtimes #theaters, #theatermovie div[data-role='header'] a { display:none; }

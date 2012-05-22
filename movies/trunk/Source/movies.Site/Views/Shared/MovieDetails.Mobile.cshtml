@@ -1,6 +1,8 @@
 ﻿@model movies.Model.Movie
 @using movies.Model
 
+@Model.title^
+@*json callback looks for above prefix to extract the movie title*@
 <img class="poster" src="@this.Model.posters.detailed" />
 <p><span class='mpaaRating'>@this.Model.mpaa_rating</span></p>
 <p>@this.Model.DurationCompact</p>

@@ -75,10 +75,20 @@
 </div>
 
 @* *** Single Theater Movie *** *@
-<div data-role="page" id="theatermovie">
+<div data-role="page" id="theatermovie" class="moviePage">
     @{ Html.RenderPartial("PageHeader", new PageHeader { ActiveMenu = Enumerations.MobileMenuItems.showtimes, PrefetchLinks = Model.PrefetchLinks, UseAjaxForLinks = Model.UseAjaxForLinks }); }
     <div data-role="header" data-theme="c">
-        <h2><span></span></h2>
+        <h2></h2>
+        <a href="#" data-icon="arrow-l" class="ui-btn-left">Back</a>
+    </div>
+    <div data-role="content"></div>
+</div>
+
+@* *** Single Movie *** *@
+<div data-role="page" id="movie" class="moviePage">
+    @{ Html.RenderPartial("PageHeader", new PageHeader { ActiveMenu = Enumerations.MobileMenuItems.none, PrefetchLinks = Model.PrefetchLinks, UseAjaxForLinks = Model.UseAjaxForLinks }); }
+    <div data-role="header" data-theme="c">
+        <h2></h2>
         <a href="#" data-icon="arrow-l" class="ui-btn-left">Back</a>
     </div>
     <div data-role="content"></div>

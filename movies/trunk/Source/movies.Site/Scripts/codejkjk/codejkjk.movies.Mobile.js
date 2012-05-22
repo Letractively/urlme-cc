@@ -12,9 +12,11 @@ codejkjk.movies.Mobile = {
         , FavoriteTheaterListTemplate: function () { return $("#favoriteTheaterListTemplate"); }
         , IMDbMoviesNotSet: function () { return $(".imdbNotSet"); }
         , InputShowtimesZip: function () { return $("#inputShowtimesZip"); }
+        , CurrentMovie: function () { return $("#movie div[data-role='header'] h2"); }
         , CurrentShowtimesZip: function () { return $("#currentShowtimesZip"); }
         , CurrentTheater: function () { return $("#theater div[data-role='header'] h2"); }
-        , CurrentTheaterMovie: function () { return $("#theatermovie div[data-role='header'] span"); }
+        , CurrentTheaterMovie: function () { return $("#theatermovie div[data-role='header'] h2"); }
+        , Movie: function () { return $("#movie div[data-role='content']"); }
         , ShowtimesHeader: function () { return $("#showtimes > #theaters div[data-role='header']"); }
         , ShowtimesOptionsLinkSelector: function () { return "#showtimes > #theaters div[data-role='header'] a"; }
         , ShowtimesOptions: function () { return $("#showtimes > #options"); }
@@ -135,6 +137,21 @@ codejkjk.movies.Mobile = {
 
                     // set theaterMovieBackUrl
                     theaterMovieBackUrl = hash; // set back url to current url
+
+                    $.mobile.hidePageLoadingMsg();
+                });
+                break;
+            case "#movie": // #movie?rtMovieId (used to be location.pathname = /marvels-the-avengers/770740154)
+                $.mobile.showPageLoadingMsg();
+                var rtMovieId = hash.split('?')[1];
+
+                // load single movie
+                codejkjk.movies.Api.GetMovieMobileHtml(rtMovieId, function (html) {
+                    // slight hack. the html is prefexed with {movieName}^, then the html
+                    var movieName = $.trim(html.split('^')[0]);
+                    var htmlStr = $.trim(html.split('^')[1]);
+                    codejkjk.movies.Mobile.Controls.CurrentMovie().html(movieName); // set movie name in header, NEED???
+                    codejkjk.movies.Mobile.Controls.Movie().html(htmlStr);
 
                     $.mobile.hidePageLoadingMsg();
                 });

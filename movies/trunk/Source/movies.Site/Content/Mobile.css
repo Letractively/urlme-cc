@@ -11,7 +11,7 @@ div.logo a { margin:0 auto; display:block; background: url('content/logo_mobile.
 .ui-li-has-thumb .ui-btn-inner a.ui-link-inherit { padding-left: 75px; min-height: 73px; }
 .ui-li-thumb, .ui-listview .ui-li-icon { max-height: 91px; }
 .ul-li-heading { float: left; }
-#showtimesHeader > h1 { margin: .6em 10px .8em; text-align: left; } 
+#showtimes > #theaters div[data-role='header'] h1 { margin: .6em 10px .8em; text-align: left; }
 .ui-btn-hover-c  
 {
     background: -moz-linear-gradient(#FDFDFD, #EEEEEE) repeat scroll 0 0 #EEEEEE; 
@@ -30,14 +30,14 @@ p { color: #535156; } /* grey bullet color */
 .releaseDate { margin-top: 10px; font-size: 12px; }
 
 /* MovieIndexMobile page */
-#MovieIndexMobile img { float: left; margin-right: 10px; margin-bottom: 10px; }
-#MovieIndexMobile p { margin-bottom: 10px; font-size: 18px; }
-#MovieIndexMobile .ratings { margin:0px; float: left; }
-    #MovieIndexMobile .ratings > .icon { clear: left; margin-left: 0; }
-    #MovieIndexMobile .ratings > span { margin-bottom: 10px; }
-#MovieIndexMobile .links { clear: left; }
-    #MovieIndexMobile .links a:first-child { margin-right:20px; }
-#MovieIndexMobile .mpaaRating { font-size: 24px; margin: 0; }
+.moviePage img { float: left; margin-right: 10px; margin-bottom: 10px; }
+.moviePage p { margin-bottom: 10px; font-size: 18px; }
+.moviePage .ratings { margin:0px; float: left; }
+    .moviePage .ratings > .icon { clear: left; margin-left: 0; }
+    .moviePage .ratings > span { margin-bottom: 10px; }
+.moviePage .links { clear: left; }
+    .moviePage .links a:first-child { margin-right:20px; }
+.moviePage .mpaaRating { font-size: 24px; margin: 0; }
 
 /* google places */
 .pac-item { font-size: 18px; padding: 5px; }

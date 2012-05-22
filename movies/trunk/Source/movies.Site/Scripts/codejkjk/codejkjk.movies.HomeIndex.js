@@ -34,7 +34,6 @@ codejkjk.movies.HomeIndex = {
         , CurrentNavItem: function () { return $("nav > a.selected"); }
         , CurrentRbProductId: function () { return $("#currentRbProductId"); }
         , CurrentRtMovieId: function () { return $("#currentRtMovieId"); }
-        , CurrentShowtimeDay: function () { return $("input#currentShowtimeDay"); }
         , CurrentTheaterContainer: function () { return $("#currentTheaterContainer"); }
         , CurrentTheaterTemplate: function () { return $("#currentTheaterTemplate"); }
         , CurrentView: function () { return $(".content:visible"); }
@@ -90,7 +89,7 @@ codejkjk.movies.HomeIndex = {
             if (typeof val != "undefined") { // set
                 localStorage.setItem("ZipCode", val);
             } else { // get
-                return localStorage.getItem("ZipCode") || "23226"; // return str b/c if we ever want to change it to 02322, this will get converted to str as "3222" if we return as int
+                return localStorage.getItem("ZipCode"); // return str b/c if we ever want to change it to 02322, this will get converted to str as "3222" if we return as int
             }
         }
         , RedboxZipCode: function (val) {
@@ -128,6 +127,13 @@ codejkjk.movies.HomeIndex = {
         , RbProductId: function () {
             return codejkjk.movies.HomeIndex.Controls.CurrentRbProductId().val();
         }
+        , ShowtimeDay: function (val) {
+            if (typeof val != "undefined") { // set
+                $("input#currentShowtimeDay").val(val);
+            } else { // get
+                return $("input#currentShowtimeDay").val();
+            }
+        }
     },
 
     Init: function () {
@@ -139,30 +145,13 @@ codejkjk.movies.HomeIndex = {
         }
 
         // init google maps Places autosearch
-        var input = document.getElementById('inputShowtimesZip');
-        var autocomplete = new google.maps.places.Autocomplete(input);
-
-        google.maps.event.addListener(autocomplete, 'place_changed', function () {
-            codejkjk.movies.HomeIndex.Controls.ChangeOptionsContainer().mask();
-            var place = autocomplete.getPlace();
-            var formattedAddress = place.formatted_address.replace(", USA", "");
-            var latLong = place.geometry.location.toString();
-            latLong = latLong.replace("(", "").replace(")", "").replace(" ", "");
-            var lat = latLong.split(',')[0];
-            var long = latLong.split(',')[1];
-            codejkjk.Geo.GetZipCodeFromLatLong(lat, long, function (zipCode) {
-                codejkjk.movies.HomeIndex.UpdateZip(zipCode, formattedAddress);
-            });
-        });
+        codejkjk.movies.HomeIndex.InitGooglePlaces("inputShowtimesZip");
 
         codejkjk.movies.HomeIndex.BindControls();
         codejkjk.movies.HomeIndex.RegisterJsRenderHelpers();
 
-        // *** load showtimes view ***
         // init showtime date to today
-        codejkjk.movies.HomeIndex.Controls.CurrentShowtimeDay().val(Date.today().toString("yyyyMMdd"));
-        codejkjk.movies.HomeIndex.Controls.CurrentZip().html(codejkjk.movies.HomeIndex.Currents.ZipCode());
-        codejkjk.movies.Api.GetTheaters(codejkjk.movies.HomeIndex.Controls.CurrentShowtimeDay().val(), codejkjk.movies.HomeIndex.Currents.ZipCode(), codejkjk.movies.HomeIndex.LoadTheaters);
+        codejkjk.movies.HomeIndex.Currents.ShowtimeDay(Date.today().toString("yyyyMMdd"));
 
         // setup History
         // handle any state changes
@@ -180,6 +169,24 @@ codejkjk.movies.HomeIndex = {
         // handle this page's load
         var initState = History.getState();
         codejkjk.movies.HomeIndex.HandlePushState(initState.url);
+    },
+
+    InitGooglePlaces: function (inputId) {
+        var input = document.getElementById(inputId);
+        var autocomplete = new google.maps.places.Autocomplete(input);
+
+        google.maps.event.addListener(autocomplete, 'place_changed', function () {
+            codejkjk.movies.HomeIndex.Controls.ChangeOptionsContainer().mask();
+            var place = autocomplete.getPlace();
+            var formattedAddress = place.formatted_address.replace(", USA", "");
+            var latLong = place.geometry.location.toString();
+            latLong = latLong.replace("(", "").replace(")", "").replace(" ", "");
+            var lat = latLong.split(',')[0];
+            var long = latLong.split(',')[1];
+            codejkjk.Geo.GetZipCodeFromLatLong(lat, long, function (zipCode) {
+                codejkjk.movies.HomeIndex.UpdateZip(zipCode, formattedAddress);
+            });
+        });
     },
 
     ShowSection: function (path) {

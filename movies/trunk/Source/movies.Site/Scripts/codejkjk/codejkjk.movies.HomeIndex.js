@@ -215,6 +215,8 @@ codejkjk.movies.HomeIndex = {
     HandlePushState: function (url) {
         var paths = url.replace('//', '').split('/');
         var firstPath = '/' + paths[1]; // "", "comingsoon", "showtimes" (all navs), "rb" (redbox movie) or "hunger-games" (movie)
+        
+        // primary nav link?
         if (firstPath === "/" || firstPath === "/comingsoon" || firstPath === "/showtimes" || firstPath === "/redbox") {
             codejkjk.movies.HomeIndex.ShowSection(firstPath);
         }

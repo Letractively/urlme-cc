@@ -35,6 +35,13 @@ namespace movies.Site.Controllers
             return PartialView("MovieDetails", movie);
         }
 
+        public ActionResult GetRedboxMovieHtml(string rbProductId)
+        {
+            var movie = Model.Redbox.GetMovie(rbProductId);
+
+            return PartialView("RedboxMovieDetails", movie);
+        }
+
         public ActionResult GetMovieMobileHtml(string rtMovieId)
         {
             var movie = Model.Movie.GetRottenTomatoesMovie(rtMovieId);

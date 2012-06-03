@@ -47,6 +47,12 @@ namespace movies
             );
 
             routes.MapRoute(
+                "Api-Get_RedboxMovie_Html", // Route name
+                "api/get_rb_movie.html/{rbProductId}", // URL with parameters
+                new { controller = "Api", action = "GetRedboxMovieHtml" } // Parameter defaults
+            );
+
+            routes.MapRoute(
                 "Api-Get_Movie_Mobile_Html", // Route name
                 "api/get_rt_movie_mobile.html/{rtMovieId}", // URL with parameters
                 new { controller = "Api", action = "GetMovieMobileHtml" } // Parameter defaults

@@ -72,7 +72,6 @@ namespace movies.Model
         public Links links { get; set; }
 
         // view helpers (items NOT inherently provided by RT api)
-        public string RedboxProductId { get; set; }
         public string ShowtimesHtml { get; set; }
         public string IMDbRating { get; set; } // need? cuz each movie has imdbmovie obj. hmmmm
         public string IMDbVotes { get; set; } // need?

@@ -1,8 +1,8 @@
 ﻿@model movies.Model.Movie
 @using movies.Model
 
-<div id="movieDetails" data-redboxproductid="@Model.RedboxProductId">
-    <input type="hidden" id="currentRtMovieId" value="@this.Model.id" />
+<div id="movieDetails">
+    <input type="hidden" id="currentMovieId" value="@this.Model.id" />
     <div class="topHalf">
         <img class="poster rounded" src="@this.Model.posters.detailed" />
         <div class="right">

@@ -33,7 +33,7 @@ codejkjk.movies.HomeIndex = {
         , CopySuccess: function () { return $("#copySuccess"); }
         , CurrentNavItem: function () { return $("nav > a.selected"); }
         , CurrentRbProductId: function () { return $("#currentRbProductId"); }
-        , CurrentRtMovieId: function () { return $("#currentRtMovieId"); }
+        , CurrentMovieId: function () { return $("#currentMovieId"); }
         , CurrentTheaterContainer: function () { return $("#currentTheaterContainer"); }
         , CurrentTheaterTemplate: function () { return $("#currentTheaterTemplate"); }
         , CurrentView: function () { return $(".content:visible"); }
@@ -121,8 +121,8 @@ codejkjk.movies.HomeIndex = {
                 return ret ? ret.split(',') : [];
             }
         }
-        , RtMovieId: function () {
-            return codejkjk.movies.HomeIndex.Controls.CurrentRtMovieId().val();
+        , MovieId: function () {
+            return codejkjk.movies.HomeIndex.Controls.CurrentMovieId().val();
         }
         , RbProductId: function () {
             return codejkjk.movies.HomeIndex.Controls.CurrentRbProductId().val();
@@ -215,32 +215,32 @@ codejkjk.movies.HomeIndex = {
     HandlePushState: function (url) {
         var paths = url.replace('//', '').split('/');
         var firstPath = '/' + paths[1]; // "", "comingsoon", "showtimes" (all navs), "rb" (redbox movie) or "hunger-games" (movie)
-        
+
         // primary nav link?
         if (firstPath === "/" || firstPath === "/comingsoon" || firstPath === "/showtimes" || firstPath === "/redbox") {
             codejkjk.movies.HomeIndex.ShowSection(firstPath);
         }
         else {
-            // /rb/wreckage/3235233 or /hunger-games/9999888768
+            // /redbox/wreckage/3235233 or /hunger-games/9999888768
             // movie details link
             var part1 = paths[1];
-            if (part1 === "rb") { // redbox movie
+            if (part1 === "redbox") { // redbox movie
                 var rbProductId = paths[2]; // redbox product id
-                if (codejkjk.movies.HomeIndex.Currents.RbProductId()) {
+                if (codejkjk.movies.HomeIndex.Currents.MovieId()) {
                     // movie details is already in dom, b/c user went to movie link directly
                     codejkjk.movies.HomeIndex.ShowSection("/");
-                    codejkjk.movies.HomeIndex.ShowRedboxMovieDetails();
+                    codejkjk.movies.HomeIndex.ShowRedboxMovieDetails("rb");
                 } else {
-                    codejkjk.movies.HomeIndex.ShowRedboxMovieDetails(rbProductId);
+                    codejkjk.movies.HomeIndex.ShowRedboxMovieDetails("rb", rbProductId);
                 }
             } else { // rt movie
                 var rtMovieId = paths[2]; // rt movie id
-                if (codejkjk.movies.HomeIndex.Currents.RtMovieId()) {
+                if (codejkjk.movies.HomeIndex.Currents.MovieId()) {
                     // movie details is already in dom, b/c user went to movie link directly
                     codejkjk.movies.HomeIndex.ShowSection("/");
-                    codejkjk.movies.HomeIndex.ShowMovieDetails();
+                    codejkjk.movies.HomeIndex.ShowMovieDetails("rt");
                 } else {
-                    codejkjk.movies.HomeIndex.ShowMovieDetails(rtMovieId);
+                    codejkjk.movies.HomeIndex.ShowMovieDetails("rt", rtMovieId);
                 }
             }
         }
@@ -436,22 +436,30 @@ codejkjk.movies.HomeIndex = {
         });
     },
 
-    ShowMovieDetails: function (rtMovieIdToAjaxLoad) {
+    ShowMovieDetails: function (rbOrRt, movieIdToAjaxLoad) {
         // show overlay
         var overlayHeight = $(document).height() + "px";
         var overlayWidth = $(document).width() + "px";
         codejkjk.movies.HomeIndex.Controls.Overlay().css("height", overlayHeight).css("width", overlayWidth).show();
 
-        if (rtMovieIdToAjaxLoad) {
+        if (movieIdToAjaxLoad) {
             // user went to movie link by clicking on a poster, so ajax-load it
             codejkjk.movies.HomeIndex.Controls.MovieDetailsPopup().html("<div class='loading'></div>");
             codejkjk.movies.HomeIndex.Controls.MovieDetailsPopup().show();
 
-            codejkjk.movies.Api.GetMovieHtml(rtMovieIdToAjaxLoad, function (html) {
-                codejkjk.movies.HomeIndex.Controls.MovieDetailsPopup().html(html);
-                FB.XFBML.parse();
-                codejkjk.movies.HomeIndex.InitZeroClipboard();
-            });
+            if (rbOrRt === "rb") {
+                codejkjk.movies.Api.GetRedboxMovieHtml(movieIdToAjaxLoad, function (html) {
+                    codejkjk.movies.HomeIndex.Controls.MovieDetailsPopup().html(html);
+                    FB.XFBML.parse();
+                    codejkjk.movies.HomeIndex.InitZeroClipboard();
+                });
+            } else {
+                codejkjk.movies.Api.GetMovieHtml(movieIdToAjaxLoad, function (html) {
+                    codejkjk.movies.HomeIndex.Controls.MovieDetailsPopup().html(html);
+                    FB.XFBML.parse();
+                    codejkjk.movies.HomeIndex.InitZeroClipboard();
+                });
+            }
         } else {
             // movie details are already in dom, so just init zeroclipboard b/c it's ready to go
             codejkjk.movies.HomeIndex.Controls.MovieDetailsPopup().show();
@@ -610,7 +618,7 @@ codejkjk.movies.HomeIndex = {
                 // first thing, add loading class
                 link.addClass("loading");
                 codejkjk.Geo.GetZipCode(function (zipCode) {
-                    codejkjk.movies.Api.GetTheatersForMovie(codejkjk.movies.HomeIndex.Controls.CurrentShowtimeDay().val(), zipCode, codejkjk.movies.HomeIndex.Currents.RtMovieId(), function (theatersHtml) {
+                    codejkjk.movies.Api.GetTheatersForMovie(codejkjk.movies.HomeIndex.Controls.CurrentShowtimeDay().val(), zipCode, codejkjk.movies.HomeIndex.Currents.MovieId(), function (theatersHtml) {
                         theaterList.html(theatersHtml);
 
                         // remove loading class
@@ -637,8 +645,6 @@ codejkjk.movies.HomeIndex = {
             } else {
                 // first thing, add loading class
                 link.addClass("loading");
-                // codejkjk.Geo.GetZipCode(function (zipCode) {
-                // codejkjk.movies.Api.GetTheatersForMovie(codejkjk.movies.HomeIndex.Controls.CurrentShowtimeDay().val(), zipCode, codejkjk.movies.HomeIndex.Currents.RtMovieId(), function (theatersHtml) {
                 redboxAvailsList.html("This feature coming soon...");
 
                 // remove loading class

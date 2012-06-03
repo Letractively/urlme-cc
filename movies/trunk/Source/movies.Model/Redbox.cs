@@ -34,7 +34,7 @@ namespace movies.Model
             public bool Available { get; set; }
             public string ThumbnailUrl { get; set; }
             public bool IsNewRelease { get; set; }
-            public string MovieSlug { get { return "rb/" + this.Title.Slugify() + "/" + this.ProductId; } }
+            public string MovieSlug { get { return "redbox/" + this.Title.Slugify() + "/" + this.ProductId; } }
             public string ProductId { get; set; }
         }
         #endregion

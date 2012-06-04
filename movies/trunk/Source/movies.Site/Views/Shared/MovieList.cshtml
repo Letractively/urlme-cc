@@ -1,6 +1,10 @@
 ﻿@model Dictionary<string, movies.Model.Movie>
 @using movies.Model
 
+@if (!Model.Values.Any()) {
+    return;
+}
+
 <div class="movieList">
 @foreach (var movie in this.Model.Values)
 {

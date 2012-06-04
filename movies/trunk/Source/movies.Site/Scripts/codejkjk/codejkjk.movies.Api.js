@@ -78,15 +78,15 @@ codejkjk.movies.Api = {
         var url = "{0}get_rt_movie.html/{1}".format(codejkjk.movies.Api.BaseUrl, rtMovieId);
         codejkjk.movies.Api.AjaxGet(url, callback, 'html', cacheKey);
     },
-    GetRedboxMovieHtml: function (rbProductId, callback) {
+    GetRedboxMovieHtml: function (rbSlug, callback) {
         // first, check cache
-        var cacheKey = "rb-html-{0}".format(rbProductId);
+        var cacheKey = "rb-html-{0}".format(rbSlug);
         var cached = $.cacheItem(cacheKey);
         if (cached && codejkjk.movies.Defaults.AllowCache) {
             return callback(cached);
         }
 
-        var url = "{0}get_rb_movie.html/{1}".format(codejkjk.movies.Api.BaseUrl, rbProductId);
+        var url = "{0}get_rb_movie.html/{1}".format(codejkjk.movies.Api.BaseUrl, rbSlug);
         codejkjk.movies.Api.AjaxGet(url, callback, 'html', cacheKey);
     },
     GetMovieMobileHtml: function (rtMovieId, callback) {

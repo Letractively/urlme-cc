@@ -35,11 +35,11 @@ namespace movies.Site.Controllers
             return PartialView("MovieDetails", movie);
         }
 
-        public ActionResult GetRedboxMovieHtml(string rbProductId)
+        public ActionResult GetRedboxMovieHtml(string rbSlug)
         {
-            var movie = Model.Redbox.GetMovie(rbProductId);
+            var movie = Model.Redbox.GetMovie(rbSlug);
 
-            return PartialView("RedboxMovieDetails", movie);
+            return PartialView("MovieDetails", movie);
         }
 
         public ActionResult GetMovieMobileHtml(string rtMovieId)

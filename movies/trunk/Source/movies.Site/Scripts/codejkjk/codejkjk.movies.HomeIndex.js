@@ -32,7 +32,6 @@ codejkjk.movies.HomeIndex = {
         , CopyButton: function () { return $("#copyButton"); }
         , CopySuccess: function () { return $("#copySuccess"); }
         , CurrentNavItem: function () { return $("nav > a.selected"); }
-        , CurrentRbProductId: function () { return $("#currentRbProductId"); }
         , CurrentMovieId: function () { return $("#currentMovieId"); }
         , CurrentTheaterContainer: function () { return $("#currentTheaterContainer"); }
         , CurrentTheaterTemplate: function () { return $("#currentTheaterTemplate"); }
@@ -124,9 +123,6 @@ codejkjk.movies.HomeIndex = {
         , MovieId: function () {
             return codejkjk.movies.HomeIndex.Controls.CurrentMovieId().val();
         }
-        , RbProductId: function () {
-            return codejkjk.movies.HomeIndex.Controls.CurrentRbProductId().val();
-        }
         , ShowtimeDay: function (val) {
             if (typeof val != "undefined") { // set
                 $("input#currentShowtimeDay").val(val);
@@ -217,21 +213,21 @@ codejkjk.movies.HomeIndex = {
         var firstPath = '/' + paths[1]; // "", "comingsoon", "showtimes" (all navs), "rb" (redbox movie) or "hunger-games" (movie)
 
         // primary nav link?
-        if (firstPath === "/" || firstPath === "/comingsoon" || firstPath === "/showtimes" || firstPath === "/redbox") {
+        if (firstPath === "/" || firstPath === "/comingsoon" || firstPath === "/showtimes" || (firstPath === "/redbox" && !paths[2])) {
             codejkjk.movies.HomeIndex.ShowSection(firstPath);
         }
         else {
-            // /redbox/wreckage/3235233 or /hunger-games/9999888768
+            // /redbox/wreckage or /hunger-games/9999888768
             // movie details link
             var part1 = paths[1];
             if (part1 === "redbox") { // redbox movie
-                var rbProductId = paths[2]; // redbox product id
+                var rbSlug = paths[2]; // redbox product id
                 if (codejkjk.movies.HomeIndex.Currents.MovieId()) {
                     // movie details is already in dom, b/c user went to movie link directly
                     codejkjk.movies.HomeIndex.ShowSection("/");
-                    codejkjk.movies.HomeIndex.ShowRedboxMovieDetails("rb");
+                    codejkjk.movies.HomeIndex.ShowMovieDetails("rb");
                 } else {
-                    codejkjk.movies.HomeIndex.ShowRedboxMovieDetails("rb", rbProductId);
+                    codejkjk.movies.HomeIndex.ShowMovieDetails("rb", rbSlug);
                 }
             } else { // rt movie
                 var rtMovieId = paths[2]; // rt movie id
@@ -334,7 +330,11 @@ codejkjk.movies.HomeIndex = {
 
     LoadSearchResults: function (html) {
         codejkjk.movies.HomeIndex.Controls.NavLinks().removeClass("selected");
-        codejkjk.movies.HomeIndex.Controls.SearchResultsView().html(html);
+        if ($.trim(html)) {
+            codejkjk.movies.HomeIndex.Controls.SearchResultsView().html(html);
+        } else {
+            codejkjk.movies.HomeIndex.Controls.SearchResultsView().html("No results found.");
+        }
         codejkjk.movies.HomeIndex.GetIMDbData();
 
         $("img.lazy").lazyload({

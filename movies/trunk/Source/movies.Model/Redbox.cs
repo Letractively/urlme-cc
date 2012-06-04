@@ -34,44 +34,30 @@ namespace movies.Model
             public bool Available { get; set; }
             public string ThumbnailUrl { get; set; }
             public bool IsNewRelease { get; set; }
-            public string MovieSlug { get { return "redbox/" + this.Title.Slugify() + "/" + this.ProductId; } }
-            public string ProductId { get; set; }
+            public string MovieSlug { get { return "redbox/" + this.Slug; } }
+            public string Slug { get; set; }
+            public int ReleaseYear { get; set; }
         }
         #endregion
 
-        public static Redbox.Movie GetMovie(string productId)
+        public static Model.Movie GetMovie(string rbSlug)
         {
-            return Cache.GetValue<Redbox.Movie>(
-                string.Format("codejkjk.movies.Model.Redbox.GetMovie-{0}", productId),
+            return Cache.GetValue<Model.Movie>(
+                string.Format("codejkjk.movies.Model.Redbox.GetMovie-{0}", rbSlug),
                 () =>
                 {
-                    var allMovies = GetMovies();
+                    var rbMovie = GetMovies()[rbSlug];
+
+                    var rtMovies = Model.Movie.SearchMovies(rbMovie.Title);
+                    // iterate thru search results; return one that matches title and release year
+                    foreach (var rtMovie in rtMovies.Values)
+                    {
+                        if (rtMovie.title == rbMovie.Title && rtMovie.release_dates.theater.Year == rbMovie.ReleaseYear)
+                        {
+                            return rtMovie;
+                        }
+                    }
                     return null;
-
-                    //var ret = new List<Redbox.Movie>();
-                    //string xml = API.RedBox.GetXml();
-                    //DataSet ds = new DataSet();
-                    //ds.ReadXml(new StringReader(xml));
-                    //DataTable rbMovies2 = ds.Tables["Movie"];
-                    //foreach (DataRow movie in rbMovies2.Select("Title <> '' and ReleaseYear <> ''"))
-                    //{
-                    //    string thumbnailUrl = movie.GetChildRows("Movie_BoxArtImages")[0].GetChildRows("BoxArtImages_link").FirstOrDefault(x => x["rel"].ToString().ToLower() == "http://api.redbox.com/Links/BoxArt/Thumb150".ToLower())["href"].ToString();
-                    //    var newRelease = movie.GetChildRows("Movie_Flags")[0].GetChildRows("Flags_Flag").FirstOrDefault(x => x["type"].ToString().ToLower() == "newrelease");
-                    //    string newReleaseStart = newRelease["beginDate"].ToString();
-                    //    string newReleaseEnd = newRelease["endDate"].ToString();
-                    //    DateTime now = System.DateTime.Now;
-                    //    bool isNewRelease = !string.IsNullOrEmpty(newReleaseStart) && !string.IsNullOrEmpty(newReleaseEnd) && now >= DateTime.Parse(newReleaseStart) && now < DateTime.Parse(newReleaseEnd).AddDays(1);
-
-                    //    var rbMovie = new Redbox.Movie
-                    //    {
-                    //        Title = movie["Title"].ToString(),
-                    //        ThumbnailUrl = thumbnailUrl,
-                    //        IsNewRelease = isNewRelease,
-                    //        ProductId = movie["productId"].ToString()
-                    //    };
-                    //    ret.Add(rbMovie);
-                    //}
-                    //return ret;
                 });
         }
 
@@ -94,17 +80,19 @@ namespace movies.Model
                         string newReleaseEnd = newRelease["endDate"].ToString();
                         DateTime now = System.DateTime.Now;
                         bool isNewRelease = !string.IsNullOrEmpty(newReleaseStart) && !string.IsNullOrEmpty(newReleaseEnd) && now >= DateTime.Parse(newReleaseStart) && now < DateTime.Parse(newReleaseEnd).AddDays(1);
+                        string websiteUrl = movie["websiteUrl"].ToString();
 
                         var rbMovie = new Redbox.Movie
                         {
                             Title = movie["Title"].ToString(),
                             ThumbnailUrl = thumbnailUrl,
                             IsNewRelease = isNewRelease,
-                            ProductId = movie["productId"].ToString()
+                            Slug = websiteUrl.Substring(websiteUrl.LastIndexOf("/") + 1),
+                            ReleaseYear = int.Parse(movie["ReleaseYear"].ToString())
                         };
                         ret.Add(rbMovie);
                     }
-                    return ret.ToDictionary(key => key.ProductId, value => value);
+                    return ret.ToDictionary(key => key.Slug, value => value);
                 });
         }
 
@@ -118,12 +106,12 @@ namespace movies.Model
         //            foreach (var redbox in redboxes)
         //            {
         //                List<Redbox.Movie> products = GetStoreProducts();
-                        
+
         //            }
         //            return null;
         //        });
         //}
-        
+
         public static List<Redbox> GetStores(string latitude, string longitude)
         {
             return Cache.GetValue<List<Redbox>>(
@@ -137,7 +125,8 @@ namespace movies.Model
                     foreach (DataRow store in ds.Tables["Store"].Select("commStatus = 'Online'"))
                     {
                         DataRow location = store.GetChildRows("Store_Location").FirstOrDefault();
-                        var redbox = new Redbox {
+                        var redbox = new Redbox
+                        {
                             StoreId = store["storeId"].ToString(),
                             Retailer = store["Retailer"].ToString(),
                             IndoorOutdoor = store["storeType"].ToString(),

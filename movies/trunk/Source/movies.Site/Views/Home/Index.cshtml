@@ -62,7 +62,7 @@
         @foreach (var m in Model.RedboxMovies.Values)
         {
             <div class="movie rounded @(m.IsNewRelease ? "new" : string.Empty)">
-                <a href="@m.MovieSlug">
+                <a href="~/@m.MovieSlug">
                     @if (m.IsNewRelease)
                     {
                         <span class="redGradient noHover">New</span>

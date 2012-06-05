@@ -72,13 +72,13 @@ namespace movies.Model
         public Links links { get; set; }
 
         // view helpers (items NOT inherently provided by RT api)
+        public Enumerations.MovieType MovieType { get; set; }
         public string ShowtimesHtml { get; set; }
         public string IMDbRating { get; set; } // need? cuz each movie has imdbmovie obj. hmmmm
         public string IMDbVotes { get; set; } // need?
         public bool IMDbLoaded { get; set; }
         public string IMDbClass { get { return this.IMDbLoaded ? "" : "imdbNotSet"; } }
         public bool IsReleased { get { return System.DateTime.Now >= this.release_dates.theater; } }
-        public bool IsInTheaters { get { return Movie.GetMovies(Enumerations.MovieLists.BoxOffice).ContainsKey(this.id) || Movie.GetMovies(Enumerations.MovieLists.InTheaters).ContainsKey(this.id) || (Movie.GetMovies(Enumerations.MovieLists.Opening).ContainsKey(this.id) && this.IsReleased); } }
         public string ReleaseDate { get { return this.release_dates.theater.ToString("MMM d, yyyy"); } }
         public string ParentalGuideUrl { get { return this.alternate_ids != null ? API.IMDb.GetParentalGuideUrl(this.alternate_ids.imdb) : null; } }
         public string IMDbMovieUrl { get { return this.alternate_ids != null ? API.IMDb.GetMovieUrl(this.alternate_ids.imdb) : null; } }
@@ -125,6 +125,31 @@ namespace movies.Model
                     string imdbJson = API.IMDb.GetMovieJson(imdbMovieId);
                     return imdbJson.FromJson<IMDbMovie>();
                 });
+        }
+
+        private static Dictionary<string, string> GetInTheaterRtIds()
+        {
+            return Cache.GetValue<Dictionary<string,string>>(
+                "codejkjk.movies.Model.Movie.GetInTheaterRtIds",
+                () =>
+                {
+                    Dictionary<string, string> ret = new Dictionary<string, string>();
+                    var inTheaterMovies = Model.Movie.GetMovies(Enumerations.MovieLists.InTheaters);
+                    inTheaterMovies.Values.ToList().ForEach(x => ret.Add(x.id, x.id));
+                    
+                    return ret;
+                });
+        }
+
+        public static Enumerations.MovieType GetMovieType(string rtMovieId)
+        {
+            var inTheaterRtIds = GetInTheaterRtIds();
+            if (inTheaterRtIds.ContainsKey(rtMovieId))
+            {
+                return Enumerations.MovieType.InTheaters;
+            }
+            // for redbox movie type, that's set manually in the Redbox actions
+            return Enumerations.MovieType.Neither;
         }
 
         public static Movie GetRottenTomatoesMovie(string rtMovieId)

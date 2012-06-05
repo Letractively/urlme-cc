@@ -62,7 +62,7 @@
 </div>
 
 @* *** Theater w/ its movies *** *@
-<div data-role="page" id="theater">
+<div data-role="page" id="theater" data-dom-cache="false">
     @{ Html.RenderPartial("PageHeader", new PageHeader { ActiveMenu = Enumerations.MobileMenuItems.showtimes, PrefetchLinks = Model.PrefetchLinks, UseAjaxForLinks = Model.UseAjaxForLinks }); }
     <div data-role="header" data-theme="c">
         <h2></h2>

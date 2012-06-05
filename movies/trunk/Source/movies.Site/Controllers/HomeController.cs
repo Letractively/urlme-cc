@@ -2,6 +2,7 @@
 using movies.Model;
 using movies.Core.Web.Caching;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace movies.Site.Controllers
 {
@@ -12,11 +13,17 @@ namespace movies.Site.Controllers
 
         public ActionResult Index()
         {
+            var inTheatersMovies = Movie.GetMovies(Enumerations.MovieLists.InTheaters);
+            
+            // copy of intheaters movies, b/c we'll be removing some keys (don't want to remove from the referenced object in cache)
+            Dictionary<string, Movie> inTheatersMoviesDisplay = new Dictionary<string, Movie>();
+            inTheatersMovies.ToList().ForEach(x => inTheatersMoviesDisplay.Add(x.Key, x.Value));
+
             var vm = new ViewModels.Home.Index
             {
                 OpeningMovies = Movie.GetMovies(Enumerations.MovieLists.Opening),
                 BoxOfficeMovies = Movie.GetMovies(Enumerations.MovieLists.BoxOffice),
-                InTheatersMovies = Movie.GetMovies(Enumerations.MovieLists.InTheaters),
+                InTheatersMovies = inTheatersMoviesDisplay,
                 
                 OverlayMovie = null,
                 UseAjaxForLinks = true,
@@ -40,9 +47,9 @@ namespace movies.Site.Controllers
             }
 
             // remove any movies in InTheatersMovies that are in Opening
-            foreach (var movie in vm.BoxOfficeMovies)
+            foreach (var movie in vm.OpeningMovies)
             {
-                if (vm.OpeningMovies.ContainsKey(movie.Key))
+                if (vm.InTheatersMovies.ContainsKey(movie.Key))
                 {
                     vm.InTheatersMovies.Remove(movie.Key);
                 }
@@ -56,7 +63,6 @@ namespace movies.Site.Controllers
             {
                 return View("Index", vm);
             }
-            
         }
 
         public ActionResult CacheImdbData()

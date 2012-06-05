@@ -156,7 +156,7 @@ codejkjk.movies.HomeIndex = {
             codejkjk.movies.HomeIndex.HandlePushState(state.url);
         });
 
-        // handle "a" clicks - prevent their default and isntead push state
+        // handle "a" clicks - prevent their default and instead push state
         $(document).on('click', 'a[href^="/"]', function (e) {
             e.preventDefault();
             History.pushState(null, null, $(this).attr("href"));

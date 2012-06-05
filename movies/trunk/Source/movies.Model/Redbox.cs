@@ -36,7 +36,6 @@ namespace movies.Model
             public bool IsNewRelease { get; set; }
             public string MovieSlug { get { return "redbox/" + this.Slug; } }
             public string Slug { get; set; }
-            public int ReleaseYear { get; set; }
         }
         #endregion
 
@@ -46,13 +45,14 @@ namespace movies.Model
                 string.Format("codejkjk.movies.Model.Redbox.GetMovie-{0}", rbSlug),
                 () =>
                 {
-                    var rbMovie = GetMovies()[rbSlug];
+                    var allMovies = GetMovies();
+                    var rbMovie = allMovies[rbSlug];
 
                     var rtMovies = Model.Movie.SearchMovies(rbMovie.Title);
                     // iterate thru search results; return one that matches title and release year
                     foreach (var rtMovie in rtMovies.Values)
                     {
-                        if (rtMovie.title == rbMovie.Title && rtMovie.release_dates.theater.Year == rbMovie.ReleaseYear)
+                        if (rtMovie.title == rbMovie.Title)
                         {
                             return rtMovie;
                         }
@@ -87,8 +87,7 @@ namespace movies.Model
                             Title = movie["Title"].ToString(),
                             ThumbnailUrl = thumbnailUrl,
                             IsNewRelease = isNewRelease,
-                            Slug = websiteUrl.Substring(websiteUrl.LastIndexOf("/") + 1),
-                            ReleaseYear = int.Parse(movie["ReleaseYear"].ToString())
+                            Slug = websiteUrl.Substring(websiteUrl.LastIndexOf("/") + 1)
                         };
                         ret.Add(rbMovie);
                     }

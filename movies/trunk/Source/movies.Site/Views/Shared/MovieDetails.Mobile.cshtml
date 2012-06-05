@@ -15,7 +15,6 @@ else
     <p class="releaseDate">@this.Model.ReleaseDate</p>    
 }
 <p class="links"><a href="@(this.Model.links.alternate)trailers" target="_blank">Trailer</a><a href="@this.Model.ParentalGuideUrl" target="_blank">Parental Guide</a></p>
-<p class="description"><strong>Synopsis</strong>: @this.Model.synopsis</p>
 <p class="starring">
     <strong>Starring</strong>: 
     @{ int i = 0; }
@@ -25,3 +24,4 @@ else
         i++;
     }
 </p>
+<p class="description"><strong>Synopsis</strong>: @this.Model.synopsis</p>

@@ -22,7 +22,6 @@
             {
                 <p class="releaseDate">@this.Model.ReleaseDate</p>
             }
-            <p class="description">@this.Model.synopsis</p>
             <p class="starring">
                 <strong>Starring</strong>: 
                 @{ int i = 0; }
@@ -32,6 +31,7 @@
                     i++;
                 }
             </p>
+            <p class="description">@this.Model.synopsis</p>
         </div>
     </div>
     <p class="links">

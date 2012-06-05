@@ -27,5 +27,12 @@ namespace movies.Model
             InTheaters,
             Upcoming
         }
+
+        public enum MovieType
+        {
+            InTheaters,
+            AtRedboxes,
+            Neither
+        }
     }
 }

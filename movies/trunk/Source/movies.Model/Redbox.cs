@@ -39,7 +39,7 @@ namespace movies.Model
         }
         #endregion
 
-        public static Model.Movie GetMovie(string rbSlug)
+        public static Model.Movie GetRottenTomatoesMovie(string rbSlug)
         {
             return Cache.GetValue<Model.Movie>(
                 string.Format("codejkjk.movies.Model.Redbox.GetMovie-{0}", rbSlug),
@@ -52,7 +52,7 @@ namespace movies.Model
                     // iterate thru search results; return one that matches title and release year
                     foreach (var rtMovie in rtMovies.Values)
                     {
-                        if (rtMovie.title == rbMovie.Title)
+                        if (rtMovie.title.ToLower().Trim() == rbMovie.Title.ToLower().Trim())
                         {
                             return rtMovie;
                         }

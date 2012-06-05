@@ -31,13 +31,15 @@ namespace movies.Site.Controllers
         public ActionResult GetMovieHtml(string rtMovieId)
         {
             var movie = Model.Movie.GetRottenTomatoesMovie(rtMovieId);
+            movie.MovieType = Model.Movie.GetMovieType(movie.id);
 
             return PartialView("MovieDetails", movie);
         }
 
         public ActionResult GetRedboxMovieHtml(string rbSlug)
         {
-            var movie = Model.Redbox.GetMovie(rbSlug);
+            var movie = Model.Redbox.GetRottenTomatoesMovie(rbSlug);
+            movie.MovieType = Enumerations.MovieType.AtRedboxes;
 
             return PartialView("MovieDetails", movie);
         }

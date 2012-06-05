@@ -7,15 +7,32 @@ namespace movies.Site.Controllers
     {
         //
         // GET: /Movie/
-
-        public ActionResult Index(string titleSlug, string rtMovieId)
+        public ActionResult Index(string rtMovieId, string titleSlug, bool isRedbox)
         {
+            // first, get the movie
+            Model.Movie movie = null;
+            if (isRedbox)
+            {
+                movie = Model.Redbox.GetRottenTomatoesMovie(titleSlug);
+                if (movie == null)
+                {
+                    return Content("Error, please try again.");
+                }
+                movie.MovieType = Enumerations.MovieType.AtRedboxes;
+            }
+            else
+            {
+                movie = Model.Movie.GetRottenTomatoesMovie(rtMovieId);
+                movie.MovieType = Model.Movie.GetMovieType(rtMovieId);
+            }
+
+            // mobile?
             if (Request.Browser.IsMobileDevice)
             {
                 var vm = new ViewModels.Movie.Index {
                     UseAjaxForLinks = true,
                     PrefetchLinks = false,
-                    Movie = Model.Movie.GetRottenTomatoesMovie(rtMovieId)
+                    Movie = movie
                 };
                 return View("Index", vm);
             }
@@ -29,24 +46,24 @@ namespace movies.Site.Controllers
                     UpcomingMovies = Movie.GetMovies(Enumerations.MovieLists.Upcoming),
                     RedboxMovies = Redbox.GetMovies(),
 
-                    OverlayMovie = Model.Movie.GetRottenTomatoesMovie(rtMovieId)
+                    OverlayMovie = movie
                 };
 
                 // remove any movies in InTheatersMovies that are already in Box Office
-                foreach (var movie in vm.BoxOfficeMovies)
+                foreach (var m in vm.BoxOfficeMovies)
                 {
-                    if (vm.InTheatersMovies.ContainsKey(movie.Key))
+                    if (vm.InTheatersMovies.ContainsKey(m.Key))
                     {
-                        vm.InTheatersMovies.Remove(movie.Key);
+                        vm.InTheatersMovies.Remove(m.Key);
                     }
                 }
 
                 // remove any movies in InTheatersMovies that are in Opening
-                foreach (var movie in vm.BoxOfficeMovies)
+                foreach (var m in vm.BoxOfficeMovies)
                 {
-                    if (vm.OpeningMovies.ContainsKey(movie.Key))
+                    if (vm.OpeningMovies.ContainsKey(m.Key))
                     {
-                        vm.InTheatersMovies.Remove(movie.Key);
+                        vm.InTheatersMovies.Remove(m.Key);
                     }
                 }
 

@@ -135,13 +135,13 @@ namespace movies
             routes.MapRoute(
                 "MovieDetailsRedbox", // Route name
                 "redbox/{titleSlug}", // URL with parameters
-                new { controller = "Movie", action = "RedboxIndex" } // Parameter defaults
+                new { controller = "Movie", action = "Index", isRedbox = true, rtMovieId = "" } // Parameter defaults
             );            
             
             routes.MapRoute(
                 "MovieDetails", // Route name
                 "{titleSlug}/{rtMovieId}", // URL with parameters
-                new { controller = "Movie", action = "Index" } // Parameter defaults
+                new { controller = "Movie", action = "Index", isRedbox = false } // Parameter defaults
             );   
 
             routes.MapRoute(

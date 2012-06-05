@@ -39,6 +39,10 @@ namespace movies.Site.Controllers
         public ActionResult GetRedboxMovieHtml(string rbSlug)
         {
             var movie = Model.Redbox.GetRottenTomatoesMovie(rbSlug);
+            if (movie == null)
+            {
+                return Content("No corresponding RottenTomatoes movie found :/");
+            }
             movie.MovieType = Enumerations.MovieType.AtRedboxes;
 
             return PartialView("MovieDetails", movie);

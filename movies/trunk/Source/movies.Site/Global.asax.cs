@@ -130,8 +130,14 @@ namespace movies
                 "Seo-Movie", // Route name
                 "seo/{titleSlug}/{rtMovieId}", // URL with parameters
                 new { controller = "Seo", action = "Movie" } // Parameter defaults
-            );   
+            );
 
+            routes.MapRoute(
+                "MovieDetailsRedbox", // Route name
+                "redbox/{titleSlug}", // URL with parameters
+                new { controller = "Movie", action = "RedboxIndex" } // Parameter defaults
+            );            
+            
             routes.MapRoute(
                 "MovieDetails", // Route name
                 "{titleSlug}/{rtMovieId}", // URL with parameters

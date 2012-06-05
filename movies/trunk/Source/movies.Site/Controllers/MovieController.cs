@@ -16,7 +16,7 @@ namespace movies.Site.Controllers
                 movie = Model.Redbox.GetRottenTomatoesMovie(titleSlug);
                 if (movie == null)
                 {
-                    return Content("Error, please try again.");
+                    return Content("No corresponding RottenTomatoes movie found :/");
                 }
                 movie.MovieType = Enumerations.MovieType.AtRedboxes;
             }

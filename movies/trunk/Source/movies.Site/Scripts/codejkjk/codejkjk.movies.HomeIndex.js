@@ -300,7 +300,7 @@ codejkjk.movies.HomeIndex = {
             } // end switch
 
             // if date in iteration matches current showtime day
-            if (d.toString("yyyyMMdd") == codejkjk.movies.HomeIndex.Controls.CurrentShowtimeDay().val()) {
+            if (d.toString("yyyyMMdd") == codejkjk.movies.HomeIndex.Currents.ShowtimeDay().val()) {
                 cssClass = "active";
             }
 
@@ -421,7 +421,7 @@ codejkjk.movies.HomeIndex = {
         }
 
         codejkjk.movies.HomeIndex.Currents.Theater(""); // new zip, so clear out current theater value
-        codejkjk.movies.Api.GetTheaters(codejkjk.movies.HomeIndex.Controls.CurrentShowtimeDay().val(), zipCode, codejkjk.movies.HomeIndex.LoadTheaters);
+        codejkjk.movies.Api.GetTheaters(codejkjk.movies.HomeIndex.Currents.ShowtimeDay().val(), zipCode, codejkjk.movies.HomeIndex.LoadTheaters);
     },
 
     UpdateRedboxZip: function (zipCode) {
@@ -517,7 +517,7 @@ codejkjk.movies.HomeIndex = {
             localStorage.setItem("FavoriteTheaters", favoriteTheaters.join(','));
 
             // refresh theaters
-            codejkjk.movies.Api.GetTheaters(codejkjk.movies.HomeIndex.Controls.CurrentShowtimeDay().val(), codejkjk.movies.HomeIndex.Currents.ZipCode(), codejkjk.movies.HomeIndex.LoadTheaters);
+            codejkjk.movies.Api.GetTheaters(codejkjk.movies.HomeIndex.Currents.ShowtimeDay().val(), codejkjk.movies.HomeIndex.Currents.ZipCode(), codejkjk.movies.HomeIndex.LoadTheaters);
         });
 
         // handle theater link clicks
@@ -576,7 +576,7 @@ codejkjk.movies.HomeIndex = {
         $(document).on("click", codejkjk.movies.HomeIndex.Controls.ShowtimeDayLinksSelector(), function (e) {
             e.preventDefault();
             var link = $(this);
-            codejkjk.movies.HomeIndex.Controls.CurrentShowtimeDay().val(link.data().date);
+            codejkjk.movies.HomeIndex.Currents.ShowtimeDay().val(link.data().date);
 
             codejkjk.movies.Api.GetTheaters(link.data().date, codejkjk.movies.HomeIndex.Controls.CurrentZip().html(), codejkjk.movies.HomeIndex.LoadTheaters);
         });
@@ -618,7 +618,7 @@ codejkjk.movies.HomeIndex = {
                 // first thing, add loading class
                 link.addClass("loading");
                 codejkjk.Geo.GetZipCode(function (zipCode) {
-                    codejkjk.movies.Api.GetTheatersForMovie(codejkjk.movies.HomeIndex.Controls.CurrentShowtimeDay().val(), zipCode, codejkjk.movies.HomeIndex.Currents.MovieId(), function (theatersHtml) {
+                    codejkjk.movies.Api.GetTheatersForMovie(codejkjk.movies.HomeIndex.Currents.ShowtimeDay().val(), zipCode, codejkjk.movies.HomeIndex.Currents.MovieId(), function (theatersHtml) {
                         theaterList.html(theatersHtml);
 
                         // remove loading class

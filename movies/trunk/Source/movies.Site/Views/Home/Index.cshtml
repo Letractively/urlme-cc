@@ -59,22 +59,25 @@
         </div>
         
         <div id="redboxMovieList">
-        @foreach (var m in Model.RedboxMovies.Values)
+        @if (Model.RedboxMovies != null)
         {
-            <div class="movie rounded @(m.IsNewRelease ? "new" : string.Empty)">
-                <a href="~/@m.MovieSlug">
-                    @if (m.IsNewRelease)
-                    {
-                        <span class="redGradient noHover">New</span>
-                    }
-                    else
-                    {
-                        <span>&nbsp;</span>
-                    }
-                    <img class="lazy" data-original="@m.ThumbnailUrl" src="~/scripts/plugins/lazyload/grey.gif" />
-                    <span class="redGradient">Find</span>
-                </a>
-            </div>    
+            foreach (var m in Model.RedboxMovies.Values)
+            {
+                <div class="movie rounded @(m.IsNewRelease ? "new" : string.Empty)">
+                    <a href="~/@m.MovieSlug">
+                        @if (m.IsNewRelease)
+                        {
+                            <span class="redGradient noHover">New</span>
+                        }
+                        else
+                        {
+                            <span>&nbsp;</span>
+                        }
+                        <img class="lazy" data-original="@m.ThumbnailUrl" src="~/scripts/plugins/lazyload/grey.gif" />
+                        <span class="redGradient">Find</span>
+                    </a>
+                </div>    
+            }            
         }
         </div>
     </section>
@@ -82,18 +85,23 @@
     <!-- SHOWTIMES -->
     <section id="showtimesView" class="content" data-navitemtext="Showtimes">
         <input type="hidden" id="currentShowtimeDay" />
-        <section id="theaters">
-            <div id="location">
-                Showtimes for <span id="currentZip"></span><a href="#" id="changeCurrentZipLink">Change</a>
-                <div id="changeOptions" class="rounded">
-                    <input type="text" id="inputShowtimesZip" placeholder="Search for city or zip...">
-                    <div>or <a id="useNearbyZipCode" href="#">use current location</a></div>
+        <div class="showtimeZipOptions">
+            <input id="inputShowtimesZipBig" type="text" placeholder="Search for city or zip...">&nbsp;or&nbsp;&nbsp;<a href="#">use my location</a>
+        </div>
+        <div id="showtimes">
+            <section id="theaters">
+                <div id="location">
+                    Showtimes for <span id="currentZip"></span><a href="#" id="changeCurrentZipLink">Change</a>
+                    <div class="showtimeZipOptions rounded">
+                        <input id="inputShowtimesZipSmall" type="text" placeholder="Search for city or zip...">
+                        <div>or <a id="useNearbyZipCode" href="#">use my location</a></div>
+                    </div>
                 </div>
-            </div>
-            <div id="favoriteTheaterList" class="theaterList favorites"></div>
-            <div id="theaterList" class="theaterList"></div>
-        </section>
-        <section id="currentTheaterContainer"></section>
+                <div id="favoriteTheaterList" class="theaterList favorites"></div>
+                <div id="theaterList" class="theaterList"></div>
+            </section>
+            <section id="currentTheaterContainer"></section>
+        </div>
     </section>
 
     <!-- SEARCH RESULTS -->

@@ -39,7 +39,16 @@ div.loading { background: url('content/images/ajax-loader-blue-ribbon.gif') no-r
             background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#4c98e4), to(#2d62ae)); 
             background: -webkit-linear-gradient(top, #4c98e4, #2d62ae); 
             background: -moz-linear-gradient(top, #4c98e4, #2d62ae); }           
-
+/* -- Floating Containers --- */
+.group:after {
+        visibility: hidden;
+        display: block;
+        content: "";
+        clear: both;
+        height: 0;
+        }
+* html .group { zoom: 1; } /* IE6 */
+*:first-child+html .group { zoom: 1; } /* IE7 */
 /* #DC3035, #A20608 */
             
 .shadow { -moz-box-shadow: inset 0 0 30px #303030; -webkit-box-shadow: inset 0 0 30px #303030; box-shadow: inset 0 0 30px #303030; } /* orig: 1b1b1b */
@@ -106,11 +115,11 @@ header { background:#fff; overflow: auto; }
         #movieDetailsPopup .links > a.nearbyRedboxLink { padding-left: 22px; background: url('content/images/icons/redbox.gif') no-repeat center left; }            
         #movieDetailsPopup .links > a.nearbyRedboxLink.loading { background: url('content/images/ajax-loader-blue-ribbon.gif') no-repeat center left; }        
         #movieDetailsPopup .links > a:not(:last-child) { margin-right: 20px; }
-    #movieDetailsPopup .ratingAndLength { overflow: auto; font-size: 18px; margin-top: 15px; }
+    #movieDetailsPopup .ratingAndLength { font-size: 18px; margin-top: 15px; }
         #movieDetailsPopup .ratingAndLength .mpaaRating { font-weight: bold; margin-right: 25px; float:left; }
         #movieDetailsPopup .ratingAndLength .length { float: left; margin-right: 25px; }
-        #movieDetailsPopup .ratingAndLength .fbLikeContainer { float: left; width: 85px; float: left; /* margin-top: 50px; margin: 30px 0 0 20px; */ /* position: fixed; top: 50px; left: 20px; */ }
-    #movieDetailsPopup .ratings { clear: left; margin-top: 15px; overflow:auto; }
+        #movieDetailsPopup .ratingAndLength .fbLikeContainer { float: left; width: 85px; float: left; }
+    #movieDetailsPopup .ratings { clear: left; margin-top: 15px; }
     #movieDetailsPopup .releaseDate { margin-top: 15px; font-weight: bold; }
     #movieDetailsPopup .share { margin-top: 15px; }
         #movieDetailsPopup .share #copyButton { text-align: center; border: 1px solid black; background: #e8e8e8; margin-left: 5px; padding: 5px; }
@@ -174,6 +183,7 @@ header { background:#fff; overflow: auto; }
             /* find it */
             #redboxMovieList .movie > a > span:last-child { text-align: center; display: block; padding: 5px 8px; font-weight: bold; color: #fff; text-transform: uppercase; }
 
+#showtimesView > div { display: none; }
 #showtimesView #theaters { float: left; width: 300px; }
     #showtimesView #theaters .theaterList.favorites { }
     
@@ -189,18 +199,19 @@ header { background:#fff; overflow: auto; }
             #showtimesView #theaters .theaterList a.selected div.theaterName { color: #FFF; }
             #showtimesView #theaters .theaterList a:not(.selected) div.theaterAddress { font-size: 90%; color: #535156; }
 
-    #showtimesView #theaters #location { padding: 0; font-size: 120%; }
-        #showtimesView #theaters #location #theatersNearYou { background: gray; }
-        #showtimesView #theaters #location #searchByZip { background: orange; }
+    #showtimesView #theaters #location { padding: 0; font-size: 15px; }
         #showtimesView #theaters #location #currentZip { font-weight: bold; }
         #showtimesView #theaters #location #changeCurrentZipLink { margin-left: 10px; color: #2489CE; font-weight: bold; }
-        #showtimesView #theaters #location #changeOptions { margin-right: 10px; background: #535156; display:none; padding: 8px; margin-top:5px; color: #999; }
-            #showtimesView #theaters #location #changeOptions a { font-weight: bold; color: #fff; }
-            #showtimesView #theaters #location #changeOptions button { padding: 5px; }
-            #showtimesView #theaters #location #changeOptions input { padding: 4px; width: 262px; margin-right:4px; }
-            #showtimesView #theaters #location #changeOptions > div { margin-top:5px; }
-        #showtimesView #theaters #location #nearZipCode { position: absolute; right: 5px; } /* hide for now, until we get this thing working */
-            #showtimesView #theaters #location #nearZipCode #postalCode { font-weight: bold; } /* hide for now, until we get this thing working */
+        #showtimesView .showtimeZipOptions { font-size: 16px;  margin-right: 10px; background: #535156; display:none; padding: 8px; margin-top:5px; color: #999; }
+            #showtimesView .showtimeZipOptions a { font-weight: bold; color: #fff; }
+            #showtimesView .showtimeZipOptions button { padding: 5px; }
+            #showtimesView .showtimeZipOptions input { padding: 4px; width: 262px; margin-right:4px; }
+            #showtimesView .showtimeZipOptions > div { margin-top:5px; }        
+        #showtimesView #theaters #location .showtimeZipOptions { font-size: 16px; margin-right: 10px; background: #535156; display:none; padding: 8px; margin-top:5px; color: #999; }
+            #showtimesView #theaters #location .showtimeZipOptions a { font-weight: bold; color: #fff; }
+            #showtimesView #theaters #location .showtimeZipOptions button { padding: 5px; }
+            #showtimesView #theaters #location .showtimeZipOptions input { padding: 4px; width: 262px; margin-right:4px; }
+            #showtimesView #theaters #location .showtimeZipOptions > div { margin-top:5px; }
 
 #showtimesView #currentTheaterContainer { float: left; width: 697px; } /* orig: 681 > 671 */
     #showtimesView #currentTheaterContainer .theater { background: #535156; padding: 15px; }

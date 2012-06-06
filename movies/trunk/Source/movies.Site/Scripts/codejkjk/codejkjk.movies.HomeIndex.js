@@ -1,4 +1,4 @@
-﻿registerNS("codejkjk.movies.HomeIndex");
+﻿registerNS("codejkjk.movies.desktop");
 
 // todo:
 // - theater h1, make h2 b/c there should only be one h1 on the page
@@ -19,15 +19,14 @@
 // - hide "poster not found" movies
 // - get rid of "noPush" class. instead, do :not[href(startsWith)'http']
 
-codejkjk.movies.HomeIndex = {
+codejkjk.movies.desktop = {
     // page elements
-    Controls: {
+    controls: {
         ActionLinks: function () { return $(".actions").find("a"); }
         , BackToMovieDetailsLinkSelector: function () { return ".backToMovieDetails"; }
         , BoxOfficeView: function () { return $("#boxOfficeView"); }
         , BrowseLinkSelector: function () { return "#browse"; }
         , ChangeCurrentZipLink: function () { return $("#changeCurrentZipLink"); }
-        , ChangeOptionsContainer: function () { return $("#changeOptions"); }
         , CloseMovieDetailsLinkSelector: function () { return ".closeMovieDetails"; }
         , CopyButton: function () { return $("#copyButton"); }
         , CopySuccess: function () { return $("#copySuccess"); }
@@ -70,8 +69,11 @@ codejkjk.movies.HomeIndex = {
         , ShowtimeDayLinks: function () { return $(".showtimeDays > a"); }
         , ShowtimeDayLinksSelector: function () { return ".showtimeDays > a"; }
         , ShowtimeDayLinksContainer: function () { return $(".showtimeDays"); }
+        , showtimes: function () { return $("#showtimes"); }
         , ShowtimesLinks: function () { return $(".showtimesLink"); }
         , ShowtimesLinksSelector: function () { return ".showtimesLink"; }
+        , showtimeZipOptionsBig: function () { return $("#showtimesView .showtimeZipOptions:first"); }
+        , showtimeZipOptionsSmall: function () { return $("#showtimesView .showtimeZipOptions:last"); }
         , TheatersForMovieList: function () { return $("#theatersForMovieList"); }
         , TheaterLinksSelector: function () { return ".theaterList > a"; }
         , TheaterList: function () { return $("#theaterList"); }
@@ -83,7 +85,7 @@ codejkjk.movies.HomeIndex = {
         , Views: function () { return $(".content"); }
     },
 
-    Currents: {
+    currents: {
         ZipCode: function (val) {
             if (typeof val != "undefined") { // set
                 localStorage.setItem("ZipCode", val);
@@ -121,7 +123,7 @@ codejkjk.movies.HomeIndex = {
             }
         }
         , MovieId: function () {
-            return codejkjk.movies.HomeIndex.Controls.CurrentMovieId().val();
+            return codejkjk.movies.desktop.controls.CurrentMovieId().val();
         }
         , ShowtimeDay: function (val) {
             if (typeof val != "undefined") { // set
@@ -132,7 +134,7 @@ codejkjk.movies.HomeIndex = {
         }
     },
 
-    Init: function () {
+    init: function () {
         // check if browser can support this site
         var History = window.History;
         if (typeof localStorage == 'undefined' || !navigator.geolocation || !History.enabled) {
@@ -140,20 +142,21 @@ codejkjk.movies.HomeIndex = {
             return;
         }
 
-        // init google maps Places autosearch
-        codejkjk.movies.HomeIndex.InitGooglePlaces("inputShowtimesZip");
-
-        codejkjk.movies.HomeIndex.BindControls();
-        codejkjk.movies.HomeIndex.RegisterJsRenderHelpers();
+        codejkjk.movies.desktop.initGooglePlaces("inputShowtimesZipSmall");
+        codejkjk.movies.desktop.initGooglePlaces("inputShowtimesZipBig");
+        codejkjk.movies.desktop.bindControls();
+        codejkjk.movies.desktop.registerJsRenderHelpers();
+        codejkjk.movies.desktop.initHistory(History);
 
         // init showtime date to today
-        codejkjk.movies.HomeIndex.Currents.ShowtimeDay(Date.today().toString("yyyyMMdd"));
+        codejkjk.movies.desktop.currents.ShowtimeDay(Date.today().toString("yyyyMMdd"));
+    },
 
-        // setup History
+    initHistory: function (History) {
         // handle any state changes
         History.Adapter.bind(window, 'statechange', function () {
             var state = History.getState();
-            codejkjk.movies.HomeIndex.HandlePushState(state.url);
+            codejkjk.movies.desktop.HandlePushState(state.url);
         });
 
         // handle "a" clicks - prevent their default and instead push state
@@ -162,17 +165,64 @@ codejkjk.movies.HomeIndex = {
             History.pushState(null, null, $(this).attr("href"));
         });
 
-        // handle this page's load
+        // handle initial page's load
         var initState = History.getState();
-        codejkjk.movies.HomeIndex.HandlePushState(initState.url);
+        codejkjk.movies.desktop.HandlePushState(initState.url);
     },
 
-    InitGooglePlaces: function (inputId) {
+    HandlePushState: function (url) {
+        var paths = url.replace('//', '').split('/');
+        var firstPath = '/' + paths[1]; // "", "comingsoon", "showtimes" (all navs), "rb" (redbox movie) or "hunger-games" (movie)
+
+        // primary nav link?
+        if (firstPath === "/" || firstPath === "/comingsoon" || (firstPath === "/redbox" && !paths[2])) {
+            codejkjk.movies.desktop.showSection(firstPath);
+        }
+        else if (firstPath === "/showtimes") {
+            if (codejkjk.movies.desktop.currents.ZipCode()) {
+                // zipcode is remembered, so load movies w/ zipcode
+                codejkjk.movies.desktop.controls.showtimeZipOptionsBig().hide();
+                codejkjk.movies.desktop.controls.showtimes().show();
+                // load showtimes
+            } else {
+                // no zipcode in memory, so display form where user can specify zip (or use current location)
+                codejkjk.movies.desktop.controls.showtimeZipOptionsBig().show();
+                codejkjk.movies.desktop.controls.showtimes().hide();
+            }
+            codejkjk.movies.desktop.showSection(firstPath);
+        }
+        else {
+            // /redbox/wreckage or /hunger-games/9999888768
+            // movie details link
+            var part1 = paths[1];
+            if (part1 === "redbox") { // redbox movie
+                var rbSlug = paths[2]; // redbox product id
+                if (codejkjk.movies.desktop.currents.MovieId()) {
+                    // movie details is already in dom, b/c user went to movie link directly
+                    codejkjk.movies.desktop.showSection("/");
+                    codejkjk.movies.desktop.ShowMovieDetails("rb");
+                } else {
+                    codejkjk.movies.desktop.ShowMovieDetails("rb", rbSlug);
+                }
+            } else { // rt movie
+                var rtMovieId = paths[2]; // rt movie id
+                if (codejkjk.movies.desktop.currents.MovieId()) {
+                    // movie details is already in dom, b/c user went to movie link directly
+                    codejkjk.movies.desktop.showSection("/");
+                    codejkjk.movies.desktop.ShowMovieDetails("rt");
+                } else {
+                    codejkjk.movies.desktop.ShowMovieDetails("rt", rtMovieId);
+                }
+            }
+        }
+    },
+
+    initGooglePlaces: function (inputId) {
         var input = document.getElementById(inputId);
         var autocomplete = new google.maps.places.Autocomplete(input);
 
         google.maps.event.addListener(autocomplete, 'place_changed', function () {
-            codejkjk.movies.HomeIndex.Controls.ChangeOptionsContainer().mask();
+            codejkjk.movies.desktop.controls.showtimeZipOptionsSmall().mask();
             var place = autocomplete.getPlace();
             var formattedAddress = place.formatted_address.replace(", USA", "");
             var latLong = place.geometry.location.toString();
@@ -180,20 +230,20 @@ codejkjk.movies.HomeIndex = {
             var lat = latLong.split(',')[0];
             var long = latLong.split(',')[1];
             codejkjk.Geo.GetZipCodeFromLatLong(lat, long, function (zipCode) {
-                codejkjk.movies.HomeIndex.UpdateZip(zipCode, formattedAddress);
+                codejkjk.movies.desktop.UpdateZip(zipCode, formattedAddress);
             });
         });
     },
 
-    ShowSection: function (path) {
+    showSection: function (path) {
         // primary nav change
         // clear out search val if user previously searched for something
-        codejkjk.movies.HomeIndex.Controls.SearchBox().val("");
+        codejkjk.movies.desktop.controls.SearchBox().val("");
 
-        var link = codejkjk.movies.HomeIndex.Controls.Nav().find("a[href='{0}']".format(path)); // logo does not have inner html, which is what we use later to select view to show
-        codejkjk.movies.HomeIndex.Controls.NavLinks().removeClass("selected");
+        var link = codejkjk.movies.desktop.controls.Nav().find("a[href='{0}']".format(path)); // logo does not have inner html, which is what we use later to select view to show
+        codejkjk.movies.desktop.controls.NavLinks().removeClass("selected");
         link.addClass("selected");
-        codejkjk.movies.HomeIndex.Controls.Views().hide();
+        codejkjk.movies.desktop.controls.Views().hide();
 
         // show view
         var sectionToShow = $('section[data-navitemtext="{0}"]'.format(link.html())).show();
@@ -208,41 +258,7 @@ codejkjk.movies.HomeIndex = {
         }
     },
 
-    HandlePushState: function (url) {
-        var paths = url.replace('//', '').split('/');
-        var firstPath = '/' + paths[1]; // "", "comingsoon", "showtimes" (all navs), "rb" (redbox movie) or "hunger-games" (movie)
-
-        // primary nav link?
-        if (firstPath === "/" || firstPath === "/comingsoon" || firstPath === "/showtimes" || (firstPath === "/redbox" && !paths[2])) {
-            codejkjk.movies.HomeIndex.ShowSection(firstPath);
-        }
-        else {
-            // /redbox/wreckage or /hunger-games/9999888768
-            // movie details link
-            var part1 = paths[1];
-            if (part1 === "redbox") { // redbox movie
-                var rbSlug = paths[2]; // redbox product id
-                if (codejkjk.movies.HomeIndex.Currents.MovieId()) {
-                    // movie details is already in dom, b/c user went to movie link directly
-                    codejkjk.movies.HomeIndex.ShowSection("/");
-                    codejkjk.movies.HomeIndex.ShowMovieDetails("rb");
-                } else {
-                    codejkjk.movies.HomeIndex.ShowMovieDetails("rb", rbSlug);
-                }
-            } else { // rt movie
-                var rtMovieId = paths[2]; // rt movie id
-                if (codejkjk.movies.HomeIndex.Currents.MovieId()) {
-                    // movie details is already in dom, b/c user went to movie link directly
-                    codejkjk.movies.HomeIndex.ShowSection("/");
-                    codejkjk.movies.HomeIndex.ShowMovieDetails("rt");
-                } else {
-                    codejkjk.movies.HomeIndex.ShowMovieDetails("rt", rtMovieId);
-                }
-            }
-        }
-    },
-
-    RegisterJsRenderHelpers: function () {
+    registerJsRenderHelpers: function () {
         $.views.registerHelpers({
             IsReleased: function (releaseDate) {
                 var now = new Date();
@@ -250,7 +266,7 @@ codejkjk.movies.HomeIndex = {
                 return now >= releaseDate;
             },
             IsCurrentTheater: function (iTheaterId) {
-                return iTheaterId.toString() == codejkjk.movies.HomeIndex.Currents.Theater();
+                return iTheaterId.toString() == codejkjk.movies.desktop.currents.Theater();
             },
             GetHoursAndMinutes: function (minutes) {
                 var hrs = Math.floor(minutes / 60);
@@ -300,18 +316,18 @@ codejkjk.movies.HomeIndex = {
             } // end switch
 
             // if date in iteration matches current showtime day
-            if (d.toString("yyyyMMdd") == codejkjk.movies.HomeIndex.Currents.ShowtimeDay()) {
+            if (d.toString("yyyyMMdd") == codejkjk.movies.desktop.currents.ShowtimeDay()) {
                 cssClass = "active";
             }
 
             var showtimeDayLink = "<a href='#' class='{0}' data-date='{1}'>{2}</a>".format(cssClass, d.toString("yyyyMMdd"), label);
-            codejkjk.movies.HomeIndex.Controls.ShowtimeDayLinksContainer().append(showtimeDayLink);
+            codejkjk.movies.desktop.controls.ShowtimeDayLinksContainer().append(showtimeDayLink);
         }
     },
 
     GetIMDbData: function () {
         return;
-        codejkjk.movies.HomeIndex.Controls.IMDbMoviesNotSet().each(function () {
+        codejkjk.movies.desktop.controls.IMDbMoviesNotSet().each(function () {
             var imdb = $(this);
             var imdbMovieId = imdb.attr("data-imdbmovieid");
             codejkjk.movies.Api.GetIMDbMovie(imdbMovieId, function (movie) {
@@ -329,13 +345,13 @@ codejkjk.movies.HomeIndex = {
     },
 
     LoadSearchResults: function (html) {
-        codejkjk.movies.HomeIndex.Controls.NavLinks().removeClass("selected");
+        codejkjk.movies.desktop.controls.NavLinks().removeClass("selected");
         if ($.trim(html)) {
-            codejkjk.movies.HomeIndex.Controls.SearchResultsView().html(html);
+            codejkjk.movies.desktop.controls.SearchResultsView().html(html);
         } else {
-            codejkjk.movies.HomeIndex.Controls.SearchResultsView().html("No results found.");
+            codejkjk.movies.desktop.controls.SearchResultsView().html("No results found.");
         }
-        codejkjk.movies.HomeIndex.GetIMDbData();
+        codejkjk.movies.desktop.GetIMDbData();
 
         $("img.lazy").lazyload({
             effect: "fadeIn"
@@ -345,7 +361,7 @@ codejkjk.movies.HomeIndex = {
     LoadTheaters: function (postalCode) {
         var theaters = postalCode.theaters;
 
-        var hiddenTheaterMovies = codejkjk.movies.HomeIndex.Currents.HiddenTheaterMovies();
+        var hiddenTheaterMovies = codejkjk.movies.desktop.currents.HiddenTheaterMovies();
 
         var favoriteTheaterIds = localStorage.getItem("FavoriteTheaters");
         favoriteTheaterIds = favoriteTheaterIds ? favoriteTheaterIds.split(',') : [];
@@ -359,22 +375,22 @@ codejkjk.movies.HomeIndex = {
         });
 
         // establish current theater id before we render the html, so the jsRender helper can know which items it should show as active
-        if (!codejkjk.movies.HomeIndex.Currents.Theater()) {
+        if (!codejkjk.movies.desktop.currents.Theater()) {
             // no current theater set, so choose first
             var currentTheaterId = null;
             if (favoriteTheaters.length > 0) { currentTheaterId = favoriteTheaters[0].id; }
             else { currentTheaterId = notFavoriteTheaters[0].id; }
-            codejkjk.movies.HomeIndex.Currents.Theater(currentTheaterId);
+            codejkjk.movies.desktop.currents.Theater(currentTheaterId);
         } else {
             // make sure the theaterId is in the incoming list of theaters
             var results = $.grep(theaters, function (theater, i) {
-                return theater.id.toString() == codejkjk.movies.HomeIndex.Currents.Theater();
+                return theater.id.toString() == codejkjk.movies.desktop.currents.Theater();
             });
             if (results.length == 0) { // current theaterId does NOT exist in incoming list of theaters, so get the first from favorites or nonfavorites if favorites is empty
                 var currentTheaterId = null;
                 if (favoriteTheaters.length > 0) { currentTheaterId = favoriteTheaters[0].id; }
                 else { currentTheaterId = notFavoriteTheaters[0].id; }
-                codejkjk.movies.HomeIndex.Currents.Theater(currentTheaterId);
+                codejkjk.movies.desktop.currents.Theater(currentTheaterId);
             }
         }
 
@@ -390,48 +406,48 @@ codejkjk.movies.HomeIndex = {
         });
 
         // render theaters
-        codejkjk.movies.HomeIndex.Controls.FavoriteTheaterList().html(
-            codejkjk.movies.HomeIndex.Controls.FavoriteTheaterListTemplate().render(favoriteTheaters)
+        codejkjk.movies.desktop.controls.FavoriteTheaterList().html(
+            codejkjk.movies.desktop.controls.FavoriteTheaterListTemplate().render(favoriteTheaters)
         );
-        codejkjk.movies.HomeIndex.Controls.TheaterList().html(
-            codejkjk.movies.HomeIndex.Controls.TheaterListTemplate().render(notFavoriteTheaters)
+        codejkjk.movies.desktop.controls.TheaterList().html(
+            codejkjk.movies.desktop.controls.TheaterListTemplate().render(notFavoriteTheaters)
         );
-        codejkjk.movies.HomeIndex.Controls.CurrentTheaterContainer().html(
-            codejkjk.movies.HomeIndex.Controls.CurrentTheaterTemplate().render(theaters)
+        codejkjk.movies.desktop.controls.CurrentTheaterContainer().html(
+            codejkjk.movies.desktop.controls.CurrentTheaterTemplate().render(theaters)
         );
 
-        codejkjk.movies.HomeIndex.BuildShowtimeDayLinks();
+        codejkjk.movies.desktop.BuildShowtimeDayLinks();
 
-        if (codejkjk.movies.HomeIndex.Controls.ChangeOptionsContainer().is(":visible")) {
-            codejkjk.movies.HomeIndex.Controls.ChangeOptionsContainer().unmask();
-            codejkjk.movies.HomeIndex.Controls.ChangeCurrentZipLink().trigger('click');
+        if (codejkjk.movies.desktop.controls.showtimeZipOptionsSmall().is(":visible")) {
+            codejkjk.movies.desktop.controls.showtimeZipOptionsSmall().unmask();
+            codejkjk.movies.desktop.controls.ChangeCurrentZipLink().trigger('click');
         }
 
         // now that the theater links are filled, set the currentTheater container's height to match height of theater links container
-        var theaterListHeight = codejkjk.movies.HomeIndex.Controls.TheaterList().height() + 20;
-        codejkjk.movies.HomeIndex.Controls.Theaters().css("min-height", theaterListHeight + "px");
+        var theaterListHeight = codejkjk.movies.desktop.controls.TheaterList().height() + 20;
+        codejkjk.movies.desktop.controls.Theaters().css("min-height", theaterListHeight + "px");
     },
 
     UpdateZip: function (zipCode, friendlyTitle) {
-        codejkjk.movies.HomeIndex.Currents.ZipCode(zipCode); // update current zip code
+        codejkjk.movies.desktop.currents.ZipCode(zipCode); // update current zip code
         if (typeof friendlyTitle != "undefined") {
-            codejkjk.movies.HomeIndex.Controls.CurrentZip().html(friendlyTitle);
+            codejkjk.movies.desktop.controls.CurrentZip().html(friendlyTitle);
         } else {
-            codejkjk.movies.HomeIndex.Controls.CurrentZip().html(zipCode);
+            codejkjk.movies.desktop.controls.CurrentZip().html(zipCode);
         }
 
-        codejkjk.movies.HomeIndex.Currents.Theater(""); // new zip, so clear out current theater value
-        codejkjk.movies.Api.GetTheaters(codejkjk.movies.HomeIndex.Currents.ShowtimeDay(), zipCode, codejkjk.movies.HomeIndex.LoadTheaters);
+        codejkjk.movies.desktop.currents.Theater(""); // new zip, so clear out current theater value
+        codejkjk.movies.Api.GetTheaters(codejkjk.movies.desktop.currents.ShowtimeDay(), zipCode, codejkjk.movies.desktop.LoadTheaters);
     },
 
     UpdateRedboxZip: function (zipCode) {
-        codejkjk.movies.HomeIndex.Currents.RedboxZipCode(zipCode); // update current redbox zip code
-        // codejkjk.movies.HomeIndex.Controls.CurrentZip().html(zipCode);
-        codejkjk.movies.HomeIndex.Currents.Redbox(""); // new zip, so clear out current redbox store id value
+        codejkjk.movies.desktop.currents.RedboxZipCode(zipCode); // update current redbox zip code
+        // codejkjk.movies.desktop.controls.CurrentZip().html(zipCode);
+        codejkjk.movies.desktop.currents.Redbox(""); // new zip, so clear out current redbox store id value
 
         codejkjk.Geo.GetLatLongFromZip(zipCode, function (lat, long) {
             codejkjk.movies.Api.GetRedboxesHtml(lat, long, function (html) {
-                codejkjk.movies.HomeIndex.Controls.Redboxes().html(html);
+                codejkjk.movies.desktop.controls.Redboxes().html(html);
             });
         });
     },
@@ -440,62 +456,62 @@ codejkjk.movies.HomeIndex = {
         // show overlay
         var overlayHeight = $(document).height() + "px";
         var overlayWidth = $(document).width() + "px";
-        codejkjk.movies.HomeIndex.Controls.Overlay().css("height", overlayHeight).css("width", overlayWidth).show();
+        codejkjk.movies.desktop.controls.Overlay().css("height", overlayHeight).css("width", overlayWidth).show();
 
         if (movieIdToAjaxLoad) {
             // user went to movie link by clicking on a poster, so ajax-load it
-            codejkjk.movies.HomeIndex.Controls.MovieDetailsPopup().html("<div class='loading'></div>");
-            codejkjk.movies.HomeIndex.Controls.MovieDetailsPopup().show();
+            codejkjk.movies.desktop.controls.MovieDetailsPopup().html("<div class='loading'></div>");
+            codejkjk.movies.desktop.controls.MovieDetailsPopup().show();
 
             if (rbOrRt === "rb") {
                 codejkjk.movies.Api.GetRedboxMovieHtml(movieIdToAjaxLoad, function (html) {
-                    codejkjk.movies.HomeIndex.Controls.MovieDetailsPopup().html(html);
+                    codejkjk.movies.desktop.controls.MovieDetailsPopup().html(html);
                     FB.XFBML.parse();
-                    codejkjk.movies.HomeIndex.InitZeroClipboard();
+                    codejkjk.movies.desktop.InitZeroClipboard();
                 });
             } else {
                 codejkjk.movies.Api.GetMovieHtml(movieIdToAjaxLoad, function (html) {
-                    codejkjk.movies.HomeIndex.Controls.MovieDetailsPopup().html(html);
+                    codejkjk.movies.desktop.controls.MovieDetailsPopup().html(html);
                     FB.XFBML.parse();
-                    codejkjk.movies.HomeIndex.InitZeroClipboard();
+                    codejkjk.movies.desktop.InitZeroClipboard();
                 });
             }
         } else {
             // movie details are already in dom, so just init zeroclipboard b/c it's ready to go
-            codejkjk.movies.HomeIndex.Controls.MovieDetailsPopup().show();
-            codejkjk.movies.HomeIndex.InitZeroClipboard();
+            codejkjk.movies.desktop.controls.MovieDetailsPopup().show();
+            codejkjk.movies.desktop.InitZeroClipboard();
         }
     },
 
     InitZeroClipboard: function () {
         var clip = new ZeroClipboard.Client();
-        clip.setText(codejkjk.movies.HomeIndex.Controls.MovieUrl().val());
+        clip.setText(codejkjk.movies.desktop.controls.MovieUrl().val());
         clip.glue('copyButton');
 
         clip.addEventListener('complete', function (client, text) {
-            codejkjk.movies.HomeIndex.Controls.CopySuccess().show().delay(2500).fadeOut('fast');
+            codejkjk.movies.desktop.controls.CopySuccess().show().delay(2500).fadeOut('fast');
         });
     },
 
-    BindControls: function () {
+    bindControls: function () {
         // handle "Browse Nearby Redbox"
-        $(document).on('click', codejkjk.movies.HomeIndex.Controls.BrowseLinkSelector(), function (e) {
+        $(document).on('click', codejkjk.movies.desktop.controls.BrowseLinkSelector(), function (e) {
             e.preventDefault();
             $(this).next("div").toggleClass("hidden");
         });
 
         // handle "see nearby redboxes" links
-        $(document).on('click', codejkjk.movies.HomeIndex.Controls.SeeNearbyRedboxesSelector(), function (e) {
+        $(document).on('click', codejkjk.movies.desktop.controls.SeeNearbyRedboxesSelector(), function (e) {
             e.preventDefault();
             codejkjk.Geo.GetLatLong(function (lat, long) {
                 codejkjk.movies.Api.GetRedboxesHtml(lat, long, function (html) {
-                    codejkjk.movies.HomeIndex.Controls.Redboxes().html(html);
+                    codejkjk.movies.desktop.controls.Redboxes().html(html);
                 });
             });
         });
 
         // handle favorite theater links
-        $(document).on('click', codejkjk.movies.HomeIndex.Controls.FavoriteLinksSelector(), function (e) {
+        $(document).on('click', codejkjk.movies.desktop.controls.FavoriteLinksSelector(), function (e) {
             e.preventDefault();
             e.stopPropagation();
             var link = $(this);
@@ -517,29 +533,29 @@ codejkjk.movies.HomeIndex = {
             localStorage.setItem("FavoriteTheaters", favoriteTheaters.join(','));
 
             // refresh theaters
-            codejkjk.movies.Api.GetTheaters(codejkjk.movies.HomeIndex.Currents.ShowtimeDay(), codejkjk.movies.HomeIndex.Currents.ZipCode(), codejkjk.movies.HomeIndex.LoadTheaters);
+            codejkjk.movies.Api.GetTheaters(codejkjk.movies.desktop.currents.ShowtimeDay(), codejkjk.movies.desktop.currents.ZipCode(), codejkjk.movies.desktop.LoadTheaters);
         });
 
         // handle theater link clicks
-        $(document).on('click', codejkjk.movies.HomeIndex.Controls.TheaterLinksSelector(), function (e) {
+        $(document).on('click', codejkjk.movies.desktop.controls.TheaterLinksSelector(), function (e) {
             e.preventDefault();
             var link = $(this);
             var theaterId = link.attr("data-theaterid");
-            codejkjk.movies.HomeIndex.Currents.Theater(theaterId);
-            $(codejkjk.movies.HomeIndex.Controls.TheaterLinksSelector()).removeClass("selected glowing");
+            codejkjk.movies.desktop.currents.Theater(theaterId);
+            $(codejkjk.movies.desktop.controls.TheaterLinksSelector()).removeClass("selected glowing");
             link.addClass("selected glowing");
-            codejkjk.movies.HomeIndex.Controls.Theaters().removeClass("selected glowing");
+            codejkjk.movies.desktop.controls.Theaters().removeClass("selected glowing");
             $(".theater[data-theaterid='{0}']".format(theaterId)).addClass("selected glowing");
         });
 
         // handle hide movie links
-        $(document).on('click', codejkjk.movies.HomeIndex.Controls.HideMovieLinksSelector(), function (e) {
+        $(document).on('click', codejkjk.movies.desktop.controls.HideMovieLinksSelector(), function (e) {
             e.preventDefault();
             var movie = $(this);
             var theater = movie.closest(".theater");
-            var hiddenTheaterMovies = codejkjk.movies.HomeIndex.Currents.HiddenTheaterMovies();
+            var hiddenTheaterMovies = codejkjk.movies.desktop.currents.HiddenTheaterMovies();
             hiddenTheaterMovies.pushIfDoesNotExist(movie.data().theatermovie);
-            codejkjk.movies.HomeIndex.Currents.HiddenTheaterMovies(hiddenTheaterMovies.join(','));
+            codejkjk.movies.desktop.currents.HiddenTheaterMovies(hiddenTheaterMovies.join(','));
 
             movie.closest(".movie").fadeOut('fast', function () {
                 $(this).addClass("hidden").removeAttr("style");
@@ -550,7 +566,7 @@ codejkjk.movies.HomeIndex = {
         });
 
         // handle "show hidden movies" links
-        $(document).on('click', codejkjk.movies.HomeIndex.Controls.ShowHiddenMoviesLinksSelector(), function (e) {
+        $(document).on('click', codejkjk.movies.desktop.controls.ShowHiddenMoviesLinksSelector(), function (e) {
             e.preventDefault();
             var link = $(this);
             var theater = link.closest(".theater");
@@ -558,72 +574,72 @@ codejkjk.movies.HomeIndex = {
             link.parent().addClass("hidden");
 
             // update localStorage; trim out the theater that this movie belongs to, all of its hidden movies
-            var hiddenTheaterMovies = codejkjk.movies.HomeIndex.Currents.HiddenTheaterMovies();
+            var hiddenTheaterMovies = codejkjk.movies.desktop.currents.HiddenTheaterMovies();
             hiddenTheaterMovies = $.grep(hiddenTheaterMovies, function (hiddenTheaterMovie, i) {
                 return hiddenTheaterMovie.split('-')[0] != theater.data().theaterid;
             });
-            codejkjk.movies.HomeIndex.Currents.HiddenTheaterMovies(hiddenTheaterMovies.join(','))
+            codejkjk.movies.desktop.currents.HiddenTheaterMovies(hiddenTheaterMovies.join(','))
         });
 
         // handle close movie details link AND overlay click
-        $(document).on("click", codejkjk.movies.HomeIndex.Controls.CloseMovieDetailsLinkSelector(), function (e) {
-            codejkjk.movies.HomeIndex.Controls.Overlay().hide();
-            codejkjk.movies.HomeIndex.Controls.MovieDetailsPopup().hide().html("");
-            codejkjk.movies.HomeIndex.Controls.CurrentNavItem().trigger('click');
+        $(document).on("click", codejkjk.movies.desktop.controls.CloseMovieDetailsLinkSelector(), function (e) {
+            codejkjk.movies.desktop.controls.Overlay().hide();
+            codejkjk.movies.desktop.controls.MovieDetailsPopup().hide().html("");
+            codejkjk.movies.desktop.controls.CurrentNavItem().trigger('click');
         });
 
         // handle showtime day link clicks (Today, Tomorrow, etc)
-        $(document).on("click", codejkjk.movies.HomeIndex.Controls.ShowtimeDayLinksSelector(), function (e) {
+        $(document).on("click", codejkjk.movies.desktop.controls.ShowtimeDayLinksSelector(), function (e) {
             e.preventDefault();
             var link = $(this);
-            codejkjk.movies.HomeIndex.Currents.ShowtimeDay().val(link.data().date);
+            codejkjk.movies.desktop.currents.ShowtimeDay().val(link.data().date);
 
-            codejkjk.movies.Api.GetTheaters(link.data().date, codejkjk.movies.HomeIndex.Controls.CurrentZip().html(), codejkjk.movies.HomeIndex.LoadTheaters);
+            codejkjk.movies.Api.GetTheaters(link.data().date, codejkjk.movies.desktop.controls.CurrentZip().html(), codejkjk.movies.desktop.LoadTheaters);
         });
 
         // handle "change" link for zip
-        codejkjk.movies.HomeIndex.Controls.ChangeCurrentZipLink().click(function (e) {
+        codejkjk.movies.desktop.controls.ChangeCurrentZipLink().click(function (e) {
             e.preventDefault();
-            var setFocus = !codejkjk.movies.HomeIndex.Controls.ChangeOptionsContainer().is(":visible");
+            var setFocus = !codejkjk.movies.desktop.controls.showtimeZipOptionsSmall().is(":visible");
             if (setFocus) {
-                codejkjk.movies.HomeIndex.Controls.InputShowtimesZip().val("");
+                codejkjk.movies.desktop.controls.InputShowtimesZip().val("");
             }
-            codejkjk.movies.HomeIndex.Controls.ChangeOptionsContainer().slideToggle('fast', function () {
+            codejkjk.movies.desktop.controls.showtimeZipOptionsSmall().slideToggle('fast', function () {
                 if (setFocus) {
-                    codejkjk.movies.HomeIndex.Controls.InputShowtimesZip().focus();
+                    codejkjk.movies.desktop.controls.InputShowtimesZip().focus();
                 }
             });
         });
 
         // handle "back to The Hunger Games" link on movie showtimes link / redbox availability on movie popup
-        $(document).on('click', codejkjk.movies.HomeIndex.Controls.BackToMovieDetailsLinkSelector(), function (e) {
+        $(document).on('click', codejkjk.movies.desktop.controls.BackToMovieDetailsLinkSelector(), function (e) {
             e.preventDefault();
 
-            codejkjk.movies.HomeIndex.Controls.MovieDetails().show();
+            codejkjk.movies.desktop.controls.MovieDetails().show();
             $(this).closest("div").addClass("hidden");
         });
 
         // handle showtimes links on movie detail popups
-        $(document).on('click', codejkjk.movies.HomeIndex.Controls.ShowtimesLinksSelector(), function (e) {
+        $(document).on('click', codejkjk.movies.desktop.controls.ShowtimesLinksSelector(), function (e) {
             e.preventDefault();
 
             var link = $(this);
-            var movieShowtimesContainer = codejkjk.movies.HomeIndex.Controls.MovieShowtimes();
-            var theaterList = codejkjk.movies.HomeIndex.Controls.TheatersForMovieList();
+            var movieShowtimesContainer = codejkjk.movies.desktop.controls.MovieShowtimes();
+            var theaterList = codejkjk.movies.desktop.controls.TheatersForMovieList();
 
             if (movieShowtimesContainer.hasClass("loaded")) { // already been loaded previously, so just show it
-                codejkjk.movies.HomeIndex.Controls.MovieDetails().hide();
+                codejkjk.movies.desktop.controls.MovieDetails().hide();
                 movieShowtimesContainer.removeClass("hidden");
             } else {
                 // first thing, add loading class
                 link.addClass("loading");
                 codejkjk.Geo.GetZipCode(function (zipCode) {
-                    codejkjk.movies.Api.GetTheatersForMovie(codejkjk.movies.HomeIndex.Currents.ShowtimeDay(), zipCode, codejkjk.movies.HomeIndex.Currents.MovieId(), function (theatersHtml) {
+                    codejkjk.movies.Api.GetTheatersForMovie(codejkjk.movies.desktop.currents.ShowtimeDay(), zipCode, codejkjk.movies.desktop.currents.MovieId(), function (theatersHtml) {
                         theaterList.html(theatersHtml);
 
                         // remove loading class
                         link.removeClass("loading");
-                        codejkjk.movies.HomeIndex.Controls.MovieDetails().hide();
+                        codejkjk.movies.desktop.controls.MovieDetails().hide();
                         movieShowtimesContainer.removeClass("hidden").addClass("loaded");
                     });
                 });
@@ -631,16 +647,16 @@ codejkjk.movies.HomeIndex = {
         });
 
         // handle showtimes links on movie detail popups
-        $(document).on('click', codejkjk.movies.HomeIndex.Controls.NearbyRedboxLinksSelector(), function (e) {
+        $(document).on('click', codejkjk.movies.desktop.controls.NearbyRedboxLinksSelector(), function (e) {
             e.preventDefault();
 
             var link = $(this);
-            var redboxAvailsContainer = codejkjk.movies.HomeIndex.Controls.RedboxAvails();
-            var redboxAvailsList = codejkjk.movies.HomeIndex.Controls.RedboxAvailsList();
+            var redboxAvailsContainer = codejkjk.movies.desktop.controls.RedboxAvails();
+            var redboxAvailsList = codejkjk.movies.desktop.controls.RedboxAvailsList();
 
             if (redboxAvailsContainer.hasClass("loaded")) {
                 // already been loaded previously, so just show it
-                codejkjk.movies.HomeIndex.Controls.MovieDetails().hide();
+                codejkjk.movies.desktop.controls.MovieDetails().hide();
                 redboxAvailsContainer.removeClass("hidden");
             } else {
                 // first thing, add loading class
@@ -649,7 +665,7 @@ codejkjk.movies.HomeIndex = {
 
                 // remove loading class
                 link.removeClass("loading");
-                codejkjk.movies.HomeIndex.Controls.MovieDetails().hide();
+                codejkjk.movies.desktop.controls.MovieDetails().hide();
                 redboxAvailsContainer.removeClass("hidden").addClass("loaded");
                 // });
                 // });
@@ -657,38 +673,38 @@ codejkjk.movies.HomeIndex = {
         });
 
         // bind UseNearbyZipCodeLink
-        codejkjk.movies.HomeIndex.Controls.UseNearbyZipCodeLink().click(function (e) {
+        codejkjk.movies.desktop.controls.UseNearbyZipCodeLink().click(function (e) {
             e.preventDefault();
-            codejkjk.movies.HomeIndex.Controls.ChangeOptionsContainer().mask();
+            codejkjk.movies.desktop.controls.showtimeZipOptionsSmall().mask();
             codejkjk.Geo.GetZipCode(function (zipCode) {
-                codejkjk.movies.HomeIndex.UpdateZip(zipCode);
+                codejkjk.movies.desktop.UpdateZip(zipCode);
             });
         });
 
         // handle button that sets manual set of zip for redbox search
-        codejkjk.movies.HomeIndex.Controls.SearchRedboxZipCodeButton().click(function (e) {
+        codejkjk.movies.desktop.controls.SearchRedboxZipCodeButton().click(function (e) {
             e.preventDefault();
-            var zipCode = codejkjk.movies.HomeIndex.Controls.RedboxZipCodeInput().val();
-            codejkjk.movies.HomeIndex.UpdateRedboxZip(zipCode);
+            var zipCode = codejkjk.movies.desktop.controls.RedboxZipCodeInput().val();
+            codejkjk.movies.desktop.UpdateRedboxZip(zipCode);
         });
 
         // handle Enter key on manual zip input box for redbox search - triggers "Search" button click
-        codejkjk.movies.HomeIndex.Controls.RedboxZipCodeInput().keydown(function (e) {
+        codejkjk.movies.desktop.controls.RedboxZipCodeInput().keydown(function (e) {
             if (e.keyCode == 13) {
-                codejkjk.movies.HomeIndex.Controls.SearchRedboxZipCodeButton().trigger('click');
+                codejkjk.movies.desktop.controls.SearchRedboxZipCodeButton().trigger('click');
             }
         });
 
         // handle Enter key on search box
-        codejkjk.movies.HomeIndex.Controls.SearchBox().keypress(function (e) {
+        codejkjk.movies.desktop.controls.SearchBox().keypress(function (e) {
             var code = (e.keyCode ? e.keyCode : e.which);
             if (code == 13) {
                 var q = $(this).val();
                 // loading 
-                codejkjk.movies.HomeIndex.Controls.SearchResultsView().html("<div class='loading'></div>");
+                codejkjk.movies.desktop.controls.SearchResultsView().html("<div class='loading'></div>");
                 $(".content").hide();
-                codejkjk.movies.HomeIndex.Controls.SearchResultsView().show();
-                codejkjk.movies.Api.SearchMovies(q, codejkjk.movies.HomeIndex.LoadSearchResults);
+                codejkjk.movies.desktop.controls.SearchResultsView().show();
+                codejkjk.movies.Api.SearchMovies(q, codejkjk.movies.desktop.LoadSearchResults);
                 $(this).blur();
             }
         });
@@ -696,5 +712,5 @@ codejkjk.movies.HomeIndex = {
 }
 
 $(document).ready(function () {
-    codejkjk.movies.HomeIndex.Init();
+    codejkjk.movies.desktop.init();
 });

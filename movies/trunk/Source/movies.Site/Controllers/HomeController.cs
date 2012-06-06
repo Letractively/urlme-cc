@@ -34,7 +34,10 @@ namespace movies.Site.Controllers
             if (!Request.Browser.IsMobileDevice)
             {
                 vm.UpcomingMovies = Movie.GetMovies(Enumerations.MovieLists.Upcoming);
-                vm.RedboxMovies = Redbox.GetMovies();
+                if (!Request.Url.ToString().Contains("localhost"))
+                {
+                    vm.RedboxMovies = Redbox.GetMovies();
+                }
             }
 
             // remove any movies in InTheatersMovies that are already in Box Office

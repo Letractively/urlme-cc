@@ -1,7 +1,7 @@
 ﻿@model movies.Site.ViewModels.Shared.Ratings
 @{ var isDesktop = !Request.Browser.IsMobileDevice; }
 
-<p class="ratings @this.Model.RatingSize.ToString()">
+<p class="ratings group @this.Model.RatingSize.ToString()">
     @if (isDesktop) {<text><a href="@this.Model.Movie.links.alternate"></text>}
         <span data-rtratingtitle="@this.Model.Movie.ratings.critics_rating" class="rottenTomato icon"></span><span class="rt text">@this.Model.Movie.ratings.critics_score</span>
         <span data-rtratingtitle="@this.Model.Movie.ratings.audience_rating" class="rottenTomato icon"></span><span class="rt text">@this.Model.Movie.ratings.audience_score</span>

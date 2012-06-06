@@ -202,16 +202,13 @@ header { background:#fff; overflow: auto; }
     #showtimesView #theaters #location { padding: 0; font-size: 15px; }
         #showtimesView #theaters #location #currentZip { font-weight: bold; }
         #showtimesView #theaters #location #changeCurrentZipLink { margin-left: 10px; color: #2489CE; font-weight: bold; }
-        #showtimesView .showtimeZipOptions { font-size: 16px;  margin-right: 10px; background: #535156; display:none; padding: 8px; margin-top:5px; color: #999; }
+        #showtimesView .showtimeZipOptions { font-size: 16px; background: #535156; display:none; padding: 8px; margin-top:5px; color: #999; }
             #showtimesView .showtimeZipOptions a { font-weight: bold; color: #fff; }
-            #showtimesView .showtimeZipOptions button { padding: 5px; }
             #showtimesView .showtimeZipOptions input { padding: 4px; width: 262px; margin-right:4px; }
-            #showtimesView .showtimeZipOptions > div { margin-top:5px; }        
-        #showtimesView #theaters #location .showtimeZipOptions { font-size: 16px; margin-right: 10px; background: #535156; display:none; padding: 8px; margin-top:5px; color: #999; }
-            #showtimesView #theaters #location .showtimeZipOptions a { font-weight: bold; color: #fff; }
-            #showtimesView #theaters #location .showtimeZipOptions button { padding: 5px; }
+        #showtimesView #theaters #location .showtimeZipOptions { font-size: 15px; margin-right: 10px; background: #535156; display:none; padding: 8px; margin-top:5px; color: #999; }
             #showtimesView #theaters #location .showtimeZipOptions input { padding: 4px; width: 262px; margin-right:4px; }
             #showtimesView #theaters #location .showtimeZipOptions > div { margin-top:5px; }
+            #showtimesView #theaters #location .showtimeZipOptions > div { margin-top:5px; }    
 
 #showtimesView #currentTheaterContainer { float: left; width: 697px; } /* orig: 681 > 671 */
     #showtimesView #currentTheaterContainer .theater { background: #535156; padding: 15px; }

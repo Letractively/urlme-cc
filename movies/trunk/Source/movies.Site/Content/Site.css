@@ -92,7 +92,6 @@ header { background:#fff; overflow: auto; }
 /* styles common to both movie div in the lists and the movie details popup */
 
 #movieDetailsPopup { display:none; z-index:1002; font-size: 110%; border: 1px solid #999; padding: 25px; position: fixed; width: 590px; min-height: 346px; top: 68px; left: 50%; margin-left: -295PX; }
-    #movieDetailsPopup .topHalf { overflow: auto; }
     #movieDetailsPopup .topHalf img.poster { width: 180px; height: 267px; float: left; margin-right: 25px; }
         #movieDetailsPopup .topHalf .right { float: left; width: 385px; }
             #movieDetailsPopup .topHalf .right h1 { font-size: 140%; font-weight: bold; }

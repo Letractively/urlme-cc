@@ -72,6 +72,7 @@ codejkjk.movies.desktop = {
         , showtimes: function () { return $("#showtimes"); }
         , ShowtimesLinks: function () { return $(".showtimesLink"); }
         , ShowtimesLinksSelector: function () { return ".showtimesLink"; }
+        , showtimeUseMyLocations: function () { return $(".showtimeZipOptions a"); }
         , showtimeZipOptionsBig: function () { return $("#showtimesView .showtimeZipOptions:first"); }
         , showtimeZipOptionsSmall: function () { return $("#showtimesView .showtimeZipOptions:last"); }
         , TheatersForMovieList: function () { return $("#theatersForMovieList"); }
@@ -81,7 +82,6 @@ codejkjk.movies.desktop = {
         , Theaters: function () { return $(".theater"); }
         , UnsetIMDbMovieIds: function () { return $("[data-imdbmovieid='']"); }
         , UpcomingView: function () { return $("#upcomingView"); }
-        , UseNearbyZipCodeLink: function () { return $("#useNearbyZipCode"); }
         , Views: function () { return $(".content"); }
     },
 
@@ -126,10 +126,16 @@ codejkjk.movies.desktop = {
             return codejkjk.movies.desktop.controls.CurrentMovieId().val();
         }
         , ShowtimeDay: function (val) {
+            var input = $("input#currentShowtimeDay");
             if (typeof val != "undefined") { // set
-                $("input#currentShowtimeDay").val(val);
+                input.val(val);
             } else { // get
-                return $("input#currentShowtimeDay").val();
+                if (!input.val()) {
+                    // showtimeDay hasn't been set yet, so set it and return it
+                    var today = Date.today().toString("yyyyMMdd");
+                    input.val(today);
+                }
+                return input.val();
             }
         }
     },
@@ -147,9 +153,6 @@ codejkjk.movies.desktop = {
         codejkjk.movies.desktop.bindControls();
         codejkjk.movies.desktop.registerJsRenderHelpers();
         codejkjk.movies.desktop.initHistory(History);
-
-        // init showtime date to today
-        codejkjk.movies.desktop.currents.ShowtimeDay(Date.today().toString("yyyyMMdd"));
     },
 
     initHistory: function (History) {
@@ -183,7 +186,7 @@ codejkjk.movies.desktop = {
                 // zipcode is remembered, so load movies w/ zipcode
                 codejkjk.movies.desktop.controls.showtimeZipOptionsBig().hide();
                 codejkjk.movies.desktop.controls.showtimes().show();
-                // load showtimes
+                codejkjk.movies.desktop.updateShowtimesZip(codejkjk.movies.desktop.currents.ZipCode());
             } else {
                 // no zipcode in memory, so display form where user can specify zip (or use current location)
                 codejkjk.movies.desktop.controls.showtimeZipOptionsBig().show();
@@ -223,6 +226,7 @@ codejkjk.movies.desktop = {
 
         google.maps.event.addListener(autocomplete, 'place_changed', function () {
             codejkjk.movies.desktop.controls.showtimeZipOptionsSmall().mask();
+            codejkjk.movies.desktop.controls.showtimeZipOptionsBig().mask();
             var place = autocomplete.getPlace();
             var formattedAddress = place.formatted_address.replace(", USA", "");
             var latLong = place.geometry.location.toString();
@@ -230,7 +234,7 @@ codejkjk.movies.desktop = {
             var lat = latLong.split(',')[0];
             var long = latLong.split(',')[1];
             codejkjk.Geo.GetZipCodeFromLatLong(lat, long, function (zipCode) {
-                codejkjk.movies.desktop.UpdateZip(zipCode, formattedAddress);
+                codejkjk.movies.desktop.updateShowtimesZip(zipCode, formattedAddress);
             });
         });
     },
@@ -418,17 +422,21 @@ codejkjk.movies.desktop = {
 
         codejkjk.movies.desktop.BuildShowtimeDayLinks();
 
+        codejkjk.movies.desktop.controls.showtimeZipOptionsBig().unmask();
+        codejkjk.movies.desktop.controls.showtimeZipOptionsBig().hide();
+        codejkjk.movies.desktop.controls.showtimeZipOptionsSmall().unmask();
         if (codejkjk.movies.desktop.controls.showtimeZipOptionsSmall().is(":visible")) {
-            codejkjk.movies.desktop.controls.showtimeZipOptionsSmall().unmask();
             codejkjk.movies.desktop.controls.ChangeCurrentZipLink().trigger('click');
         }
+
+        codejkjk.movies.desktop.controls.showtimes().show();
 
         // now that the theater links are filled, set the currentTheater container's height to match height of theater links container
         var theaterListHeight = codejkjk.movies.desktop.controls.TheaterList().height() + 20;
         codejkjk.movies.desktop.controls.Theaters().css("min-height", theaterListHeight + "px");
     },
 
-    UpdateZip: function (zipCode, friendlyTitle) {
+    updateShowtimesZip: function (zipCode, friendlyTitle) {
         codejkjk.movies.desktop.currents.ZipCode(zipCode); // update current zip code
         if (typeof friendlyTitle != "undefined") {
             codejkjk.movies.desktop.controls.CurrentZip().html(friendlyTitle);
@@ -672,12 +680,13 @@ codejkjk.movies.desktop = {
             }
         });
 
-        // bind UseNearbyZipCodeLink
-        codejkjk.movies.desktop.controls.UseNearbyZipCodeLink().click(function (e) {
+        // bind showtimeUseMyLocations
+        codejkjk.movies.desktop.controls.showtimeUseMyLocations().click(function (e) {
             e.preventDefault();
             codejkjk.movies.desktop.controls.showtimeZipOptionsSmall().mask();
+            codejkjk.movies.desktop.controls.showtimeZipOptionsBig().mask();
             codejkjk.Geo.GetZipCode(function (zipCode) {
-                codejkjk.movies.desktop.UpdateZip(zipCode);
+                codejkjk.movies.desktop.updateShowtimesZip(zipCode);
             });
         });
 

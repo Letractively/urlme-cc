@@ -8,7 +8,7 @@
 <div class="movieList">
 @foreach (var movie in this.Model.Values)
 {
-    <div class="movie rounded glowing">
+    <div class="movie rounded glowing" class="group">
         <a class="poster shadow movieDetailsLink" href="~/@movie.MovieSlug"> 
             <img class="lazy" data-original="@movie.posters.detailed" src="~/scripts/plugins/lazyload/grey.gif" />
         </a>

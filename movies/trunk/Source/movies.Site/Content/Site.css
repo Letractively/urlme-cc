@@ -135,8 +135,6 @@ header { background:#fff; }
 
 #go { width: 50px; height:34px; }
 
-.movie { overflow:auto; } /* or gray = #efefef */
-
 .movieList { overflow:auto; }
     .movieList .movie:not(:nth-child(5n+5)) { margin-right: 24px; }
     .movieList .movie { margin-bottom: 24px; float: left; width: 180px; }
@@ -203,7 +201,7 @@ header { background:#fff; }
 
     #showtimesView .showtimeZipOptions { font-size: 16px; display:none; padding: 8px; color: #535156; }
         #showtimesView .showtimeZipOptions h1 { font-size: 22px; margin-bottom: 20px; }
-        #showtimesView .showtimeZipOptions a { color: #2489CE; font-weight: bold; }
+        #showtimesView .showtimeZipOptions a { color: #2489CE; font-weight: bold; border: 1px solid #ccc; padding: 8px; }
         #showtimesView .showtimeZipOptions input { padding: 8px; border: 1px solid #ccc; outline: none; width: 262px; margin-right:4px; }
     #showtimesView #theaters #location { padding: 0; font-size: 15px; }
         #showtimesView #theaters #location #currentZip { font-weight: bold; }
@@ -224,7 +222,7 @@ header { background:#fff; }
         #showtimesView #currentTheaterContainer .theater p.address { margin-top:5px; color: #999; }
         #showtimesView #currentTheaterContainer .theater .movie { float: left; width: 326px; position: relative; margin-top:14px; padding-bottom: 10px; height: 131px;}
         #showtimesView #currentTheaterContainer .theater .movie:nth-child(2n+2) { margin-left: 14px; }
-        #showtimesView #currentTheaterContainer .theater .movie > a { overflow: auto; display: block; }
+        #showtimesView #currentTheaterContainer .theater .movie > a { display: block; }
             #showtimesView #currentTheaterContainer .theater .movie p { margin-top: 10px; }
             #showtimesView #currentTheaterContainer .theater .movie img { float: left; margin: 0; }
             #showtimesView #currentTheaterContainer .theater .movie .showtimes { clear: left; padding: 0 0 0 10px; width: 245px; word-wrap: break-word; }

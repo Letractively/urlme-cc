@@ -83,8 +83,8 @@
             <div class="showtimeDays"></div>
             <div class="showHiddenMoviesLinkContainer {{#if numHiddenMovies}} {{else}} hidden {{/if}}"><a href="#" class="showHiddenMoviesLink">Show hidden movies (<span class="numHiddenMovies">{{=numHiddenMovies}}</span>)</a></div>
             {{#each movies}}
-                <div class="movie rounded glowing gradient {{=movieClass}}" data-rtmovieid="{{=id}}">
-                    <a href="/{{=movieSlug}}">                    
+                <div class="movie rounded glowing gradient {{=movieClass}}" class="group" data-rtmovieid="{{=id}}">
+                    <a href="/{{=movieSlug}}" class="group">                    
                         <img src="{{=imageUrl}}" />
                         <div class="details">
                             <h2>{{=title}}</h2><span class='mpaaRating'>{{=mpaaRating}}</span>

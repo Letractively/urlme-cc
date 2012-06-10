@@ -26,7 +26,7 @@ codejkjk.movies.desktop = {
         , BackToMovieDetailsLinkSelector: function () { return ".backToMovieDetails"; }
         , BoxOfficeView: function () { return $("#boxOfficeView"); }
         , BrowseLinkSelector: function () { return "#browse"; }
-        , ChangeCurrentZipLink: function () { return $("#changeCurrentZipLink"); }
+        , changeShowtimeZipLink: function () { return $("#changeCurrentZipLink"); }
         , CloseMovieDetailsLinkSelector: function () { return ".closeMovieDetails"; }
         , CopyButton: function () { return $("#copyButton"); }
         , CopySuccess: function () { return $("#copySuccess"); }
@@ -72,7 +72,9 @@ codejkjk.movies.desktop = {
         , showtimes: function () { return $("#showtimes"); }
         , ShowtimesLinks: function () { return $(".showtimesLink"); }
         , ShowtimesLinksSelector: function () { return ".showtimesLink"; }
+        , showtimesLoading: function () { return $("#showtimesLoading"); }
         , showtimeUseMyLocations: function () { return $(".showtimeZipOptions a"); }
+        , showtimeZipOptions: function () { return $(".showtimeZipOptions"); }
         , showtimeZipOptionsBig: function () { return $("#showtimesView .showtimeZipOptions:first"); }
         , showtimeZipOptionsSmall: function () { return $("#showtimesView .showtimeZipOptions:last"); }
         , TheatersForMovieList: function () { return $("#theatersForMovieList"); }
@@ -91,6 +93,13 @@ codejkjk.movies.desktop = {
                 localStorage.setItem("ZipCode", val);
             } else { // get
                 return localStorage.getItem("ZipCode"); // return str b/c if we ever want to change it to 02322, this will get converted to str as "3222" if we return as int
+            }
+        }
+        , FriendlyZipCode: function (val) {
+            if (typeof val != "undefined") { // set
+                localStorage.setItem("FriendlyZipCode", val);
+            } else { // get
+                return localStorage.getItem("FriendlyZipCode"); // return str b/c if we ever want to change it to 02322, this will get converted to str as "3222" if we return as int
             }
         }
         , RedboxZipCode: function (val) {
@@ -184,8 +193,6 @@ codejkjk.movies.desktop = {
         else if (firstPath === "/showtimes") {
             if (codejkjk.movies.desktop.currents.ZipCode()) {
                 // zipcode is remembered, so load movies w/ zipcode
-                codejkjk.movies.desktop.controls.showtimeZipOptionsBig().hide();
-                codejkjk.movies.desktop.controls.showtimes().show();
                 codejkjk.movies.desktop.updateShowtimesZip(codejkjk.movies.desktop.currents.ZipCode());
             } else {
                 // no zipcode in memory, so display form where user can specify zip (or use current location)
@@ -420,16 +427,20 @@ codejkjk.movies.desktop = {
             codejkjk.movies.desktop.controls.CurrentTheaterTemplate().render(theaters)
         );
 
+        // fill label for current zip code
+        var zipToDisplay = codejkjk.movies.desktop.currents.FriendlyZipCode() || codejkjk.movies.desktop.currents.ZipCode();
+        codejkjk.movies.desktop.controls.CurrentZip().html(zipToDisplay);
+
         codejkjk.movies.desktop.BuildShowtimeDayLinks();
 
-        codejkjk.movies.desktop.controls.showtimeZipOptionsBig().unmask();
+        // show/hide showtimes zip change containers
+        codejkjk.movies.desktop.controls.showtimeZipOptions().unmask();
         codejkjk.movies.desktop.controls.showtimeZipOptionsBig().hide();
-        codejkjk.movies.desktop.controls.showtimeZipOptionsSmall().unmask();
         if (codejkjk.movies.desktop.controls.showtimeZipOptionsSmall().is(":visible")) {
-            codejkjk.movies.desktop.controls.ChangeCurrentZipLink().trigger('click');
+            codejkjk.movies.desktop.controls.changeShowtimeZipLink().trigger('click');
         }
-
-        codejkjk.movies.desktop.controls.showtimes().show();
+        codejkjk.movies.desktop.controls.showtimesLoading().hide(); // in case it was shown
+        codejkjk.movies.desktop.controls.showtimes().show(); // in case it was hidden
 
         // now that the theater links are filled, set the currentTheater container's height to match height of theater links container
         var theaterListHeight = codejkjk.movies.desktop.controls.TheaterList().height() + 20;
@@ -437,14 +448,22 @@ codejkjk.movies.desktop = {
     },
 
     updateShowtimesZip: function (zipCode, friendlyTitle) {
-        codejkjk.movies.desktop.currents.ZipCode(zipCode); // update current zip code
+        // update zip and friendly title in memory
+        codejkjk.movies.desktop.currents.ZipCode(zipCode);
         if (typeof friendlyTitle != "undefined") {
-            codejkjk.movies.desktop.controls.CurrentZip().html(friendlyTitle);
+            codejkjk.movies.desktop.currents.FriendlyZipCode(friendlyTitle);
         } else {
-            codejkjk.movies.desktop.controls.CurrentZip().html(zipCode);
+            codejkjk.movies.desktop.currents.FriendlyZipCode("");
+        }
+        codejkjk.movies.desktop.currents.Theater(""); // new zip, so clear out current theater value
+
+        // if either option containers are visible, mask them
+        if (codejkjk.movies.desktop.controls.showtimeZipOptionsBig().is(":visible") || codejkjk.movies.desktop.controls.showtimeZipOptionsSmall().is(":visible")) {
+            codejkjk.movies.desktop.controls.showtimeZipOptions().mask();
+        } else { // user did not come from option container form, so display loading gif
+            codejkjk.movies.desktop.controls.showtimesLoading().show();
         }
 
-        codejkjk.movies.desktop.currents.Theater(""); // new zip, so clear out current theater value
         codejkjk.movies.Api.GetTheaters(codejkjk.movies.desktop.currents.ShowtimeDay(), zipCode, codejkjk.movies.desktop.LoadTheaters);
     },
 
@@ -606,7 +625,7 @@ codejkjk.movies.desktop = {
         });
 
         // handle "change" link for zip
-        codejkjk.movies.desktop.controls.ChangeCurrentZipLink().click(function (e) {
+        codejkjk.movies.desktop.controls.changeShowtimeZipLink().click(function (e) {
             e.preventDefault();
             var setFocus = !codejkjk.movies.desktop.controls.showtimeZipOptionsSmall().is(":visible");
             if (setFocus) {

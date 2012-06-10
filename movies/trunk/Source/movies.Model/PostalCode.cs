@@ -93,45 +93,44 @@ namespace movies.Model
                         var movies = new List<Model.PostalCode.Movie>();
                         foreach (HtmlNode showtimeDiv in theaterDiv.SelectNodes("div/div"))
                         {
-                            // parse out rt movie id
-                            var movieHrefNode = showtimeDiv.SelectSingleNode("h3/a");
-                            string movieTitle = movieHrefNode.InnerHtml.Trim();
-                            string rtMovieId = movieHrefNode.Attributes["href"].Value.Substring(movieHrefNode.Attributes["href"].Value.LastIndexOf("/") + 1);
-                            Model.Movie fullMovie = null;
-                            try
+                            try // to parse movie and add it to the list of movies for this theater
                             {
-                                fullMovie = Model.Movie.GetRottenTomatoesMovie(rtMovieId);
+                                // parse out rt movie id
+                                var movieHrefNode = showtimeDiv.SelectSingleNode("h3/a");
+                                string movieTitle = movieHrefNode.InnerHtml.Trim();
+                                string rtMovieId = movieHrefNode.Attributes["href"].Value.Substring(movieHrefNode.Attributes["href"].Value.LastIndexOf("/") + 1);
+                                Model.Movie fullMovie = Model.Movie.GetRottenTomatoesMovie(rtMovieId);
+
+                                // parse out showtimes html for this movie
+                                var h3ToRemove = showtimeDiv.SelectSingleNode("h3");
+                                h3ToRemove.ParentNode.RemoveChild(h3ToRemove);
+                                string showtimes = showtimeDiv.InnerHtml.Trim().Replace("\t", "").Replace("\n", "").Replace("&nbsp;", "&nbsp;&nbsp;&nbsp;");
+                                fullMovie.ShowtimesHtml = showtimes;
+
+                                var theaterMovie = new Model.PostalCode.Movie
+                                {
+                                    audienceRating = fullMovie.ratings.audience_rating,
+                                    audienceScore = fullMovie.ratings.audience_score,
+                                    criticsRating = fullMovie.ratings.critics_rating,
+                                    criticsScore = fullMovie.ratings.critics_score,
+                                    duration = fullMovie.Duration,
+                                    id = fullMovie.id,
+                                    imageUrl = fullMovie.posters.thumbnail,
+                                    imdbRating = fullMovie.IMDbRating,
+                                    movieSlug = fullMovie.MovieSlug,
+                                    mpaaRating = fullMovie.mpaa_rating,
+                                    showtimesHtml = fullMovie.ShowtimesHtml,
+                                    title = movieTitle,
+                                    IMDbRating = fullMovie.IMDbRating
+                                };
+
+                                // add to movie list, which we'll add to theater later
+                                movies.Add(theaterMovie);
                             }
                             catch (Exception e)
                             {
                                 continue;
                             }
-
-                            // parse out showtimes html for this movie
-                            var h3ToRemove = showtimeDiv.SelectSingleNode("h3");
-                            h3ToRemove.ParentNode.RemoveChild(h3ToRemove);
-                            string showtimes = showtimeDiv.InnerHtml.Trim().Replace("\t", "").Replace("\n", "").Replace("&nbsp;","&nbsp;&nbsp;&nbsp;");
-                            fullMovie.ShowtimesHtml = showtimes;
-
-                            var theaterMovie = new Model.PostalCode.Movie
-                            {
-                                audienceRating = fullMovie.ratings.audience_rating,
-                                audienceScore = fullMovie.ratings.audience_score,
-                                criticsRating = fullMovie.ratings.critics_rating,
-                                criticsScore = fullMovie.ratings.critics_score,
-                                duration = fullMovie.Duration,
-                                id = fullMovie.id,
-                                imageUrl = fullMovie.posters.thumbnail,
-                                imdbRating = fullMovie.IMDbRating,
-                                movieSlug = fullMovie.MovieSlug,
-                                mpaaRating = fullMovie.mpaa_rating,
-                                showtimesHtml = fullMovie.ShowtimesHtml,
-                                title = movieTitle,
-                                IMDbRating = fullMovie.IMDbRating
-                            };
-
-                            // add to movie list, which we'll add to theater later
-                            movies.Add(theaterMovie);
                         } // next movie
 
                         theater.movies = movies;

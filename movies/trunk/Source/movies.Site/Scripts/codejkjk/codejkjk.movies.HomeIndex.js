@@ -427,6 +427,13 @@ codejkjk.movies.desktop = {
             codejkjk.movies.desktop.controls.CurrentTheaterTemplate().render(theaters)
         );
 
+        // move hidden movies to the end of their theaters, so the css doesn't looked jacked up for nth-child col's
+        $(".movie.hidden").each(function (i, movie) {
+            movie = $(movie);
+            var theater = movie.closest(".theater");
+            movie.appendTo(theater);
+        });
+
         // fill label for current zip code
         var zipToDisplay = codejkjk.movies.desktop.currents.FriendlyZipCode() || codejkjk.movies.desktop.currents.ZipCode();
         codejkjk.movies.desktop.controls.CurrentZip().html(zipToDisplay);
@@ -585,7 +592,7 @@ codejkjk.movies.desktop = {
             codejkjk.movies.desktop.currents.HiddenTheaterMovies(hiddenTheaterMovies.join(','));
 
             movie.closest(".movie").fadeOut('fast', function () {
-                $(this).addClass("hidden").removeAttr("style");
+                $(this).addClass("hidden").removeAttr("style").appendTo(theater); // append to end of list of movies
                 theater.find(".numHiddenMovies").text(theater.find(".movie.hidden").length);
                 theater.find(".showHiddenMoviesLinkContainer").removeClass("hidden");
             });

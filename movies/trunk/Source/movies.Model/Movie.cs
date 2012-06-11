@@ -127,27 +127,42 @@ namespace movies.Model
                 });
         }
 
-        private static Dictionary<string, string> GetInTheaterRtIds()
+        private static Dictionary<string, string> GetRtIds(Enumerations.MovieLists movieList)
         {
-            return Cache.GetValue<Dictionary<string,string>>(
-                "codejkjk.movies.Model.Movie.GetInTheaterRtIds",
+            return Cache.GetValue<Dictionary<string, string>>(
+                string.Format("codejkjk.movies.Model.Movie.GetRtIds.{0}", movieList.ToString()),
                 () =>
                 {
                     Dictionary<string, string> ret = new Dictionary<string, string>();
-                    var inTheaterMovies = Model.Movie.GetMovies(Enumerations.MovieLists.InTheaters);
-                    inTheaterMovies.Values.ToList().ForEach(x => ret.Add(x.id, x.id));
-                    
+                    Dictionary<string, Movie> movies = new Dictionary<string, Movie>();
+                    switch (movieList)
+                    {
+                        case Enumerations.MovieLists.InTheaters:
+                            movies = Model.Movie.GetMovies(Enumerations.MovieLists.InTheaters);
+                            break;
+                        default:
+                            movies = Model.Movie.GetMovies(Enumerations.MovieLists.Opening);
+                            break;
+                    }
+                    movies.Values.ToList().ForEach(x => ret.Add(x.id, x.id));
                     return ret;
                 });
         }
 
         public static Enumerations.MovieType GetMovieType(string rtMovieId)
         {
-            var inTheaterRtIds = GetInTheaterRtIds();
+            var inTheaterRtIds = GetRtIds(Enumerations.MovieLists.InTheaters);
             if (inTheaterRtIds.ContainsKey(rtMovieId))
             {
                 return Enumerations.MovieType.InTheaters;
             }
+
+            var openingRtIds = GetRtIds(Enumerations.MovieLists.Opening);
+            if (openingRtIds.ContainsKey(rtMovieId))
+            {
+                return Enumerations.MovieType.InTheaters;
+            }
+            
             // for redbox movie type, that's set manually in the Redbox actions
             return Enumerations.MovieType.Neither;
         }

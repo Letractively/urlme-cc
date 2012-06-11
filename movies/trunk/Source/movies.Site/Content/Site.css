@@ -244,7 +244,7 @@ header { background:#fff; }
             .content .movie .showtimes { margin-top: 10px; }
             .content .movie .releaseDate { margin-top: 10px; font-weight: bold; }
             .content .movie img { margin-right: 10px; display:block; }
-            .content .movie h2 { display:inline; font-weight: bold; margin-right: 10px; }
+            .content .movie h2 { display:inline-block; font-weight: bold; margin-right: 10px; max-width:184px; overflow:hidden; text-overflow: ellipsis; white-space: nowrap; }
             .content .movie .actions { position: absolute; right: 8px; bottom: 8px; }
                 .content .movie .actions a { padding: 8px 10px; border: 1px solid #C5D8E6; font-size: 90%; }
                 .content .movie .actions a > span { margin-right: 6px; } /* for "x" and "..." "icons", .x and .dotdotdot */

@@ -162,6 +162,12 @@ namespace movies.Model
             {
                 return Enumerations.MovieType.InTheaters;
             }
+
+            var topBoxOfficeRtIds = GetRtIds(Enumerations.MovieLists.BoxOffice);
+            if (topBoxOfficeRtIds.ContainsKey(rtMovieId))
+            {
+                return Enumerations.MovieType.InTheaters;
+            }
             
             // for redbox movie type, that's set manually in the Redbox actions
             return Enumerations.MovieType.Neither;

@@ -210,7 +210,7 @@ header { background:#fff; }
         #showtimesView #theaters #location .showtimeZipOptions { font-size: 15px; margin-right: 10px; background: #535156; display:none; padding: 8px; margin-top:5px; color: #999; }
             #showtimesView #theaters #location .showtimeZipOptions input { padding: 4px; width: 262px; margin-right:4px; }
             #showtimesView #theaters #location .showtimeZipOptions > div { margin-top:5px; }
-            #showtimesView #theaters #location .showtimeZipOptions a { color: #fff; }    
+            #showtimesView #theaters #location .showtimeZipOptions a { color: #fff; display:inline-block; }    
 
 #showtimesView #currentTheaterContainer { float: left; width: 697px; } /* orig: 681 > 671 */
     #showtimesView #currentTheaterContainer .theater { background: #535156; padding: 15px; }

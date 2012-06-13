@@ -3,7 +3,7 @@ using movies.Model;
 
 namespace movies.Site.Controllers
 {
-    public class MovieController : Controller
+    public class MovieController : BaseController
     {
         //
         // GET: /Movie/
@@ -11,6 +11,7 @@ namespace movies.Site.Controllers
         {
             // first, get the movie
             Model.Movie movie = null;
+            
             if (isRedbox)
             {
                 movie = Model.Redbox.GetRottenTomatoesMovie(titleSlug);
@@ -32,7 +33,9 @@ namespace movies.Site.Controllers
                 var vm = new ViewModels.Movie.Index {
                     UseAjaxForLinks = true,
                     PrefetchLinks = false,
-                    Movie = movie
+                    Movie = movie,
+                    OpenGraphTitle = movie.title,
+                    OpenGraphImage = movie.posters.detailed
                 };
                 return View("Index", vm);
             }
@@ -46,7 +49,9 @@ namespace movies.Site.Controllers
                     UpcomingMovies = Movie.GetMovies(Enumerations.MovieLists.Upcoming),
                     RedboxMovies = Redbox.GetMovies(),
 
-                    OverlayMovie = movie
+                    OverlayMovie = movie,
+                    OpenGraphTitle = movie.title,
+                    OpenGraphImage = movie.posters.detailed
                 };
 
                 // remove any movies in InTheatersMovies that are already in Box Office

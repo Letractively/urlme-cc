@@ -30,6 +30,7 @@ namespace movies.Site.Controllers
             // set open graph props
             this.OpenGraphImage = movie.posters.detailed;
             this.OpenGraphTitle = movie.title;
+            this.OpenGraphDescription = movie.synopsis;
 
             // mobile?
             if (Request.Browser.IsMobileDevice)

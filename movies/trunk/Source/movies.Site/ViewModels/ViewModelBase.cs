@@ -9,5 +9,6 @@ namespace movies.Site.ViewModels
     {
         public string OpenGraphTitle { get; set; }
         public string OpenGraphImage { get; set; }
+        public string OpenGraphDescription { get; set; }
     }
 }

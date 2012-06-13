@@ -7,6 +7,7 @@ namespace movies.Site.Controllers
     {
         public string OpenGraphTitle { get; set; }
         public string OpenGraphImage { get; set; }
+        public string OpenGraphDescription { get; set; }
 
         protected override void OnActionExecuted(ActionExecutedContext filterContext)
         {
@@ -18,6 +19,7 @@ namespace movies.Site.Controllers
             {
                 baseModel.OpenGraphTitle = baseController.OpenGraphTitle;
                 baseModel.OpenGraphImage = baseController.OpenGraphImage;
+                baseModel.OpenGraphDescription = baseController.OpenGraphDescription;
             }
 
             base.OnActionExecuted(filterContext);

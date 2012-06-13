@@ -4,15 +4,7 @@
 <html xmlns:fb="http://ogp.me/ns/fb#">
 <head>
     <title>@ViewBag.Title</title>
-    
-    <meta property='fb:admins' content='6207283' />
-    @if (!string.IsNullOrWhiteSpace(Model.OpenGraphTitle)) { <meta property='og:title' content='@Model.OpenGraphTitle' /> }
-    @if (!string.IsNullOrWhiteSpace(Model.OpenGraphImage)) { <meta property='og:image' content='@Model.OpenGraphImage' /> }
-    <meta property='og:site_name' content='See It Or Not' />
-    @*<meta property='og:url' content='http://www.thinlinebetween.com/creflo-a-balanced-look-at-his-ministry-and-why-many-despise-it/' />*@
-    <meta property='og:type' content='website' />
-    <meta property='fb:app_id' content='118119081645720'>
-
+    @{ Html.RenderPartial("OpenGraphTags", Model); }
     <link rel="icon" href="~/content/favicon.jpg" />
     <script type="text/javascript">
         var apiBaseUrl = '@Url.Content("~/api/")';

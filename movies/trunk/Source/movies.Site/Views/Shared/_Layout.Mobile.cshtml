@@ -1,8 +1,11 @@
-﻿<!DOCTYPE html>
+﻿@model movies.Site.ViewModels.ViewModelBase
+
+<!DOCTYPE html>
 <html>
 <head>
     <title>@ViewBag.Title</title>
     <meta name="viewport" content="width=device-width, initial-scale=1"> 
+    @{ Html.RenderPartial("OpenGraphTags", Model); }
     <link rel="icon" href="~/content/favicon.jpg" />
     <script type="text/javascript">
         var apiBaseUrl = '@Url.Content("~/api/")';

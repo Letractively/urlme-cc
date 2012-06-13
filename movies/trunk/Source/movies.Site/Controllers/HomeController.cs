@@ -26,7 +26,7 @@ namespace movies.Site.Controllers
                 InTheatersMovies = inTheatersMoviesDisplay,
                 
                 OverlayMovie = null,
-                UseAjaxForLinks = true,
+                UseAjaxForLinks = false,
                 PrefetchLinks = false
             };
 
@@ -36,7 +36,7 @@ namespace movies.Site.Controllers
                 vm.UpcomingMovies = Movie.GetMovies(Enumerations.MovieLists.Upcoming);
                 if (!Request.Url.ToString().Contains("localhost"))
                 {
-                    vm.RedboxMovies = Redbox.GetMovies();
+                    // vm.RedboxMovies = Redbox.GetMovies();
                 }
             }
 
@@ -138,7 +138,7 @@ namespace movies.Site.Controllers
                 var vm = new ViewModels.Home.Index
                 {
                     OverlayMovie = null,
-                    UseAjaxForLinks = true,
+                    UseAjaxForLinks = false,
                     PrefetchLinks = false
                 };
 
@@ -160,10 +160,10 @@ namespace movies.Site.Controllers
                 BoxOfficeMovies = Movie.GetMovies(Enumerations.MovieLists.BoxOffice),
                 InTheatersMovies = Movie.GetMovies(Enumerations.MovieLists.InTheaters),
                 UpcomingMovies = Movie.GetMovies(Enumerations.MovieLists.Upcoming),
-                RedboxMovies = Redbox.GetMovies(),
+                // RedboxMovies = Redbox.GetMovies(),
 
                 OverlayMovie = null,
-                UseAjaxForLinks = true,
+                UseAjaxForLinks = false,
                 PrefetchLinks = false
             };
             return View(vm);

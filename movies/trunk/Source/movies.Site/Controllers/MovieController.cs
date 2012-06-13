@@ -27,15 +27,17 @@ namespace movies.Site.Controllers
                 movie.MovieType = Model.Movie.GetMovieType(rtMovieId);
             }
 
+            // set open graph props
+            this.OpenGraphImage = movie.posters.detailed;
+            this.OpenGraphTitle = movie.title;
+
             // mobile?
             if (Request.Browser.IsMobileDevice)
             {
                 var vm = new ViewModels.Movie.Index {
                     UseAjaxForLinks = true,
                     PrefetchLinks = false,
-                    Movie = movie,
-                    OpenGraphTitle = movie.title,
-                    OpenGraphImage = movie.posters.detailed
+                    Movie = movie
                 };
                 return View("Index", vm);
             }
@@ -47,11 +49,9 @@ namespace movies.Site.Controllers
                     BoxOfficeMovies = Movie.GetMovies(Enumerations.MovieLists.BoxOffice),
                     InTheatersMovies = Movie.GetMovies(Enumerations.MovieLists.InTheaters),
                     UpcomingMovies = Movie.GetMovies(Enumerations.MovieLists.Upcoming),
-                    RedboxMovies = Redbox.GetMovies(),
+                    //RedboxMovies = Redbox.GetMovies(),
 
-                    OverlayMovie = movie,
-                    OpenGraphTitle = movie.title,
-                    OpenGraphImage = movie.posters.detailed
+                    OverlayMovie = movie
                 };
 
                 // remove any movies in InTheatersMovies that are already in Box Office

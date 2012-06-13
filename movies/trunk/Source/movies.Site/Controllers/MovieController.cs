@@ -35,7 +35,7 @@ namespace movies.Site.Controllers
             if (Request.Browser.IsMobileDevice)
             {
                 var vm = new ViewModels.Movie.Index {
-                    UseAjaxForLinks = true,
+                    UseAjaxForLinks = false,
                     PrefetchLinks = false,
                     Movie = movie
                 };

@@ -6,7 +6,7 @@ using System.Web.Mvc;
 
 namespace movies.Site.Controllers
 {
-    public class SeoController : Controller
+    public class SeoController : BaseController
     {
         //
         // GET: /Seo/

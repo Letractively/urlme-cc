@@ -2,7 +2,7 @@
 
 namespace movies.Site.ViewModels.Home
 {
-    public class Index
+    public class Index : ViewModelBase
     {
         public Dictionary<string, Model.Movie> OpeningMovies { get; set; }
         public Dictionary<string, Model.Movie> BoxOfficeMovies { get; set; }

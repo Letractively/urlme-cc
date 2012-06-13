@@ -6,7 +6,7 @@ using System.Linq;
 
 namespace movies.Site.Controllers
 {
-    public class HomeController : Controller
+    public class HomeController : BaseController
     {
         //
         // GET: /Home/

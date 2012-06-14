@@ -117,19 +117,19 @@ header { background:#fff; }
         #movieDetailsPopup .links > a.nearbyRedboxLink { padding-left: 22px; background: url('content/images/icons/redbox.gif') no-repeat center left; }            
         #movieDetailsPopup .links > a.nearbyRedboxLink.loading { background: url('content/images/ajax-loader-blue-ribbon.gif') no-repeat center left; }        
         #movieDetailsPopup .links > a:not(:last-child) { margin-right: 20px; }
-    #movieDetailsPopup .ratingAndLength { font-size: 18px; margin-top: 15px; }
+    #movieDetailsPopup p { margin-top: 15px; }
+    #movieDetailsPopup a { color: #2489CE; }
+    #movieDetailsPopup .ratingAndLength { margin-top: 15px; font-size: 18px;  }
         #movieDetailsPopup .ratingAndLength .mpaaRating { font-weight: bold; margin-right: 25px; float:left; }
         #movieDetailsPopup .ratingAndLength .length { float: left; margin-right: 25px; }
         #movieDetailsPopup .ratingAndLength .fbLikeContainer { float: left; width: 85px; float: left; }
-    #movieDetailsPopup .ratings { clear: left; margin-top: 15px; }
-    #movieDetailsPopup .releaseDate { margin-top: 15px; font-weight: bold; }
-    #movieDetailsPopup .share { margin-top: 15px; }
+    #movieDetailsPopup .ratings { clear: left; }
+    #movieDetailsPopup .releaseDate { font-weight: bold; }
         #movieDetailsPopup .share #copyButton { text-align: center; border: 1px solid black; background: #e8e8e8; margin-left: 5px; padding: 5px; }
         #movieDetailsPopup .share #copySuccess { color: Green; display:none; margin-left: 10px; }
         #movieDetailsPopup .share #copyButton:hover { background: #eee; }
         #movieDetailsPopup .share #copyButton:active { background: #aaa; }
         #movieDetailsPopup .share input[type='text'] { padding: 5px; width: 330px; }
-    #movieDetailsPopup .starring { margin-top: 15px; }
 
 #overlay { background:#666666; opacity:.5; z-index:1001; position:absolute; top:0; left:0; }
 

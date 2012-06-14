@@ -32,6 +32,7 @@ namespace movies.Site.Controllers
         {
             var movie = Model.Movie.GetRottenTomatoesMovie(rtMovieId);
             movie.MovieType = Model.Movie.GetMovieType(movie.id);
+            movie.Review = Model.Twitter.GetMovieReview(rtMovieId);
 
             return PartialView("MovieDetails", movie);
         }
@@ -44,6 +45,7 @@ namespace movies.Site.Controllers
                 return Content("No corresponding RottenTomatoes movie found :/");
             }
             movie.MovieType = Enumerations.MovieType.AtRedboxes;
+            movie.Review = Model.Twitter.GetMovieReview(movie.id);
 
             return PartialView("MovieDetails", movie);
         }

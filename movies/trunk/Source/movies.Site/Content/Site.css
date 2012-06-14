@@ -124,6 +124,7 @@ header { background:#fff; }
         #movieDetailsPopup .ratingAndLength .length { float: left; margin-right: 25px; }
         #movieDetailsPopup .ratingAndLength .fbLikeContainer { float: left; width: 85px; float: left; }
     #movieDetailsPopup .ratings { clear: left; }
+    #movieDetailsPopup .ratings a { color: #535156; }
     #movieDetailsPopup .releaseDate { font-weight: bold; }
         #movieDetailsPopup .share #copyButton { text-align: center; border: 1px solid black; background: #e8e8e8; margin-left: 5px; padding: 5px; }
         #movieDetailsPopup .share #copySuccess { color: Green; display:none; margin-left: 10px; }

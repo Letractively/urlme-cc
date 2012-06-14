@@ -225,6 +225,10 @@ codejkjk.movies.desktop = {
         }
     },
 
+    adminize: function (facebookUserId) {
+        console.log("FB user is authorized, userId = " + facebookUserId);
+    },
+
     initGooglePlaces: function (inputId) {
         var input = document.getElementById(inputId);
         var autocomplete = new google.maps.places.Autocomplete(input);

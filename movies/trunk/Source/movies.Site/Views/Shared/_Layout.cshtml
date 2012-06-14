@@ -41,7 +41,7 @@
 </head>
 
 <body>
-    <div id="fb-root"></div>
+@*    <div id="fb-root"></div>
     <script>
     (function (d, s, id) {
     var js, fjs = d.getElementsByTagName(s)[0];
@@ -50,7 +50,38 @@
     js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=118119081645720";
     fjs.parentNode.insertBefore(js, fjs);
     } (document, 'script', 'facebook-jssdk'));
-    </script>
+    </script>*@
+
+<div id="fb-root"></div>
+<script>
+    window.fbAsyncInit = function () {
+        FB.init({
+            appId: '118119081645720', // App ID
+            status: true, // check login status
+            cookie: true, // enable cookies to allow the server to access the session
+            xfbml: true  // parse XFBML
+        });
+
+        // add'l init code goes here
+        // get authorized here, https://graph.facebook.com/oauth/authorize?client_id=118119081645720&redirect_uri=http://seeitornot.co
+        FB.getLoginStatus(function (response) {
+            if (response.status === 'connected') {
+                codejkjk.movies.desktop.adminize(response.authResponse.userID);
+            }
+        });
+    };
+
+    // Load the SDK Asynchronously
+    (function (d) {
+        var js, id = 'facebook-jssdk', ref = d.getElementsByTagName('script')[0];
+        if (d.getElementById(id)) { return; }
+        js = d.createElement('script'); js.id = id; js.async = true;
+        js.src = "//connect.facebook.net/en_US/all.js";
+        ref.parentNode.insertBefore(js, ref);
+    } (document));
+</script>
+
+
     @RenderBody()
 
     <script id="favoriteTheaterListTemplate" type="text/x-jquery-tmpl">

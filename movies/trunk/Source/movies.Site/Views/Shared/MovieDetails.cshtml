@@ -16,18 +16,20 @@
         
             @if (this.Model.IsReleased)
             {
+                if (Model.Review != null)
+                {
+                <p class="ourReview medium">
+                    <span class="@Model.Review.ClassName"></span>"@Model.Review.Text" <a href="@Model.Review.Url">- JohnHanlonReviews.com</a>
+                </p>                
+                }                
+                
                 this.Html.RenderPartial("Ratings", new movies.Site.ViewModels.Shared.Ratings { Movie = this.Model, RatingSize = Enumerations.RatingSizes.medium });
             }
             else
             {
                 <p class="releaseDate">@this.Model.ReleaseDate</p>
             }
-            @if (Model.Review != null)
-            {
-            <p class="@Model.Review.ClassName">
-                "@Model.Review.Text" <a href="@Model.Review.Url">- JohnHanlonReviews.com</a>
-            </p>                
-            }
+
             <p class="starring">
                 <strong>Starring</strong>: 
                 @{ int i = 0; }

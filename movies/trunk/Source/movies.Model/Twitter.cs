@@ -23,6 +23,11 @@ namespace movies.Model
             public string Url { get; set; }
         }
 
+        public static void UpdateStatus(string text)
+        {
+            API.Twitter.UpdateStatus(text);
+        }
+
         public static Review GetMovieReview(string rtMovieId)
         {
             //return Cache.GetValue<string>(

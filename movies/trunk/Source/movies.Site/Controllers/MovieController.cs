@@ -32,6 +32,9 @@ namespace movies.Site.Controllers
             this.OpenGraphTitle = movie.title;
             this.OpenGraphDescription = movie.synopsis;
 
+            // set review
+            movie.Review = Model.Twitter.GetMovieReview(movie.id);
+
             // mobile?
             if (Request.Browser.IsMobileDevice)
             {

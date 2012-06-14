@@ -76,7 +76,8 @@ namespace movies.Model
         public string ShowtimesHtml { get; set; }
         public string IMDbRating { get; set; } // need? cuz each movie has imdbmovie obj. hmmmm
         public string IMDbVotes { get; set; } // need?
-        public bool IMDbLoaded { get; set; }
+        public bool IMDbLoaded { get; set; } // need?
+        public Twitter.Review Review { get; set; }
         public string IMDbClass { get { return this.IMDbLoaded ? "" : "imdbNotSet"; } }
         public bool IsReleased { get { return System.DateTime.Now >= this.release_dates.theater; } }
         public string ReleaseDate { get { return this.release_dates.theater.ToString("MMM d, yyyy"); } }

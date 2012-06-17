@@ -13,6 +13,10 @@ codejkjk.movies.Api = {
         var url = "{0}get_showtimes.json/{1}/{2}".format(codejkjk.movies.Api.BaseUrl, dateStr, zip);
         codejkjk.movies.Api.AjaxGet(url, callback, 'json', cacheKey);
     },
+    authUser: function (facebookUserId, callback) {
+        var url = "{0}auth_user.js/{1}".format(codejkjk.movies.Api.BaseUrl, facebookUserId)
+        codejkjk.movies.Api.AjaxGet(url, callback, 'html');
+    },
     GetTheaterMovies: function (dateStr, zip, theaterId, callback) {
         // first, check cache
         var cacheKey = "flixster-{0}-{1}-{2}".format(dateStr, theaterId, zip);
@@ -109,7 +113,7 @@ codejkjk.movies.Api = {
         }
 
         var url = "{0}get_rbs.html/{1},{2}".format(codejkjk.movies.Api.BaseUrl, lat, long);
-        codejkjk.movies.Api.AjaxGet(url, callback, 'html', cacheKey);        
+        codejkjk.movies.Api.AjaxGet(url, callback, 'html', cacheKey);
     },
     AjaxGet: function (url, callback, responseDataType, cacheKey) {
         $.ajax({

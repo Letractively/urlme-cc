@@ -49,6 +49,7 @@ div.loading { background: url('content/images/ajax-loader-blue-ribbon.gif') no-r
         }
 * html .group { zoom: 1; } /* IE6 */
 *:first-child+html .group { zoom: 1; } /* IE7 */
+button { padding: 2px 5px; }
 /* #DC3035, #A20608 */
           
 /* google places */

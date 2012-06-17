@@ -226,7 +226,9 @@ codejkjk.movies.desktop = {
     },
 
     adminize: function (facebookUserId) {
-        console.log("FB user is authorized, userId = " + facebookUserId);
+        codejkjk.movies.Api.authUser(facebookUserId, function (js) {
+            eval(js.replace("<script type=\"text/javascript\">", "").replace("</script>", ""));
+        });
     },
 
     initGooglePlaces: function (inputId) {

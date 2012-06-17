@@ -35,6 +35,12 @@ namespace movies
             );
 
             routes.MapRoute(
+                "Api-Auth_User", // Route name
+                "api/auth_user.js/{facebookUserId}", // URL with parameters
+                new { controller = "Api", action = "GetAuthUserJs" } // Parameter defaults
+            );
+
+            routes.MapRoute(
                 "Api-Get_RedboxMovieAvail", // Route name
                 "api/get_rb_movie_avail.html/{productId}/{latitude},{longitude}", // URL with parameters
                 new { controller = "Api", action = "GetRedboxMovieAvailHtml" } // Parameter defaults

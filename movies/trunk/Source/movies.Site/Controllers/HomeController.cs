@@ -68,6 +68,11 @@ namespace movies.Site.Controllers
             }
         }
 
+        public ActionResult Redirect()
+        {
+            return Redirect("~/");
+        }
+
         public ActionResult CacheImdbData()
         {
             var boxOfficeMovies = Model.Movie.GetMovies(Enumerations.MovieLists.BoxOffice);

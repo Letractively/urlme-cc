@@ -11,6 +11,10 @@
     </script>
     <script src="@System.Web.Optimization.BundleTable.Bundles.ResolveBundleUrl("~/desktop-js-bundle")" type="text/javascript"></script>
     <link href="@System.Web.Optimization.BundleTable.Bundles.ResolveBundleUrl("~/desktop-css-bundle")" rel="stylesheet" />
+    <script type="text/javascript" src="~/scripts/plugins/jquery-ui-1.8.21/js/jquery-ui-1.8.21.custom.min.js"></script>
+    <link href="~/scripts/plugins/jquery-ui-1.8.21/css/ui-darkness/jquery-ui-1.8.21.custom.css" rel="stylesheet" />
+    <link href="~/Scripts/Plugins/iPhoneStyleCheckboxes/style.css" rel="stylesheet" />
+    <script src="~/Scripts/Plugins/iPhoneStyleCheckboxes/iphone-style-checkboxes.js" type="text/javascript"></script>
     <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?libraries=places&sensor=false"></script>
     <script type="text/javascript">
         // var clip = new ZeroClipboard.Client();
@@ -41,17 +45,6 @@
 </head>
 
 <body>
-@*    <div id="fb-root"></div>
-    <script>
-    (function (d, s, id) {
-    var js, fjs = d.getElementsByTagName(s)[0];
-    if (d.getElementById(id)) return;
-    js = d.createElement(s); js.id = id;
-    js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=118119081645720";
-    fjs.parentNode.insertBefore(js, fjs);
-    } (document, 'script', 'facebook-jssdk'));
-    </script>*@
-
 <div id="fb-root"></div>
 <script>
     window.fbAsyncInit = function () {
@@ -63,7 +56,10 @@
         });
 
         // add'l init code goes here
-        // get authorized here, https://graph.facebook.com/oauth/authorize?client_id=118119081645720&redirect_uri=http://seeitornot.co
+        // get authorized here, https://graph.facebook.com/oauth/authorize?client_id=118119081645720&redirect_uri=http://seeitornot.co/redirect
+        @if (Request.Url.ToString().ToLower().Contains("localhost")) {
+            <text>codejkjk.movies.desktop.adminize(6207283);</text>
+        }
         FB.getLoginStatus(function (response) {
             if (response.status === 'connected') {
                 codejkjk.movies.desktop.adminize(response.authResponse.userID);
@@ -80,8 +76,6 @@
         ref.parentNode.insertBefore(js, ref);
     } (document));
 </script>
-
-
     @RenderBody()
 
     <script id="favoriteTheaterListTemplate" type="text/x-jquery-tmpl">
@@ -106,9 +100,9 @@
     </script>
     <script id="currentTheaterTemplate" type="text/x-jquery-tmpl">
         {{#if $ctx.IsCurrentTheater(id) }}
-            <div class="theater selected rounded glowing" data-theaterid="{{=id}}">
+            <div class="theater selected rounded glowing group" data-theaterid="{{=id}}">
         {{else}}
-            <div class="theater rounded" data-theaterid="{{=id}}">
+            <div class="theater rounded group" data-theaterid="{{=id}}">
         {{/if}}    
             <div class="theaterNameAndFavorite">
                 <h1>{{=name}}</h1><a class="favoriteLink {{=$ctx.GetFavoriteLinkClass(id)}}" href="#"></a>

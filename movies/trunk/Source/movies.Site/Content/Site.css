@@ -49,7 +49,10 @@ div.loading { background: url('content/images/ajax-loader-blue-ribbon.gif') no-r
         }
 * html .group { zoom: 1; } /* IE6 */
 *:first-child+html .group { zoom: 1; } /* IE7 */
-button { padding: 2px 5px; }
+button.edit { padding: 6px; position: absolute; top: 5px; right: 5px; }
+#adminToggle { position: fixed; top: 10px; left: 10px; padding: 5px; }
+#editForm textarea { width: 200px; height: 100px; }
+#editForm > div { margin-top: 10px; }
 /* #DC3035, #A20608 */
           
 /* google places */
@@ -187,7 +190,7 @@ header { background:#fff; }
 
 #showtimesView > div { display: none; }
 #showtimesLoading { display: none; }
-#showtimesView #theaters { float: left; width: 300px; }
+#showtimesView #theaters { float: left; width: 700px; }
     #showtimesView #theaters .theaterList.favorites { }
     
     .theaterList div.favoriteLink { float: left; width: 19px; height: 16px; margin-right: 7px; }
@@ -214,10 +217,10 @@ header { background:#fff; }
             #showtimesView #theaters #location .showtimeZipOptions > div { margin-top:5px; }
             #showtimesView #theaters #location .showtimeZipOptions a { color: #fff; display:inline-block; }    
 
-#showtimesView #currentTheaterContainer { float: left; width: 697px; } /* orig: 681 > 671 */
+#showtimesView #currentTheaterContainer { float: left; width: 700px; } /* orig: 681 > 671 > 700 */
     #showtimesView #currentTheaterContainer .theater { background: #535156; padding: 15px; }
     #showtimesView #currentTheaterContainer .theater:not(.selected) { display: none; }
-    #showtimesView #currentTheaterContainer .theater.selected { display: block; overflow: auto; }
+    #showtimesView #currentTheaterContainer .theater.selected { display: block; }
         #showtimesView #currentTheaterContainer .theater .theaterNameAndFavorite { overflow: auto; }
             #showtimesView #currentTheaterContainer .theater .theaterNameAndFavorite h1 { font-size: 150%; font-weight: bold; color: #FFFFFF; float: left; }
             #showtimesView #currentTheaterContainer .theater .theaterNameAndFavorite a.favoriteLink { margin: 1px 0 0 0px; padding: 0 10px; display:block; float: left; width: 19px; height: 19px; }
@@ -227,7 +230,7 @@ header { background:#fff; }
         #showtimesView #currentTheaterContainer .theater .movie:nth-child(2n+2) { margin-left: 14px; }
         #showtimesView #currentTheaterContainer .theater .movie > a { display: block; }
             #showtimesView #currentTheaterContainer .theater .movie p { margin-top: 10px; }
-            #showtimesView #currentTheaterContainer .theater .movie img { float: left; margin: 0; }
+            #showtimesView #currentTheaterContainer .theater .movie img { float: left; margin: 0; width: 61px; height: 91px; }
             #showtimesView #currentTheaterContainer .theater .movie .showtimes { clear: left; padding: 0 0 0 10px; width: 245px; word-wrap: break-word; }
             #showtimesView #currentTheaterContainer .theater .movie .details { padding-top:10px; float: left; padding-left:10px; }
 

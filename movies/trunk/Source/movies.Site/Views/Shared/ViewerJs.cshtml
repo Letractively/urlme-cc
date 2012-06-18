@@ -1,10 +1,48 @@
 ﻿@model movies.Site.ViewModels.Shared.ViewerJs
 <script type="text/javascript">
     var facebookUserId = @Model.FacebookUserId;
-    console.log('connected, id is ' + facebookUserId);
+    $(".movie").css("position","relative").each(function(i, movie) {
+        movie = $(movie);
+        if (!movie.find(".admin").length) {
+            movie.prepend("<button class=\"edit\">Edit</button>");
+            movie.find("button.edit").click(function() {
+                $("#editForm").dialog("open");
+            });
+        }
+    });
 
-//    $(".movie").each(function(i, movie) {
-//        movie = $(movie);
-
-//    });
+    if (!$("#editForm").length) {
+        var editFormHtml = "<div id='editForm' title='Edit Review'><div><textarea></textarea></div><div><input class='iPhoneCheckBox' data-yesno='See It,Or Not' type='checkbox' /></div></div>";
+        $("body").append(editFormHtml);
+        $("#editForm").dialog({
+            autoOpen: false,
+            height: 300,
+            width: 300,
+            modal: true,
+            buttons: {
+                "Save": function() {
+                    alert('saving...');
+                    $(this).dialog("close");
+                },
+                Cancel: function() {
+                    $(this).dialog("close");
+                }
+            }
+        });
+        $(".iPhoneCheckBox").each(function () {
+            var chk = $(this);
+            var yesLabel = chk.data().yesno.split(',')[0];
+            var noLabel = chk.data().yesno.split(',')[1];
+            var onChangeJs = chk.data().onchangejs;
+            chk.iphoneStyle({
+                checkedLabel: yesLabel,
+                uncheckedLabel: noLabel,
+                onChange: function (e, value) {
+                    if (onChangeJs) {
+                        eval(onChangeJs);
+                    }
+                }
+            });
+        });
+    }
 </script>

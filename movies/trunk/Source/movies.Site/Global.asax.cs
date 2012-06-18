@@ -35,6 +35,12 @@ namespace movies
             );
 
             routes.MapRoute(
+                "Redirect", // Route name
+                "redirect", // URL with parameters
+                new { controller = "Home", action = "Redirect" } // Parameter defaults
+            );
+
+            routes.MapRoute(
                 "Api-Auth_User", // Route name
                 "api/auth_user.js/{facebookUserId}", // URL with parameters
                 new { controller = "Api", action = "GetAuthUserJs" } // Parameter defaults
@@ -207,6 +213,7 @@ namespace movies
             var desktopCssBundle = new Bundle("~/desktop-css-bundle", new CssMinify());
             desktopCssBundle.AddFile("~/content/common.css");
             desktopCssBundle.AddFile("~/content/site.css");
+
             BundleTable.Bundles.Add(desktopCssBundle);
         }
     }

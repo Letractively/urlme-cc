@@ -51,7 +51,7 @@ div.loading { background: url('content/images/ajax-loader-blue-ribbon.gif') no-r
 *:first-child+html .group { zoom: 1; } /* IE7 */
 button.edit { padding: 6px; position: absolute; top: 5px; right: 5px; }
 #adminToggle { position: fixed; top: 10px; left: 10px; padding: 5px; }
-#editForm textarea { width: 200px; height: 100px; }
+#editForm textarea { width: 272px; height: 62px; }
 #editForm > div { margin-top: 10px; }
 /* #DC3035, #A20608 */
           

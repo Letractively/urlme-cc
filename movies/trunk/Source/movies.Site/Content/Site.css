@@ -51,8 +51,10 @@ div.loading { background: url('content/images/ajax-loader-blue-ribbon.gif') no-r
 *:first-child+html .group { zoom: 1; } /* IE7 */
 button.edit { padding: 6px; position: absolute; top: 5px; right: 5px; }
 #adminToggle { position: fixed; top: 10px; left: 10px; padding: 5px; }
-#editForm textarea { width: 272px; height: 62px; }
-#editForm > div { margin-top: 10px; }
+#editForm textarea { width: 258px; height: 62px; padding: 6px 8px; }
+#editForm input[type='text'] { width: 264px; padding: 4px; }
+#editForm > div, #editForm > p { margin-top: 10px; }
+#editForm > p { font-weight: bold; }
 /* #DC3035, #A20608 */
           
 /* google places */

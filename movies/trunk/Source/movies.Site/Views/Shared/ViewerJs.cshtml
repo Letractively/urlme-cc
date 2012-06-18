@@ -12,11 +12,15 @@
     });
 
     if (!$("#editForm").length) {
-        var editFormHtml = "<div id='editForm' title='Edit Review'><div><textarea></textarea></div><div><input class='iPhoneCheckBox' data-yesno='See It,Or Not' type='checkbox' /></div></div>";
+        var editFormHtml = "<div id='editForm' title='Edit Review'><div><textarea></textarea></div><div><input class='iPhoneCheckBox' checked='checked' type='checkbox' /></div></div>";
         $("body").append(editFormHtml);
+        $(".iPhoneCheckBox").iphoneStyle({
+            checkedLabel: "See It",
+            uncheckedLabel: "Or Not"
+        });
         $("#editForm").dialog({
             autoOpen: false,
-            height: 300,
+            height: 230,
             width: 300,
             modal: true,
             buttons: {
@@ -28,21 +32,6 @@
                     $(this).dialog("close");
                 }
             }
-        });
-        $(".iPhoneCheckBox").each(function () {
-            var chk = $(this);
-            var yesLabel = chk.data().yesno.split(',')[0];
-            var noLabel = chk.data().yesno.split(',')[1];
-            var onChangeJs = chk.data().onchangejs;
-            chk.iphoneStyle({
-                checkedLabel: yesLabel,
-                uncheckedLabel: noLabel,
-                onChange: function (e, value) {
-                    if (onChangeJs) {
-                        eval(onChangeJs);
-                    }
-                }
-            });
         });
     }
 </script>

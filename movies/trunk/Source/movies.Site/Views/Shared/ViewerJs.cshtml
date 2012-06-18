@@ -6,13 +6,18 @@
         if (!movie.find(".admin").length) {
             movie.prepend("<button class=\"edit\">Edit</button>");
             movie.find("button.edit").click(function() {
-                $("#editForm").dialog("open");
+                var movieId = movie.find("a:first").attr("href");
+                movieId = movieId.substring(movieId.lastIndexOf("/") + 1);
+                codejkjk.movies.Api.GetRottenTomatoesMovie(movieId, function(rt) {
+                    $("#editForm").find("p").text(rt.title);
+                    $("#editForm").dialog("open");
+                });
             });
         }
     });
 
     if (!$("#editForm").length) {
-        var editFormHtml = "<div id='editForm' title='Edit Review'><div><textarea></textarea></div><div><input class='iPhoneCheckBox' checked='checked' type='checkbox' /></div></div>";
+        var editFormHtml = "<div id='editForm' title='Edit Review'><p></p><div><textarea></textarea></div><div><input class='iPhoneCheckBox' checked='checked' type='checkbox' /></div><div><input type='text' placeholder='Enter Read More url...' /></div></div>";
         $("body").append(editFormHtml);
         $(".iPhoneCheckBox").iphoneStyle({
             checkedLabel: "See It",
@@ -20,12 +25,16 @@
         });
         $("#editForm").dialog({
             autoOpen: false,
-            height: 230,
+            height: 300,
             width: 300,
             modal: true,
             buttons: {
                 "Save": function() {
                     alert('saving...');
+                    $(this).dialog("close");
+                },
+                "Delete": function() {
+                    alert("deleting...");
                     $(this).dialog("close");
                 },
                 Cancel: function() {

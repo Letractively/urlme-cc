@@ -76,6 +76,7 @@
   <ItemGroup>
     <Compile Include="Controllers\ApiController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
+    <Compile Include="Controllers\MovieReviewController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MovieController.cs" />
     <Compile Include="Controllers\SeoController.cs" />
@@ -199,6 +200,10 @@
     <ProjectReference Include="..\movies.Core\movies.Core.csproj">
       <Project>{63346CED-35BF-407F-97AF-C6E3BD35A26B}</Project>
       <Name>movies.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\movies.Data\movies.Data.csproj">
+      <Project>{E700A5F1-F8F3-4DE3-B75A-0954663E38CD}</Project>
+      <Name>movies.Data</Name>
     </ProjectReference>
     <ProjectReference Include="..\movies.Model\movies.Model.csproj">
       <Project>{7226B672-9854-451C-AADF-AF3DFB0BAE01}</Project>

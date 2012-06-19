@@ -46,12 +46,15 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>bd13.dbml</DependentUpon>
     </Compile>
+    <Compile Include="DomainModels\MovieReview.cs" />
+    <Compile Include="DomainModels\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
+    <Compile Include="Repository\DirectRepository.cs" />
     <Compile Include="Repository\RepositoryBase.cs" />
   </ItemGroup>
   <ItemGroup>

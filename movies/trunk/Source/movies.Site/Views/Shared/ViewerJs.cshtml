@@ -9,15 +9,26 @@
                 var movieId = movie.find("a:first").attr("href");
                 movieId = movieId.substring(movieId.lastIndexOf("/") + 1);
                 codejkjk.movies.Api.GetRottenTomatoesMovie(movieId, function(rt) {
-                    $("#editForm").find("p").text(rt.title);
-                    $("#editForm").dialog("open");
+                    var editForm = $("#editForm");
+                    editForm.find("p").text(rt.title);
+                    editForm.find("[name='movieId']").val(rt.id);
+                    if (rt.Review) {
+                        editForm.find("[name='url']").val(rt.Review.Url);
+                        editForm.find("[name='text']").val(rt.Review.Text);
+                        editForm.find("[name='url']").val(rt.Review.Url);
+                        if (rt.Review.ClassName == "orNot") {
+                            editForm.find("[name='seeIt']").trigger('click');
+                        }
+                    }
+                    
+                    editForm.dialog("open");
                 });
             });
         }
     });
 
     if (!$("#editForm").length) {
-        var editFormHtml = "<div id='editForm' title='Edit Review'><p></p><div><textarea></textarea></div><div><input class='iPhoneCheckBox' checked='checked' type='checkbox' /></div><div><input type='text' placeholder='Enter Read More url...' /></div></div>";
+        var editFormHtml = "<div id='editForm' title='Edit Review'><p></p><input type='hidden' name='movieId' /><div><textarea name='text'></textarea></div><div><input class='iPhoneCheckBox' checked='checked' type='checkbox' name='seeIt' /></div><div><input type='text' name='url' placeholder='Enter Read More url...' /></div></div>";
         $("body").append(editFormHtml);
         $(".iPhoneCheckBox").iphoneStyle({
             checkedLabel: "See It",
@@ -39,6 +50,16 @@
                 },
                 Cancel: function() {
                     $(this).dialog("close");
+                }
+            },
+            close: function() {
+                // $("[name='text']").val("");
+                $(this).find("[name='url']").val("");
+                alert($("[name='seeIt']").is(":checked"));
+                alert($(this).find("[name='seeIt'").is(":checked"));
+                if (!$(this).find("[name='seeIt'").is(":checked")) {
+                    alert('triggering a click');
+                    $(this).find("[name='seeIt'").trigger("click");
                 }
             }
         });

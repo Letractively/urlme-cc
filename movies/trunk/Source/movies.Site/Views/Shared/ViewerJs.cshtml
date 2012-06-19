@@ -43,12 +43,13 @@
                 "Save": function() {
                     var form = $("#editForm");
                     var data = {};
+                    var readMoreUrl = form.find("[name='url']").val() || "http://johnhanlonreviews.com";
                     data.facebookUserId = facebookUserId;
                     data.movieReview = {
                         movieId: form.find("[name='movieId']").val(),
                         text: form.find("[name='text']").val(),
                         className: form.find("[name='seeIt']").is(":checked") ? "seeIt" : "orNot",
-                        url: form.find("[name='url']").val()
+                        url: readMoreUrl
                     };
                     $.ajax({
                         url: '@Url.Content("~/moviereview/save")',

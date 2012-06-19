@@ -192,7 +192,7 @@ header { background:#fff; }
 
 #showtimesView > div { display: none; }
 #showtimesLoading { display: none; }
-#showtimesView #theaters { float: left; width: 700px; }
+#showtimesView #theaters { float: left; width: 300px; }
     #showtimesView #theaters .theaterList.favorites { }
     
     .theaterList div.favoriteLink { float: left; width: 19px; height: 16px; margin-right: 7px; }

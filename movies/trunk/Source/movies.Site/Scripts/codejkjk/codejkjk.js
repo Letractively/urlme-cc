@@ -10,6 +10,23 @@
     }
 }
 
+registerNS("codejkjk.feedback");
+codejkjk.feedback = {
+    showSuccess: function () {
+        $.growlUI("Success!", null);
+    }
+//    ,
+//    clearMessage: function () {
+//        $("#message").removeClass("success").removeClass("failure").hide();
+//    },
+//    errorMessage: function (html) {
+//        $("#message").addClass("failure").removeClass("success").html(html).show();
+//    },
+//    successMessage: function (html) {
+//        $("#message").addClass("success").removeClass("failure").html(html).show();
+//    }
+};
+
 String.prototype.format = function () {
     var args = arguments;
     return this.replace(/{(\d+)}/g, function (match, number) {

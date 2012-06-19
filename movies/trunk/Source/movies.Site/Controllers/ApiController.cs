@@ -31,23 +31,17 @@ namespace movies.Site.Controllers
         [HttpGet]
         public ActionResult GetAuthUserJs(int facebookUserId)
         {
-            List<int> viewerIds = new List<int>();
-            viewerIds.Add(13002624); // John
-            viewerIds.Add(6207283); // Ian
-            viewerIds.Add(762136697); // Shari
-
-            if (viewerIds.Contains(facebookUserId))
+            if (Data.DomainModels.User.IsReviewer(facebookUserId))
             {
                 return PartialView("ViewerJs", new movies.Site.ViewModels.Shared.ViewerJs { FacebookUserId = facebookUserId });
             }
-            return Content("console.log('not connected');");
+            return Content("console.log('not authorized');");
         }
 
         public ActionResult GetMovieHtml(string rtMovieId)
         {
             var movie = Model.Movie.GetRottenTomatoesMovie(rtMovieId);
             movie.MovieType = Model.Movie.GetMovieType(movie.id);
-            movie.Review = Model.Twitter.GetMovieReview(rtMovieId);
 
             return PartialView("MovieDetails", movie);
         }
@@ -60,7 +54,6 @@ namespace movies.Site.Controllers
                 return Content("No corresponding RottenTomatoes movie found :/");
             }
             movie.MovieType = Enumerations.MovieType.AtRedboxes;
-            movie.Review = Model.Twitter.GetMovieReview(movie.id);
 
             return PartialView("MovieDetails", movie);
         }

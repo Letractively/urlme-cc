@@ -6,6 +6,7 @@ using movies.Core.Extensions;
 using movies.Core.Web.Caching;
 using System.Data;
 using System.IO;
+using movies.Data.Repository;
 
 namespace movies.Model
 {
@@ -59,6 +60,8 @@ namespace movies.Model
 
     public class Movie
     {
+        private static readonly DirectRepository repo = new DirectRepository();
+
         public string id { get; set; }
         public string title { get; set; }
         public string mpaa_rating { get; set; }
@@ -72,12 +75,12 @@ namespace movies.Model
         public Links links { get; set; }
 
         // view helpers (items NOT inherently provided by RT api)
+        public Data.DomainModels.MovieReview Review { get; set; }
         public Enumerations.MovieType MovieType { get; set; }
         public string ShowtimesHtml { get; set; }
         public string IMDbRating { get; set; } // need? cuz each movie has imdbmovie obj. hmmmm
         public string IMDbVotes { get; set; } // need?
         public bool IMDbLoaded { get; set; } // need?
-        public Twitter.Review Review { get; set; }
         public string IMDbClass { get { return this.IMDbLoaded ? "" : "imdbNotSet"; } }
         public bool IsReleased { get { return System.DateTime.Now >= this.release_dates.theater; } }
         public string ReleaseDate { get { return this.release_dates.theater.ToString("MMM d, yyyy"); } }
@@ -213,6 +216,8 @@ namespace movies.Model
             // can we load imdb?
             TryLoadIMDb(ref movie);
 
+            movie.Review = Data.DomainModels.MovieReview.Get(int.Parse(movie.id));
+
             return movie;
         }
 
@@ -326,6 +331,8 @@ namespace movies.Model
             // for each movie, get imdb info if it exists in cache
             foreach (var movie in movies.Values)
             {
+                movie.Review = Data.DomainModels.MovieReview.Get(int.Parse(movie.id));
+                
                 if (Cache.KeyExists(string.Format("codejkjk.movies.Model.Movie.GetIMDbMovie-{0}", movie.alternate_ids.imdb)))
                 {
                     var imdbMovie = GetIMDbMovie(movie.IMDbQ);

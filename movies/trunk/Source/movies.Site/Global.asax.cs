@@ -226,11 +226,13 @@ namespace movies
             // desktopJsBundle.AddFile("~/scripts/plugins/lazyload/jquery.lazyload.min.js");
             desktopJsBundle.AddFile("~/scripts/plugins/mask/jquery.mask.min.js");
             desktopJsBundle.AddFile("~/scripts/plugins/jquery.history.js");
+            desktopJsBundle.AddFile("~/scripts/plugins/blockui/jquery.blockUI.js");
             BundleTable.Bundles.Add(desktopJsBundle);
 
             var desktopCssBundle = new Bundle("~/desktop-css-bundle", new CssMinify());
             desktopCssBundle.AddFile("~/content/common.css");
             desktopCssBundle.AddFile("~/content/site.css");
+            desktopCssBundle.AddFile("~/scripts/plugins/blockui/style.css");
 
             BundleTable.Bundles.Add(desktopCssBundle);
         }

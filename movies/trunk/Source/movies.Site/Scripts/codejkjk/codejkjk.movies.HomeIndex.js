@@ -184,6 +184,12 @@ codejkjk.movies.desktop = {
         var paths = url.replace('//', '').split('/');
         var firstPath = '/' + paths[1]; // "", "comingsoon", "showtimes" (all navs), "rb" (redbox movie) or "hunger-games" (movie)
 
+        // not sure why FB does this...
+        if (firstPath === "/#_=_") {
+            window.location.href = "http://seeitornot.co";
+            return;
+        }
+
         // primary nav link?
         if (firstPath === "/" || firstPath === "/comingsoon" || (firstPath === "/redbox" && !paths[2])) {
             codejkjk.movies.desktop.showSection(firstPath);

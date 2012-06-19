@@ -17,8 +17,21 @@ namespace movies.Site.Controllers
             {
                 return this.Json(new { WasSuccessful = false }, JsonRequestBehavior.AllowGet);
             }
-            
+
             bool success = Data.DomainModels.MovieReview.Save(movieReview);
+
+            return this.Json(new { WasSuccessful = success }, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpPost]
+        public JsonResult Delete(int facebookUserId, int movieId)
+        {
+            if (!Data.DomainModels.User.IsReviewer(facebookUserId))
+            {
+                return this.Json(new { WasSuccessful = false }, JsonRequestBehavior.AllowGet);
+            }
+
+            bool success = Data.DomainModels.MovieReview.Delete(movieId);
 
             return this.Json(new { WasSuccessful = success }, JsonRequestBehavior.AllowGet);
         }

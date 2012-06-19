@@ -22,17 +22,58 @@ namespace movies.Data.Repository
             {
                 using (var context = CreateContext(true))
                 {
-                    if (movie.MovieId == default(int))
+                    var dbMovie = context.Movies.FirstOrDefault(x => x.MovieId == movie.MovieId);
+
+                    if (dbMovie == null)
                     {
                         // INSERT
-                        movie.CreateDate = DateTime.Now;
-                        movie.ModifyDate = null;
-                        context.Movies.InsertOnSubmit(movie);
+                        dbMovie = new Movie
+                        {
+                            CreateDate = DateTime.Now,
+                            ModifyDate = null,
+                            MovieId = movie.MovieId
+                        };
+
+                        context.Movies.InsertOnSubmit(dbMovie);
                     }
                     else
                     {
                         // UPDATE
-                        movie.ModifyDate = DateTime.Now;
+                        dbMovie.ModifyDate = DateTime.Now;
+                    }
+
+                    dbMovie.Review = movie.Review;
+                    dbMovie.ReviewClass = movie.ReviewClass;
+                    dbMovie.ReviewUrl = movie.ReviewUrl;
+
+                    context.SubmitChanges(ConflictMode.FailOnFirstConflict);
+                }
+            }
+            catch
+            {
+                return false;
+            }
+
+            return true;
+        }
+
+        public bool MovieDelete(int movieId)
+        {
+            try
+            {
+                using (var context = CreateContext(true))
+                {
+                    var dbMovie = context.Movies.FirstOrDefault(x => x.MovieId == movieId);
+
+                    if (dbMovie == null)
+                    {
+                        // DOES NOT EXIST, and it should, so return false b/c it's an error
+                        return false;
+                    }
+                    else
+                    {
+                        // EXISTS, so add to things to delete
+                        context.Movies.DeleteOnSubmit(dbMovie);
                     }
 
                     context.SubmitChanges(ConflictMode.FailOnFirstConflict);

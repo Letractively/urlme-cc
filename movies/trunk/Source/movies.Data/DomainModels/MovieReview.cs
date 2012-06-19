@@ -25,6 +25,11 @@ namespace movies.Data.DomainModels
             return repo.MovieSave(dbMovie);
         }
 
+        public static bool Delete(int movieId)
+        {
+            return repo.MovieDelete(movieId);
+        }
+
         public static MovieReview Get(int movieId)
         {
             var dbMovieReview = repo.MovieGet(movieId);

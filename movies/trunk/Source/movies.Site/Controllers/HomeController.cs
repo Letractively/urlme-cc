@@ -70,7 +70,12 @@ namespace movies.Site.Controllers
 
         public ActionResult Redirect()
         {
-            return Redirect("~/");
+            return Redirect("http://seeitornot.co");
+        }
+
+        public ActionResult AuthReviewer()
+        {
+            return Redirect("https://graph.facebook.com/oauth/authorize?client_id=118119081645720&redirect_uri=http://seeitornot.co/redirect");
         }
 
         public ActionResult CacheImdbData()

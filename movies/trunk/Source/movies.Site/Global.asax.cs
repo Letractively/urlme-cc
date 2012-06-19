@@ -29,6 +29,18 @@ namespace movies
             );
 
             routes.MapRoute(
+                "MovieReview-Save", // Route name
+                "moviereview/save", // URL with parameters
+                new { controller = "MovieReview", action = "Save" } // Parameter defaults
+            );
+
+            routes.MapRoute(
+                "MovieReview-Delete", // Route name
+                "moviereview/delete", // URL with parameters
+                new { controller = "MovieReview", action = "Delete" } // Parameter defaults
+            );
+
+            routes.MapRoute(
                 "Api-Get_Movie", // Route name
                 "api/get_rt_movie.json/{rtMovieId}", // URL with parameters
                 new { controller = "Api", action = "GetRottenTomatoesMovie" } // Parameter defaults
@@ -38,6 +50,12 @@ namespace movies
                 "Redirect", // Route name
                 "redirect", // URL with parameters
                 new { controller = "Home", action = "Redirect" } // Parameter defaults
+            );
+
+            routes.MapRoute(
+                "Home-AuthReviewer", // Route name
+                "auth-reviewer", // URL with parameters
+                new { controller = "Home", action = "AuthReviewer" } // Parameter defaults
             );
 
             routes.MapRoute(

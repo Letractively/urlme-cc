@@ -13,6 +13,7 @@ namespace movies.Data.DomainModels
             viewerIds.Add(13002624); // John
             viewerIds.Add(6207283); // Ian
             viewerIds.Add(762136697); // Shari
+            viewerIds.Add(507867483); // Beasley
 
             return viewerIds.Contains(facebookUserId);
         }

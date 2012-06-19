@@ -19,6 +19,8 @@
                         if (rt.Review.ClassName == "orNot") {
                             editForm.find("[name='seeIt']").trigger('click');
                         }
+                    } else {
+                        editForm.find("[name='url']").val("http://johnhanlonreviews.com");
                     }
                     
                     editForm.dialog("open");
@@ -102,9 +104,9 @@
             },
             close: function() {
                 var editForm = $("#editForm");
-                var seeItChk = editForm.find("[name='seeIt']");
                 editForm.find("[name='text']").val("");
                 editForm.find("[name='url']").val("");
+                var seeItChk = editForm.find("[name='seeIt']");
                 if (!seeItChk.is(":checked")) {
                     seeItChk.trigger("click");
                 }

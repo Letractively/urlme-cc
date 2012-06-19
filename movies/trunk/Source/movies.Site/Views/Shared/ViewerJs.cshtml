@@ -28,7 +28,7 @@
     });
 
     if (!$("#editForm").length) {
-        var editFormHtml = "<div id='editForm' title='Edit Review'><p></p><input type='hidden' name='movieId' /><div><textarea name='text'></textarea></div><div><input class='iPhoneCheckBox' checked='checked' type='checkbox' name='seeIt' /></div><div><input type='text' name='url' placeholder='Enter Read More url...' /></div></div>";
+        var editFormHtml = "<form id='editForm' title='Edit Review'><p></p><input type='hidden' name='movieId' /><div><textarea name='text' maxlength='140' placeholder='Enter review...'></textarea></div><div><input class='iPhoneCheckBox' checked='checked' type='checkbox' name='seeIt' /></div><div><input type='text' name='url' placeholder='Enter Read More url...' /></div></form>";
         $("body").append(editFormHtml);
         $(".iPhoneCheckBox").iphoneStyle({
             checkedLabel: "See It",
@@ -41,11 +41,58 @@
             modal: true,
             buttons: {
                 "Save": function() {
-                    alert('saving...');
+                    var form = $("#editForm");
+                    var data = {};
+                    data.facebookUserId = facebookUserId;
+                    data.movieReview = {
+                        movieId: form.find("[name='movieId']").val(),
+                        text: form.find("[name='text']").val(),
+                        className: form.find("[name='seeIt']").is(":checked") ? "seeIt" : "orNot",
+                        url: form.find("[name='url']").val()
+                    };
+                    $.ajax({
+                        url: '@Url.Content("~/moviereview/save")',
+                        type: 'POST',
+                        dataType: 'json',
+                        data: JSON.stringify(data),
+                        contentType: 'application/json; charset=utf-8',
+                        success: function (json) {
+                            if (json.WasSuccessful) {
+                                alert("Success!");
+                            }
+                            else {
+                                alert("Error, please try again or contact Ian.");
+                            }
+                        },
+                        error: function (xhr) {
+                            alert(xhr);
+                        }
+                    });                    
                     $(this).dialog("close");
                 },
                 "Delete": function() {
-                    alert("deleting...");
+                    var form = $("#editForm");
+                    var data = {};
+                    data.facebookUserId = facebookUserId;
+                    data.movieId = form.find("[name='movieId']").val();
+                    $.ajax({
+                        url: '@Url.Content("~/moviereview/delete")',
+                        type: 'POST',
+                        dataType: 'json',
+                        data: JSON.stringify(data),
+                        contentType: 'application/json; charset=utf-8',
+                        success: function (json) {
+                            if (json.WasSuccessful) {
+                                alert("Success!");
+                            }
+                            else {
+                                alert("Error, please try again or contact Ian.");
+                            }
+                        },
+                        error: function (xhr) {
+                            alert(xhr);
+                        }
+                    });  
                     $(this).dialog("close");
                 },
                 Cancel: function() {
@@ -53,13 +100,12 @@
                 }
             },
             close: function() {
-                // $("[name='text']").val("");
-                $(this).find("[name='url']").val("");
-                alert($("[name='seeIt']").is(":checked"));
-                alert($(this).find("[name='seeIt'").is(":checked"));
-                if (!$(this).find("[name='seeIt'").is(":checked")) {
-                    alert('triggering a click');
-                    $(this).find("[name='seeIt'").trigger("click");
+                var editForm = $("#editForm");
+                var seeItChk = editForm.find("[name='seeIt']");
+                editForm.find("[name='text']").val("");
+                editForm.find("[name='url']").val("");
+                if (!seeItChk.is(":checked")) {
+                    seeItChk.trigger("click");
                 }
             }
         });

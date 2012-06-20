@@ -19,15 +19,15 @@ namespace movies.Site.Controllers
         [HttpGet]
         public ActionResult SearchMovies(string q)
         {
-            return PartialView("MovieList", Movie.SearchMovies(q));
+            return PartialView("MovieList", Movie.SearchMovies(q, 20));
         }
 
         [HttpGet]
         public ActionResult SearchMoviesJson(string term)
         {
-            var resultDict = Movie.SearchMovies(term);
+            var resultDict = Movie.SearchMovies(term, 5);
 
-            return this.Json(resultDict.Values.Select(x => new { movieSlug = x.MovieSlug, title = x.title, img = x.posters.thumbnail, year = x.year }), JsonRequestBehavior.AllowGet);
+            return this.Json(resultDict.Values.Select(x => new { abridgedCast = x.AbridgedCast, movieSlug = x.MovieSlug, title = x.title, img = x.posters.thumbnail, year = x.year }), JsonRequestBehavior.AllowGet);
         }
 
         [HttpGet]

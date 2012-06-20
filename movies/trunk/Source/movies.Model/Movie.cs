@@ -94,6 +94,17 @@ namespace movies.Model
                 // return string.Format("{0}&year={1}", this.title.Replace(" ", "+"), release_dates.theater.ToString("yyyy")); 
             }
         }
+        public string AbridgedCast
+        {
+            get
+            {
+                string ret = "";
+                if (this.abridged_cast != null && this.abridged_cast.Count() >= 2) {
+                    ret = string.Format("{0}, {1}", this.abridged_cast[0].name, this.abridged_cast[1].name);
+                }
+                return ret;
+            }
+        }
         public string MovieSlug { get { return this.title.Slugify() + "/" + this.id; } }
         public string Duration
         {
@@ -222,14 +233,14 @@ namespace movies.Model
             return movie;
         }
 
-        public static Dictionary<string, Movie> SearchMovies(string q)
+        public static Dictionary<string, Movie> SearchMovies(string q, int pageLimit)
         {
             Dictionary<string, Movie> movies = Cache.GetValue<Dictionary<string, Movie>>(
-                string.Format("codejkjk.movies.Model.Movie.SearchMovies-{0}", q),
+                string.Format("codejkjk.movies.Model.Movie.SearchMovies-{0}-{1}", q, pageLimit),
                 () =>
                 {
                     List<Movie> ret = new List<Movie>();
-                    string rtJson = API.RottenTomatoes.SearchMoviesJson(q);
+                    string rtJson = API.RottenTomatoes.SearchMoviesJson(q, pageLimit);
                     var movieCollection = rtJson.FromJson<MovieCollection>();
                     // movieCollection.movies.ForEach(x => x.IMDbLoaded = false); // init all imdbloaded to false
                     movieCollection.movies.ForEach(x => ret.Add(x));

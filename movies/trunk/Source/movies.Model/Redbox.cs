@@ -48,7 +48,7 @@ namespace movies.Model
                     var allMovies = GetMovies();
                     var rbMovie = allMovies[rbSlug];
 
-                    var rtMovies = Model.Movie.SearchMovies(rbMovie.Title);
+                    var rtMovies = Model.Movie.SearchMovies(rbMovie.Title, 5);
                     // iterate thru search results; return one that matches title and release year
                     foreach (var rtMovie in rtMovies.Values)
                     {

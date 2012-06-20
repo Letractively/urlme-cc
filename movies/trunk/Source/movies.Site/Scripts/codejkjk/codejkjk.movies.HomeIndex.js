@@ -171,7 +171,7 @@ codejkjk.movies.desktop = {
         });
 
         // handle "a" clicks - prevent their default and instead push state
-        $(document).on('click', 'a[href^="/"]', function (e) {
+        $(document).on('click', 'a[href^="/"]:not(.noPush)', function (e) {
             e.preventDefault();
             History.pushState(null, null, $(this).attr("href"));
         });
@@ -247,13 +247,14 @@ codejkjk.movies.desktop = {
                 // nothing
             },
             select: function (event, ui) {
-                //                $("#project").val(ui.item.label);
+                History.pushState(null, null, ui.item.url);
+                return false;
             }
         })
 		.data("autocomplete")._renderItem = function (ul, item) {
 		    return $("<li></li>")
 				.data("item.autocomplete", item)
-				.append("<a class='group' href='/{0}'><img src='{1}' /><div class='right'><div>{2} ({3})</div><div class='cast'>{4}</div></div></a>".format(item.movieSlug, item.img, item.title, item.year, item.abridgedCast))
+				.append("<a class='group noPush' href='{0}'><img src='{1}' /><div class='right'><div>{2} ({3})</div><div class='cast'>{4}</div></div></a>".format(item.url, item.img, item.title, item.year, item.abridgedCast))
 				.appendTo(ul);
 		};
     },

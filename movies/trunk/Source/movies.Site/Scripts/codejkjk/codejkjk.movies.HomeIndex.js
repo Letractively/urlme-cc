@@ -247,19 +247,16 @@ codejkjk.movies.desktop = {
                 // nothing
             },
             select: function (event, ui) {
-                alert(ui.item.id);
                 //                $("#project").val(ui.item.label);
                 //                $("#project-id").val(ui.item.value);
                 //                $("#project-description").html(ui.item.desc);
                 //                $("#project-icon").attr("src", "images/" + ui.item.icon);
-
-                return false;
             }
         })
 		.data("autocomplete")._renderItem = function (ul, item) {
-		    return $("<li></li>")
+		    return $("<li class='group'></li>")
 				.data("item.autocomplete", item)
-				.append("<a>{0} ({1})</a>".format(item.title, "year"))
+				.append("<a href='/{0}'><img src='{1}' />{2} ({3})</a>".format(item.movieSlug, item.img, item.title, item.year))
 				.appendTo(ul);
 		};
     },

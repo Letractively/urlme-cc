@@ -107,7 +107,7 @@ namespace movies.Site.Controllers
                 }
             }
 
-            var redboxMovies = Model.Redbox.GetMovies();
+            // var redboxMovies = Model.Redbox.GetMovies();
 
             // movies.Model.Twitter.UpdateStatus("work please " + System.DateTime.Now);
 

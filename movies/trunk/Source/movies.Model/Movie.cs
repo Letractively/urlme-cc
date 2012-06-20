@@ -63,6 +63,7 @@ namespace movies.Model
         private static readonly DirectRepository repo = new DirectRepository();
 
         public string id { get; set; }
+        public string year { get; set; }
         public string title { get; set; }
         public string mpaa_rating { get; set; }
         public string runtime { get; set; }

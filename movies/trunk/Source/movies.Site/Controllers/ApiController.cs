@@ -27,7 +27,7 @@ namespace movies.Site.Controllers
         {
             var resultDict = Movie.SearchMovies(term);
 
-            return this.Json(resultDict.Values.Select(x => new { id = x.id, title = x.title, img = x.posters.thumbnail }), JsonRequestBehavior.AllowGet);
+            return this.Json(resultDict.Values.Select(x => new { movieSlug = x.MovieSlug, title = x.title, img = x.posters.thumbnail, year = x.year }), JsonRequestBehavior.AllowGet);
         }
 
         [HttpGet]

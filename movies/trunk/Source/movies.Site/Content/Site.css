@@ -57,6 +57,11 @@ button.edit { padding: 6px; position: absolute; top: 5px; right: 5px; }
 #editForm > p { font-weight: bold; }
 /* #DC3035, #A20608 */
           
+/* jquery ui autocomplete */
+.ui-menu .ui-menu-item img { float: left; margin-right: 10px; }
+.ui-menu .ui-menu-item .right { float: left; width: 213px; }
+.ui-menu .ui-menu-item .right div.cast { color: #666; font-size: 12px; margin-top: 5px; }
+          
 /* google places */
 .pac-item { font-size: 18px; padding: 5px; }          
             

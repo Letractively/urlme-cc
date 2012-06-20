@@ -248,15 +248,12 @@ codejkjk.movies.desktop = {
             },
             select: function (event, ui) {
                 //                $("#project").val(ui.item.label);
-                //                $("#project-id").val(ui.item.value);
-                //                $("#project-description").html(ui.item.desc);
-                //                $("#project-icon").attr("src", "images/" + ui.item.icon);
             }
         })
 		.data("autocomplete")._renderItem = function (ul, item) {
-		    return $("<li class='group'></li>")
+		    return $("<li></li>")
 				.data("item.autocomplete", item)
-				.append("<a href='/{0}'><img src='{1}' />{2} ({3})</a>".format(item.movieSlug, item.img, item.title, item.year))
+				.append("<a class='group' href='/{0}'><img src='{1}' /><div class='right'><div>{2} ({3})</div><div class='cast'>{4}</div></div></a>".format(item.movieSlug, item.img, item.title, item.year, item.abridgedCast))
 				.appendTo(ul);
 		};
     },

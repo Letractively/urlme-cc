@@ -230,7 +230,7 @@ namespace movies.Model
                     List<Movie> ret = new List<Movie>();
                     string rtJson = API.RottenTomatoes.SearchMoviesJson(q);
                     var movieCollection = rtJson.FromJson<MovieCollection>();
-                    movieCollection.movies.ForEach(x => x.IMDbLoaded = false); // init all imdbloaded to false
+                    // movieCollection.movies.ForEach(x => x.IMDbLoaded = false); // init all imdbloaded to false
                     movieCollection.movies.ForEach(x => ret.Add(x));
                     return ret.Where(x => x.alternate_ids != null && !x.posters.detailed.Contains("poster_default.gif") && x.mpaa_rating != "Unrated").ToDictionary(key => key.id, value => value);
                 });

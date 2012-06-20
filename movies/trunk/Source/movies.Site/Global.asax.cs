@@ -95,6 +95,12 @@ namespace movies
             );
 
             routes.MapRoute(
+                "Api-Search_Movies_json", // Route name
+                "api/search_movies.json", // URL with parameters
+                new { controller = "Api", action = "SearchMoviesJson" } // Parameter defaults
+            );
+
+            routes.MapRoute(
                 "Api-Get_TheaterMovies", // Route name
                 "api/get_theater_movies.json/{date}/{zip}/{theaterId}", // URL with parameters
                 new { controller = "Api", action = "GetTheaterMovies" } // Parameter defaults

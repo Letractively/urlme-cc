@@ -23,6 +23,14 @@ namespace movies.Site.Controllers
         }
 
         [HttpGet]
+        public ActionResult SearchMoviesJson(string term)
+        {
+            var resultDict = Movie.SearchMovies(term);
+
+            return this.Json(resultDict.Values.Select(x => new { id = x.id, title = x.title, img = x.posters.thumbnail }), JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpGet]
         public JsonResult GetRottenTomatoesMovie(string rtMovieId)
         {
             return this.Json(Movie.GetRottenTomatoesMovie(rtMovieId), JsonRequestBehavior.AllowGet);

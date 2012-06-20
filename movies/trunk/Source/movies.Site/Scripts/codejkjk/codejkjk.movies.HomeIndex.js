@@ -155,6 +155,7 @@ codejkjk.movies.desktop = {
             return;
         }
 
+        codejkjk.movies.desktop.initSearch();
         codejkjk.movies.desktop.initGooglePlaces("inputShowtimesZipSmall");
         codejkjk.movies.desktop.initGooglePlaces("inputShowtimesZipBig");
         codejkjk.movies.desktop.bindControls();
@@ -235,6 +236,32 @@ codejkjk.movies.desktop = {
         codejkjk.movies.Api.authUser(facebookUserId, function (js) {
             eval(js.replace("<script type=\"text/javascript\">", "").replace("</script>", ""));
         });
+    },
+
+    initSearch: function () {
+        var searchBox = codejkjk.movies.desktop.controls.SearchBox();
+        searchBox.autocomplete({
+            minLength: 2,
+            source: apiBaseUrl + 'search_movies.json', // change
+            focus: function (event, ui) {
+                // nothing
+            },
+            select: function (event, ui) {
+                alert(ui.item.id);
+                //                $("#project").val(ui.item.label);
+                //                $("#project-id").val(ui.item.value);
+                //                $("#project-description").html(ui.item.desc);
+                //                $("#project-icon").attr("src", "images/" + ui.item.icon);
+
+                return false;
+            }
+        })
+		.data("autocomplete")._renderItem = function (ul, item) {
+		    return $("<li></li>")
+				.data("item.autocomplete", item)
+				.append("<a>" + item.id + "<br>" + item.title + "</a>")
+				.appendTo(ul);
+		};
     },
 
     initGooglePlaces: function (inputId) {

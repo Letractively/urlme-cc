@@ -121,12 +121,13 @@ header { background:#fff; }
             #movieDetailsPopup #movieShowtimes #theatersForMovieList h2:not(:first-child) { margin-top: 10px; }
             #movieDetailsPopup #movieShowtimes #theatersForMovieList h3 { margin-bottom: 5px; margin-top: 5px;  }
     #movieDetailsPopup .links { margin-top: 15px; font-weight: bold; }
-        #movieDetailsPopup .links > a { color: #2489CE; height:16px; line-height: 17px; /* text-decoration: underline; */ }
-        #movieDetailsPopup .links > a.trailerLink { padding-left: 22px; background: url('content/images/icons/video.png') no-repeat center left; }
-        #movieDetailsPopup .links > a.parentalGuideLink { padding-left: 22px; background: url('content/images/icons/caution2.png') no-repeat center left; }
-        #movieDetailsPopup .links > a.showtimesLink { padding-left: 22px; background: url('content/images/icons/clock.png') no-repeat center left; }            
+        #movieDetailsPopup .links > a { padding-left: 22px; color: #2489CE; height:16px; line-height: 17px; /* text-decoration: underline; */ }
+        #movieDetailsPopup .links > a.trailerLink { background: url('content/images/icons/video.png') no-repeat center left; }
+        #movieDetailsPopup .links > a.parentalGuideLink { background: url('content/images/icons/caution2.png') no-repeat center left; }
+        #movieDetailsPopup .links > a.showtimesLink { background: url('content/images/icons/clock.png') no-repeat center left; }            
+        #movieDetailsPopup .links > a.copy { margin-right: 0; background: url('content/images/icons/link.png') no-repeat center left; }            
         #movieDetailsPopup .links > a.showtimesLink.loading { background: url('content/images/ajax-loader-blue-ribbon.gif') no-repeat center left; }
-        #movieDetailsPopup .links > a.nearbyRedboxLink { padding-left: 22px; background: url('content/images/icons/redbox.gif') no-repeat center left; }            
+        #movieDetailsPopup .links > a.nearbyRedboxLink { background: url('content/images/icons/redbox.gif') no-repeat center left; }            
         #movieDetailsPopup .links > a.nearbyRedboxLink.loading { background: url('content/images/ajax-loader-blue-ribbon.gif') no-repeat center left; }        
         #movieDetailsPopup .links > a:not(:last-child) { margin-right: 20px; }
     #movieDetailsPopup p { margin-top: 15px; }
@@ -138,11 +139,11 @@ header { background:#fff; }
     #movieDetailsPopup .ratings { clear: left; }
     #movieDetailsPopup .ratings a { color: #535156; }
     #movieDetailsPopup .releaseDate { font-weight: bold; }
-        #movieDetailsPopup .share #copyButton { text-align: center; border: 1px solid black; background: #e8e8e8; margin-left: 5px; padding: 5px; }
-        #movieDetailsPopup .share #copySuccess { color: Green; display:none; margin-left: 10px; }
-        #movieDetailsPopup .share #copyButton:hover { background: #eee; }
-        #movieDetailsPopup .share #copyButton:active { background: #aaa; }
-        #movieDetailsPopup .share input[type='text'] { padding: 5px; width: 330px; }
+        /* #movieDetailsPopup #copyButton { text-align: center; border: 1px solid black; background: #e8e8e8; margin-left: 5px; padding: 5px; } */
+        #movieDetailsPopup #copySuccess { color: Green; display:none; margin-left: 10px; }
+        /* #movieDetailsPopup #copyButton:hover { background: #eee; }
+        #movieDetailsPopup #copyButton:active { background: #aaa; }
+        #movieDetailsPopup input[type='text'] { padding: 5px; width: 330px; } */
 
 #overlay { background:#666666; opacity:.5; z-index:1001; position:absolute; top:0; left:0; }
 

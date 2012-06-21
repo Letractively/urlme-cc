@@ -1,5 +1,6 @@
 /* our review icons */
 .ourReview span { float: left; background: url("content/images/rt-sprite4.png"); display:inline-block; width: 16px; height: 20px; margin-right: 10px; }
+.ourReview a { color: #2489ce; }
 .ourReview.medium { line-height: 23px; }
 .ourReview.medium .seeIt { background-position: -135px -5px; }
 .ourReview.medium .orNot { background-position: -168px -5px; }

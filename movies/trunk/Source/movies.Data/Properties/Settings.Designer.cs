@@ -33,5 +33,16 @@ namespace movies.Data.Properties {
                 return ((string)(this["bakersdozen13ConnectionString"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=sqlserver8.loosefoot.com;Initial Catalog=bakersdozen132;Persist Secur" +
+            "ity Info=True;User ID=ihdavis2;Password=pchang")]
+        public string bakersdozen132ConnectionString {
+            get {
+                return ((string)(this["bakersdozen132ConnectionString"]));
+            }
+        }
     }
 }

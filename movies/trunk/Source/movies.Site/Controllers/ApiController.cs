@@ -25,9 +25,9 @@ namespace movies.Site.Controllers
         [HttpGet]
         public ActionResult SearchMoviesJson(string term)
         {
-            var resultDict = Movie.SearchMovies(term, 5);
+            var results = Movie.SearchMoviesForAutoComplete(term, 5);
 
-            return this.Json(resultDict.Values.Select(x => new { abridgedCast = x.AbridgedCast, url = "/" + x.MovieSlug, title = x.title, img = x.posters.thumbnail, year = x.year }), JsonRequestBehavior.AllowGet);
+            return this.Json(results.Select(x => new { cast = x.cast, url = x.url, title = x.title, imgUrl = x.imgUrl, year = x.year }), JsonRequestBehavior.AllowGet);
         }
 
         [HttpGet]

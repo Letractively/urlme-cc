@@ -26,8 +26,8 @@ namespace urlme.Data.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=sqlserver5.loosefoot.com;Initial Catalog=bakersdozen13;Persist Securi" +
-            "ty Info=True;User ID=ihdavis;Password=pchang")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=sqlserver8.loosefoot.com;Initial Catalog=bakersdozen132;Persist Securi" +
+            "ty Info=True;User ID=ihdavis2;Password=pchang")]
         public string bakersdozen13ConnectionString {
             get {
                 return ((string)(this["bakersdozen13ConnectionString"]));

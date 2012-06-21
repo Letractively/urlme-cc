@@ -22,7 +22,7 @@ namespace urlme.Data
 	using System;
 	
 	
-	[global::System.Data.Linq.Mapping.DatabaseAttribute(Name="bakersdozen13")]
+	[global::System.Data.Linq.Mapping.DatabaseAttribute(Name="bakersdozen132")]
 	public partial class urlmeDataContext : System.Data.Linq.DataContext
 	{
 		
@@ -76,19 +76,19 @@ namespace urlme.Data
 			}
 		}
 		
-		public System.Data.Linq.Table<User> Users
-		{
-			get
-			{
-				return this.GetTable<User>();
-			}
-		}
-		
 		public System.Data.Linq.Table<test> tests
 		{
 			get
 			{
 				return this.GetTable<test>();
+			}
+		}
+		
+		public System.Data.Linq.Table<User> Users
+		{
+			get
+			{
+				return this.GetTable<User>();
 			}
 		}
 	}
@@ -347,6 +347,33 @@ namespace urlme.Data
 		}
 	}
 	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="ihdavis.test")]
+	public partial class test
+	{
+		
+		private System.Nullable<int> _NullableInt;
+		
+		public test()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NullableInt", DbType="Int")]
+		public System.Nullable<int> NullableInt
+		{
+			get
+			{
+				return this._NullableInt;
+			}
+			set
+			{
+				if ((this._NullableInt != value))
+				{
+					this._NullableInt = value;
+				}
+			}
+		}
+	}
+	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="ihdavis.[User]")]
 	public partial class User : INotifyPropertyChanging, INotifyPropertyChanged
 	{
@@ -356,6 +383,8 @@ namespace urlme.Data
 		private int _UserId;
 		
 		private string _Email;
+		
+		private System.Nullable<int> _FacebookUserId;
 		
 		private bool _AdminInd;
 		
@@ -369,6 +398,8 @@ namespace urlme.Data
     partial void OnUserIdChanged();
     partial void OnEmailChanging(string value);
     partial void OnEmailChanged();
+    partial void OnFacebookUserIdChanging(System.Nullable<int> value);
+    partial void OnFacebookUserIdChanged();
     partial void OnAdminIndChanging(bool value);
     partial void OnAdminIndChanged();
     partial void OnCreateDateChanging(System.DateTime value);
@@ -416,6 +447,26 @@ namespace urlme.Data
 					this._Email = value;
 					this.SendPropertyChanged("Email");
 					this.OnEmailChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FacebookUserId", DbType="Int")]
+		public System.Nullable<int> FacebookUserId
+		{
+			get
+			{
+				return this._FacebookUserId;
+			}
+			set
+			{
+				if ((this._FacebookUserId != value))
+				{
+					this.OnFacebookUserIdChanging(value);
+					this.SendPropertyChanging();
+					this._FacebookUserId = value;
+					this.SendPropertyChanged("FacebookUserId");
+					this.OnFacebookUserIdChanged();
 				}
 			}
 		}
@@ -477,33 +528,6 @@ namespace urlme.Data
 			if ((this.PropertyChanged != null))
 			{
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="ihdavis.test")]
-	public partial class test
-	{
-		
-		private System.Nullable<int> _NullableInt;
-		
-		public test()
-		{
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NullableInt", DbType="Int")]
-		public System.Nullable<int> NullableInt
-		{
-			get
-			{
-				return this._NullableInt;
-			}
-			set
-			{
-				if ((this._NullableInt != value))
-				{
-					this._NullableInt = value;
-				}
 			}
 		}
 	}

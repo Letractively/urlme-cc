@@ -28,7 +28,7 @@
 
         protected bd13DataContext CreateContext(bool objectTrackingEnabled, bool deferredLoadingEnabled, int timeoutSeconds = 60)
         {
-            string connectionString = "Data Source=sqlserver5.loosefoot.com;Initial Catalog=bakersdozen13;Persist Security Info=True;User ID=ihdavis;Password=pchang"; // Core.Configuration.ConfigurationManager.Instance.ConnectionStrings["CrossBridge"].ConnectionString;
+            string connectionString = "Data Source=sqlserver8.loosefoot.com;Initial Catalog=bakersdozen13;Persist Security Info=True;User ID=ihdavis;Password=pchang"; // Core.Configuration.ConfigurationManager.Instance.ConnectionStrings["CrossBridge"].ConnectionString;
 
             var context = new bd13DataContext(connectionString)
             {
@@ -42,7 +42,7 @@
 
         protected System.Data.SqlClient.SqlConnection CreateConnection(int timeoutSeconds)
         {
-            string connectionString = "Data Source=sqlserver5.loosefoot.com;Initial Catalog=bakersdozen13;Persist Security Info=True;User ID=ihdavis;Password=pchang"; // Core.Configuration.ConfigurationManager.Instance.ConnectionStrings["CrossBridge"].ConnectionString;
+            string connectionString = "Data Source=sqlserver8.loosefoot.com;Initial Catalog=bakersdozen13;Persist Security Info=True;User ID=ihdavis;Password=pchang"; // Core.Configuration.ConfigurationManager.Instance.ConnectionStrings["CrossBridge"].ConnectionString;
             connectionString += string.Format(";Timeout={0}", timeoutSeconds);
             var cn = new System.Data.SqlClient.SqlConnection(connectionString);
             return cn;

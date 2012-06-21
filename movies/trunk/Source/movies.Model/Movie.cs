@@ -11,6 +11,36 @@ using movies.Data.Repository;
 namespace movies.Model
 {
     #region Helper Classes
+    public class AutocompleteItem
+    {
+        public string title { get; set; }
+        public string year { get; set; }
+
+        // helpers
+        public AlternateIds alternate_ids { get; set; }
+        public string mpaa_rating { get; set; }
+        public AbridgedCast[] abridged_cast { get; set; }
+        public Posters posters { get; set; }
+        public string id { get; set; }
+        public string imgUrl { get { return this.posters.thumbnail; } }
+        public string url { get { return "/" + this.title.Slugify() + "/" + this.id; } }
+        public string cast {
+            get
+            {
+                string ret = "";
+                if (this.abridged_cast != null && this.abridged_cast.Count() >= 2)
+                {
+                    ret = string.Format("{0}, {1}", this.abridged_cast[0].name, this.abridged_cast[1].name);
+                }
+                return ret;
+            }        
+        }
+    }
+    public class AutocompleteItemCollection
+    {
+        public List<AutocompleteItem> movies { get; set; }
+    }
+
     public class MovieCollection
     {
         public int total { get; set; }
@@ -233,6 +263,39 @@ namespace movies.Model
             return movie;
         }
 
+        public static List<AutocompleteItem> SearchMoviesForAutoComplete(string q, int pageLimit)
+        {
+            List<AutocompleteItem> movies = Cache.GetValue<List<AutocompleteItem>>(
+                string.Format("codejkjk.movies.Model.Movie.SearchMoviesForAutoComplete-{0}-{1}", q, pageLimit),
+                () =>
+                {
+                    List<AutocompleteItem> ret = new List<AutocompleteItem>();
+                    string rtJson = API.RottenTomatoes.SearchMoviesJson(q, pageLimit);
+                    var movieCollection = rtJson.FromJson<AutocompleteItemCollection>();
+                    // movieCollection.movies.ForEach(x => x.IMDbLoaded = false); // init all imdbloaded to false
+                    movieCollection.movies.ForEach(x => ret.Add(x));
+                    return ret.Where(x => x.alternate_ids != null && !x.posters.detailed.Contains("poster_default.gif") && x.mpaa_rating != "Unrated").ToList();
+                });
+
+            // for each movie, get imdb info if it exists in cache
+            //foreach (var movie in movies.Values.Where(x => x.alternate_ids != null))
+            //{
+            //    if (Cache.KeyExists(string.Format("codejkjk.movies.Model.Movie.GetIMDbMovie-{0}", movie.alternate_ids.imdb)))
+            //    {
+            //        var imdbMovie = GetIMDbMovie(movie.alternate_ids.imdb);
+            //        movie.IMDbRating = imdbMovie.rating;
+            //        movie.IMDbVotes = imdbMovie.votes;
+            //        movie.IMDbLoaded = true;
+            //    }
+            //    else
+            //    {
+            //        movie.IMDbLoaded = false;
+            //    }
+            //}
+
+            return movies;
+        }
+
         public static Dictionary<string, Movie> SearchMovies(string q, int pageLimit)
         {
             Dictionary<string, Movie> movies = Cache.GetValue<Dictionary<string, Movie>>(
@@ -248,20 +311,20 @@ namespace movies.Model
                 });
 
             // for each movie, get imdb info if it exists in cache
-            foreach (var movie in movies.Values.Where(x => x.alternate_ids != null))
-            {
-                if (Cache.KeyExists(string.Format("codejkjk.movies.Model.Movie.GetIMDbMovie-{0}", movie.alternate_ids.imdb)))
-                {
-                    var imdbMovie = GetIMDbMovie(movie.alternate_ids.imdb);
-                    movie.IMDbRating = imdbMovie.rating;
-                    movie.IMDbVotes = imdbMovie.votes;
-                    movie.IMDbLoaded = true;
-                }
-                else
-                {
-                    movie.IMDbLoaded = false;
-                }
-            }
+            //foreach (var movie in movies.Values.Where(x => x.alternate_ids != null))
+            //{
+            //    if (Cache.KeyExists(string.Format("codejkjk.movies.Model.Movie.GetIMDbMovie-{0}", movie.alternate_ids.imdb)))
+            //    {
+            //        var imdbMovie = GetIMDbMovie(movie.alternate_ids.imdb);
+            //        movie.IMDbRating = imdbMovie.rating;
+            //        movie.IMDbVotes = imdbMovie.votes;
+            //        movie.IMDbLoaded = true;
+            //    }
+            //    else
+            //    {
+            //        movie.IMDbLoaded = false;
+            //    }
+            //}
 
             return movies;
         }

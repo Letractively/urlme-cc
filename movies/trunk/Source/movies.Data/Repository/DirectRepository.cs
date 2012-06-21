@@ -10,6 +10,7 @@ namespace movies.Data.Repository
     {
         public Movie MovieGet(int movieId)
         {
+            return null;
             using (var context = CreateContext())
             {
                 return context.Movies.FirstOrDefault(x => x.MovieId == movieId);

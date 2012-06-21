@@ -158,7 +158,7 @@ header { background:#fff; }
             #movieDetailsPopup .topHalf .left img.poster { width: 180px; height: 267px; }
         #movieDetailsPopup .topHalf .right { float: left; width: 385px; }
             #movieDetailsPopup .topHalf .right h1 { font-size: 140%; font-weight: bold; }
-            #movieDetailsPopup .topHalf .right p.description { margin-top: 12px; overflow: auto; max-height: 100px; }            
+            #movieDetailsPopup .topHalf .right p.description { margin-top: 12px; overflow: auto; max-height: 96px; } 
     #movieDetailsPopup a { display: inline-block; }
     #movieDetailsPopup .closeMovieDetails { cursor: pointer; font-weight:bold; text-transform:uppercase; letter-spacing:1px; float: right; /* background: url("content/content/images/icons/close.png") no-repeat scroll right top transparent; */ display:inline-block; /* padding: 0 22px 17px 20px; */ }
     #movieDetailsPopup .closeMovieDetails .x { margin-left: 6px; color: Red; }

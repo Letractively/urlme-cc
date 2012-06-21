@@ -155,6 +155,7 @@ codejkjk.movies.desktop = {
             return;
         }
 
+        codejkjk.movies.desktop.initHotkeys();
         codejkjk.movies.desktop.initSearch();
         codejkjk.movies.desktop.initGooglePlaces("inputShowtimesZipSmall");
         codejkjk.movies.desktop.initGooglePlaces("inputShowtimesZipBig");
@@ -773,6 +774,14 @@ codejkjk.movies.desktop = {
                 codejkjk.movies.desktop.controls.SearchResultsView().show();
                 codejkjk.movies.Api.SearchMovies(q, codejkjk.movies.desktop.LoadSearchResults);
                 $(this).blur();
+            }
+        });
+    },
+
+    initHotkeys: function () {
+        $(document).bind('keyup', 'q', function () {
+            if (!codejkjk.movies.desktop.controls.SearchBox().is(":focus")) {
+                codejkjk.movies.desktop.controls.SearchBox().focus();
             }
         });
     }

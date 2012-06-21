@@ -11,6 +11,8 @@ li { list-style-type: decimal; margin-bottom: 10px; margin-left: 18px; padding-l
 
 /* tr:hover .delete-link { display:inline-block; } */
 
+#NotesContainer { display: none; }
+
 strong { font-weight: bold; }
 
 div { overflow: auto; }

@@ -1,5 +1,5 @@
-﻿<?xml version="1.0" encoding="utf-8"?><Database Name="bakersdozen13" Class="urlmeDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Connection Mode="AppSettings" ConnectionString="Data Source=sqlserver5.loosefoot.com;Initial Catalog=bakersdozen13;Persist Security Info=True;User ID=ihdavis" SettingsObjectName="urlme.Data.Properties.Settings" SettingsPropertyName="bakersdozen13ConnectionString" Provider="System.Data.SqlClient" />
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="bakersdozen132" Class="urlmeDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=sqlserver8.loosefoot.com;Initial Catalog=bakersdozen132;Persist Security Info=True;User ID=ihdavis2" SettingsObjectName="urlme.Data.Properties.Settings" SettingsPropertyName="bakersdozen13ConnectionString" Provider="System.Data.SqlClient" />
   <Table Name="ihdavis.Link" Member="Links">
     <Type Name="Link">
       <Column Name="LinkId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
@@ -13,17 +13,18 @@
       <Column Name="CreateDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
     </Type>
   </Table>
+  <Table Name="ihdavis.test" Member="tests">
+    <Type Name="test">
+      <Column Name="NullableInt" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </Type>
+  </Table>
   <Table Name="ihdavis.[User]" Member="Users">
     <Type Name="User">
       <Column Name="UserId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="Email" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="FacebookUserId" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="AdminInd" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
       <Column Name="CreateDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
-    </Type>
-  </Table>
-  <Table Name="ihdavis.test" Member="tests">
-    <Type Name="test">
-      <Column Name="NullableInt" Type="System.Int32" DbType="Int" CanBeNull="true" />
     </Type>
   </Table>
 </Database>

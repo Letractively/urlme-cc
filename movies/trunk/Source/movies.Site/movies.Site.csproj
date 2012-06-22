@@ -150,6 +150,7 @@
     <Content Include="Externals\local-cache\local-cache.js" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Scripts\codejkjk\codejkjk.siteActions.js" />
     <Content Include="Scripts\Plugins\blockUI\check.png" />
     <Content Include="Scripts\Plugins\blockUI\jquery.blockUI.js" />
     <Content Include="Scripts\Plugins\blockUI\style.css" />

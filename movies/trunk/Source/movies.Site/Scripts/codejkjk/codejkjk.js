@@ -27,6 +27,35 @@ codejkjk.feedback = {
 //    }
 };
 
+registerNS("codejkjk.browserCompatability");
+codejkjk.browserCompatability = {
+    // e.g., if (!salem.browserCompatability.testAttribute('input', 'placeholder')) { salem.form.smartTextBox($("input[type='text']"),'placeholder'); }
+    testAttribute: function (element, attribute) {
+        var test = document.createElement(element);
+        return attribute in test;
+    }
+};
+
+registerNS("codejkjk.form");
+codejkjk.form = {
+    // e.g., smartTextBox($(".input[placeholder]"), "blurred")
+    smartTextBox: function (elements, blurredClass) {
+        $.each(elements, function (i, element) {
+            var elem = $(element);
+            var defaultVal = elem.attr("placeholder") || elem.val();
+            elem.val(defaultVal); // set default val
+            elem.addClass(blurredClass)
+                .focus(function () {
+                    $(this).val("").removeClass(blurredClass);
+                })
+                .blur(function () {
+                    if ($(this).val() == defaultVal || $(this).val() == "")
+                        $(this).val(defaultVal).addClass(blurredClass);
+                });
+        });
+    }
+}
+
 String.prototype.format = function () {
     var args = arguments;
     return this.replace(/{(\d+)}/g, function (match, number) {

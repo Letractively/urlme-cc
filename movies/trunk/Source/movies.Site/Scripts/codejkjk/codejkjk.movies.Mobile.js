@@ -506,6 +506,11 @@ $(document).ready(function () {
     codejkjk.movies.mobile.init();
 });
 
+//var pageInit = false;
 $(document).on('pagebeforechange', function (e, data) {
-    // e.preventDefault(); // use jquery mobile just for its nifty css classes, but handle all page transitions on our own using History
+//    e.preventDefault(); // use jquery mobile just for its nifty css classes, but handle all page transitions on our own using History
+//    if (!pageInit) {
+//        $("#onlyPage").show().page();
+//        pageInit = true;
+//    }
 });

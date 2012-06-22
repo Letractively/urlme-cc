@@ -310,11 +310,11 @@ header { background:#fff; }
             .content .movie img { margin-right: 10px; display:block; }
             .content .movie h2 { display:inline-block; font-weight: bold; margin-right: 10px; max-width:216px; overflow:hidden; text-overflow: ellipsis; white-space: nowrap; }
             .content .movie .actions { position: absolute; right: 8px; bottom: 8px; }
-                .content .movie .actions a { padding: 8px 10px; border: 1px solid #C5D8E6; font-size: 90%; display:inline-block; }
-                .content .movie .actions a > span { margin-right: 6px; } /* for "x" and "..." "icons", .x and .dotdotdot */
-                .content .movie .actions a.hideMovieLink .x { color: Red; }
+                /* .content .movie .actions a { padding: 8px 10px; border: 1px solid #C5D8E6; font-size: 90%; display:inline-block; } */
+                .content .movie .actions a > span { margin-right: 5px; }
+                /* .content .movie .actions a.hideMovieLink .x { color: Red; }
                 .content .movie .actions a.movieDetailsLink .dotdotdot { font-weight:bold; }
-                .content .movie .actions a:hover { border: 1px solid #465F82; }
+                .content .movie .actions a:hover { border: 1px solid #465F82; } */
 
 #movies .notYetReleased { color: Gray; }
 #movies .notYetReleased .notYetReleasedMessage { overflow: auto; margin-top: 10px; }

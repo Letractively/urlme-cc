@@ -119,14 +119,14 @@
                             <p class="ratings small">
                                 <span data-rtratingtitle="{{=criticsRating}}" class="rottenTomato icon"></span><span class="rt text">{{=criticsScore}}</span>
                                 <span data-rtratingtitle="{{=audienceRating}}" class="rottenTomato icon"></span><span class="rt text">{{=audienceScore}}</span>
-                                <span class='imdb icon'></span><span class="text">{{=IMDbRating}}</span>
+                                @* <span class='imdb icon'></span><span class="text">{{=IMDbRating}}</span> *@
                             </p> 
                             <p>{{=duration}}</p> 
                         </div>
                     </a>
                     <p class="showtimes">{{=showtimesHtml!}}</p>
                     <div class="actions">
-                        <a href="#" title="Hide this movie" class="hideMovieLink rounded" data-theatermovie="{{=$parent.parent.data.id}}-{{=id}}"><span class="x">&#10006;</span>Hide</a>
+                        <a class="button hideMovieLink" data-theatermovie="{{=$parent.parent.data.id}}-{{=id}}"><span class="x">&#10006;</span>Hide</a>
                     </div>
                 </div>
             {{/each}}

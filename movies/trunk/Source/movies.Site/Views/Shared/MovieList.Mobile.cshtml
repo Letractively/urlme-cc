@@ -5,7 +5,7 @@
 {
     if (movie.alternate_ids != null)
     {
-    <li><a href="#movie?@movie.id">
+    <li><a href="~/@movie.MovieSlug">
         <img class="lazy" data-original="@movie.posters.thumbnail" src="~/scripts/plugins/lazyload/grey.gif" />
         <h3>@movie.title<span class="mpaaRating">@movie.mpaa_rating</span></h3>
         @if (movie.IsReleased) {

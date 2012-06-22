@@ -59,7 +59,7 @@ codejkjk.movies.desktop = {
         , RedboxLocationChooser: function () { return $("#redboxLocationChooser"); }
         , RemoveLinks: function () { return $(".actions").find(".removeLink"); }
         , RedboxZipCodeInput: function () { return $("#redboxZip"); }
-        , SearchBox: function () { return $("#q > input[type='text']"); }
+        , searchBox: function () { return $("#q > input[type='text']"); }
         , SearchRedboxZipCodeButton: function () { return $("#redboxZip").next("button"); }
         , SearchResultsView: function () { return $("#searchResultsView"); }
         , SeeNearbyRedboxesSelector: function () { return "#seeNearbyRedboxes"; }
@@ -168,7 +168,7 @@ codejkjk.movies.desktop = {
         // handle any state changes
         History.Adapter.bind(window, 'statechange', function () {
             var state = History.getState();
-            codejkjk.movies.desktop.HandlePushState(state.url);
+            codejkjk.movies.desktop.handlePushState(state.url);
         });
 
         // handle "a" clicks - prevent their default and instead push state
@@ -179,10 +179,10 @@ codejkjk.movies.desktop = {
 
         // handle initial page's load
         var initState = History.getState();
-        codejkjk.movies.desktop.HandlePushState(initState.url);
+        codejkjk.movies.desktop.handlePushState(initState.url);
     },
 
-    HandlePushState: function (url) {
+    handlePushState: function (url) {
         var paths = url.replace('//', '').split('/');
         var firstPath = '/' + paths[1]; // "", "comingsoon", "showtimes" (all navs), "rb" (redbox movie) or "hunger-games" (movie)
 
@@ -216,18 +216,18 @@ codejkjk.movies.desktop = {
                 if (codejkjk.movies.desktop.currents.MovieId()) {
                     // movie details is already in dom, b/c user went to movie link directly
                     codejkjk.movies.desktop.showSection("/");
-                    codejkjk.movies.desktop.ShowMovieDetails("rb");
+                    codejkjk.movies.desktop.showMovieDetails("rb");
                 } else {
-                    codejkjk.movies.desktop.ShowMovieDetails("rb", rbSlug);
+                    codejkjk.movies.desktop.showMovieDetails("rb", rbSlug);
                 }
             } else { // rt movie
                 var rtMovieId = paths[2]; // rt movie id
                 if (codejkjk.movies.desktop.currents.MovieId()) {
                     // movie details is already in dom, b/c user went to movie link directly
                     codejkjk.movies.desktop.showSection("/");
-                    codejkjk.movies.desktop.ShowMovieDetails("rt");
+                    codejkjk.movies.desktop.showMovieDetails("rt");
                 } else {
-                    codejkjk.movies.desktop.ShowMovieDetails("rt", rtMovieId);
+                    codejkjk.movies.desktop.showMovieDetails("rt", rtMovieId);
                 }
             }
         }
@@ -240,7 +240,7 @@ codejkjk.movies.desktop = {
     },
 
     initSearch: function () {
-        var searchBox = codejkjk.movies.desktop.controls.SearchBox();
+        var searchBox = codejkjk.movies.desktop.controls.searchBox();
         searchBox.autocomplete({
             minLength: 2,
             source: apiBaseUrl + 'search_movies.json', // change
@@ -282,7 +282,7 @@ codejkjk.movies.desktop = {
     showSection: function (path) {
         // primary nav change
         // clear out search val if user previously searched for something
-        codejkjk.movies.desktop.controls.SearchBox().val("");
+        codejkjk.movies.desktop.controls.searchBox().val("");
 
         var link = codejkjk.movies.desktop.controls.Nav().find("a[href='{0}']".format(path)); // logo does not have inner html, which is what we use later to select view to show
         codejkjk.movies.desktop.controls.NavLinks().removeClass("selected");
@@ -290,7 +290,7 @@ codejkjk.movies.desktop = {
         codejkjk.movies.desktop.controls.Views().hide();
 
         // show view
-        var sectionToShow = $('section[data-navitemtext="{0}"]'.format(link.html())).show();
+        var sectionToShow = $('section[data-navitemtext="{0}"]'.format(link.html()));
         sectionToShow.show();
 
         // init image lazyload jquery plugin
@@ -519,7 +519,7 @@ codejkjk.movies.desktop = {
         });
     },
 
-    ShowMovieDetails: function (rbOrRt, movieIdToAjaxLoad) {
+    showMovieDetails: function (rbOrRt, movieIdToAjaxLoad) {
         // show overlay
         var overlayHeight = $(document).height() + "px";
         var overlayWidth = $(document).width() + "px";
@@ -764,7 +764,7 @@ codejkjk.movies.desktop = {
         });
 
         // handle Enter key on search box
-        codejkjk.movies.desktop.controls.SearchBox().keypress(function (e) {
+        codejkjk.movies.desktop.controls.searchBox().keypress(function (e) {
             var code = (e.keyCode ? e.keyCode : e.which);
             if (code == 13) {
                 var q = $(this).val();
@@ -780,8 +780,8 @@ codejkjk.movies.desktop = {
 
     initHotkeys: function () {
         $(document).bind('keyup', 'q', function () {
-            if (!codejkjk.movies.desktop.controls.SearchBox().is(":focus")) {
-                codejkjk.movies.desktop.controls.SearchBox().focus();
+            if (!codejkjk.movies.desktop.controls.searchBox().is(":focus")) {
+                codejkjk.movies.desktop.controls.searchBox().focus();
             }
         });
     }

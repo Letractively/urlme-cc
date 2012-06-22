@@ -3,93 +3,88 @@
 @using movies.Model
 
 @{
-    ViewBag.Title = "Movie Ratings - Top Box Office";
+    ViewBag.Title = "SeeItOrNot.co";
 }
 
 @section ExtraHeadContent {
 }
 
 <input type="hidden" id="currentShowtimeDay" />
+<input type="hidden" id="currentMovieId" />
 
-@* *** What's Hot *** *@
-<div data-role="page" id="whatsHot">
+<div data-role="page">
     @{ Html.RenderPartial("PageHeader", new PageHeader { ActiveMenu = Enumerations.MobileMenuItems.whatsHot, PrefetchLinks = Model.PrefetchLinks, UseAjaxForLinks = Model.UseAjaxForLinks }); }
-    <div data-role="header" data-theme="c">
-        <h2>Top Box Office</h2>
-    </div>
-	<div data-role="content">	
-        <ul data-role="listview" data-theme="c">
-            @this.Html.Partial("MovieList.Mobile", this.Model.BoxOfficeMovies)
-        </ul>
-    </div>
-    <div data-role="header" data-theme="c">
-        <h2>Opening This Week</h2>
-    </div>
-    <div data-role="content">	
-        <ul data-role="listview" data-theme="c">
-            @this.Html.Partial("MovieList.Mobile", this.Model.OpeningMovies)
-        </ul>
-    </div>
-    <div data-role="header" data-theme="c">
-        <h2>Also in Theaters</h2>
-    </div>
-    <div data-role="content">	
-        <ul data-role="listview" data-theme="c">
-            @this.Html.Partial("MovieList.Mobile", this.Model.InTheatersMovies)
-        </ul>
-    </div>
-</div>
-
-@* *** Showtimes *** *@
-<div data-role="page" id="showtimes">
-    @{ Html.RenderPartial("PageHeader", new PageHeader { ActiveMenu = Enumerations.MobileMenuItems.showtimes, PrefetchLinks = Model.PrefetchLinks, UseAjaxForLinks = Model.UseAjaxForLinks }); }
-    <div data-role="content" id="options">
-        <input type="text" id="inputShowtimesZip" placeholder="Search for city or zip...">
-        <div>or <a href="#">use current location</a></div>
-    </div>
-    <div id="theaters">
+    @* *** What's Hot *** *@
+    <section id="whatsHot" data-navitemurl="/">
         <div data-role="header" data-theme="c">
-            <h1>Theaters near <span id="currentShowtimesZip"></span></h1>
-            <a href="#" data-icon="gear" class="ui-btn-right">Options</a>
+            <h2>Top Box Office</h2>
         </div>
-        <div data-role="content">
-            <ul data-role="listview" data-theme="c"></ul>
+	    <div data-role="content">	
+            <ul data-role="listview" data-theme="c">
+                @this.Html.Partial("MovieList.Mobile", this.Model.BoxOfficeMovies)
+            </ul>
         </div>
-        <div data-role="content">
-            <ul data-role="listview" data-theme="c"></ul>
+        <div data-role="header" data-theme="c">
+            <h2>Opening This Week</h2>
         </div>
-    </div>
-</div>
-
-@* *** Theater w/ its movies *** *@
-<div data-role="page" id="theater" data-dom-cache="false">
-    @{ Html.RenderPartial("PageHeader", new PageHeader { ActiveMenu = Enumerations.MobileMenuItems.showtimes, PrefetchLinks = Model.PrefetchLinks, UseAjaxForLinks = Model.UseAjaxForLinks }); }
-    <div data-role="header" data-theme="c">
-        <h2></h2>
-        <a href="#showtimes" data-icon="arrow-l" class="ui-btn-left">Back</a>
-    </div>
+        <div data-role="content">	
+            <ul data-role="listview" data-theme="c">
+                @this.Html.Partial("MovieList.Mobile", this.Model.OpeningMovies)
+            </ul>
+        </div>
+        <div data-role="header" data-theme="c">
+            <h2>Also in Theaters</h2>
+        </div>
+        <div data-role="content">	
+            <ul data-role="listview" data-theme="c">
+                @this.Html.Partial("MovieList.Mobile", this.Model.InTheatersMovies)
+            </ul>
+        </div>
+    </section>
+    @* *** Showtimes *** *@
+    <section id="showtimes" data-navitemurl="/showtimes">
+        <div data-role="content" id="options">
+            <input type="text" id="inputShowtimesZip" placeholder="Search for city or zip...">
+            <div>or <a href="#">use current location</a></div>
+        </div>
+        <div id="theaters">
+            <div data-role="header" data-theme="c">
+                <h1>Theaters near <span id="currentShowtimesZip"></span></h1>
+                <a href="#" data-icon="gear" class="ui-btn-right">Options</a>
+            </div>
+            <div data-role="content">
+                <ul data-role="listview" data-theme="c"></ul>
+            </div>
+            <div data-role="content">
+                <ul data-role="listview" data-theme="c"></ul>
+            </div>
+        </div>    
+    </section>
+    @* *** Theater w/ its movies *** *@
+    <section id="theater" data-navitemurl="/showtimes">
+        <div data-role="header" data-theme="c">
+            <h2></h2>
+            <a href="#showtimes" data-icon="arrow-l" class="ui-btn-left">Back</a>
+        </div>
     
-    <div data-role="content">
-        <ul data-role="listview" data-theme="c"></ul>
-	</div>
-</div>
-
-@* *** Single Theater Movie *** *@
-<div data-role="page" id="theatermovie" class="moviePage">
-    @{ Html.RenderPartial("PageHeader", new PageHeader { ActiveMenu = Enumerations.MobileMenuItems.showtimes, PrefetchLinks = Model.PrefetchLinks, UseAjaxForLinks = Model.UseAjaxForLinks }); }
-    <div data-role="header" data-theme="c">
-        <h2></h2>
-        <a href="#" data-icon="arrow-l" class="ui-btn-left">Back</a>
-    </div>
-    <div data-role="content"></div>
-</div>
-
-@* *** Single Movie *** *@
-<div data-role="page" id="movie" class="moviePage">
-    @{ Html.RenderPartial("PageHeader", new PageHeader { ActiveMenu = Enumerations.MobileMenuItems.none, PrefetchLinks = Model.PrefetchLinks, UseAjaxForLinks = Model.UseAjaxForLinks }); }
-    <div data-role="header" data-theme="c">
-        <h2></h2>
-        <a href="#" data-icon="arrow-l" class="ui-btn-left">Back</a>
-    </div>
-    <div data-role="content"></div>
+        <div data-role="content">
+            <ul data-role="listview" data-theme="c"></ul>
+	    </div>
+    </section>
+    @* *** Single Theater Movie *** *@
+    <section id="theatermovie" data-navitemurl="/showtimes">
+        <div data-role="header" data-theme="c">
+            <h2></h2>
+            <a href="#" data-icon="arrow-l" class="ui-btn-left">Back</a>
+        </div>
+        <div data-role="content" class="movieView"></div>
+    </section>
+    @* *** Movie *** *@
+    <section id="movie">
+        <div data-role="header" data-theme="c">
+            <h2></h2>
+            <a href="#" data-icon="arrow-l" class="ui-btn-left">Back</a>
+        </div>
+        <div data-role="content" class="movieView"></div>
+    </section>
 </div>

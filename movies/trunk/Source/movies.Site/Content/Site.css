@@ -127,7 +127,7 @@ header { background:#fff; }
     nav > a.selected { background: #4c95e4; padding: 12px 12px 11px 12px; text-shadow:none; }
     nav > #q { float:right; margin-top:-8px; position: relative; }
         nav > #q > input[type='text'] { padding: 8px; outline: none; width: 282px; border: 1px solid #ccc; font-size: 14px; }    
-        nav > #q > input[type='submit'] { cursor: pointer; border: none; color: transparent; font-size: 0; background: url('content/images/rt-sprite4.png') -128px -107px; width: 16px; height: 16px; display:inline-block; position: absolute; top: 9px; right: 10px; }
+        nav > #q > input[type='submit'] { cursor: default; border: none; color: transparent; font-size: 0; background: url('content/images/rt-sprite4.png') -128px -107px; width: 16px; height: 16px; display:inline-block; position: absolute; top: 9px; right: 10px; }
 
 #body { width: 996px; margin: 10px auto 0 auto; padding-top: 20px; }
 

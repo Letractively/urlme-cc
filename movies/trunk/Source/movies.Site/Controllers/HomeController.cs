@@ -110,75 +110,30 @@ namespace movies.Site.Controllers
             // var redboxMovies = Model.Redbox.GetMovies();
 
             // movies.Model.Twitter.UpdateStatus("work please " + System.DateTime.Now);
-
-            //var redBoxTop20Movies = Model.Movie.GetMovies(Enumerations.MovieLists.RedBoxTop20);
-            //foreach (var movie in redBoxTop20Movies.Values)
-            //{
-            //    if (movie.IMDbQ != null)
-            //    {
-            //        Model.Movie.GetIMDbMovie(movie.IMDbQ);
-            //    }
-            //}
-
-            //var redBoxComingSoonMovies = Model.Movie.GetMovies(Enumerations.MovieLists.RedBoxComingSoon);
-            //foreach (var movie in redBoxComingSoonMovies.Values)
-            //{
-            //    if (movie.IMDbQ != null)
-            //    {
-            //        Model.Movie.GetIMDbMovie(movie.IMDbQ);
-            //    }
-            //}
-
-            //var redBoxMovies = Model.Movie.GetMovies(Enumerations.MovieLists.Redbox);
-            //foreach (var movie in redBoxMovies.Values)
-            //{
-            //    if (movie.IMDbQ != null)
-            //    {
-            //        Model.Movie.GetIMDbMovie(movie.IMDbQ);
-            //    }
-            //}
-
             return Content("Done! - " + System.DateTime.Now);
         }
 
         /* mobile - showtimes */
         public ActionResult Showtimes()
         {
-            if (Request.Browser.IsMobileDevice)
-            {
-                // mobile, only set what we need to
-                var vm = new ViewModels.Home.Index
-                {
-                    OverlayMovie = null,
-                    UseAjaxForLinks = false,
-                    PrefetchLinks = false
-                };
+            return Index();
+            //if (Request.Browser.IsMobileDevice)
+            //{
+            //    // mobile, only set what we need to
+            //    var vm = new ViewModels.Home.Index
+            //    {
+            //        OverlayMovie = null,
+            //        UseAjaxForLinks = false,
+            //        PrefetchLinks = false
+            //    };
 
-                return View("Showtimes.Mobile", vm);
-            }
-            else
-            {
-                // desktop, return whatever Index does, b/c there's js to look at the path to determine which section to show
-                return Index();
-            }
-        }
-
-        /* mobile - coming soon */
-        public ActionResult ComingSoon()
-        {
-            var vm = new ViewModels.Home.Index
-            {
-                OpeningMovies = Movie.GetMovies(Enumerations.MovieLists.Opening),
-                BoxOfficeMovies = Movie.GetMovies(Enumerations.MovieLists.BoxOffice),
-                InTheatersMovies = Movie.GetMovies(Enumerations.MovieLists.InTheaters),
-                UpcomingMovies = Movie.GetMovies(Enumerations.MovieLists.Upcoming),
-                // RedboxMovies = Redbox.GetMovies(),
-
-                OverlayMovie = null,
-                UseAjaxForLinks = false,
-                PrefetchLinks = false
-            };
-            return View(vm);
+            //    return View("Showtimes.Mobile", vm);
+            //}
+            //else
+            //{
+            //    // desktop, return whatever Index does, b/c there's js to look at the path to determine which section to show
+                
+            //}
         }
     }
 }

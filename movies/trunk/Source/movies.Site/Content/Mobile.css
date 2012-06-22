@@ -30,14 +30,14 @@ p { color: #535156; } /* grey bullet color */
 .releaseDate { margin-top: 10px; font-size: 12px; }
 
 /* MovieIndexMobile page */
-.moviePage img { float: left; margin-right: 10px; margin-bottom: 10px; }
-.moviePage p { margin-bottom: 10px; font-size: 18px; }
-.moviePage .ratings { margin:0px; float: left; }
-    .moviePage .ratings > .icon { clear: left; margin-left: 0; }
-    .moviePage .ratings > span { margin-bottom: 10px; }
-.moviePage .links { clear: left; }
-    .moviePage .links a:first-child { margin-right:20px; }
-.moviePage .mpaaRating { font-size: 24px; margin: 0; }
+.movieView img { float: left; margin-right: 10px; margin-bottom: 10px; }
+.movieView p { margin-bottom: 10px; font-size: 18px; }
+.movieView .ratings { margin:0px; float: left; }
+    .movieView .ratings > .icon { clear: left; margin-left: 0; }
+    .movieView .ratings > span { margin-bottom: 10px; }
+.movieView .links { clear: left; }
+    .movieView .links a:first-child { margin-right:20px; }
+.movieView .mpaaRating { font-size: 24px; margin: 0; }
 
 /* google places */
 .pac-item { font-size: 18px; padding: 5px; }

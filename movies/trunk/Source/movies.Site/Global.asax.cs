@@ -128,7 +128,13 @@ namespace movies
             routes.MapRoute(
                 "Home-Showtimes", // Route name
                 "showtimes", // URL with parameters
-                new { controller = "Home", action = "Showtimes" } // Parameter defaults
+                new { controller = "Home", action = "Index" } // Parameter defaults
+            );
+
+            routes.MapRoute(
+                "Home-Theater", // Route name
+                "theater/{zipCode}/{theaterId}", // URL with parameters
+                new { controller = "Home", action = "Index" } // Parameter defaults
             );
 
             routes.MapRoute(
@@ -211,6 +217,7 @@ namespace movies
             // mobileJsBundle.AddFile("~/scripts/plugins/lazyload/jquery.lazyload.min.js");
             mobileJsBundle.AddFile("~/externals/local-cache/local-cache.js");
             // mobileJsBundle.AddFile("~/scripts/codejkjk/codejkjk.movies.Mobile.js");
+            mobileJsBundle.AddFile("~/scripts/plugins/jquery.history.js");
             BundleTable.Bundles.Add(mobileJsBundle);
 
             var mobileCssBundle = new Bundle("~/mobile-css-bundle", new CssMinify());

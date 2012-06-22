@@ -21,6 +21,7 @@ span.divider { color: #CDCDCD; font-weight: normal; margin: 0 5px; }
 .rounded { border-radius: 5px; -moz-border-radius: 5px; -webkit-border-radius: 5px; }
 .rightArrow { border-top: 30px solid transparent; border-bottom: 30px solid transparent; border-left: 30px solid #C5D8E6; }
 div.loading { background: url('content/images/ajax-loader-blue-ribbon.gif') no-repeat center left; width: 16px; height: 16px; display:inline-block; }
+.placeholder { color: #6B696A; } /* for non-html5-compatable browsers, use this class in the salem.form.smartTextBox() function to make it function like html 5's placeholder attr */
 /* orig: second hex in glowing = #eee */
 .gradient { background: white; /* fallback */
             background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#ffffff), to(#e8e8e8)); 
@@ -124,7 +125,9 @@ header { background:#fff; }
     nav { padding: 12px 0 10px 0; width: 990px; margin: 0 auto; }
     nav > a { font-weight: bold; color: #fff; text-decoration: none; margin-right: 25px; text-shadow: 0 -1px 1px #2d62ae; font-size: 16px;}
     nav > a.selected { background: #4c95e4; padding: 12px 12px 11px 12px; text-shadow:none; }
-    nav > #q { margin-top:-8px; float: right; padding: 8px; outline: none; width: 282px; border: 1px solid #ccc; font-size: 14px; }    
+    nav > #q { float:right; margin-top:-8px; position: relative; }
+        nav > #q > input[type='text'] { padding: 8px; outline: none; width: 282px; border: 1px solid #ccc; font-size: 14px; }    
+        nav > #q > input[type='submit'] { cursor: pointer; border: none; color: transparent; font-size: 0; background: url('content/images/rt-sprite4.png') -128px -107px; width: 16px; height: 16px; display:inline-block; position: absolute; top: 9px; right: 10px; }
 
 #body { width: 996px; margin: 10px auto 0 auto; padding-top: 20px; }
 

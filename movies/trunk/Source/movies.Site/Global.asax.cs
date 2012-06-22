@@ -222,6 +222,7 @@ namespace movies
             var desktopJsBundle = new Bundle("~/desktop-js-bundle", new JsMinify());
             desktopJsBundle.AddFile("~/scripts/jquery-1.7.1.min.js");
             desktopJsBundle.AddFile("~/scripts/codejkjk/codejkjk.js");
+            desktopJsBundle.AddFile("~/scripts/codejkjk/codejkjk.siteActions.js");
             desktopJsBundle.AddFile("~/scripts/codejkjk/codejkjk.movies.Defaults.js");
             desktopJsBundle.AddFile("~/scripts/codejkjk/codejkjk.movies.Api.js");
             desktopJsBundle.AddFile("~/scripts/codejkjk/codejkjk.Geo.js");

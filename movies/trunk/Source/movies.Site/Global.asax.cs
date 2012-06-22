@@ -53,6 +53,12 @@ namespace movies
             );
 
             routes.MapRoute(
+                "Reports", // Route name
+                "reports", // URL with parameters
+                new { controller = "Report", action = "Index" } // Parameter defaults
+            );
+
+            routes.MapRoute(
                 "Home-AuthReviewer", // Route name
                 "auth-reviewer", // URL with parameters
                 new { controller = "Home", action = "AuthReviewer" } // Parameter defaults

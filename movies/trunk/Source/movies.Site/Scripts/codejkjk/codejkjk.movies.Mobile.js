@@ -1,6 +1,6 @@
 ﻿registerNS("codejkjk.movies.mobile");
 
-var theaterMovieBackUrl = "";
+var backUrl = "";
 
 codejkjk.movies.mobile = {
     // page elements
@@ -16,6 +16,7 @@ codejkjk.movies.mobile = {
         , CurrentTheater: function () { return $("#theater div[data-role='header'] h2"); }
         , CurrentTheaterMovie: function () { return $("#theatermovie div[data-role='header'] h2"); }
         , Movie: function () { return $("#movie div[data-role='content']"); }
+        , MovieBackLink: function () { return $("#movie div[data-role='header'] a"); }
         , nav: function () { return $("div[data-role='navbar']"); }
         , searchBox: function () { return $("#q"); }
         , ShowtimesHeader: function () { return $("#showtimes > #theaters div[data-role='header']"); }
@@ -124,6 +125,7 @@ codejkjk.movies.mobile = {
         // primary nav link?
         if (firstPath === "/" || (firstPath === "/redbox" && !paths[2])) {
             codejkjk.movies.mobile.showSection(firstPath);
+            backUrl = "/";
         }
         else if (firstPath === "/showtimes") {
             if (codejkjk.movies.mobile.currents.ZipCode()) {
@@ -148,16 +150,36 @@ codejkjk.movies.mobile = {
                         codejkjk.movies.mobile.controls.TheaterMovieTemplate().render(theater)
                     ).show().listview('refresh');
 
-                // set theaterMovieBackUrl
-                theaterMovieBackUrl = hash; // set back url to current url
+                // set backUrl
+                backUrl = "{0}/{1}/{2}".format(firstPath, zip, theaterId); // set back url to current url
 
                 $.mobile.hidePageLoadingMsg();
                 codejkjk.movies.mobile.showSection(firstPath);
             });
         }
         else if (firstPath === "/theatermovie") {
-            // /theatermovie/{movieSlug?}/{id}
+            // /theatermovie/{id}
+            $.mobile.showPageLoadingMsg();
+            var rtMovieId = paths[2];
 
+            // load single theater movie
+            codejkjk.movies.Api.GetMovieMobileHtml(rtMovieId, function (html) {
+                // slight hack. the html is prefexed with {movieName}^, then the html
+                var movieName = $.trim(html.split('^')[0]);
+                var htmlStr = $.trim(html.split('^')[1]);
+                codejkjk.movies.mobile.controls.CurrentTheaterMovie().html(movieName); // set theater movie name in header
+                codejkjk.movies.mobile.controls.TheaterMovie().html(htmlStr);
+
+                // show back link?
+                if (backUrl) {
+                    codejkjk.movies.mobile.controls.TheaterMovieBackLink().attr("href", backUrl).show();
+                } else {
+                    codejkjk.movies.mobile.controls.TheaterMovieBackLink().hide();
+                }
+
+                $.mobile.hidePageLoadingMsg();
+                codejkjk.movies.mobile.showSection(firstPath);
+            });
         }
         else {
             // /hunger-games/9999888768 (need TODO: redbox movie)
@@ -171,6 +193,13 @@ codejkjk.movies.mobile = {
                 var htmlStr = $.trim(html.split('^')[1]);
                 codejkjk.movies.mobile.controls.CurrentMovie().html(movieName); // set movie name in header, NEED???
                 codejkjk.movies.mobile.controls.Movie().html(htmlStr);
+
+                // show back link?
+                if (backUrl) {
+                    codejkjk.movies.mobile.controls.MovieBackLink().attr("href", backUrl).show();
+                } else {
+                    codejkjk.movies.mobile.controls.MovieBackLink().hide();
+                }
 
                 $.mobile.hidePageLoadingMsg();
                 codejkjk.movies.mobile.showSection("movie");
@@ -249,48 +278,48 @@ codejkjk.movies.mobile = {
                 //                        codejkjk.movies.mobile.controls.TheaterMovieTemplate().render(theater)
                 //                    ).show().listview('refresh');
 
-                //                    // set theaterMovieBackUrl
-                //                    theaterMovieBackUrl = hash; // set back url to current url
+                //                    // set backUrl
+                //                    backUrl = hash; // set back url to current url
 
                 //                    $.mobile.hidePageLoadingMsg();
                 //                });
                 break;
             case "#movie": // #movie?rtMovieId (used to be location.pathname = /marvels-the-avengers/770740154)
-//                $.mobile.showPageLoadingMsg();
-//                var rtMovieId = hash.split('?')[1];
+                //                $.mobile.showPageLoadingMsg();
+                //                var rtMovieId = hash.split('?')[1];
 
-//                // load single movie
-//                codejkjk.movies.Api.GetMovieMobileHtml(rtMovieId, function (html) {
-//                    // slight hack. the html is prefexed with {movieName}^, then the html
-//                    var movieName = $.trim(html.split('^')[0]);
-//                    var htmlStr = $.trim(html.split('^')[1]);
-//                    codejkjk.movies.mobile.controls.CurrentMovie().html(movieName); // set movie name in header, NEED???
-//                    codejkjk.movies.mobile.controls.Movie().html(htmlStr);
+                //                // load single movie
+                //                codejkjk.movies.Api.GetMovieMobileHtml(rtMovieId, function (html) {
+                //                    // slight hack. the html is prefexed with {movieName}^, then the html
+                //                    var movieName = $.trim(html.split('^')[0]);
+                //                    var htmlStr = $.trim(html.split('^')[1]);
+                //                    codejkjk.movies.mobile.controls.CurrentMovie().html(movieName); // set movie name in header, NEED???
+                //                    codejkjk.movies.mobile.controls.Movie().html(htmlStr);
 
-//                    $.mobile.hidePageLoadingMsg();
-//                });
+                //                    $.mobile.hidePageLoadingMsg();
+                //                });
                 break;
             case "#theatermovie": // #theatermovie?{rtMovieId}
-                $.mobile.showPageLoadingMsg();
-                var rtMovieId = hash.split('?')[1];
+                //                $.mobile.showPageLoadingMsg();
+                //                var rtMovieId = hash.split('?')[1];
 
-                // load single theater movie
-                codejkjk.movies.Api.GetMovieMobileHtml(rtMovieId, function (html) {
-                    // slight hack. the html is prefexed with {movieName}^, then the html
-                    var movieName = $.trim(html.split('^')[0]);
-                    var htmlStr = $.trim(html.split('^')[1]);
-                    codejkjk.movies.mobile.controls.CurrentTheaterMovie().html(movieName); // set theater movie name in header
-                    codejkjk.movies.mobile.controls.TheaterMovie().html(htmlStr);
+                //                // load single theater movie
+                //                codejkjk.movies.Api.GetMovieMobileHtml(rtMovieId, function (html) {
+                //                    // slight hack. the html is prefexed with {movieName}^, then the html
+                //                    var movieName = $.trim(html.split('^')[0]);
+                //                    var htmlStr = $.trim(html.split('^')[1]);
+                //                    codejkjk.movies.mobile.controls.CurrentTheaterMovie().html(movieName); // set theater movie name in header
+                //                    codejkjk.movies.mobile.controls.TheaterMovie().html(htmlStr);
 
-                    // show back link?
-                    if (theaterMovieBackUrl) {
-                        codejkjk.movies.mobile.controls.TheaterMovieBackLink().attr("href", theaterMovieBackUrl).show();
-                    } else {
-                        codejkjk.movies.mobile.controls.TheaterMovieBackLink().hide();
-                    }
+                //                    // show back link?
+                //                    if (backUrl) {
+                //                        codejkjk.movies.mobile.controls.TheaterMovieBackLink().attr("href", backUrl).show();
+                //                    } else {
+                //                        codejkjk.movies.mobile.controls.TheaterMovieBackLink().hide();
+                //                    }
 
-                    $.mobile.hidePageLoadingMsg();
-                });
+                //                    $.mobile.hidePageLoadingMsg();
+                //                });
                 break;
         }
 

@@ -12,7 +12,7 @@
 <input type="hidden" id="currentShowtimeDay" />
 <input type="hidden" id="currentMovieId" />
 
-<div data-role="page">
+<div data-role="page" id="onlyPage">
     @{ Html.RenderPartial("PageHeader", new PageHeader { ActiveMenu = Enumerations.MobileMenuItems.whatsHot, PrefetchLinks = Model.PrefetchLinks, UseAjaxForLinks = Model.UseAjaxForLinks }); }
     @* *** What's Hot *** *@
     <section id="whatsHot" data-navitemurl="/">

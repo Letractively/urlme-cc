@@ -126,8 +126,8 @@ header { background:#fff; }
     nav > a { font-weight: bold; color: #fff; text-decoration: none; margin-right: 25px; text-shadow: 0 -1px 1px #2d62ae; font-size: 16px;}
     nav > a.selected { background: #4c95e4; padding: 12px 12px 11px 12px; text-shadow:none; }
     nav > #q { float:right; margin-top:-8px; position: relative; }
-        nav > #q > input[type='text'] { padding: 8px; outline: none; width: 282px; border: 1px solid #ccc; font-size: 14px; }    
-        nav > #q > input[type='submit'] { cursor: default; border: none; color: transparent; font-size: 0; background: url('content/images/rt-sprite4.png') -128px -107px; width: 16px; height: 16px; display:inline-block; position: absolute; top: 9px; right: 10px; }
+        nav > #q > input[type='text'] { padding: 8px; outline: none; width: 282px; border: 1px solid #ccc; font-size: 14px; }
+        nav > #q > input[type='submit'] { cursor: default; border: none; color: transparent; font-size: 0; background: url('content/images/rt-sprite4.png') -106px -107px; width: 18px; height: 18px; display: inline-block; position: absolute; top: 9px; right: 10px; opacity: 0.4; }
 
 #body { width: 996px; margin: 10px auto 0 auto; padding-top: 20px; }
 

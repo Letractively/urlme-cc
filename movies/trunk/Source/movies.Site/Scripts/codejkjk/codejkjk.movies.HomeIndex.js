@@ -59,7 +59,7 @@ codejkjk.movies.desktop = {
         , RedboxLocationChooser: function () { return $("#redboxLocationChooser"); }
         , RemoveLinks: function () { return $(".actions").find(".removeLink"); }
         , RedboxZipCodeInput: function () { return $("#redboxZip"); }
-        , SearchBox: function () { return $("#q > input[type='textbox']"); }
+        , SearchBox: function () { return $("#q > input[type='text']"); }
         , SearchRedboxZipCodeButton: function () { return $("#redboxZip").next("button"); }
         , SearchResultsView: function () { return $("#searchResultsView"); }
         , SeeNearbyRedboxesSelector: function () { return "#seeNearbyRedboxes"; }

@@ -541,12 +541,14 @@ codejkjk.movies.desktop = {
                     codejkjk.movies.desktop.controls.MovieDetailsPopup().html(html);
                     FB.XFBML.parse();
                     codejkjk.movies.desktop.InitZeroClipboard();
+                    if (typeof refreshAdmin === "function") { refreshAdmin(); }
                 });
             }
         } else {
             // movie details are already in dom, so just init zeroclipboard b/c it's ready to go
             codejkjk.movies.desktop.controls.MovieDetailsPopup().show();
             codejkjk.movies.desktop.InitZeroClipboard();
+            if (typeof refreshAdmin === "function") { refreshAdmin(); }
         }
     },
 

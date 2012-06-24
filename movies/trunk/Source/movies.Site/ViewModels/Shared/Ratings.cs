@@ -10,5 +10,6 @@ namespace movies.Site.ViewModels.Shared
     {
         public Enumerations.RatingSizes RatingSize { get; set; }
         public Model.Movie Movie { get; set; }
+        public bool ShowSion { get; set; }
     }
 }

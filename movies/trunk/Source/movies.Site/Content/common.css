@@ -6,7 +6,7 @@
 .ourReview.medium .orNot { background-position: -168px -5px; }
 
 /* rt & imdb icons */
-.rottenTomato,.imdb { background: url("content/images/rt-sprite4.png") no-repeat scroll left center transparent; }
+.rottenTomato,.imdb,.sion { background: url("content/images/rt-sprite4.png") no-repeat scroll left center transparent; }
 
 .ratings { margin-top:10px; font-weight: bold; overflow:auto; }
 .ratings span { float: left; display:inline-block; }
@@ -41,3 +41,6 @@
 .ratings.smaller .icon.rottenTomato[data-rtratingtitle*="Rotten"] { background-position: -273px -144px; }
 .ratings.smaller .icon.rottenTomato[data-rtratingtitle*="Upright"] { background-position: -289px -145px; }
 .ratings.smaller .icon.rottenTomato[data-rtratingtitle*="Spilled"] { background-position: -209px -144px; }
+.ratings.smaller .icon.sion { width: 12px; height: 15px; }
+.ratings.smaller .icon.sion.seeIt { background-position: -212px -160px; }
+.ratings.smaller .icon.sion.orNot { background-position: -200px -160px; }

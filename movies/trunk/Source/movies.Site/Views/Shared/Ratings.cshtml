@@ -9,4 +9,10 @@
     @if (isDesktop) {<text><a style="display:none;" href="@this.Model.Movie.IMDbMovieUrl"></text>}
         <span class='imdb icon' style="display:none;"></span><span style="display:none;" class="text">@this.Model.Movie.IMDbRating</span>
     @this.Html.Raw(isDesktop ? "</a>" : "")
+    @if (Model.ShowSion && Model.Movie.Review != null)
+    {
+        if (isDesktop) {<text><a class="movieDetailsLink" href="~/@Model.Movie.MovieSlug"></text>}
+        <span title="Click to see review from John Hanlon" class="sion icon @Model.Movie.Review.ClassName"></span>
+        if (isDesktop) {<text>@Html.Raw("</a>")</text>}
+    }
 </p>

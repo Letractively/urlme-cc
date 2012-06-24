@@ -13,14 +13,11 @@
       <Column Name="CreateDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
     </Type>
   </Table>
-  <Table Name="ihdavis.UserRole" Member="UserRoles">
-    <Type Name="UserRole">
-      <Column Name="UserRoleId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="UserId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="RoleId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+  <Table Name="ihdavis2.MovieReviewBlockSeeIt" Member="MovieReviewBlockSeeIts">
+    <Type Name="MovieReviewBlockSeeIt">
+      <Column Name="MovieId" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="Title" Type="System.String" DbType="NVarChar(250) NOT NULL" CanBeNull="false" />
       <Column Name="CreateDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
-      <Association Name="Role_UserRole" Member="Role" ThisKey="RoleId" OtherKey="RoleId" Type="Role" IsForeignKey="true" />
-      <Association Name="User_UserRole" Member="User" ThisKey="UserId" OtherKey="UserId" Type="User" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="ihdavis.List" Member="Lists">
@@ -45,9 +42,14 @@
       <Association Name="List_ListItem" Member="List" ThisKey="ListId" OtherKey="ListId" Type="List" IsForeignKey="true" />
     </Type>
   </Table>
-  <Table Name="ihdavis.Movie" Member="Movies">
-    <Type Name="Movie">
+  <Table Name="ihdavis.MovieReview" Member="MovieReviews">
+    <Type Name="MovieReview">
       <Column Name="MovieId" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Title" Type="System.String" DbType="NVarChar(250) NOT NULL" CanBeNull="false" />
+      <Column Name="Year" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="ThumbnailPosterUrl" Type="System.String" DbType="NVarChar(250)" CanBeNull="true" />
+      <Column Name="ProfilePosterUrl" Type="System.String" DbType="NVarChar(250)" CanBeNull="true" />
+      <Column Name="DetailedPosterUrl" Type="System.String" DbType="NVarChar(250)" CanBeNull="true" />
       <Column Name="Review" Type="System.String" DbType="NVarChar(140) NOT NULL" CanBeNull="false" />
       <Column Name="ReviewClass" Type="System.String" DbType="NVarChar(10) NOT NULL" CanBeNull="false" />
       <Column Name="ReviewUrl" Type="System.String" DbType="NVarChar(250) NOT NULL" CanBeNull="false" />
@@ -103,8 +105,18 @@
       <Column Name="FacebookUserId" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="AdminInd" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
       <Column Name="CreateDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
-      <Association Name="User_UserRole" Member="UserRoles" ThisKey="UserId" OtherKey="UserId" Type="UserRole" />
       <Association Name="User_List" Member="Lists" ThisKey="UserId" OtherKey="UserId" Type="List" />
+      <Association Name="User_UserRole" Member="UserRoles" ThisKey="UserId" OtherKey="UserId" Type="UserRole" />
+    </Type>
+  </Table>
+  <Table Name="ihdavis.UserRole" Member="UserRoles">
+    <Type Name="UserRole">
+      <Column Name="UserRoleId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="UserId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="RoleId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="CreateDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Association Name="Role_UserRole" Member="Role" ThisKey="RoleId" OtherKey="RoleId" Type="Role" IsForeignKey="true" />
+      <Association Name="User_UserRole" Member="User" ThisKey="UserId" OtherKey="UserId" Type="User" IsForeignKey="true" />
     </Type>
   </Table>
 </Database>

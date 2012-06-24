@@ -15,7 +15,12 @@
                     if (rt.Review) {
                         editForm.find("[name='url']").val(rt.Review.Url);
                         editForm.find("[name='text']").val(rt.Review.Text);
-                        editForm.find("[name='url']").val(rt.Review.Url);
+                        editForm.find("[name='title']").val(rt.title);
+                        editForm.find("[name='year']").val(rt.year);
+                        editForm.find("[name='thumbnailPosterUrl']").val(rt.posters.thumbnail);
+                        editForm.find("[name='profilePosterUrl']").val(rt.posters.profile);
+                        editForm.find("[name='detailedPosterUrl']").val(rt.posters.detailed);
+
                         if (rt.Review.ClassName == "orNot") {
                             editForm.find("[name='seeIt']").trigger('click');
                         }
@@ -30,7 +35,7 @@
     });
 
     if (!$("#editForm").length) {
-        var editFormHtml = "<form id='editForm' title='Edit Review'><p></p><input type='hidden' name='movieId' /><div><textarea name='text' maxlength='140' placeholder='Enter review...'></textarea></div><div><input class='iPhoneCheckBox' checked='checked' type='checkbox' name='seeIt' /></div><div><input type='text' name='url' placeholder='Enter Read More url...' /></div></form>";
+        var editFormHtml = "<form id='editForm' title='Edit Review'><p></p><input type='hidden' name='movieId' /><input type='hidden' name='title' /><input type='hidden' name='year' /><input type='hidden' name='thumbnailPosterUrl' /><input type='hidden' name='profilePosterUrl' /><input type='hidden' name='detailedPosterUrl' /><div><textarea name='text' maxlength='140' placeholder='Enter review...'></textarea></div><div><input class='iPhoneCheckBox' checked='checked' type='checkbox' name='seeIt' /></div><div><input type='text' name='url' placeholder='Enter Read More url...' /></div></form>";
         $("body").append(editFormHtml);
         $(".iPhoneCheckBox").iphoneStyle({
             checkedLabel: "See It",
@@ -49,9 +54,14 @@
                     data.facebookUserId = facebookUserId;
                     data.movieReview = {
                         movieId: form.find("[name='movieId']").val(),
-                        text: form.find("[name='text']").val(),
+                        text: $.trim(form.find("[name='text']").val()),
                         className: form.find("[name='seeIt']").is(":checked") ? "seeIt" : "orNot",
-                        url: readMoreUrl
+                        url: $.trim(readMoreUrl),
+                        title: form.find("[name='title']").val(),
+                        year: form.find("[name='year']").val(),
+                        thumbnailPosterUrl: form.find("[name='thumbnailPosterUrl']").val(),
+                        profilePosterUrl: form.find("[name='profilePosterUrl']").val(),
+                        detailedPosterUrl: form.find("[name='detailedPosterUrl']").val()
                     };
                     $.ajax({
                         url: '@Url.Content("~/moviereview/save")',

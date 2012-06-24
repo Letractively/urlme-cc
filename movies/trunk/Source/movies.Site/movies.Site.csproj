@@ -41,9 +41,6 @@
       <Private>True</Private>
       <HintPath>..\Solutions\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
     </Reference>
-    <Reference Include="Newtonsoft.Json">
-      <HintPath>..\Solutions\packages\Newtonsoft.Json.4.0.3\lib\net40\Newtonsoft.Json.dll</HintPath>
-    </Reference>
     <Reference Include="System.Web.Helpers" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />

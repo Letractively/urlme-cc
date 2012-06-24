@@ -18,7 +18,7 @@
             </p>
             @if (movie.IsReleased)
             {
-                this.Html.RenderPartial("Ratings", new movies.Site.ViewModels.Shared.Ratings { Movie = movie, RatingSize = Enumerations.RatingSizes.smaller });
+                this.Html.RenderPartial("Ratings", new movies.Site.ViewModels.Shared.Ratings { Movie = movie, RatingSize = Enumerations.RatingSizes.smaller, ShowSion = true });
             }
             else
             {
@@ -28,13 +28,3 @@
     </div>    
 }
 </div>
-
-
-
-
-
-
-
-
-
-

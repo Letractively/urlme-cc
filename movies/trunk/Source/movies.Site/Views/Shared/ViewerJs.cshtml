@@ -4,9 +4,9 @@
     $(".movie").css("position","relative").each(function(i, movie) {
         movie = $(movie);
         if (!movie.find(".admin").length) {
-            movie.prepend("<button class=\"edit\">Edit</button>");
-            movie.find("button.edit").click(function() {
-                var movieId = movie.find("a:first").attr("href");
+            movie.prepend("<a class=\"button edit\">Edit</a>");
+            movie.find("a.edit").click(function() {
+                var movieId = movie.find("a.movieDetailsLink:first").attr("href");
                 movieId = movieId.substring(movieId.lastIndexOf("/") + 1);
                 codejkjk.movies.Api.GetRottenTomatoesMovie(movieId, function(rt) {
                     var editForm = $("#editForm");

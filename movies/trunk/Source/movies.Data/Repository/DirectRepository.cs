@@ -45,7 +45,12 @@ namespace movies.Data.Repository
                     dbMovie.Review = movie.Review;
                     dbMovie.ReviewClass = movie.ReviewClass;
                     dbMovie.ReviewUrl = movie.ReviewUrl;
-
+                    dbMovie.Title = movie.Title;
+                    dbMovie.Year = movie.Year;
+                    dbMovie.DetailedPosterUrl = movie.DetailedPosterUrl;
+                    dbMovie.ProfilePosterUrl = movie.ProfilePosterUrl;
+                    dbMovie.ThumbnailPosterUrl = movie.ThumbnailPosterUrl;
+                    
                     context.SubmitChanges(ConflictMode.FailOnFirstConflict);
                 }
             }

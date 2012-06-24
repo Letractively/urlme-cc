@@ -1,41 +1,25 @@
 ﻿@model movies.Site.ViewModels.Shared.ViewerJs
 <script type="text/javascript">
     var facebookUserId = @Model.FacebookUserId;
-    $(".movie").css("position","relative").each(function(i, movie) {
-        movie = $(movie);
-        if (!movie.find(".admin").length) {
-            movie.prepend("<a class=\"button edit\">Edit</a>");
-            movie.find("a.edit").click(function() {
-                var movieId = movie.find("a.movieDetailsLink:first").attr("href");
-                movieId = movieId.substring(movieId.lastIndexOf("/") + 1);
-                codejkjk.movies.Api.GetRottenTomatoesMovie(movieId, function(rt) {
-                    var editForm = $("#editForm");
-                    editForm.find("p").text(rt.title);
-                    editForm.find("[name='movieId']").val(rt.id);
-                    if (rt.Review) {
-                        editForm.find("[name='url']").val(rt.Review.Url);
-                        editForm.find("[name='text']").val(rt.Review.Text);
-                        editForm.find("[name='title']").val(rt.title);
-                        editForm.find("[name='year']").val(rt.year);
-                        editForm.find("[name='thumbnailPosterUrl']").val(rt.posters.thumbnail);
-                        editForm.find("[name='profilePosterUrl']").val(rt.posters.profile);
-                        editForm.find("[name='detailedPosterUrl']").val(rt.posters.detailed);
-
-                        if (rt.Review.ClassName == "orNot") {
-                            editForm.find("[name='seeIt']").trigger('click');
-                        }
-                    } else {
-                        editForm.find("[name='url']").val("http://johnhanlonreviews.com");
-                    }
-                    
-                    editForm.dialog("open");
-                });
-            });
+    
+    function refreshAdmin() {
+        console.log("refreshing");
+        $(".movie").css("position","relative").each(function(i, movie) {
+            movie = $(movie);
+            if (!movie.find(".admin").length) {
+                movie.prepend("<a class=\"button edit\">Edit</a>");
+            }
+        });
+        var overlay = $("#movieDetailsPopup");
+        if (overlay.is(":visible") && !overlay.find("a.edit").length) {
+            overlay.append("<a class=\"button edit\">Edit</a>");
         }
-    });
+    }
+    refreshAdmin();
 
+    // add edit form if it does not exist already in dom
     if (!$("#editForm").length) {
-        var editFormHtml = "<form id='editForm' title='Edit Review'><p></p><input type='hidden' name='movieId' /><input type='hidden' name='title' /><input type='hidden' name='year' /><input type='hidden' name='thumbnailPosterUrl' /><input type='hidden' name='profilePosterUrl' /><input type='hidden' name='detailedPosterUrl' /><div><textarea name='text' maxlength='140' placeholder='Enter review...'></textarea></div><div><input class='iPhoneCheckBox' checked='checked' type='checkbox' name='seeIt' /></div><div><input type='text' name='url' placeholder='Enter Read More url...' /></div></form>";
+        var editFormHtml = "<form id='editForm' title='Edit Review'><p></p><input type='hidden' name='movieId' /><input type='hidden' name='mpaaRating' /><input type='hidden' name='title' /><input type='hidden' name='year' /><input type='hidden' name='thumbnailPosterUrl' /><input type='hidden' name='profilePosterUrl' /><input type='hidden' name='detailedPosterUrl' /><div><textarea name='text' maxlength='140' placeholder='Enter review...'></textarea></div><div><input class='iPhoneCheckBox' checked='checked' type='checkbox' name='seeIt' /></div><div><input type='text' name='url' placeholder='Enter Read More url...' /></div></form>";
         $("body").append(editFormHtml);
         $(".iPhoneCheckBox").iphoneStyle({
             checkedLabel: "See It",
@@ -52,6 +36,7 @@
                     var data = {};
                     var readMoreUrl = form.find("[name='url']").val() || "http://johnhanlonreviews.com";
                     data.facebookUserId = facebookUserId;
+                    data.mpaaRating = form.find("[name='mpaaRating']").val();
                     data.movieReview = {
                         movieId: form.find("[name='movieId']").val(),
                         text: $.trim(form.find("[name='text']").val()),
@@ -123,4 +108,34 @@
             }
         });
     }
+
+    // handle clicks for current and future a.edit links
+    $(document).on('click','a.edit', function(e) {
+        e.preventDefault();
+        var movieId = movie.find("a.movieDetailsLink:first").attr("href");
+        movieId = movieId.substring(movieId.lastIndexOf("/") + 1);
+        codejkjk.movies.Api.GetRottenTomatoesMovie(movieId, function(rt) {
+            var editForm = $("#editForm");
+            editForm.find("p").text(rt.title);
+            editForm.find("[name='movieId']").val(rt.id);
+            if (rt.Review) {
+                editForm.find("[name='url']").val(rt.Review.Url);
+                editForm.find("[name='text']").val(rt.Review.Text);
+                editForm.find("[name='title']").val(rt.title);
+                editForm.find("[name='year']").val(rt.year);
+                editForm.find("[name='thumbnailPosterUrl']").val(rt.posters.thumbnail);
+                editForm.find("[name='profilePosterUrl']").val(rt.posters.profile);
+                editForm.find("[name='detailedPosterUrl']").val(rt.posters.detailed);
+                editForm.find("[name='mpaaRating']").val(rt.mpaa_rating);
+
+                if (rt.Review.ClassName == "orNot") {
+                    editForm.find("[name='seeIt']").trigger('click');
+                }
+            } else {
+                editForm.find("[name='url']").val("http://johnhanlonreviews.com");
+            }
+                    
+            editForm.dialog("open");
+        });
+    });
 </script>

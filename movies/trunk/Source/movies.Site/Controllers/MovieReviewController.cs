@@ -11,7 +11,7 @@ namespace movies.Site.Controllers
     public class MovieReviewController : Controller
     {
         [HttpPost]
-        public JsonResult Save(int facebookUserId, Data.DomainModels.MovieReview movieReview)
+        public JsonResult Save(int facebookUserId, string mpaaRating, Data.DomainModels.MovieReview movieReview)
         {
             if (!Data.DomainModels.User.IsReviewer(facebookUserId))
             {

@@ -1,0 +1,32 @@
+﻿@model movies.Site.ViewModels.ViewModelBase
+
+@{
+    ViewBag.Title = "Reviews";
+}
+
+@section ExtraHeadContent {
+    <script type="text/javascript">
+        // TODO: figure out how movie overlay will work for this page
+        var baseUrl = '@this.Url.Content("~/")';
+    </script>
+    <script src="~/scripts/codejkjk/codejkjk.movies.HomeIndex.js"></script>
+    <script src="~/scripts/plugins/lazyload/jquery.lazyload.min.js"></script>
+}
+
+@section Nav {
+    <div class="navBar blueGradient bottomShadow">
+        <nav>
+            <a href="~/" class="noPush">What's Hot</a>
+            <a href="~/showtimes" class="noPush">Showtimes</a>
+            <a href="~/comingsoon" class="noPush">Coming Soon</a>
+            @*<a href="~/redbox">Redbox</a>*@            
+            <a href="~/reviews" class="noPush">Reviews</a>
+            <a href="~/about" class="noPush">About</a>
+            <div id="q"><input class="rounded" type="text" placeholder="Enter movie title, e.g., The Avengers" /><input type='submit' /></div>
+        </nav>
+    </div>@*end: navBar*@
+}
+
+<div id="body">
+    Reviews coming soon...
+</div>

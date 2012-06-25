@@ -192,6 +192,11 @@ codejkjk.movies.desktop = {
             return;
         }
 
+        // check for static pages, in which case do nothing (let them render as-is)
+        if (firstPath === "/about" || firstPath === "/reviews") {
+            return;
+        }
+
         // primary nav link?
         if (firstPath === "/" || firstPath === "/comingsoon" || (firstPath === "/redbox" && !paths[2])) {
             codejkjk.movies.desktop.showSection(firstPath);

@@ -13,24 +13,21 @@
     <script src="~/scripts/plugins/lazyload/jquery.lazyload.min.js"></script>
 }
 
-@*<div id="container">*@
-<header class="group">
-    <div id="headerContent" class="group">
-        <a id="logo" class="logo" href="~/"></a>
-        <div style="position: absolute; top: 74px; display:none;">because .com was $9,000</div>
-        <div id="fbLikeContainer"><div class="fb-like" data-href="http://www.facebook.com/SeeItOrNot" data-send="false" data-layout="button_count" data-width="75" data-show-faces="false" data-font="arial"></div></div>
-    </div>
-</header>
-<div class="navBar blueGradient bottomShadow">
-    <nav>
-        <a href="~/">What's Hot</a>
-        <a href="~/showtimes">Showtimes</a>
-        <a href="~/comingsoon">Coming Soon</a>
-        @*<a href="~/redbox">Redbox</a>*@            
-        <div id="q"><input class="rounded" type="text" placeholder="Enter movie title, e.g., The Avengers" /><input type='submit' /></div>
-    </nav>
-</div>@*end: navBar*@
-<div id="body" class="rounded">
+@section Nav {
+    <div class="navBar blueGradient bottomShadow">
+        <nav>
+            <a href="~/">What's Hot</a>
+            <a href="~/showtimes">Showtimes</a>
+            <a href="~/comingsoon">Coming Soon</a>
+            @*<a href="~/redbox">Redbox</a>*@            
+            <a href="~/reviews" class="noPush">Reviews</a>
+            <a href="~/about" class="noPush">About</a>
+            <div id="q"><input class="rounded" type="text" placeholder="Enter movie title, e.g., The Avengers" /><input type='submit' /></div>
+        </nav>
+    </div>@*end: navBar*@
+}
+
+<div id="body">
     <!-- WHAT'S HOT -->
     <section id="whatsHotView" class="content" data-navitemtext="What's Hot">
         <h2 class="rounded glowing">Top Box Office</h2>

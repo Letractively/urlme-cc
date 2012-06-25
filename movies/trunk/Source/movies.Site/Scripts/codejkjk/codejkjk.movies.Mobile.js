@@ -135,6 +135,7 @@ codejkjk.movies.mobile = {
                 // no zipcode, so show options (user can specify zip or use current location)
                 codejkjk.movies.mobile.controls.ShowtimesOptions().show();
             }
+            codejkjk.movies.mobile.showSection(firstPath);
         }
         else if (firstPath === "/theater") {
             // /theater/{zipCode}/{id}

@@ -16,13 +16,31 @@ namespace movies.Data.Repository
             }
         }
 
-        public bool MovieSave(Data.MovieReview movie, bool requiresApproval)
+        public bool MovieReviewIsOnSeeItWhiteList(int movieId)
+        {
+            using (var context = CreateContext())
+            {
+                return context.MovieReviewSeeItWhiteLists.FirstOrDefault(x => x.MovieId == movieId) != null;
+            }
+        }
+
+        public bool MovieReviewIsOnSeeItBlackList(int movieId)
+        {
+            using (var context = CreateContext())
+            {
+                return context.MovieReviewSeeItBlackLists.FirstOrDefault(x => x.MovieId == movieId) != null;
+            }
+        }
+        
+        public bool MovieReviewSave(Data.MovieReview movie, bool requiresApproval)
         {
             try
             {
                 using (var context = CreateContext(true))
                 {
                     var dbMovie = context.MovieReviews.FirstOrDefault(x => x.MovieId == movie.MovieId);
+                    bool onSeeItBlackList = context.MovieReviewSeeItBlackLists.FirstOrDefault(x => x.MovieId == movie.MovieId) != null;
+                    bool onSeeItWhiteList = context.MovieReviewSeeItWhiteLists.FirstOrDefault(x => x.MovieId == movie.MovieId) != null;
 
                     if (dbMovie == null)
                     {
@@ -31,27 +49,9 @@ namespace movies.Data.Repository
                         {
                             CreateDate = DateTime.Now,
                             ModifyDate = null,
-                            MovieId = movie.MovieId
+                            MovieId = movie.MovieId,
+                            Status = Enumerations.MovieReviewStatus.Pending.ToString() // to figure out after this if/else
                         };
-                        bool onSeeItBlackList = context.MovieReviewSeeItBlackLists.FirstOrDefault(x => x.MovieId == movie.MovieId) != null;
-                        bool onSeeItWhiteList = context.MovieReviewSeeItWhiteLists.FirstOrDefault(x => x.MovieId == movie.MovieId) != null;
-
-                        if (onSeeItBlackList && movie.ReviewClass == "seeIt") // if on seeItBlackList and it's marked as "seeIt", then DISAPPROVED
-                        {
-                            dbMovie.Status = Enumerations.MovieReviewStatus.Disapproved.ToString();
-                        }
-                        else if (onSeeItWhiteList)
-                        {
-                            dbMovie.Status = Enumerations.MovieReviewStatus.Approved.ToString();
-                        }
-                        else if (requiresApproval && movie.ReviewClass == "seeIt")
-                        {
-                            dbMovie.Status = Enumerations.MovieReviewStatus.Pending.ToString();
-                        }
-                        else
-                        {
-                            dbMovie.Status = Enumerations.MovieReviewStatus.Approved.ToString();
-                        }
 
                         context.MovieReviews.InsertOnSubmit(dbMovie);
                     }
@@ -59,7 +59,25 @@ namespace movies.Data.Repository
                     {
                         // UPDATE (b/c it already exists)
                         dbMovie.ModifyDate = DateTime.Now;
-                        // leave status as-is
+                    }
+
+                    // determine status
+                    if (dbMovie.Status == Enumerations.MovieReviewStatus.Approved.ToString())
+                    {
+                        // leave as approved
+                    }
+                    else if (onSeeItBlackList && movie.ReviewClass == "seeIt") // if on seeItBlackList and it's marked as "seeIt", then DISAPPROVED
+                    {
+                        dbMovie.Status = Enumerations.MovieReviewStatus.Disapproved.ToString();
+                    }
+                    else if (!requiresApproval || onSeeItWhiteList || (requiresApproval && movie.ReviewClass == "orNot"))
+                    {
+                        dbMovie.Status = Enumerations.MovieReviewStatus.NotRequired.ToString();
+                    }
+                    else if (requiresApproval && movie.ReviewClass == "seeIt")
+                    {
+                        dbMovie.Status = Enumerations.MovieReviewStatus.Pending.ToString();
+                        Core.Net.Mail.SendFromNoReply("ihdavis@gmail.com", "Ian Davis", "Pending reviews need your attention", "Latest is for " + movie.Title + ". Manage approvals here: http://seeitornot.co/admin");
                     }
 
                     dbMovie.Review = movie.Review;

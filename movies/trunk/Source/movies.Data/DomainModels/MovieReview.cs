@@ -16,6 +16,9 @@ namespace movies.Data.DomainModels
         public string ThumbnailPosterUrl { get; set; }
         public string ProfilePosterUrl { get; set; }
         public string DetailedPosterUrl { get; set; }
+        public string OnSeeItWhiteList { get; set; }
+        public string OnSeeItBlackList { get; set; }
+        public string Status { get; set; }
 
         private static readonly Data.Repository.DirectRepository repo = new Repository.DirectRepository();
 
@@ -33,9 +36,9 @@ namespace movies.Data.DomainModels
                 DetailedPosterUrl = movieReview.DetailedPosterUrl
             };
 
-            bool requiresApproval = mpaaRating == "R" || mpaaRating.ToLower() == "unrated" || mpaaRating == "";
+            bool requiresApproval = mpaaRating.ToLower() == "r" || mpaaRating.ToLower() == "unrated" || mpaaRating == "";
 
-            return repo.MovieSave(dbMovie, requiresApproval);
+            return repo.MovieReviewSave(dbMovie, requiresApproval);
         }
 
         public static bool Delete(int movieId)
@@ -43,11 +46,21 @@ namespace movies.Data.DomainModels
             return repo.MovieDelete(movieId);
         }
 
-        public static MovieReview Get(int movieId, bool approvedOnly = false)
+        public static bool IsOnSeeItWhiteList(int movieId)
+        {
+            return repo.MovieReviewIsOnSeeItWhiteList(movieId);    
+        }
+
+        public static bool IsOnSeeItBlackList(int movieId)
+        {
+            return repo.MovieReviewIsOnSeeItWhiteList(movieId);
+        }
+
+        public static MovieReview Get(int movieId, bool approvedOnly = true)
         {
             var dbMovieReview = repo.MovieReviewGet(movieId);
 
-            if (dbMovieReview != null && approvedOnly && dbMovieReview.Status != movies.Data.Enumerations.MovieReviewStatus.Approved.ToString())
+            if (dbMovieReview != null && approvedOnly && dbMovieReview.Status != movies.Data.Enumerations.MovieReviewStatus.Approved.ToString() && dbMovieReview.Status != movies.Data.Enumerations.MovieReviewStatus.NotRequired.ToString())
             {
                 return null;    
             }
@@ -62,7 +75,8 @@ namespace movies.Data.DomainModels
                     ProfilePosterUrl = dbMovieReview.ProfilePosterUrl,
                     ThumbnailPosterUrl = dbMovieReview.ThumbnailPosterUrl,
                     Title = dbMovieReview.Title,
-                    Year = dbMovieReview.Year
+                    Year = dbMovieReview.Year,
+                    Status = dbMovieReview.Status
                 };
             }
             return null;

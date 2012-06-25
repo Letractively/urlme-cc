@@ -11,7 +11,8 @@ namespace movies.Data
         {
             Approved,
             Pending,
-            Disapproved
+            Disapproved,
+            NotRequired
         }
     }
 }

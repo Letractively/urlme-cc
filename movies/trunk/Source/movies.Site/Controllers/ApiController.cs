@@ -37,6 +37,51 @@ namespace movies.Site.Controllers
         }
 
         [HttpGet]
+        public JsonResult GetMovieReviewForReviewer(string rtMovieId)
+        {
+            var movie = Model.Movie.GetRottenTomatoesMovie(rtMovieId);
+            var review = Data.DomainModels.MovieReview.Get(int.Parse(rtMovieId), false);
+            string statusMsg = "";
+            if (review != null)
+            {
+                // existing, so just display what the current status is
+                statusMsg = "Approval: " + review.Status;
+            }
+            else // new review
+            {
+                bool isOnSeeItWhiteList = Data.DomainModels.MovieReview.IsOnSeeItWhiteList(int.Parse(rtMovieId));
+                bool isOnSeeItBlackList = Data.DomainModels.MovieReview.IsOnSeeItBlackList(int.Parse(rtMovieId));
+                bool requiresApproval = movie.mpaa_rating.ToLower() == "r" || movie.mpaa_rating.ToLower() == "unrated" || movie.mpaa_rating == "";
+                if (isOnSeeItBlackList)
+                {
+                    statusMsg = "Note: only a review of 'Or Not' is allowed for this movie.";
+                }
+                else if (isOnSeeItWhiteList)
+                {
+                    statusMsg = "Note: either 'See It' or 'Or Not' review will be automatically approved for this movie.";
+                }
+                else if (requiresApproval)
+                {
+                    statusMsg = "Note: due to either the synopsis or parental guide content of this movie, if marked as 'See It', this review will be submitted for approval.";
+                }
+                else
+                {
+                    statusMsg = "Note: either 'See It' or 'Or Not' review will be automatically approved for this movie.";
+                }
+            }
+
+            return this.Json(
+                new
+                {
+                    id = movie.id,
+                    title = movie.title,
+                    statusMsg = statusMsg,
+                    review = review == null ? null : new { Url = review.Url, Text = review.Text, ClassName = review.ClassName }
+                }
+                , JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpGet]
         public ActionResult GetAuthUserJs(int facebookUserId)
         {
             if (Data.DomainModels.User.IsReviewer(facebookUserId))
@@ -76,7 +121,7 @@ namespace movies.Site.Controllers
         public ActionResult GetRedboxMovieAvailHtml(string productId, string latitude, string longitude)
         {
             // var movies = Model.Redbox.GetStoresWithMovie(productId, latitude, longitude);
-                return null;
+            return null;
         }
 
         public ActionResult GetRedboxesHtml(string latitude, string longitude)
@@ -105,7 +150,7 @@ namespace movies.Site.Controllers
         {
             var postalCode = PostalCode.Get(date, zip);
             var filteredTheaters = new List<PostalCode.Theater>();
-            
+
             // add to filtered theater list
             foreach (var theater in postalCode.theaters)
             {

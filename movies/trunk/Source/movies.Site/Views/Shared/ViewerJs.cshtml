@@ -25,7 +25,7 @@
 
     // add edit form if it does not exist already in dom
     if (!$("#editForm").length) {
-        var editFormHtml = "<form id='editForm' title='Edit Review'><p></p><input type='hidden' name='movieId' /><input type='hidden' name='mpaaRating' /><input type='hidden' name='title' /><input type='hidden' name='year' /><input type='hidden' name='thumbnailPosterUrl' /><input type='hidden' name='profilePosterUrl' /><input type='hidden' name='detailedPosterUrl' /><div><textarea name='text' maxlength='140' placeholder='Enter review...'></textarea></div><div><input class='iPhoneCheckBox' checked='checked' type='checkbox' name='seeIt' /></div><div><input type='text' name='url' placeholder='Enter Read More url...' /></div></form>";
+        var editFormHtml = "<form id='editForm' title='Edit Review'><p></p><input type='hidden' name='movieId' /><div><textarea name='text' maxlength='140' placeholder='Enter review...'></textarea></div><div><input class='iPhoneCheckBox' checked='checked' type='checkbox' name='seeIt' /></div><div><input type='text' name='url' placeholder='Enter Read More url...' /></div><p></p></form>";
         $("body").append(editFormHtml);
         $(".iPhoneCheckBox").iphoneStyle({
             checkedLabel: "See It",
@@ -33,7 +33,7 @@
         });
         $("#editForm").dialog({
             autoOpen: false,
-            height: 300,
+            //height: 300,
             width: 300,
             modal: true,
             buttons: {
@@ -42,17 +42,11 @@
                     var data = {};
                     var readMoreUrl = form.find("[name='url']").val() || "http://johnhanlonreviews.com";
                     data.facebookUserId = facebookUserId;
-                    data.mpaaRating = form.find("[name='mpaaRating']").val();
                     data.movieReview = {
                         movieId: form.find("[name='movieId']").val(),
                         text: $.trim(form.find("[name='text']").val()),
                         className: form.find("[name='seeIt']").is(":checked") ? "seeIt" : "orNot",
-                        url: $.trim(readMoreUrl),
-                        title: form.find("[name='title']").val(),
-                        year: form.find("[name='year']").val(),
-                        thumbnailPosterUrl: form.find("[name='thumbnailPosterUrl']").val(),
-                        profilePosterUrl: form.find("[name='profilePosterUrl']").val(),
-                        detailedPosterUrl: form.find("[name='detailedPosterUrl']").val()
+                        url: $.trim(readMoreUrl)
                     };
                     $.ajax({
                         url: '@Url.Content("~/moviereview/save")',
@@ -119,21 +113,16 @@
     $(document).on('click','a.edit', function(e) {
         e.preventDefault();
         var movieId = $(this).attr("data-movieid");
-        codejkjk.movies.Api.GetRottenTomatoesMovie(movieId, function(rt) {
+        codejkjk.movies.Api.GetMovieReviewForReviewer(movieId, function(review) {
             var editForm = $("#editForm");
-            editForm.find("p").text(rt.title);
-            editForm.find("[name='movieId']").val(rt.id);
-            if (rt.Review) {
-                editForm.find("[name='url']").val(rt.Review.Url);
-                editForm.find("[name='text']").val(rt.Review.Text);
-                editForm.find("[name='title']").val(rt.title);
-                editForm.find("[name='year']").val(rt.year);
-                editForm.find("[name='thumbnailPosterUrl']").val(rt.posters.thumbnail);
-                editForm.find("[name='profilePosterUrl']").val(rt.posters.profile);
-                editForm.find("[name='detailedPosterUrl']").val(rt.posters.detailed);
-                editForm.find("[name='mpaaRating']").val(rt.mpaa_rating);
+            editForm.find("p:first").text(review.title);
+            editForm.find("p:last").text(review.statusMsg);
+            editForm.find("[name='movieId']").val(review.id);
+            if (review.review) {
+                editForm.find("[name='url']").val(review.review.Url);
+                editForm.find("[name='text']").val(review.review.Text);
 
-                if (rt.Review.ClassName == "orNot") {
+                if (review.review.ClassName == "orNot") {
                     editForm.find("[name='seeIt']").trigger('click');
                 }
             } else {

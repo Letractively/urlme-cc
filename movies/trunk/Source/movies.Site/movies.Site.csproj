@@ -73,6 +73,7 @@
   <ItemGroup>
     <Compile Include="Controllers\ApiController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
+    <Compile Include="Controllers\MailController.cs" />
     <Compile Include="Controllers\ReportController.cs" />
     <Compile Include="Controllers\MovieReviewController.cs" />
     <Compile Include="Controllers\HomeController.cs" />

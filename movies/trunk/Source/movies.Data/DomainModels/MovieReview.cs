@@ -19,7 +19,7 @@ namespace movies.Data.DomainModels
 
         private static readonly Data.Repository.DirectRepository repo = new Repository.DirectRepository();
 
-        public static bool Save(Data.DomainModels.MovieReview movieReview)
+        public static bool Save(Data.DomainModels.MovieReview movieReview, string mpaaRating)
         {
             Data.MovieReview dbMovie = new Data.MovieReview { 
                 Review = movieReview.Text,
@@ -32,7 +32,10 @@ namespace movies.Data.DomainModels
                 ProfilePosterUrl = movieReview.ProfilePosterUrl,
                 DetailedPosterUrl = movieReview.DetailedPosterUrl
             };
-            return repo.MovieSave(dbMovie);
+
+            bool requiresApproval = mpaaRating == "R" || mpaaRating.ToLower() == "unrated" || mpaaRating == "";
+
+            return repo.MovieSave(dbMovie, requiresApproval);
         }
 
         public static bool Delete(int movieId)
@@ -40,9 +43,15 @@ namespace movies.Data.DomainModels
             return repo.MovieDelete(movieId);
         }
 
-        public static MovieReview Get(int movieId)
+        public static MovieReview Get(int movieId, bool approvedOnly = false)
         {
-            var dbMovieReview = repo.MovieGet(movieId);
+            var dbMovieReview = repo.MovieReviewGet(movieId);
+
+            if (dbMovieReview != null && approvedOnly && dbMovieReview.Status != movies.Data.Enumerations.MovieReviewStatus.Approved.ToString())
+            {
+                return null;    
+            }
+
             if (dbMovieReview != null)
             {
                 return new MovieReview { 

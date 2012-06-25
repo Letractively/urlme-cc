@@ -7,8 +7,8 @@
 <div data-role="header">
     <input type="search" name="search" id="q" value="" placeholder="Search..."/>
     <div data-role="navbar">
-        <ul>
-            <li><a href="/" class="ui-btn-active ui-state-persist" @(Model.PrefetchLinks ? "data-prefetch" : "") data-ajax="@Model.UseAjaxForLinks.ToString().ToLower()">What's Hot</a></li>
+        <ul class="group">
+            <li><a class="selected" href="/" @(Model.PrefetchLinks ? "data-prefetch" : "") data-ajax="@Model.UseAjaxForLinks.ToString().ToLower()">What's Hot</a></li>
             <li><a href="/showtimes" @(Model.PrefetchLinks ? "data-prefetch" : "") data-ajax="@Model.UseAjaxForLinks.ToString().ToLower()">Showtimes</a></li>
         </ul>
     </div>

@@ -1,3 +1,13 @@
+.group:after {
+        visibility: hidden;
+        display: block;
+        content: "";
+        clear: both;
+        height: 0;
+        }
+* html .group { zoom: 1; } /* IE6 */
+*:first-child+html .group { zoom: 1; } /* IE7 */
+
 /* our review icons */
 .ourReview span { float: left; background: url("content/images/rt-sprite4.png"); display:inline-block; width: 16px; height: 20px; margin-right: 10px; }
 .ourReview a { color: #2489ce; }
@@ -21,6 +31,9 @@
 .ratings.small .icon.rottenTomato[data-rtratingtitle*="Rotten"] { background-position: -288px -96px; }
 .ratings.small .icon.rottenTomato[data-rtratingtitle*="Upright"] { background-position: -291px -24px; }
 .ratings.small .icon.rottenTomato[data-rtratingtitle*="Spilled"] { background-position: -288px -119px; }
+.ratings.small .icon.sion { width: 19px; height: 24px; }
+.ratings.small .icon.sion.seeIt { background-position: -150px -72px; }
+.ratings.small .icon.sion.orNot { background-position: -150px -99px; }
 
 .ratings.medium { font-size: 18px; }
 .ratings.medium .icon { width: 32px; height: 32px; }

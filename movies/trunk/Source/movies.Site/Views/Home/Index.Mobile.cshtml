@@ -12,31 +12,31 @@
 <input type="hidden" id="currentShowtimeDay" />
 <input type="hidden" id="currentMovieId" />
 
-<div data-role="page" id="onlyPage">
+<div id="body">
     @{ Html.RenderPartial("PageHeader", new PageHeader { ActiveMenu = Enumerations.MobileMenuItems.whatsHot, PrefetchLinks = Model.PrefetchLinks, UseAjaxForLinks = Model.UseAjaxForLinks }); }
     @* *** What's Hot *** *@
     <section id="whatsHot" data-navitemurl="/">
-        <div data-role="header" data-theme="c">
+        <div data-role="header">
             <h2>Top Box Office</h2>
         </div>
 	    <div data-role="content">	
-            <ul data-role="listview" data-theme="c">
+            <ul data-role="listview">
                 @this.Html.Partial("MovieList.Mobile", this.Model.BoxOfficeMovies)
             </ul>
         </div>
-        <div data-role="header" data-theme="c">
+        <div data-role="header">
             <h2>Opening This Week</h2>
         </div>
         <div data-role="content">	
-            <ul data-role="listview" data-theme="c">
+            <ul data-role="listview">
                 @this.Html.Partial("MovieList.Mobile", this.Model.OpeningMovies)
             </ul>
         </div>
-        <div data-role="header" data-theme="c">
+        <div data-role="header">
             <h2>Also in Theaters</h2>
         </div>
         <div data-role="content">	
-            <ul data-role="listview" data-theme="c">
+            <ul data-role="listview">
                 @this.Html.Partial("MovieList.Mobile", this.Model.InTheatersMovies)
             </ul>
         </div>
@@ -48,42 +48,42 @@
             <div>or <a href="#">use current location</a></div>
         </div>
         <div id="theaters">
-            <div data-role="header" data-theme="c">
+            <div data-role="header">
                 <h1>Theaters near <span id="currentShowtimesZip"></span></h1>
                 <a href="#" data-icon="gear" class="ui-btn-right">Options</a>
             </div>
             <div data-role="content">
-                <ul data-role="listview" data-theme="c"></ul>
+                <ul data-role="listview"></ul>
             </div>
             <div data-role="content">
-                <ul data-role="listview" data-theme="c"></ul>
+                <ul data-role="listview"></ul>
             </div>
         </div>    
     </section>
     @* *** Theater w/ its movies *** *@
     <section id="theater" data-navitemurl="/showtimes">
-        <div data-role="header" data-theme="c">
+        <div data-role="header">
             <h2></h2>
-            <a href="/showtimes" data-icon="arrow-l" class="ui-btn-left">Back</a>
+            <a href="/showtimes" class="ui-btn-left">Back</a>
         </div>
     
         <div data-role="content">
-            <ul data-role="listview" data-theme="c"></ul>
+            <ul data-role="listview"></ul>
 	    </div>
     </section>
     @* *** Single Theater Movie *** *@
     <section id="theatermovie" data-navitemurl="/showtimes">
-        <div data-role="header" data-theme="c">
+        <div data-role="header">
             <h2></h2>
-            <a href="#" data-icon="arrow-l" class="ui-btn-left">Back</a>
+            <a href="#" class="ui-btn-left">Back</a>
         </div>
         <div data-role="content" class="movieView"></div>
     </section>
     @* *** Movie *** *@
     <section id="movie">
-        <div data-role="header" data-theme="c">
+        <div data-role="header">
             <h2></h2>
-            <a href="#" data-icon="arrow-l" class="ui-btn-left">Back</a>
+            <a href="#" class="ui-btn-left">Back</a>
         </div>
         <div data-role="content" class="movieView"></div>
     </section>

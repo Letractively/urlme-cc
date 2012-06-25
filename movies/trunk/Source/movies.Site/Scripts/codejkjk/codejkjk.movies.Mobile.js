@@ -229,8 +229,8 @@ codejkjk.movies.mobile = {
         }
 
         var navLink = codejkjk.movies.mobile.controls.nav().find("a[href='{0}']".format(navItemUrl)); // logo does not have inner html, which is what we use later to select view to show
-        codejkjk.movies.mobile.controls.nav().find("a").removeClass("ui-btn-active ui-state-persist");
-        navLink.addClass("ui-btn-active ui-state-persist");
+        codejkjk.movies.mobile.controls.nav().find("a").removeClass("selected");
+        navLink.addClass("selected");
     },
 
     initGooglePlaces: function (inputId) {

@@ -35,6 +35,18 @@ namespace movies
             );
 
             routes.MapRoute(
+                "about-index", // Route name
+                "about", // URL with parameters
+                new { controller = "About", action = "Index" } // Parameter defaults
+            );
+
+            routes.MapRoute(
+                "reviews-index", // Route name
+                "reviews", // URL with parameters
+                new { controller = "Reviews", action = "Index" } // Parameter defaults
+            );
+
+            routes.MapRoute(
                 "MovieReview-Save", // Route name
                 "moviereview/save", // URL with parameters
                 new { controller = "MovieReview", action = "Save" } // Parameter defaults

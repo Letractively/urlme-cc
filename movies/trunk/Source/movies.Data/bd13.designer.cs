@@ -97,11 +97,11 @@ namespace movies.Data
 			}
 		}
 		
-		public System.Data.Linq.Table<MovieReviewBlockSeeIt> MovieReviewBlockSeeIts
+		public System.Data.Linq.Table<MovieReviewSeeItWhiteList> MovieReviewSeeItWhiteLists
 		{
 			get
 			{
-				return this.GetTable<MovieReviewBlockSeeIt>();
+				return this.GetTable<MovieReviewSeeItWhiteList>();
 			}
 		}
 		
@@ -182,6 +182,14 @@ namespace movies.Data
 			get
 			{
 				return this.GetTable<UserRole>();
+			}
+		}
+		
+		public System.Data.Linq.Table<MovieReviewSeeItBlackList> MovieReviewSeeItBlackLists
+		{
+			get
+			{
+				return this.GetTable<MovieReviewSeeItBlackList>();
 			}
 		}
 	}
@@ -440,22 +448,22 @@ namespace movies.Data
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="ihdavis2.MovieReviewBlockSeeIt")]
-	public partial class MovieReviewBlockSeeIt
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="ihdavis2.MovieReviewSeeItWhiteList")]
+	public partial class MovieReviewSeeItWhiteList
 	{
 		
-		private System.Nullable<long> _MovieId;
+		private long _MovieId;
 		
 		private string _Title;
 		
 		private System.DateTime _CreateDate;
 		
-		public MovieReviewBlockSeeIt()
+		public MovieReviewSeeItWhiteList()
 		{
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MovieId", DbType="BigInt")]
-		public System.Nullable<long> MovieId
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MovieId", DbType="BigInt NOT NULL")]
+		public long MovieId
 		{
 			get
 			{
@@ -959,7 +967,7 @@ namespace movies.Data
 		
 		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
 		
-		private int _MovieId;
+		private long _MovieId;
 		
 		private string _Title;
 		
@@ -977,6 +985,8 @@ namespace movies.Data
 		
 		private string _ReviewUrl;
 		
+		private string _Status;
+		
 		private System.DateTime _CreateDate;
 		
 		private System.Nullable<System.DateTime> _ModifyDate;
@@ -985,7 +995,7 @@ namespace movies.Data
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
     partial void OnCreated();
-    partial void OnMovieIdChanging(int value);
+    partial void OnMovieIdChanging(long value);
     partial void OnMovieIdChanged();
     partial void OnTitleChanging(string value);
     partial void OnTitleChanged();
@@ -1003,6 +1013,8 @@ namespace movies.Data
     partial void OnReviewClassChanged();
     partial void OnReviewUrlChanging(string value);
     partial void OnReviewUrlChanged();
+    partial void OnStatusChanging(string value);
+    partial void OnStatusChanged();
     partial void OnCreateDateChanging(System.DateTime value);
     partial void OnCreateDateChanged();
     partial void OnModifyDateChanging(System.Nullable<System.DateTime> value);
@@ -1014,8 +1026,8 @@ namespace movies.Data
 			OnCreated();
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MovieId", DbType="Int NOT NULL", IsPrimaryKey=true)]
-		public int MovieId
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MovieId", DbType="BigInt NOT NULL", IsPrimaryKey=true)]
+		public long MovieId
 		{
 			get
 			{
@@ -1074,7 +1086,7 @@ namespace movies.Data
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ThumbnailPosterUrl", DbType="NVarChar(250)")]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ThumbnailPosterUrl", DbType="NVarChar(250) NOT NULL", CanBeNull=false)]
 		public string ThumbnailPosterUrl
 		{
 			get
@@ -1094,7 +1106,7 @@ namespace movies.Data
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ProfilePosterUrl", DbType="NVarChar(250)")]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ProfilePosterUrl", DbType="NVarChar(250) NOT NULL", CanBeNull=false)]
 		public string ProfilePosterUrl
 		{
 			get
@@ -1114,7 +1126,7 @@ namespace movies.Data
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DetailedPosterUrl", DbType="NVarChar(250)")]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DetailedPosterUrl", DbType="NVarChar(250) NOT NULL", CanBeNull=false)]
 		public string DetailedPosterUrl
 		{
 			get
@@ -1190,6 +1202,26 @@ namespace movies.Data
 					this._ReviewUrl = value;
 					this.SendPropertyChanged("ReviewUrl");
 					this.OnReviewUrlChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Status", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
+		public string Status
+		{
+			get
+			{
+				return this._Status;
+			}
+			set
+			{
+				if ((this._Status != value))
+				{
+					this.OnStatusChanging(value);
+					this.SendPropertyChanging();
+					this._Status = value;
+					this.SendPropertyChanged("Status");
+					this.OnStatusChanged();
 				}
 			}
 		}
@@ -2231,6 +2263,69 @@ namespace movies.Data
 			if ((this.PropertyChanged != null))
 			{
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="ihdavis2.MovieReviewSeeItBlackList")]
+	public partial class MovieReviewSeeItBlackList
+	{
+		
+		private System.Nullable<long> _MovieId;
+		
+		private string _Title;
+		
+		private System.DateTime _CreateDate;
+		
+		public MovieReviewSeeItBlackList()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MovieId", DbType="BigInt")]
+		public System.Nullable<long> MovieId
+		{
+			get
+			{
+				return this._MovieId;
+			}
+			set
+			{
+				if ((this._MovieId != value))
+				{
+					this._MovieId = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Title", DbType="NVarChar(250) NOT NULL", CanBeNull=false)]
+		public string Title
+		{
+			get
+			{
+				return this._Title;
+			}
+			set
+			{
+				if ((this._Title != value))
+				{
+					this._Title = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CreateDate", DbType="DateTime NOT NULL")]
+		public System.DateTime CreateDate
+		{
+			get
+			{
+				return this._CreateDate;
+			}
+			set
+			{
+				if ((this._CreateDate != value))
+				{
+					this._CreateDate = value;
+				}
 			}
 		}
 	}

@@ -235,7 +235,7 @@ codejkjk.movies.desktop = {
 
     adminize: function (facebookUserId) {
         codejkjk.movies.Api.authUser(facebookUserId, function (js) {
-            eval(js.replace("<script type=\"text/javascript\">", "").replace("</script>", ""));
+            $("body").append(js);
         });
     },
 

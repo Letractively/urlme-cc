@@ -8,7 +8,7 @@ namespace movies.Data.Repository
 {
     public class DirectRepository : RepositoryBase
     {
-        public MovieReview MovieGet(int movieId)
+        public MovieReview MovieReviewGet(int movieId)
         {
             using (var context = CreateContext())
             {
@@ -16,7 +16,7 @@ namespace movies.Data.Repository
             }
         }
 
-        public bool MovieSave(Data.MovieReview movie)
+        public bool MovieSave(Data.MovieReview movie, bool requiresApproval)
         {
             try
             {
@@ -26,20 +26,40 @@ namespace movies.Data.Repository
 
                     if (dbMovie == null)
                     {
-                        // INSERT
+                        // INSERT (b/c it does NOT exist)
                         dbMovie = new MovieReview
                         {
                             CreateDate = DateTime.Now,
                             ModifyDate = null,
                             MovieId = movie.MovieId
                         };
+                        bool onSeeItBlackList = context.MovieReviewSeeItBlackLists.FirstOrDefault(x => x.MovieId == movie.MovieId) != null;
+                        bool onSeeItWhiteList = context.MovieReviewSeeItWhiteLists.FirstOrDefault(x => x.MovieId == movie.MovieId) != null;
+
+                        if (onSeeItBlackList && movie.ReviewClass == "seeIt") // if on seeItBlackList and it's marked as "seeIt", then DISAPPROVED
+                        {
+                            dbMovie.Status = Enumerations.MovieReviewStatus.Disapproved.ToString();
+                        }
+                        else if (onSeeItWhiteList)
+                        {
+                            dbMovie.Status = Enumerations.MovieReviewStatus.Approved.ToString();
+                        }
+                        else if (requiresApproval && movie.ReviewClass == "seeIt")
+                        {
+                            dbMovie.Status = Enumerations.MovieReviewStatus.Pending.ToString();
+                        }
+                        else
+                        {
+                            dbMovie.Status = Enumerations.MovieReviewStatus.Approved.ToString();
+                        }
 
                         context.MovieReviews.InsertOnSubmit(dbMovie);
                     }
                     else
                     {
-                        // UPDATE
+                        // UPDATE (b/c it already exists)
                         dbMovie.ModifyDate = DateTime.Now;
+                        // leave status as-is
                     }
 
                     dbMovie.Review = movie.Review;

@@ -18,7 +18,7 @@ namespace movies.Site.Controllers
                 return this.Json(new { WasSuccessful = false }, JsonRequestBehavior.AllowGet);
             }
 
-            bool success = Data.DomainModels.MovieReview.Save(movieReview);
+            bool success = Data.DomainModels.MovieReview.Save(movieReview, mpaaRating);
 
             return this.Json(new { WasSuccessful = success }, JsonRequestBehavior.AllowGet);
         }

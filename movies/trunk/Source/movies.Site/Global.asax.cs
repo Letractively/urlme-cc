@@ -29,6 +29,12 @@ namespace movies
             );
 
             routes.MapRoute(
+                "mail-test", // Route name
+                "mail/test", // URL with parameters
+                new { controller = "Mail", action = "Test" } // Parameter defaults
+            );
+
+            routes.MapRoute(
                 "MovieReview-Save", // Route name
                 "moviereview/save", // URL with parameters
                 new { controller = "MovieReview", action = "Save" } // Parameter defaults

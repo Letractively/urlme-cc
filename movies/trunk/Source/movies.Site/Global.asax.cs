@@ -47,6 +47,12 @@ namespace movies
             );
 
             routes.MapRoute(
+                "Api-Get_Movie_Review", // Route name
+                "api/get_movie_review.json/{rtMovieId}", // URL with parameters
+                new { controller = "Api", action = "GetMovieReviewForReviewer" } // Parameter defaults
+            );
+
+            routes.MapRoute(
                 "Api-Get_Movie", // Route name
                 "api/get_rt_movie.json/{rtMovieId}", // URL with parameters
                 new { controller = "Api", action = "GetRottenTomatoesMovie" } // Parameter defaults

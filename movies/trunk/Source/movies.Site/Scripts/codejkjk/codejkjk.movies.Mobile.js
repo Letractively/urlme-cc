@@ -223,9 +223,7 @@ codejkjk.movies.mobile = {
 
         // init image lazyload jquery plugin
         if (!sectionToShow.hasClass("lazyLoaded")) {
-            $("img.lazy").lazyload({
-                effect: "fadeIn"
-            });
+            $("img.lazy").lazyload({ effect: "fadeIn" });
             sectionToShow.addClass("lazyLoaded");
         }
 

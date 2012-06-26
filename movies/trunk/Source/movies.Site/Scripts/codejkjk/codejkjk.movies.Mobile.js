@@ -407,7 +407,6 @@ codejkjk.movies.mobile = {
         }
 
         codejkjk.movies.mobile.controls.Theaters().show();
-        codejkjk.movies.mobile.showSection("/showtimes");
 
         // now that the theater links are filled, set the currentTheater container's height to match height of theater links container
         // $.mobile.hidePageLoadingMsg();

@@ -34,7 +34,7 @@
     @RenderBody()
 
     <script id="favoriteTheaterListTemplate" type="text/x-jquery-tmpl">
-        <li>
+        <li class="theater group">
         {{#if $ctx.IsCurrentTheater(id) }}
             <a class="theaterLink selected" href="/theater/{{=zipCode}}/{{=id}}" data-theaterid="{{=id}}">
         {{else}}
@@ -46,7 +46,7 @@
         </li>
     </script>
     <script id="theaterListTemplate" type="text/x-jquery-tmpl">
-        <li>
+        <li class="theater group">
         {{#if $ctx.IsCurrentTheater(id) }}
             <a class="theaterLink selected" href="/theater/{{=zipCode}}/{{=id}}" data-theaterid="{{=id}}">
         {{else}}
@@ -59,7 +59,7 @@
     </script>
     <script id="theaterMovieTemplate" type="text/x-jquery-tmpl">
         {{#each movies}}
-        <li class="movie {{=movieClass}}">
+        <li class="movie {{=movieClass}} group">
             <a href="/theatermovie/{{=id}}" class="theaterMovieLink" data-rtmovieid="{{=id}}">                    
                 <img src="{{=imageUrl}}" />
                 <div class="details">

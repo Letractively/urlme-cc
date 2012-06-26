@@ -25,9 +25,7 @@ namespace movies.Site.Controllers
                 BoxOfficeMovies = Movie.GetMovies(Enumerations.MovieLists.BoxOffice),
                 InTheatersMovies = inTheatersMoviesDisplay,
                 
-                OverlayMovie = null,
-                UseAjaxForLinks = false,
-                PrefetchLinks = false
+                OverlayMovie = null
             };
 
             // load upcoming and redbox only if for desktop view

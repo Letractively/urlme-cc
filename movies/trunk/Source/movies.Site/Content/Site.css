@@ -130,8 +130,6 @@ header { background:#fff; }
         background: -moz-linear-gradient(top,  #F8F8F8,  #ffffff);  
         float: left;
     } */
-    
-    
 
 .content { width: 1000px; overflow: auto; display: none; }
     #whatsHotView h2, #redboxView h2 { margin-right: 4px; background: #535156; padding: 10px; font-size: 14px; font-weight: bold; color: #fff; margin-bottom: 10px; }

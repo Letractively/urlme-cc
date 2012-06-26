@@ -11,7 +11,5 @@ namespace movies.Site.ViewModels.Home
         // public Dictionary<string, Model.Redbox.Movie> RedboxMovies { get; set; }
 
         public Model.Movie OverlayMovie { get; set; }
-        public bool UseAjaxForLinks { get; set; }
-        public bool PrefetchLinks { get; set; }
     }
 }

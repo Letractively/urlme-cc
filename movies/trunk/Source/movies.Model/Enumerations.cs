@@ -13,13 +13,6 @@ namespace movies.Model
             medium
         }
 
-        public enum MobileMenuItems
-        {
-            whatsHot,
-            showtimes,
-            none
-        }
-
         public enum MovieLists
         {
             Opening,

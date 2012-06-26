@@ -84,7 +84,6 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ViewModels\Shared\PageHeader.cs" />
     <Compile Include="ViewModels\Home\Index.cs" />
     <Compile Include="ViewModels\Movie\Index.cs" />
     <Compile Include="ViewModels\Shared\Ratings.cs" />
@@ -281,9 +280,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Shared\MovieDetails.Mobile.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Views\Shared\PageHeader.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Shared\OpenGraphTags.cshtml" />

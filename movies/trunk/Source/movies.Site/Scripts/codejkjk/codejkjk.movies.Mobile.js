@@ -17,7 +17,7 @@ codejkjk.movies.mobile = {
         , CurrentTheaterMovie: function () { return $("#theatermovie div[data-role='header'] h2"); }
         , Movie: function () { return $("#movie div[data-role='content']"); }
         , MovieBackLink: function () { return $("#movie div[data-role='header'] a"); }
-        , nav: function () { return $("div[data-role='navbar']"); }
+        , nav: function () { return $("#navBar"); }
         , searchBox: function () { return $("#q"); }
         , ShowtimesHeader: function () { return $("#showtimes > #theaters div[data-role='header']"); }
         , ShowtimesOptionsLinkSelector: function () { return "#showtimes > #theaters div[data-role='header'] a"; }

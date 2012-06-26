@@ -199,21 +199,15 @@ namespace movies
             );
 
             routes.MapRoute(
-                "Seo-Movie", // Route name
-                "seo/{titleSlug}/{rtMovieId}", // URL with parameters
-                new { controller = "Seo", action = "Movie" } // Parameter defaults
-            );
-
-            routes.MapRoute(
                 "MovieDetailsRedbox", // Route name
                 "redbox/{titleSlug}", // URL with parameters
-                new { controller = "Movie", action = "Index", isRedbox = true, rtMovieId = "" } // Parameter defaults
+                new { controller = "Home", action = "Index", isRedbox = true } // Parameter defaults
             );            
             
             routes.MapRoute(
                 "MovieDetails", // Route name
                 "{titleSlug}/{rtMovieId}", // URL with parameters
-                new { controller = "Movie", action = "Index", isRedbox = false } // Parameter defaults
+                new { controller = "Home", action = "Index" } // Parameter defaults
             );   
 
             routes.MapRoute(
@@ -238,6 +232,7 @@ namespace movies
             mobileJsBundle.AddFile("~/scripts/jquery-1.7.1.min.js");
             // mobileJsBundle.AddFile("~/content/jquery.mobile-1.1.0-rc.1/jquery.mobile-1.1.0-rc.1.min.js");
             mobileJsBundle.AddFile("~/scripts/codejkjk/codejkjk.js");
+            mobileJsBundle.AddFile("~/scripts/codejkjk/codejkjk.siteActions.js");
             mobileJsBundle.AddFile("~/scripts/codejkjk/codejkjk.movies.Defaults.js");
             mobileJsBundle.AddFile("~/scripts/codejkjk/codejkjk.movies.Api.js");
             mobileJsBundle.AddFile("~/scripts/codejkjk/codejkjk.Geo.js");

@@ -26,7 +26,7 @@ codejkjk.movies.mobile = {
         , TheaterMovieHeader: function () { return $("#theatermovie div[data-role='header']"); }
         , TheaterMovieBackLink: function () { return $("#theatermovie div[data-role='header'] a"); }
         , TheaterHeader: function () { return $("#theater div[data-role='header']"); }
-        , TheaterList: function () { return $("#theaters ul[data-role='listview']:last"); }
+        , TheaterList: function () { return $("#theaters ul:last"); }
         , TheaterLists: function () { return $("#theaters div[data-role='content']"); }
         , TheaterListTemplate: function () { return $("#theaterListTemplate"); }
         , TheaterMovieList: function () { return $("#theater div[data-role='content'] ul"); }
@@ -149,7 +149,7 @@ codejkjk.movies.mobile = {
                 codejkjk.movies.mobile.controls.CurrentTheater().html(theater.name);
                 codejkjk.movies.mobile.controls.TheaterMovieList().html(
                         codejkjk.movies.mobile.controls.TheaterMovieTemplate().render(theater)
-                    ).show().listview('refresh');
+                    ).show();
 
                 // set backUrl
                 backUrl = "{0}/{1}/{2}".format(firstPath, zip, theaterId); // set back url to current url
@@ -395,14 +395,14 @@ codejkjk.movies.mobile = {
         if (favoriteTheaters.length) {
             codejkjk.movies.mobile.controls.FavoriteTheaterList().html(
                 codejkjk.movies.mobile.controls.FavoriteTheaterListTemplate().render(favoriteTheaters)
-            ).listview('refresh').parent().show();
+            ).parent().show();
             codejkjk.movies.mobile.controls.FavoriteTheaterListContent().show();
         } else {
             codejkjk.movies.mobile.controls.FavoriteTheaterListContent().hide();
         }
         codejkjk.movies.mobile.controls.TheaterList().html(
             codejkjk.movies.mobile.controls.TheaterListTemplate().render(notFavoriteTheaters)
-        ).listview('refresh').parent().show();
+        ).parent().show();
 
         if (codejkjk.movies.mobile.controls.ShowtimesOptions().is(":visible")) {
             codejkjk.movies.mobile.controls.ShowtimesOptions().slideToggle('fast');

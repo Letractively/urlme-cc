@@ -80,7 +80,6 @@
     <Compile Include="Controllers\MovieReviewController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MovieController.cs" />
-    <Compile Include="Controllers\SeoController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -276,9 +275,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Shared\TheatersForMovieList.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Views\Seo\Movie.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Shared\Redboxes.cshtml" />

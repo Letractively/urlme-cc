@@ -8,7 +8,7 @@
             <img class="poster rounded" src="@this.Model.posters.detailed" />
         </div>
         <div class="right">
-            <span class="closeMovieDetails">Close</span>
+            <span class="closeMovieDetails"></span>
             <h1>@this.Model.title</h1>
             <div class="ratingAndLength group"> 
                 <span class='mpaaRating'>@this.Model.mpaa_rating</span>
@@ -72,12 +72,12 @@
     </p>*@
 </div>
 <div id="movieShowtimes" class="hidden">
-    <span class="closeMovieDetails">Close</span>
+    <span class="closeMovieDetails"></span>
     <a class="backToMovieDetails" href="#">←&nbsp&nbsp;@this.Model.title</a>
     <p id="theatersForMovieList"></p>
 </div>
 <div id="redboxAvails" class="hidden">
-    <span class="closeMovieDetails">Close</span>
+    <span class="closeMovieDetails"></span>
     <a class="backToMovieDetails" href="#">←&nbsp&nbsp;@this.Model.title</a>
     <p id="redboxAvailsList"></p>
 </div>

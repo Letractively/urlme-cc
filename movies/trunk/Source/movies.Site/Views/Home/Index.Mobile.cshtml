@@ -20,7 +20,7 @@
             <h2>Top Box Office</h2>
         </div>
 	    <div data-role="content">	
-            <ul data-role="listview">
+            <ul>
                 @this.Html.Partial("MovieList.Mobile", this.Model.BoxOfficeMovies)
             </ul>
         </div>
@@ -28,7 +28,7 @@
             <h2>Opening This Week</h2>
         </div>
         <div data-role="content">	
-            <ul data-role="listview">
+            <ul>
                 @this.Html.Partial("MovieList.Mobile", this.Model.OpeningMovies)
             </ul>
         </div>
@@ -36,7 +36,7 @@
             <h2>Also in Theaters</h2>
         </div>
         <div data-role="content">	
-            <ul data-role="listview">
+            <ul>
                 @this.Html.Partial("MovieList.Mobile", this.Model.InTheatersMovies)
             </ul>
         </div>
@@ -53,10 +53,10 @@
                 <a href="#" data-icon="gear" class="ui-btn-right">Options</a>
             </div>
             <div data-role="content">
-                <ul data-role="listview"></ul>
+                <ul></ul>
             </div>
             <div data-role="content">
-                <ul data-role="listview"></ul>
+                <ul></ul>
             </div>
         </div>    
     </section>
@@ -68,7 +68,7 @@
         </div>
     
         <div data-role="content">
-            <ul data-role="listview"></ul>
+            <ul></ul>
 	    </div>
     </section>
     @* *** Single Theater Movie *** *@

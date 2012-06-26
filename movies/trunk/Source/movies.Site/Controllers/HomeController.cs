@@ -11,7 +11,7 @@ namespace movies.Site.Controllers
         //
         // GET: /Home/
 
-        public ActionResult Index()
+        public ActionResult Index(string rtMovieId = null, string titleSlug = null, bool isRedbox = false)
         {
             var inTheatersMovies = Movie.GetMovies(Enumerations.MovieLists.InTheaters);
             
@@ -58,14 +58,33 @@ namespace movies.Site.Controllers
                 }
             }
 
-            if (Request.Browser.IsMobileDevice)
+            // movie view?
+            if (!string.IsNullOrWhiteSpace(rtMovieId))
             {
-                return View("Index.Mobile", vm);
+                Model.Movie movie = null;
+                if (isRedbox)
+                {
+                    movie = Model.Redbox.GetRottenTomatoesMovie(titleSlug);
+                    if (movie == null)
+                    {
+                        return Content("No corresponding RottenTomatoes movie found :/");
+                    }
+                    movie.MovieType = Enumerations.MovieType.AtRedboxes;
+                }
+                else
+                {
+                    movie = Model.Movie.GetRottenTomatoesMovie(rtMovieId);
+                    movie.MovieType = Model.Movie.GetMovieType(rtMovieId);
+                }
+
+                // set open graph props
+                this.OpenGraphImage = movie.posters.detailed;
+                this.OpenGraphTitle = movie.title;
+                this.OpenGraphDescription = movie.synopsis;
+                vm.OverlayMovie = movie;
             }
-            else
-            {
-                return View("Index", vm);
-            }
+
+            return View(vm);
         }
 
         public ActionResult Redirect()
@@ -111,29 +130,6 @@ namespace movies.Site.Controllers
 
             // movies.Model.Twitter.UpdateStatus("work please " + System.DateTime.Now);
             return Content("Done! - " + System.DateTime.Now);
-        }
-
-        /* mobile - showtimes */
-        public ActionResult Showtimes()
-        {
-            return Index();
-            //if (Request.Browser.IsMobileDevice)
-            //{
-            //    // mobile, only set what we need to
-            //    var vm = new ViewModels.Home.Index
-            //    {
-            //        OverlayMovie = null,
-            //        UseAjaxForLinks = false,
-            //        PrefetchLinks = false
-            //    };
-
-            //    return View("Showtimes.Mobile", vm);
-            //}
-            //else
-            //{
-            //    // desktop, return whatever Index does, b/c there's js to look at the path to determine which section to show
-                
-            //}
         }
     }
 }

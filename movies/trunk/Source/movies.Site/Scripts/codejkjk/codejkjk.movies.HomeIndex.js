@@ -794,6 +794,11 @@ codejkjk.movies.desktop = {
                 codejkjk.movies.desktop.controls.searchBox().focus();
             }
         });
+        $(document).bind('keyup', 'esc', function () {
+            if (codejkjk.movies.desktop.currents.MovieId()) {
+                $(codejkjk.movies.desktop.controls.CloseMovieDetailsLinkSelector()).trigger('click');
+            }
+        });
     }
 }
 

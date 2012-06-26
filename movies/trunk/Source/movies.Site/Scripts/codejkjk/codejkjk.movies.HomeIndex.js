@@ -540,12 +540,14 @@ codejkjk.movies.desktop = {
                     codejkjk.movies.desktop.controls.MovieDetailsPopup().html(html);
                     FB.XFBML.parse();
                     codejkjk.movies.desktop.InitZeroClipboard();
+                    codejkjk.siteActions.wireReleaseDates();
                 });
             } else {
                 codejkjk.movies.Api.GetMovieHtml(movieIdToAjaxLoad, function (html) {
                     codejkjk.movies.desktop.controls.MovieDetailsPopup().html(html);
                     FB.XFBML.parse();
                     codejkjk.movies.desktop.InitZeroClipboard();
+                    codejkjk.siteActions.wireReleaseDates();
                     if (typeof refreshAdmin === "function") { refreshAdmin(); }
                 });
             }
@@ -553,6 +555,7 @@ codejkjk.movies.desktop = {
             // movie details are already in dom, so just init zeroclipboard b/c it's ready to go
             codejkjk.movies.desktop.controls.MovieDetailsPopup().show();
             codejkjk.movies.desktop.InitZeroClipboard();
+            codejkjk.siteActions.wireReleaseDates();
             if (typeof refreshAdmin === "function") { refreshAdmin(); }
         }
     },

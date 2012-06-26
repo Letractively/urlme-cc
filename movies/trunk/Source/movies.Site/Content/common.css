@@ -13,6 +13,9 @@ body{font-size:12px;font-family:Arial, "Helvetica Neue", Helvetica, Sans-Serif;}
 * html .group { zoom: 1; } /* IE6 */
 *:first-child+html .group { zoom: 1; } /* IE7 */
 
+/* common */
+.alert { color:#b11e24 }
+
 /* css 3... */
 .rounded { border-radius: 3px; -moz-border-radius: 3px; -webkit-border-radius: 3px; }
 

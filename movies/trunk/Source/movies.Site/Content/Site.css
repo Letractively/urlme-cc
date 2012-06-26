@@ -173,7 +173,7 @@ header { background:#fff; }
         #movieDetailsPopup .ratingAndLength .fbLikeContainer { float: left; width: 85px; float: left; }
     #movieDetailsPopup .ratings { clear: left; }
     #movieDetailsPopup .ratings a { color: #535156; }
-    #movieDetailsPopup .releaseDate { font-weight: bold; }
+    #movieDetailsPopup [data-releasedate] { font-weight: bold; }
         /* #movieDetailsPopup #copyButton { text-align: center; border: 1px solid black; background: #e8e8e8; margin-left: 5px; padding: 5px; } */
         #movieDetailsPopup #copySuccess { color: #333; display:none; margin-left: 10px; }
         /* #movieDetailsPopup #copyButton:hover { background: #eee; }
@@ -291,7 +291,7 @@ header { background:#fff; }
             /* .content .movie .ratings { margin-top: 10px; overflow:auto; } */
             .content .movie .mpaaRating { font-weight: bold; }
             .content .movie .showtimes { margin-top: 10px; }
-            .content .movie .releaseDate { margin-top: 10px; font-weight: bold; }
+            .content .movie [data-releasedate] { margin-top: 10px; font-weight: bold; }
             .content .movie img { margin-right: 10px; display:block; }
             .content .movie h2 { display:inline-block; font-weight: bold; margin-right: 10px; max-width:216px; overflow:hidden; text-overflow: ellipsis; white-space: nowrap; }
             .content .movie .actions { position: absolute; right: 8px; bottom: 8px; }

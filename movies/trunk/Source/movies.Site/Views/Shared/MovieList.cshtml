@@ -22,7 +22,7 @@
             }
             else
             {
-                <p class="releaseDate">@movie.ReleaseDate</p>
+                <p data-releasedate="@movie.release_dates.theater.ToString("MM/dd/yyyy")"><span title="@movie.release_dates.theater.ToString("MMM d, yyyy")"></span></p>
             }
         </div>
     </div>    

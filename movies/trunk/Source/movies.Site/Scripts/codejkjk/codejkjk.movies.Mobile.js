@@ -15,6 +15,7 @@ codejkjk.movies.mobile = {
         , CurrentShowtimesZip: function () { return $("#currentShowtimesZip"); }
         , CurrentTheater: function () { return $("#theater div[data-role='header'] h2"); }
         , CurrentTheaterMovie: function () { return $("#theatermovie div[data-role='header'] h2"); }
+        , loading: function() { return $(".loading"); }
         , Movie: function () { return $("#movie div[data-role='content']"); }
         , MovieBackLink: function () { return $("#movie div[data-role='header'] a"); }
         , nav: function () { return $("#navBar"); }
@@ -139,7 +140,7 @@ codejkjk.movies.mobile = {
         }
         else if (firstPath === "/theater") {
             // /theater/{zipCode}/{id}
-            // $.mobile.showPageLoadingMsg();
+            codejkjk.movies.mobile.toggleLoading();
             var zip = paths[2];
             var theaterId = paths[3];
             codejkjk.movies.mobile.currents.ZipCode(zip);
@@ -154,13 +155,13 @@ codejkjk.movies.mobile = {
                 // set backUrl
                 backUrl = "{0}/{1}/{2}".format(firstPath, zip, theaterId); // set back url to current url
 
-                // $.mobile.hidePageLoadingMsg();
+                codejkjk.movies.mobile.toggleLoading();
                 codejkjk.movies.mobile.showSection(firstPath);
             });
         }
         else if (firstPath === "/theatermovie") {
             // /theatermovie/{id}
-            // $.mobile.showPageLoadingMsg();
+            codejkjk.movies.mobile.toggleLoading();
             var rtMovieId = paths[2];
 
             // load single theater movie
@@ -178,13 +179,13 @@ codejkjk.movies.mobile = {
                     codejkjk.movies.mobile.controls.TheaterMovieBackLink().hide();
                 }
 
-                // $.mobile.hidePageLoadingMsg();
+                codejkjk.movies.mobile.toggleLoading();
                 codejkjk.movies.mobile.showSection(firstPath);
             });
         }
         else {
             // /hunger-games/9999888768 (need TODO: redbox movie)
-            // $.mobile.showPageLoadingMsg();
+            codejkjk.movies.mobile.toggleLoading();
             var rtMovieId = paths[2];
 
             // load single movie
@@ -202,7 +203,7 @@ codejkjk.movies.mobile = {
                     codejkjk.movies.mobile.controls.MovieBackLink().hide();
                 }
 
-                // $.mobile.hidePageLoadingMsg();
+                codejkjk.movies.mobile.toggleLoading();
                 codejkjk.movies.mobile.showSection("movie");
             });
         }
@@ -264,7 +265,7 @@ codejkjk.movies.mobile = {
                 //                }
                 break;
             case "#theater": // #theater?{zip},{theaterId}
-                //                $.mobile.showPageLoadingMsg();
+                //                codejkjk.movies.mobile.toggleLoading();
                 //                var args = hash.split('?')[1].split(',');
                 //                var zip = args[0];
                 //                var theaterId = args[1];
@@ -280,11 +281,11 @@ codejkjk.movies.mobile = {
                 //                    // set backUrl
                 //                    backUrl = hash; // set back url to current url
 
-                //                    $.mobile.hidePageLoadingMsg();
+                //                    codejkjk.movies.mobile.toggleLoading();
                 //                });
                 break;
             case "#movie": // #movie?rtMovieId (used to be location.pathname = /marvels-the-avengers/770740154)
-                //                $.mobile.showPageLoadingMsg();
+                //                codejkjk.movies.mobile.toggleLoading();
                 //                var rtMovieId = hash.split('?')[1];
 
                 //                // load single movie
@@ -295,11 +296,11 @@ codejkjk.movies.mobile = {
                 //                    codejkjk.movies.mobile.controls.CurrentMovie().html(movieName); // set movie name in header, NEED???
                 //                    codejkjk.movies.mobile.controls.Movie().html(htmlStr);
 
-                //                    $.mobile.hidePageLoadingMsg();
+                //                    codejkjk.movies.mobile.toggleLoading();
                 //                });
                 break;
             case "#theatermovie": // #theatermovie?{rtMovieId}
-                //                $.mobile.showPageLoadingMsg();
+                //                codejkjk.movies.mobile.toggleLoading();
                 //                var rtMovieId = hash.split('?')[1];
 
                 //                // load single theater movie
@@ -317,7 +318,7 @@ codejkjk.movies.mobile = {
                 //                        codejkjk.movies.mobile.controls.TheaterMovieBackLink().hide();
                 //                    }
 
-                //                    $.mobile.hidePageLoadingMsg();
+                //                    codejkjk.movies.mobile.toggleLoading();
                 //                });
                 break;
         }
@@ -329,7 +330,7 @@ codejkjk.movies.mobile = {
 
     UpdateZip: function (zip, friendlyTitle) {
         codejkjk.movies.mobile.controls.TheaterLists().hide(); // hide theater lists from previous zips
-        // $.mobile.showPageLoadingMsg();
+        codejkjk.movies.mobile.toggleLoading();
         codejkjk.movies.mobile.currents.ZipCode(zip); // update current zip code in local storage
         if (typeof friendlyTitle != "undefined" && friendlyTitle) {
             codejkjk.movies.mobile.controls.CurrentShowtimesZip().html(friendlyTitle);
@@ -341,6 +342,10 @@ codejkjk.movies.mobile = {
 
         // codejkjk.movies.mobile.currents.Theater(""); // new zip, so clear out current theater value
         codejkjk.movies.Api.GetTheaters(codejkjk.movies.mobile.currents.ShowtimeDay(), zip, codejkjk.movies.mobile.LoadTheaters);
+    },
+
+    toggleLoading: function() {
+        codejkjk.movies.mobile.controls.loading().toggle();
     },
 
     LoadTheaters: function (postalCode) {
@@ -409,7 +414,7 @@ codejkjk.movies.mobile = {
         codejkjk.movies.mobile.controls.Theaters().show();
 
         // now that the theater links are filled, set the currentTheater container's height to match height of theater links container
-        // $.mobile.hidePageLoadingMsg();
+        codejkjk.movies.mobile.toggleLoading();
     },
 
     registerJsRenderHelpers: function () {
@@ -477,7 +482,7 @@ codejkjk.movies.mobile = {
             localStorage.setItem("FavoriteTheaters", favoriteTheaters.join(','));
 
             // refresh theaters
-            // $.mobile.showPageLoadingMsg();
+            codejkjk.movies.mobile.toggleLoading();
             codejkjk.movies.Api.GetTheaters(codejkjk.movies.mobile.currents.ShowtimeDay(), codejkjk.movies.mobile.currents.ZipCode(), codejkjk.movies.mobile.LoadTheaters);
         });
 

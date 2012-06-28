@@ -14,10 +14,19 @@
         var overlay = $("#movieDetailsPopup");
         if (overlay.is(":visible") && !overlay.find("a.edit").length) {
             var movieId = overlay.find("#currentMovieId").val();
-            overlay.prepend(editHtmlFormat.format(movieId));
+            overlay.find("#movieDetails").prepend(editHtmlFormat.format(movieId));
         }
     }
     refreshAdmin();
+
+    if (!$("#toggleAdmin").length) {
+        var toggleAdminHtml = "<a id=\"toggleAdmin\" style=\"position:fixed; bottom: 15px; left: 15px;\" class=\"button\">Toggle admin view</a>";
+        $("body").append(toggleAdminHtml);
+        $("#toggleAdmin").click(function(e) {
+            e.preventDefault();
+            $("a.edit").toggle();
+        });
+    }
 
     $(document).on('click', '.ui-widget-overlay', function(){
         $(".ui-dialog-titlebar-close").trigger('click');

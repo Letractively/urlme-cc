@@ -194,6 +194,8 @@ codejkjk.movies.desktop = {
 
         // check for static pages, in which case do nothing (let them render as-is)
         if (firstPath === "/about" || firstPath === "/reviews") {
+            var link = codejkjk.movies.desktop.controls.Nav().find("a[href='{0}']".format(firstPath)); // logo does not have inner html, which is what we use later to select view to show
+            link.addClass("selected");
             return;
         }
 
@@ -267,6 +269,10 @@ codejkjk.movies.desktop = {
 
     initGooglePlaces: function (inputId) {
         var input = document.getElementById(inputId);
+        if (!input) {
+            return;
+        }
+
         var autocomplete = new google.maps.places.Autocomplete(input);
 
         google.maps.event.addListener(autocomplete, 'place_changed', function () {

@@ -141,7 +141,7 @@ header { background:#fff; }
             #movieDetailsPopup .topHalf .left img.poster { width: 180px; height: 267px; }
         #movieDetailsPopup .topHalf .right { float: left; width: 385px; }
             #movieDetailsPopup .topHalf .right h1 { font-size: 140%; font-weight: bold; }
-            #movieDetailsPopup .topHalf .right p.description { margin-top: 12px; overflow: auto; max-height: 96px; } 
+            #movieDetailsPopup .topHalf .right p.description { margin-top: 12px; overflow: auto; max-height: 96px; line-height: 20px; } 
     #movieDetailsPopup a { display: inline-block; }
     #movieDetailsPopup .closeMovieDetails { cursor: pointer; float: right; display:inline-block; width: 16px; height: 16px; background: url('content/images/rt-sprite4.png') -102px -88px; }
     #movieDetailsPopup .closeMovieDetails .x { margin-left: 6px; color: Red; }

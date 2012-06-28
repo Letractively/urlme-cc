@@ -262,6 +262,7 @@ namespace movies
             desktopJsBundle.AddFile("~/scripts/plugins/jsrender.js");
             desktopJsBundle.AddFile("~/externals/local-cache/local-cache.js");
             desktopJsBundle.AddFile("~/scripts/plugins/zeroclipboard/zeroclipboard.js");
+            desktopJsBundle.AddFile("~/scripts/plugins/qTip2/jquery.qtip.min.js");
             // desktopJsBundle.AddFile("~/scripts/plugins/lazyload/jquery.lazyload.min.js");
             desktopJsBundle.AddFile("~/scripts/plugins/mask/jquery.mask.min.js");
             desktopJsBundle.AddFile("~/scripts/plugins/jquery.history.js");
@@ -273,6 +274,7 @@ namespace movies
             desktopCssBundle.AddFile("~/content/common.css");
             desktopCssBundle.AddFile("~/content/site.css");
             desktopCssBundle.AddFile("~/scripts/plugins/blockui/style.css");
+            desktopCssBundle.AddFile("~/scripts/plugins/qTip2/jquery.qtip.min.css");
 
             BundleTable.Bundles.Add(desktopCssBundle);
         }

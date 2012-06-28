@@ -45,8 +45,11 @@
         </div>
     </div>
     <p class="links">
+        <span id="copyControls">
+            <input type="hidden" id="movieUrl" value="http://seeitornot.co/@this.Model.MovieSlug" />
+            <a class="button" id="copyButton"><img class="link" src="~/content/images/transparent.png" />Copy Link</a><span id="copySuccess">✓</span>
+        </span>
         <a href="@(this.Model.links.alternate)trailers" target="_blank" class="trailerLink">Trailer</a>
-        <a href="@this.Model.ParentalGuideUrl" target="_blank" class="parentalGuideLink">Parental Guide</a>
         @if (this.Model.MovieType == Enumerations.MovieType.InTheaters)
         {
             <a href="#" class="showtimesLink">Showtimes</a>
@@ -54,12 +57,8 @@
         else if (this.Model.MovieType == Enumerations.MovieType.AtRedboxes)
         {
             <a href="#" class="nearbyRedboxLink">Nearby RedBox Availability</a>
-        }
-        
-        <input type="hidden" id="movieUrl" value="http://seeitornot.co/@this.Model.MovieSlug" />
-        <a class="button" id="copyButton"><img class="link" src="~/content/images/transparent.png" />Copy Link</a><span id="copySuccess">✓</span>
-
-        @*<span id="copyButton">Copy</span><span id="copySuccess">Copied to clipboard!</span>*@
+        }        
+        <a href="@this.Model.ParentalGuideUrl" target="_blank" class="parentalGuideLink">Parental Guide</a>
 
         @if (!this.Model.IsReleased) // if it's not released, then the ratings will NOT show up, and the ratings are also links to RT.com and IMDb.com. therefore, provide them here for the user
         {

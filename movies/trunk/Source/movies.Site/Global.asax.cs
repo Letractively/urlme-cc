@@ -268,6 +268,7 @@ namespace movies
             desktopJsBundle.AddFile("~/scripts/plugins/jquery.history.js");
             desktopJsBundle.AddFile("~/scripts/plugins/blockui/jquery.blockUI.js");
             desktopJsBundle.AddFile("~/scripts/plugins/jquery.hotkeys.js");
+            desktopJsBundle.AddFile("~/scripts/plugins/jquery-ui-1.8.21/js/jquery-ui-1.8.21.custom.min.js");
             BundleTable.Bundles.Add(desktopJsBundle);
 
             var desktopCssBundle = new Bundle("~/desktop-css-bundle", new CssMinify());

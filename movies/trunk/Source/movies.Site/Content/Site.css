@@ -289,7 +289,7 @@ header { background:#fff; }
             .content .movie .showtimes { margin-top: 10px; }
             .content .movie [data-releasedate] { margin-top: 10px; font-weight: bold; }
             .content .movie img { margin-right: 10px; display:block; }
-            .content .movie h2 { display:inline-block; font-weight: bold; margin-right: 10px; max-width:216px; overflow:hidden; text-overflow: ellipsis; white-space: nowrap; }
+            .content .movie h2 { display:inline-block; font-weight: bold; margin-right: 10px; max-width:201px; overflow:hidden; text-overflow: ellipsis; white-space: nowrap; }
             .content .movie .actions { position: absolute; right: 8px; bottom: 8px; }
                 /* .content .movie .actions a { padding: 8px 10px; border: 1px solid #C5D8E6; font-size: 90%; display:inline-block; } */
                 .content .movie .actions a > span { margin-right: 5px; }

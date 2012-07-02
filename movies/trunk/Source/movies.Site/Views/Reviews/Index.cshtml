@@ -1,4 +1,5 @@
-﻿@model movies.Site.ViewModels.ViewModelBase
+﻿@model movies.Site.ViewModels.ViewModelItem<List<movies.Data.DomainModels.MovieReview>>
+@using movies.Core.Extensions
 
 @{
     ViewBag.Title = "Reviews";
@@ -27,6 +28,19 @@
     </div>@*end: navBar*@
 }
 
-<div id="body">
-    Reviews coming soon...
+<div id="reviewsIndex" class="body">
+    @foreach (var review in Model.Item)
+    {
+        <div class="review group">
+            <a href="@review.MovieUrl" class="img movieDetailsLinks">
+                <img src="@review.ProfilePosterUrl" />
+            </a>
+            <div class="details">
+                <div class="ourReview medium"><span class="@review.ClassName"></span></div><span>"@review.Text"</span><a href="@review.Url">- JohnHanlonReviews.com</a>
+            </div>
+        </div>
+    }
 </div>
+<section id="movieDetailsPopup" class="rounded gradient">
+</section>
+<div id="overlay" class="closeMovieDetails"></div>

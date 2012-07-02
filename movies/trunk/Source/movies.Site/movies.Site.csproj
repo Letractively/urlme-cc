@@ -87,7 +87,7 @@
     <Compile Include="ViewModels\Home\Index.cs" />
     <Compile Include="ViewModels\Movie\Index.cs" />
     <Compile Include="ViewModels\Shared\Ratings.cs" />
-    <Compile Include="ViewModels\Shared\ViewerJs.cs" />
+    <Compile Include="ViewModels\Shared\AuthUserJs.cs" />
     <Compile Include="ViewModels\ViewModelBase.cs" />
     <Compile Include="ViewModels\ViewModelItem.cs" />
   </ItemGroup>
@@ -287,7 +287,7 @@
     <Content Include="Views\Shared\OpenGraphTags.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\Shared\ViewerJs.cshtml" />
+    <Content Include="Views\Shared\AuthUserJs.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Report\Index.cshtml" />
@@ -297,6 +297,11 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\About\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Shared\ViewerJs.cshtml">
+      <SubType>Code</SubType>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />

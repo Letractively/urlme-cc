@@ -3,19 +3,28 @@
     var facebookUserId = @Model.FacebookUserId;
     
     function refreshAdmin() {
-        var editHtmlFormat = "<a class=\"button edit\" data-movieid=\"{0}\">Edit</a>";
-        $(".movie").css("position","relative").each(function(i, movie) {
-            movie = $(movie);
-            var movieId = movie.attr("data-movieid");
-            if (!movie.find("a.edit").length) {
-                movie.prepend(editHtmlFormat.format(movieId));
+        @if (Model.IsViewer || Model.IsAdmin) {
+            <text>
+            var editHtmlFormat = "<a class=\"button edit\" data-movieid=\"{0}\">Edit</a>";
+            $(".movie").css("position","relative").each(function(i, movie) {
+                movie = $(movie);
+                var movieId = movie.attr("data-movieid");
+                if (!movie.find("a.edit").length) {
+                    movie.prepend(editHtmlFormat.format(movieId));
+                }
+            });
+            var overlay = $("#movieDetailsPopup");
+            if (overlay.is(":visible") && !overlay.find("a.edit").length) {
+                var movieId = overlay.find("#currentMovieId").val();
+                overlay.find("#movieDetails").prepend(editHtmlFormat.format(movieId));
             }
-        });
-        var overlay = $("#movieDetailsPopup");
-        if (overlay.is(":visible") && !overlay.find("a.edit").length) {
-            var movieId = overlay.find("#currentMovieId").val();
-            overlay.find("#movieDetails").prepend(editHtmlFormat.format(movieId));
-        }
+            </text>
+        } // end: razor check for isviewer || isadmin
+        @if (Model.IsAdmin) {
+            <text>
+
+            </text>
+        } // end: razor check for isadmin
     }
     refreshAdmin();
 

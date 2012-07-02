@@ -263,6 +263,10 @@ namespace movies.Model
             TryLoadIMDb(ref movie);
 
             movie.Review = Data.DomainModels.MovieReview.Get(int.Parse(movie.id));
+            if (string.IsNullOrWhiteSpace(movie.IVAPublishedId) && !string.IsNullOrWhiteSpace(movie.IMDbId))
+            {
+                movie.IVAPublishedId = Model.IVA.GetPublishedId(movie.IMDbId);
+            }
 
             return movie;
         }

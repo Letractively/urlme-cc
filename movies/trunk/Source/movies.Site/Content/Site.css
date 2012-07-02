@@ -159,7 +159,7 @@ header { background:#fff; }
     #movieDetailsPopup a { display: inline-block; }
     #movieDetailsPopup .closeMovieDetails { cursor: pointer; float: right; display:inline-block; width: 16px; height: 16px; background: url('content/images/rt-sprite4.png') -102px -88px; }
     #movieDetailsPopup .closeMovieDetails .x { margin-left: 6px; color: Red; }
-    #movieDetailsPopup #trailer #trailerContainer { margin-top:25px; }
+    #movieDetailsPopup #trailer #trailerContainer { margin-top:25px; margin-left:95px; }
     #movieDetailsPopup #movieShowtimes { }
         #movieDetailsPopup .backToMovieDetails { font-weight: bold; color: #2489CE; }
         #movieDetailsPopup #movieShowtimes #theatersForMovieList { margin-top:15px; overflow: auto; max-height: 330px; }

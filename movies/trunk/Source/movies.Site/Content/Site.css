@@ -121,9 +121,12 @@ header { background:#fff; }
 #reviewsIndex .review a.img { float: left; margin-right: 24px; }
     #reviewsIndex .review a.img img { width: 120px; height: 178px; display:inline-block; }
 
-#aboutIndex .profile:not(:first-child) { margin-top: 24px; }
-    #aboutIndex .profile img { width: 100px; height: 150px; float: left; margin-right: 24px; }
-    #aboutIndex .profile p { float: left; width: 300px; line-height: 20px; } 
+#aboutIndex { font-size: 14px; }
+#aboutIndex .profile { float: left; }
+#aboutIndex .profile:not(:first-child) { margin-left: 24px; }
+    #aboutIndex .profile img { float: left; margin-right: 24px; }
+    #aboutIndex .profile img.resized { width: 101px; height: 151px; }
+    #aboutIndex .profile p { float: left; width: 318px; line-height: 20px; } 
     /*header #navAndSearch { float: right; }
     header #navAndSearch nav { float: left; font-size: 150%; margin: 30px 10px 0 5px; }
         header #navAndSearch nav a { margin-right: 15px; color: #2489CE; }

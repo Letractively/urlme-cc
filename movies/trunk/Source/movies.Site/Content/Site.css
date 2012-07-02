@@ -102,6 +102,7 @@ header { background:#fff; }
     header > #headerContent { padding: 10px; margin: 0 auto; width: 1000px; }
     header > #headerContent > #logo { float: left; background: url('content/logo.png'); width: 224px; height: 80px; display:inline-block; }
     header > #headerContent > #fbLikeContainer { position: absolute; top: 80px; /* width: 85px; float: left; margin-top: 50px; margin: 30px 0 0 20px; position: fixed; top: 50px; left: 20px; */ }
+    header > #headerContent > #headerAd { float: right; }
     /* header > #headerContent > #q { float: right; padding: 8px; outline: none; width: 282px; border: 1px solid #ccc; font-size: 14px; } */
     nav, section { display:block; }
     nav { padding: 12px 0 10px 0; width: 990px; margin: 0 auto; }
@@ -191,7 +192,7 @@ header { background:#fff; }
 
 .movieList { overflow:auto; }
     .movieList .movie:not(:nth-child(5n+5)) { margin-right: 24px; }
-    .movieList .movie { margin-bottom: 24px; float: left; width: 180px; }
+    .movieList .movie { position:relative; margin-bottom: 24px; float: left; width: 180px; }
         .movieList .movie a.poster { width: 180px; height: 267px; float: left; }
         .movieList .movie a.poster:hover { -moz-box-shadow: none; -webkit-box-shadow: none; box-shadow: none; }
         .movieList .movie .details { padding: 10px; width: 160px; float: left; }

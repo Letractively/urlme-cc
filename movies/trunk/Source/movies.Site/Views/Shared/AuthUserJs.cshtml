@@ -6,7 +6,7 @@
         @if (Model.IsViewer || Model.IsAdmin) {
             <text>
             var editHtmlFormat = "<a class=\"button edit\" data-movieid=\"{0}\">Edit</a>";
-            $(".movie").css("position","relative").each(function(i, movie) {
+            $(".movie").each(function(i, movie) {
                 movie = $(movie);
                 var movieId = movie.attr("data-movieid");
                 if (!movie.find("a.edit").length) {

@@ -49,7 +49,15 @@
             <input type="hidden" id="movieUrl" value="http://seeitornot.co/@this.Model.MovieSlug" />
             <a class="button" id="copyButton"><img class="link" src="~/content/images/transparent.png" />Copy Link</a><span id="copySuccess">✓</span>
         </span>
-        <a href="@(this.Model.links.alternate)trailers" target="_blank" class="trailerLink">Trailer</a>
+        @if (!string.IsNullOrWhiteSpace(Model.IVAPublishedId))
+        {
+            <a href="#" class="trailerLink" id="watchTrailerLink" data-ivapublishedid="@Model.IVAPublishedId">Watch Trailer</a>
+        }
+        else
+        {
+            <a href="@(this.Model.links.alternate)trailers" target="_blank" class="trailerLink">Trailer</a>
+        }
+        
         @if (this.Model.MovieType == Enumerations.MovieType.InTheaters)
         {
             <a href="#" class="showtimesLink">Showtimes</a>
@@ -79,4 +87,11 @@
     <span class="closeMovieDetails"></span>
     <a class="backToMovieDetails" href="#">←&nbsp&nbsp;@this.Model.title</a>
     <p id="redboxAvailsList"></p>
+</div>
+<div id="trailer" class="hidden">
+    <span class="closeMovieDetails"></span>
+    <a class="backToMovieDetails" href="#">←&nbsp&nbsp;@this.Model.title</a>
+    <div id="trailerContainer">
+        <div id="trailerGoesHere">Alt content</div>
+    </div>
 </div>

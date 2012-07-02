@@ -44,6 +44,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="IVA.cs" />
     <Compile Include="Twitter.cs" />
     <Compile Include="Redbox.cs" />
     <Compile Include="Enumerations.cs" />

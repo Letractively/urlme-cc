@@ -106,6 +106,7 @@ namespace movies.Model
         public Links links { get; set; }
 
         // view helpers (items NOT inherently provided by RT api)
+        public string IVAPublishedId { get; set; }
         public Data.DomainModels.MovieReview Review { get; set; }
         public Enumerations.MovieType MovieType { get; set; }
         public string ShowtimesHtml { get; set; }
@@ -117,6 +118,9 @@ namespace movies.Model
         public string ReleaseDate { get { return this.release_dates.theater.ToString("MMM d, yyyy"); } }
         public string ParentalGuideUrl { get { return this.alternate_ids != null ? API.IMDb.GetParentalGuideUrl(this.alternate_ids.imdb) : null; } }
         public string IMDbMovieUrl { get { return this.alternate_ids != null ? API.IMDb.GetMovieUrl(this.alternate_ids.imdb) : null; } }
+        public string IMDbId {
+            get { return this.alternate_ids == null ? null : this.alternate_ids.imdb; }
+        }
         public string IMDbQ
         {
             get {

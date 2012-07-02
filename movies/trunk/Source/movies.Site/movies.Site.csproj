@@ -210,6 +210,7 @@
     <Content Include="Scripts\Plugins\mask\processing-bar.gif" />
     <Content Include="Scripts\Plugins\qTip2\jquery.qtip.min.css" />
     <Content Include="Scripts\Plugins\qTip2\jquery.qtip.min.js" />
+    <Content Include="Scripts\Plugins\swfobject.js" />
     <Content Include="Scripts\Plugins\zeroclipboard\test.html" />
     <Content Include="Scripts\Plugins\zeroclipboard\ZeroClipboard.js" />
     <Content Include="Scripts\Plugins\zeroclipboard\ZeroClipboard.swf" />

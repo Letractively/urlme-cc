@@ -97,32 +97,32 @@ namespace movies.Site.Controllers
 
         public ActionResult CacheImdbData()
         {
+            List<Dictionary<string,Model.Movie>> movieLists = new List<Dictionary<string,Model.Movie>>();
             var boxOfficeMovies = Model.Movie.GetMovies(Enumerations.MovieLists.BoxOffice);
-            foreach (var movie in boxOfficeMovies.Values)
-            {
-                if (movie.IMDbQ != null)
-                {
-                    Model.Movie.GetIMDbMovie(movie.IMDbQ);
-                }
-            }
-
+            movieLists.Add(boxOfficeMovies);
             var inTheatersMovies = Model.Movie.GetMovies(Enumerations.MovieLists.InTheaters);
-            foreach (var movie in inTheatersMovies.Values)
+            movieLists.Add(inTheatersMovies);
+            var openingMovies = Model.Movie.GetMovies(Enumerations.MovieLists.Opening);
+            movieLists.Add(openingMovies);
+
+            foreach (var movieList in movieLists)
             {
-                if (movie.IMDbQ != null)
+                foreach (var movie in movieList.Values)
                 {
-                    Model.Movie.GetIMDbMovie(movie.IMDbQ);
+                    if (string.IsNullOrWhiteSpace(movie.IVAPublishedId) && !string.IsNullOrWhiteSpace(movie.IMDbId))
+                    {
+                        movie.IVAPublishedId = Model.IVA.GetPublishedId(movie.IMDbId);
+                    }
                 }
             }
 
-            var openingMovies = Model.Movie.GetMovies(Enumerations.MovieLists.Opening);
-            foreach (var movie in openingMovies.Values)
-            {
-                if (movie.IMDbQ != null)
-                {
-                    Model.Movie.GetIMDbMovie(movie.IMDbQ);
-                }
-            }
+            //foreach (var movie in boxOfficeMovies.Values)
+            //{
+            //    if (movie.IMDbQ != null)
+            //    {
+            //        Model.Movie.GetIMDbMovie(movie.IMDbQ);
+            //    }
+            //}
 
             // var redboxMovies = Model.Redbox.GetMovies();
 

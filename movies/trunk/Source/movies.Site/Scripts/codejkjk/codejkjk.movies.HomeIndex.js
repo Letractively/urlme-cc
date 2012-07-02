@@ -68,7 +68,6 @@ codejkjk.movies.desktop = {
         , ShowtimeDayLinksSelector: function () { return ".showtimeDays > a"; }
         , ShowtimeDayLinksContainer: function () { return $(".showtimeDays"); }
         , showtimes: function () { return $("#showtimes"); }
-        , ShowtimesLinks: function () { return $(".showtimesLink"); }
         , ShowtimesLinksSelector: function () { return ".showtimesLink"; }
         , showtimesLoading: function () { return $("#showtimesLoading"); }
         , showtimeUseMyLocations: function () { return $(".showtimeZipOptions a"); }
@@ -80,9 +79,11 @@ codejkjk.movies.desktop = {
         , TheaterList: function () { return $("#theaterList"); }
         , TheaterListTemplate: function () { return $("#theaterListTemplate"); }
         , Theaters: function () { return $(".theater"); }
+        , trailer: function () { return $("#trailer"); }
         , UnsetIMDbMovieIds: function () { return $("[data-imdbmovieid='']"); }
         , UpcomingView: function () { return $("#upcomingView"); }
         , Views: function () { return $(".content"); }
+        , watchTrailerLinkSelector: function () { return "#watchTrailerLink"; }
     },
 
     currents: {
@@ -731,6 +732,25 @@ codejkjk.movies.desktop = {
                         movieShowtimesContainer.removeClass("hidden").addClass("loaded");
                     });
                 });
+            }
+        });
+
+        // handle watch trailer link on movie detail popups
+        $(document).on('click', codejkjk.movies.desktop.controls.watchTrailerLinkSelector(), function (e) {
+            e.preventDefault();
+
+            var link = $(this);
+            var ivaPublishedId = link.attr("data-ivapublishedid");
+            var trailerContainer = codejkjk.movies.desktop.controls.trailer();
+
+            if (trailerContainer.hasClass("loaded")) { // already been loaded previously, so just show it
+                codejkjk.movies.desktop.controls.MovieDetails().hide();
+                trailerContainer.removeClass("hidden");
+            } else {
+                var swfUrl = 'http://www.videodetective.net/flash/players/movieapi/?publishedid={0}'.format(ivaPublishedId);
+                swfobject.embedSWF(swfUrl, "trailerGoesHere", "400", "280", "9.0.0"); // 500 x 380 is larger but fuzzy
+                codejkjk.movies.desktop.controls.MovieDetails().hide();
+                trailerContainer.removeClass("hidden").addClass("loaded");
             }
         });
 

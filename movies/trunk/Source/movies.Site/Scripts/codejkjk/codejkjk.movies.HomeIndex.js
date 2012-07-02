@@ -748,6 +748,9 @@ codejkjk.movies.desktop = {
                 trailerContainer.removeClass("hidden");
             } else {
                 var swfUrl = 'http://www.videodetective.net/flash/players/movieapi/?publishedid={0}'.format(ivaPublishedId);
+                // var flashVars = {};
+                // flashVars.allowFullScreen = "true";
+                // swfobject.embedSWF(swfUrl, "trailerGoesHere", "400", "300", "9.0.0", "", flashVars); // 500 x 380 is larger but fuzzy
                 swfobject.embedSWF(swfUrl, "trailerGoesHere", "400", "280", "9.0.0"); // 500 x 380 is larger but fuzzy
                 codejkjk.movies.desktop.controls.MovieDetails().hide();
                 trailerContainer.removeClass("hidden").addClass("loaded");

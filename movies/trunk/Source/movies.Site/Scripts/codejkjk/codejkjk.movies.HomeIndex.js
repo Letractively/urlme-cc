@@ -668,7 +668,12 @@ codejkjk.movies.desktop = {
         $(document).on("click", codejkjk.movies.desktop.controls.CloseMovieDetailsLinkSelector(), function (e) {
             codejkjk.movies.desktop.controls.Overlay().hide();
             codejkjk.movies.desktop.controls.MovieDetailsPopup().hide().html("");
-            codejkjk.movies.desktop.controls.CurrentNavItem().trigger('click');
+            var currentNav = codejkjk.movies.desktop.controls.CurrentNavItem();
+            if (currentNav && currentNav.hasClass("noPush")) {
+                History.pushState(null, null, currentNav.attr("href"));
+            } else {
+                currentNav.trigger('click');
+            }
         });
 
         // handle showtime day link clicks (Today, Tomorrow, etc)

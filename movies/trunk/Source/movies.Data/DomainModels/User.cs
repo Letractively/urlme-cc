@@ -17,5 +17,14 @@ namespace movies.Data.DomainModels
 
             return viewerIds.Contains(facebookUserId);
         }
+
+        public static bool IsAdmin(int facebookUserId)
+        {
+            List<int> adminIds = new List<int>();
+            adminIds.Add(6207283); // Ian
+            adminIds.Add(762136697); // Shari
+
+            return adminIds.Contains(facebookUserId);
+        }
     }
 }

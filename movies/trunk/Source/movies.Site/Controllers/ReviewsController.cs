@@ -1,4 +1,7 @@
-﻿using System.Web.Mvc;
+﻿using System.Collections.Generic;
+using System.Web.Mvc;
+using movies.Data.DomainModels;
+using movies.Site.ViewModels;
 
 namespace movies.Site.Controllers
 {
@@ -6,7 +9,8 @@ namespace movies.Site.Controllers
     {
         public ActionResult Index()
         {
-            return View(new movies.Site.ViewModels.ViewModelBase());
+            var reviews = MovieReview.Get();
+            return View(new ViewModelItem<List<MovieReview>> { Item = reviews });
         }
     }
 }

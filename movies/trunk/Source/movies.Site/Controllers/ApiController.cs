@@ -84,9 +84,13 @@ namespace movies.Site.Controllers
         [HttpGet]
         public ActionResult GetAuthUserJs(int facebookUserId)
         {
-            if (Data.DomainModels.User.IsReviewer(facebookUserId))
+            if (Data.DomainModels.User.IsReviewer(facebookUserId) || Data.DomainModels.User.IsAdmin(facebookUserId))
             {
-                return PartialView("ViewerJs", new movies.Site.ViewModels.Shared.ViewerJs { FacebookUserId = facebookUserId });
+                return PartialView("AuthUserJs", new movies.Site.ViewModels.Shared.AuthUserJs { 
+                    FacebookUserId = facebookUserId,
+                    IsAdmin = Data.DomainModels.User.IsAdmin(facebookUserId),
+                    IsViewer = Data.DomainModels.User.IsReviewer(facebookUserId)
+                });
             }
             return Content("console.log('not authorized');");
         }

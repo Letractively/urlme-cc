@@ -16,6 +16,14 @@ namespace movies.Data.Repository
             }
         }
 
+        public List<MovieReview> MovieReviewGet()
+        {
+            using (var context = CreateContext())
+            {
+                return context.MovieReviews.Where(x => x.Status == Enumerations.MovieReviewStatus.Approved.ToString() || x.Status == Enumerations.MovieReviewStatus.NotRequired.ToString()).ToList();
+            }
+        }
+
         public bool MovieReviewIsOnSeeItWhiteList(int movieId)
         {
             using (var context = CreateContext())

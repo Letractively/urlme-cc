@@ -43,6 +43,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="IVA.cs" />
     <Compile Include="Twitter.cs" />
     <Compile Include="RedBox.cs" />
     <Compile Include="Flixster.cs" />

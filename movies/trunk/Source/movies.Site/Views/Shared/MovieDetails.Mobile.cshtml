@@ -14,6 +14,12 @@ else
 {
     <p class="releaseDate">@this.Model.ReleaseDate</p>    
 }
+@if (this.Model.Review != null)
+{
+    <p class="ourReview medium">
+        <span class="@Model.Review.ClassName"></span>"@Model.Review.Text" <a href="@Model.Review.Url" target="_blank">- JohnHanlonReviews.com</a>
+    </p>
+}
 <p class="links"><a href="@(this.Model.links.alternate)trailers" target="_blank">Trailer</a><a href="@this.Model.ParentalGuideUrl" target="_blank">Parental Guide</a></p>
 <p class="starring">
     <strong>Starring</strong>: 

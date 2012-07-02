@@ -109,9 +109,9 @@ namespace movies.Site.Controllers
             {
                 foreach (var movie in movieList.Values)
                 {
-                    if (string.IsNullOrWhiteSpace(movie.IVAPublishedId) && !string.IsNullOrWhiteSpace(movie.IMDbId))
+                    if (string.IsNullOrWhiteSpace(movie.IVAPublishedId))
                     {
-                        movie.IVAPublishedId = Model.IVA.GetPublishedId(movie.IMDbId);
+                        movie.IVAPublishedId = Model.IVA.GetPublishedId(movie.id);
                     }
                 }
             }

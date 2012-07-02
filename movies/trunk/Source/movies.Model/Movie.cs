@@ -118,9 +118,6 @@ namespace movies.Model
         public string ReleaseDate { get { return this.release_dates.theater.ToString("MMM d, yyyy"); } }
         public string ParentalGuideUrl { get { return this.alternate_ids != null ? API.IMDb.GetParentalGuideUrl(this.alternate_ids.imdb) : null; } }
         public string IMDbMovieUrl { get { return this.alternate_ids != null ? API.IMDb.GetMovieUrl(this.alternate_ids.imdb) : null; } }
-        public string IMDbId {
-            get { return this.alternate_ids == null ? null : this.alternate_ids.imdb; }
-        }
         public string IMDbQ
         {
             get {
@@ -263,9 +260,9 @@ namespace movies.Model
             TryLoadIMDb(ref movie);
 
             movie.Review = Data.DomainModels.MovieReview.Get(int.Parse(movie.id));
-            if (string.IsNullOrWhiteSpace(movie.IVAPublishedId) && !string.IsNullOrWhiteSpace(movie.IMDbId))
+            if (string.IsNullOrWhiteSpace(movie.IVAPublishedId))
             {
-                movie.IVAPublishedId = Model.IVA.GetPublishedId(movie.IMDbId);
+                movie.IVAPublishedId = Model.IVA.GetPublishedId(movie.id);
             }
 
             return movie;

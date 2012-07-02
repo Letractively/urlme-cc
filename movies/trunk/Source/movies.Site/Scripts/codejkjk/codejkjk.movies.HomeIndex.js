@@ -833,6 +833,9 @@ codejkjk.movies.desktop = {
                 $(codejkjk.movies.desktop.controls.CloseMovieDetailsLinkSelector()).trigger('click');
             }
         });
+        $(document).bind('keyup', 'alt+a', function () {
+            // alert('alt+a');
+        });
     }
 }
 

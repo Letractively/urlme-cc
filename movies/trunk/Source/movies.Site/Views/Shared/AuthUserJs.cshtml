@@ -28,14 +28,18 @@
     }
     refreshAdmin();
 
-    if (!$("#toggleAdmin").length) {
-        var toggleAdminHtml = "<a id=\"toggleAdmin\" style=\"position:fixed; top: 15px; right: 15px;\" class=\"button\">Toggle admin view</a>";
-        $("body").append(toggleAdminHtml);
-        $("#toggleAdmin").click(function(e) {
-            e.preventDefault();
-            $("a.edit").toggle();
-        });
+    function toggleAdmin() {
+        $("a.edit").toggle();
     }
+
+//    if (!$("#toggleAdmin").length) {
+//        var toggleAdminHtml = "<a id=\"toggleAdmin\" style=\"position:fixed; top: 15px; right: 15px;\" class=\"button\">Toggle admin view</a>";
+//        $("body").append(toggleAdminHtml);
+//        $("#toggleAdmin").click(function(e) {
+//            e.preventDefault();
+//            $("a.edit").toggle();
+//        });
+//    }
 
     $(document).on('click', '.ui-widget-overlay', function(){
         $(".ui-dialog-titlebar-close").trigger('click');

@@ -316,7 +316,7 @@
         <WebProjectProperties>
           <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>63045</DevelopmentServerPort>
+          <DevelopmentServerPort>63368</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
           <IISUrl>http://localhost/movies</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>

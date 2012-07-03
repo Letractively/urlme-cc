@@ -833,8 +833,8 @@ codejkjk.movies.desktop = {
                 $(codejkjk.movies.desktop.controls.CloseMovieDetailsLinkSelector()).trigger('click');
             }
         });
-        $(document).bind('keyup', 'Alt_a', function () {
-            // alert('alt+a');
+        $(document).bind('keyup', 'alt', function () {
+            if (typeof toggleAdmin === "function") { toggleAdmin(); }
         });
     }
 }

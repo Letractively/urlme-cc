@@ -27,6 +27,8 @@ namespace movies.Data.DomainModels
 
         public static bool Save(Data.DomainModels.MovieReview movieReview, string mpaaRating)
         {
+            ClearMovieReviewCache(movieReview.MovieId.ToString());
+                        
             Data.MovieReview dbMovie = new Data.MovieReview
             {
                 Review = movieReview.Text,
@@ -47,6 +49,8 @@ namespace movies.Data.DomainModels
 
         public static bool Delete(int movieId)
         {
+            ClearMovieReviewCache(movieId.ToString());
+
             return repo.MovieDelete(movieId);
         }
 
@@ -58,6 +62,23 @@ namespace movies.Data.DomainModels
         public static bool IsOnSeeItBlackList(int movieId)
         {
             return repo.MovieReviewIsOnSeeItWhiteList(movieId);
+        }
+
+        private static void ClearMovieReviewCache(string movieId = null) {
+            if (!string.IsNullOrWhiteSpace(movieId))
+            {
+                string cacheKey = string.Format("codejkjk.movies.Data.DomainModels.MovieReview.Get-{0}", movieId);
+                if (Core.Web.Caching.Cache.KeyExists(cacheKey))
+                {
+                    Core.Web.Caching.Cache.Remove(cacheKey);
+                }
+            }
+
+            string otherCacheKey = "codejkjk.movies.Data.DomainModels.MovieReview.Get";
+            if (Core.Web.Caching.Cache.KeyExists(otherCacheKey))
+            {
+                Core.Web.Caching.Cache.Remove(otherCacheKey);
+            }
         }
 
         public static List<MovieReview> Get()
@@ -84,28 +105,40 @@ namespace movies.Data.DomainModels
 
         public static MovieReview Get(int movieId, bool approvedOnly = true)
         {
-            var dbMovieReview = repo.MovieReviewGet(movieId);
+            var mdlMovieReview = Cache.GetValue<MovieReview>(
+                string.Format("codejkjk.movies.Data.DomainModels.MovieReview.Get-{0}", movieId),
+                () =>
+                {
+                    var dbMovieReview = repo.MovieReviewGet(movieId);
 
-            if (dbMovieReview != null && approvedOnly && dbMovieReview.Status != movies.Data.Enumerations.MovieReviewStatus.Approved.ToString() && dbMovieReview.Status != movies.Data.Enumerations.MovieReviewStatus.NotRequired.ToString())
+                    if (dbMovieReview == null)
+                    {
+                        return null;
+                    }
+
+                    return new MovieReview
+                    {
+                        MovieId = int.Parse(dbMovieReview.MovieId.ToString()),
+                        Text = dbMovieReview.Review,
+                        ClassName = dbMovieReview.ReviewClass,
+                        Url = dbMovieReview.ReviewUrl,
+                        DetailedPosterUrl = dbMovieReview.DetailedPosterUrl,
+                        ProfilePosterUrl = dbMovieReview.ProfilePosterUrl,
+                        ThumbnailPosterUrl = dbMovieReview.ThumbnailPosterUrl,
+                        Title = dbMovieReview.Title,
+                        Year = dbMovieReview.Year,
+                        Status = dbMovieReview.Status
+                    };
+                });
+            
+            if (mdlMovieReview != null && approvedOnly && mdlMovieReview.Status != movies.Data.Enumerations.MovieReviewStatus.Approved.ToString() && mdlMovieReview.Status != movies.Data.Enumerations.MovieReviewStatus.NotRequired.ToString())
             {
                 return null;
             }
 
-            if (dbMovieReview != null)
+            if (mdlMovieReview != null)
             {
-                return new MovieReview
-                {
-                    MovieId = int.Parse(dbMovieReview.MovieId.ToString()),
-                    Text = dbMovieReview.Review,
-                    ClassName = dbMovieReview.ReviewClass,
-                    Url = dbMovieReview.ReviewUrl,
-                    DetailedPosterUrl = dbMovieReview.DetailedPosterUrl,
-                    ProfilePosterUrl = dbMovieReview.ProfilePosterUrl,
-                    ThumbnailPosterUrl = dbMovieReview.ThumbnailPosterUrl,
-                    Title = dbMovieReview.Title,
-                    Year = dbMovieReview.Year,
-                    Status = dbMovieReview.Status
-                };
+                return mdlMovieReview;
             }
             return null;
         }

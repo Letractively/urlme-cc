@@ -10,7 +10,7 @@ namespace movies.Site.Controllers
     {
         //
         // GET: /Home/
-
+        [OutputCache(CacheProfile="OneMinute")]
         public ActionResult Index(string rtMovieId = null, string titleSlug = null, bool isRedbox = false)
         {
             var inTheatersMovies = Movie.GetMovies(Enumerations.MovieLists.InTheaters);

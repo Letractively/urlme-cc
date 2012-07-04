@@ -302,7 +302,7 @@ header { background:#fff; }
             /* .content .movie .ratings { margin-top: 10px; overflow:auto; } */
             .content .movie .mpaaRating { font-weight: bold; }
             .content .movie .showtimes { margin-top: 10px; }
-            .content .movie [data-releasedate] { margin-top: 10px; font-weight: bold; }
+            .content .movie [data-releasedate] { margin-top: 10px; font-weight: bold; height: 16px; }
             .content .movie img { margin-right: 10px; display:block; }
             .content .movie h2 { display:inline-block; font-weight: bold; margin-right: 10px; max-width:201px; overflow:hidden; text-overflow: ellipsis; white-space: nowrap; }
             .content .movie .actions { position: absolute; right: 8px; bottom: 8px; }

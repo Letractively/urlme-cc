@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Data.Linq;
+using movies.Core.Extensions;
 
 namespace movies.Data.Repository
 {
@@ -85,7 +86,11 @@ namespace movies.Data.Repository
                     else if (requiresApproval && movie.ReviewClass == "seeIt")
                     {
                         dbMovie.Status = Enumerations.MovieReviewStatus.Pending.ToString();
-                        Core.Net.Mail.SendFromNoReply("ihdavis@gmail.com", "Ian Davis", "Pending reviews need your attention", "Latest is for " + movie.Title + ". Manage approvals here: http://seeitornot.co/admin");
+                        StringBuilder sb = new StringBuilder();
+                        sb.AppendFormat("Pending review for <b>{0}</b>.<br/><br/>", movie.Title);
+                        sb.AppendFormat("Movie page: <a href=\"http://seeitornot.co/{0}/{1}\">http://seeitornot.co/{0}/{1}</a><br/><br/>", movie.Title.Slugify(), movie.MovieId);
+                        sb.AppendFormat("<a href=\"http://seeitornot.co/reviews/approve/{0}\">Approve</a> or <a href=\"http://seeitornot.co/reviews/disapprove/{0}\">disapprove</a>.", movie.MovieId);
+                        Core.Net.Mail.SendFromNoReply("ihdavis@gmail.com", "Ian Davis", "Pending review: " + movie.Title, sb.ToString());
                     }
 
                     dbMovie.Review = movie.Review;
@@ -108,7 +113,37 @@ namespace movies.Data.Repository
             return true;
         }
 
-        public bool MovieDelete(int movieId)
+        public bool MovieReviewUpdateStatus(int movieId, Enumerations.MovieReviewStatus status)
+        {
+            try
+            {
+                using (var context = CreateContext(true))
+                {
+                    var dbMovie = context.MovieReviews.FirstOrDefault(x => x.MovieId == movieId);
+
+                    if (dbMovie == null)
+                    {
+                        // DOES NOT EXIST, and it should, so return false b/c it's an error
+                        return false;
+                    }
+                    else
+                    {
+                        // EXISTS, so modify
+                        dbMovie.Status = status.ToString();
+                    }
+
+                    context.SubmitChanges(ConflictMode.FailOnFirstConflict);
+                }
+            }
+            catch
+            {
+                return false;
+            }
+
+            return true;
+        }
+
+        public bool MovieReviewDelete(int movieId)
         {
             try
             {

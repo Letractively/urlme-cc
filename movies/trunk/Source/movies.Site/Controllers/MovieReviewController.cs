@@ -10,6 +10,32 @@ namespace movies.Site.Controllers
 {
     public class MovieReviewController : Controller
     {
+        public ActionResult Approve(int movieId)
+        {
+            bool success = Data.DomainModels.MovieReview.UpdateStatus(movieId, Data.Enumerations.MovieReviewStatus.Approved);
+            if (success)
+            {
+                return Content("Success! Go to <a href='//seeitornot.co'>seeitornot.co</a>.");
+            }
+            else
+            {
+                return Content("Failure :/ Go to <a href='//seeitornot.co'>seeitornot.co</a>.");
+            }
+        }
+
+        public ActionResult Disapprove(int movieId)
+        {
+            bool success = Data.DomainModels.MovieReview.UpdateStatus(movieId, Data.Enumerations.MovieReviewStatus.Disapproved);
+            if (success)
+            {
+                return Content("Success! Go to <a href='//seeitornot.co'>seeitornot.co</a>.");
+            }
+            else
+            {
+                return Content("Failure :/ Go to <a href='//seeitornot.co'>seeitornot.co</a>.");
+            }
+        }
+        
         [HttpPost]
         public JsonResult Save(int facebookUserId, Data.DomainModels.MovieReview movieReview)
         {

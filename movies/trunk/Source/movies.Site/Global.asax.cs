@@ -47,6 +47,18 @@ namespace movies
             );
 
             routes.MapRoute(
+                "reviews-approve", // Route name
+                "reviews/approve/{movieId}", // URL with parameters
+                new { controller = "MovieReview", action = "Approve" } // Parameter defaults
+            );
+
+            routes.MapRoute(
+                "reviews-disapprove", // Route name
+                "reviews/disapprove/{movieId}", // URL with parameters
+                new { controller = "MovieReview", action = "Disapprove" } // Parameter defaults
+            );
+
+            routes.MapRoute(
                 "MovieReview-Save", // Route name
                 "moviereview/save", // URL with parameters
                 new { controller = "MovieReview", action = "Save" } // Parameter defaults

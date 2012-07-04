@@ -15,7 +15,7 @@ namespace movies.Site.Controllers
             bool success = Data.DomainModels.MovieReview.UpdateStatus(movieId, Data.Enumerations.MovieReviewStatus.Approved);
             if (success)
             {
-                return Content("Success! Go to <a href='//seeitornot.co'>seeitornot.co</a>.");
+                return Content("Approved! Go to <a href='//seeitornot.co'>seeitornot.co</a>.");
             }
             else
             {
@@ -28,7 +28,7 @@ namespace movies.Site.Controllers
             bool success = Data.DomainModels.MovieReview.UpdateStatus(movieId, Data.Enumerations.MovieReviewStatus.Disapproved);
             if (success)
             {
-                return Content("Success! Go to <a href='//seeitornot.co'>seeitornot.co</a>.");
+                return Content("Disapproved! Go to <a href='//seeitornot.co'>seeitornot.co</a>.");
             }
             else
             {

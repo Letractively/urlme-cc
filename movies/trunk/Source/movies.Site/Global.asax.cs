@@ -249,18 +249,18 @@ namespace movies
             mobileJsBundle.AddFile("~/scripts/codejkjk/codejkjk.movies.Api.js");
             mobileJsBundle.AddFile("~/scripts/codejkjk/codejkjk.Geo.js");
             mobileJsBundle.AddFile("~/scripts/plugins/mask/jquery.mask.min.js");
+            mobileJsBundle.AddFile("~/scripts/plugins/jquery-ui-1.8.21/js/jquery-ui-1.8.21.custom.min.js");
             mobileJsBundle.AddFile("~/scripts/plugins/date.js");
             mobileJsBundle.AddFile("~/scripts/plugins/jsrender.js");
-            // mobileJsBundle.AddFile("~/scripts/plugins/lazyload/jquery.lazyload.min.js");
             mobileJsBundle.AddFile("~/externals/local-cache/local-cache.js");
             // mobileJsBundle.AddFile("~/scripts/codejkjk/codejkjk.movies.Mobile.js");
             mobileJsBundle.AddFile("~/scripts/plugins/jquery.history.js");
             BundleTable.Bundles.Add(mobileJsBundle);
 
             var mobileCssBundle = new Bundle("~/mobile-css-bundle", new CssMinify());
-            // mobileCssBundle.AddFile("~/content/jquery.mobile-1.1.0-rc.1/jquery.mobile-1.1.0-rc.1.min.css");
             mobileCssBundle.AddFile("~/content/common.css");
             mobileCssBundle.AddFile("~/content/mobile.css");
+            mobileCssBundle.AddFile("~/scripts/plugins/jquery-ui-1.8.21/css/ui-lightness/jquery-ui-1.8.21.custom.css");
             BundleTable.Bundles.Add(mobileCssBundle);
 
             var desktopJsBundle = new Bundle("~/desktop-js-bundle", new JsMinify());
@@ -275,7 +275,6 @@ namespace movies
             desktopJsBundle.AddFile("~/externals/local-cache/local-cache.js");
             desktopJsBundle.AddFile("~/scripts/plugins/zeroclipboard/zeroclipboard.js");
             // desktopJsBundle.AddFile("~/scripts/plugins/qTip2/jquery.qtip.min.js");
-            // desktopJsBundle.AddFile("~/scripts/plugins/lazyload/jquery.lazyload.min.js");
             desktopJsBundle.AddFile("~/scripts/plugins/mask/jquery.mask.min.js");
             desktopJsBundle.AddFile("~/scripts/plugins/jquery.history.js");
             desktopJsBundle.AddFile("~/scripts/plugins/blockui/jquery.blockUI.js");

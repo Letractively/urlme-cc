@@ -15,11 +15,13 @@ codejkjk.movies.mobile = {
         , CurrentShowtimesZip: function () { return $("#currentShowtimesZip"); }
         , CurrentTheater: function () { return $("#theater div[data-role='header'] h2"); }
         , CurrentTheaterMovie: function () { return $("#theatermovie div[data-role='header'] h2"); }
-        , loading: function() { return $(".loading"); }
+        , loading: function () { return $(".loading"); }
+        , menu: function () { return $("#menu"); }
+        , menuLink: function () { return $("#menuLink"); }
         , Movie: function () { return $("#movie div[data-role='content']"); }
         , MovieBackLink: function () { return $("#movie div[data-role='header'] a"); }
         , nav: function () { return $("#navBar"); }
-        , searchBox: function () { return $("#q"); }
+        , searchBox: function () { return $("#search input"); }
         , ShowtimesHeader: function () { return $("#showtimes > #theaters div[data-role='header']"); }
         , ShowtimesOptionsLinkSelector: function () { return "#showtimes > #theaters div[data-role='header'] a"; }
         , ShowtimesOptions: function () { return $("#showtimes > #options"); }
@@ -89,10 +91,32 @@ codejkjk.movies.mobile = {
     init: function () {
         var History = window.History;
 
+        codejkjk.movies.mobile.initSearch();
         codejkjk.movies.mobile.bindControls();
         codejkjk.movies.mobile.initGooglePlaces("inputShowtimesZip");
         codejkjk.movies.mobile.registerJsRenderHelpers();
         codejkjk.movies.mobile.initHistory(History);
+    },
+
+    initSearch: function () {
+        var searchBox = codejkjk.movies.mobile.controls.searchBox();
+        searchBox.autocomplete({
+            minLength: 2,
+            source: apiBaseUrl + 'search_movies.json', // change
+            focus: function (event, ui) {
+                // nothing
+            },
+            select: function (event, ui) {
+                History.pushState(null, null, ui.item.url);
+                return false;
+            }
+        })
+		.data("autocomplete")._renderItem = function (ul, item) {
+		    return $("<li></li>")
+				.data("item.autocomplete", item)
+				.append("<a class='group noPush' href='{0}'><img src='{1}' /><div class='right'><div>{2} ({3})</div><div class='cast'>{4}</div></div></a>".format(item.url, item.imgUrl, item.title, item.year, item.cast))
+				.appendTo(ul);
+		};
     },
 
     initHistory: function (History) {
@@ -219,7 +243,6 @@ codejkjk.movies.mobile = {
         // show view
         codejkjk.movies.mobile.controls.views().hide();
         var sectionToShow = $('#' + sectionId);
-        var navItemUrl = sectionToShow.attr("data-navitemurl");
         sectionToShow.show();
 
         // init image lazyload jquery plugin
@@ -228,9 +251,21 @@ codejkjk.movies.mobile = {
             sectionToShow.addClass("lazyLoaded");
         }
 
-        var navLink = codejkjk.movies.mobile.controls.nav().find("a[href='{0}']".format(navItemUrl)); // logo does not have inner html, which is what we use later to select view to show
-        codejkjk.movies.mobile.controls.nav().find("a").removeClass("selected");
-        navLink.addClass("selected");
+        // var navItemUrl = sectionToShow.attr("data-navitemurl");
+        var navLink = codejkjk.movies.mobile.controls.nav().find("a:last");
+        if (sectionId == "whatsHot") {
+            navLink.html("What's Hot");
+        } else if (sectionId == "showtimes") {
+            navLink.html("Showtimes");
+        } else {
+            navLink.html("&nbsp;");
+        }
+
+        if (codejkjk.movies.mobile.controls.menu().is(":visible")) {
+            codejkjk.movies.mobile.controls.menuLink().trigger('click');
+        }
+
+        // navLink.addClass("selected");
     },
 
     initGooglePlaces: function (inputId) {
@@ -251,83 +286,6 @@ codejkjk.movies.mobile = {
         });
     },
 
-    PageChanged: function () {
-        var hash = location.hash;
-        var action = hash.split('?')[0]; // #whatshot, #showtimes, #zip?{zip}, #theater?{zip},{theaterId}
-        switch (action) {
-            case "#showtimes":
-                //                if (codejkjk.movies.mobile.currents.ZipCode()) {
-                //                    // we have a zipcode, so display theater list and showtimes header
-                //                    codejkjk.movies.mobile.UpdateZip(codejkjk.movies.mobile.currents.ZipCode(), codejkjk.movies.mobile.currents.ZipCodeFriendlyTitle());
-                //                } else {
-                //                    // no zipcode, so show options (user can specify zip or use current location)
-                //                    codejkjk.movies.mobile.controls.ShowtimesOptions().show();
-                //                }
-                break;
-            case "#theater": // #theater?{zip},{theaterId}
-                //                codejkjk.movies.mobile.toggleLoading();
-                //                var args = hash.split('?')[1].split(',');
-                //                var zip = args[0];
-                //                var theaterId = args[1];
-                //                codejkjk.movies.mobile.currents.ZipCode(zip);
-
-                //                // load theater movies
-                //                codejkjk.movies.Api.GetTheaterMovies(codejkjk.movies.mobile.currents.ShowtimeDay(), codejkjk.movies.mobile.currents.ZipCode(), theaterId, function (theater) {
-                //                    codejkjk.movies.mobile.controls.CurrentTheater().html(theater.name);
-                //                    codejkjk.movies.mobile.controls.TheaterMovieList().html(
-                //                        codejkjk.movies.mobile.controls.TheaterMovieTemplate().render(theater)
-                //                    ).show().listview('refresh');
-
-                //                    // set backUrl
-                //                    backUrl = hash; // set back url to current url
-
-                //                    codejkjk.movies.mobile.toggleLoading();
-                //                });
-                break;
-            case "#movie": // #movie?rtMovieId (used to be location.pathname = /marvels-the-avengers/770740154)
-                //                codejkjk.movies.mobile.toggleLoading();
-                //                var rtMovieId = hash.split('?')[1];
-
-                //                // load single movie
-                //                codejkjk.movies.Api.GetMovieMobileHtml(rtMovieId, function (html) {
-                //                    // slight hack. the html is prefexed with {movieName}^, then the html
-                //                    var movieName = $.trim(html.split('^')[0]);
-                //                    var htmlStr = $.trim(html.split('^')[1]);
-                //                    codejkjk.movies.mobile.controls.CurrentMovie().html(movieName); // set movie name in header, NEED???
-                //                    codejkjk.movies.mobile.controls.Movie().html(htmlStr);
-
-                //                    codejkjk.movies.mobile.toggleLoading();
-                //                });
-                break;
-            case "#theatermovie": // #theatermovie?{rtMovieId}
-                //                codejkjk.movies.mobile.toggleLoading();
-                //                var rtMovieId = hash.split('?')[1];
-
-                //                // load single theater movie
-                //                codejkjk.movies.Api.GetMovieMobileHtml(rtMovieId, function (html) {
-                //                    // slight hack. the html is prefexed with {movieName}^, then the html
-                //                    var movieName = $.trim(html.split('^')[0]);
-                //                    var htmlStr = $.trim(html.split('^')[1]);
-                //                    codejkjk.movies.mobile.controls.CurrentTheaterMovie().html(movieName); // set theater movie name in header
-                //                    codejkjk.movies.mobile.controls.TheaterMovie().html(htmlStr);
-
-                //                    // show back link?
-                //                    if (backUrl) {
-                //                        codejkjk.movies.mobile.controls.TheaterMovieBackLink().attr("href", backUrl).show();
-                //                    } else {
-                //                        codejkjk.movies.mobile.controls.TheaterMovieBackLink().hide();
-                //                    }
-
-                //                    codejkjk.movies.mobile.toggleLoading();
-                //                });
-                break;
-        }
-
-        $("img.lazy").lazyload({
-            effect: "fadeIn"
-        });
-    },
-
     UpdateZip: function (zip, friendlyTitle) {
         codejkjk.movies.mobile.controls.TheaterLists().hide(); // hide theater lists from previous zips
         codejkjk.movies.mobile.toggleLoading();
@@ -344,7 +302,7 @@ codejkjk.movies.mobile = {
         codejkjk.movies.Api.GetTheaters(codejkjk.movies.mobile.currents.ShowtimeDay(), zip, codejkjk.movies.mobile.LoadTheaters);
     },
 
-    toggleLoading: function() {
+    toggleLoading: function () {
         codejkjk.movies.mobile.controls.loading().toggle();
     },
 
@@ -459,6 +417,14 @@ codejkjk.movies.mobile = {
     },
 
     bindControls: function () {
+        // handle menu link click
+        codejkjk.movies.mobile.controls.menuLink().click(function (e) {
+            e.preventDefault();
+            var menu = codejkjk.movies.mobile.controls.menu();
+            $("#body").toggleClass("floatLeft");
+            menu.toggle();
+        });
+
         // handle favorite theater links
         $(document).on('click', codejkjk.movies.mobile.controls.FavoriteLinksSelector(), function (e) {
             e.preventDefault();

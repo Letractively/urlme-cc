@@ -12,17 +12,25 @@
 <input type="hidden" id="currentShowtimeDay" />
 <input type="hidden" id="currentMovieId" />
 
+<div id="menu">
+    <div data-role="content" id="search">
+        <input type="text" placeholder="Search movies..." />
+    </div>
+    <a href="/">What's Hot</a>
+    <a href="/showtimes">Showtimes</a>
+@*    <a href="/reviews">Reviews</a>
+    <a href="/about">About</a>*@
+</div>
 <div id="body">
+    @*<input type="search" name="search" id="q" value="" placeholder="Search..."/>*@
     <div class="loading"></div>
     <div class="logo">
         <a href="~/"></a>
     </div>
-    @*<input type="search" name="search" id="q" value="" placeholder="Search..."/>*@
-    <ul id="navBar" class="group">
-        <li><a class="selected" href="/">What's Hot</a></li>
-        <li><a href="/showtimes">Showtimes</a></li>
-    </ul>
-
+    <div id="navBar" class="group">
+        <a href="#" id="menuLink"><span class="shadow"></span><span class="shadow"></span><span class="shadow"></span></a>
+        <a href="/">What's Hot</a>
+    </div>
     @* *** What's Hot *** *@
     <section id="whatsHot" data-navitemurl="/">
         <div data-role="header">
@@ -53,7 +61,7 @@
     @* *** Showtimes *** *@
     <section id="showtimes" data-navitemurl="/showtimes">
         <div data-role="content" id="options">
-            <input type="text" id="inputShowtimesZip" placeholder="Search for city or zip...">
+            <input type="text" id="inputShowtimesZip" placeholder="Search for city or zip..." />
             <div>or <a href="#">use current location</a></div>
         </div>
         <div id="theaters">

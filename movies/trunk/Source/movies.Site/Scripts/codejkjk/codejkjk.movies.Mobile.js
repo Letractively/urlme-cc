@@ -114,7 +114,7 @@ codejkjk.movies.mobile = {
 		.data("autocomplete")._renderItem = function (ul, item) {
 		    return $("<li></li>")
 				.data("item.autocomplete", item)
-				.append("<a class='group noPush' href='{0}'><img src='{1}' /><div class='right'><div>{2} ({3})</div><div class='cast'>{4}</div></div></a>".format(item.url, item.imgUrl, item.title, item.year, item.cast))
+				.append("<a class='group noPush' href='{0}'><div class='right'><div>{1} ({2})</div><div class='cast'>{3}</div></div></a>".format(item.url, item.title, item.year, item.cast))
 				.appendTo(ul);
 		};
     },

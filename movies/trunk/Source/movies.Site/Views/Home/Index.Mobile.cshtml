@@ -27,31 +27,25 @@
     <div class="logo">
         <a href="~/"></a>
     </div>
-    <div id="navBar" class="group">
+    <h1>
         <a href="#" id="menuLink"><span class="shadow"></span><span class="shadow"></span><span class="shadow"></span></a>
         <a href="/">What's Hot</a>
-    </div>
+    </h1>
     @* *** What's Hot *** *@
     <section id="whatsHot" data-navitemurl="/">
-        <div data-role="header">
-            <h2>Top Box Office</h2>
-        </div>
+        <h2>Top Box Office</h2>
 	    <div data-role="content">	
             <ul>
                 @this.Html.Partial("MovieList.Mobile", this.Model.BoxOfficeMovies)
             </ul>
         </div>
-        <div data-role="header">
-            <h2>Opening This Week</h2>
-        </div>
+        <h2>Opening This Week</h2>
         <div data-role="content">	
             <ul>
                 @this.Html.Partial("MovieList.Mobile", this.Model.OpeningMovies)
             </ul>
         </div>
-        <div data-role="header">
-            <h2>Also in Theaters</h2>
-        </div>
+        <h2>Also in Theaters</h2>
         <div data-role="content">	
             <ul>
                 @this.Html.Partial("MovieList.Mobile", this.Model.InTheatersMovies)
@@ -65,10 +59,7 @@
             <div>or <a href="#">use current location</a></div>
         </div>
         <div id="theaters">
-            <div data-role="header">
-                <h2>Theaters near <span id="currentShowtimesZip"></span></h2>
-                <a href="#" class="right">Options</a>
-            </div>
+            <h2>Theaters near <span id="currentShowtimesZip"></span><a href="#" class="right">Options</a></h2>
             <div data-role="content">
                 <ul></ul>
             </div>
@@ -79,29 +70,19 @@
     </section>
     @* *** Theater w/ its movies *** *@
     <section id="theater" data-navitemurl="/showtimes">
-        <div data-role="header">
-            <h2></h2>
-            <a href="/showtimes">Back</a>
-        </div>
-    
+        <h2><span></span><a href="/showtimes">Back</a></h2>
         <div data-role="content">
             <ul></ul>
 	    </div>
     </section>
     @* *** Single Theater Movie *** *@
     <section id="theatermovie" data-navitemurl="/showtimes">
-        <div data-role="header">
-            <h2></h2>
-            <a href="#">Back</a>
-        </div>
+        <h2><span></span><a href="#">Back</a></h2>
         <div data-role="content" class="movieView"></div>
     </section>
     @* *** Movie *** *@
     <section id="movie">
-        <div data-role="header">
-            <h2></h2>
-            <a href="#">Back</a>
-        </div>
+        <h2><span></span><a href="#">Back</a></h2>
         <div data-role="content" class="movieView"></div>
     </section>
 </div>

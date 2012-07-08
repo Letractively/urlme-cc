@@ -10,25 +10,25 @@ codejkjk.movies.mobile = {
         , FavoriteTheaterListContent: function () { return $("#showtimes > #theaters div[data-role='content']:first"); }
         , FavoriteTheaterListTemplate: function () { return $("#favoriteTheaterListTemplate"); }
         , InputShowtimesZip: function () { return $("#inputShowtimesZip"); }
-        , CurrentMovie: function () { return $("#movie div[data-role='header'] h2"); }
+        , CurrentMovie: function () { return $("#movie h2 span"); }
         , CurrentMovieId: function () { return $("#currentMovieId"); }
         , CurrentShowtimesZip: function () { return $("#currentShowtimesZip"); }
-        , CurrentTheater: function () { return $("#theater div[data-role='header'] h2"); }
-        , CurrentTheaterMovie: function () { return $("#theatermovie div[data-role='header'] h2"); }
+        , CurrentTheater: function () { return $("#theater h2 span"); }
+        , CurrentTheaterMovie: function () { return $("#theatermovie h2 span"); }
         , loading: function () { return $(".loading"); }
         , menu: function () { return $("#menu"); }
         , menuLink: function () { return $("#menuLink"); }
         , Movie: function () { return $("#movie div[data-role='content']"); }
-        , MovieBackLink: function () { return $("#movie div[data-role='header'] a"); }
+        , MovieBackLink: function () { return $("#movie a"); }
         , nav: function () { return $("#navBar"); }
         , searchBox: function () { return $("#search input"); }
-        , ShowtimesHeader: function () { return $("#showtimes > #theaters div[data-role='header']"); }
-        , ShowtimesOptionsLinkSelector: function () { return "#showtimes > #theaters div[data-role='header'] a"; }
+        , ShowtimesHeader: function () { return $("#showtimes > #theaters h2"); }
+        , ShowtimesOptionsLinkSelector: function () { return "#showtimes > #theaters h2 a"; }
         , ShowtimesOptions: function () { return $("#showtimes > #options"); }
-        , TheaterMovie: function () { return $("#theatermovie div[data-role='content']"); }
-        , TheaterMovieHeader: function () { return $("#theatermovie div[data-role='header']"); }
-        , TheaterMovieBackLink: function () { return $("#theatermovie div[data-role='header'] a"); }
-        , TheaterHeader: function () { return $("#theater div[data-role='header']"); }
+        , TheaterMovie: function () { return $("#theatermovie h2"); }
+        , TheaterMovieHeader: function () { return $("#theatermovie h2"); }
+        , TheaterMovieBackLink: function () { return $("#theatermovie h2 a"); }
+        , TheaterHeader: function () { return $("#theater h2"); }
         , TheaterList: function () { return $("#theaters ul:last"); }
         , TheaterLists: function () { return $("#theaters div[data-role='content']"); }
         , TheaterListTemplate: function () { return $("#theaterListTemplate"); }

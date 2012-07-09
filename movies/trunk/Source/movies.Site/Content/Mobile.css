@@ -59,7 +59,7 @@ p { color: #535156; } /* grey bullet color */
 li { background: -moz-linear-gradient(white,#F1F1F1) repeat scroll 0 0 #F1F1F1; background: -webkit-linear-gradient(top, white, #F1F1F1); background: -webkit-gradient(linear,0% 0%,0% 100%,from(white),to(#F1F1F1)); border-color: #CCC; }
 li:hover { background: -moz-linear-gradient(#FDFDFD,#EEE) repeat scroll 0 0 #EEE; background: -webkit-linear-gradient(top, #FDFDFD, #EEE); background: -webkit-gradient(linear,0% 0%,0% 100%,from(#FDFDFD),to(#EEE)); border-color: #CCC; }
     li.movie a { position:relative; text-decoration: none; color: #2F3E46; }
-    li.movie a > img { float: left; padding-right: 15px; width: 61px; height: 91px; }
+    li.movie a > img { float: left; padding-right: 15px; }
     li.movie a > span.details { height: 76px; display: block; padding-top: 15px; }
         li.movie a h3, li.theater a h3 { color: #2F3E46; font-size: 16px; font-weight: bold; display:block; text-overflow: ellipsis; overflow: hidden; white-space: nowrap; }
     li.movie a > span.rightArrow { opacity: 0.5; position: absolute; top: 28px; right: 5px; background: url('content/images/rt-sprite4.png') -76px -85px; width: 25px; height: 35px; display:inline-block; float: right; }
@@ -73,13 +73,18 @@ li:hover { background: -moz-linear-gradient(#FDFDFD,#EEE) repeat scroll 0 0 #EEE
     
 /* jquery ui autocomplete */
 .ui-menu .ui-menu-item img { float: left; margin-right: 10px; }
-.ui-menu .ui-menu-item .right { float: left; width: 189px; }
+.ui-menu .ui-menu-item .right { float: left; }
 .ui-menu .ui-menu-item .right div.cast { color: #666; font-size: 12px; margin-top: 5px; }    
     
 .floatLeft { float: left; width: 30%; }    
 #menu { float: left; width: 70%; display:none; }
+#menu.big { width: auto; float: none; }
     #menu #search { padding: 15px; }
-    #menu a { display:block; padding: 15px; font-size: 16px; background: -moz-linear-gradient(white,#F1F1F1) repeat scroll 0 0 #F1F1F1; background: -webkit-linear-gradient(top, white, #F1F1F1); background: -webkit-gradient(linear,0% 0%,0% 100%,from(white),to(#F1F1F1)); border-color: #CCC; }
+    #menu a:not(#cancelSearch) { display:block; padding: 15px; font-size: 16px; background: -moz-linear-gradient(white,#F1F1F1) repeat scroll 0 0 #F1F1F1; background: -webkit-linear-gradient(top, white, #F1F1F1); background: -webkit-gradient(linear,0% 0%,0% 100%,from(white),to(#F1F1F1)); border-color: #CCC; }
+    #menu #cancelSearch { display:none; }
+#menu.big #search input { float: left; width: 85%; }
+#menu.big #cancelSearch { display:inline-block; margin-left: 10px; margin-top: 10px; }
+#menu.big #menuItems { display: none; }
     
     /* nav */
     h1 { position: relative; }

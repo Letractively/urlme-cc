@@ -13,11 +13,14 @@
 <input type="hidden" id="currentMovieId" />
 
 <div id="menu">
-    <div data-role="content" id="search">
+    <div data-role="content" id="search" class="group">
         <input type="text" placeholder="Search movies..." />
+        <a href="#" id="cancelSearch">Cancel</a>
     </div>
-    <a href="/">What's Hot</a>
-    <a href="/showtimes">Showtimes</a>
+    <div id="menuItems">
+        <a href="/">What's Hot</a>
+        <a href="/showtimes">Showtimes</a>
+    </div>
 @*    <a href="/reviews">Reviews</a>
     <a href="/about">About</a>*@
 </div>

@@ -10,6 +10,7 @@ codejkjk.movies.mobile = {
         , FavoriteTheaterListContent: function () { return $("#showtimes > #theaters div[data-role='content']:first"); }
         , FavoriteTheaterListTemplate: function () { return $("#favoriteTheaterListTemplate"); }
         , InputShowtimesZip: function () { return $("#inputShowtimesZip"); }
+        , cancelSearch: function () { return $("#cancelSearch"); }
         , CurrentMovie: function () { return $("#movie h2 span"); }
         , CurrentMovieId: function () { return $("#currentMovieId"); }
         , CurrentShowtimesZip: function () { return $("#currentShowtimesZip"); }
@@ -114,7 +115,7 @@ codejkjk.movies.mobile = {
 		.data("autocomplete")._renderItem = function (ul, item) {
 		    return $("<li></li>")
 				.data("item.autocomplete", item)
-				.append("<a class='group noPush' href='{0}'><div class='right'><div>{1} ({2})</div><div class='cast'>{3}</div></div></a>".format(item.url, item.title, item.year, item.cast))
+				.append("<a class='group noPush' href='{0}'><img src='{1}' width='61' height='91' /><div class='right'><div>{2} ({3})</div><div class='cast'>{4}</div></div></a>".format(item.url, item.imgUrl, item.title, item.year, item.cast))
 				.appendTo(ul);
 		};
     },
@@ -423,6 +424,20 @@ codejkjk.movies.mobile = {
             var menu = codejkjk.movies.mobile.controls.menu();
             $("#body").toggleClass("floatLeft");
             menu.toggle();
+        });
+
+        codejkjk.movies.mobile.controls.searchBox().focus(function () {
+            var menu = codejkjk.movies.mobile.controls.menu();
+            if (!menu.hasClass("big")) {
+                $("#body").toggle();
+                codejkjk.movies.mobile.controls.menu().toggleClass("big");
+            }
+        });
+
+        codejkjk.movies.mobile.controls.cancelSearch().click(function (e) {
+            e.preventDefault();
+            $("#body").toggle();
+            codejkjk.movies.mobile.controls.menu().toggleClass("big");
         });
 
         // handle favorite theater links

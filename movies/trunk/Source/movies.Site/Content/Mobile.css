@@ -76,7 +76,7 @@ li:hover { background: -moz-linear-gradient(#FDFDFD,#EEE) repeat scroll 0 0 #EEE
 .ui-menu .ui-menu-item .right { float: left; }
 .ui-menu .ui-menu-item .right div.cast { color: #666; font-size: 12px; margin-top: 5px; }    
     
-.floatLeft { float: left; width: 30%; }    
+.small { float: left; width: 30%; }    
 #menu { float: left; width: 70%; display:none; }
 #menu.big { width: auto; float: none; }
     #menu #search { padding: 15px; }

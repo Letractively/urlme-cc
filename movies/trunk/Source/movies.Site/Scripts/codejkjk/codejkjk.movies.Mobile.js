@@ -5,7 +5,8 @@ var backUrl = "";
 codejkjk.movies.mobile = {
     // page elements
     controls: {
-        FavoriteLinksSelector: function () { return ".favoriteLink"; }
+        body: function () { return $("#body"); }
+        , FavoriteLinksSelector: function () { return ".favoriteLink"; }
         , FavoriteTheaterList: function () { return $("#showtimes > #theaters div[data-role='content']:first ul"); }
         , FavoriteTheaterListContent: function () { return $("#showtimes > #theaters div[data-role='content']:first"); }
         , FavoriteTheaterListTemplate: function () { return $("#favoriteTheaterListTemplate"); }
@@ -130,7 +131,14 @@ codejkjk.movies.mobile = {
         // handle "a" clicks - prevent their default and instead push state
         $(document).on('click', 'a[href^="/"]:not(.noPush)', function (e) {
             e.preventDefault();
-            History.pushState(null, null, $(this).attr("href"));
+            var href = $(this).attr("href");
+            var state = History.getState();
+            var hash = state.hash;
+            if (hash === href) {
+                codejkjk.movies.mobile.handlePushState(state.url);
+            } else {
+                History.pushState(null, null, $(this).attr("href"));
+            }
         });
 
         // handle initial page's load
@@ -147,6 +155,10 @@ codejkjk.movies.mobile = {
             window.location.href = "http://seeitornot.co";
             return;
         }
+
+        // reset menu if it's been messed with
+        codejkjk.movies.mobile.controls.menu().removeClass("big").hide();
+        codejkjk.movies.mobile.controls.body().removeClass("small").show();
 
         // primary nav link?
         if (firstPath === "/" || (firstPath === "/redbox" && !paths[2])) {
@@ -235,6 +247,8 @@ codejkjk.movies.mobile = {
     },
 
     showSection: function (path) {
+
+
         // path = "/", "/showtimes", "/theater" ...
         // primary nav change
         // clear out search val if user previously searched for something
@@ -422,21 +436,21 @@ codejkjk.movies.mobile = {
         codejkjk.movies.mobile.controls.menuLink().click(function (e) {
             e.preventDefault();
             var menu = codejkjk.movies.mobile.controls.menu();
-            $("#body").toggleClass("floatLeft");
+            codejkjk.movies.mobile.controls.body().toggleClass("small");
             menu.toggle();
         });
 
         codejkjk.movies.mobile.controls.searchBox().focus(function () {
             var menu = codejkjk.movies.mobile.controls.menu();
             if (!menu.hasClass("big")) {
-                $("#body").toggle();
+                codejkjk.movies.mobile.controls.body().toggle();
                 codejkjk.movies.mobile.controls.menu().toggleClass("big");
             }
         });
 
         codejkjk.movies.mobile.controls.cancelSearch().click(function (e) {
             e.preventDefault();
-            $("#body").toggle();
+            codejkjk.movies.mobile.controls.body().toggle();
             codejkjk.movies.mobile.controls.menu().toggleClass("big");
         });
 

@@ -751,7 +751,13 @@ codejkjk.movies.desktop = {
                 // var flashVars = {};
                 // flashVars.allowFullScreen = "true";
                 // swfobject.embedSWF(swfUrl, "trailerGoesHere", "400", "300", "9.0.0", "", flashVars); // 500 x 380 is larger but fuzzy
-                swfobject.embedSWF(swfUrl, "trailerGoesHere", "400", "280", "9.0.0"); // 500 x 380 is larger but fuzzy
+
+                // this is last version before we switched to iframe --> 
+                // swfobject.embedSWF(swfUrl, "trailerGoesHere", "400", "280", "9.0.0"); // 500 x 380 is larger but fuzzy
+
+                var url = "http://www.videodetective.com/embed/video/?publishedid={0}&options=false&autostart=false&playlist=none&width=400&height=280".format(ivaPublishedId);
+                var html = "<iframe width='400' height='300' src='{0}' frameborder='0' scrolling='no'></iframe>".format(url);
+                $("#trailerGoesHere").html(html);
                 codejkjk.movies.desktop.controls.MovieDetails().hide();
                 trailerContainer.removeClass("hidden").addClass("loaded");
             }

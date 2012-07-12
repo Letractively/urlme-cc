@@ -99,9 +99,9 @@ a.button img.link { background: url('content/images/google-sprite.png') -143px -
 .mpaaRating { color: #465F82; }
 
 header { background:#fff; }
-    header > #headerContent { padding: 10px; margin: 0 auto; width: 1000px; }
+    header > #headerContent { padding: 20px 0; margin: 0 auto; width: 1000px; }
     header > #headerContent > #logo { float: left; background: url('content/logo.png'); width: 224px; height: 80px; display:inline-block; }
-    header > #headerContent > #fbLikeContainer { position: absolute; top: 80px; /* width: 85px; float: left; margin-top: 50px; margin: 30px 0 0 20px; position: fixed; top: 50px; left: 20px; */ }
+    header > #headerContent > #fbLikeContainer { position: absolute; top: 90px; /* width: 85px; float: left; margin-top: 50px; margin: 30px 0 0 20px; position: fixed; top: 50px; left: 20px; */ }
     header > #headerContent > #headerAd { float: right; }
     /* header > #headerContent > #q { float: right; padding: 8px; outline: none; width: 282px; border: 1px solid #ccc; font-size: 14px; } */
     nav, section { display:block; }

@@ -13,26 +13,25 @@
 <input type="hidden" id="currentMovieId" />
 
 <div id="menu">
-    <div data-role="content" id="search" class="group">
-        <input type="text" placeholder="Search movies..." />
+    <div data-role="content" id="search">
+        <div id="left"><input type="text" placeholder="Search movies..." /></div>
         <a href="#" id="cancelSearch">Cancel</a>
     </div>
     <div id="menuItems">
-        <a href="/">What's Hot</a>
+        <a href="/">Home</a>
         <a href="/showtimes">Showtimes</a>
     </div>
 @*    <a href="/reviews">Reviews</a>
     <a href="/about">About</a>*@
 </div>
 <div id="body">
-    @*<input type="search" name="search" id="q" value="" placeholder="Search..."/>*@
     <div class="loading"></div>
     <div class="logo">
         <a href="~/"></a>
     </div>
     <h1>
         <a href="#" id="menuLink"><span class="shadow"></span><span class="shadow"></span><span class="shadow"></span></a>
-        <a href="/">What's Hot</a>
+        <a href="/" id="header">What's Hot</a>
     </h1>
     @* *** What's Hot *** *@
     <section id="whatsHot" data-navitemurl="/">

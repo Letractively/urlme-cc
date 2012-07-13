@@ -17,12 +17,12 @@ codejkjk.movies.mobile = {
         , CurrentShowtimesZip: function () { return $("#currentShowtimesZip"); }
         , CurrentTheater: function () { return $("#theater h2 span"); }
         , CurrentTheaterMovie: function () { return $("#theatermovie h2 span"); }
+        , header: function () { return $("#header"); }
         , loading: function () { return $(".loading"); }
         , menu: function () { return $("#menu"); }
         , menuLink: function () { return $("#menuLink"); }
         , Movie: function () { return $("#movie div[data-role='content']"); }
         , MovieBackLink: function () { return $("#movie a"); }
-        , nav: function () { return $("#navBar"); }
         , searchBox: function () { return $("#search input"); }
         , ShowtimesHeader: function () { return $("#showtimes > #theaters h2"); }
         , ShowtimesOptionsLinkSelector: function () { return "#showtimes > #theaters h2 a"; }
@@ -266,21 +266,18 @@ codejkjk.movies.mobile = {
             sectionToShow.addClass("lazyLoaded");
         }
 
-        // var navItemUrl = sectionToShow.attr("data-navitemurl");
-        var navLink = codejkjk.movies.mobile.controls.nav().find("a:last");
+        var header = codejkjk.movies.mobile.controls.header();
         if (sectionId == "whatsHot") {
-            navLink.html("What's Hot");
+            header.html("What's Hot");
         } else if (sectionId == "showtimes") {
-            navLink.html("Showtimes");
+            header.html("Showtimes");
         } else {
-            navLink.html("&nbsp;");
+            header.html("&nbsp;");
         }
 
         if (codejkjk.movies.mobile.controls.menu().is(":visible")) {
             codejkjk.movies.mobile.controls.menuLink().trigger('click');
         }
-
-        // navLink.addClass("selected");
     },
 
     initGooglePlaces: function (inputId) {

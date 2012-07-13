@@ -76,14 +76,15 @@ li:hover { background: -moz-linear-gradient(#FDFDFD,#EEE) repeat scroll 0 0 #EEE
 .ui-menu .ui-menu-item .right { float: left; }
 .ui-menu .ui-menu-item .right div.cast { color: #666; font-size: 12px; margin-top: 5px; }    
     
-.small { float: left; width: 30%; }    
+#body.small { float: left; width: 30%; }    
 #menu { float: left; width: 70%; display:none; }
 #menu.big { width: auto; float: none; }
     #menu #search { padding: 15px; }
     #menu a:not(#cancelSearch) { display:block; padding: 15px; font-size: 16px; background: -moz-linear-gradient(white,#F1F1F1) repeat scroll 0 0 #F1F1F1; background: -webkit-linear-gradient(top, white, #F1F1F1); background: -webkit-gradient(linear,0% 0%,0% 100%,from(white),to(#F1F1F1)); border-color: #CCC; }
     #menu #cancelSearch { display:none; }
-#menu.big #search input { float: left; width: 85%; }
-#menu.big #cancelSearch { display:inline-block; margin-left: 10px; margin-top: 10px; }
+#menu #search #left { width:100%; display:table-cell; }
+    #menu #search #left input { width:100%; }
+#menu.big #search #cancelSearch { display:table-cell; padding-left: 27px; vertical-align:middle; }
 #menu.big #menuItems { display: none; }
     
     /* nav */

@@ -41,7 +41,7 @@
             <a class="theaterLink" href="/theater/{{=zipCode}}/{{=id}}" data-theaterid="{{=id}}">
         {{/if}}
             <div class="favoriteLink lit"></div>
-            <h3>{{=$ctx.Snippet(name, 30)!}}</h3>
+            <h3>{{=name}}</h3>
         </a>
         </li>
     </script>
@@ -53,7 +53,7 @@
             <a class="theaterLink" href="/theater/{{=zipCode}}/{{=id}}" data-theaterid="{{=id}}">
         {{/if}}
             <div class="favoriteLink default"></div>
-            <h3>{{=$ctx.Snippet(name, 30)!}}</h3>
+            <h3>{{=name}}</h3>
         </a>
         </li>
     </script>

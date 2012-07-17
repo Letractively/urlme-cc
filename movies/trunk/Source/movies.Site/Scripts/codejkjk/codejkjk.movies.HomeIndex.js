@@ -681,7 +681,7 @@ codejkjk.movies.desktop = {
         $(document).on("click", codejkjk.movies.desktop.controls.ShowtimeDayLinksSelector(), function (e) {
             e.preventDefault();
             var link = $(this);
-            codejkjk.movies.desktop.currents.ShowtimeDay().val(link.data().date);
+            codejkjk.movies.desktop.currents.ShowtimeDay(link.data().date);
 
             codejkjk.movies.Api.GetTheaters(link.data().date, codejkjk.movies.desktop.controls.CurrentZip().html(), codejkjk.movies.desktop.LoadTheaters);
         });

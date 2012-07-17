@@ -63,8 +63,8 @@ li:hover { background: -moz-linear-gradient(#FDFDFD,#EEE) repeat scroll 0 0 #EEE
     li.movie a > span.details { height: 76px; display: block; padding-top: 15px; }
         li.movie a h3, li.theater a h3 { color: #2F3E46; font-size: 16px; font-weight: bold; display:block; text-overflow: ellipsis; overflow: hidden; white-space: nowrap; }
     li.movie a > span.rightArrow { opacity: 0.5; position: absolute; top: 28px; right: 5px; background: url('content/images/rt-sprite4.png') -76px -85px; width: 25px; height: 35px; display:inline-block; float: right; }
-    h2 { position: relative; border-bottom: 1px solid #B3B3B3; background: #EEE; color: #3E3E3E; font-weight: bold; text-shadow: 0 1px 1px white; background-image: -webkit-gradient(linear,left top,left bottom,from(#F0F0F0),to(#DDD)); background-image: -webkit-linear-gradient(#F0F0F0,#DDD); background-image: -moz-linear-gradient(#F0F0F0,#DDD); background-image: -ms-linear-gradient(#F0F0F0,#DDD); background-image: -o-linear-gradient(#F0F0F0,#DDD); background-image: linear-gradient(#F0F0F0,#DDD); text-align: center; font-size: 16px; padding: 10px; text-overflow: ellipsis; overflow: hidden; white-space: nowrap; }
-        h2 a.back { position: absolute; top: 0; left: 10px; font-size: 16px; padding-top: 10px; }
+    h2 { position: relative; border-bottom: 1px solid #B3B3B3; background: #EEE; color: #3E3E3E; font-weight: bold; text-shadow: 0 1px 1px white; background-image: -webkit-gradient(linear,left top,left bottom,from(#F0F0F0),to(#DDD)); background-image: -webkit-linear-gradient(#F0F0F0,#DDD); background-image: -moz-linear-gradient(#F0F0F0,#DDD); background-image: -ms-linear-gradient(#F0F0F0,#DDD); background-image: -o-linear-gradient(#F0F0F0,#DDD); background-image: linear-gradient(#F0F0F0,#DDD); font-size: 16px; padding: 10px; text-overflow: ellipsis; overflow: hidden; white-space: nowrap; }
+        h2 a.back { padding-right: 10px; font-size: 16px; padding-top: 10px; }
         h2 a.right { position: absolute; top: 0; right: 10px; font-size: 16px; padding-top:10px; }
         
 #showtimeDays { text-align: left; }

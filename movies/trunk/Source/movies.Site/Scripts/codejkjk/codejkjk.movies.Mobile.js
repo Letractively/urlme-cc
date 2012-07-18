@@ -435,8 +435,7 @@ codejkjk.movies.mobile = {
     buildShowtimeDays: function (theaterId) {
         codejkjk.movies.mobile.controls.showtimeDays().html(""); // clear out first
 
-        // only show 3 day links
-        for (var i = 0; i < 3; i++) {
+        for (var i = 0; i < 5; i++) {
             var d = Date.today().add(i).days();
             var label = '';
             var cssClass = '';
@@ -448,7 +447,7 @@ codejkjk.movies.mobile = {
                     label = "Tomorrow";
                     break;
                 default:
-                    label = d.toString("ddd, MMM dd");
+                    label = d.toString("ddd");
                     break;
             } // end switch
 

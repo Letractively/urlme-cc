@@ -38,6 +38,14 @@ div.loading { background: url('content/images/ajax-loader-blue-ribbon.gif') no-r
 #editForm > div, #editForm > p { margin-top: 10px; }
 #editForm > p { font-weight: bold; }
 /* #DC3035, #A20608 */
+
+/* enter the SLIDER */
+.slider { padding: 24px; margin-bottom: 24px; }
+    .slider .slides { margin-top:24px; }
+        .slider .slides a { float: left; -webkit-transition: all 0.218s; -moz-transition: all 0.218s; -o-transition: all 0.218s; transition: all 0.218s; }
+        .slider .slides a:not(:first-child) { margin-left: 10px; }
+        .slider .slides a:not(.active) { opacity: .5; }
+        .slider .slides a:not(.active):hover { opacity: 1; float: left; -webkit-transition: all 0s; -moz-transition: all 0s; -o-transition: all 0s; transition: all 0s;  }
           
 /* jquery ui autocomplete */
 .ui-menu .ui-menu-item img { float: left; margin-right: 10px; }

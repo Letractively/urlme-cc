@@ -74,6 +74,7 @@ codejkjk.movies.desktop = {
         , showtimeZipOptions: function () { return $(".showtimeZipOptions"); }
         , showtimeZipOptionsBig: function () { return $("#showtimesView .showtimeZipOptions:first"); }
         , showtimeZipOptionsSmall: function () { return $("#showtimesView .showtimeZipOptions:last"); }
+        , slideLinksSelector: function () { return ".slider .slides a"; }
         , TheatersForMovieList: function () { return $("#theatersForMovieList"); }
         , TheaterLinksSelector: function () { return ".theaterList > a"; }
         , TheaterList: function () { return $("#theaterList"); }
@@ -584,6 +585,19 @@ codejkjk.movies.desktop = {
             $(this).next("div").toggleClass("hidden");
         });
 
+        // slide link clicks
+        $(document).on('click', codejkjk.movies.desktop.controls.slideLinksSelector(), function (e) {
+            e.preventDefault();
+            var slideLink = $(this);
+            if (slideLink.hasClass("active")) {
+                return; // already active, so do nothing
+            }
+
+            // toggle active links
+            $(codejkjk.movies.desktop.controls.slideLinksSelector()).removeClass("active");
+            slideLink.addClass("active");
+        });
+
         // handle "see nearby redboxes" links
         $(document).on('click', codejkjk.movies.desktop.controls.SeeNearbyRedboxesSelector(), function (e) {
             e.preventDefault();
@@ -832,6 +846,11 @@ codejkjk.movies.desktop = {
         $(document).bind('keyup', 'q', function () {
             if (!codejkjk.movies.desktop.controls.searchBox().is(":focus")) {
                 codejkjk.movies.desktop.controls.searchBox().focus();
+            }
+        });
+        $(document).bind('keyup', 't', function () {
+            if (!codejkjk.movies.desktop.controls.searchBox().is(":focus")) {
+                $(".slider").toggle();
             }
         });
         $(document).bind('keyup', 'esc', function () {

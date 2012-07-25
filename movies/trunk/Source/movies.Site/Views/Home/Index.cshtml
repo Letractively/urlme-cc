@@ -31,6 +31,21 @@
     <!-- WHAT'S HOT -->
     <section id="whatsHotView" class="content" data-navitemtext="What's Hot">
         <h2>Top Box Office</h2>
+
+        <div class="slider gradient rounded glowing" style="display:none">
+            @{ var firstMovie = this.Model.BoxOfficeMovies.Values.ElementAt(0); }
+            <div class="feature group">
+                <img src="@firstMovie.posters.detailed" />
+            </div>
+            <div class="slides group">
+                @for (int i = 0; i < this.Model.BoxOfficeMovies.Values.Count; i++)
+                {
+                    var movie = this.Model.BoxOfficeMovies.Values.ElementAt(i);
+                    <a href="" class="@(i == 0 ? "active" : "")"><img src="@movie.posters.thumbnail" /></a>
+                }
+            </div>
+        </div>
+
         @this.Html.Partial("MovieList", this.Model.BoxOfficeMovies)
         <h2>Opening This Week</h2>
         @this.Html.Partial("MovieList", this.Model.OpeningMovies)

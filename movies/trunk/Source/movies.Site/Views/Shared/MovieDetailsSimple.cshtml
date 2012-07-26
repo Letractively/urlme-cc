@@ -22,22 +22,12 @@
                 </p>                
                 }                
                 
-                this.Html.RenderPartial("Ratings", new movies.Site.ViewModels.Shared.Ratings { Movie = this.Model, RatingSize = Enumerations.RatingSizes.small });
+                this.Html.RenderPartial("Ratings", new movies.Site.ViewModels.Shared.Ratings { Movie = this.Model, RatingSize = Enumerations.RatingSizes.medium });
             }
             else
             {
                 <p data-releasedate="@Model.release_dates.theater.ToString("MM/dd/yyyy")"><span title="@Model.release_dates.theater.ToString("MMM d, yyyy")"></span></p>
             }
-
-            <p class="starring">
-                <strong>Starring</strong>: 
-                @{ int i = 0; }
-                @foreach (var ac in this.Model.abridged_cast)
-                {
-                    @(i == 0 ? ac.name : ", " + ac.name)
-                    i++;
-                }
-            </p>
         </div>
     </div>
     <p class="links">

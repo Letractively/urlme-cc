@@ -866,8 +866,10 @@ codejkjk.movies.desktop = {
                 $(codejkjk.movies.desktop.controls.CloseMovieDetailsLinkSelector()).trigger('click');
             }
         });
-        $(document).bind('keyup', 'alt', function () {
-            if (typeof toggleAdmin === "function") { toggleAdmin(); }
+        $(document).bind('keyup', 'a', function () {
+            if (!codejkjk.movies.desktop.controls.searchBox().is(":focus")) {
+                if (typeof toggleAdmin === "function") { toggleAdmin(); }
+            }
         });
     }
 }

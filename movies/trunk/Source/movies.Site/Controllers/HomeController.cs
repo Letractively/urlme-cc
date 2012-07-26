@@ -81,6 +81,13 @@ namespace movies.Site.Controllers
                 this.OpenGraphDescription = movie.synopsis;
                 vm.OverlayMovie = movie;
             }
+            else
+            {
+                // non-movie view. still set open graph stuff
+                this.OpenGraphImage = "http://seeitornot.co/content/logo_fbopengraph.png";
+                this.OpenGraphTitle = "See it or Not";
+                this.OpenGraphDescription = "Movie reviews from JohnHanlonReviews.com and RottenTomatoes.com, showtimes, and quick parental guide access for box office, coming soon, and movies opening this week!";
+            }
 
             return View(vm);
         }

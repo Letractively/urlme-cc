@@ -599,7 +599,7 @@ codejkjk.movies.desktop = {
 
             // load the selected movie into the feature box
             var movieId = slideLink.attr("data-movieid");
-            codejkjk.movies.Api.GetMovieHtml(movieId, function (html) {
+            codejkjk.movies.Api.GetMovieSimpleHtml(movieId, function (html) {
                 slideLink.closest(".slider").find(".feature").html(html);
                 codejkjk.siteActions.wireReleaseDates();
                 if (typeof refreshAdmin === "function") { refreshAdmin(); }

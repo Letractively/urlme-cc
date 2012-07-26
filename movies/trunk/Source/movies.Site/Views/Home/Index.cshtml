@@ -34,14 +34,14 @@
 
         <div class="slider gradient rounded glowing" style="display:none">
             @{ var firstMovie = this.Model.BoxOfficeMovies.Values.ElementAt(0); }
-            <div class="feature group">
+            <div class="feature group movieDetails">
                 <img src="@firstMovie.posters.detailed" />
             </div>
             <div class="slides group">
                 @for (int i = 0; i < this.Model.BoxOfficeMovies.Values.Count; i++)
                 {
                     var movie = this.Model.BoxOfficeMovies.Values.ElementAt(i);
-                    <a href="" class="@(i == 0 ? "active" : "")"><img src="@movie.posters.thumbnail" /></a>
+                    <a href="" class="@(i == 0 ? "active" : "")" data-movieid="@movie.id"><img src="@movie.posters.thumbnail" /></a>
                 }
             </div>
         </div>

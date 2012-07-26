@@ -2,13 +2,11 @@
 @using movies.Model
 
 <div class="movieDetails">
-    <input type="hidden" id="currentMovieId" value="@this.Model.id" />
     <div class="topHalf group">
         <div class="left">
             <img class="poster rounded" src="@this.Model.posters.detailed" />
         </div>
         <div class="right">
-            <span class="closeMovieDetails"></span>
             <h1>@this.Model.title</h1>
             <div class="ratingAndLength group"> 
                 <span class='mpaaRating'>@this.Model.mpaa_rating</span>
@@ -40,8 +38,6 @@
                     i++;
                 }
             </p>
-            <p class="description">@this.Model.synopsis</p>
-            @*<span class="length">@this.Model.Duration</span>*@
         </div>
     </div>
     <p class="links">

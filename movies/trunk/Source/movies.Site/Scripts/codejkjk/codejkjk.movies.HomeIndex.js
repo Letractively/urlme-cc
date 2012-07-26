@@ -43,7 +43,7 @@ codejkjk.movies.desktop = {
         , IMDbMoviesNotSet: function () { return $(".imdbNotSet"); }
         , Logo: function () { return $("#logo"); }
         , MovieDetailsPopup: function () { return $("#movieDetailsPopup"); }
-        , MovieDetails: function () { return $("#movieDetails"); }
+        , MovieDetails: function () { return $("#movieDetailsPopup .movieDetails"); }
         , MovieListTemplate: function () { return $("#movieListTemplate"); }
         , MovieShowtimes: function () { return $("#movieShowtimes"); }
         , MovieUrl: function () { return $("#movieUrl"); }
@@ -596,6 +596,14 @@ codejkjk.movies.desktop = {
             // toggle active links
             $(codejkjk.movies.desktop.controls.slideLinksSelector()).removeClass("active");
             slideLink.addClass("active");
+
+            // load the selected movie into the feature box
+            var movieId = slideLink.attr("data-movieid");
+            codejkjk.movies.Api.GetMovieHtml(movieId, function (html) {
+                slideLink.closest(".slider").find(".feature").html(html);
+                codejkjk.siteActions.wireReleaseDates();
+                if (typeof refreshAdmin === "function") { refreshAdmin(); }
+            });
         });
 
         // handle "see nearby redboxes" links

@@ -103,6 +103,14 @@ namespace movies.Site.Controllers
             return PartialView("MovieDetails", movie);
         }
 
+        public ActionResult GetMovieSimpleHtml(string rtMovieId)
+        {
+            var movie = Model.Movie.GetRottenTomatoesMovie(rtMovieId);
+            movie.MovieType = Model.Movie.GetMovieType(movie.id);
+
+            return PartialView("MovieDetailsSimple", movie);
+        }
+
         public ActionResult GetRedboxMovieHtml(string rbSlug)
         {
             var movie = Model.Redbox.GetRottenTomatoesMovie(rbSlug);

@@ -63,16 +63,7 @@
             <a href="#" class="nearbyRedboxLink">Nearby RedBox Availability</a>
         }        
         <a href="@this.Model.ParentalGuideUrl" target="_blank" class="parentalGuideLink">Parental Guide</a>
-
-        @if (!this.Model.IsReleased) // if it's not released, then the ratings will NOT show up, and the ratings are also links to RT.com and IMDb.com. therefore, provide them here for the user
-        {
-@*        <a href="@this.Model.links.alternate" target="_blank">RottenTomatoes.com Link</a>
-        <a href="@this.Model.IMDbMovieUrl" target="_blank">IMDb.com Link</a>*@
-        }
     </p>
-@*    <p class="share">
-        <strong>Share</strong>: 
-    </p>*@
 </div>
 <div id="movieShowtimes" class="hidden">
     <span class="closeMovieDetails"></span>

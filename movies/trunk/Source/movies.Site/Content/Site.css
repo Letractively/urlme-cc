@@ -30,8 +30,8 @@ div.loading { background: url('content/images/ajax-loader-blue-ribbon.gif') no-r
             background: -webkit-linear-gradient(top, #4c98e4, #2d62ae); 
             background: -moz-linear-gradient(top, #4c98e4, #2d62ae); }           
 /* -- Floating Containers --- */
-.movie a.edit { position: absolute; top: 5px; right: 5px; }
-.movieDetails a.edit { float: left; position: absolute; left: 156px; top: 32px; }
+.movie a.edit { display:none; position: absolute; top: 5px; right: 5px; }
+.movieDetails a.edit { display:none; float: left; position: absolute; left: 156px; top: 32px; }
 #adminToggle { position: fixed; top: 10px; left: 10px; padding: 5px; }
 #editForm textarea { width: 258px; height: 62px; padding: 6px 8px; }
 #editForm input[type='text'] { width: 264px; padding: 4px; }
@@ -167,22 +167,20 @@ header { background:#fff; }
     .movieDetails a { display: inline-block; }
     .movieDetails .closeMovieDetails { cursor: pointer; float: right; display:inline-block; width: 16px; height: 16px; background: url('content/images/rt-sprite4.png') -102px -88px; }
     .movieDetails .closeMovieDetails .x { margin-left: 6px; color: Red; }
-    .movieDetails #trailer #trailerContainer { margin-top:25px; margin-left:95px; }
-    .movieDetails #movieShowtimes { }
-        .movieDetails .backToMovieDetails { font-weight: bold; color: #2489CE; }
-        .movieDetails #movieShowtimes #theatersForMovieList { margin-top:15px; overflow: auto; max-height: 330px; }
-            .movieDetails #movieShowtimes #theatersForMovieList .theater { padding: 20px; border: 1px solid #ccc; margin-right:20px; }
-                .movieDetails #movieShowtimes #theatersForMovieList .theater h2 { font-size: 110%; font-weight: bold; }
-                .movieDetails #movieShowtimes #theatersForMovieList .theater:not(:first-child) { margin-top: 10px; }
-                .movieDetails #movieShowtimes #theatersForMovieList .theater h3 { margin: 5px 0; }
-                .movieDetails #movieShowtimes #theatersForMovieList .theater p.times.singleMovie { margin: 5px 0 0 0; }
-                .movieDetails #movieShowtimes #theatersForMovieList .theater p.times { margin: 0; }
+    #trailer #trailerContainer { margin-top:25px; margin-left:95px; }
+        .movieDetailsPanel .backToMovieDetails { font-weight: bold; color: #2489CE; }
+        #movieShowtimes #theatersForMovieList { margin-top:15px; overflow: auto; max-height: 330px; }
+            #movieShowtimes #theatersForMovieList .theater { padding: 20px; border: 1px solid #ccc; margin-right:20px; }
+                #movieShowtimes #theatersForMovieList .theater h2 { font-size: 110%; font-weight: bold; }
+                #movieShowtimes #theatersForMovieList .theater:not(:first-child) { margin-top: 10px; }
+                #movieShowtimes #theatersForMovieList .theater h3 { margin: 5px 0; }
+                #movieShowtimes #theatersForMovieList .theater p.times.singleMovie { margin: 5px 0 0 0; }
+                #movieShowtimes #theatersForMovieList .theater p.times { margin: 0; }
     .movieDetails .links { margin-top: 15px; font-weight: bold; }
         .movieDetails .links > a:not(.button) { padding-left: 22px; color: #2489CE; height:16px; line-height: 17px; /* text-decoration: underline; */ }
         .movieDetails .links > a.trailerLink { background: url('content/images/icons/video.png') no-repeat center left; }
         .movieDetails .links > a.parentalGuideLink { background: url('content/images/icons/caution2.png') no-repeat center left; }
         .movieDetails .links > a.showtimesLink { background: url('content/images/icons/clock.png') no-repeat center left; }            
-        /* .movieDetails .links > a.copy { margin-right: 0; background: url('content/images/icons/link.png') no-repeat center left; } */
         .movieDetails .links > a.showtimesLink.loading { background: url('content/images/ajax-loader-blue-ribbon.gif') no-repeat center left; }
         .movieDetails .links > a.nearbyRedboxLink { background: url('content/images/icons/redbox.gif') no-repeat center left; }            
         .movieDetails .links > a.nearbyRedboxLink.loading { background: url('content/images/ajax-loader-blue-ribbon.gif') no-repeat center left; }        

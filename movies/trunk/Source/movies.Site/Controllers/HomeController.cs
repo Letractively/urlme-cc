@@ -32,6 +32,7 @@ namespace movies.Site.Controllers
             if (!Request.Browser.IsMobileDevice)
             {
                 vm.UpcomingMovies = Movie.GetMovies(Enumerations.MovieLists.Upcoming);
+                vm.FeatureTrailers = TrailerAddict.GetFeatured(5);
                 if (!Request.Url.ToString().Contains("localhost"))
                 {
                     // vm.RedboxMovies = Redbox.GetMovies();

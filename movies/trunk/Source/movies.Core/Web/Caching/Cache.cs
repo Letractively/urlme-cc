@@ -67,15 +67,18 @@ namespace movies.Core.Web.Caching
         /// <typeparam name="TEntity">the type of object to return from cache</typeparam>
         /// <param name="key">the unique key to the item in the cache</param>
         /// <param name="func">the function to call to create the item if no longer in cache</param>
-        /// <param name="expireInDays">the time before the cache should expire, in days</param>
+        /// <param name="expireInMinutes">the time before the cache should expire, in days</param>
         /// <returns>the item from cache</returns>
         /// <remarks>
         /// the purpose of this is to hide the population/retrieval from the cache 
         /// and to delay the execution of the creation of the cache object until needed
         /// </remarks>        
-        public static TEntity GetValue<TEntity>(string key, Func<TEntity> func, int expireInDays) where TEntity : class
+        public static TEntity GetValue<TEntity>(string key, Func<TEntity> func, int expireInMinutes) where TEntity : class
         {
-            return Cache.GetValue<TEntity>(key, func, null, expireInDays * 86400);
+            return Cache.GetValue<TEntity>(key, func, null, expireInMinutes * 60);
+
+            // if it were to be expireInDays...
+            // return Cache.GetValue<TEntity>(key, func, null, expireInMinutes * 86400);
         }
 
         /// <summary>

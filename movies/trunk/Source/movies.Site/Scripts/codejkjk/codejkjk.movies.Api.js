@@ -75,6 +75,10 @@ codejkjk.movies.Api = {
         var url = "{0}get_movie_review.json/{1}".format(codejkjk.movies.Api.BaseUrl, rtMovieId);
         codejkjk.movies.Api.AjaxGet(url, callback, 'json');
     },
+    GetMovieForAdmin: function (rtMovieId, callback) {
+        var url = "{0}get_movie_for_admin.json/{1}".format(codejkjk.movies.Api.BaseUrl, rtMovieId);
+        codejkjk.movies.Api.AjaxGet(url, callback, 'json');
+    },
     GetMovieHtml: function (rtMovieId, callback) {
         // first, check cache
         var cacheKey = "rt-html-{0}".format(rtMovieId);

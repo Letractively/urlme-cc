@@ -65,6 +65,12 @@ namespace movies
             );
 
             routes.MapRoute(
+                "Movie-Save", // Route name
+                "movie/save", // URL with parameters
+                new { controller = "Movie", action = "Save" } // Parameter defaults
+            );
+
+            routes.MapRoute(
                 "MovieReview-Delete", // Route name
                 "moviereview/delete", // URL with parameters
                 new { controller = "MovieReview", action = "Delete" } // Parameter defaults

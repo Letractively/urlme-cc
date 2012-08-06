@@ -113,6 +113,92 @@ namespace movies.Data.Repository
             return true;
         }
 
+        public bool UpdateSeeItBlackList(int movieId, string title, bool addTo)
+        {
+            try
+            {
+                using (var context = CreateContext(true))
+                {
+                    var entry = context.MovieReviewSeeItBlackLists.FirstOrDefault(x => x.MovieId == movieId);
+
+                    if (entry == null)
+                    {
+                        // DOES NOT EXIST
+                        if (addTo)
+                        {
+                            // create new row
+                            entry = new Data.MovieReviewSeeItBlackList
+                            {
+                                CreateDate = System.DateTime.Now,
+                                MovieId = movieId,
+                                Title = title
+                            };
+                            context.MovieReviewSeeItBlackLists.InsertOnSubmit(entry);
+                        } // else, to be removed, so do nothing b/c it doesn't exist
+                    }
+                    else
+                    {
+                        // EXISTS
+                        if (!addTo)
+                        {
+                            context.MovieReviewSeeItBlackLists.DeleteOnSubmit(entry);
+                        } // else, to be added, so leave it there
+                    }
+
+                    context.SubmitChanges(ConflictMode.FailOnFirstConflict);
+                }
+            }
+            catch
+            {
+                return false;
+            }
+
+            return true;
+        }
+
+        public bool UpdateSeeItWhiteList(int movieId, string title, bool addTo)
+        {
+            try
+            {
+                using (var context = CreateContext(true))
+                {
+                    var entry = context.MovieReviewSeeItWhiteLists.FirstOrDefault(x => x.MovieId == movieId);
+
+                    if (entry == null)
+                    {
+                        // DOES NOT EXIST
+                        if (addTo)
+                        {
+                            // create new row
+                            entry = new Data.MovieReviewSeeItWhiteList
+                            {
+                                CreateDate = System.DateTime.Now,
+                                MovieId = movieId,
+                                Title = title
+                            };
+                            context.MovieReviewSeeItWhiteLists.InsertOnSubmit(entry);
+                        } // else, to be removed, so do nothing b/c it doesn't exist
+                    }
+                    else
+                    {
+                        // EXISTS
+                        if (!addTo)
+                        {
+                            context.MovieReviewSeeItWhiteLists.DeleteOnSubmit(entry);
+                        } // else, to be added, so leave it there
+                    }
+
+                    context.SubmitChanges(ConflictMode.FailOnFirstConflict);
+                }
+            }
+            catch
+            {
+                return false;
+            }
+
+            return true;
+        }
+
         public bool MovieReviewUpdateStatus(int movieId, Enumerations.MovieReviewStatus status)
         {
             try

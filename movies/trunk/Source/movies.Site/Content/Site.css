@@ -38,6 +38,10 @@ div.loading { background: url('content/images/ajax-loader-blue-ribbon.gif') no-r
 form.admin > div, form.admin > p { margin-top: 10px; }
 form.admin > p { font-weight: bold; }
 form.admin label.withCheckbox { float: left; width: 186px; line-height: 28px; }
+#adminForm .list span { float:left; display:inline-block; }
+#adminForm .list .icon { background: url('content/images/rt-sprite4.png') -152px -5px; width:16px; height: 20px; margin-left:10px; }
+#adminForm .list .text { line-height:25px; }
+#adminForm #thumbsUpWhiteList .icon { background-position: -135px -5px; }
 /* #DC3035, #A20608 */
 
 /* enter the SLIDER */

@@ -5,8 +5,23 @@ namespace movies.Site.Controllers
 {
     public class MovieController : BaseController
     {
+        [HttpPost]
+        public JsonResult Save(int facebookUserId, string movieId, bool onSeeItBlackList, bool onSeeItWhiteList)
+        {
+            if (!Data.DomainModels.User.IsReviewer(facebookUserId))
+            {
+                return this.Json(new { WasSuccessful = false }, JsonRequestBehavior.AllowGet);
+            }
+
+            return null;
+
+            bool success = Data.DomainModels.MovieReview.UpdateSeeItBlackList(int.Parse(movieId), onSeeItBlackList) && Data.DomainModels.MovieReview.UpdateSeeItWhiteList(int.Parse(movieId), onSeeItWhiteList);
+
+            return this.Json(new { WasSuccessful = success }, JsonRequestBehavior.AllowGet);
+        }        
+
         //
-        // GET: /Movie/
+        // GET: /Movie/ -- need?
         public ActionResult Index(string rtMovieId, string titleSlug, bool isRedbox)
         {
             // first, get the movie

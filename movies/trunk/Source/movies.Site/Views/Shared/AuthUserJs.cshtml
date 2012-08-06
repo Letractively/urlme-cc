@@ -40,7 +40,7 @@
 
     // add admin form if it does not exist already in dom
     if (!$("#adminForm").length) {
-        var adminFormHtml = "<form id='adminForm' class='admin' title='Admin'><p></p><input type='hidden' name='movieId' /><div class='group'><label>On thumbs up black list?</label><input type='checkbox' name='seeItBlackList' /></div><div class='group'><label>On thumbs up white list?</label><input type='checkbox' name='seeItWhiteList' /></div></form>";
+        var adminFormHtml = "<form id='adminForm' class='admin' title='Admin'><p></p><input type='hidden' name='movieId' /><div id='thumbsUpBlackList' class='list group'><span class='text'>On thumbs up black list?</span><span class='icon'></span></div><div><input type='checkbox' name='seeItBlackList' /></div><div id='thumbsUpWhiteList' class='list group'><span class='text'>On thumbs up white list?</span><span class='icon'></span></div><div><input type='checkbox' name='seeItWhiteList' /></div></form>";
         $("body").append(adminFormHtml);
         $("[name='seeItBlackList'],[name='seeItWhiteList']").iphoneStyle({
             checkedLabel: "Yes",
@@ -56,30 +56,28 @@
                     var form = $("#adminForm");
                     var data = {};
                     data.facebookUserId = facebookUserId;
-//                    data.movieReview = {
-//                        movieId: form.find("[name='movieId']").val(),
-//                        text: $.trim(form.find("[name='text']").val()),
-//                        className: form.find("[name='seeIt']").is(":checked") ? "seeIt" : "orNot",
-//                        url: $.trim(readMoreUrl)
-//                    };
-//                    $.ajax({
-//                        url: '@Url.Content("~/moviereview/save")',
-//                        type: 'POST',
-//                        dataType: 'json',
-//                        data: JSON.stringify(data),
-//                        contentType: 'application/json; charset=utf-8',
-//                        success: function (json) {
-//                            if (json.WasSuccessful) {
-//                                codejkjk.feedback.showSuccess()
-//                            }
-//                            else {
-//                                alert("Error, please try again or contact Ian.");
-//                            }
-//                        },
-//                        error: function (xhr) {
-//                            alert(xhr);
-//                        }
-//                    });                    
+                    data.movieId = form.find("[name='movieId']").val();
+                    data.onSeeItBlackList = form.find("[name='seeItBlackList']").is(":checked");
+                    data.onSeeItWhiteList = form.find("[name='seeItWhiteList']").is(":checked");
+
+                    $.ajax({
+                        url: '@Url.Content("~/movie/save")',
+                        type: 'POST',
+                        dataType: 'json',
+                        data: JSON.stringify(data),
+                        contentType: 'application/json; charset=utf-8',
+                        success: function (json) {
+                            if (json.WasSuccessful) {
+                                codejkjk.feedback.showSuccess()
+                            }
+                            else {
+                                alert("Error, please try again or contact Ian.");
+                            }
+                        },
+                        error: function (xhr) {
+                            alert(xhr);
+                        }
+                    });                    
                     $(this).dialog("close");
                 },
                 Cancel: function() {
@@ -186,7 +184,7 @@
         });
     }
 
-    // handle clicks for current and future a.edit links
+    // edit button clicks
     $(document).on('click',"a[data-role='Reviewer']", function(e) {
         e.preventDefault();
         var movieId = $(this).attr("data-movieid");
@@ -210,6 +208,7 @@
         });
     });
 
+    // admin button clicks
     $(document).on('click',"a[data-role='Admin']", function(e) {
         e.preventDefault();
         var movieId = $(this).attr("data-movieid");

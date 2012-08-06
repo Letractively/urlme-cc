@@ -47,6 +47,14 @@ namespace movies.Data.DomainModels
             return repo.MovieReviewSave(dbMovie, requiresApproval);
         }
 
+        public static UpdateSeeItBlackList(int movieId, bool addTo) {
+            return repo.UpdateSeeItBlackList(movieId, addTo);
+        }
+
+        public static UpdateSeeItWhiteList(int movieId, bool addTo) {
+            return repo.UpdateSeeItWhiteList(movieId, addTo);
+        }
+
         public static bool UpdateStatus(int movieId, Enumerations.MovieReviewStatus status)
         {
             ClearMovieReviewCache(movieId.ToString());

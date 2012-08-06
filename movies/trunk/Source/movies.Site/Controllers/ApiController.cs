@@ -37,6 +37,26 @@ namespace movies.Site.Controllers
         }
 
         [HttpGet]
+        public JsonResult GetMovieForAdmin(string rtMovieId)
+        {
+            var movie = Model.Movie.GetRottenTomatoesMovie(rtMovieId);
+            var review = Data.DomainModels.MovieReview.Get(int.Parse(rtMovieId), false);
+            bool isOnSeeItWhiteList = Data.DomainModels.MovieReview.IsOnSeeItWhiteList(int.Parse(rtMovieId));
+            bool isOnSeeItBlackList = Data.DomainModels.MovieReview.IsOnSeeItBlackList(int.Parse(rtMovieId));
+            
+            return this.Json(
+                new
+                {
+                    id = movie.id,
+                    title = movie.title,
+                    reviewStatus = review != null ? review.Status : "<i>No review submitted</i>",
+                    isOnSeeItBlackList = isOnSeeItBlackList,
+                    isOnSeeItWhiteList = isOnSeeItWhiteList
+                }
+                , JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpGet]
         public JsonResult GetMovieReviewForReviewer(string rtMovieId)
         {
             var movie = Model.Movie.GetRottenTomatoesMovie(rtMovieId);
@@ -89,7 +109,7 @@ namespace movies.Site.Controllers
                 return PartialView("AuthUserJs", new movies.Site.ViewModels.Shared.AuthUserJs { 
                     FacebookUserId = facebookUserId,
                     IsAdmin = Data.DomainModels.User.IsAdmin(facebookUserId),
-                    IsViewer = Data.DomainModels.User.IsReviewer(facebookUserId)
+                    IsReviewer = Data.DomainModels.User.IsReviewer(facebookUserId)
                 });
             }
             return Content("console.log('not authorized');");

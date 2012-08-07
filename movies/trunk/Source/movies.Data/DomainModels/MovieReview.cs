@@ -47,12 +47,13 @@ namespace movies.Data.DomainModels
             return repo.MovieReviewSave(dbMovie, requiresApproval);
         }
 
-        public static UpdateSeeItBlackList(int movieId, bool addTo) {
-            return repo.UpdateSeeItBlackList(movieId, addTo);
+        public static bool UpdateSeeItBlackList(int movieId, string title, bool addTo) {
+            
+            return repo.UpdateSeeItBlackList(movieId, title, addTo);
         }
 
-        public static UpdateSeeItWhiteList(int movieId, bool addTo) {
-            return repo.UpdateSeeItWhiteList(movieId, addTo);
+        public static bool UpdateSeeItWhiteList(int movieId, string title, bool addTo) {
+            return repo.UpdateSeeItWhiteList(movieId, title, addTo);
         }
 
         public static bool UpdateStatus(int movieId, Enumerations.MovieReviewStatus status)
@@ -76,7 +77,7 @@ namespace movies.Data.DomainModels
 
         public static bool IsOnSeeItBlackList(int movieId)
         {
-            return repo.MovieReviewIsOnSeeItWhiteList(movieId);
+            return repo.MovieReviewIsOnSeeItBlackList(movieId);
         }
 
         private static void ClearMovieReviewCache(string movieId = null) {

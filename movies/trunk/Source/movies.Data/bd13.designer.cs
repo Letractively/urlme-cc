@@ -33,6 +33,9 @@ namespace movies.Data
     partial void InsertLink(Link instance);
     partial void UpdateLink(Link instance);
     partial void DeleteLink(Link instance);
+    partial void InsertMovieReviewSeeItWhiteList(MovieReviewSeeItWhiteList instance);
+    partial void UpdateMovieReviewSeeItWhiteList(MovieReviewSeeItWhiteList instance);
+    partial void DeleteMovieReviewSeeItWhiteList(MovieReviewSeeItWhiteList instance);
     partial void InsertList(List instance);
     partial void UpdateList(List instance);
     partial void DeleteList(List instance);
@@ -57,6 +60,9 @@ namespace movies.Data
     partial void InsertUserRole(UserRole instance);
     partial void UpdateUserRole(UserRole instance);
     partial void DeleteUserRole(UserRole instance);
+    partial void InsertMovieReviewSeeItBlackList(MovieReviewSeeItBlackList instance);
+    partial void UpdateMovieReviewSeeItBlackList(MovieReviewSeeItBlackList instance);
+    partial void DeleteMovieReviewSeeItBlackList(MovieReviewSeeItBlackList instance);
     #endregion
 		
 		public bd13DataContext() : 
@@ -449,8 +455,10 @@ namespace movies.Data
 	}
 	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="ihdavis2.MovieReviewSeeItWhiteList")]
-	public partial class MovieReviewSeeItWhiteList
+	public partial class MovieReviewSeeItWhiteList : INotifyPropertyChanging, INotifyPropertyChanged
 	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
 		
 		private long _MovieId;
 		
@@ -458,11 +466,24 @@ namespace movies.Data
 		
 		private System.DateTime _CreateDate;
 		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnMovieIdChanging(long value);
+    partial void OnMovieIdChanged();
+    partial void OnTitleChanging(string value);
+    partial void OnTitleChanged();
+    partial void OnCreateDateChanging(System.DateTime value);
+    partial void OnCreateDateChanged();
+    #endregion
+		
 		public MovieReviewSeeItWhiteList()
 		{
+			OnCreated();
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MovieId", DbType="BigInt NOT NULL")]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MovieId", DbType="BigInt NOT NULL", IsPrimaryKey=true)]
 		public long MovieId
 		{
 			get
@@ -473,7 +494,11 @@ namespace movies.Data
 			{
 				if ((this._MovieId != value))
 				{
+					this.OnMovieIdChanging(value);
+					this.SendPropertyChanging();
 					this._MovieId = value;
+					this.SendPropertyChanged("MovieId");
+					this.OnMovieIdChanged();
 				}
 			}
 		}
@@ -489,7 +514,11 @@ namespace movies.Data
 			{
 				if ((this._Title != value))
 				{
+					this.OnTitleChanging(value);
+					this.SendPropertyChanging();
 					this._Title = value;
+					this.SendPropertyChanged("Title");
+					this.OnTitleChanged();
 				}
 			}
 		}
@@ -505,8 +534,32 @@ namespace movies.Data
 			{
 				if ((this._CreateDate != value))
 				{
+					this.OnCreateDateChanging(value);
+					this.SendPropertyChanging();
 					this._CreateDate = value;
+					this.SendPropertyChanged("CreateDate");
+					this.OnCreateDateChanged();
 				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
 		}
 	}
@@ -2268,21 +2321,36 @@ namespace movies.Data
 	}
 	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="ihdavis2.MovieReviewSeeItBlackList")]
-	public partial class MovieReviewSeeItBlackList
+	public partial class MovieReviewSeeItBlackList : INotifyPropertyChanging, INotifyPropertyChanged
 	{
 		
-		private System.Nullable<long> _MovieId;
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private long _MovieId;
 		
 		private string _Title;
 		
 		private System.DateTime _CreateDate;
 		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnMovieIdChanging(long value);
+    partial void OnMovieIdChanged();
+    partial void OnTitleChanging(string value);
+    partial void OnTitleChanged();
+    partial void OnCreateDateChanging(System.DateTime value);
+    partial void OnCreateDateChanged();
+    #endregion
+		
 		public MovieReviewSeeItBlackList()
 		{
+			OnCreated();
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MovieId", DbType="BigInt")]
-		public System.Nullable<long> MovieId
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MovieId", DbType="BigInt NOT NULL", IsPrimaryKey=true)]
+		public long MovieId
 		{
 			get
 			{
@@ -2292,7 +2360,11 @@ namespace movies.Data
 			{
 				if ((this._MovieId != value))
 				{
+					this.OnMovieIdChanging(value);
+					this.SendPropertyChanging();
 					this._MovieId = value;
+					this.SendPropertyChanged("MovieId");
+					this.OnMovieIdChanged();
 				}
 			}
 		}
@@ -2308,7 +2380,11 @@ namespace movies.Data
 			{
 				if ((this._Title != value))
 				{
+					this.OnTitleChanging(value);
+					this.SendPropertyChanging();
 					this._Title = value;
+					this.SendPropertyChanged("Title");
+					this.OnTitleChanged();
 				}
 			}
 		}
@@ -2324,8 +2400,32 @@ namespace movies.Data
 			{
 				if ((this._CreateDate != value))
 				{
+					this.OnCreateDateChanging(value);
+					this.SendPropertyChanging();
 					this._CreateDate = value;
+					this.SendPropertyChanged("CreateDate");
+					this.OnCreateDateChanged();
 				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
 		}
 	}

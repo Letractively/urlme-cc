@@ -24,6 +24,14 @@
             return string.Format("http://www.imdb.com/title/{0}/parentalguide", imdbMovieId);
         }
 
+        public static string GetParentalGuideMobileUrl(string imdbMovieId)
+        {
+            if (!imdbMovieId.StartsWith("tt"))
+                imdbMovieId = "tt" + imdbMovieId;
+
+            return string.Format("http://m.imdb.com/title/{0}/parentalguide", imdbMovieId);
+        }
+
         public static string GetMovieUrl(string imdbMovieId)
         {
             // e.g., http://www.imdb.com/title/tt1606389/

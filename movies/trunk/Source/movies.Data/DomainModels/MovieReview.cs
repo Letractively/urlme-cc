@@ -25,10 +25,10 @@ namespace movies.Data.DomainModels
 
         private static readonly Data.Repository.DirectRepository repo = new Repository.DirectRepository();
 
-        public static bool Save(Data.DomainModels.MovieReview movieReview, string mpaaRating)
+        public static bool Save(Data.DomainModels.MovieReview movieReview, string mpaaRating, string parentalGuideHtml)
         {
             ClearMovieReviewCache(movieReview.MovieId.ToString());
-                        
+
             Data.MovieReview dbMovie = new Data.MovieReview
             {
                 Review = movieReview.Text,
@@ -44,7 +44,7 @@ namespace movies.Data.DomainModels
 
             bool requiresApproval = mpaaRating.ToLower() == "r" || mpaaRating.ToLower() == "unrated" || mpaaRating == "";
 
-            return repo.MovieReviewSave(dbMovie, requiresApproval);
+            return repo.MovieReviewSave(dbMovie, requiresApproval, parentalGuideHtml);
         }
 
         public static bool UpdateSeeItBlackList(int movieId, string title, bool addTo) {

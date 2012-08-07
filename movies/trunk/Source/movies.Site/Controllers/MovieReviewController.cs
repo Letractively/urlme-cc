@@ -52,7 +52,8 @@ namespace movies.Site.Controllers
             movieReview.DetailedPosterUrl = movie.posters.detailed;
             movieReview.ProfilePosterUrl = movie.posters.profile;
 
-            bool success = Data.DomainModels.MovieReview.Save(movieReview, movie.mpaa_rating);
+            string parentalGuideHtml = movie.alternate_ids != null ? Model.Movie.GetParentalGuideHtml(movie.alternate_ids.imdb) : "No parental guide b/c this movie does not have an IMDb id.";
+            bool success = Data.DomainModels.MovieReview.Save(movieReview, movie.mpaa_rating, parentalGuideHtml);
 
             return this.Json(new { WasSuccessful = success }, JsonRequestBehavior.AllowGet);
         }

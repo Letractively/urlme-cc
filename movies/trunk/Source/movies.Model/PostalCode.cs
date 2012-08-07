@@ -37,16 +37,6 @@ namespace movies.Model
             public List<Model.PostalCode.Movie> movies { get; set; }
         }
 
-        //public static string GetShowtimes(string date, string zip)
-        //{
-        //    return Cache.GetValue<string>(
-        //        string.Format("codejkjk.movies.Model.PostalCode.GetShowtimes-{0}-{1}", date, zip),
-        //        () =>
-        //        {
-        //            return API.Flixster.GetTheatersHtml(date, zip);
-        //        });
-        //}
-
         public static PostalCode Get(string date, string zip)
         {
             return Cache.GetValue<PostalCode>(

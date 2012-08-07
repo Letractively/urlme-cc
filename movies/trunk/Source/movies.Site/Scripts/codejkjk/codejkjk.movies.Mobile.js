@@ -22,7 +22,7 @@ codejkjk.movies.mobile = {
         , menu: function () { return $("#menu"); }
         , menuLink: function () { return $("#menuLink"); }
         , Movie: function () { return $("#movie div[data-role='content']"); }
-        , MovieBackLink: function () { return $("#movie a"); }
+        , MovieBackLink: function () { return $("#movie a.back"); }
         , searchBox: function () { return $("#search input"); }
         , showtimeDays: function () { return $("#theater #showtimeDays"); }
         , showtimeDaySelector: function () { return "#theater #showtimeDays a" }

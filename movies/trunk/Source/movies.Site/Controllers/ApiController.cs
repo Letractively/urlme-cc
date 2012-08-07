@@ -49,6 +49,7 @@ namespace movies.Site.Controllers
                 {
                     id = movie.id,
                     title = movie.title,
+                    mpaaRating = movie.mpaa_rating,
                     reviewStatus = review != null ? review.Status : "<i>No review submitted</i>",
                     isOnSeeItBlackList = isOnSeeItBlackList,
                     isOnSeeItWhiteList = isOnSeeItWhiteList

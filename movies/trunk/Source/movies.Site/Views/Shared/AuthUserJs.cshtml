@@ -34,70 +34,6 @@
         $("a.admin.button").toggle();
     }
 
-    $(document).on('click', '.ui-widget-overlay', function(){
-        $(".ui-dialog-titlebar-close").trigger('click');
-    });
-
-    // add admin form if it does not exist already in dom
-    if (!$("#adminForm").length) {
-        var adminFormHtml = "<form id='adminForm' class='admin' title='Admin'><p></p><input type='hidden' name='movieId' /><div id='thumbsUpBlackList' class='list group'><span class='text'>On thumbs up black list?</span><span class='icon'></span></div><div><input type='checkbox' name='seeItBlackList' /></div><div id='thumbsUpWhiteList' class='list group'><span class='text'>On thumbs up white list?</span><span class='icon'></span></div><div><input type='checkbox' name='seeItWhiteList' /></div></form>";
-        $("body").append(adminFormHtml);
-        $("[name='seeItBlackList'],[name='seeItWhiteList']").iphoneStyle({
-            checkedLabel: "Yes",
-            uncheckedLabel: "No"
-        });
-        $("#adminForm").dialog({
-            autoOpen: false,
-            //height: 300,
-            width: 300,
-            modal: true,
-            buttons: {
-                "Save": function() {
-                    var form = $("#adminForm");
-                    var data = {};
-                    data.facebookUserId = facebookUserId;
-                    data.movieId = form.find("[name='movieId']").val();
-                    data.onSeeItBlackList = form.find("[name='seeItBlackList']").is(":checked");
-                    data.onSeeItWhiteList = form.find("[name='seeItWhiteList']").is(":checked");
-
-                    $.ajax({
-                        url: '@Url.Content("~/movie/save")',
-                        type: 'POST',
-                        dataType: 'json',
-                        data: JSON.stringify(data),
-                        contentType: 'application/json; charset=utf-8',
-                        success: function (json) {
-                            if (json.WasSuccessful) {
-                                codejkjk.feedback.showSuccess()
-                            }
-                            else {
-                                alert("Error, please try again or contact Ian.");
-                            }
-                        },
-                        error: function (xhr) {
-                            alert(xhr);
-                        }
-                    });                    
-                    $(this).dialog("close");
-                },
-                Cancel: function() {
-                    $(this).dialog("close");
-                }
-            },
-            close: function() {
-                var adminForm = $("#adminForm");
-                var chk1 = adminForm.find("[name='seeItBlackList']");
-                var chk2 = adminForm.find("[name='seeItWhiteList']");
-                if (!chk1.is(":checked")) {
-                    chk1.trigger("click");
-                }
-                if (!chk2.is(":checked")) {
-                    chk2.trigger("click");
-                }
-            }
-        });
-    }
-
     // add edit form if it does not exist already in dom
     if (!$("#editForm").length) {
         var editFormHtml = "<form id='editForm' class='admin' title='Edit Review'><p></p><input type='hidden' name='movieId' /><div><textarea name='text' maxlength='140' placeholder='Enter review...'></textarea></div><div><input class='iPhoneCheckBox' checked='checked' type='checkbox' name='seeIt' /></div><div><input type='text' name='url' placeholder='Enter Read More url...' /></div><p></p></form>";
@@ -208,23 +144,91 @@
         });
     });
 
-    // admin button clicks
+    // add admin form if it does not exist already in dom
+    if (!$("#adminForm").length) {
+        var adminFormHtml = "<form id='adminForm' class='admin' title='Admin'><p></p><input type='hidden' name='movieId' /><div id='thumbsUpBlackList' class='list group'><span class='text'>On thumbs up black list?</span><span class='icon'></span></div><div><input type='checkbox' name='seeItBlackList' /></div><div id='thumbsUpWhiteList' class='list group'><span class='text'>On thumbs up white list?</span><span class='icon'></span></div><div><input type='checkbox' name='seeItWhiteList' /></div><p></p></form>";
+        $("body").append(adminFormHtml);
+        $("[name='seeItBlackList'],[name='seeItWhiteList']").iphoneStyle({
+            checkedLabel: "Yes",
+            uncheckedLabel: "No"
+        });
+        $("#adminForm").dialog({
+            autoOpen: false,
+            //height: 300,
+            width: 300,
+            modal: true,
+            buttons: {
+                "Save": function() {
+                    var form = $("#adminForm");
+                    var data = {};
+                    data.facebookUserId = facebookUserId;
+                    data.movieId = form.find("[name='movieId']").val();
+                    data.onSeeItBlackList = form.find("[name='seeItBlackList']").is(":checked");
+                    data.onSeeItWhiteList = form.find("[name='seeItWhiteList']").is(":checked");
+
+                    $.ajax({
+                        url: '@Url.Content("~/movie/save")',
+                        type: 'POST',
+                        dataType: 'json',
+                        data: JSON.stringify(data),
+                        contentType: 'application/json; charset=utf-8',
+                        success: function (json) {
+                            if (json.WasSuccessful) {
+                                codejkjk.feedback.showSuccess()
+                            }
+                            else {
+                                alert("Error, please try again or contact Ian.");
+                            }
+                        },
+                        error: function (xhr) {
+                            alert(xhr);
+                        }
+                    });                    
+                    $(this).dialog("close");
+                },
+                Cancel: function() {
+                    $(this).dialog("close");
+                }
+            },
+            close: function() {
+                var adminForm = $("#adminForm");
+                var chk1 = adminForm.find("[name='seeItBlackList']");
+                var chk2 = adminForm.find("[name='seeItWhiteList']");
+                if (chk1.is(":checked")) {
+                    chk1.trigger("click");
+                }
+                if (chk2.is(":checked")) {
+                    chk2.trigger("click");
+                }
+            }
+        });
+    }
+
+    // admin button clicks - open the form dialog
     $(document).on('click',"a[data-role='Admin']", function(e) {
         e.preventDefault();
         var movieId = $(this).attr("data-movieid");
         codejkjk.movies.Api.GetMovieForAdmin(movieId, function(movie) {
             var adminForm = $("#adminForm");
             adminForm.find("p:first").text(movie.title);
+            adminForm.find("p:last").html(movie.reviewStatus);
             adminForm.find("[name='movieId']").val(movie.id);
+            console.log(movie);
+            console.log(movie.isOnSeeItBlackList);
             if (movie.isOnSeeItBlackList) {
+                console.log('here');
                 adminForm.find("[name='seeItBlackList']").trigger('click');
             }
             if (movie.isOnSeeItWhiteList) {
+                console.log('there');
                 adminForm.find("[name='seeItWhiteList']").trigger('click');
             }
                     
             adminForm.dialog("open");
-            // adminForm.find("label").addClass("withCheckbox");
         });
+    });
+
+    $(document).on('click', '.ui-widget-overlay', function(){
+        $(".ui-dialog-titlebar-close").trigger('click');
     });
 </script>

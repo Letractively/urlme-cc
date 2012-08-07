@@ -27,16 +27,26 @@ namespace movies.Model
                 string.Format("codejkjk.movies.Model.TrailerAddict.GetFeatured-{0}-{1}", count, width),
                 () =>
                 {
+                    List<Trailer> rtn = new List<Trailer>();
                     string xml = API.TrailerAddict.GetFeaturedXml(count, width);
                     DataSet ds = new DataSet();
                     ds.ReadXml(new StringReader(xml));
-                    return null;
+                    if (ds.Tables.Contains("trailer") && ds.Tables["trailer"].Rows.Count > 0)
+                    {
+                        foreach (DataRow row in ds.Tables["trailer"].Rows)
+                        {
+                            rtn.Add(new Trailer
+                            {
+                                embed = row["embed"].ToString(),
+                                link = row["link"].ToString(),
+                                pubDate = DateTime.Parse(row["pubDate"].ToString()),
+                                title = row["title"].ToString(),
+                                trailer_id = row["trailer_id"].ToString()
+                            });
+                        }
+                    }
 
-                    //if (ds.Tables.Contains("Publishedid") && ds.Tables["Publishedid"].Rows.Count == 1 && ds.Tables["Publishedid"].Columns.Contains("Publishedid_Text"))
-                    //{
-                    //    return ds.Tables["Publishedid"].Rows[0]["Publishedid_Text"].ToString();
-                    //}
-                    //return string.Empty;
+                    return rtn;
                 }, 120);
         }
     }

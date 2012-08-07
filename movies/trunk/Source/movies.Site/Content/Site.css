@@ -60,7 +60,7 @@ form.admin label.withCheckbox { float: left; width: 186px; line-height: 28px; }
 /* google maps */
 a.button {
     padding: 0 10px;
-    cursor:pointer;
+    cursor:default;
     color: #444;
     font-family:arial;
     font-size:11px;

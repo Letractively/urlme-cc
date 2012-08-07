@@ -273,6 +273,7 @@ namespace movies
             mobileJsBundle.AddFile("~/externals/local-cache/local-cache.js");
             // mobileJsBundle.AddFile("~/scripts/codejkjk/codejkjk.movies.Mobile.js");
             mobileJsBundle.AddFile("~/scripts/plugins/jquery.history.js");
+            // mobileJsBundle.AddFile("~/scripts/plugins/jquery.overscroll.min.js");
             BundleTable.Bundles.Add(mobileJsBundle);
 
             var mobileCssBundle = new Bundle("~/mobile-css-bundle", new CssMinify());

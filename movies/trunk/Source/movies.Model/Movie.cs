@@ -7,6 +7,7 @@ using movies.Core.Web.Caching;
 using System.Data;
 using System.IO;
 using movies.Data.Repository;
+using HtmlAgilityPack;
 
 namespace movies.Model
 {
@@ -24,7 +25,8 @@ namespace movies.Model
         public string id { get; set; }
         public string imgUrl { get { return this.posters.thumbnail; } }
         public string url { get { return "/" + this.title.Slugify() + "/" + this.id; } }
-        public string cast {
+        public string cast
+        {
             get
             {
                 string ret = "";
@@ -33,7 +35,7 @@ namespace movies.Model
                     ret = string.Format("{0}, {1}", this.abridged_cast[0].name, this.abridged_cast[1].name);
                 }
                 return ret;
-            }        
+            }
         }
     }
     public class AutocompleteItemCollection
@@ -117,10 +119,12 @@ namespace movies.Model
         public bool IsReleased { get { return System.DateTime.Now >= this.release_dates.theater; } }
         public string ReleaseDate { get { return this.release_dates.theater.ToString("MMM d, yyyy"); } }
         public string ParentalGuideUrl { get { return this.alternate_ids != null ? API.IMDb.GetParentalGuideUrl(this.alternate_ids.imdb) : null; } }
+        public string ParentalGuideMobileUrl { get { return this.alternate_ids != null ? API.IMDb.GetParentalGuideMobileUrl(this.alternate_ids.imdb) : null; } }
         public string IMDbMovieUrl { get { return this.alternate_ids != null ? API.IMDb.GetMovieUrl(this.alternate_ids.imdb) : null; } }
         public string IMDbQ
         {
-            get {
+            get
+            {
                 return this.alternate_ids == null ? null : this.alternate_ids.imdb;
                 // return string.Format("{0}&year={1}", this.title.Replace(" ", "+"), release_dates.theater.ToString("yyyy")); 
             }
@@ -130,7 +134,8 @@ namespace movies.Model
             get
             {
                 string ret = "";
-                if (this.abridged_cast != null && this.abridged_cast.Count() >= 2) {
+                if (this.abridged_cast != null && this.abridged_cast.Count() >= 2)
+                {
                     ret = string.Format("{0}, {1}", this.abridged_cast[0].name, this.abridged_cast[1].name);
                 }
                 return ret;
@@ -215,7 +220,7 @@ namespace movies.Model
             {
                 return Enumerations.MovieType.InTheaters;
             }
-            
+
             // for redbox movie type, that's set manually in the Redbox actions
             return Enumerations.MovieType.Neither;
         }
@@ -412,7 +417,7 @@ namespace movies.Model
             foreach (var movie in movies.Values)
             {
                 movie.Review = Data.DomainModels.MovieReview.Get(int.Parse(movie.id));
-                
+
                 if (Cache.KeyExists(string.Format("codejkjk.movies.Model.Movie.GetIMDbMovie-{0}", movie.alternate_ids.imdb)))
                 {
                     var imdbMovie = GetIMDbMovie(movie.IMDbQ);
@@ -426,7 +431,40 @@ namespace movies.Model
                 }
             }
 
-            return movies;         
+            return movies;
+        }
+
+        public static string GetParentalGuideHtml(string imdbMovieId)
+        {
+            return Cache.GetValue<string>(
+                string.Format("codejkjk.movies.Model.Movie.GetParentalGuideHtml-{0}", imdbMovieId),
+                () =>
+                {
+                    string url = API.IMDb.GetParentalGuideMobileUrl(imdbMovieId);
+
+                    try
+                    {
+                        // do html agility pack magic
+                        HtmlWeb htmlWeb = new HtmlWeb();
+                        HtmlDocument doc = htmlWeb.Load(url);
+                        HtmlNode root = doc.DocumentNode;
+                        foreach (HtmlNode sectionDiv in root.SelectNodes("//section/div"))
+                        {
+                            var h1 = sectionDiv.SelectSingleNode("h1");
+                            if (h1.InnerHtml.ToLower().Contains("nudity"))
+                            {
+                                return string.Format("<b>Sex & Nudity:</b> {0}<br/><br/>More on <a href='{1}'>IMDb's parental guide</a>.", sectionDiv.SelectSingleNode("p").InnerHtml, url);
+                            }
+                        } // sectionDiv
+
+                        return "No info re: sex & nudity";
+                    }
+                    catch
+                    {
+                        return string.Format("<b><font color='red'>Error</font></b> in scraping Sex & Nudity info from <a href='{0}'>IMDb's parental guide</a>.", url);
+                    }
+
+                }, 5);
         }
 
         private static void TryLoadIMDb(ref Movie movie)

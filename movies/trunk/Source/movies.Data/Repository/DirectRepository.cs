@@ -41,7 +41,7 @@ namespace movies.Data.Repository
             }
         }
         
-        public bool MovieReviewSave(Data.MovieReview movie, bool requiresApproval)
+        public bool MovieReviewSave(Data.MovieReview movie, bool requiresApproval, string parentalGuideHtml)
         {
             try
             {
@@ -89,7 +89,8 @@ namespace movies.Data.Repository
                         StringBuilder sb = new StringBuilder();
                         sb.AppendFormat("Pending review for <b>{0}</b>.<br/><br/>", movie.Title);
                         sb.AppendFormat("Movie page: <a href=\"http://seeitornot.co/{0}/{1}\">http://seeitornot.co/{0}/{1}</a><br/><br/>", movie.Title.Slugify(), movie.MovieId);
-                        sb.AppendFormat("<a href=\"http://seeitornot.co/reviews/approve/{0}\">Approve</a> or <a href=\"http://seeitornot.co/reviews/disapprove/{0}\">disapprove</a>.", movie.MovieId);
+                        sb.AppendFormat("<a href=\"http://seeitornot.co/reviews/approve/{0}\">Approve</a> or <a href=\"http://seeitornot.co/reviews/disapprove/{0}\">disapprove</a>.<br/><br/>", movie.MovieId);
+                        sb.Append(parentalGuideHtml);
                         Core.Net.Mail.SendFromNoReply("ihdavis@gmail.com", "Ian Davis", "Pending review: " + movie.Title, sb.ToString());
                     }
 

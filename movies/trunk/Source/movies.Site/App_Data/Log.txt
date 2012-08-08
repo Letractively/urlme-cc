@@ -763,3 +763,4 @@
 2012-08-07T16:57:04.7038117Z - 1248 - Info - Created provider from embedded device data 'FiftyOne.Foundation.Mobile.Detection.Binary.Resources.51Degrees.mobi-Lite.dat'.
 2012-08-07T16:59:56.1983749Z - 1248 - Info - Created provider from embedded device data 'FiftyOne.Foundation.Mobile.Detection.Binary.Resources.51Degrees.mobi-Lite.dat'.
 2012-08-07T17:06:16.8844141Z - 1248 - Info - Created provider from embedded device data 'FiftyOne.Foundation.Mobile.Detection.Binary.Resources.51Degrees.mobi-Lite.dat'.
+2012-08-08T01:35:50.1698000Z - 6776 - Info - Created provider from embedded device data 'FiftyOne.Foundation.Mobile.Detection.Binary.Resources.51Degrees.mobi-Lite.dat'.

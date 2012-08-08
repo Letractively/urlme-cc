@@ -13,7 +13,8 @@ namespace movies.Data.Repository
         {
             using (var context = CreateContext())
             {
-                return context.MovieReviews.FirstOrDefault(x => x.MovieId == movieId);
+                return null;
+                //return context.MovieReviews.FirstOrDefault(x => x.MovieId == movieId);
             }
         }
 

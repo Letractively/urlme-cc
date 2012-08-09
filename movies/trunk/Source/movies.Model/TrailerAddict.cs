@@ -47,7 +47,7 @@ namespace movies.Model
                     }
 
                     return rtn;
-                }, 120);
+                });
         }
     }
 }

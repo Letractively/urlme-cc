@@ -215,7 +215,7 @@ header { background:#2D62AE; }
     .movieList .movie { position:relative; margin-bottom: 24px; float: left; width: 180px; }
         .movieList .movie a.poster { width: 180px; height: 267px; float: left; }
         .movieList .movie a.poster:hover { -moz-box-shadow: none; -webkit-box-shadow: none; box-shadow: none; }
-        .movieList .movie .details { padding: 10px; width: 160px; float: left; }
+        .movieList .movie .details { padding: 10px; width: 160px; float: left; background: #fff; }
             .movieList .movie .details .ourReview { position: absolute; bottom: 8px; right: 0px; }
         .movieList .movie img { width: 180px; height: 267px; } /* thumbnail = 61 x 91 */
         .movieList .movie .ratingAndLength { height: 15px; }

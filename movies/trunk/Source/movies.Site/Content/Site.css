@@ -28,7 +28,11 @@ div.loading { background: url('content/images/ajax-loader-blue-ribbon.gif') no-r
 .blueGradient { background: #4c98e4; /* fallback */
             background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#4c98e4), to(#2d62ae)); 
             background: -webkit-linear-gradient(top, #4c98e4, #2d62ae); 
-            background: -moz-linear-gradient(top, #4c98e4, #2d62ae); }           
+            background: -moz-linear-gradient(top, #4c98e4, #2d62ae); }
+.greenGradient { background: #65b145; /* fallback */
+            background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#79d153), to(#65b145)); 
+            background: -webkit-linear-gradient(top, #79d153, #65b145); 
+            background: -moz-linear-gradient(top, #79d153, #65b145); }                       
 /* -- Floating Containers --- */
 .movie a[data-role='Reviewer'] { display:none; position: absolute; top: 5px; right: 5px; }
 .movie a[data-role='Admin'] { display:none; position: absolute; top: 40px; right: 5px; }
@@ -124,8 +128,8 @@ header { background:#2D62AE; }
     /* header > #headerContent > #q { float: right; padding: 8px; outline: none; width: 282px; border: 1px solid #ccc; font-size: 14px; } */
     nav, section { display:block; }
     nav { padding: 12px 0 10px 0; width: 990px; margin: 0 auto; }
-    nav > a { font-weight: bold; color: #fff; text-decoration: none; margin-right: 25px; text-shadow: 0 -1px 1px #2d62ae; font-size: 16px;}
-    nav > a.selected { background: #4c95e4; padding: 12px 12px 11px 12px; text-shadow:none; }
+    nav > a { font-weight: bold; color: #fff; text-decoration: none; margin-right: 25px; /* (blue) text-shadow: 0 -1px 1px #2d62ae */ text-shadow: 0 -1px 1px #65b145; font-size: 16px;}
+    nav > a.selected { /* (blue) background: #4c95e4; */ background: #65b145; padding: 12px 12px 11px 12px; text-shadow:none; }
     nav > #q { float:right; margin-top:-6px; position: relative; }
         nav > #q > input[type='text'] { padding: 6px; outline: none; width: 262px; border: 1px solid #ccc; font-size: 14px; }
         nav > #q > input[type='submit'] { cursor: default; border: none; color: transparent; font-size: 0; background: url('content/images/rt-sprite4.png') -106px -107px; width: 18px; height: 18px; display: inline-block; position: absolute; top: 7px; right: 10px; opacity: 0.4; }

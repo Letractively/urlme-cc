@@ -172,6 +172,7 @@
     <Content Include="Scripts\jquery-1.7.1.min.js" />
     <Content Include="Scripts\jquery.mobile-1.0.1.min.js" />
     <Content Include="Scripts\Plugins\date.js" />
+    <Content Include="Scripts\Plugins\iscroll.js" />
     <Content Include="Scripts\Plugins\jquery-ui-1.8.21\css\ui-darkness\images\ui-bg_flat_30_cccccc_40x100.png" />
     <Content Include="Scripts\Plugins\jquery-ui-1.8.21\css\ui-darkness\images\ui-bg_flat_50_5c5c5c_40x100.png" />
     <Content Include="Scripts\Plugins\jquery-ui-1.8.21\css\ui-darkness\images\ui-bg_glass_20_555555_1x400.png" />

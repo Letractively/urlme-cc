@@ -23,6 +23,7 @@ codejkjk.movies.mobile = {
         , menuLink: function () { return $("#menuLink"); }
         , Movie: function () { return $("#movie div[data-role='content']"); }
         , MovieBackLink: function () { return $("#movie a.back"); }
+        , movieSliderWrappers: function () { return $(".sliderWrapper"); }
         , searchBox: function () { return $("#search input"); }
         , showtimeDays: function () { return $("#theater #showtimeDays"); }
         , showtimeDaySelector: function () { return "#theater #showtimeDays a" }
@@ -98,7 +99,27 @@ codejkjk.movies.mobile = {
         codejkjk.movies.mobile.bindControls();
         codejkjk.movies.mobile.initGooglePlaces("inputShowtimesZip");
         codejkjk.movies.mobile.registerJsRenderHelpers();
+        codejkjk.movies.mobile.initSliders();
         codejkjk.movies.mobile.initHistory(History);
+    },
+
+    initSliders: function () {
+        document.addEventListener('touchmove', function (e) { e.preventDefault(); }, false);
+        var itemWidth = 71; // same item width for all movie lists
+
+        var wrappers = codejkjk.movies.mobile.controls.movieSliderWrappers();
+        $.each(wrappers, function (i, wrapper) {
+            wrapper = $(wrapper);
+            wrapper.attr("id", "sliderWrapper-" + i);
+            var scrollerWidth = wrapper.find("ul li").length * itemWidth;
+            wrapper.find("ul").css("width", scrollerWidth);
+
+            var scrollerObj = new iScroll(wrapper.attr("id"), {
+                momentum: false,
+                hScrollbar: false,
+                vScrollbar: false
+            });
+        });
     },
 
     initSearch: function () {

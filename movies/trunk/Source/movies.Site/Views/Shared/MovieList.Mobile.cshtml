@@ -1,6 +1,15 @@
 ﻿@model Dictionary<string, movies.Model.Movie>
 @using movies.Model
 
+<ul>
+@foreach (var movie in Model.Values)
+{
+    <li><a href="~/@movie.MovieSlug"><img width="61" height="91" src="@movie.posters.thumbnail" /></a></li>
+}
+</ul>
+    
+@{ return; }
+
 @foreach (var movie in this.Model.Values)
 {
     if (movie.alternate_ids != null)

@@ -1,0 +1,513 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--
+This file is used by the publish/package process of your Web project. You can customize the behavior of this process
+by editing this MSBuild file. In order to learn more about this please visit http://go.microsoft.com/fwlink/?LinkID=208121. 
+-->
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <LastUsedBuildConfiguration>Release</LastUsedBuildConfiguration>
+    <LastUsedPlatform>Any CPU</LastUsedPlatform>
+    <TimeStampOfAssociatedLegacyPublishXmlFile>2012-08-08T19:55:43.6230000-04:00</TimeStampOfAssociatedLegacyPublishXmlFile>
+    <EncryptedPassword>AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAA8SqhofBYpk+VPWZwYk43vAAAAAACAAAAAAAQZgAAAAEAACAAAACWFtMwmjBBNyUs2voVLBhZYi4lyJynsNQLfmOKSCYRagAAAAAOgAAAAAIAACAAAAAKerKnVnHtsYFPx9t54F4w5hCEw27G8/gyXeHcO73IuSAAAABq9Km+joVQVZOJIVpVzyzCbiaWvJr0P6pXFGDdFbj5wUAAAAA/Y68nIecpHiNI14tHRwi4U+tYXGhsqMzS1a3xsS2kZwUVi/zccD6Hqv/VdNgdX2iShO7osL6R0BCOpvkZSuIQ</EncryptedPassword>
+  </PropertyGroup>
+  <ItemGroup>
+    <File Include="App_Data/51Degrees.mobi.config">
+      <publishTime>02/23/2012 18:28:58</publishTime>
+    </File>
+    <File Include="bin/FiftyOne.Foundation.dll">
+      <publishTime>02/23/2012 18:28:59</publishTime>
+    </File>
+    <File Include="bin/HtmlAgilityPack.dll">
+      <publishTime>05/07/2010 11:32:56</publishTime>
+    </File>
+    <File Include="bin/Microsoft.Web.Infrastructure.dll">
+      <publishTime>02/29/2012 17:49:04</publishTime>
+    </File>
+    <File Include="bin/movies.API.dll">
+      <publishTime>08/21/2012 21:12:32</publishTime>
+    </File>
+    <File Include="bin/movies.API.pdb">
+      <publishTime>08/08/2012 19:54:55</publishTime>
+    </File>
+    <File Include="bin/movies.Core.dll">
+      <publishTime>08/21/2012 21:12:30</publishTime>
+    </File>
+    <File Include="bin/movies.Core.pdb">
+      <publishTime>08/08/2012 19:54:54</publishTime>
+    </File>
+    <File Include="bin/movies.Data.dll">
+      <publishTime>08/21/2012 21:12:33</publishTime>
+    </File>
+    <File Include="bin/movies.Data.pdb">
+      <publishTime>08/08/2012 19:54:55</publishTime>
+    </File>
+    <File Include="bin/movies.Model.dll">
+      <publishTime>08/21/2012 21:12:34</publishTime>
+    </File>
+    <File Include="bin/movies.Model.pdb">
+      <publishTime>08/08/2012 19:54:57</publishTime>
+    </File>
+    <File Include="bin/movies.Site.dll">
+      <publishTime>08/21/2012 21:12:35</publishTime>
+    </File>
+    <File Include="bin/movies.Site.pdb">
+      <publishTime>08/08/2012 19:54:59</publishTime>
+    </File>
+    <File Include="bin/System.Web.Optimization.dll">
+      <publishTime>02/29/2012 17:49:04</publishTime>
+    </File>
+    <File Include="bin/Twitterizer2.dll">
+      <publishTime>06/16/2012 19:36:47</publishTime>
+    </File>
+    <File Include="Content/bg.png">
+      <publishTime>03/16/2012 15:00:33</publishTime>
+    </File>
+    <File Include="Content/common.css">
+      <publishTime>08/11/2012 21:07:29</publishTime>
+    </File>
+    <File Include="Content/favicon.jpg">
+      <publishTime>03/16/2012 16:30:51</publishTime>
+    </File>
+    <File Include="Content/Images/ajax-loader-blue-ribbon.gif">
+      <publishTime>04/06/2012 22:07:57</publishTime>
+    </File>
+    <File Include="Content/Images/ajax-loader-gray-ribbon.gif">
+      <publishTime>04/06/2012 22:07:57</publishTime>
+    </File>
+    <File Include="Content/Images/ajax-loader.gif">
+      <publishTime>12/29/2011 18:56:14</publishTime>
+    </File>
+    <File Include="Content/Images/ajax-loader.png">
+      <publishTime>02/23/2012 18:28:58</publishTime>
+    </File>
+    <File Include="Content/Images/google-sprite.png">
+      <publishTime>06/20/2012 21:31:21</publishTime>
+    </File>
+    <File Include="Content/Images/icons-18-black.png">
+      <publishTime>02/23/2012 18:28:58</publishTime>
+    </File>
+    <File Include="Content/Images/icons-18-white.png">
+      <publishTime>02/23/2012 18:28:58</publishTime>
+    </File>
+    <File Include="Content/Images/icons-36-black.png">
+      <publishTime>02/23/2012 18:28:58</publishTime>
+    </File>
+    <File Include="Content/Images/icons-36-white.png">
+      <publishTime>02/23/2012 18:28:58</publishTime>
+    </File>
+    <File Include="Content/Images/Icons/caution.gif">
+      <publishTime>03/26/2012 11:25:55</publishTime>
+    </File>
+    <File Include="Content/Images/Icons/caution2.png">
+      <publishTime>04/14/2012 23:33:19</publishTime>
+    </File>
+    <File Include="Content/Images/Icons/clock.png">
+      <publishTime>03/26/2012 16:27:26</publishTime>
+    </File>
+    <File Include="Content/Images/Icons/close.png">
+      <publishTime>12/29/2011 18:56:14</publishTime>
+    </File>
+    <File Include="Content/Images/Icons/collapse_large.png">
+      <publishTime>12/29/2011 18:56:14</publishTime>
+    </File>
+    <File Include="Content/Images/Icons/collapse_medium.png">
+      <publishTime>12/29/2011 18:56:14</publishTime>
+    </File>
+    <File Include="Content/Images/Icons/expand_large.png">
+      <publishTime>12/29/2011 18:56:14</publishTime>
+    </File>
+    <File Include="Content/Images/Icons/expand_medium.png">
+      <publishTime>12/29/2011 18:56:14</publishTime>
+    </File>
+    <File Include="Content/Images/Icons/external-link-icon.png">
+      <publishTime>12/29/2011 18:56:14</publishTime>
+    </File>
+    <File Include="Content/Images/Icons/link.png">
+      <publishTime>06/20/2012 21:31:21</publishTime>
+    </File>
+    <File Include="Content/Images/Icons/redbox.gif">
+      <publishTime>04/23/2012 21:24:01</publishTime>
+    </File>
+    <File Include="Content/Images/Icons/star_default.png">
+      <publishTime>01/17/2012 18:42:36</publishTime>
+    </File>
+    <File Include="Content/Images/Icons/star_default_hover.png">
+      <publishTime>01/17/2012 18:42:36</publishTime>
+    </File>
+    <File Include="Content/Images/Icons/star_lit.png">
+      <publishTime>01/17/2012 18:42:36</publishTime>
+    </File>
+    <File Include="Content/Images/Icons/star_lit_hover.png">
+      <publishTime>01/17/2012 18:42:36</publishTime>
+    </File>
+    <File Include="Content/Images/Icons/video.png">
+      <publishTime>03/26/2012 11:14:22</publishTime>
+    </File>
+    <File Include="Content/Images/imdb_icon_small.png">
+      <publishTime>02/08/2012 21:15:43</publishTime>
+    </File>
+    <File Include="Content/Images/imdb_icon_smallest.png">
+      <publishTime>02/08/2012 21:15:43</publishTime>
+    </File>
+    <File Include="Content/Images/rt-sprite.png">
+      <publishTime>02/23/2012 18:28:58</publishTime>
+    </File>
+    <File Include="Content/Images/rt-sprite2.png">
+      <publishTime>03/05/2012 09:19:47</publishTime>
+    </File>
+    <File Include="Content/Images/rt-sprite3.png">
+      <publishTime>03/18/2012 22:04:43</publishTime>
+    </File>
+    <File Include="Content/Images/rt-sprite4.png">
+      <publishTime>08/06/2012 20:12:49</publishTime>
+    </File>
+    <File Include="Content/Images/star.png">
+      <publishTime>12/29/2011 18:56:14</publishTime>
+    </File>
+    <File Include="Content/Images/star_bigger.png">
+      <publishTime>12/31/2011 11:03:51</publishTime>
+    </File>
+    <File Include="Content/Images/star_small.png">
+      <publishTime>12/31/2011 11:04:43</publishTime>
+    </File>
+    <File Include="Content/Images/star_smallest.png">
+      <publishTime>02/03/2012 19:14:47</publishTime>
+    </File>
+    <File Include="Content/Images/transparent.png">
+      <publishTime>06/20/2012 21:31:21</publishTime>
+    </File>
+    <File Include="Content/jquery.mobile-1.0.1.min.css">
+      <publishTime>02/29/2012 21:44:39</publishTime>
+    </File>
+    <File Include="Content/jquery.mobile-1.1.0-rc.1/images/ajax-loader.gif">
+      <publishTime>03/13/2012 08:17:38</publishTime>
+    </File>
+    <File Include="Content/jquery.mobile-1.1.0-rc.1/images/ajax-loader.png">
+      <publishTime>03/13/2012 08:17:38</publishTime>
+    </File>
+    <File Include="Content/jquery.mobile-1.1.0-rc.1/images/icons-18-black.png">
+      <publishTime>03/13/2012 08:17:38</publishTime>
+    </File>
+    <File Include="Content/jquery.mobile-1.1.0-rc.1/images/icons-18-white.png">
+      <publishTime>03/13/2012 08:17:38</publishTime>
+    </File>
+    <File Include="Content/jquery.mobile-1.1.0-rc.1/images/icons-36-black.png">
+      <publishTime>03/13/2012 08:17:38</publishTime>
+    </File>
+    <File Include="Content/jquery.mobile-1.1.0-rc.1/images/icons-36-white.png">
+      <publishTime>03/13/2012 08:17:38</publishTime>
+    </File>
+    <File Include="Content/jquery.mobile-1.1.0-rc.1/jquery.mobile-1.1.0-rc.1.min.css">
+      <publishTime>03/13/2012 18:59:20</publishTime>
+    </File>
+    <File Include="Content/jquery.mobile-1.1.0-rc.1/jquery.mobile-1.1.0-rc.1.min.js">
+      <publishTime>03/13/2012 08:17:38</publishTime>
+    </File>
+    <File Include="Content/jquery.mobile-1.1.0-rc.1/jquery.mobile.structure-1.1.0-rc.1.min.css">
+      <publishTime>03/13/2012 08:17:38</publishTime>
+    </File>
+    <File Include="Content/logo.png">
+      <publishTime>03/16/2012 14:58:24</publishTime>
+    </File>
+    <File Include="Content/logo3_app_white.png">
+      <publishTime>08/08/2012 19:36:21</publishTime>
+    </File>
+    <File Include="Content/logo_fbopengraph.png">
+      <publishTime>07/27/2012 16:28:59</publishTime>
+    </File>
+    <File Include="Content/logo_mobile.png">
+      <publishTime>03/16/2012 16:12:40</publishTime>
+    </File>
+    <File Include="Content/Mobile.css">
+      <publishTime>08/20/2012 19:25:38</publishTime>
+    </File>
+    <File Include="Content/Site.css">
+      <publishTime>08/11/2012 21:07:29</publishTime>
+    </File>
+    <File Include="Externals/local-cache/json2.js">
+      <publishTime>02/15/2012 21:33:36</publishTime>
+    </File>
+    <File Include="Externals/local-cache/local-cache-browser-test.html">
+      <publishTime>02/15/2012 21:33:36</publishTime>
+    </File>
+    <File Include="Externals/local-cache/local-cache.js">
+      <publishTime>04/18/2012 20:18:14</publishTime>
+    </File>
+    <File Include="Global.asax">
+      <publishTime>02/08/2012 21:15:43</publishTime>
+    </File>
+    <File Include="packages.config">
+      <publishTime>06/23/2012 09:32:18</publishTime>
+    </File>
+    <File Include="Scripts/codejkjk/codejkjk.Geo.js">
+      <publishTime>05/14/2012 20:18:55</publishTime>
+    </File>
+    <File Include="Scripts/codejkjk/codejkjk.js">
+      <publishTime>06/22/2012 19:52:20</publishTime>
+    </File>
+    <File Include="Scripts/codejkjk/codejkjk.movies.Api.js">
+      <publishTime>08/06/2012 20:12:47</publishTime>
+    </File>
+    <File Include="Scripts/codejkjk/codejkjk.movies.Defaults.js">
+      <publishTime>06/16/2012 19:36:38</publishTime>
+    </File>
+    <File Include="Scripts/codejkjk/codejkjk.movies.HomeIndex.js">
+      <publishTime>07/27/2012 16:28:59</publishTime>
+    </File>
+    <File Include="Scripts/codejkjk/codejkjk.movies.Mobile.js">
+      <publishTime>08/20/2012 19:25:37</publishTime>
+    </File>
+    <File Include="Scripts/codejkjk/codejkjk.siteActions.js">
+      <publishTime>06/26/2012 21:38:18</publishTime>
+    </File>
+    <File Include="Scripts/jquery-1.7.1.min.js">
+      <publishTime>03/20/2012 10:19:49</publishTime>
+    </File>
+    <File Include="Scripts/jquery.mobile-1.0.1.min.js">
+      <publishTime>02/11/2012 16:05:25</publishTime>
+    </File>
+    <File Include="Scripts/Plugins/blockUI/check.png">
+      <publishTime>06/16/2012 19:36:39</publishTime>
+    </File>
+    <File Include="Scripts/Plugins/blockUI/jquery.blockUI.js">
+      <publishTime>06/16/2012 19:36:39</publishTime>
+    </File>
+    <File Include="Scripts/Plugins/blockUI/style.css">
+      <publishTime>06/19/2012 21:46:52</publishTime>
+    </File>
+    <File Include="Scripts/Plugins/date.js">
+      <publishTime>12/29/2011 18:56:12</publishTime>
+    </File>
+    <File Include="Scripts/Plugins/iPhoneStyleCheckboxes/iphone-style-checkboxes.js">
+      <publishTime>06/16/2012 19:36:39</publishTime>
+    </File>
+    <File Include="Scripts/Plugins/iPhoneStyleCheckboxes/off.png">
+      <publishTime>06/16/2012 19:36:39</publishTime>
+    </File>
+    <File Include="Scripts/Plugins/iPhoneStyleCheckboxes/on.png">
+      <publishTime>06/16/2012 19:36:39</publishTime>
+    </File>
+    <File Include="Scripts/Plugins/iPhoneStyleCheckboxes/slider.png">
+      <publishTime>06/16/2012 19:36:39</publishTime>
+    </File>
+    <File Include="Scripts/Plugins/iPhoneStyleCheckboxes/slider_center.png">
+      <publishTime>06/16/2012 19:36:39</publishTime>
+    </File>
+    <File Include="Scripts/Plugins/iPhoneStyleCheckboxes/slider_left.png">
+      <publishTime>06/16/2012 19:36:39</publishTime>
+    </File>
+    <File Include="Scripts/Plugins/iPhoneStyleCheckboxes/slider_right.png">
+      <publishTime>06/16/2012 19:36:39</publishTime>
+    </File>
+    <File Include="Scripts/Plugins/iPhoneStyleCheckboxes/style.css">
+      <publishTime>06/29/2012 20:22:45</publishTime>
+    </File>
+    <File Include="Scripts/Plugins/iscroll.js">
+      <publishTime>08/20/2012 19:25:36</publishTime>
+    </File>
+    <File Include="Scripts/Plugins/jquery-ui-1.8.21/css/ui-darkness/images/ui-bg_flat_30_cccccc_40x100.png">
+      <publishTime>06/17/2012 19:07:10</publishTime>
+    </File>
+    <File Include="Scripts/Plugins/jquery-ui-1.8.21/css/ui-darkness/images/ui-bg_flat_50_5c5c5c_40x100.png">
+      <publishTime>06/17/2012 19:07:10</publishTime>
+    </File>
+    <File Include="Scripts/Plugins/jquery-ui-1.8.21/css/ui-darkness/images/ui-bg_glass_20_555555_1x400.png">
+      <publishTime>06/17/2012 19:07:06</publishTime>
+    </File>
+    <File Include="Scripts/Plugins/jquery-ui-1.8.21/css/ui-darkness/images/ui-bg_glass_40_0078a3_1x400.png">
+      <publishTime>06/17/2012 19:07:06</publishTime>
+    </File>
+    <File Include="Scripts/Plugins/jquery-ui-1.8.21/css/ui-darkness/images/ui-bg_glass_40_ffc73d_1x400.png">
+      <publishTime>06/17/2012 19:07:06</publishTime>
+    </File>
+    <File Include="Scripts/Plugins/jquery-ui-1.8.21/css/ui-darkness/images/ui-bg_gloss-wave_25_333333_500x100.png">
+      <publishTime>06/17/2012 19:07:06</publishTime>
+    </File>
+    <File Include="Scripts/Plugins/jquery-ui-1.8.21/css/ui-darkness/images/ui-bg_highlight-soft_80_eeeeee_1x100.png">
+      <publishTime>06/17/2012 19:07:06</publishTime>
+    </File>
+    <File Include="Scripts/Plugins/jquery-ui-1.8.21/css/ui-darkness/images/ui-bg_inset-soft_25_000000_1x100.png">
+      <publishTime>06/17/2012 19:07:06</publishTime>
+    </File>
+    <File Include="Scripts/Plugins/jquery-ui-1.8.21/css/ui-darkness/images/ui-bg_inset-soft_30_f58400_1x100.png">
+      <publishTime>06/17/2012 19:07:06</publishTime>
+    </File>
+    <File Include="Scripts/Plugins/jquery-ui-1.8.21/css/ui-darkness/images/ui-icons_222222_256x240.png">
+      <publishTime>06/17/2012 19:07:08</publishTime>
+    </File>
+    <File Include="Scripts/Plugins/jquery-ui-1.8.21/css/ui-darkness/images/ui-icons_4b8e0b_256x240.png">
+      <publishTime>06/17/2012 19:07:10</publishTime>
+    </File>
+    <File Include="Scripts/Plugins/jquery-ui-1.8.21/css/ui-darkness/images/ui-icons_a83300_256x240.png">
+      <publishTime>06/17/2012 19:07:10</publishTime>
+    </File>
+    <File Include="Scripts/Plugins/jquery-ui-1.8.21/css/ui-darkness/images/ui-icons_cccccc_256x240.png">
+      <publishTime>06/17/2012 19:07:08</publishTime>
+    </File>
+    <File Include="Scripts/Plugins/jquery-ui-1.8.21/css/ui-darkness/images/ui-icons_ffffff_256x240.png">
+      <publishTime>06/17/2012 19:07:08</publishTime>
+    </File>
+    <File Include="Scripts/Plugins/jquery-ui-1.8.21/css/ui-darkness/jquery-ui-1.8.21.custom.css">
+      <publishTime>06/29/2012 20:22:45</publishTime>
+    </File>
+    <File Include="Scripts/Plugins/jquery-ui-1.8.21/css/ui-lightness/images/ui-bg_diagonals-thick_18_b81900_40x40.png">
+      <publishTime>06/17/2012 18:14:50</publishTime>
+    </File>
+    <File Include="Scripts/Plugins/jquery-ui-1.8.21/css/ui-lightness/images/ui-bg_diagonals-thick_20_666666_40x40.png">
+      <publishTime>06/17/2012 18:14:52</publishTime>
+    </File>
+    <File Include="Scripts/Plugins/jquery-ui-1.8.21/css/ui-lightness/images/ui-bg_flat_10_000000_40x100.png">
+      <publishTime>06/17/2012 18:14:52</publishTime>
+    </File>
+    <File Include="Scripts/Plugins/jquery-ui-1.8.21/css/ui-lightness/images/ui-bg_glass_100_f6f6f6_1x400.png">
+      <publishTime>06/17/2012 18:14:48</publishTime>
+    </File>
+    <File Include="Scripts/Plugins/jquery-ui-1.8.21/css/ui-lightness/images/ui-bg_glass_100_fdf5ce_1x400.png">
+      <publishTime>06/17/2012 18:14:48</publishTime>
+    </File>
+    <File Include="Scripts/Plugins/jquery-ui-1.8.21/css/ui-lightness/images/ui-bg_glass_65_ffffff_1x400.png">
+      <publishTime>06/17/2012 18:14:48</publishTime>
+    </File>
+    <File Include="Scripts/Plugins/jquery-ui-1.8.21/css/ui-lightness/images/ui-bg_gloss-wave_35_f6a828_500x100.png">
+      <publishTime>06/17/2012 18:14:48</publishTime>
+    </File>
+    <File Include="Scripts/Plugins/jquery-ui-1.8.21/css/ui-lightness/images/ui-bg_highlight-soft_100_eeeeee_1x100.png">
+      <publishTime>06/17/2012 18:14:48</publishTime>
+    </File>
+    <File Include="Scripts/Plugins/jquery-ui-1.8.21/css/ui-lightness/images/ui-bg_highlight-soft_75_ffe45c_1x100.png">
+      <publishTime>06/17/2012 18:14:50</publishTime>
+    </File>
+    <File Include="Scripts/Plugins/jquery-ui-1.8.21/css/ui-lightness/images/ui-icons_222222_256x240.png">
+      <publishTime>06/17/2012 18:14:50</publishTime>
+    </File>
+    <File Include="Scripts/Plugins/jquery-ui-1.8.21/css/ui-lightness/images/ui-icons_228ef1_256x240.png">
+      <publishTime>06/17/2012 18:14:52</publishTime>
+    </File>
+    <File Include="Scripts/Plugins/jquery-ui-1.8.21/css/ui-lightness/images/ui-icons_ef8c08_256x240.png">
+      <publishTime>06/17/2012 18:14:50</publishTime>
+    </File>
+    <File Include="Scripts/Plugins/jquery-ui-1.8.21/css/ui-lightness/images/ui-icons_ffd27a_256x240.png">
+      <publishTime>06/17/2012 18:14:52</publishTime>
+    </File>
+    <File Include="Scripts/Plugins/jquery-ui-1.8.21/css/ui-lightness/images/ui-icons_ffffff_256x240.png">
+      <publishTime>06/17/2012 18:14:50</publishTime>
+    </File>
+    <File Include="Scripts/Plugins/jquery-ui-1.8.21/css/ui-lightness/jquery-ui-1.8.21.custom.css">
+      <publishTime>06/29/2012 20:22:45</publishTime>
+    </File>
+    <File Include="Scripts/Plugins/jquery-ui-1.8.21/js/jquery-ui-1.8.21.custom.min.js">
+      <publishTime>06/17/2012 19:07:10</publishTime>
+    </File>
+    <File Include="Scripts/Plugins/jquery.history.js">
+      <publishTime>04/06/2012 16:07:42</publishTime>
+    </File>
+    <File Include="Scripts/Plugins/jquery.hotkeys.js">
+      <publishTime>06/22/2012 19:52:19</publishTime>
+    </File>
+    <File Include="Scripts/Plugins/jsrender.js">
+      <publishTime>01/17/2012 18:42:36</publishTime>
+    </File>
+    <File Include="Scripts/Plugins/lazyload/grey.gif">
+      <publishTime>04/25/2012 18:34:57</publishTime>
+    </File>
+    <File Include="Scripts/Plugins/lazyload/jquery.lazyload.min.js">
+      <publishTime>04/25/2012 18:34:57</publishTime>
+    </File>
+    <File Include="Scripts/Plugins/mask/jquery.mask.min.js">
+      <publishTime>06/16/2012 19:36:39</publishTime>
+    </File>
+    <File Include="Scripts/Plugins/mask/processing-bar.gif">
+      <publishTime>06/16/2012 19:36:39</publishTime>
+    </File>
+    <File Include="Scripts/Plugins/qTip2/jquery.qtip.min.css">
+      <publishTime>06/29/2012 20:22:45</publishTime>
+    </File>
+    <File Include="Scripts/Plugins/qTip2/jquery.qtip.min.js">
+      <publishTime>06/29/2012 20:22:45</publishTime>
+    </File>
+    <File Include="Scripts/Plugins/swfobject.js">
+      <publishTime>07/02/2012 18:14:36</publishTime>
+    </File>
+    <File Include="Scripts/Plugins/zeroclipboard/test.html">
+      <publishTime>02/16/2012 17:01:44</publishTime>
+    </File>
+    <File Include="Scripts/Plugins/zeroclipboard/ZeroClipboard.js">
+      <publishTime>02/16/2012 17:01:45</publishTime>
+    </File>
+    <File Include="Scripts/Plugins/zeroclipboard/ZeroClipboard.swf">
+      <publishTime>02/16/2012 17:01:45</publishTime>
+    </File>
+    <File Include="Views/About/Index.cshtml">
+      <publishTime>08/11/2012 21:07:31</publishTime>
+    </File>
+    <File Include="Views/Home/ComingSoon.Mobile.cshtml">
+      <publishTime>05/13/2012 21:06:33</publishTime>
+    </File>
+    <File Include="Views/Home/Index.cshtml">
+      <publishTime>08/11/2012 21:07:31</publishTime>
+    </File>
+    <File Include="Views/Home/Index.Mobile.cshtml">
+      <publishTime>08/20/2012 19:25:38</publishTime>
+    </File>
+    <File Include="Views/Movie/Index.Mobile.cshtml">
+      <publishTime>06/16/2012 19:36:40</publishTime>
+    </File>
+    <File Include="Views/Report/Index.cshtml">
+      <publishTime>06/22/2012 19:52:21</publishTime>
+    </File>
+    <File Include="Views/Reviews/Index.cshtml">
+      <publishTime>08/11/2012 21:07:31</publishTime>
+    </File>
+    <File Include="Views/Shared/AuthUserJs.cshtml">
+      <publishTime>08/06/2012 22:16:47</publishTime>
+    </File>
+    <File Include="Views/Shared/Error.cshtml">
+      <publishTime>02/08/2012 21:15:43</publishTime>
+    </File>
+    <File Include="Views/Shared/MovieDetails.cshtml">
+      <publishTime>07/27/2012 16:29:00</publishTime>
+    </File>
+    <File Include="Views/Shared/MovieDetails.Mobile.cshtml">
+      <publishTime>07/02/2012 18:14:36</publishTime>
+    </File>
+    <File Include="Views/Shared/MovieDetailsSimple.cshtml">
+      <publishTime>07/27/2012 16:29:00</publishTime>
+    </File>
+    <File Include="Views/Shared/MovieList.cshtml">
+      <publishTime>08/11/2012 21:07:30</publishTime>
+    </File>
+    <File Include="Views/Shared/MovieList.Mobile.cshtml">
+      <publishTime>08/20/2012 19:25:38</publishTime>
+    </File>
+    <File Include="Views/Shared/OpenGraphTags.cshtml">
+      <publishTime>07/27/2012 16:29:00</publishTime>
+    </File>
+    <File Include="Views/Shared/Ratings.cshtml">
+      <publishTime>07/02/2012 18:14:36</publishTime>
+    </File>
+    <File Include="Views/Shared/Redboxes.cshtml">
+      <publishTime>04/24/2012 22:08:55</publishTime>
+    </File>
+    <File Include="Views/Shared/Slider.cshtml">
+      <publishTime>07/27/2012 16:29:00</publishTime>
+    </File>
+    <File Include="Views/Shared/TheatersForMovieList.cshtml">
+      <publishTime>06/26/2012 21:38:22</publishTime>
+    </File>
+    <File Include="Views/Shared/_Layout.cshtml">
+      <publishTime>08/11/2012 21:07:30</publishTime>
+    </File>
+    <File Include="Views/Shared/_Layout.Mobile.cshtml">
+      <publishTime>08/20/2012 19:25:38</publishTime>
+    </File>
+    <File Include="Views/Web.config">
+      <publishTime>02/23/2012 18:28:58</publishTime>
+    </File>
+    <File Include="Views/_ViewStart.cshtml">
+      <publishTime>02/08/2012 21:15:43</publishTime>
+    </File>
+    <File Include="Web.config">
+      <publishTime>08/21/2012 22:14:18</publishTime>
+    </File>
+  </ItemGroup>
+</Project>

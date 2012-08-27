@@ -11,7 +11,7 @@
                     var adminHtmlFormat = "<a class=\"button admin\" data-role=\"Admin\" data-movieid=\"{0}\">Admin</a>";
                 </text>
             }
-            $(".movie").each(function(i, movie) {
+            $(".movieList .movie").each(function(i, movie) {
                 movie = $(movie);
                 var movieId = movie.attr("data-movieid");
                 @if (Model.IsAdmin) {

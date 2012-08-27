@@ -33,10 +33,11 @@ namespace movies.Site.Controllers
             {
                 vm.UpcomingMovies = Movie.GetMovies(Enumerations.MovieLists.Upcoming);
                 vm.FeatureTrailers = TrailerAddict.GetFeatured(5);
-                if (!Request.Url.ToString().Contains("localhost"))
-                {
+                vm.RedboxMovies = Redbox.GetMovies();
+                //if (!Request.Url.ToString().Contains("localhost"))
+                //{
                     // vm.RedboxMovies = Redbox.GetMovies();
-                }
+                //}
             }
 
             // remove any movies in InTheatersMovies that are already in Box Office
@@ -132,7 +133,7 @@ namespace movies.Site.Controllers
             //    }
             //}
 
-            // var redboxMovies = Model.Redbox.GetMovies();
+            var redboxMovies = Model.Redbox.GetMovies();
 
             // movies.Model.Twitter.UpdateStatus("work please " + System.DateTime.Now);
             return Content("Done! - " + System.DateTime.Now);

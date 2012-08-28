@@ -139,7 +139,7 @@ codejkjk.movies.Api = {
             url: url,
             dataType: responseDataType,
             success: function (response) {
-                if (cacheKey) {
+                if (cacheKey && codejkjk.movies.Defaults.AllowCache) {
                     $.cacheItem(cacheKey, response, { expires: codejkjk.movies.Defaults.CacheExpires });
                 }
                 return callback(response);
@@ -152,7 +152,7 @@ codejkjk.movies.Api = {
             url: url,
             dataType: "json",
             success: function (response) {
-                if (cacheKey) {
+                if (cacheKey && codejkjk.movies.Defaults.AllowCache) {
                     $.cacheItem(cacheKey, response, { expires: codejkjk.movies.Defaults.CacheExpires });
                 }
                 return callback(response);

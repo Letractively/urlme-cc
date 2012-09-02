@@ -24,7 +24,12 @@
                 if (!movie.find("a[data-role='Reviewer']").length) {
                     movie.prepend(reviewerHtmlFormat.format(movieId));
                 }
-            });
+            }); // next movieList movie
+            var popup = $("#movieDetailsPopup");
+            if (popup.length && !popup.find("a[data-role='Reviewer']").length) {
+                var movieId = $("#currentMovieId").val();
+                popup.prepend(reviewerHtmlFormat.format(movieId));
+            }
             </text>
         } // end: razor check for IsReviewer || isadmin
     }

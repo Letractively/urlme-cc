@@ -405,6 +405,7 @@ codejkjk.movies.desktop = {
         codejkjk.movies.desktop.controls.NavLinks().removeClass("selected");
         if ($.trim(html)) {
             codejkjk.movies.desktop.controls.SearchResultsView().html(html);
+            if (typeof refreshAdmin === "function") { refreshAdmin(); }
         } else {
             codejkjk.movies.desktop.controls.SearchResultsView().html("No results found.");
         }

@@ -142,6 +142,7 @@ namespace movies.Model
             }
         }
         public string MovieSlug { get { return this.title.Slugify() + "/" + this.id; } }
+        public string FullMovieUrl { get { return string.Format("http://seeitornot.co/{0}", this.MovieSlug); } }
         public string Duration
         {
             get

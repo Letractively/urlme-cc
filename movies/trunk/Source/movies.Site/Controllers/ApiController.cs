@@ -83,7 +83,7 @@ namespace movies.Site.Controllers
                 }
                 else if (requiresApproval)
                 {
-                    statusMsg = "Note: due to either the synopsis or parental guide content of this movie, if marked as 'See It', this review will be submitted for approval.";
+                    statusMsg = "Note: due to the parental guide content of this movie, if marked as 'See It', this review will be submitted for approval.";
                 }
                 else
                 {

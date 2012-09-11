@@ -125,14 +125,6 @@ namespace movies.Site.Controllers
                 }
             }
 
-            //foreach (var movie in boxOfficeMovies.Values)
-            //{
-            //    if (movie.IMDbQ != null)
-            //    {
-            //        Model.Movie.GetIMDbMovie(movie.IMDbQ);
-            //    }
-            //}
-
             var redboxMovies = Model.Redbox.GetMovies();
 
             // movies.Model.Twitter.UpdateStatus("work please " + System.DateTime.Now);

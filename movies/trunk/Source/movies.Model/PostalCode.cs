@@ -22,9 +22,8 @@ namespace movies.Model
             public int criticsScore { get; set; }
             public string audienceRating { get; set; }
             public int audienceScore { get; set; }
-            public string imdbRating { get; set; }
             public string movieSlug { get; set; }
-            public string IMDbRating { get; set; }
+            public string imdbPluginHtml { get; set; }
         }
         public class Theater
         {
@@ -106,12 +105,11 @@ namespace movies.Model
                                     duration = fullMovie.Duration,
                                     id = fullMovie.id,
                                     imageUrl = fullMovie.posters.thumbnail,
-                                    imdbRating = fullMovie.IMDbRating,
                                     movieSlug = fullMovie.MovieSlug,
                                     mpaaRating = fullMovie.mpaa_rating,
                                     showtimesHtml = fullMovie.ShowtimesHtml,
                                     title = movieTitle,
-                                    IMDbRating = fullMovie.IMDbRating
+                                    imdbPluginHtml = fullMovie.IMDbPluginHtml
                                 };
 
                                 // add to movie list, which we'll add to theater later

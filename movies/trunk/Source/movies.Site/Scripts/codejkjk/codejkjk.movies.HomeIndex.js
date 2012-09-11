@@ -40,7 +40,6 @@ codejkjk.movies.desktop = {
         , FavoriteTheaterListTemplate: function () { return $("#favoriteTheaterListTemplate"); }
         , FirstNavLink: function () { return $("nav > a:first"); }
         , HideMovieLinksSelector: function () { return ".hideMovieLink"; }
-        , IMDbMoviesNotSet: function () { return $(".imdbNotSet"); }
         , Logo: function () { return $("#logo"); }
         , MovieDetailsPopup: function () { return $("#movieDetailsPopup"); }
         , MovieDetails: function () { return $("#movieDetailsPopup .movieDetails"); }
@@ -60,6 +59,7 @@ codejkjk.movies.desktop = {
         , RemoveLinks: function () { return $(".actions").find(".removeLink"); }
         , RedboxZipCodeInput: function () { return $("#redboxZip"); }
         , searchBox: function () { return $("#q > input[type='text']"); }
+        , searchButton: function () { return $("#q > input[type='submit']"); }
         , SearchRedboxZipCodeButton: function () { return $("#redboxZip").next("button"); }
         , SearchResultsView: function () { return $("#searchResultsView"); }
         , SeeNearbyRedboxesSelector: function () { return "#seeNearbyRedboxes"; }
@@ -81,7 +81,6 @@ codejkjk.movies.desktop = {
         , TheaterListTemplate: function () { return $("#theaterListTemplate"); }
         , Theaters: function () { return $(".theater"); }
         , trailer: function () { return $("#trailer"); }
-        , UnsetIMDbMovieIds: function () { return $("[data-imdbmovieid='']"); }
         , UpcomingView: function () { return $("#upcomingView"); }
         , Views: function () { return $(".content"); }
         , watchTrailerLinkSelector: function () { return "#watchTrailerLink"; }
@@ -382,25 +381,6 @@ codejkjk.movies.desktop = {
         }
     },
 
-    GetIMDbData: function () {
-        return;
-        codejkjk.movies.desktop.controls.IMDbMoviesNotSet().each(function () {
-            var imdb = $(this);
-            var imdbMovieId = imdb.attr("data-imdbmovieid");
-            codejkjk.movies.Api.GetIMDbMovie(imdbMovieId, function (movie) {
-                var ratings = $(".imdb[data-imdbmovieid='{0}']".format(imdbMovieId));
-
-                if (movie.rating && movie.rating !== "N/A" && movie.votes && movie.votes !== "N/A") {
-                    var title = "{0} votes on IMDb.com".format(movie.votes);
-                    ratings.html(movie.rating).attr("title", title);
-                } else {
-                    ratings.html("n/a");
-                }
-                ratings.removeClass("imdbNotSet");
-            });
-        });
-    },
-
     LoadSearchResults: function (html) {
         codejkjk.movies.desktop.controls.NavLinks().removeClass("selected");
         if ($.trim(html)) {
@@ -409,7 +389,6 @@ codejkjk.movies.desktop = {
         } else {
             codejkjk.movies.desktop.controls.SearchResultsView().html("No results found.");
         }
-        codejkjk.movies.desktop.GetIMDbData();
 
         $("img.lazy").lazyload({
             effect: "fadeIn"
@@ -840,15 +819,33 @@ codejkjk.movies.desktop = {
         codejkjk.movies.desktop.controls.searchBox().keypress(function (e) {
             var code = (e.keyCode ? e.keyCode : e.which);
             if (code == 13) {
-                var q = $(this).val();
-                // loading 
-                codejkjk.movies.desktop.controls.SearchResultsView().html("<div class='loading'></div>");
-                $(".content").hide();
-                codejkjk.movies.desktop.controls.SearchResultsView().show();
-                codejkjk.movies.Api.SearchMovies(q, codejkjk.movies.desktop.LoadSearchResults);
-                $(this).blur();
+                codejkjk.movies.desktop.search();
             }
         });
+
+        // click magnifying glass (search button)
+        codejkjk.movies.desktop.controls.searchButton().click(function (e) {
+            e.preventDefault();
+            codejkjk.movies.desktop.search();
+        });
+    },
+
+    search: function () {
+        var searchBox = codejkjk.movies.desktop.controls.searchBox();
+        var q = searchBox.val();
+
+        // validate
+        if (!q) {
+            alert('Please provide search terms');
+            return;
+        }
+
+        // loading 
+        codejkjk.movies.desktop.controls.SearchResultsView().html("<div class='loading'></div>");
+        $(".content").hide();
+        codejkjk.movies.desktop.controls.SearchResultsView().show();
+        codejkjk.movies.Api.SearchMovies(q, codejkjk.movies.desktop.LoadSearchResults);
+        searchBox.blur();
     },
 
     initHotkeys: function () {

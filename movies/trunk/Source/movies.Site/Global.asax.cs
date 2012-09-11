@@ -23,12 +23,6 @@ namespace movies
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
             routes.MapRoute(
-                "Api-Get_IMDb_Movie", // Route name
-                "api/get_imdb_movie.json/{imdbMovieId}", // URL with parameters
-                new { controller = "Api", action = "GetIMDbMovie" } // Parameter defaults
-            );
-
-            routes.MapRoute(
                 "mail-test", // Route name
                 "mail/test", // URL with parameters
                 new { controller = "Mail", action = "Test" } // Parameter defaults

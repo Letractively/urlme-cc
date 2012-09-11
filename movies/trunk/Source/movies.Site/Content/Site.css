@@ -117,15 +117,11 @@ a.button img.link { background: url('content/images/google-sprite.png') -143px -
 .mpaaRating { color: #465F82; }
 
 header { background:#2D62AE; }
-    header > #headerContent { padding: 20px 0; margin: 0 auto; width: 1000px; }
-    header > #headerContent > #logo { float: left; display:inline-block; font-size: 35px; font-weight: bold; color: White; /* background: url('content/logo.png'); width: 224px; height: 80px; */ }
+    header > #headerContent { padding: 0 0 10px 0; margin: 0 auto; width: 1000px; }
+    header > #headerContent > #logo { float: left; display:inline-block; margin-left: -41px; /* font-size: 35px; font-weight: bold; color: White; */ background: url('content/logo4_4.png'); width: 349px; height: 105px; }
         header > #headerContent > #logo span { float: left; display:inline-block; }
-        header > #headerContent > #logo span.text { line-height: 38px; margin: 0 14px; }
-        header > #headerContent > #logo span.img { background: url('content/logo3_app_white.png'); width: 26px; height: 32px; }
-        header > #headerContent > #logo span.left { background-position: -2px -2px; }
-        header > #headerContent > #logo span.right { background-position: -32px -14px; margin-top:6px; }
-    header > #headerContent > #fbLikeContainer { position: absolute; top: 69px; /* width: 85px; float: left; margin-top: 50px; margin: 30px 0 0 20px; position: fixed; top: 50px; left: 20px; */ }
-    header > #headerContent > #headerAd { float: right; }
+    header > #headerContent > #fbLikeContainer { top: 14px; left: 400px; position: absolute; /* width: 85px; float: left; margin-top: 50px; margin: 30px 0 0 20px; position: fixed; top: 50px; left: 20px; */ }
+    header > #headerContent > #headerAd { float: right; padding-top:20px; }
     /* header > #headerContent > #q { float: right; padding: 8px; outline: none; width: 282px; border: 1px solid #ccc; font-size: 14px; } */
     nav, section { display:block; }
     nav { padding: 12px 0 10px 0; width: 990px; margin: 0 auto; }
@@ -133,7 +129,7 @@ header { background:#2D62AE; }
     nav > a.selected { /* (blue) background: #4c95e4; */ background: #65b145; padding: 12px 12px 11px 12px; text-shadow:none; }
     nav > #q { float:right; margin-top:-6px; position: relative; }
         nav > #q > input[type='text'] { padding: 6px; outline: none; width: 262px; border: 1px solid #ccc; font-size: 14px; }
-        nav > #q > input[type='submit'] { cursor: default; border: none; color: transparent; font-size: 0; background: url('content/images/rt-sprite4.png') -106px -107px; width: 18px; height: 18px; display: inline-block; position: absolute; top: 7px; right: 10px; opacity: 0.4; }
+        nav > #q > input[type='submit'] { cursor:pointer; border: none; color: transparent; font-size: 0; background: url('content/images/rt-sprite4.png') -106px -107px; width: 18px; height: 18px; display: inline-block; position: absolute; top: 7px; right: 10px; opacity: 0.4; }
 
 .body { width: 996px; margin: 10px auto 0 auto; padding-top: 20px; }
 
@@ -222,7 +218,7 @@ header { background:#2D62AE; }
         .movieList .movie a.poster:hover { -moz-box-shadow: none; -webkit-box-shadow: none; box-shadow: none; }
         .movieList .movie .details { padding: 10px; width: 160px; float: left; background: #fff; }
             .movieList .movie .details .ourReview { position: absolute; bottom: 8px; right: 0px; }
-        .movieList .movie img { width: 180px; height: 267px; } /* thumbnail = 61 x 91 */
+        .movieList .movie a.poster img { width: 180px; height: 267px; } /* thumbnail = 61 x 91 */
         .movieList .movie .ratingAndLength { height: 15px; }
             .movieList .movie .ratingAndLength .mpaaRating { font-weight: bold; float: right; }
 
@@ -320,11 +316,10 @@ header { background:#2D62AE; }
     #showtimesView #currentTheaterContainer .theater .showtimeDays a:not(.active) { color: #999; }
 /* end: elements specific to theater view */
         
-            /* .content .movie .ratings { margin-top: 10px; overflow:auto; } */
             .content .movie .mpaaRating { font-weight: bold; }
             .content .movie .showtimes { margin-top: 10px; }
             .content .movie [data-releasedate] { margin-top: 10px; font-weight: bold; height: 16px; }
-            .content .movie img { margin-right: 10px; display:block; }
+            /* .content .movie img { margin-right: 10px; display:block; } */
             .content .movie h2 { display:inline-block; font-weight: bold; margin-right: 10px; max-width:201px; /* overflow:hidden; text-overflow: ellipsis; white-space: nowrap; */ }
             .content .movie .actions { position: absolute; right: 8px; bottom: 8px; }
                 /* .content .movie .actions a { padding: 8px 10px; border: 1px solid #C5D8E6; font-size: 90%; display:inline-block; } */

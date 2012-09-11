@@ -11,15 +11,9 @@ namespace movies.Site.Controllers
     public class ApiController : Controller
     {
         [HttpGet]
-        public JsonResult GetIMDbMovie(string imdbMovieId)
-        {
-            return this.Json(Movie.GetIMDbMovie(imdbMovieId), JsonRequestBehavior.AllowGet);
-        }
-
-        [HttpGet]
         public ActionResult SearchMovies(string q)
         {
-            return PartialView("MovieList", Movie.SearchMovies(q, 20));
+            return PartialView("MovieList", Movie.SearchMovies(q, 50));
         }
 
         [HttpGet]

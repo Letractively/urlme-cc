@@ -37,11 +37,11 @@ body{font-size:12px;font-family:Arial, "Helvetica Neue", Helvetica, Sans-Serif;}
 .ourReview.medium .seeIt { background-position: -135px -5px; }
 .ourReview.medium .orNot { background-position: -168px -5px; }
 
-/* rt & imdb icons */
-.rottenTomato,.imdb,.sion { background: url("content/images/rt-sprite4.png") no-repeat scroll left center transparent; }
+/* rt icons */
+.rottenTomato,.sion { background: url("content/images/rt-sprite4.png") no-repeat scroll left center transparent; }
 
 .ratings { margin-top:10px; font-weight: bold; overflow:auto; }
-.ratings span { float: left; display:inline-block; }
+.ratings span.rottenTomato, .ratings span.rt.text { float: left; display:inline-block; }
 
 /* small set */
 .ratings.small { font-size: 15px; }
@@ -79,3 +79,6 @@ body{font-size:12px;font-family:Arial, "Helvetica Neue", Helvetica, Sans-Serif;}
 .ratings.smaller .icon.sion { width: 12px; height: 15px; }
 .ratings.smaller .icon.sion.seeIt { background-position: -212px -160px; }
 .ratings.smaller .icon.sion.orNot { background-position: -200px -160px; }
+
+.ratings.smaller .imdbRatingPlugin { margin-bottom: 0; display: block; }
+.ratings.smaller > a { display: block; }

@@ -153,6 +153,8 @@
     <Content Include="Content\jquery.mobile-1.1.0-rc.1\jquery.mobile.structure-1.1.0-rc.1.min.css" />
     <Content Include="Content\logo.png" />
     <Content Include="Content\logo3_app_white.png" />
+    <Content Include="Content\logo4.png" />
+    <Content Include="Content\logo4_4.png" />
     <Content Include="Content\logo_fbopengraph.png" />
     <Content Include="Content\logo_mobile.png" />
     <Content Include="Content\Mobile.css" />

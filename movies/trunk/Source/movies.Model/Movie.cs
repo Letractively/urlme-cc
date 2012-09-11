@@ -83,11 +83,6 @@ namespace movies.Model
         public string reviews { get; set; }
         public string similar { get; set; }
     }
-    public class IMDbMovie
-    {
-        public string rating { get; set; }
-        public string votes { get; set; }
-    }
     #endregion
 
     public class Movie
@@ -112,23 +107,12 @@ namespace movies.Model
         public Data.DomainModels.MovieReview Review { get; set; }
         public Enumerations.MovieType MovieType { get; set; }
         public string ShowtimesHtml { get; set; }
-        public string IMDbRating { get; set; } // need? cuz each movie has imdbmovie obj. hmmmm
-        public string IMDbVotes { get; set; } // need?
-        public bool IMDbLoaded { get; set; } // need?
-        public string IMDbClass { get { return this.IMDbLoaded ? "" : "imdbNotSet"; } }
         public bool IsReleased { get { return System.DateTime.Now >= this.release_dates.theater; } }
         public string ReleaseDate { get { return this.release_dates.theater.ToString("MMM d, yyyy"); } }
         public string ParentalGuideUrl { get { return this.alternate_ids != null ? API.IMDb.GetParentalGuideUrl(this.alternate_ids.imdb) : null; } }
         public string ParentalGuideMobileUrl { get { return this.alternate_ids != null ? API.IMDb.GetParentalGuideMobileUrl(this.alternate_ids.imdb) : null; } }
         public string IMDbMovieUrl { get { return this.alternate_ids != null ? API.IMDb.GetMovieUrl(this.alternate_ids.imdb) : null; } }
-        public string IMDbQ
-        {
-            get
-            {
-                return this.alternate_ids == null ? null : this.alternate_ids.imdb;
-                // return string.Format("{0}&year={1}", this.title.Replace(" ", "+"), release_dates.theater.ToString("yyyy")); 
-            }
-        }
+        public string IMDbPluginHtml { get { return this.alternate_ids != null ? API.IMDb.GetPluginHtmlSmall(this.alternate_ids.imdb, this.title) : null; } }
         public string AbridgedCast
         {
             get
@@ -164,20 +148,6 @@ namespace movies.Model
             {
                 return "0" + this.Duration.Replace(" ", "").Replace("hr.", ":").Replace("min.", "");
             }
-        }
-        //Snippet: function (text, len) {
-        //    return text.snippet(len);
-        //},
-
-        public static IMDbMovie GetIMDbMovie(string imdbMovieId)
-        {
-            return Cache.GetValue<IMDbMovie>(
-                string.Format("codejkjk.movies.Model.Movie.GetIMDbMovie-{0}", imdbMovieId),
-                () =>
-                {
-                    string imdbJson = API.IMDb.GetMovieJson(imdbMovieId);
-                    return imdbJson.FromJson<IMDbMovie>();
-                });
         }
 
         private static Dictionary<string, string> GetRtIds(Enumerations.MovieLists movieList)
@@ -262,10 +232,9 @@ namespace movies.Model
                     return ret;
                 });
 
-            // can we load imdb?
-            TryLoadIMDb(ref movie);
-
             movie.Review = Data.DomainModels.MovieReview.Get(int.Parse(movie.id));
+            
+            // load trailer id
             if (string.IsNullOrWhiteSpace(movie.IVAPublishedId))
             {
                 movie.IVAPublishedId = Model.IVA.GetPublishedId(movie.id);
@@ -283,26 +252,9 @@ namespace movies.Model
                     List<AutocompleteItem> ret = new List<AutocompleteItem>();
                     string rtJson = API.RottenTomatoes.SearchMoviesJson(q, pageLimit);
                     var movieCollection = rtJson.FromJson<AutocompleteItemCollection>();
-                    // movieCollection.movies.ForEach(x => x.IMDbLoaded = false); // init all imdbloaded to false
                     movieCollection.movies.ForEach(x => ret.Add(x));
                     return ret.Where(x => x.alternate_ids != null && !x.posters.detailed.Contains("poster_default.gif") && x.mpaa_rating != "Unrated").ToList();
                 });
-
-            // for each movie, get imdb info if it exists in cache
-            //foreach (var movie in movies.Values.Where(x => x.alternate_ids != null))
-            //{
-            //    if (Cache.KeyExists(string.Format("codejkjk.movies.Model.Movie.GetIMDbMovie-{0}", movie.alternate_ids.imdb)))
-            //    {
-            //        var imdbMovie = GetIMDbMovie(movie.alternate_ids.imdb);
-            //        movie.IMDbRating = imdbMovie.rating;
-            //        movie.IMDbVotes = imdbMovie.votes;
-            //        movie.IMDbLoaded = true;
-            //    }
-            //    else
-            //    {
-            //        movie.IMDbLoaded = false;
-            //    }
-            //}
 
             return movies;
         }
@@ -316,26 +268,9 @@ namespace movies.Model
                     List<Movie> ret = new List<Movie>();
                     string rtJson = API.RottenTomatoes.SearchMoviesJson(q, pageLimit);
                     var movieCollection = rtJson.FromJson<MovieCollection>();
-                    // movieCollection.movies.ForEach(x => x.IMDbLoaded = false); // init all imdbloaded to false
                     movieCollection.movies.ForEach(x => ret.Add(x));
                     return ret.Where(x => x.alternate_ids != null && !x.posters.detailed.Contains("poster_default.gif") && x.mpaa_rating != "Unrated").ToDictionary(key => key.id, value => value);
                 });
-
-            // for each movie, get imdb info if it exists in cache
-            //foreach (var movie in movies.Values.Where(x => x.alternate_ids != null))
-            //{
-            //    if (Cache.KeyExists(string.Format("codejkjk.movies.Model.Movie.GetIMDbMovie-{0}", movie.alternate_ids.imdb)))
-            //    {
-            //        var imdbMovie = GetIMDbMovie(movie.alternate_ids.imdb);
-            //        movie.IMDbRating = imdbMovie.rating;
-            //        movie.IMDbVotes = imdbMovie.votes;
-            //        movie.IMDbLoaded = true;
-            //    }
-            //    else
-            //    {
-            //        movie.IMDbLoaded = false;
-            //    }
-            //}
 
             return movies;
         }
@@ -378,7 +313,6 @@ namespace movies.Model
                         //        {
                         //            if (ret.FirstOrDefault(x => x.id == match.id) == null)
                         //            {
-                        //                match.IMDbLoaded = false;
                         //                match.RedboxProductId = item["productId"].ToString();
                         //                ret.Add(match);
                         //            }
@@ -399,7 +333,6 @@ namespace movies.Model
                         //        var match = resultsCollection.movies.FirstOrDefault(x => x.release_dates.theater.Year == int.Parse(movie["ReleaseYear"].ToString()));
                         //        if (match != null)
                         //        {
-                        //            match.IMDbLoaded = false;
                         //            if (ret.FirstOrDefault(x => x.id == match.id) == null)
                         //            {
                         //                ret.Add(match);
@@ -409,28 +342,12 @@ namespace movies.Model
                         //    return ret.Where(x => x.alternate_ids != null && !x.posters.detailed.Contains("poster_default.gif") && x.mpaa_rating != "Unrated").ToDictionary(key => key.id, value => value);
                     }
                     var movieCollection = rtJson.FromJson<MovieCollection>();
-                    movieCollection.movies.ForEach(x => x.IMDbLoaded = false); // init all imdbloaded to false
                     movieCollection.movies.ForEach(x => ret.Add(x));
                     return ret.Where(x => x.alternate_ids != null && !x.posters.detailed.Contains("poster_default.gif") && x.mpaa_rating != "Unrated").ToDictionary(key => key.id, value => value);
                 });
 
-            // for each movie, get imdb info if it exists in cache
-            foreach (var movie in movies.Values)
-            {
-                movie.Review = Data.DomainModels.MovieReview.Get(int.Parse(movie.id));
-
-                if (Cache.KeyExists(string.Format("codejkjk.movies.Model.Movie.GetIMDbMovie-{0}", movie.alternate_ids.imdb)))
-                {
-                    var imdbMovie = GetIMDbMovie(movie.IMDbQ);
-                    movie.IMDbRating = imdbMovie.rating;
-                    movie.IMDbVotes = imdbMovie.votes;
-                    movie.IMDbLoaded = true;
-                }
-                else
-                {
-                    movie.IMDbLoaded = false;
-                }
-            }
+            // set reviews for each movie
+            movies.Values.ToList().ForEach(x => x.Review = Data.DomainModels.MovieReview.Get(int.Parse(x.id)));
 
             return movies;
         }
@@ -466,25 +383,6 @@ namespace movies.Model
                     }
 
                 }, 5);
-        }
-
-        private static void TryLoadIMDb(ref Movie movie)
-        {
-            // can we load imdb?
-            if (movie.alternate_ids != null && !movie.IMDbLoaded)
-            {
-                if (Cache.KeyExists(string.Format("codejkjk.movies.Model.Movie.GetIMDbMovie-{0}", movie.alternate_ids.imdb)))
-                {
-                    var imdbMovie = GetIMDbMovie(movie.IMDbQ);
-                    movie.IMDbRating = imdbMovie.rating;
-                    movie.IMDbVotes = imdbMovie.votes;
-                    movie.IMDbLoaded = true;
-                }
-                else
-                {
-                    movie.IMDbLoaded = false;
-                }
-            }
         }
     }
 }

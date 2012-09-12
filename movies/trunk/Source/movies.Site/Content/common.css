@@ -38,10 +38,11 @@ body{font-size:12px;font-family:Arial, "Helvetica Neue", Helvetica, Sans-Serif;}
 .ourReview.medium .orNot { background-position: -168px -5px; }
 
 /* rt icons */
-.rottenTomato,.sion { background: url("content/images/rt-sprite4.png") no-repeat scroll left center transparent; }
+.rottenTomato,.sion,.imdbRatingPlugin .icon { background: url("content/images/rt-sprite4.png") no-repeat scroll left center transparent; }
 
 .ratings { margin-top:10px; font-weight: bold; overflow:auto; }
-.ratings span.rottenTomato, .ratings span.rt.text { float: left; display:inline-block; }
+.ratings span.rottenTomato, .ratings span.rt.text, .ratings span.icon { float: left; display:inline-block; } /* todo: repetitive? */
+.ratings .imdbRatingPlugin { margin: 0; display: inline-block; float: left; }
 
 /* small set */
 .ratings.small { font-size: 15px; }
@@ -71,7 +72,7 @@ body{font-size:12px;font-family:Arial, "Helvetica Neue", Helvetica, Sans-Serif;}
 .ratings.smaller .icon { width: 14px; height: 14px; margin-top:1px; }
 .ratings.smaller .rt.text:after { content: '%'; vertical-align: super; font-size: 8px; } /* text */
 .ratings.smaller .text { margin-top: 0; padding-left: 4px; margin-right: 8px; }
-.ratings.smaller .icon.imdb { background-position: -277px -161px; }
+.ratings.smaller .imdbRatingPlugin .icon { background-position: -277px -161px; margin-right: 5px; }
 .ratings.smaller .icon.rottenTomato[data-rtratingtitle*="Fresh"] { background-position: -257px -144px; }
 .ratings.smaller .icon.rottenTomato[data-rtratingtitle*="Rotten"] { background-position: -273px -144px; }
 .ratings.smaller .icon.rottenTomato[data-rtratingtitle*="Upright"] { background-position: -289px -145px; }
@@ -79,6 +80,3 @@ body{font-size:12px;font-family:Arial, "Helvetica Neue", Helvetica, Sans-Serif;}
 .ratings.smaller .icon.sion { width: 12px; height: 15px; }
 .ratings.smaller .icon.sion.seeIt { background-position: -212px -160px; }
 .ratings.smaller .icon.sion.orNot { background-position: -200px -160px; }
-
-.ratings.smaller .imdbRatingPlugin { margin-bottom: 0; display: block; }
-.ratings.smaller > a { display: block; }

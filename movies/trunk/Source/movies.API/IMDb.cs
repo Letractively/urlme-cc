@@ -49,7 +49,7 @@
             if (!imdbMovieId.StartsWith("tt"))
                 imdbMovieId = "tt" + imdbMovieId;
 
-            return "<span class=\"imdbRatingPlugin\" data-user=\"ur33306141\" data-title=\"{ID}\" data-style=\"p4\"><a href=\"http://www.imdb.com/title/{ID}/?ref_=plg_rt_1\"><img src=\"http://g-ecx.images-amazon.com/images/G/01/imdb/plugins/rating/images/imdb_31x14.png\" alt=\"{TITLE} on IMDb\" /></a></span><script>(function(d,s,id){var js,stags=d.getElementsByTagName(s)[0];if(d.getElementById(id)){return;}js=d.createElement(s);js.id=id;js.src=\"http://g-ec2.images-amazon.com/images/G/01/imdb/plugins/rating/js/rating.min.js\";stags.parentNode.insertBefore(js,stags);})(document,'script','imdb-rating-api');</script>".Replace("{ID}", imdbMovieId).Replace("{TITLE}", movieTitle);
+            return "<span class=\"imdbRatingPlugin\" data-user=\"ur33306141\" data-title=\"{ID}\" data-style=\"p4\"><a href=\"http://www.imdb.com/title/{ID}/?ref_=plg_rt_1\"><span class=\"icon\"></span></a></span><script>(function(d,s,id){var js,stags=d.getElementsByTagName(s)[0];if(d.getElementById(id)){return;}js=d.createElement(s);js.id=id;js.src=\"http://g-ec2.images-amazon.com/images/G/01/imdb/plugins/rating/js/rating.min.js\";stags.parentNode.insertBefore(js,stags);})(document,'script','imdb-rating-api');</script>".Replace("{ID}", imdbMovieId).Replace("{TITLE}", movieTitle);
         }
     }
 }

@@ -9,7 +9,7 @@ namespace movies.Core.Net
             System.Net.HttpWebRequest request = (System.Net.HttpWebRequest)WebRequest.Create(url);
             HttpWebResponse response = (HttpWebResponse)request.GetResponse();
             StreamReader reader = new StreamReader(response.GetResponseStream());
-            return reader.ReadToEnd().Trim();
+            return reader.ReadToEnd().Trim(); 
         }
     }
 }

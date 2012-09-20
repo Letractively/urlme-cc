@@ -84,6 +84,7 @@
     <Compile Include="Controllers\ApiController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\AboutController.cs" />
+    <Compile Include="Controllers\IFrameController.cs" />
     <Compile Include="Controllers\ReviewsController.cs" />
     <Compile Include="Controllers\MailController.cs" />
     <Compile Include="Controllers\ReportController.cs" />
@@ -323,7 +324,9 @@
   <ItemGroup>
     <None Include="Properties\PublishProfiles\publish to c--publish-movies.pubxml" />
     <None Include="Properties\PublishProfiles\publish to prod.pubxml" />
+    <Content Include="Views\IFrame\IMDbRating.cshtml" />
   </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

@@ -49,7 +49,7 @@ body{font-size:12px;font-family:Arial, "Helvetica Neue", Helvetica, Sans-Serif;}
 .ratings.small .icon { width: 24px; height: 24px; }
 .ratings.small .rt.text:after { content: '%'; vertical-align: super; font-size: 8px; }
 .ratings.small .text { margin-top:3px; padding-left: 6px; margin-right: 12px; }
-.ratings.small .icon.imdb { background-position: -1px -125px; margin-right: 8px; }
+.ratings.small .imdbRatingPlugin .icon { background-position: -1px -125px; margin-right: 8px; }
 .ratings.small .icon.rottenTomato[data-rtratingtitle*="Fresh"] { background-position: -287px -49px; }
 .ratings.small .icon.rottenTomato[data-rtratingtitle*="Rotten"] { background-position: -288px -96px; }
 .ratings.small .icon.rottenTomato[data-rtratingtitle*="Upright"] { background-position: -291px -24px; }

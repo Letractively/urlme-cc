@@ -113,6 +113,7 @@ namespace movies.Model
         public string ParentalGuideMobileUrl { get { return this.alternate_ids != null ? API.IMDb.GetParentalGuideMobileUrl(this.alternate_ids.imdb) : null; } }
         public string IMDbMovieUrl { get { return this.alternate_ids != null ? API.IMDb.GetMovieUrl(this.alternate_ids.imdb) : null; } }
         public string IMDbPluginHtml { get { return this.alternate_ids != null ? API.IMDb.GetPluginHtmlSmall(this.alternate_ids.imdb, this.title) : null; } }
+        public string IMDbId { get { return this.alternate_ids != null ? this.alternate_ids.imdb : null; } }
         public string AbridgedCast
         {
             get
@@ -194,6 +195,16 @@ namespace movies.Model
 
             // for redbox movie type, that's set manually in the Redbox actions
             return Enumerations.MovieType.Neither;
+        }
+
+        public static string GetPluginHtmlSmall(string imdbMovieId, string movieTitle)
+        {
+            return API.IMDb.GetPluginHtmlSmall(imdbMovieId, movieTitle);
+        }
+
+        public static string GetPluginHtmlWide(string imdbMovieId, string movieTitle)
+        {
+            return API.IMDb.GetPluginHtmlWide(imdbMovieId, movieTitle);
         }
 
         public static Movie GetRottenTomatoesMovie(string rtMovieId)

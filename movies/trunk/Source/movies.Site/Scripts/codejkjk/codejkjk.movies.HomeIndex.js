@@ -523,16 +523,19 @@ codejkjk.movies.desktop = {
             codejkjk.movies.desktop.controls.MovieDetailsPopup().html("<div class='loading'></div>");
             codejkjk.movies.desktop.controls.MovieDetailsPopup().show();
 
-            if (rbOrRt === "rb") {
+            if (rbOrRt === "rb") { // redbox movie
                 codejkjk.movies.Api.GetRedboxMovieHtml(movieIdToAjaxLoad, function (html) {
                     codejkjk.movies.desktop.controls.MovieDetailsPopup().html(html);
                     FB.XFBML.parse();
                     codejkjk.movies.desktop.InitZeroClipboard();
                     codejkjk.siteActions.wireReleaseDates();
+                    if (typeof refreshAdmin === "function") { refreshAdmin(); }
                 });
             } else {
                 codejkjk.movies.Api.GetMovieHtml(movieIdToAjaxLoad, function (html) {
                     codejkjk.movies.desktop.controls.MovieDetailsPopup().html(html);
+                    //var s = $(html).filter("script").text();
+                    //eval(s);
                     FB.XFBML.parse();
                     codejkjk.movies.desktop.InitZeroClipboard();
                     codejkjk.siteActions.wireReleaseDates();

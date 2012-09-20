@@ -11,7 +11,7 @@ namespace movies.Site.Controllers
                 id = "tt" + id;
             }
             var vm = new movies.Site.ViewModels.ViewModelItem<string> { Item = id };
-            return Content(movies.Model.Movie.GetPluginHtmlSmall(id, "test"));
+            return View(vm);
         }
     }
 }

@@ -15,7 +15,7 @@
         <div class="details">
             @if (movie.IsReleased)
             {
-                this.Html.RenderPartial("Ratings", new movies.Site.ViewModels.Shared.Ratings { Movie = movie, RatingSize = Enumerations.RatingSizes.smaller });
+                this.Html.RenderPartial("Ratings", new movies.Site.ViewModels.Shared.Ratings { Movie = movie, RatingSize = Enumerations.RatingSizes.smaller, IFrameIMDbRating = false });
                 if (movie.Review != null)
                 {
                 <a href="~/@movie.MovieSlug" class="ourReview medium" title="Click to see review from John Hanlon">

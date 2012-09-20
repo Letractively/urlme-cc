@@ -202,7 +202,6 @@ header { background:#2D62AE; }
         .movieDetails .ratingAndLength .length { float: left; margin-right: 25px; }
         .movieDetails .ratingAndLength .fbLikeContainer { float: left; width: 85px; float: left; }
     .movieDetails .ratings { clear: left; }
-    .movieDetails .ratings a { color: #535156; }
     .movieDetails [data-releasedate] { font-weight: bold; }
     .movieDetails #copyControls { width: 124px; display:inline-block; }
         .movieDetails #copyControls #copySuccess { color: #333; display:none; margin-left: 10px; }

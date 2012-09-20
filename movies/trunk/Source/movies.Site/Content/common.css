@@ -39,6 +39,8 @@ body{font-size:12px;font-family:Arial, "Helvetica Neue", Helvetica, Sans-Serif;}
 
 /* rt icons */
 .rottenTomato,.sion,.imdbRatingPlugin .icon { background: url("content/images/rt-sprite4.png") no-repeat scroll left center transparent; }
+.ratings .rtLinks { float: left; }
+.ratings .imdbRatingFrame { float: left; }
 
 .ratings { margin-top:10px; font-weight: bold; overflow:auto; }
 .ratings span.rottenTomato, .ratings span.rt.text, .ratings span.icon { float: left; display:inline-block; } /* todo: repetitive? */

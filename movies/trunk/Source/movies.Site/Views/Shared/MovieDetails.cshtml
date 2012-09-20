@@ -24,7 +24,7 @@
                 </p>                
                 }                
                 
-                this.Html.RenderPartial("Ratings", new movies.Site.ViewModels.Shared.Ratings { Movie = this.Model, RatingSize = Enumerations.RatingSizes.small });
+                this.Html.RenderPartial("Ratings", new movies.Site.ViewModels.Shared.Ratings { Movie = this.Model, RatingSize = Enumerations.RatingSizes.small, IFrameIMDbRating = true });
             }
             else
             {

@@ -1,0 +1,3 @@
+﻿@model movies.Site.ViewModels.ViewModelItem<string>
+
+@{ Html.Raw(movies.API.IMDb.GetPluginHtmlSmall(Model.Item, "test")); }

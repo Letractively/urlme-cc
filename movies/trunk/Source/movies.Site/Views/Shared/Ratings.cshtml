@@ -7,6 +7,7 @@
         <span title="@this.Model.Movie.ratings.audience_score% of audience liked it" data-rtratingtitle="@this.Model.Movie.ratings.audience_rating" class="rottenTomato icon"></span><span title="@this.Model.Movie.ratings.audience_score% of audience liked it" class="rt text">@this.Model.Movie.ratings.audience_score</span>
     @this.Html.Raw(isDesktop ? "</a>" : "")
     @this.Html.Raw(this.Model.Movie.IMDbPluginHtml)
+    @*<iframe src="~/imdb-rating/@this.Model.Movie.IMDbId"></iframe>*@
     @if (Model.ShowSion && Model.Movie.Review != null)
     {
         if (isDesktop) {<text><a class="movieDetailsLink" href="~/@Model.Movie.MovieSlug"></text>}

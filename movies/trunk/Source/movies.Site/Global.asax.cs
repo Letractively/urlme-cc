@@ -41,6 +41,12 @@ namespace movies
             );
 
             routes.MapRoute(
+                "shared-imdbRating", // Route name
+                "imdb-rating/{id}", // URL with parameters
+                new { controller = "IFrame", action = "IMDbRating" } // Parameter defaults
+            );
+
+            routes.MapRoute(
                 "reviews-approve", // Route name
                 "reviews/approve/{movieId}", // URL with parameters
                 new { controller = "MovieReview", action = "Approve" } // Parameter defaults

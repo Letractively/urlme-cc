@@ -36,19 +36,19 @@
     @* *** What's Hot *** *@
     <section id="whatsHot" data-navitemurl="/">
         <h2>Top Box Office</h2>
-	    <div data-role="content">
+	    <div data-role="content" class="group movieList">
             <div class="sliderWrapper">
                 @this.Html.Partial("MovieList.Mobile", this.Model.BoxOfficeMovies)
             </div>
         </div>
         <h2>Opening This Week</h2>
-        <div data-role="content">
+        <div data-role="content" class="group movieList">
             <div class="sliderWrapper">
                 @this.Html.Partial("MovieList.Mobile", this.Model.OpeningMovies)
             </div>
         </div>
         <h2>Also in Theaters</h2>
-        <div data-role="content">
+        <div data-role="content" class="group movieList">
             <div class="sliderWrapper">
                 @this.Html.Partial("MovieList.Mobile", this.Model.InTheatersMovies)
             </div>

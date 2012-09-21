@@ -74,10 +74,11 @@ p { color: #535156; } /* grey bullet color */
 /* slider movies */
 body { -webkit-user-select:none; -webkit-text-size-adjust:none; }
 body,ul,li { padding: 0; margin: 0; } /* this may already be done in common.css */
-.sliderWrapper { position:relative; z-index:1;	width:100%;	overflow:auto; height:91px; }
-.sliderWrapper ul { height:100%; float:left; }
-.sliderWrapper ul li { display:block; float:left; padding:0 10px 0 0; height:100%; }
-.sliderWrapper ul li a { display:block; height:100%; }
+.sliderWrapper { /* position:relative; z-index:1;	width:100%;	overflow:auto; height:91px; */ }
+.sliderWrapper ul { /* height:100%; float:left; */ }
+.sliderWrapper ul li { background:none; /* display:block; float:left; height:100%; */ padding: 10px 0 0 10px; float: left; }
+.sliderWrapper ul li a { /* display:block; height:100%; */ }
+    .sliderWrapper ul li a img { float: left; }
 
 /* todo --- */
 #theater li { overflow: auto; }
@@ -132,6 +133,7 @@ h1 a { display:block; text-align:center; border: 1px solid #2373A5; text-shadow:
         
 /* content box */
 [data-role="content"] { background:#eee; border-bottom: 1px solid #B3B3B3; }
+.movieList[data-role="content"] { padding-bottom: 10px; }
     
 /* showtimes options */
 #options { padding: 15px; }

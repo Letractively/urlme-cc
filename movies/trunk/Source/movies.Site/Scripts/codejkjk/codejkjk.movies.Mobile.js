@@ -112,13 +112,13 @@ codejkjk.movies.mobile = {
             wrapper = $(wrapper);
             wrapper.attr("id", "sliderWrapper-" + i);
             var scrollerWidth = wrapper.find("ul li").length * itemWidth;
-            wrapper.find("ul").css("width", scrollerWidth);
+            // wrapper.find("ul").css("width", scrollerWidth);
 
-            var scrollerObj = new iScroll(wrapper.attr("id"), {
-                momentum: false,
-                hScrollbar: false,
-                vScrollbar: false
-            });
+            //var scrollerObj = new iScroll(wrapper.attr("id"), {
+            //    momentum: false,
+            //    hScrollbar: false,
+            //    vScrollbar: false
+            //});
         });
     },
 

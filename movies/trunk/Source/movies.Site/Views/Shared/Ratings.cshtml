@@ -2,13 +2,13 @@
 @{ var isDesktop = !Request.Browser.IsMobileDevice; }
 
 <p class="ratings group @this.Model.RatingSize.ToString()">
-    @if (isDesktop) {<text><a class="group" class="rtLinks" href="@this.Model.Movie.links.alternate"></text>}
+    @if (isDesktop) {<text><a class="group rtLinks" href="@this.Model.Movie.links.alternate"></text>}
         <span title="@this.Model.Movie.ratings.critics_score% of critics liked it" data-rtratingtitle="@this.Model.Movie.ratings.critics_rating" class="rottenTomato icon"></span><span title="@this.Model.Movie.ratings.critics_score% of critics liked it" class="rt text">@this.Model.Movie.ratings.critics_score</span>
         <span title="@this.Model.Movie.ratings.audience_score% of audience liked it" data-rtratingtitle="@this.Model.Movie.ratings.audience_rating" class="rottenTomato icon"></span><span title="@this.Model.Movie.ratings.audience_score% of audience liked it" class="rt text">@this.Model.Movie.ratings.audience_score</span>
     @this.Html.Raw(isDesktop ? "</a>" : "")
     @if (Model.IFrameIMDbRating)
     {
-        <iframe class="imdbRatingFrame" src="~/imdb-rating/@this.Model.Movie.IMDbId" frameborder="0"></iframe>
+        <span class="imdb icon"></span><iframe class="imdbRatingFrame" src="~/imdb-rating/@this.Model.Movie.IMDbId" frameborder="0" width="35" height="26"></iframe>
     }
     else
     {

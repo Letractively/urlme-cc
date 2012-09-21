@@ -13,6 +13,9 @@
             <img class="lazy" data-original="@movie.posters.detailed" src="~/scripts/plugins/lazyload/grey.gif" />
         </a>
         <div class="details">
+            <p class="ratingAndLength">
+                <a href="@movie.ParentalGuideUrl" class='mpaaRating' target='_blank' title='Link to Parents Guide on IMDb.com'>@movie.mpaa_rating</a>
+            </p>
             @if (movie.IsReleased)
             {
                 this.Html.RenderPartial("Ratings", new movies.Site.ViewModels.Shared.Ratings { Movie = movie, RatingSize = Enumerations.RatingSizes.smaller, IFrameIMDbRating = false });

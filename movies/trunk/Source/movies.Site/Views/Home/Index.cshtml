@@ -30,14 +30,25 @@
 <div class="body">
     <!-- WHAT'S HOT -->
     <section id="whatsHotView" class="content" data-navitemtext="What's Hot">
-        <h2>Top Box Office</h2>
-        @*@this.Html.Partial("Slider", this.Model.BoxOfficeMovies)*@
+        <div class="left group">
+            <h2>Top Box Office</h2>
+            @*@this.Html.Partial("Slider", this.Model.BoxOfficeMovies)*@
 
-        @this.Html.Partial("MovieList", this.Model.BoxOfficeMovies)
-        <h2>Opening This Week</h2>
-        @this.Html.Partial("MovieList", this.Model.OpeningMovies)
-        <h2>Also in Theaters</h2>
-        @this.Html.Partial("MovieList", this.Model.InTheatersMovies)
+            @this.Html.Partial("MovieList", this.Model.BoxOfficeMovies)
+            <h2>Opening This Week</h2>
+            @this.Html.Partial("MovieList", this.Model.OpeningMovies)
+            <h2>Also in Theaters</h2>
+            @this.Html.Partial("MovieList", this.Model.InTheatersMovies)
+        </div>
+        <div class="right group">
+            <h2>Recent Reviews by John Hanlon</h2>
+            @foreach (var review in this.Model.RecentReviews)
+            {
+                <div>
+                    <span title="Click to see review from John Hanlon" class="sion icon @review.ClassName"></span><a href="">@review.Title</a>
+                </div>
+            }
+        </div>
     </section>
 
     <!-- UPCOMING -->

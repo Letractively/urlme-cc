@@ -21,7 +21,7 @@ namespace movies.Data.Repository
         {
             using (var context = CreateContext())
             {
-                return context.MovieReviews.Where(x => x.Status == Enumerations.MovieReviewStatus.Approved.ToString() || x.Status == Enumerations.MovieReviewStatus.NotRequired.ToString()).ToList();
+                return context.MovieReviews.Where(x => x.Status == Enumerations.MovieReviewStatus.Approved.ToString() || x.Status == Enumerations.MovieReviewStatus.NotRequired.ToString()).OrderByDescending(x => x.CreateDate).ToList();
             }
         }
 
@@ -102,6 +102,7 @@ namespace movies.Data.Repository
                     dbMovie.DetailedPosterUrl = movie.DetailedPosterUrl;
                     dbMovie.ProfilePosterUrl = movie.ProfilePosterUrl;
                     dbMovie.ThumbnailPosterUrl = movie.ThumbnailPosterUrl;
+                    dbMovie.ReleaseDate = movie.ReleaseDate;
                     
                     context.SubmitChanges(ConflictMode.FailOnFirstConflict);
                 }

@@ -20,7 +20,7 @@ namespace movies.Site.Controllers
                 var movie = Model.Movie.GetRottenTomatoesMovie(movieId.ToString());
 
                 StringBuilder sb = new StringBuilder();
-                sb.AppendFormat("The following movie has been <b><font color='green'>approved</font></b>: {0}.<br/><br/>", movie.title);
+                sb.AppendFormat("The following movie review has been <b><font color='green'>approved</font></b>: {0}.<br/><br/>", movie.title);
                 sb.AppendFormat("Visit the movie page here: <a href=\"{0}\">{0}</a>", movie.FullMovieUrl);
                 Core.Net.Mail.SendFromNoReply("johnhanlon06@gmail.com", "John Hanlon", "Movie approved: " + movie.title, sb.ToString());
                 return Content("Approved! Go to <a href='//seeitornot.co'>seeitornot.co</a>.");
@@ -40,7 +40,7 @@ namespace movies.Site.Controllers
                 var movie = Model.Movie.GetRottenTomatoesMovie(movieId.ToString());
 
                 StringBuilder sb = new StringBuilder();
-                sb.AppendFormat("Due to the parental guide content of the following movie, it has been <b>disapproved</b>: {0}.<br/><br/>", movie.title);
+                sb.AppendFormat("Due to the parental guide content of the following movie, its review has been <b>disapproved</b>: {0}.<br/><br/>", movie.title);
                 sb.AppendFormat("Visit the movie page here: <a href=\"{0}\">{0}</a>", movie.FullMovieUrl);
                 Core.Net.Mail.SendFromNoReply("johnhanlon06@gmail.com", "John Hanlon", "Movie disapproved: " + movie.title, sb.ToString());
                 return Content("Disapproved! Go to <a href='//seeitornot.co'>seeitornot.co</a>.");

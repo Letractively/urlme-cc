@@ -31,11 +31,11 @@ body{font-size:12px;font-family:Arial, "Helvetica Neue", Helvetica, Sans-Serif;}
 }
 
 /* our review icons */
-.ourReview span { float: left; background: url("content/images/rt-sprite4.png"); display:inline-block; width: 21px; height: 26px; margin-right: 10px; }
+.ourReview span { float: left; background: url("content/images/rt-sprite4.png"); display:inline-block; width: 25px; height: 31px; margin-right: 10px; }
 .ourReview a { color: #2489ce; }
 .ourReview.medium { line-height: 23px; }
 .ourReview.medium .seeIt { background-position: 0 -149px; }
-.ourReview.medium .orNot { background-position: -21px -159px; }
+.ourReview.medium .orNot { background-position: -25px -161px; }
 
 /* rt icons */
 .rottenTomato,.sion,.imdb { background: url("content/images/rt-sprite4.png") no-repeat scroll left center transparent; }

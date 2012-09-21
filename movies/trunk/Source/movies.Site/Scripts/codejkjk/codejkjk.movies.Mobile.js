@@ -104,7 +104,7 @@ codejkjk.movies.mobile = {
     },
 
     initSliders: function () {
-        document.addEventListener('touchmove', function (e) { e.preventDefault(); }, false);
+        // document.addEventListener('touchmove', function (e) { e.preventDefault(); }, false);
         var itemWidth = 71; // same item width for all movie lists
 
         var wrappers = codejkjk.movies.mobile.controls.movieSliderWrappers();

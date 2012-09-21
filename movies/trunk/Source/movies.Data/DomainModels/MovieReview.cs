@@ -15,6 +15,8 @@ namespace movies.Data.DomainModels
         public string Url { get; set; }
         public string Title { get; set; }
         public int Year { get; set; }
+        public DateTime ReviewDate { get; set; }
+        public DateTime ReleaseDate { get; set; }
         public string ThumbnailPosterUrl { get; set; }
         public string ProfilePosterUrl { get; set; }
         public string DetailedPosterUrl { get; set; }
@@ -39,7 +41,8 @@ namespace movies.Data.DomainModels
                 Year = movieReview.Year,
                 ThumbnailPosterUrl = movieReview.ThumbnailPosterUrl,
                 ProfilePosterUrl = movieReview.ProfilePosterUrl,
-                DetailedPosterUrl = movieReview.DetailedPosterUrl
+                DetailedPosterUrl = movieReview.DetailedPosterUrl,
+                ReleaseDate = movieReview.ReleaseDate
             };
 
             bool requiresApproval = mpaaRating.ToLower() == "r" || mpaaRating.ToLower() == "unrated" || mpaaRating == "";
@@ -114,9 +117,35 @@ namespace movies.Data.DomainModels
                         ThumbnailPosterUrl = x.ThumbnailPosterUrl,
                         Title = x.Title,
                         Year = x.Year,
-                        Status = x.Status
+                        Status = x.Status,
+                        ReviewDate = x.CreateDate,
+                        ReleaseDate = x.ReleaseDate
                     }).ToList();
                 });
+        }
+
+        public static List<MovieReview> GetLatest(int takeCount)
+        {
+            return Cache.GetValue<List<MovieReview>>(
+                "codejkjk.movies.Data.DomainModels.MovieReview.GetLatest",
+                () =>
+                {
+                    return repo.MovieReviewGet().Select(x => new MovieReview
+                    {
+                        MovieId = int.Parse(x.MovieId.ToString()),
+                        Text = x.Review,
+                        ClassName = x.ReviewClass,
+                        Url = x.ReviewUrl,
+                        DetailedPosterUrl = x.DetailedPosterUrl,
+                        ProfilePosterUrl = x.ProfilePosterUrl,
+                        ThumbnailPosterUrl = x.ThumbnailPosterUrl,
+                        Title = x.Title,
+                        Year = x.Year,
+                        Status = x.Status,
+                        ReviewDate = x.CreateDate,
+                        ReleaseDate = x.ReleaseDate
+                    }).Take(takeCount).ToList();
+                }, 5);
         }
 
         public static MovieReview Get(int movieId, bool approvedOnly = true)
@@ -143,7 +172,9 @@ namespace movies.Data.DomainModels
                         ThumbnailPosterUrl = dbMovieReview.ThumbnailPosterUrl,
                         Title = dbMovieReview.Title,
                         Year = dbMovieReview.Year,
-                        Status = dbMovieReview.Status
+                        Status = dbMovieReview.Status,
+                        ReviewDate = dbMovieReview.CreateDate,
+                        ReleaseDate = dbMovieReview.ReleaseDate
                     };
                 });
             

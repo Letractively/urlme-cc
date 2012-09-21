@@ -10,6 +10,7 @@ namespace movies.Site.ViewModels.Home
         public Dictionary<string, Model.Movie> InTheatersMovies { get; set; }
         public List<Model.TrailerAddict.Trailer> FeatureTrailers { get; set; }
         public Dictionary<string, Model.Redbox.Movie> RedboxMovies { get; set; }
+        public List<Data.DomainModels.MovieReview> RecentReviews { get; set; }
 
         public Model.Movie OverlayMovie { get; set; }
     }

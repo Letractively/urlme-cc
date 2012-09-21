@@ -28,12 +28,13 @@ namespace movies.Site.Controllers
                 OverlayMovie = null
             };
 
-            // load upcoming and redbox only if for desktop view
+            // DESKTOP VIEW? 
             if (!Request.Browser.IsMobileDevice)
             {
                 vm.UpcomingMovies = Movie.GetMovies(Enumerations.MovieLists.Upcoming);
                 vm.FeatureTrailers = TrailerAddict.GetFeatured(5);
                 vm.RedboxMovies = Redbox.GetMovies();
+                vm.RecentReviews = Data.DomainModels.MovieReview.GetLatest(7);
                 //if (!Request.Url.ToString().Contains("localhost"))
                 //{
                     // vm.RedboxMovies = Redbox.GetMovies();

@@ -54,18 +54,20 @@ namespace movies.Site.Controllers
         [HttpPost]
         public JsonResult Save(int facebookUserId, Data.DomainModels.MovieReview movieReview)
         {
-            if (!Data.DomainModels.User.IsReviewer(facebookUserId))
+            var movie = Model.Movie.GetRottenTomatoesMovie(movieReview.MovieId.ToString());
+
+            if (!Data.DomainModels.User.IsReviewer(facebookUserId) || movie.release_dates == null || movie.release_dates.theater == null)
             {
                 return this.Json(new { WasSuccessful = false }, JsonRequestBehavior.AllowGet);
             }
-
-            var movie = Model.Movie.GetRottenTomatoesMovie(movieReview.MovieId.ToString());
+            
             // set remaining moviereview properties that we need before we attempt to save this mofo
             movieReview.Title = movie.title;
             movieReview.Year = int.Parse(movie.year);
             movieReview.ThumbnailPosterUrl = movie.posters.thumbnail;
             movieReview.DetailedPosterUrl = movie.posters.detailed;
             movieReview.ProfilePosterUrl = movie.posters.profile;
+            movieReview.ReleaseDate = movie.release_dates.theater;
 
             string parentalGuideHtml = movie.alternate_ids != null ? Model.Movie.GetParentalGuideHtml(movie.alternate_ids.imdb) : "No parental guide b/c this movie does not have an IMDb id.";
             bool success = Data.DomainModels.MovieReview.Save(movieReview, movie.mpaa_rating, parentalGuideHtml);

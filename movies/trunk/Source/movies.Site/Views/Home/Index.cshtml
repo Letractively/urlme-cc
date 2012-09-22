@@ -44,8 +44,8 @@
             <h2>Recent Reviews by John Hanlon</h2>
             @foreach (var review in this.Model.RecentReviews)
             {
-                <div>
-                    <span title="Click to see review from John Hanlon" class="sion icon @review.ClassName"></span><a href="">@review.Title</a>
+                <div class="ourReview medium group">
+                    <span class="@review.ClassName"></span><a href="@review.Url">@review.Title</a>
                 </div>
             }
         </div>

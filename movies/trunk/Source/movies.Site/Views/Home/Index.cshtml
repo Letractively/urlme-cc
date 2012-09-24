@@ -42,12 +42,15 @@
         </div>
         <div class="right group">
             <h2>Recent Reviews by John Hanlon</h2>
-            @foreach (var review in this.Model.RecentReviews)
-            {
-                <div class="ourReview medium group">
-                    <span class="@review.ClassName"></span><a href="@review.Url">@review.Title</a>
-                </div>
-            }
+            <div class="reviews rounded">
+                @foreach (var review in this.Model.RecentReviews)
+                {
+                    <a href="@review.MovieUrl" class="ourReview small group">
+                        <span class="iconContainer"><span class="@review.ClassName icon"></span></span><span class="text">@review.Title</span>
+                    </a>
+                }
+            </div>
+            <a href="@Url.Content("~/reviews")" class="seeMore noPush">See more »</a>
         </div>
     </section>
 

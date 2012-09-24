@@ -53,7 +53,7 @@ p { color: #535156; } /* grey bullet color */
 .movieView img { float: left; margin-right: 10px; margin-bottom: 10px; }
 .movieView p { margin-bottom: 10px; font-size: 18px; }
 .movieView .ratings { margin:0px; float: left; }
-    .movieView .ratings > .icon { clear: left; margin-left: 0; }
+    .movieView .ratings > .icon, .movieView .ratings > .imdbRatingPlugin { clear: left; margin-left: 0; }
     .movieView .ratings > span { margin-bottom: 10px; }
 .movieView .links, .movieView .ourReview { clear: left; }
     .movieView .links a:first-child { margin-right:20px; }

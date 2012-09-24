@@ -133,8 +133,14 @@ header { background:#2D62AE; }
 
 .body { width: 996px; margin: 10px auto 0 auto; padding-top: 20px; }
 
-#whatsHotView .left { width: 795px; float:left; }
-#whatsHotView .right { width: 181px; margin-left: 24px; float: left; }
+#whatsHotView .left { width: 763px; float:left; }
+#whatsHotView .right { width: 213px; float: left; margin-left:24px; }
+    #whatsHotView .right .seeMore { color: #2489ce; font-weight: bold; float: right; }
+    #whatsHotView .right .reviews { background: white; padding: 12px; margin-bottom:20px; }
+#whatsHotView .ourReview:not(:last-child) { margin-bottom: 10px; }
+    #whatsHotView .ourReview span.iconContainer, #whatsHotView .ourReview span.text { display:table-cell; vertical-align: middle; }
+    #whatsHotView .ourReview span.iconContainer { width: 26px; }
+    #whatsHotView .ourReview span.iconContainer span.icon { float:none; margin-right: 0; }
 
 #reviewsIndex { font-size: 16px; }
 #reviewsIndex a { color: #2489ce; }
@@ -215,14 +221,14 @@ header { background:#2D62AE; }
 
 .movieList { }
     .movieList .movie:not(:nth-child(4n+4)) { margin-right: 24px; }
-    .movieList .movie { position:relative; margin-bottom: 24px; float: left; width: 180px; }
-        .movieList .movie a.poster { width: 180px; height: 267px; float: left; }
+    .movieList .movie { position:relative; margin-bottom: 24px; float: left; }
+        .movieList .movie a.poster { height: 255px; float: left; }
         .movieList .movie a.poster:hover { -moz-box-shadow: none; -webkit-box-shadow: none; box-shadow: none; }
         .movieList .movie .ratingAndLength { height: 15px; }
-        .movieList .movie .details { padding: 10px; width: 160px; float: left; background: #fff; }
+        .movieList .movie .details { padding: 10px; width: 152px; float: left; background: #fff; clear:left; }
             .movieList .movie .details .ourReview { position: absolute; bottom: 46px; right: 5px; }
             .movieList .movie .details .ourReview span { margin-right:0;}
-        .movieList .movie a.poster img { width: 180px; height: 267px; } /* thumbnail = 61 x 91 */
+        .movieList .movie a.poster img { width: 172px; height: 255px; } /* thumbnail = 61 x 91 */
 
 .favoriteLink.default { background:url("content/images/icons/star_default.png") no-repeat scroll center transparent; }
 .favoriteLink.default:hover { background:url("content/images/icons/star_default_hover.png") no-repeat scroll center transparent; }

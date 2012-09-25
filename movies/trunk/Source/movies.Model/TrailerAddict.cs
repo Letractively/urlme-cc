@@ -24,7 +24,7 @@ namespace movies.Model
             public string PosterUrl { get; set; }
             public string RtMovieId { get; set; }
             public string RtTitle { get; set; }
-            public string Url { get { return "/" + this.title.Slugify() + "/" + this.RtMovieId; } }
+            public string Url { get { return "/" + this.RtTitle.Slugify() + "/" + this.RtMovieId + "/trailer"; } }
         }
 
         public static List<Trailer> GetFeatured(int count = 5, int width = 450)

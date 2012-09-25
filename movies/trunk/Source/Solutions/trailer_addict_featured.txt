@@ -1,0 +1,32 @@
+http://api.traileraddict.com/?featured=yes&count=6
+
+<trailers>
+	<trailer>
+		<title>Beautiful Creatures (2013): Trailer</title>
+		<link>
+		http://www.traileraddict.com/trailer/beautiful-creatures-2013/trailer
+		</link>
+		<pubDate>Wed, 19 Sep 2012 18:25:57 -0700</pubDate>
+		<trailer_id>62589</trailer_id>
+		<imdb>1559547</imdb>
+		<embed>
+		<![CDATA[
+		<object width="450" height="235"><param name="movie" value="http://www.traileraddict.com/emd/62589"></param><param name="allowscriptaccess" value="always"></param><param name="wmode" value="transparent"></param><param name="allowfullscreen" value="true"></param><embed src="http://www.traileraddict.com/emd/62589" type="application/x-shockwave-flash" wmode="transparent" allowfullscreen="true" allowscriptaccess="always" width="450" height="235"></embed></object>
+		]]>
+		</embed>
+	</trailer>
+	<trailer>
+		<title>Skyfall: International Trailer</title>
+		<link>
+		http://www.traileraddict.com/trailer/skyfall/international-trailer
+		</link>
+		<pubDate>Wed, 19 Sep 2012 18:12:12 -0700</pubDate>
+		<trailer_id>62588</trailer_id>
+		<imdb>1074638</imdb>
+		<embed>
+		<![CDATA[
+		<object width="450" height="230"><param name="movie" value="http://www.traileraddict.com/emd/62588"></param><param name="allowscriptaccess" value="always"></param><param name="wmode" value="transparent"></param><param name="allowfullscreen" value="true"></param><embed src="http://www.traileraddict.com/emd/62588" type="application/x-shockwave-flash" wmode="transparent" allowfullscreen="true" allowscriptaccess="always" width="450" height="230"></embed></object>
+		]]>
+		</embed>
+	</trailer>
+</trailers>

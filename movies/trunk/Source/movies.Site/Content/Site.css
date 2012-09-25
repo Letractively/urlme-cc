@@ -136,7 +136,7 @@ header { background:#2D62AE; }
 #whatsHotView .left { width: 763px; float:left; }
 #whatsHotView .right { width: 213px; float: left; margin-left:24px; }
     #whatsHotView .right .seeMore { color: #2489ce; font-weight: bold; float: right; }
-    #whatsHotView .right .reviews { background: white; padding: 12px; margin-bottom:20px; }
+    #whatsHotView .right .reviews { background: white; padding: 12px 12px 8px 12px; }
 #whatsHotView .ourReview:not(:last-child) { margin-bottom: 10px; }
     #whatsHotView .ourReview span.iconContainer, #whatsHotView .ourReview span.text { display:table-cell; vertical-align: middle; }
     #whatsHotView .ourReview span.iconContainer { width: 26px; }

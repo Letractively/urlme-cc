@@ -12,6 +12,13 @@
     </script>
     <script src="~/scripts/codejkjk/codejkjk.movies.HomeIndex.js"></script>
     <script src="~/scripts/plugins/lazyload/jquery.lazyload.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("img.lazy").lazyload({
+                effect: "fadeIn"
+            });
+        });
+    </script>
 }
 
 @section Nav {
@@ -33,7 +40,7 @@
     {
         <div class="review group">
             <a href="@review.MovieUrl" class="img movieDetailsLinks">
-                <img src="@review.ProfilePosterUrl" />
+                <img class="lazy" data-original="@review.ProfilePosterUrl" src="~/scripts/plugins/lazyload/grey.gif" />
             </a>
             <div class="details">
                 <div class="ourReview medium"><span class="@review.ClassName"></span></div><span>"@review.Text"</span><a href="@review.Url" target="_blank">- JohnHanlonReviews.com</a>

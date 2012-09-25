@@ -19,6 +19,12 @@ namespace movies.Model
             public DateTime pubDate { get; set; }
             public string trailer_id { get; set; }
             public string embed { get; set; }
+            
+            // helpers
+            public string PosterUrl { get; set; }
+            public string RtMovieId { get; set; }
+            public string RtTitle { get; set; }
+            public string Url { get { return "/" + this.title.Slugify() + "/" + this.RtMovieId; } }
         }
 
         public static List<Trailer> GetFeatured(int count = 5, int width = 450)
@@ -35,13 +41,28 @@ namespace movies.Model
                     {
                         foreach (DataRow row in ds.Tables["trailer"].Rows)
                         {
+                            var rtMovie = Model.Movie.GetRottenTomatoesMovieByIMDbId(row["imdb"].ToString());
+                            if (rtMovie == null)
+                            {
+                                continue;
+                            }
+
+                            string movieClipPosterUrl = Model.Movie.GetRottenTomatoesClipPosterUrl(rtMovie.id);
+                            if (string.IsNullOrWhiteSpace(movieClipPosterUrl))
+                            {
+                                continue;
+                            }
+
                             rtn.Add(new Trailer
                             {
                                 embed = row["embed"].ToString(),
                                 link = row["link"].ToString(),
                                 pubDate = DateTime.Parse(row["pubDate"].ToString()),
                                 title = row["title"].ToString(),
-                                trailer_id = row["trailer_id"].ToString()
+                                trailer_id = row["trailer_id"].ToString(),
+                                PosterUrl = movieClipPosterUrl,
+                                RtMovieId = rtMovie.id,
+                                RtTitle = rtMovie.title
                             });
                         }
                     }

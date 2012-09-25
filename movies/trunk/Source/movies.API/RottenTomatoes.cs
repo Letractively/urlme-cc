@@ -41,6 +41,22 @@
             return Core.Net.HttpWebRequest.GetResponse(url);
         }
 
+        public static string GetMovieClipsJson(string rtMovieId)
+        {
+            string url = string.Format("{0}movies/{1}/clips.json?apikey={2}", BaseUrl, rtMovieId, ApiKey);
+            return Core.Net.HttpWebRequest.GetResponse(url);
+        }
+
+        public static string GetMovieByIMDbIdJson(string imdbId)
+        {
+            if (imdbId.StartsWith("tt"))
+            {
+                imdbId = imdbId.Substring(2);
+            }
+            string url = string.Format("{0}movie_alias.json?id={1}&type=imdb&apikey={2}", BaseUrl, imdbId, ApiKey);
+            return Core.Net.HttpWebRequest.GetResponse(url);
+        }
+
     //SearchMovies: function (q, callback) {
     //    // first, check cache
     //    var cacheKey = "rt-SearchMovies-{0}".format(q);

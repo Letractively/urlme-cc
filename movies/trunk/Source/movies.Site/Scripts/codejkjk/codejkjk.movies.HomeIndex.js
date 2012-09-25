@@ -32,6 +32,7 @@ codejkjk.movies.desktop = {
         , CurrentMovieId: function () { return $("#currentMovieId"); }
         , CurrentTheaterContainer: function () { return $("#currentTheaterContainer"); }
         , CurrentTheaterTemplate: function () { return $("#currentTheaterTemplate"); }
+        , CurrentTrailerMovieId: function () { return $("#currentTrailerMovieId"); }
         , CurrentView: function () { return $(".content:visible"); }
         , CurrentZip: function () { return $("#currentZip"); }
         , DefaultNavItem: function () { return $("nav > a:first"); }
@@ -133,6 +134,9 @@ codejkjk.movies.desktop = {
         , MovieId: function () {
             return codejkjk.movies.desktop.controls.CurrentMovieId().val();
         }
+        , TrailerMovieId: function () {
+            return codejkjk.movies.desktop.controls.CurrentTrailerMovieId().val();
+        }
         , ShowtimeDay: function (val) {
             var input = $("input#currentShowtimeDay");
             if (typeof val != "undefined") { // set
@@ -215,10 +219,20 @@ codejkjk.movies.desktop = {
             }
             codejkjk.movies.desktop.showSection(firstPath);
         }
+        else if (paths[3] === "trailer") { // /hunger-games/9999888768/trailer
+            var rtMovieId = paths[2]; // rt movie id
+            if (codejkjk.movies.desktop.currents.TrailerMovieId()) {
+                // movie details is already in dom, b/c user went to movie link directly
+                codejkjk.movies.desktop.showSection("/");
+                // codejkjk.movies.desktop.showMovieDetails("rt");
+            } else {
+                // codejkjk.movies.desktop.showMovieDetails("rt", rtMovieId);
+            }
+        }
         else {
             // /redbox/wreckage or /hunger-games/9999888768
             // movie details link
-            var part1 = paths[1];
+            var part1 = paths[1]; // redbox or hunger-games
             if (part1 === "redbox") { // redbox movie
                 var rbSlug = paths[2]; // redbox product id
                 if (codejkjk.movies.desktop.currents.MovieId()) {

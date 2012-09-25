@@ -135,12 +135,19 @@ header { background:#2D62AE; }
 
 #whatsHotView .left { width: 763px; float:left; }
 #whatsHotView .right { width: 213px; float: left; margin-left:24px; }
-    #whatsHotView .right .seeMore { color: #2489ce; font-weight: bold; float: right; }
-    #whatsHotView .right .reviews { background: white; padding: 12px 12px 8px 12px; }
-#whatsHotView .ourReview:not(:last-child) { margin-bottom: 10px; }
-    #whatsHotView .ourReview span.iconContainer, #whatsHotView .ourReview span.text { display:table-cell; vertical-align: middle; }
-    #whatsHotView .ourReview span.iconContainer { width: 26px; }
-    #whatsHotView .ourReview span.iconContainer span.icon { float:none; margin-right: 0; }
+    #whatsHotView .right h2:not(:first-child) { margin-top: 24px; }
+    #whatsHotView .right .seeMore { color: #2489ce; font-weight: bold; float: right; margin-top:10px; }
+    #whatsHotView .right > div { background: white; padding: 12px 12px 8px 12px; }
+
+    #whatsHotView .right > .trailers .trailer { display: block; }
+    #whatsHotView .right > .trailers .trailer:not(:first-child) { margin-top: 10px; }
+        #whatsHotView .right > .trailers .trailer img.poster { width: 189px; height: 142px; }
+        #whatsHotView .right > .trailers .trailer div.title { margin-top: 10px; }
+
+#whatsHotView .reviews .ourReview:not(:first-child) { margin-top: 10px; }
+    #whatsHotView .reviews span.iconContainer, #whatsHotView .ourReview span.text { display:table-cell; vertical-align: middle; }
+    #whatsHotView .reviews span.iconContainer { width: 26px; }
+    #whatsHotView .reviews span.iconContainer span.icon { float:none; margin-right: 0; }
 
 #reviewsIndex { font-size: 16px; }
 #reviewsIndex a { color: #2489ce; }

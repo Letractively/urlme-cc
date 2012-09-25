@@ -41,7 +41,7 @@
             @this.Html.Partial("MovieList", this.Model.InTheatersMovies)
         </div>
         <div class="right group">
-            <h2>Recent Reviews by John Hanlon</h2>
+            <h2>Reviews by John Hanlon</h2>
             <div class="reviews rounded glowing group">
                 @foreach (var review in this.Model.RecentReviews)
                 {
@@ -50,6 +50,17 @@
                     </a>
                 }
                 <a href="@Url.Content("~/reviews")" class="seeMore noPush">See more »</a>
+            </div>
+            <h2 style="display:none">Trailers</h2>
+            <div class="trailers rounded glowing group" style="display:none">
+                @foreach (var trailer in this.Model.FeatureTrailers)
+                {
+                    <a href="@trailer.Url" class="trailer">
+                        <img class="poster" src="@trailer.PosterUrl" />
+                        <div class="title">@trailer.RtTitle</div>
+                    </a>
+                }
+                <a href="http://www.traileraddict.com" class="seeMore noPush">See more at TrailerAddict.com »</a>
             </div>
         </div>
     </section>

@@ -43,6 +43,15 @@ namespace movies.Model
         public List<AutocompleteItem> movies { get; set; }
     }
 
+    public class ClipCollection
+    {
+        public Clip[] clips { get; set; }
+    }
+    public class Clip
+    {
+        public string thumbnail { get; set; }
+    }
+
     public class MovieCollection
     {
         public int total { get; set; }
@@ -205,6 +214,49 @@ namespace movies.Model
         public static string GetPluginHtmlWide(string imdbMovieId, string movieTitle)
         {
             return API.IMDb.GetPluginHtmlWide(imdbMovieId, movieTitle);
+        }
+
+        public static string GetRottenTomatoesClipPosterUrl(string rtMovieId)
+        {
+            return Cache.GetValue<string>(
+                string.Format("codejkjk.movies.Model.Movie.GetRottenTomatoesClipPosterUrl-{0}", rtMovieId),
+                () =>
+                {
+                    string rtClipsJson = API.RottenTomatoes.GetMovieClipsJson(rtMovieId);
+                    ClipCollection clipColl = rtClipsJson.FromJson<ClipCollection>();
+                    if (clipColl.clips != null && clipColl.clips.Any())
+                    {
+                        return clipColl.clips.ElementAt(0).thumbnail;
+                    }
+                    return string.Empty;
+                });
+        }
+
+        public static Movie GetRottenTomatoesMovieByIMDbId(string imdbId)
+        {
+            Movie movie = Cache.GetValue<Movie>(
+                string.Format("codejkjk.movies.Model.Movie.GetRottenTomatoesMovieByIMDbId-{0}", imdbId),
+                () =>
+                {
+                    string rtJson = API.RottenTomatoes.GetMovieByIMDbIdJson(imdbId);
+                    return rtJson.FromJson<Movie>();
+                });
+
+            // movie may not exist in RT
+            if (string.IsNullOrWhiteSpace(movie.id))
+            {
+                return null;
+            }
+
+            movie.Review = Data.DomainModels.MovieReview.Get(int.Parse(movie.id));
+
+            // load trailer id
+            if (string.IsNullOrWhiteSpace(movie.IVAPublishedId))
+            {
+                movie.IVAPublishedId = Model.IVA.GetPublishedId(movie.id);
+            }
+
+            return movie;
         }
 
         public static Movie GetRottenTomatoesMovie(string rtMovieId)

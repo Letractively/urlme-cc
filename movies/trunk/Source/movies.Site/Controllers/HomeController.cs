@@ -128,6 +128,8 @@ namespace movies.Site.Controllers
 
             var redboxMovies = Model.Redbox.GetMovies();
 
+            var featuredTrailers = TrailerAddict.GetFeatured(5);
+
             // movies.Model.Twitter.UpdateStatus("work please " + System.DateTime.Now);
             return Content("Done! - " + System.DateTime.Now + " - <a href='http://seeitornot.co'>seeitornot.co</a>");
         }

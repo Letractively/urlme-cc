@@ -31,6 +31,28 @@
     <!-- WHAT'S HOT -->
     <section id="whatsHotView" class="content" data-navitemtext="What's Hot">
         <div class="left group">
+            <h2>Trailers</h2>
+            <div class="trailersContainer rounded glowing group">
+                <a href="#" class="slideButtonContainer rounded" id="goLeft">
+                    <span></span>
+                </a>
+                <div class="trailerSlider">
+                    <div class="trailers group">
+                        @foreach (var trailer in this.Model.FeatureTrailers)
+                        {
+                            <a href="@trailer.Url" class="trailer">
+                                <img class="poster" src="@trailer.PosterUrl" />
+                                <div class="title">@trailer.RtTitle</div>
+                            </a>
+                        }
+                    </div>
+                </div>
+                <a href="#" class="slideButtonContainer rounded" id="goRight">
+                    <span></span>
+                </a>
+                @*<a href="http://www.traileraddict.com" class="seeMore noPush">See more at TrailerAddict.com »</a>*@
+            </div>            
+
             <h2>Top Box Office</h2>
             @*@this.Html.Partial("Slider", this.Model.BoxOfficeMovies)*@
 
@@ -50,17 +72,6 @@
                     </a>
                 }
                 <a href="@Url.Content("~/reviews")" class="seeMore noPush">See more »</a>
-            </div>
-            <h2 style="display:none">Trailers</h2>
-            <div class="trailers rounded glowing group" style="display:none">
-                @foreach (var trailer in this.Model.FeatureTrailers)
-                {
-                    <a href="@trailer.Url" class="trailer">
-                        <img class="poster" src="@trailer.PosterUrl" />
-                        <div class="title">@trailer.RtTitle</div>
-                    </a>
-                }
-                <a href="http://www.traileraddict.com" class="seeMore noPush">See more at TrailerAddict.com »</a>
             </div>
         </div>
     </section>

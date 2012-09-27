@@ -82,9 +82,12 @@ codejkjk.movies.desktop = {
         , TheaterListTemplate: function () { return $("#theaterListTemplate"); }
         , Theaters: function () { return $(".theater"); }
         , trailer: function () { return $("#trailer"); }
+        , trailerSlideButtons: function () { return $(".slideButtonContainer"); }
         , UpcomingView: function () { return $("#upcomingView"); }
         , Views: function () { return $(".content"); }
         , watchTrailerLinkSelector: function () { return "#watchTrailerLink"; }
+        , wideTrailersBox: function () { return $(".trailers"); }
+        , slideTrailers: function () { return $(".trailers .trailer"); }
     },
 
     currents: {
@@ -845,6 +848,42 @@ codejkjk.movies.desktop = {
             e.preventDefault();
             codejkjk.movies.desktop.search();
         });
+
+        // click trailer slide buttons
+        codejkjk.movies.desktop.controls.trailerSlideButtons().click(function (e) {
+            e.preventDefault();
+            var prevNextLink = $(this);
+
+            if (prevNextLink.hasClass("inactive") || prevNextLink.hasClass("inProcess")) {
+                return;
+            }
+
+            prevNextLink.addClass("inProcess");
+
+            var trailers = $(".trailers");
+            var currentLeft = parseInt(trailers.css("left").replace("px", ""));
+            var moveBy = parseInt(trailers.find(".trailer").width() + 10);
+            if (prevNextLink.attr("id") == "goRight") {
+                moveBy = moveBy * -1;
+            }
+            var newLeft = moveBy + currentLeft;
+            codejkjk.movies.desktop.enableDisableTrailerSlideButtons(newLeft);
+            trailers.animate({ left: newLeft }, 250, function () { prevNextLink.removeClass("inProcess"); });
+        });
+    },
+
+    enableDisableTrailerSlideButtons: function (newLeft) {
+        if (newLeft === 0) {
+            $("#goLeft").addClass("inactive");
+        }
+        else {
+            $("#goLeft").removeClass("inactive");
+        }
+        if (newLeft === -574) {
+            $("#goRight").addClass("inactive");
+        } else {
+            $("#goRight").removeClass("inactive");
+        }
     },
 
     search: function () {

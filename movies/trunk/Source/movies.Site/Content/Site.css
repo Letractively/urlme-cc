@@ -133,25 +133,24 @@ header { background:#2D62AE; }
 
 .body { width: 996px; margin: 10px auto 0 auto; padding-top: 20px; }
 
-#whatsHotView .left { width: 763px; float:left; }
+#whatsHotView .left { width: 762px; float:left; }
 #whatsHotView .right { width: 213px; float: left; margin-left:24px; }
-    #whatsHotView h2:not(:first-child) { margin-top: 24px; }
     #whatsHotView .seeMore { color: #2489ce; font-weight: bold; float: right; margin-top:10px; }
     #whatsHotView .right > div { background: white; padding: 12px 12px 8px 12px; }
     
-    #whatsHotView .left .trailersContainer { background: white; padding: 12px 12px 8px 12px; overflow:hidden; }
-        #whatsHotView .left .trailersContainer .slideButtonContainer { height: 142px; background:#e6e6e6; float:left; display:block; width: 40px; position: relative; }
+    #whatsHotView .left .trailersContainer { background: white; padding: 12px 12px 8px 12px; overflow:hidden; margin-bottom: 24px; }
+        #whatsHotView .left .trailersContainer .slideButtonContainer { height: 114px; background:#e6e6e6; float:left; display:block; width: 40px; position: relative; }
             #whatsHotView .left .trailersContainer .slideButtonContainer:hover span { opacity: 1.0; }
         #whatsHotView .left .trailersContainer .slideButtonContainer span { opacity: 0.5; display:inline-block; background: url('content/images/rt-sprite4.png'); width: 19px; height: 31px; position: absolute; left: 10px; top: 50%; margin-top: -14px; }
         #whatsHotView .left .trailersContainer #goLeft span { background-position: -64px -87px; }
         #whatsHotView .left .trailersContainer #goRight span { background-position: -83px -87px; }
 
-        #whatsHotView .left .trailersContainer .trailerSlider { width: 587px; position: relative; height: 142px; float: left; }
+        #whatsHotView .left .trailersContainer .trailerSlider { overflow:hidden; width: 658px; position: relative; height: 114px; float: left; }
         #whatsHotView .left .trailersContainer .trailers { width: 10000px; position:absolute; top: 0; left: 0; }
-            #whatsHotView .left .trailersContainer .trailers .trailer { display: block; float: left; }
-            #whatsHotView .left .trailersContainer .trailers .trailer { margin-left: 10px; }
-                #whatsHotView .left .trailersContainer .trailers .trailer img.poster { width: 155px; height: 116px; }
-                #whatsHotView .left .trailersContainer .trailers .trailer div.title { margin-top: 8px; width: 155px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+            #whatsHotView .left .trailersContainer .trailers .trailer { display: block; float: left; margin-left: 10px; }
+                #whatsHotView .left .trailersContainer .trailers .trailer { position: relative; }
+                #whatsHotView .left .trailersContainer .trailers .trailer img.poster { float: left; width: 152px; height: 114px; }
+                #whatsHotView .left .trailersContainer .trailers .trailer div.title { padding: 3px 6px; color: white; background: url('content/images/trailer-bg.png') repeat-y; position:absolute; bottom: 0; left:0; width: 140px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
 
 #whatsHotView .reviews .ourReview:not(:first-child) { margin-top: 10px; }
     #whatsHotView .reviews span.iconContainer, #whatsHotView .ourReview span.text { display:table-cell; vertical-align: middle; }

@@ -225,10 +225,11 @@ codejkjk.movies.desktop = {
         else if (paths[3] === "trailer") { // /hunger-games/9999888768/trailer
             var rtMovieId = paths[2]; // rt movie id
             if (codejkjk.movies.desktop.currents.TrailerMovieId()) {
-                // movie details is already in dom, b/c user went to movie link directly
-                codejkjk.movies.desktop.showSection("/");
+                // already in dom, b/c user went to this link directly
+                codejkjk.movies.desktop.showSection("/"); // show homepage as backdrop
                 // codejkjk.movies.desktop.showMovieDetails("rt");
             } else {
+                alert("Coming soon...");
                 // codejkjk.movies.desktop.showMovieDetails("rt", rtMovieId);
             }
         }
@@ -240,7 +241,7 @@ codejkjk.movies.desktop = {
                 var rbSlug = paths[2]; // redbox product id
                 if (codejkjk.movies.desktop.currents.MovieId()) {
                     // movie details is already in dom, b/c user went to movie link directly
-                    codejkjk.movies.desktop.showSection("/");
+                    codejkjk.movies.desktop.showSection("/"); // show homepage as backdrop
                     codejkjk.movies.desktop.showMovieDetails("rb");
                 } else {
                     codejkjk.movies.desktop.showMovieDetails("rb", rbSlug);
@@ -249,7 +250,7 @@ codejkjk.movies.desktop = {
                 var rtMovieId = paths[2]; // rt movie id
                 if (codejkjk.movies.desktop.currents.MovieId()) {
                     // movie details is already in dom, b/c user went to movie link directly
-                    codejkjk.movies.desktop.showSection("/");
+                    codejkjk.movies.desktop.showSection("/"); // show homepage as backdrop
                     codejkjk.movies.desktop.showMovieDetails("rt");
                 } else {
                     codejkjk.movies.desktop.showMovieDetails("rt", rtMovieId);
@@ -860,10 +861,10 @@ codejkjk.movies.desktop = {
 
             prevNextLink.addClass("inProcess");
 
-            var trailers = $(".trailers");
+            var trailers = codejkjk.movies.desktop.controls.wideTrailersBox();
             var currentLeft = parseInt(trailers.css("left").replace("px", ""));
-            var moveBy = parseInt(trailers.find(".trailer").width() + 10);
-            if (prevNextLink.attr("id") == "goRight") {
+            var moveBy = parseInt(trailers.find(".trailer").width() + 10); // 10 for padding left on each slide
+            if (prevNextLink.attr("id") == "next") {
                 moveBy = moveBy * -1;
             }
             var newLeft = moveBy + currentLeft;
@@ -873,16 +874,30 @@ codejkjk.movies.desktop = {
     },
 
     enableDisableTrailerSlideButtons: function (newLeft) {
+        var trailers = codejkjk.movies.desktop.controls.wideTrailersBox();
+        var maxLeft = trailers.attr("data-max-left");
+
+        // calc only once
+        if (maxLeft) {
+            maxLeft = parseInt(maxLeft);
+        } else {
+            var moveBy = parseInt(trailers.find(".trailer").width() + 10);
+            var numSlidesInWindow = 4;
+            var numSlides = trailers.find(".trailer").length;
+            maxLeft = (numSlides - numSlidesInWindow) * -moveBy;
+            trailers.attr("data-max-left", maxLeft);
+        }
+
         if (newLeft === 0) {
-            $("#goLeft").addClass("inactive");
+            $("#prev").addClass("inactive");
         }
         else {
-            $("#goLeft").removeClass("inactive");
+            $("#prev").removeClass("inactive");
         }
-        if (newLeft === -574) {
-            $("#goRight").addClass("inactive");
+        if (newLeft === maxLeft) {
+            $("#next").addClass("inactive");
         } else {
-            $("#goRight").removeClass("inactive");
+            $("#next").removeClass("inactive");
         }
     },
 

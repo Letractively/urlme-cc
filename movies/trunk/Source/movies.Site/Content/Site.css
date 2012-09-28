@@ -140,10 +140,12 @@ header { background:#2D62AE; }
     
     #whatsHotView .left .trailersContainer { background: white; padding: 12px 12px 8px 12px; overflow:hidden; margin-bottom: 24px; }
         #whatsHotView .left .trailersContainer .slideButtonContainer { height: 114px; background:#e6e6e6; float:left; display:block; width: 40px; position: relative; }
-            #whatsHotView .left .trailersContainer .slideButtonContainer:hover span { opacity: 1.0; }
-        #whatsHotView .left .trailersContainer .slideButtonContainer span { opacity: 0.5; display:inline-block; background: url('content/images/rt-sprite4.png'); width: 19px; height: 31px; position: absolute; left: 10px; top: 50%; margin-top: -14px; }
-        #whatsHotView .left .trailersContainer #goLeft span { background-position: -64px -87px; }
-        #whatsHotView .left .trailersContainer #goRight span { background-position: -83px -87px; }
+            #whatsHotView .left .trailersContainer .slideButtonContainer.inactive { cursor: default; }
+        #whatsHotView .left .trailersContainer .slideButtonContainer span { opacity: 0.6; display:inline-block; background: url('content/images/rt-sprite4.png'); width: 19px; height: 31px; position: absolute; left: 10px; top: 50%; margin-top: -14px; }
+        #whatsHotView .left .trailersContainer .slideButtonContainer:not(.inactive):hover span { opacity: 1.0; }
+            #whatsHotView .left .trailersContainer .slideButtonContainer.inactive span { opacity: 0.2; }
+        #whatsHotView .left .trailersContainer #prev span { background-position: -64px -87px; }
+        #whatsHotView .left .trailersContainer #next span { background-position: -83px -87px; }
 
         #whatsHotView .left .trailersContainer .trailerSlider { overflow:hidden; width: 658px; position: relative; height: 114px; float: left; }
         #whatsHotView .left .trailersContainer .trailers { width: 10000px; position:absolute; top: 0; left: 0; }
@@ -230,7 +232,7 @@ header { background:#2D62AE; }
     .movieDetails #copyControls { width: 124px; display:inline-block; }
         .movieDetails #copyControls #copySuccess { color: #333; display:none; margin-left: 10px; }
 
-#overlay { background:#666666; opacity:.5; z-index:1001; position:absolute; top:0; left:0; }
+#overlay { background:#333; opacity:.7; z-index:1001; position:absolute; top:0; left:0; } /* was .5 at #666666 */
 
 #go { width: 50px; height:34px; }
 

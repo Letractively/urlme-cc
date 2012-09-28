@@ -32,7 +32,7 @@ namespace movies.Site.Controllers
             if (!Request.Browser.IsMobileDevice)
             {
                 vm.UpcomingMovies = Movie.GetMovies(Enumerations.MovieLists.Upcoming);
-                vm.FeatureTrailers = TrailerAddict.GetFeatured(15);
+                vm.FeatureTrailers = TrailerAddict.GetFeatured(20);
                 vm.RedboxMovies = Redbox.GetMovies();
                 vm.RecentReviews = Data.DomainModels.MovieReview.GetLatest(7);
                 //if (!Request.Url.ToString().Contains("localhost"))
@@ -128,7 +128,7 @@ namespace movies.Site.Controllers
 
             var redboxMovies = Model.Redbox.GetMovies();
 
-            var featuredTrailers = TrailerAddict.GetFeatured(15);
+            var featuredTrailers = TrailerAddict.GetFeatured(20);
 
             var latestReviews = Data.DomainModels.MovieReview.GetLatest(7);
 

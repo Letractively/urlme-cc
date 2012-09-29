@@ -133,6 +133,13 @@ header { background:#2D62AE; }
 
 .body { width: 996px; margin: 10px auto 0 auto; padding-top: 20px; }
 
+#whatsHotView h2, #redboxView h2 { margin-right: 4px; color: #535156; padding: 10px 0; font-size: 14px; font-weight: bold; margin-bottom: 10px; }
+
+#whatsHotView #listTabs h2 { float: left; cursor: pointer; }
+#whatsHotView #listTabs h2:not(:first-child) { margin-left: 24px; }
+#whatsHotView #listTabs h2:not(.active) { color:#9E9E9E; }
+#whatsHotView #opening, #whatsHotView #inTheaters { display: none; }
+
 #whatsHotView .left { width: 762px; float:left; }
 #whatsHotView .right { width: 213px; float: left; margin-left:24px; }
     #whatsHotView .seeMore { color: #2489ce; font-weight: bold; float: right; margin-top:10px; }
@@ -172,26 +179,8 @@ header { background:#2D62AE; }
 #aboutIndex .profile:not(:first-child) { margin-left: 24px; }
     #aboutIndex .profile img { float: left; margin-right: 24px; }
     #aboutIndex .profile p { float: left; width: 283px; line-height: 20px; } 
-    /*header #navAndSearch { float: right; }
-    header #navAndSearch nav { float: left; font-size: 150%; margin: 30px 10px 0 5px; }
-        header #navAndSearch nav a { margin-right: 15px; color: #2489CE; }
-        header #navAndSearch nav a.selected { color: #fff; background: #2489CE/* #465F82 *//*; padding: 5px 10px; } */
-
-    /* header #navAndSearch #q  
-    {
-        margin-top:27px;
-        padding: 5px; 
-        font-size: 15px; 
-        border: 1px solid #717171; 
-        width: 144px; 
-        outline: none; 
-        background: -webkit-gradient(linear, left top, left bottom, from(#F8F8F8), to(#ffffff));
-        background: -moz-linear-gradient(top,  #F8F8F8,  #ffffff);  
-        float: left;
-    } */
 
 .content { width: 1000px; display: none; }
-    #whatsHotView h2, #redboxView h2 { margin-right: 4px; color: #535156; padding: 10px 0; font-size: 14px; font-weight: bold; margin-bottom: 10px; }
 
 /* styles common to both movie div in the lists and the movie details popup */
 

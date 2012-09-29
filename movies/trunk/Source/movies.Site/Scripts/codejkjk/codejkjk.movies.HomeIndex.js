@@ -86,6 +86,7 @@ codejkjk.movies.desktop = {
         , UpcomingView: function () { return $("#upcomingView"); }
         , Views: function () { return $(".content"); }
         , watchTrailerLinkSelector: function () { return "#watchTrailerLink"; }
+        , whatsHotListTabs: function () { return $("#listTabs h2"); }
         , wideTrailersBox: function () { return $(".trailers"); }
         , slideTrailers: function () { return $(".trailers .trailer"); }
     },
@@ -834,6 +835,24 @@ codejkjk.movies.desktop = {
             if (e.keyCode == 13) {
                 codejkjk.movies.desktop.controls.SearchRedboxZipCodeButton().trigger('click');
             }
+        });
+
+        // click whats hot list tabs
+        codejkjk.movies.desktop.controls.whatsHotListTabs().click(function (e) {
+            var listTab = $(this);
+            codejkjk.movies.desktop.controls.whatsHotListTabs().removeClass("active");
+            listTab.addClass("active");
+            var listToShow = $("#" + listTab.attr("data-id-to-show"));
+            $(".movieListContainer:visible").fadeOut("fast", function () {
+                listToShow.fadeIn("fast", function () {
+                    if (!listToShow.hasClass("lazyLoaded")) {
+                        listToShow.find("img.lazy").lazyload({
+                            // effect: "fadeIn"
+                        });
+                        listToShow.addClass("lazyLoaded");
+                    }
+                });
+            });
         });
 
         // handle Enter key on search box

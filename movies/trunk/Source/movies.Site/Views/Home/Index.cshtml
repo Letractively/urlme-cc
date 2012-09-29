@@ -53,14 +53,17 @@
                 @*<a href="http://www.traileraddict.com" class="seeMore noPush">See more at TrailerAddict.com »</a>*@
             </div>            
 
-            <h2>Top Box Office</h2>
-            @*@this.Html.Partial("Slider", this.Model.BoxOfficeMovies)*@
+            <div id="listTabs" class="group">
+                <h2 class="active" data-id-to-show="boxOffice">Top Box Office</h2>
+                <h2 data-id-to-show="opening">Opening This Week</h2>
+                <h2 data-id-to-show="inTheaters">Also in Theaters</h2>
+            </div>
 
-            @this.Html.Partial("MovieList", this.Model.BoxOfficeMovies)
-            <h2>Opening This Week</h2>
-            @this.Html.Partial("MovieList", this.Model.OpeningMovies)
-            <h2>Also in Theaters</h2>
-            @this.Html.Partial("MovieList", this.Model.InTheatersMovies)
+            <div class="group" style="height: 1360px">
+                <div id="boxOffice" class="movieListContainer lazyLoaded">@this.Html.Partial("MovieList", this.Model.BoxOfficeMovies)</div>
+                <div id="opening" class="movieListContainer">@this.Html.Partial("MovieList", this.Model.OpeningMovies)</div>
+                <div id="inTheaters" class="movieListContainer">@this.Html.Partial("MovieList", this.Model.InTheatersMovies)</div>
+            </div>
         </div>
         <div class="right group">
             <h2>Reviews by John Hanlon</h2>

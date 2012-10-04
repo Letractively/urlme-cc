@@ -531,16 +531,53 @@ codejkjk.movies.desktop = {
         });
     },
 
-    showMovieDetails: function (rbOrRt, movieIdToAjaxLoad) {
-        // show overlay
-        var overlayHeight = $(document).height() + "px";
-        var overlayWidth = $(document).width() + "px";
-        codejkjk.movies.desktop.controls.Overlay().css("height", overlayHeight).css("width", overlayWidth).show();
+    showTrailer: function (movieIdToAjaxLoad) {
+        codejkjk.movies.desktop.showOverlay();
 
         if (movieIdToAjaxLoad) {
             // user went to movie link by clicking on a poster, so ajax-load it
-            codejkjk.movies.desktop.controls.MovieDetailsPopup().html("<div class='loading'></div>");
+            codejkjk.movies.desktop.controls.trailerPopup().html("<div class='loading'></div>").show();
+
+            if (rbOrRt === "rb") { // redbox movie
+                codejkjk.movies.Api.GetRedboxMovieHtml(movieIdToAjaxLoad, function (html) {
+                    codejkjk.movies.desktop.controls.MovieDetailsPopup().html(html);
+                    FB.XFBML.parse();
+                    codejkjk.movies.desktop.InitZeroClipboard();
+                    codejkjk.siteActions.wireReleaseDates();
+                    if (typeof refreshAdmin === "function") { refreshAdmin(); }
+                });
+            } else {
+                codejkjk.movies.Api.GetMovieHtml(movieIdToAjaxLoad, function (html) {
+                    codejkjk.movies.desktop.controls.MovieDetailsPopup().html(html);
+                    //var s = $(html).filter("script").text();
+                    //eval(s);
+                    FB.XFBML.parse();
+                    codejkjk.movies.desktop.InitZeroClipboard();
+                    codejkjk.siteActions.wireReleaseDates();
+                    if (typeof refreshAdmin === "function") { refreshAdmin(); }
+                });
+            }
+        } else {
+            // movie details are already in dom, so just init zeroclipboard b/c it's ready to go
             codejkjk.movies.desktop.controls.MovieDetailsPopup().show();
+            codejkjk.movies.desktop.InitZeroClipboard();
+            codejkjk.siteActions.wireReleaseDates();
+            if (typeof refreshAdmin === "function") { refreshAdmin(); }
+        }
+    },
+
+    showOverlay: function() {
+        var overlayHeight = $(document).height() + "px";
+        var overlayWidth = $(document).width() + "px";
+        codejkjk.movies.desktop.controls.Overlay().css("height", overlayHeight).css("width", overlayWidth).show();
+    },
+
+    showMovieDetails: function (rbOrRt, movieIdToAjaxLoad) {
+        codejkjk.movies.desktop.showOverlay();
+
+        if (movieIdToAjaxLoad) {
+            // user went to movie link by clicking on a poster, so ajax-load it
+            codejkjk.movies.desktop.controls.MovieDetailsPopup().html("<div class='loading'></div>").show();
 
             if (rbOrRt === "rb") { // redbox movie
                 codejkjk.movies.Api.GetRedboxMovieHtml(movieIdToAjaxLoad, function (html) {

@@ -53,6 +53,7 @@ codejkjk.movies.desktop = {
         , InputShowtimesZip: function () { return $("#inputShowtimesZip"); }
         , Overlay: function () { return $("#overlay"); }
         , OverlaySelector: function () { return "#overlay"; }
+        , popups: function () { return $(".popup"); }
         , RedboxAvails: function () { return $("#redboxAvails"); }
         , RedboxAvailsList: function () { return $("#redboxAvailsList"); }
         , Redboxes: function () { return $("#redboxes"); }
@@ -82,6 +83,7 @@ codejkjk.movies.desktop = {
         , TheaterListTemplate: function () { return $("#theaterListTemplate"); }
         , Theaters: function () { return $(".theater"); }
         , trailer: function () { return $("#trailer"); }
+        , trailerPopup: function () { return $("#trailerPopup"); }
         , trailerSlideButtons: function () { return $(".slideButtonContainer"); }
         , UpcomingView: function () { return $("#upcomingView"); }
         , Views: function () { return $(".content"); }
@@ -230,8 +232,7 @@ codejkjk.movies.desktop = {
                 codejkjk.movies.desktop.showSection("/"); // show homepage as backdrop
                 // codejkjk.movies.desktop.showMovieDetails("rt");
             } else {
-                alert("Coming soon...");
-                // codejkjk.movies.desktop.showMovieDetails("rt", rtMovieId);
+                codejkjk.movies.desktop.showTrailer(rtMovieId);
             }
         }
         else {
@@ -538,31 +539,17 @@ codejkjk.movies.desktop = {
             // user went to movie link by clicking on a poster, so ajax-load it
             codejkjk.movies.desktop.controls.trailerPopup().html("<div class='loading'></div>").show();
 
-            if (rbOrRt === "rb") { // redbox movie
-                codejkjk.movies.Api.GetRedboxMovieHtml(movieIdToAjaxLoad, function (html) {
-                    codejkjk.movies.desktop.controls.MovieDetailsPopup().html(html);
-                    FB.XFBML.parse();
-                    codejkjk.movies.desktop.InitZeroClipboard();
-                    codejkjk.siteActions.wireReleaseDates();
-                    if (typeof refreshAdmin === "function") { refreshAdmin(); }
-                });
-            } else {
-                codejkjk.movies.Api.GetMovieHtml(movieIdToAjaxLoad, function (html) {
-                    codejkjk.movies.desktop.controls.MovieDetailsPopup().html(html);
-                    //var s = $(html).filter("script").text();
-                    //eval(s);
-                    FB.XFBML.parse();
-                    codejkjk.movies.desktop.InitZeroClipboard();
-                    codejkjk.siteActions.wireReleaseDates();
-                    if (typeof refreshAdmin === "function") { refreshAdmin(); }
-                });
-            }
+            //codejkjk.movies.Api.GetMovieHtml(movieIdToAjaxLoad, function (html) {
+            //    codejkjk.movies.desktop.controls.MovieDetailsPopup().html(html);
+            //    FB.XFBML.parse();
+            //    codejkjk.movies.desktop.InitZeroClipboard();
+            //    codejkjk.siteActions.wireReleaseDates();
+            //});
         } else {
             // movie details are already in dom, so just init zeroclipboard b/c it's ready to go
-            codejkjk.movies.desktop.controls.MovieDetailsPopup().show();
-            codejkjk.movies.desktop.InitZeroClipboard();
-            codejkjk.siteActions.wireReleaseDates();
-            if (typeof refreshAdmin === "function") { refreshAdmin(); }
+            //codejkjk.movies.desktop.controls.MovieDetailsPopup().show();
+            //codejkjk.movies.desktop.InitZeroClipboard();
+            //codejkjk.siteActions.wireReleaseDates();
         }
     },
 
@@ -726,10 +713,10 @@ codejkjk.movies.desktop = {
             codejkjk.movies.desktop.currents.HiddenTheaterMovies(hiddenTheaterMovies.join(','))
         });
 
-        // handle close movie details link AND overlay click
+        // handle close popup link AND overlay click
         $(document).on("click", codejkjk.movies.desktop.controls.CloseMovieDetailsLinkSelector(), function (e) {
             codejkjk.movies.desktop.controls.Overlay().hide();
-            codejkjk.movies.desktop.controls.MovieDetailsPopup().hide().html("");
+            codejkjk.movies.desktop.controls.popups().hide().html("");
             var currentNav = codejkjk.movies.desktop.controls.CurrentNavItem();
             if (currentNav && currentNav.hasClass("noPush")) {
                 History.pushState(null, null, currentNav.attr("href"));

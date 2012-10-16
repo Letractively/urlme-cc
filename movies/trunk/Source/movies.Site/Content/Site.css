@@ -184,7 +184,9 @@ header { background:#2D62AE; }
 
 /* styles common to both movie div in the lists and the movie details popup */
 
-#movieDetailsPopup { min-height: 314px; display:none; z-index:1002; font-size: 110%; border: 1px solid #999; padding: 25px; position: fixed; width: 590px; top: 68px; left: 50%; margin-left: -295PX; }
+#trailerPopup { display: none; min-height: 400px; z-index: 1002; font-size: 110%; border: 1px solid #999; padding: 25px; position: fixed; width: 590px; top: 68px; left: 50%; margin-left: -295px; }
+
+#movieDetailsPopup { min-height: 314px; display:none; z-index:1002; font-size: 110%; border: 1px solid #999; padding: 25px; position: fixed; width: 590px; top: 68px; left: 50%; margin-left: -295px; }
         .movieDetails .topHalf .left { float: left; margin-right: 25px; }
             .movieDetails .topHalf .left img.poster { width: 180px; height: 267px; }
         .movieDetails .topHalf .right { float: left; width: 385px; }

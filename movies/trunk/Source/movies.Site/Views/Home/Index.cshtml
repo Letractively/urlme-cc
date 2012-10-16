@@ -156,11 +156,14 @@
     </section>
 
     <!-- MOVIE DETAILS -->
-    <section id="movieDetailsPopup" class="rounded gradient">
+    <section id="movieDetailsPopup" class="popup rounded gradient">
     @if (this.Model.OverlayMovie != null)
     {
         this.Html.RenderPartial("MovieDetails", this.Model.OverlayMovie);
     }
+    </section>
+    <section id="trailerPopup" class="popup rounded gradient">
+        trailer here...
     </section>
     <div id="overlay" class="closeMovieDetails"></div>
 </div>

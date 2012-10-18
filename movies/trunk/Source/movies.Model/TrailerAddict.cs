@@ -25,6 +25,7 @@ namespace movies.Model
             public string RtMovieId { get; set; }
             public string RtTitle { get; set; }
             public string Url { get { return "/" + this.RtTitle.Slugify() + "/" + this.RtMovieId + "/trailer"; } }
+            public Movie RtMovie { get; set; }
         }
 
         public static List<Trailer> GetFeatured(int count = 5, int width = 450)
@@ -62,7 +63,8 @@ namespace movies.Model
                                 trailer_id = row["trailer_id"].ToString(),
                                 PosterUrl = movieClipPosterUrl,
                                 RtMovieId = rtMovie.id,
-                                RtTitle = rtMovie.title
+                                RtTitle = rtMovie.title,
+                                RtMovie = rtMovie
                             });
                         }
                     }

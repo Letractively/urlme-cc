@@ -232,7 +232,13 @@ namespace movies
                 "MovieDetailsRedbox", // Route name
                 "redbox/{titleSlug}", // URL with parameters
                 new { controller = "Home", action = "Index", isRedbox = true } // Parameter defaults
-            );            
+            );
+
+            routes.MapRoute(
+                "MovieDetailsRedbox", // Route name
+                "{titleSlug}/{rtMovieId}/trailer", // URL with parameters
+                new { controller = "Home", action = "Index", isTrailer = true } // Parameter defaults
+            );
             
             routes.MapRoute(
                 "MovieDetails", // Route name

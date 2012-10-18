@@ -328,6 +328,7 @@
     <None Include="Properties\PublishProfiles\publish to c--publish-movies.pubxml" />
     <None Include="Properties\PublishProfiles\publish to prod.pubxml" />
     <Content Include="Views\IFrame\IMDbRating.cshtml" />
+    <Content Include="Views\Shared\TrailerDetails.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <PropertyGroup>

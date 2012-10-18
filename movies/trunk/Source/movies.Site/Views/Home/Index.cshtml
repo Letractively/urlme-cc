@@ -163,7 +163,10 @@
     }
     </section>
     <section id="trailerPopup" class="popup rounded gradient">
-        trailer here...
+    @if (this.Model.OverlayTrailer != null)
+    {
+        this.Html.RenderPartial("TrailerDetails", this.Model.OverlayTrailer);
+    }
     </section>
     <div id="overlay" class="closeMovieDetails"></div>
 </div>

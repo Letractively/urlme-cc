@@ -13,5 +13,6 @@ namespace movies.Site.ViewModels.Home
         public List<Data.DomainModels.MovieReview> RecentReviews { get; set; }
 
         public Model.Movie OverlayMovie { get; set; }
+        public Model.TrailerAddict.Trailer OverlayTrailer { get; set; }
     }
 }

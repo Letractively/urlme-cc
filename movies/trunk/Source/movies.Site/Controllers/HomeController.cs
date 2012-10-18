@@ -11,10 +11,10 @@ namespace movies.Site.Controllers
         //
         // GET: /Home/
         //[OutputCache(CacheProfile="OneMinute")]
-        public ActionResult Index(string rtMovieId = null, string titleSlug = null, bool isRedbox = false)
+        public ActionResult Index(string rtMovieId = null, string titleSlug = null, bool isRedbox = false, bool isTrailer = false)
         {
             var inTheatersMovies = Movie.GetMovies(Enumerations.MovieLists.InTheaters);
-            
+
             // copy of intheaters movies, b/c we'll be removing some keys (don't want to remove from the referenced object in cache)
             Dictionary<string, Movie> inTheatersMoviesDisplay = new Dictionary<string, Movie>();
             inTheatersMovies.ToList().ForEach(x => inTheatersMoviesDisplay.Add(x.Key, x.Value));
@@ -24,7 +24,7 @@ namespace movies.Site.Controllers
                 OpeningMovies = Movie.GetMovies(Enumerations.MovieLists.Opening),
                 BoxOfficeMovies = Movie.GetMovies(Enumerations.MovieLists.BoxOffice),
                 InTheatersMovies = inTheatersMoviesDisplay,
-                
+
                 OverlayMovie = null
             };
 
@@ -37,7 +37,7 @@ namespace movies.Site.Controllers
                 vm.RecentReviews = Data.DomainModels.MovieReview.GetLatest(7);
                 //if (!Request.Url.ToString().Contains("localhost"))
                 //{
-                    // vm.RedboxMovies = Redbox.GetMovies();
+                // vm.RedboxMovies = Redbox.GetMovies();
                 //}
             }
 
@@ -71,18 +71,24 @@ namespace movies.Site.Controllers
                         return Content("No corresponding RottenTomatoes movie found :/");
                     }
                     movie.MovieType = Enumerations.MovieType.AtRedboxes;
+                    vm.OverlayMovie = movie;
+                }
+                else if (isTrailer)
+                {
+                    vm.OverlayTrailer = vm.FeatureTrailers.FirstOrDefault(x => x.RtMovieId == rtMovieId);
+                    movie = vm.OverlayTrailer.RtMovie;
                 }
                 else
                 {
                     movie = Model.Movie.GetRottenTomatoesMovie(rtMovieId);
                     movie.MovieType = Model.Movie.GetMovieType(rtMovieId);
+                    vm.OverlayMovie = movie;
                 }
 
                 // set open graph props
                 this.OpenGraphImage = movie.posters.detailed;
                 this.OpenGraphTitle = movie.title;
                 this.OpenGraphDescription = movie.synopsis;
-                vm.OverlayMovie = movie;
             }
             else
             {
@@ -107,7 +113,7 @@ namespace movies.Site.Controllers
 
         public ActionResult CacheImdbData()
         {
-            List<Dictionary<string,Model.Movie>> movieLists = new List<Dictionary<string,Model.Movie>>();
+            List<Dictionary<string, Model.Movie>> movieLists = new List<Dictionary<string, Model.Movie>>();
             var boxOfficeMovies = Model.Movie.GetMovies(Enumerations.MovieLists.BoxOffice);
             movieLists.Add(boxOfficeMovies);
             var inTheatersMovies = Model.Movie.GetMovies(Enumerations.MovieLists.InTheaters);

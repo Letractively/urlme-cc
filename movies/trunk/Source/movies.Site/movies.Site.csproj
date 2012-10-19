@@ -144,15 +144,6 @@
     <Content Include="Content\Images\trailer-bg.png" />
     <Content Include="Content\Images\transparent.png" />
     <Content Include="Content\jquery.mobile-1.0.1.min.css" />
-    <Content Include="Content\jquery.mobile-1.1.0-rc.1\images\ajax-loader.gif" />
-    <Content Include="Content\jquery.mobile-1.1.0-rc.1\images\ajax-loader.png" />
-    <Content Include="Content\jquery.mobile-1.1.0-rc.1\images\icons-18-black.png" />
-    <Content Include="Content\jquery.mobile-1.1.0-rc.1\images\icons-18-white.png" />
-    <Content Include="Content\jquery.mobile-1.1.0-rc.1\images\icons-36-black.png" />
-    <Content Include="Content\jquery.mobile-1.1.0-rc.1\images\icons-36-white.png" />
-    <Content Include="Content\jquery.mobile-1.1.0-rc.1\jquery.mobile-1.1.0-rc.1.min.css" />
-    <Content Include="Content\jquery.mobile-1.1.0-rc.1\jquery.mobile-1.1.0-rc.1.min.js" />
-    <Content Include="Content\jquery.mobile-1.1.0-rc.1\jquery.mobile.structure-1.1.0-rc.1.min.css" />
     <Content Include="Content\logo.png" />
     <Content Include="Content\logo3_app_white.png" />
     <Content Include="Content\logo4.png" />
@@ -160,9 +151,6 @@
     <Content Include="Content\logo_fbopengraph.png" />
     <Content Include="Content\logo_mobile.png" />
     <Content Include="Content\Mobile.css" />
-    <Content Include="Externals\local-cache\json2.js" />
-    <Content Include="Externals\local-cache\local-cache-browser-test.html" />
-    <Content Include="Externals\local-cache\local-cache.js" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="Scripts\codejkjk\codejkjk.siteActions.js" />
@@ -223,6 +211,9 @@
     <Content Include="Scripts\Plugins\lazyload\grey.gif" />
     <Content Include="Scripts\Plugins\lazyload\jquery.lazyload.min.js" />
     <Content Include="Scripts\Plugins\jsrender.js" />
+    <Content Include="Scripts\Plugins\local-cache\json2.js" />
+    <Content Include="Scripts\Plugins\local-cache\local-cache-browser-test.html" />
+    <Content Include="Scripts\Plugins\local-cache\local-cache.js" />
     <Content Include="Scripts\Plugins\mask\jquery.mask.min.js" />
     <Content Include="Scripts\Plugins\mask\processing-bar.gif" />
     <Content Include="Scripts\Plugins\qTip2\jquery.qtip.min.css" />

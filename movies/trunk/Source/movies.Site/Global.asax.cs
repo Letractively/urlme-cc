@@ -235,7 +235,7 @@ namespace movies
             );
 
             routes.MapRoute(
-                "MovieDetailsRedbox", // Route name
+                "MovieTrailerDetails", // Route name
                 "{titleSlug}/{rtMovieId}/trailer", // URL with parameters
                 new { controller = "Home", action = "Index", isTrailer = true } // Parameter defaults
             );
@@ -266,7 +266,6 @@ namespace movies
 
             var mobileJsBundle = new Bundle("~/mobile-js-bundle", new JsMinify());
             mobileJsBundle.AddFile("~/scripts/jquery-1.7.1.min.js");
-            // mobileJsBundle.AddFile("~/content/jquery.mobile-1.1.0-rc.1/jquery.mobile-1.1.0-rc.1.min.js");
             mobileJsBundle.AddFile("~/scripts/codejkjk/codejkjk.js");
             mobileJsBundle.AddFile("~/scripts/codejkjk/codejkjk.siteActions.js");
             mobileJsBundle.AddFile("~/scripts/codejkjk/codejkjk.movies.Defaults.js");
@@ -276,7 +275,7 @@ namespace movies
             mobileJsBundle.AddFile("~/scripts/plugins/jquery-ui-1.8.21/js/jquery-ui-1.8.21.custom.min.js");
             mobileJsBundle.AddFile("~/scripts/plugins/date.js");
             mobileJsBundle.AddFile("~/scripts/plugins/jsrender.js");
-            mobileJsBundle.AddFile("~/externals/local-cache/local-cache.js");
+            mobileJsBundle.AddFile("~/scripts/plugins/local-cache/local-cache.js");
             // mobileJsBundle.AddFile("~/scripts/codejkjk/codejkjk.movies.Mobile.js");
             mobileJsBundle.AddFile("~/scripts/plugins/jquery.history.js");
             // mobileJsBundle.AddFile("~/scripts/plugins/jquery.overscroll.min.js");
@@ -297,9 +296,8 @@ namespace movies
             desktopJsBundle.AddFile("~/scripts/codejkjk/codejkjk.Geo.js");
             desktopJsBundle.AddFile("~/scripts/plugins/date.js");
             desktopJsBundle.AddFile("~/scripts/plugins/jsrender.js");
-            desktopJsBundle.AddFile("~/externals/local-cache/local-cache.js");
+            desktopJsBundle.AddFile("~/scripts/plugins/local-cache/local-cache.js");
             desktopJsBundle.AddFile("~/scripts/plugins/zeroclipboard/zeroclipboard.js");
-            // desktopJsBundle.AddFile("~/scripts/plugins/qTip2/jquery.qtip.min.js");
             desktopJsBundle.AddFile("~/scripts/plugins/mask/jquery.mask.min.js");
             desktopJsBundle.AddFile("~/scripts/plugins/jquery.history.js");
             desktopJsBundle.AddFile("~/scripts/plugins/blockui/jquery.blockUI.js");

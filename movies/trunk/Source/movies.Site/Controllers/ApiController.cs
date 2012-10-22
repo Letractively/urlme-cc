@@ -118,6 +118,20 @@ namespace movies.Site.Controllers
             return PartialView("MovieDetails", movie);
         }
 
+        public ActionResult GetTrailerHtml(string rtMovieId)
+        {
+            var featureTrailers = Model.TrailerAddict.GetFeatured(20);
+            var trailer = featureTrailers.FirstOrDefault(x => x.RtMovieId == rtMovieId);
+            if (trailer != null)
+            {
+                return PartialView("TrailerDetails", trailer);
+            }
+            else
+            {
+                return Content("Trailer not found, sorry.");
+            }
+        }
+
         public ActionResult GetMovieSimpleHtml(string rtMovieId)
         {
             var movie = Model.Movie.GetRottenTomatoesMovie(rtMovieId);

@@ -28,7 +28,7 @@ namespace movies.Model
             public Movie RtMovie { get; set; }
         }
 
-        public static List<Trailer> GetFeatured(int count = 5, int width = 450)
+        public static List<Trailer> GetFeatured(int count = 5, int width = 520)
         {
             return Cache.GetValue<List<Trailer>>(
                 string.Format("codejkjk.movies.Model.TrailerAddict.GetFeatured-{0}-{1}", count, width),

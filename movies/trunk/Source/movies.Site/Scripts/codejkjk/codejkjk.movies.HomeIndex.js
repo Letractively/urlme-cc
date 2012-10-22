@@ -32,7 +32,6 @@ codejkjk.movies.desktop = {
         , CurrentMovieId: function () { return $("#currentMovieId"); }
         , CurrentTheaterContainer: function () { return $("#currentTheaterContainer"); }
         , CurrentTheaterTemplate: function () { return $("#currentTheaterTemplate"); }
-        , CurrentTrailerMovieId: function () { return $("#currentTrailerMovieId"); }
         , CurrentView: function () { return $(".content:visible"); }
         , CurrentZip: function () { return $("#currentZip"); }
         , DefaultNavItem: function () { return $("nav > a:first"); }
@@ -140,9 +139,6 @@ codejkjk.movies.desktop = {
         , MovieId: function () {
             return codejkjk.movies.desktop.controls.CurrentMovieId().val();
         }
-        , TrailerMovieId: function () {
-            return codejkjk.movies.desktop.controls.CurrentTrailerMovieId().val();
-        }
         , ShowtimeDay: function (val) {
             var input = $("input#currentShowtimeDay");
             if (typeof val != "undefined") { // set
@@ -227,10 +223,10 @@ codejkjk.movies.desktop = {
         }
         else if (paths[3] === "trailer") { // /hunger-games/9999888768/trailer
             var rtMovieId = paths[2]; // rt movie id
-            if (codejkjk.movies.desktop.currents.TrailerMovieId()) {
+            if (codejkjk.movies.desktop.currents.MovieId()) {
                 // already in dom, b/c user went to this link directly
                 codejkjk.movies.desktop.showSection("/"); // show homepage as backdrop
-                // codejkjk.movies.desktop.showMovieDetails("rt");
+                codejkjk.movies.desktop.showTrailer(rtMovieId);
             } else {
                 codejkjk.movies.desktop.showTrailer(rtMovieId);
             }
@@ -537,19 +533,20 @@ codejkjk.movies.desktop = {
 
         if (movieIdToAjaxLoad) {
             // user went to movie link by clicking on a poster, so ajax-load it
-            codejkjk.movies.desktop.controls.trailerPopup().html("<div class='loading'></div>").show();
+            var trailerPopup = codejkjk.movies.desktop.controls.trailerPopup();
+            trailerPopup.html("<div class='loading'></div>").show();
 
-            //codejkjk.movies.Api.GetMovieHtml(movieIdToAjaxLoad, function (html) {
-            //    codejkjk.movies.desktop.controls.MovieDetailsPopup().html(html);
-            //    FB.XFBML.parse();
-            //    codejkjk.movies.desktop.InitZeroClipboard();
-            //    codejkjk.siteActions.wireReleaseDates();
-            //});
+            codejkjk.movies.Api.GetTrailerHtml(movieIdToAjaxLoad, function (html) {
+                trailerPopup.html(html);
+                FB.XFBML.parse();
+                codejkjk.movies.desktop.InitZeroClipboard();
+                codejkjk.siteActions.wireReleaseDates();
+            });
         } else {
             // movie details are already in dom, so just init zeroclipboard b/c it's ready to go
-            //codejkjk.movies.desktop.controls.MovieDetailsPopup().show();
-            //codejkjk.movies.desktop.InitZeroClipboard();
-            //codejkjk.siteActions.wireReleaseDates();
+            trailerPopup.show();
+            codejkjk.movies.desktop.InitZeroClipboard();
+            codejkjk.siteActions.wireReleaseDates();
         }
     },
 

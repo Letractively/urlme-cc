@@ -131,6 +131,12 @@ namespace movies
             );
 
             routes.MapRoute(
+                "Api-Get_Trailer_Html", // Route name
+                "api/get_trailer.html/{rtMovieId}", // URL with parameters
+                new { controller = "Api", action = "GetTrailerHtml" } // Parameter defaults
+            );
+
+            routes.MapRoute(
                 "Api-Get_Movie_Simple_Html", // Route name
                 "api/get_rt_movie_simple.html/{rtMovieId}", // URL with parameters
                 new { controller = "Api", action = "GetMovieSimpleHtml" } // Parameter defaults

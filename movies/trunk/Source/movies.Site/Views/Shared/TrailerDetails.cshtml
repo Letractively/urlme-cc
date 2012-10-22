@@ -1,7 +1,9 @@
 ﻿@model movies.Model.TrailerAddict.Trailer
 @using movies.Model
 
-<div class="trailerDetails">
-    <input type="hidden" id="currentMovieId" value="@this.Model.id" />
+<div id="trailerDetails">
+    <input type="hidden" id="currentMovieId" value="@this.Model.RtMovieId" />
+    <h1>@this.Model.RtTitle</h1>
+    <div>@Html.Raw(this.Model.embed)</div>
 </div>
     

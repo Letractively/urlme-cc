@@ -194,7 +194,7 @@ header { background:#2D62AE; }
 
 /* styles common to both movie div in the lists and the movie details popup */
 
-#trailerPopup { display: none; min-height: 400px; z-index: 1002; font-size: 110%; border: 1px solid #999; padding: 25px; position: fixed; width: 590px; top: 68px; left: 50%; margin-left: -295px; }
+#trailerPopup { display: none; min-height: 400px; z-index: 1002; font-size: 110%; border: 1px solid #1F1F20; padding: 25px; position: fixed; width: 850px; top: 68px; left: 50%; margin-left: -450px; }
 
 /* styles common to both popups */
 .popup h1 { font-size: 140%; font-weight: bold; }

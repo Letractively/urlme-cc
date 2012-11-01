@@ -2,6 +2,7 @@
 @using movies.Model
 
 <div id="trailerDetails">
+    <span class="closeMovieDetails"></span>
     <input type="hidden" id="currentMovieId" value="@this.Model.RtMovieId" />
     <h1>@this.Model.RtTitle</h1>
     <div>@Html.Raw(this.Model.embed)</div>

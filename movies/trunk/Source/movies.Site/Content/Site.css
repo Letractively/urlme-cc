@@ -148,7 +148,7 @@ header { background:#2D62AE; }
 #whatsHotView #listTabs h2 { float: left; cursor: pointer; }
 #whatsHotView #listTabs h2:not(:first-child) { margin-left: 24px; }
 #whatsHotView #listTabs h2:not(.active) { color:#9E9E9E; }
-#whatsHotView #opening, #whatsHotView #inTheaters { display: none; }
+#whatsHotView .movieListContainer:not(#boxOffice) { display: none; }
 
 #whatsHotView .left { width: 762px; float:left; }
 #whatsHotView .right { width: 213px; float: left; margin-left:24px; }

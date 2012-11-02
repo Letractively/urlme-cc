@@ -18,7 +18,6 @@
         <nav>
             <a href="~/">What's Hot</a>
             <a href="~/showtimes">Showtimes</a>
-            <a href="~/comingsoon">Coming Soon</a>
             <a href="~/redbox">Redbox</a>
             <a href="~/reviews" class="noPush">Reviews</a>
             <a href="~/about" class="noPush">About</a>
@@ -57,11 +56,13 @@
                 <h2 class="active" data-id-to-show="boxOffice">Top Box Office</h2>
                 <h2 data-id-to-show="opening">Opening This Week</h2>
                 <h2 data-id-to-show="inTheaters">Also in Theaters</h2>
+                <h2 data-id-to-show="upcoming">Coming Soon</h2>
             </div>
 
             <div class="group" style="height: 1360px">
                 <div id="boxOffice" class="movieListContainer lazyLoaded">@this.Html.Partial("MovieList", this.Model.BoxOfficeMovies)</div>
                 <div id="opening" class="movieListContainer">@this.Html.Partial("MovieList", this.Model.OpeningMovies)</div>
+                <div id="upcoming" class="movieListContainer">@this.Html.Partial("MovieList", this.Model.UpcomingMovies)</div>
                 <div id="inTheaters" class="movieListContainer">@this.Html.Partial("MovieList", this.Model.InTheatersMovies)</div>
             </div>
         </div>
@@ -77,11 +78,6 @@
                 <a href="@Url.Content("~/reviews")" class="seeMore noPush">See more »</a>
             </div>
         </div>
-    </section>
-
-    <!-- UPCOMING -->
-    <section id="upcomingView" class="content movieList" data-navitemtext="Coming Soon">
-        @this.Html.Partial("MovieList", this.Model.UpcomingMovies)
     </section>
 
     <!-- REDBOX -->

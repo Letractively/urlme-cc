@@ -109,6 +109,7 @@
     <Content Include="Content\common.css" />
     <Content Include="Content\favicon.jpg" />
     <Content Include="Content\Images\ajax-loader-blue-ribbon.gif" />
+    <Content Include="Content\Images\ajax-loader-blue-ribbon_32x32.gif" />
     <Content Include="Content\Images\ajax-loader-gray-ribbon.gif" />
     <Content Include="Content\Images\ajax-loader.gif" />
     <Content Include="Content\Images\ajax-loader.png" />

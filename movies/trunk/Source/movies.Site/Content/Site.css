@@ -10,7 +10,7 @@ span.divider { color: #CDCDCD; font-weight: normal; margin: 0 5px; }
 .bottomShadow { -webkit-box-shadow: 0 2px 8px #999; -moz-box-shadow: 0 2px 8px #999; box-shadow: 0 2px 8px #999;  }
 .glowing { box-shadow: 2px 2px 2px #999; -webkit-box-shadow: 2px 2px 2px #999; -moz-box-shadow: 2px 2px 2px #999; }
 .rightArrow { border-top: 30px solid transparent; border-bottom: 30px solid transparent; border-left: 30px solid #C5D8E6; }
-div.loading { background: url('content/images/ajax-loader-blue-ribbon.gif') no-repeat center left; width: 16px; height: 16px; display:inline-block; }
+div.loading { background: url('content/images/ajax-loader-blue-ribbon_32x32.gif') no-repeat center left; width: 32px; height: 32px; display:inline-block; }
 .placeholder { color: #6B696A; } /* for non-html5-compatable browsers, use this class in the salem.form.smartTextBox() function to make it function like html 5's placeholder attr */
 /* orig: second hex in glowing = #eee */
 .gradient { background: white; /* fallback */

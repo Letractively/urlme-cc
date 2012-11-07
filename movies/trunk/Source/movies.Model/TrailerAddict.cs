@@ -70,7 +70,7 @@ namespace movies.Model
                     }
 
                     return rtn;
-                });
+                }, 60);
         }
     }
 }

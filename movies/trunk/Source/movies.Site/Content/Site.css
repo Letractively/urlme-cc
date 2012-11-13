@@ -198,15 +198,16 @@ header { background:#2D62AE; }
 
 /* styles common to both popups */
 .popup h1 { font-size: 140%; font-weight: bold; }
-.popup p.description { margin-top: 12px; overflow: auto; max-height: 96px; line-height: 20px; }
+.popup p.description { margin-top: 12px; overflow: auto; max-height: 133px; line-height: 20px; }
 .popup .closeMovieDetails { cursor: pointer; float: right; display:inline-block; width: 16px; height: 16px; background: url('content/images/rt-sprite4.png') -102px -88px; }
 
 #trailerDetails > div { margin-top: 15px; }
 #trailerDetails h1 { color: white; letter-spacing: 2px; font-weight: normal; }
 
 #movieDetailsPopup { min-height: 314px; display:none; z-index:1002; font-size: 110%; border: 1px solid #999; padding: 25px; position: fixed; width: 590px; top: 68px; left: 50%; margin-left: -295px; }
+    #movieDetailsPopup h1 { float: left; }
         .movieDetails .topHalf .left { float: left; margin-right: 25px; }
-            .movieDetails .topHalf .left img.poster { width: 180px; height: 267px; }
+            .movieDetails .topHalf .left img.poster { width: 180px; height: 267px; float: left; }
         .movieDetails .topHalf .right { float: left; width: 385px; }
     .movieDetails a { display: inline-block; }
     .movieDetails .closeMovieDetails .x { margin-left: 6px; color: Red; }
@@ -219,7 +220,7 @@ header { background:#2D62AE; }
                 #movieShowtimes #theatersForMovieList .theater h3 { margin: 5px 0; }
                 #movieShowtimes #theatersForMovieList .theater p.times.singleMovie { margin: 5px 0 0 0; }
                 #movieShowtimes #theatersForMovieList .theater p.times { margin: 0; }
-    .movieDetails .links { margin-top: 15px; font-weight: bold; }
+    .movieDetails .links { font-weight: bold; }
         .movieDetails .links > a:not(.button) { padding-left: 22px; color: #2489CE; height:16px; line-height: 17px; /* text-decoration: underline; */ }
         .movieDetails .links > a.trailerLink { background: url('content/images/icons/video.png') no-repeat center left; }
         .movieDetails .links > a.parentalGuideLink { background: url('content/images/icons/caution2.png') no-repeat center left; }
@@ -228,14 +229,15 @@ header { background:#2D62AE; }
         .movieDetails .links > a.nearbyRedboxLink { background: url('content/images/icons/redbox.gif') no-repeat center left; }            
         .movieDetails .links > a.nearbyRedboxLink.loading { background: url('content/images/ajax-loader-blue-ribbon.gif') no-repeat center left; }        
         .movieDetails .links > a:not(:first-child) { margin-left: 20px; }
-    .movieDetails p { margin-top: 15px; }
-    .movieDetails .ratingAndLength { margin-top: 15px; font-size: 18px;  }
-        .movieDetails .ratingAndLength .mpaaRating { font-weight: bold; margin-right: 25px; float:left; }
-        .movieDetails .ratingAndLength .length { float: left; margin-right: 25px; }
-        .movieDetails .ratingAndLength .fbLikeContainer { float: left; width: 85px; float: left; }
+    .movieDetails p { margin-top: 25px; }
+        .movieDetails .mpaaRating { margin-left: 25px; float:left; font-size: 18px; }
+        .movieDetails .length { float: left; margin-right: 25px; }
+        
+        .movieDetails .fbLikeContainer { width: 85px; margin-top: 15px; float:left; clear: left; }
+
     .movieDetails .ratings { clear: left; }
     .movieDetails [data-releasedate] { font-weight: bold; }
-    .movieDetails #copyControls { width: 124px; display:inline-block; }
+    .movieDetails #copyControls { width: 124px; display:block; margin-top:15px; float:left; clear: left; }
         .movieDetails #copyControls #copySuccess { color: #333; display:none; margin-left: 10px; }
 
 #overlay { background:#333; opacity:.9; z-index:1001; position:absolute; top:0; left:0; } /* was .5 at #666666, then .7 at #333 */
@@ -342,7 +344,7 @@ header { background:#2D62AE; }
     #showtimesView #currentTheaterContainer .theater .showHiddenMoviesLinkContainer .showHiddenMoviesLink { color: #FFF; text-align: right; font-weight: bold; display:inline-block; float:right; }
 #showtimesView #currentTheaterContainer .theater .showtimeDays { margin:15px 0 9px 0; font-size: 130%; }
     #showtimesView #currentTheaterContainer .theater .showtimeDays a:not(:first-child) { padding-left: 20px; }
-    #showtimesView #currentTheaterContainer .theater .showtimeDays a::first-child { padding: 0; }
+    #showtimesView #currentTheaterContainer .theater .showtimeDays a:first-child { padding: 0; }
     #showtimesView #currentTheaterContainer .theater .showtimeDays a.active { color: #FFF; font-weight: bold; cursor:text; }                
     #showtimesView #currentTheaterContainer .theater .showtimeDays a:not(.active) { color: #999; }
 /* end: elements specific to theater view */

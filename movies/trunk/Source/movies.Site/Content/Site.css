@@ -284,8 +284,8 @@ header { background:#2D62AE; }
 /* --- Redbox Movie List --- */
 #redboxMovieList { overflow:auto; margin-top:20px; }
     #redboxMovieList .movie:not(:nth-child(8n+8)) { margin-right: 24px; }
-    #redboxMovieList .movie { margin-bottom: 24px; float: left; width: 106px; }
-        #redboxMovieList .movie > a { width: 106px; overflow: auto; display:block; height: 194px; }
+    #redboxMovieList .movie { margin-bottom: 24px; float: left; }
+        #redboxMovieList .movie > a { width: 106px; display:block; height: 194px; }
             #redboxMovieList .movie > a > span:first-child { display: block; padding: 2px 5px; font-weight: bold; color: #fff; text-transform: uppercase; }
             /* new span */
             #redboxMovieList .movie.new > a > span:first-child { border-top-right-radius: 5px; float: left; }

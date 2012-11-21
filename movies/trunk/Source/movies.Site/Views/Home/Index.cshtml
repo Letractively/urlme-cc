@@ -97,7 +97,7 @@
         {
             foreach (var m in Model.RedboxMovies.Values)
             {
-                <div class="movie rounded @(m.IsNewRelease ? "new" : string.Empty)">
+                <div class="movie rounded group @(m.IsNewRelease ? "new" : string.Empty)">
                     <a href="~/@m.MovieSlug">
                         @if (m.IsNewRelease)
                         {

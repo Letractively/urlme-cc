@@ -34,42 +34,51 @@ namespace movies.Model
                 string.Format("codejkjk.movies.Model.TrailerAddict.GetFeatured-{0}-{1}", count, width),
                 () =>
                 {
-                    List<Trailer> rtn = new List<Trailer>();
-                    string xml = API.TrailerAddict.GetFeaturedXml(count, width);
-                    DataSet ds = new DataSet();
-                    ds.ReadXml(new StringReader(xml));
-                    if (ds.Tables.Contains("trailer") && ds.Tables["trailer"].Rows.Count > 0)
+                    try
                     {
-                        foreach (DataRow row in ds.Tables["trailer"].Rows)
+                        return new List<Trailer>();
+
+                        List<Trailer> rtn = new List<Trailer>();
+                        string xml = API.TrailerAddict.GetFeaturedXml(count, width);
+                        DataSet ds = new DataSet();
+                        ds.ReadXml(new StringReader(xml));
+                        if (ds.Tables.Contains("trailer") && ds.Tables["trailer"].Rows.Count > 0)
                         {
-                            var rtMovie = Model.Movie.GetRottenTomatoesMovieByIMDbId(row["imdb"].ToString());
-                            if (rtMovie == null)
+                            foreach (DataRow row in ds.Tables["trailer"].Rows)
                             {
-                                continue;
-                            }
+                                var rtMovie = Model.Movie.GetRottenTomatoesMovieByIMDbId(row["imdb"].ToString());
+                                if (rtMovie == null)
+                                {
+                                    continue;
+                                }
 
-                            string movieClipPosterUrl = Model.Movie.GetRottenTomatoesClipPosterUrl(rtMovie.id);
-                            if (string.IsNullOrWhiteSpace(movieClipPosterUrl))
-                            {
-                                continue;
-                            }
+                                string movieClipPosterUrl = Model.Movie.GetRottenTomatoesClipPosterUrl(rtMovie.id);
+                                if (string.IsNullOrWhiteSpace(movieClipPosterUrl))
+                                {
+                                    continue;
+                                }
 
-                            rtn.Add(new Trailer
-                            {
-                                embed = row["embed"].ToString(),
-                                link = row["link"].ToString(),
-                                pubDate = DateTime.Parse(row["pubDate"].ToString()),
-                                title = row["title"].ToString(),
-                                trailer_id = row["trailer_id"].ToString(),
-                                PosterUrl = movieClipPosterUrl,
-                                RtMovieId = rtMovie.id,
-                                RtTitle = rtMovie.title,
-                                RtMovie = rtMovie
-                            });
+                                rtn.Add(new Trailer
+                                {
+                                    embed = row["embed"].ToString(),
+                                    link = row["link"].ToString(),
+                                    pubDate = DateTime.Parse(row["pubDate"].ToString()),
+                                    title = row["title"].ToString(),
+                                    trailer_id = row["trailer_id"].ToString(),
+                                    PosterUrl = movieClipPosterUrl,
+                                    RtMovieId = rtMovie.id,
+                                    RtTitle = rtMovie.title,
+                                    RtMovie = rtMovie
+                                });
+                            }
                         }
-                    }
 
-                    return rtn;
+                        return rtn;
+                    }
+                    catch
+                    {
+                        return new List<Trailer>();
+                    }
                 }, 60);
         }
     }

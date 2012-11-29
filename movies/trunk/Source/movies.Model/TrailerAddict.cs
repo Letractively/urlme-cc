@@ -36,8 +36,6 @@ namespace movies.Model
                 {
                     try
                     {
-                        return new List<Trailer>();
-
                         List<Trailer> rtn = new List<Trailer>();
                         string xml = API.TrailerAddict.GetFeaturedXml(count, width);
                         DataSet ds = new DataSet();

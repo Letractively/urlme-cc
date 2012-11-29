@@ -39,7 +39,7 @@
                     <div class="trailers group">
                         @foreach (var trailer in this.Model.FeatureTrailers)
                         {
-                            <a href="@trailer.Url" class="trailer">
+                            <a href="@trailer.Url" class="trailer" title="@trailer.RtMovie.synopsis">
                                 <img class="poster" src="@trailer.PosterUrl" />
                                 <div class="title">@trailer.RtTitle</div>
                             </a>

@@ -19,7 +19,7 @@ namespace movies.Model
             public DateTime pubDate { get; set; }
             public string trailer_id { get; set; }
             public string embed { get; set; }
-            
+
             // helpers
             public string PosterUrl { get; set; }
             public string RtMovieId { get; set; }
@@ -30,11 +30,11 @@ namespace movies.Model
 
         public static List<Trailer> GetFeatured(int count = 5, int width = 850)
         {
-            return Cache.GetValue<List<Trailer>>(
-                string.Format("codejkjk.movies.Model.TrailerAddict.GetFeatured-{0}-{1}", count, width),
-                () =>
-                {
-                    try
+            try
+            {
+                return Cache.GetValue<List<Trailer>>(
+                    string.Format("codejkjk.movies.Model.TrailerAddict.GetFeatured-{0}-{1}", count, width),
+                    () =>
                     {
                         List<Trailer> rtn = new List<Trailer>();
                         string xml = API.TrailerAddict.GetFeaturedXml(count, width);
@@ -72,12 +72,12 @@ namespace movies.Model
                         }
 
                         return rtn;
-                    }
-                    catch
-                    {
-                        return new List<Trailer>();
-                    }
-                }, 60);
+                    }, 60);
+            }
+            catch
+            {
+                return new List<Trailer>();
+            }
         }
     }
 }

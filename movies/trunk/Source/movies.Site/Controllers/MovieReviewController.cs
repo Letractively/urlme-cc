@@ -23,6 +23,7 @@ namespace movies.Site.Controllers
                 sb.AppendFormat("The following movie review has been <b><font color='green'>approved</font></b>: {0}.<br/><br/>", movie.title);
                 sb.AppendFormat("Visit the movie page here: <a href=\"{0}\">{0}</a>", movie.FullMovieUrl);
                 Core.Net.Mail.SendFromNoReply("johnhanlon06@gmail.com", "John Hanlon", "Movie approved: " + movie.title, sb.ToString());
+                Core.Net.Mail.SendFromNoReply("ihdavis@gmail.com", "Ian Davis", "Movie approved: " + movie.title, sb.ToString());
                 return Content("Approved! Go to <a href='//seeitornot.co'>seeitornot.co</a>.");
             }
             else

@@ -50,12 +50,6 @@ namespace movies.Model
                                     continue;
                                 }
 
-                                string movieClipPosterUrl = Model.Movie.GetRottenTomatoesClipPosterUrl(rtMovie.id);
-                                if (string.IsNullOrWhiteSpace(movieClipPosterUrl))
-                                {
-                                    continue;
-                                }
-
                                 rtn.Add(new Trailer
                                 {
                                     embed = row["embed"].ToString(),
@@ -63,7 +57,7 @@ namespace movies.Model
                                     pubDate = DateTime.Parse(row["pubDate"].ToString()),
                                     title = row["title"].ToString(),
                                     trailer_id = row["trailer_id"].ToString(),
-                                    PosterUrl = movieClipPosterUrl,
+                                    PosterUrl = Model.Movie.GetRottenTomatoesClipPosterUrl(rtMovie.id),
                                     RtMovieId = rtMovie.id,
                                     RtTitle = rtMovie.title,
                                     RtMovie = rtMovie

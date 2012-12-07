@@ -136,6 +136,7 @@
     <Content Include="Content\Images\Icons\video.png" />
     <Content Include="Content\Images\imdb_icon_small.png" />
     <Content Include="Content\Images\imdb_icon_smallest.png" />
+    <Content Include="Content\Images\no-trailer.png" />
     <Content Include="Content\Images\rt-sprite.png" />
     <Content Include="Content\Images\rt-sprite2.png" />
     <Content Include="Content\Images\rt-sprite3.png" />

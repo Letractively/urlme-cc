@@ -224,12 +224,12 @@ namespace movies.Model
                 {
                     string rtClipsJson = API.RottenTomatoes.GetMovieClipsJson(rtMovieId);
                     ClipCollection clipColl = rtClipsJson.FromJson<ClipCollection>();
-                    if (clipColl.clips != null && clipColl.clips.Any())
+                    if (clipColl.clips != null && clipColl.clips.Any() && !string.IsNullOrWhiteSpace(clipColl.clips.ElementAt(0).thumbnail))
                     {
                         return clipColl.clips.ElementAt(0).thumbnail;
                     }
-                    return string.Empty;
-                });
+                    return "/content/images/no-trailer.png";
+                }, 60);
         }
 
         public static Movie GetRottenTomatoesMovieByIMDbId(string imdbId)

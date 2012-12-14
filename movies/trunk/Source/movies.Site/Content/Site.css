@@ -289,9 +289,9 @@ header { background:#2D62AE; }
             #redboxMovieList .movie > a > span:first-child { display: block; padding: 2px 5px; font-weight: bold; color: #fff; text-transform: uppercase; }
             /* new span */
             #redboxMovieList .movie.new > a > span:first-child { border-top-right-radius: 5px; float: left; }
-            #redboxMovieList .movie > a > img { width: 106px; height: 150px; } /* thumbnail = 61 x 91 */
+            #redboxMovieList .movie > a > img { width: 106px; height: 150px; float: left; } /* thumbnail = 61 x 91 */
             /* find it */
-            #redboxMovieList .movie > a > span:last-child { text-align: center; display: block; padding: 5px 8px; font-weight: bold; color: #fff; text-transform: uppercase; }
+            #redboxMovieList .movie > a > span:last-child { float: left; width: 90px; text-align: center; display: block; padding: 5px 8px; font-weight: bold; color: #fff; text-transform: uppercase; }
 
 #showtimesView > div { display: none; }
 #showtimesLoading { display: none; }

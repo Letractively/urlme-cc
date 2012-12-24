@@ -145,8 +145,10 @@
     <Content Include="Content\Images\star_bigger.png" />
     <Content Include="Content\Images\star_small.png" />
     <Content Include="Content\Images\star_smallest.png" />
+    <Content Include="Content\Images\thumbsDown.png" />
     <Content Include="Content\Images\trailer-bg.png" />
     <Content Include="Content\Images\transparent.png" />
+    <Content Include="Content\Images\thumbsUp.png" />
     <Content Include="Content\jquery.mobile-1.0.1.min.css" />
     <Content Include="Content\logo.png" />
     <Content Include="Content\logo3_app_white.png" />

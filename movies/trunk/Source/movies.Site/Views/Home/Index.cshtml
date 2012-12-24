@@ -71,7 +71,7 @@
             <div class="reviews rounded glowing group">
                 @foreach (var review in this.Model.RecentReviews)
                 {
-                    <a href="@review.MovieUrl" class="ourReview small group">
+                    <a href="@review.MovieUrl" class="ourReview small group" title="@review.Text">
                         <span class="iconContainer"><span class="@review.ClassName icon"></span></span><span class="text">@review.Title</span>
                     </a>
                 }

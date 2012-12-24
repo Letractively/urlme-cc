@@ -75,12 +75,17 @@ namespace movies.Data.Repository
                     {
                         // leave as approved
                     }
-                    else if (onSeeItBlackList && movie.ReviewClass == "seeIt") // if on seeItBlackList and it's marked as "seeIt", then DISAPPROVED
+                    else if (onSeeItBlackList && movie.ReviewClass == "seeIt")
                     {
+                        // if on seeItBlackList and it's marked as "seeIt", then DISAPPROVED
                         dbMovie.Status = Enumerations.MovieReviewStatus.Disapproved.ToString();
                     }
                     else if (!requiresApproval || onSeeItWhiteList || (requiresApproval && movie.ReviewClass == "orNot"))
                     {
+                        // doesn't require approval, OR on seeIt white list, OR requires approval AND it's OrNot
+                        string thumbsUrl = string.Format("http://seeitornot.co/content/images/{0}.png", movie.ReviewClass == "orNot" ? "thumbsDown" : "thumbsUp");
+                        string body = string.Format("Yay, John submitted a review for <b>{0}</b>. <img style='width:16px; vertical-align:text-bottom' src='{1}' /> \"{2}\".", movie.Title, thumbsUrl, movie.Review);
+                        Core.Net.Mail.SendFromNoReply("ihdavis@gmail.com", "Ian Davis", string.Format("Review submitted: '{0}' for {1}", movie.ReviewClass, movie.Title), body);
                         dbMovie.Status = Enumerations.MovieReviewStatus.NotRequired.ToString();
                     }
                     else if (requiresApproval && movie.ReviewClass == "seeIt")

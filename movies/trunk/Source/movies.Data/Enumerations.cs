@@ -14,5 +14,11 @@ namespace movies.Data
             Disapproved,
             NotRequired
         }
+
+        public enum LogType
+        {
+            Error,
+            Info
+        }
     }
 }

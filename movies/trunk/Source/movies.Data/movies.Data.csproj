@@ -46,6 +46,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>bd13.dbml</DependentUpon>
     </Compile>
+    <Compile Include="DomainModels\Log.cs" />
     <Compile Include="DomainModels\MovieReview.cs" />
     <Compile Include="DomainModels\User.cs" />
     <Compile Include="Enumerations.cs" />

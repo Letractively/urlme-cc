@@ -24,6 +24,7 @@ namespace movies.Site.Controllers
                 OpeningMovies = Movie.GetMovies(Enumerations.MovieLists.Opening),
                 BoxOfficeMovies = Movie.GetMovies(Enumerations.MovieLists.BoxOffice),
                 InTheatersMovies = inTheatersMoviesDisplay,
+                UpcomingMovies = Movie.GetMovies(Enumerations.MovieLists.Upcoming),
 
                 OverlayMovie = null
             };
@@ -31,7 +32,6 @@ namespace movies.Site.Controllers
             // DESKTOP VIEW? 
             if (!Request.Browser.IsMobileDevice)
             {
-                vm.UpcomingMovies = Movie.GetMovies(Enumerations.MovieLists.Upcoming);
                 vm.FeatureTrailers = TrailerAddict.GetFeatured(20);
                 vm.RedboxMovies = Redbox.GetMovies();
                 vm.RecentReviews = Data.DomainModels.MovieReview.GetLatest(7);

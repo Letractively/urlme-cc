@@ -27,7 +27,7 @@
 </div>
 <div id="body">
     <div class="loading"></div>
-    <div class="logo">
+    <div class="logo orangeDiag">
         <a href="~/"></a>
     </div>
     <h1>
@@ -52,6 +52,12 @@
         <div data-role="content" class="group movieList">
             <div class="sliderWrapper">
                 @this.Html.Partial("MovieList.Mobile", this.Model.InTheatersMovies)
+            </div>
+        </div>
+        <h2>Coming Soon</h2>
+        <div data-role="content" class="group movieList">
+            <div class="sliderWrapper">
+                @this.Html.Partial("MovieList.Mobile", this.Model.UpcomingMovies)
             </div>
         </div>
     </section>

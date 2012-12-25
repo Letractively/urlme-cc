@@ -19,8 +19,8 @@ em, i, em *, i * { font-style: italic !important; }
 * html .group { zoom: 1; } /* IE6 */
 *:first-child+html .group { zoom: 1; } /* IE7 */
 
-div.logo { height: 80px; padding: 10px; background-color: #000; }
-div.logo a { margin:0 auto; display:block; background: url('content/logo_mobile.png'); background-repeat:no-repeat; height: 80px; width: 224px;}
+div.logo { height: 105px; padding: 0px; background-color: #000; }
+div.logo a { margin:0 auto; display:block; background: url('content/logo4_4.png'); background-repeat:no-repeat; height: 105px; width: 349px;}
 
 .hidden { display: none; }
 div.loading { position: fixed; top: 5px; right: 5px; display:none; background: url('content/images/ajax-loader-blue-ribbon.gif') no-repeat center left; width: 16px; height: 16px; }

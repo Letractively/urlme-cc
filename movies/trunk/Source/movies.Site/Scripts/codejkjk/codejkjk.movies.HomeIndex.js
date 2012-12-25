@@ -23,7 +23,6 @@ codejkjk.movies.desktop = {
         ActionLinks: function () { return $(".actions").find("a"); }
         , BackToMovieDetailsLinkSelector: function () { return ".backToMovieDetails"; }
         , BoxOfficeView: function () { return $("#boxOfficeView"); }
-        , BrowseLinkSelector: function () { return "#browse"; }
         , changeShowtimeZipLink: function () { return $("#changeCurrentZipLink"); }
         , CloseMovieDetailsLinkSelector: function () { return ".closeMovieDetails"; }
         , CopyButton: function () { return $("#copyButton"); }
@@ -48,22 +47,14 @@ codejkjk.movies.desktop = {
         , MovieUrl: function () { return $("#movieUrl"); }
         , Nav: function () { return $("nav"); }
         , NavLinks: function () { return $("nav > a"); }
-        , NearbyRedboxLinksSelector: function () { return ".nearbyRedboxLink"; }
         , InputShowtimesZip: function () { return $("#inputShowtimesZip"); }
         , Overlay: function () { return $("#overlay"); }
         , OverlaySelector: function () { return "#overlay"; }
         , popups: function () { return $(".popup"); }
-        , RedboxAvails: function () { return $("#redboxAvails"); }
-        , RedboxAvailsList: function () { return $("#redboxAvailsList"); }
-        , Redboxes: function () { return $("#redboxes"); }
-        , RedboxLocationChooser: function () { return $("#redboxLocationChooser"); }
         , RemoveLinks: function () { return $(".actions").find(".removeLink"); }
-        , RedboxZipCodeInput: function () { return $("#redboxZip"); }
         , searchBox: function () { return $("#q > input[type='text']"); }
         , searchButton: function () { return $("#q > input[type='submit']"); }
-        , SearchRedboxZipCodeButton: function () { return $("#redboxZip").next("button"); }
         , SearchResultsView: function () { return $("#searchResultsView"); }
-        , SeeNearbyRedboxesSelector: function () { return "#seeNearbyRedboxes"; }
         , ShowHiddenMoviesLinksSelector: function () { return ".showHiddenMoviesLink"; }
         , ShowtimeDayLinks: function () { return $(".showtimeDays > a"); }
         , ShowtimeDayLinksSelector: function () { return ".showtimeDays > a"; }
@@ -520,18 +511,6 @@ codejkjk.movies.desktop = {
         codejkjk.movies.Api.GetTheaters(codejkjk.movies.desktop.currents.ShowtimeDay(), zipCode, codejkjk.movies.desktop.LoadTheaters);
     },
 
-    UpdateRedboxZip: function (zipCode) {
-        codejkjk.movies.desktop.currents.RedboxZipCode(zipCode); // update current redbox zip code
-        // codejkjk.movies.desktop.controls.CurrentZip().html(zipCode);
-        codejkjk.movies.desktop.currents.Redbox(""); // new zip, so clear out current redbox store id value
-
-        codejkjk.Geo.GetLatLongFromZip(zipCode, function (lat, long) {
-            codejkjk.movies.Api.GetRedboxesHtml(lat, long, function (html) {
-                codejkjk.movies.desktop.controls.Redboxes().html(html);
-            });
-        });
-    },
-
     showTrailer: function (movieIdToAjaxLoad) {
         codejkjk.movies.desktop.showOverlay();
 
@@ -606,12 +585,6 @@ codejkjk.movies.desktop = {
     },
 
     bindControls: function () {
-        // handle "Browse Nearby Redbox"
-        $(document).on('click', codejkjk.movies.desktop.controls.BrowseLinkSelector(), function (e) {
-            e.preventDefault();
-            $(this).next("div").toggleClass("hidden");
-        });
-
         // slide link clicks
         $(document).on('click', codejkjk.movies.desktop.controls.slideLinksSelector(), function (e) {
             e.preventDefault();
@@ -630,16 +603,6 @@ codejkjk.movies.desktop = {
                 slideLink.closest(".slider").find(".feature").html(html);
                 codejkjk.siteActions.wireReleaseDates();
                 if (typeof refreshAdmin === "function") { refreshAdmin(); }
-            });
-        });
-
-        // handle "see nearby redboxes" links
-        $(document).on('click', codejkjk.movies.desktop.controls.SeeNearbyRedboxesSelector(), function (e) {
-            e.preventDefault();
-            codejkjk.Geo.GetLatLong(function (lat, long) {
-                codejkjk.movies.Api.GetRedboxesHtml(lat, long, function (html) {
-                    codejkjk.movies.desktop.controls.Redboxes().html(html);
-                });
             });
         });
 
@@ -812,32 +775,6 @@ codejkjk.movies.desktop = {
             }
         });
 
-        // handle showtimes links on movie detail popups
-        $(document).on('click', codejkjk.movies.desktop.controls.NearbyRedboxLinksSelector(), function (e) {
-            e.preventDefault();
-
-            var link = $(this);
-            var redboxAvailsContainer = codejkjk.movies.desktop.controls.RedboxAvails();
-            var redboxAvailsList = codejkjk.movies.desktop.controls.RedboxAvailsList();
-
-            if (redboxAvailsContainer.hasClass("loaded")) {
-                // already been loaded previously, so just show it
-                codejkjk.movies.desktop.controls.MovieDetails().hide();
-                redboxAvailsContainer.removeClass("hidden");
-            } else {
-                // first thing, add loading class
-                link.addClass("loading");
-                redboxAvailsList.html("This feature coming soon...");
-
-                // remove loading class
-                link.removeClass("loading");
-                codejkjk.movies.desktop.controls.MovieDetails().hide();
-                redboxAvailsContainer.removeClass("hidden").addClass("loaded");
-                // });
-                // });
-            }
-        });
-
         // bind showtimeUseMyLocations
         codejkjk.movies.desktop.controls.showtimeUseMyLocations().click(function (e) {
             e.preventDefault();
@@ -846,20 +783,6 @@ codejkjk.movies.desktop = {
             codejkjk.Geo.GetZipCode(function (zipCode) {
                 codejkjk.movies.desktop.updateShowtimesZip(zipCode);
             });
-        });
-
-        // handle button that sets manual set of zip for redbox search
-        codejkjk.movies.desktop.controls.SearchRedboxZipCodeButton().click(function (e) {
-            e.preventDefault();
-            var zipCode = codejkjk.movies.desktop.controls.RedboxZipCodeInput().val();
-            codejkjk.movies.desktop.UpdateRedboxZip(zipCode);
-        });
-
-        // handle Enter key on manual zip input box for redbox search - triggers "Search" button click
-        codejkjk.movies.desktop.controls.RedboxZipCodeInput().keydown(function (e) {
-            if (e.keyCode == 13) {
-                codejkjk.movies.desktop.controls.SearchRedboxZipCodeButton().trigger('click');
-            }
         });
 
         // click whats hot list tabs

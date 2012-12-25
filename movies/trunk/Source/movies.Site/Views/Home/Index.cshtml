@@ -10,6 +10,7 @@
         var baseUrl = '@this.Url.Content("~/")';
     </script>
     <script src="~/scripts/codejkjk/codejkjk.movies.HomeIndex.js"></script>
+    <script src="~/scripts/codejkjk/codejkjk.movies.redbox.js"></script>
     <script src="~/scripts/plugins/lazyload/jquery.lazyload.min.js"></script>
 }
 
@@ -84,8 +85,8 @@
     <section id="redboxView" class="content" data-navitemtext="Redbox">
         <div id="redboxBrowserContainer">
             <div id="redboxBrowser" class="rounded glowing">
-                <div id="browsingInside">Browsing inside: <span id="currentKiosk">All Redbox kiosks</span><a href="#">pick a location</a></div>
-                <div id="redboxLocationOptions" class="hidden">
+                <div id="browsingInside">Browsing inside: <span id="currentKiosk">All Redbox kiosks</span><a href="#" id="browse">pick a location</a></div>
+                <div id="redboxOptions" class="hidden">
                     <input type="text" placeholder="e.g., 23226" id="redboxZip" /><button>Search</button>&nbsp;&nbsp;or&nbsp;&nbsp;<a href="#" id="seeNearbyRedboxes">see nearby</a>
                 </div>  
                 <div id="redboxes"></div>  

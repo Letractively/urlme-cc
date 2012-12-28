@@ -3,6 +3,8 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "futonFinder.Site", "futonFinder.Site\futonFinder.Site.csproj", "{19C28500-5A14-4335-B93D-65035CB6B33B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "futonFinder.Data", "futonFinder.Data\futonFinder.Data.csproj", "{C4DC9FC4-CBE6-42C4-8A14-CE5310980DA4}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -13,6 +15,10 @@ Global
 		{19C28500-5A14-4335-B93D-65035CB6B33B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{19C28500-5A14-4335-B93D-65035CB6B33B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{19C28500-5A14-4335-B93D-65035CB6B33B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C4DC9FC4-CBE6-42C4-8A14-CE5310980DA4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C4DC9FC4-CBE6-42C4-8A14-CE5310980DA4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C4DC9FC4-CBE6-42C4-8A14-CE5310980DA4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C4DC9FC4-CBE6-42C4-8A14-CE5310980DA4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -47,7 +47,7 @@
                         }
                     </div>
                 </div>
-                <a href="#" class="slideButtonContainer rounded" id="next">
+                <a href="#" class="slideButtonContainer rounded @(this.Model.FeatureTrailers != null && this.Model.FeatureTrailers.Count > 4 ? string.Empty : "inactive")" id="next">
                     <span></span>
                 </a>
                 @*<a href="http://www.traileraddict.com" class="seeMore noPush">See more at TrailerAddict.com »</a>*@

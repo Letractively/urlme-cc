@@ -36,7 +36,7 @@ namespace futonFinder.Data
     #endregion
 		
 		public bd13DataContext() : 
-				base(global::futonFinder.Data.Properties.Settings.Default.bakersdozen132ConnectionString1, mappingSource)
+				base(global::futonFinder.Data.Properties.Settings.Default.bakersdozen132ConnectionString, mappingSource)
 		{
 			OnCreated();
 		}

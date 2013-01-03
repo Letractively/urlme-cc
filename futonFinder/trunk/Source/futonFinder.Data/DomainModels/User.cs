@@ -6,7 +6,7 @@ using System.Web.Security;
 using System.Web;
 using futonFinder.Data;
 
-namespace urlme.Model
+namespace futonFinder.Data.DomainModels
 {
     public class User
     {

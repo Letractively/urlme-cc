@@ -32,7 +32,7 @@ namespace movies.Site.Controllers
             // DESKTOP VIEW? 
             if (!Request.Browser.IsMobileDevice)
             {
-                vm.FeatureTrailers = TrailerAddict.GetFeatured(20);
+                vm.FeatureTrailers = TrailerAddict.GetFeatured(20).Take(8).ToList();
                 vm.RedboxMovies = Redbox.GetMovies();
                 vm.RecentReviews = Data.DomainModels.MovieReview.GetLatest(7);
                 //if (!Request.Url.ToString().Contains("localhost"))

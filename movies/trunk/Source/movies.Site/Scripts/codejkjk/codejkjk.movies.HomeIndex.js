@@ -66,7 +66,6 @@ codejkjk.movies.desktop = {
         , showtimeZipOptions: function () { return $(".showtimeZipOptions"); }
         , showtimeZipOptionsBig: function () { return $("#showtimesView .showtimeZipOptions:first"); }
         , showtimeZipOptionsSmall: function () { return $("#showtimesView .showtimeZipOptions:last"); }
-        , slideLinksSelector: function () { return ".slider .slides a"; }
         , TheatersForMovieList: function () { return $("#theatersForMovieList"); }
         , TheaterLinksSelector: function () { return ".theaterList > a"; }
         , TheaterList: function () { return $("#theaterList"); }
@@ -585,27 +584,6 @@ codejkjk.movies.desktop = {
     },
 
     bindControls: function () {
-        // slide link clicks
-        $(document).on('click', codejkjk.movies.desktop.controls.slideLinksSelector(), function (e) {
-            e.preventDefault();
-            var slideLink = $(this);
-            if (slideLink.hasClass("active")) {
-                return; // already active, so do nothing
-            }
-
-            // toggle active links
-            $(codejkjk.movies.desktop.controls.slideLinksSelector()).removeClass("active");
-            slideLink.addClass("active");
-
-            // load the selected movie into the feature box
-            var movieId = slideLink.attr("data-movieid");
-            codejkjk.movies.Api.GetMovieSimpleHtml(movieId, function (html) {
-                slideLink.closest(".slider").find(".feature").html(html);
-                codejkjk.siteActions.wireReleaseDates();
-                if (typeof refreshAdmin === "function") { refreshAdmin(); }
-            });
-        });
-
         // handle favorite theater links
         $(document).on('click', codejkjk.movies.desktop.controls.FavoriteLinksSelector(), function (e) {
             e.preventDefault();
@@ -830,42 +808,19 @@ codejkjk.movies.desktop = {
 
             var trailers = codejkjk.movies.desktop.controls.wideTrailersBox();
             var currentLeft = parseInt(trailers.css("left").replace("px", ""));
-            var moveBy = parseInt(trailers.find(".trailer").width() + 10); // 10 for padding left on each slide
-            if (prevNextLink.attr("id") == "next") {
-                moveBy = moveBy * -1;
+            prevNextLink.toggleClass("inactive");
+            var newLeft = 0;
+            if (prevNextLink.attr("id") === "next") {
+                moveBy = -1 * parseInt(trailers.find(".trailer").width() + 10); // 10 for padding left on each side
+                moveBy = moveBy * (8 - trailers.find(".trailer").length); // move all the way to the right. if there are 2 trailers to the right of the Right (next) button, then move to the left - 2 * trailerWidth
+                newLeft = moveBy;
+                $("#prev").removeClass("inactive");
+            } else { // else, leave newLeft at zero because "prev" is clicked, so move all the way to the first trailer
+                $("#next").removeClass("inactive");
             }
-            var newLeft = moveBy + currentLeft;
-            codejkjk.movies.desktop.enableDisableTrailerSlideButtons(newLeft);
+            
             trailers.animate({ left: newLeft }, 250, function () { prevNextLink.removeClass("inProcess"); });
         });
-    },
-
-    enableDisableTrailerSlideButtons: function (newLeft) {
-        var trailers = codejkjk.movies.desktop.controls.wideTrailersBox();
-        var maxLeft = trailers.attr("data-max-left");
-
-        // calc only once
-        if (maxLeft) {
-            maxLeft = parseInt(maxLeft);
-        } else {
-            var moveBy = parseInt(trailers.find(".trailer").width() + 10);
-            var numSlidesInWindow = 4;
-            var numSlides = trailers.find(".trailer").length;
-            maxLeft = (numSlides - numSlidesInWindow) * -moveBy;
-            trailers.attr("data-max-left", maxLeft);
-        }
-
-        if (newLeft === 0) {
-            $("#prev").addClass("inactive");
-        }
-        else {
-            $("#prev").removeClass("inactive");
-        }
-        if (newLeft === maxLeft) {
-            $("#next").addClass("inactive");
-        } else {
-            $("#next").removeClass("inactive");
-        }
     },
 
     search: function () {

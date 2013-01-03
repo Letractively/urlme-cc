@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?><Database Name="bakersdozen132" Class="bd13DataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Connection Mode="AppSettings" ConnectionString="Data Source=sqlserver8.loosefoot.com;Initial Catalog=bakersdozen132;Persist Security Info=True;User ID=ihdavis2" SettingsObjectName="futonFinder.Data.Properties.Settings" SettingsPropertyName="bakersdozen132ConnectionString1" Provider="System.Data.SqlClient" />
+  <Connection Mode="AppSettings" ConnectionString="Data Source=sqlserver8.loosefoot.com;Initial Catalog=bakersdozen132;Persist Security Info=True;User ID=ihdavis2" SettingsObjectName="futonFinder.Data.Properties.Settings" SettingsPropertyName="bakersdozen132ConnectionString" Provider="System.Data.SqlClient" />
   <Table Name="ihdavis.[User]" Member="Users">
     <Type Name="User">
       <Column Name="UserId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />

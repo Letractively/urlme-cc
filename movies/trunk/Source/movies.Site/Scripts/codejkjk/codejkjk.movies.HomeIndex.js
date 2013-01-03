@@ -1,4 +1,4 @@
-﻿registerNS("codejkjk.movies.desktop");
+registerNS("codejkjk.movies.desktop");
 
 // todo:
 // - theater h1, make h2 b/c there should only be one h1 on the page
@@ -29,7 +29,7 @@ codejkjk.movies.desktop = {
         , CopySuccess: function () { return $("#copySuccess"); }
         , CurrentNavItem: function () { return $("nav > a.selected"); }
         , CurrentMovieId: function () { return $("#currentMovieId"); }
-        , CurrentTheaterContainer: function () { return $("#currentTheaterContainer"); }
+        , CurrentTheaterContainer: function () { return $("#currentTheaterContainer"); } 
         , CurrentTheaterTemplate: function () { return $("#currentTheaterTemplate"); }
         , CurrentView: function () { return $(".content:visible"); }
         , CurrentZip: function () { return $("#currentZip"); }

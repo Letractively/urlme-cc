@@ -10,6 +10,7 @@ using Microsoft.Web.WebPages.OAuth;
 using WebMatrix.WebData;
 using futonFinder.Site.Filters;
 using futonFinder.Site.Models;
+using BrockAllen.WebSecurityClaimsHelper;
 
 namespace futonFinder.Site.Controllers
 {
@@ -36,6 +37,9 @@ namespace futonFinder.Site.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult ExternalLogin(string provider, string returnUrl)
         {
+            //returnUrl = Url.Action("ExternalLoginCallback", new { ReturnUrl = returnUrl });
+            //return Redirect("https://www.facebook.com/dialog/oauth?client_id=" + new Facebook().AppID + "&redirect_uri=" + HttpUtility.HtmlEncode("h" + System.Web.HttpContext.Current.Request.Url.ToString().Substring("h", "/Account") + returnUrl) + "%3F__provider__%3Dfacebook&scope=email");
+            
             return new ExternalLoginResult(provider, Url.Action("ExternalLoginCallback", new { ReturnUrl = returnUrl }));
         }
 
@@ -50,6 +54,11 @@ namespace futonFinder.Site.Controllers
             {
                 return RedirectToAction("ExternalLoginFailure");
             }
+
+            OAuthClaims.SetClaimsFromAuthenticationResult(result);
+
+            var principal = System.Security.Claims.ClaimsPrincipal.Current;
+            var emailClaim = principal.FindFirst("email");
 
             if (OAuthWebSecurity.Login(result.Provider, result.ProviderUserId, createPersistentCookie: false))
             {

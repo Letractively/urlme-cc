@@ -39,6 +39,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="BrockAllen.WebSecurityClaimsHelper">
+      <HintPath>..\packages\BrockAllen.WebSecurityClaimsHelper.1.0.0\lib\net45\BrockAllen.WebSecurityClaimsHelper.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
     <Reference Include="System.Data" />

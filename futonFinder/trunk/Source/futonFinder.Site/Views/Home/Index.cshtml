@@ -28,4 +28,6 @@
         <a href="#" class="group gradient"><span class="twitter iconBox"><span></span></span><span class="text">Sign in with Twitter</span></a>
         </form>
     </div>
+
+    @Html.Action("ExternalLoginsList", new { ReturnUrl = ViewBag.ReturnUrl })
 </div>

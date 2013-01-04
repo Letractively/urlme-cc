@@ -1,0 +1,31 @@
+﻿@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Welcome!  Sign in below to get started, or <a href="#">skip this for now</a>.</h2>
+
+<div id="homeIndex">
+    <div id="logins">
+        <form>
+        <a href="#" class="group gradient">
+            <span class="facebook iconBox">
+                <span></span>
+            </span>
+            <span class="text">Sign in with Facebook</span>
+        </a>
+        </form>
+        @using (Html.BeginForm("GoogleSignIn", "Account", FormMethod.Post))
+        {
+            <input name="openid_identifier" type="hidden" value="https://www.google.com/accounts/o8/id" />             
+            <a href="#" class="group gradient" onclick="$(this).parent('form').submit(); return false;">
+                <span class="google iconBox">
+                    <span></span>
+                </span>
+                <span class="text">Sign in with Google</span>
+            </a>            
+        }
+        <form>
+        <a href="#" class="group gradient"><span class="twitter iconBox"><span></span></span><span class="text">Sign in with Twitter</span></a>
+        </form>
+    </div>
+</div>

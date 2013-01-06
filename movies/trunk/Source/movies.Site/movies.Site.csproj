@@ -320,6 +320,7 @@
     <Content Include="Views\Shared\Slider.cshtml" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Properties\PublishProfiles\Profile.pubxml" />
     <None Include="Properties\PublishProfiles\publish to c--publish-movies.pubxml" />
     <None Include="Properties\PublishProfiles\publish to prod.pubxml" />
     <Content Include="Views\IFrame\IMDbRating.cshtml" />

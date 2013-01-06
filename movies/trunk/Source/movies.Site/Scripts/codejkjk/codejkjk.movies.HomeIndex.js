@@ -25,8 +25,6 @@ codejkjk.movies.desktop = {
         , BoxOfficeView: function () { return $("#boxOfficeView"); }
         , changeShowtimeZipLink: function () { return $("#changeCurrentZipLink"); }
         , CloseMovieDetailsLinkSelector: function () { return ".closeMovieDetails"; }
-        , CopyButton: function () { return $("#copyButton"); }
-        , CopySuccess: function () { return $("#copySuccess"); }
         , CurrentNavItem: function () { return $("nav > a.selected"); }
         , CurrentMovieId: function () { return $("#currentMovieId"); }
         , CurrentTheaterContainer: function () { return $("#currentTheaterContainer"); } 
@@ -44,7 +42,6 @@ codejkjk.movies.desktop = {
         , MovieDetails: function () { return $("#movieDetailsPopup .movieDetails"); }
         , MovieListTemplate: function () { return $("#movieListTemplate"); }
         , MovieShowtimes: function () { return $("#movieShowtimes"); }
-        , MovieUrl: function () { return $("#movieUrl"); }
         , Nav: function () { return $("nav"); }
         , NavLinks: function () { return $("nav > a"); }
         , InputShowtimesZip: function () { return $("#inputShowtimesZip"); }
@@ -521,13 +518,11 @@ codejkjk.movies.desktop = {
             codejkjk.movies.Api.GetTrailerHtml(movieIdToAjaxLoad, function (html) {
                 trailerPopup.html(html);
                 FB.XFBML.parse();
-                codejkjk.movies.desktop.InitZeroClipboard();
                 codejkjk.siteActions.wireReleaseDates();
             });
         } else {
             // movie details are already in dom, so just init zeroclipboard b/c it's ready to go
             trailerPopup.show();
-            codejkjk.movies.desktop.InitZeroClipboard();
             codejkjk.siteActions.wireReleaseDates();
         }
     },
@@ -549,7 +544,6 @@ codejkjk.movies.desktop = {
                 codejkjk.movies.Api.GetRedboxMovieHtml(movieIdToAjaxLoad, function (html) {
                     codejkjk.movies.desktop.controls.MovieDetailsPopup().html(html);
                     FB.XFBML.parse();
-                    codejkjk.movies.desktop.InitZeroClipboard();
                     codejkjk.siteActions.wireReleaseDates();
                     if (typeof refreshAdmin === "function") { refreshAdmin(); }
                 });
@@ -559,28 +553,16 @@ codejkjk.movies.desktop = {
                     //var s = $(html).filter("script").text();
                     //eval(s);
                     FB.XFBML.parse();
-                    codejkjk.movies.desktop.InitZeroClipboard();
                     codejkjk.siteActions.wireReleaseDates();
                     if (typeof refreshAdmin === "function") { refreshAdmin(); }
                 });
             }
         } else {
-            // movie details are already in dom, so just init zeroclipboard b/c it's ready to go
+            // movie details are already in dom, so just init `rd b/c it's ready to go
             codejkjk.movies.desktop.controls.MovieDetailsPopup().show();
-            codejkjk.movies.desktop.InitZeroClipboard();
             codejkjk.siteActions.wireReleaseDates();
             if (typeof refreshAdmin === "function") { refreshAdmin(); }
         }
-    },
-
-    InitZeroClipboard: function () {
-        var clip = new ZeroClipboard.Client();
-        clip.setText(codejkjk.movies.desktop.controls.MovieUrl().val());
-        clip.glue('copyButton');
-
-        clip.addEventListener('complete', function (client, text) {
-            codejkjk.movies.desktop.controls.CopySuccess().show().delay(2500).fadeOut('fast');
-        });
     },
 
     bindControls: function () {

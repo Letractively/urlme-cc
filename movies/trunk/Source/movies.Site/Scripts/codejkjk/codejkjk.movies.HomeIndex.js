@@ -794,7 +794,7 @@ codejkjk.movies.desktop = {
             var newLeft = 0;
             if (prevNextLink.attr("id") === "next") {
                 moveBy = -1 * parseInt(trailers.find(".trailer").width() + 10); // 10 for padding left on each side
-                moveBy = moveBy * (8 - trailers.find(".trailer").length); // move all the way to the right. if there are 2 trailers to the right of the Right (next) button, then move to the left - 2 * trailerWidth
+                moveBy = moveBy * (trailers.find(".trailer").length - 4); // move all the way to the right. if there are 2 trailers to the right of the Right (next) button, then move to the left - 2 * trailerWidth
                 newLeft = moveBy;
                 $("#prev").removeClass("inactive");
             } else { // else, leave newLeft at zero because "prev" is clicked, so move all the way to the first trailer

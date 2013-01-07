@@ -127,10 +127,10 @@ a.button img.link { background: url('content/images/google-sprite.png') -143px -
 .mpaaRating { color: #465F82; }
 
 header { background:#2D62AE; }
-    header > #headerContent { padding: 0 0 10px 0; margin: 0 auto; width: 1000px; }
+    header > #headerContent { padding: 0 0 10px 0; margin: 0 auto; width: 1000px; position: relative; }
     header > #headerContent > #logo { float: left; display:inline-block; margin-left: -41px; /* font-size: 35px; font-weight: bold; color: White; */ background: url('content/logo4_4.png'); width: 349px; height: 105px; }
         header > #headerContent > #logo span { float: left; display:inline-block; }
-    header > #headerContent > #fbLikeContainer { top: 14px; left: 400px; position: absolute; /* width: 85px; float: left; margin-top: 50px; margin: 30px 0 0 20px; position: fixed; top: 50px; left: 20px; */ }
+    header > #headerContent > #fbLikeContainer { bottom: 10px; left: 276px; position: absolute; /* width: 85px; float: left; margin-top: 50px; margin: 30px 0 0 20px; position: fixed; top: 50px; left: 20px; */ }
     header > #headerContent > #headerAd { float: right; padding-top:20px; }
     /* header > #headerContent > #q { float: right; padding: 8px; outline: none; width: 282px; border: 1px solid #ccc; font-size: 14px; } */
     nav, section { display:block; }

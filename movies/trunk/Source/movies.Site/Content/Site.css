@@ -223,7 +223,7 @@ header { background:#2D62AE; }
     .movieDetails .links { font-weight: bold; }
         .movieDetails .links > a:not(.button) { padding-left: 22px; color: #2489CE; height:16px; line-height: 17px; /* text-decoration: underline; */ }
         .movieDetails .links > a.trailerLink { background: url('content/images/icons/video.png') no-repeat center left; }
-        .movieDetails .links > a.parentalGuideLink { background: url('content/images/icons/caution2.png') no-repeat center left; }
+        .movieDetails .links > a.parentalGuideLink { background: url('content/images/icons/caution.png') no-repeat center left; }
         .movieDetails .links > a.showtimesLink { background: url('content/images/icons/clock.png') no-repeat center left; }            
         .movieDetails .links > a.showtimesLink.loading { background: url('content/images/ajax-loader-blue-ribbon.gif') no-repeat center left; }
         .movieDetails .links > a.nearbyRedboxLink { background: url('content/images/icons/redbox.gif') no-repeat center left; }            

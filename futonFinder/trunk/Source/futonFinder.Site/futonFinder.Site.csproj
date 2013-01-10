@@ -172,6 +172,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountModels.cs" />
+    <Compile Include="Models\Facebook.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModels\ViewModelBase.cs" />
     <Compile Include="ViewModels\ViewModelItem.cs" />
@@ -292,6 +293,10 @@
     <Content Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\futonFinder.Core\futonFinder.Core.csproj">
+      <Project>{8b0d94be-750f-43c4-ad7a-96419a4bf255}</Project>
+      <Name>futonFinder.Core</Name>
+    </ProjectReference>
     <ProjectReference Include="..\futonFinder.Data\futonFinder.Data.csproj">
       <Project>{c4dc9fc4-cbe6-42c4-8a14-ce5310980da4}</Project>
       <Name>futonFinder.Data</Name>

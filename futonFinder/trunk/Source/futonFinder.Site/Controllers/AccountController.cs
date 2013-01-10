@@ -1,16 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Transactions;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
+using BrockAllen.WebSecurityClaimsHelper;
 using DotNetOpenAuth.AspNet;
-using Microsoft.Web.WebPages.OAuth;
-using WebMatrix.WebData;
 using futonFinder.Site.Filters;
 using futonFinder.Site.Models;
-using BrockAllen.WebSecurityClaimsHelper;
+using Microsoft.Web.WebPages.OAuth;
+using WebMatrix.WebData;
+using futonFinder.Core.Extensions;
 
 namespace futonFinder.Site.Controllers
 {
@@ -39,8 +38,15 @@ namespace futonFinder.Site.Controllers
         {
             //returnUrl = Url.Action("ExternalLoginCallback", new { ReturnUrl = returnUrl });
             //return Redirect("https://www.facebook.com/dialog/oauth?client_id=" + new Facebook().AppID + "&redirect_uri=" + HttpUtility.HtmlEncode("h" + System.Web.HttpContext.Current.Request.Url.ToString().Substring("h", "/Account") + returnUrl) + "%3F__provider__%3Dfacebook&scope=email");
-            
-            return new ExternalLoginResult(provider, Url.Action("ExternalLoginCallback", new { ReturnUrl = returnUrl }));
+            if (provider == "google")
+            {
+                return new ExternalLoginResult(provider, Url.Action("ExternalLoginCallback", new { ReturnUrl = returnUrl }));
+            }
+            else
+            {
+                returnUrl = Url.Action("ExternalLoginCallback", new { ReturnUrl = returnUrl });
+                return Redirect("https://www.facebook.com/dialog/oauth?client_id=" + new Facebook().AppID + "&redirect_uri=" + HttpUtility.HtmlEncode("h" + System.Web.HttpContext.Current.Request.Url.ToString().Substring("h", "/Account") + returnUrl) + "%3F__provider__%3Dfacebook&scope=email");
+            }
         }
 
         //
@@ -49,36 +55,53 @@ namespace futonFinder.Site.Controllers
         [AllowAnonymous]
         public ActionResult ExternalLoginCallback(string returnUrl)
         {
-            AuthenticationResult result = OAuthWebSecurity.VerifyAuthentication(Url.Action("ExternalLoginCallback", new { ReturnUrl = returnUrl }));
+            string code = Request.QueryString["code"];
+            string returnUrl1 = Url.Action("ExternalLoginCallback", new { ReturnUrl = returnUrl });
+
+            IDictionary<string, string> userData = new Facebook().GetUserData(code, HttpUtility.HtmlEncode("h" + System.Web.HttpContext.Current.Request.Url.ToString().Substring("h", "/Account") + returnUrl1));
+            AuthenticationResult result = new AuthenticationResult(isSuccessful: true, provider: "facebook", providerUserId: userData["id"], userName: userData["username"], extraData: userData);
+
             if (!result.IsSuccessful)
             {
                 return RedirectToAction("ExternalLoginFailure");
             }
-
-            OAuthClaims.SetClaimsFromAuthenticationResult(result);
-
-            var principal = System.Security.Claims.ClaimsPrincipal.Current;
-            var emailClaim = principal.FindFirst("email");
-
-            if (OAuthWebSecurity.Login(result.Provider, result.ProviderUserId, createPersistentCookie: false))
-            {
-                return RedirectToLocal(returnUrl);
-            }
-
-            if (User.Identity.IsAuthenticated)
-            {
-                // If the current user is logged in add the new account
-                OAuthWebSecurity.CreateOrUpdateAccount(result.Provider, result.ProviderUserId, User.Identity.Name);
-                return RedirectToLocal(returnUrl);
-            }
             else
             {
-                // User is new, ask for their desired membership name
-                string loginData = OAuthWebSecurity.SerializeProviderUserId(result.Provider, result.ProviderUserId);
-                ViewBag.ProviderDisplayName = OAuthWebSecurity.GetOAuthClientData(result.Provider).DisplayName;
-                ViewBag.ReturnUrl = returnUrl;
-                return View("~/views/home/ExternalLoginConfirmation.cshtml", new RegisterExternalLoginModel { UserName = result.UserName, ExternalLoginData = loginData });
+                // new EMail().SendMail("Registration", userData["email"], new System.String[] { userData["name"], userData["id"] });
             }
+
+            return null;
+
+            // AuthenticationResult result = OAuthWebSecurity.VerifyAuthentication(Url.Action("ExternalLoginCallback", new { ReturnUrl = returnUrl }));
+            //if (!result.IsSuccessful)
+            //{
+            //    return RedirectToAction("ExternalLoginFailure");
+            //}
+
+            //OAuthClaims.SetClaimsFromAuthenticationResult(result);
+
+            //var principal = System.Security.Claims.ClaimsPrincipal.Current;
+            //var emailClaim = principal.FindFirst("email");
+
+            //if (OAuthWebSecurity.Login(result.Provider, result.ProviderUserId, createPersistentCookie: false))
+            //{
+            //    return RedirectToLocal(returnUrl);
+            //}
+
+            //if (User.Identity.IsAuthenticated)
+            //{
+            //    // If the current user is logged in add the new account
+            //    OAuthWebSecurity.CreateOrUpdateAccount(result.Provider, result.ProviderUserId, User.Identity.Name);
+            //    return RedirectToLocal(returnUrl);
+            //}
+            //else
+            //{
+            //    // User is new, ask for their desired membership name
+            //    string loginData = OAuthWebSecurity.SerializeProviderUserId(result.Provider, result.ProviderUserId);
+            //    ViewBag.ProviderDisplayName = OAuthWebSecurity.GetOAuthClientData(result.Provider).DisplayName;
+            //    ViewBag.ReturnUrl = returnUrl;
+            //    return View("~/views/home/ExternalLoginConfirmation.cshtml", new RegisterExternalLoginModel { UserName = result.UserName, ExternalLoginData = loginData });
+            //}
         }
 
         //
@@ -187,43 +210,6 @@ namespace futonFinder.Site.Controllers
             }
         }
 
-        private static string ErrorCodeToString(MembershipCreateStatus createStatus)
-        {
-            // See http://go.microsoft.com/fwlink/?LinkID=177550 for
-            // a full list of status codes.
-            switch (createStatus)
-            {
-                case MembershipCreateStatus.DuplicateUserName:
-                    return "User name already exists. Please enter a different user name.";
-
-                case MembershipCreateStatus.DuplicateEmail:
-                    return "A user name for that e-mail address already exists. Please enter a different e-mail address.";
-
-                case MembershipCreateStatus.InvalidPassword:
-                    return "The password provided is invalid. Please enter a valid password value.";
-
-                case MembershipCreateStatus.InvalidEmail:
-                    return "The e-mail address provided is invalid. Please check the value and try again.";
-
-                case MembershipCreateStatus.InvalidAnswer:
-                    return "The password retrieval answer provided is invalid. Please check the value and try again.";
-
-                case MembershipCreateStatus.InvalidQuestion:
-                    return "The password retrieval question provided is invalid. Please check the value and try again.";
-
-                case MembershipCreateStatus.InvalidUserName:
-                    return "The user name provided is invalid. Please check the value and try again.";
-
-                case MembershipCreateStatus.ProviderError:
-                    return "The authentication provider returned an error. Please verify your entry and try again. If the problem persists, please contact your system administrator.";
-
-                case MembershipCreateStatus.UserRejected:
-                    return "The user creation request has been canceled. Please verify your entry and try again. If the problem persists, please contact your system administrator.";
-
-                default:
-                    return "An unknown error occurred. Please verify your entry and try again. If the problem persists, please contact your system administrator.";
-            }
-        }
         #endregion
     }
 }

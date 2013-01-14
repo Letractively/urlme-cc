@@ -124,6 +124,14 @@ h2 { position: relative; border-bottom: 1px solid #B3B3B3; background: #EEE; col
     #menu #search #left input { width:100%; }
 #menu.big #search #cancelSearch { display:table-cell; padding-left: 27px; vertical-align:middle; }
 #menu.big #menuItems { display: none; }
+
+nav, section { display:block; }
+nav { padding: 12px 0 10px 0; border-bottom: 1px solid #B3B3B3; }
+nav > a { font-weight: bold; color: #fff; text-decoration: none; margin-right: 10px; text-shadow: 0 -1px 1px #65b145; }
+nav > a.selected { background: #65b145; padding: 12px 12px 10px 12px; text-shadow:none; }
+nav > #q { float:right; margin-top:-6px; position: relative; }
+    nav > #q > input[type='text'] { padding: 6px; outline: none; width: 262px; border: 1px solid #ccc; font-size: 14px; }
+    nav > #q > input[type='submit'] { cursor:pointer; border: none; color: transparent; font-size: 0; background: url('content/images/rt-sprite4.png') -106px -107px; width: 18px; height: 18px; display: inline-block; position: absolute; top: 7px; right: 10px; opacity: 0.4; }
     
 /* nav */
 h1 { position: relative; }

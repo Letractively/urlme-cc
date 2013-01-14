@@ -29,10 +29,6 @@ div.loading { background: url('content/images/ajax-loader-blue-ribbon_32x32.gif'
             background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#4c98e4), to(#2d62ae)); 
             background: -webkit-linear-gradient(top, #4c98e4, #2d62ae); 
             background: -moz-linear-gradient(top, #4c98e4, #2d62ae); }
-.greenGradient { background: #65b145; /* fallback */
-            background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#79d153), to(#65b145)); 
-            background: -webkit-linear-gradient(top, #79d153, #65b145); 
-            background: -moz-linear-gradient(top, #79d153, #65b145); }
 .darkGradient {
     background: #171717; /* fallback */
     background: -moz-linear-gradient(#171717 100%,#1F1F20 100%);

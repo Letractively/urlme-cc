@@ -156,6 +156,7 @@
     <Content Include="Content\logo4.png" />
     <Content Include="Content\logo4_4.png" />
     <Content Include="Content\logo_fbopengraph.png" />
+    <Content Include="Content\logo_fbopengraph2.png" />
     <Content Include="Content\logo_mobile.png" />
     <Content Include="Content\Mobile.css" />
     <Content Include="Global.asax" />

@@ -24,5 +24,12 @@ namespace urlme.Site.Controllers
             string destinationUrl = Model.Link.GetDestinationUrlByPathAndIncrementHitCount(path);
             Response.Redirect(destinationUrl);
         }
+
+        public void RedirectToDestinationUrlWithQueryString(string invitationCode, string path = "ido-_invitationCode_")
+        {
+            string destinationUrl = Model.Link.GetDestinationUrlByPathAndIncrementHitCount(path);
+            destinationUrl = destinationUrl.Replace("_invitationCode_", "invitationCode=" + invitationCode);
+            Response.Redirect(destinationUrl);
+        }
     }
 }

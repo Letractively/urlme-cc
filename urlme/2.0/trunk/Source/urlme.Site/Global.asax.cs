@@ -20,6 +20,12 @@ namespace urlme.Site
             routes.IgnoreRoute("favicon.ico");
 
             routes.MapRouteLowercase(
+                "ido-invitationCode",
+                "ido-{invitationCode}",
+                new { controller = "Link", action = "RedirectToDestinationUrlWithQueryString" }
+            );            
+
+            routes.MapRouteLowercase(
                 "Home-sortbypath",
                 "",
                 new { controller = "Home", action = "Index", sort = SortOptions.path.ToString() },

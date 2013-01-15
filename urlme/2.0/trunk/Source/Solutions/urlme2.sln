@@ -1,6 +1,6 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 11.00
-# Visual Studio 2010
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "urlme.Site", "..\urlme.Site\urlme.Site.csproj", "{91520182-EF00-4749-8E2A-C3EB869D14BB}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "urlme.Core", "..\urlme.Core\urlme.Core.csproj", "{1C28CD4D-2CCE-40B5-B7A4-DD50AA1453F2}"

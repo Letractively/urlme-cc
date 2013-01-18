@@ -1,8 +1,17 @@
 ﻿@{
     ViewBag.Title = "Index";
+    var user = futonFinder.Data.DomainModels.User.Current;
 }
 
 <h2>Welcome!  Sign in below to get started, or <a href="#">skip this for now</a>.</h2>
+
+<div style="margin:0 0 20px 0; padding: 18px; border-radius: 3px; font-weight: bold; background: #e6e6e6;">
+    @if (user.IsAuthenticated) {
+        <span>hi  @user.Email. @Html.ActionLink("sign out", "SignOut", new { controller="Account" }).</span>
+    } else {
+        <span>not logged in.</span>
+    }
+</div>
 
 <div id="homeIndex">
     <div id="logins">

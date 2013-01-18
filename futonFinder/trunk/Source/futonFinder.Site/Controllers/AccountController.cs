@@ -2,26 +2,26 @@
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using System.Web.Security;
-using BrockAllen.WebSecurityClaimsHelper;
 using DotNetOpenAuth.AspNet;
-using futonFinder.Site.Filters;
+using futonFinder.Core.Extensions;
 using futonFinder.Site.Models;
 using Microsoft.Web.WebPages.OAuth;
 using WebMatrix.WebData;
-using futonFinder.Core.Extensions;
 
 namespace futonFinder.Site.Controllers
 {
-    [Authorize]
-    [InitializeSimpleMembership]
+    //[Authorize]
+    //[InitializeSimpleMembership]
     public class AccountController : BaseController
     {
         //
         // POST: /Account/LogOff
 
-        [HttpPost]
-        [ValidateAntiForgeryToken]
+        public ActionResult Index()
+        {
+            return View();
+        }
+        
         public ActionResult SignOut()
         {
             Data.DomainModels.User.SignOut();
@@ -36,15 +36,13 @@ namespace futonFinder.Site.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult ExternalLogin(string provider, string returnUrl)
         {
-            //returnUrl = Url.Action("ExternalLoginCallback", new { ReturnUrl = returnUrl });
-            //return Redirect("https://www.facebook.com/dialog/oauth?client_id=" + new Facebook().AppID + "&redirect_uri=" + HttpUtility.HtmlEncode("h" + System.Web.HttpContext.Current.Request.Url.ToString().Substring("h", "/Account") + returnUrl) + "%3F__provider__%3Dfacebook&scope=email");
             if (provider == "google")
             {
-                return new ExternalLoginResult(provider, Url.Action("ExternalLoginCallback", new { ReturnUrl = returnUrl }));
+                return new ExternalLoginResult(provider, Url.Action("GoogleLoginCallback", new { ReturnUrl = returnUrl }));
             }
-            else
+            else // facebook
             {
-                returnUrl = Url.Action("ExternalLoginCallback", new { ReturnUrl = returnUrl });
+                returnUrl = Url.Action("FacebookLoginCallback", new { ReturnUrl = returnUrl });
                 return Redirect("https://www.facebook.com/dialog/oauth?client_id=" + new Facebook().AppID + "&redirect_uri=" + HttpUtility.HtmlEncode("h" + System.Web.HttpContext.Current.Request.Url.ToString().Substring("h", "/Account") + returnUrl) + "%3F__provider__%3Dfacebook&scope=email");
             }
         }
@@ -53,25 +51,8 @@ namespace futonFinder.Site.Controllers
         // GET: /Account/ExternalLoginCallback
 
         [AllowAnonymous]
-        public ActionResult ExternalLoginCallback(string returnUrl)
+        public ActionResult GoogleLoginCallback(string returnUrl)
         {
-            string code = Request.QueryString["code"];
-            string returnUrl1 = Url.Action("ExternalLoginCallback", new { ReturnUrl = returnUrl });
-
-            IDictionary<string, string> userData = new Facebook().GetUserData(code, HttpUtility.HtmlEncode("h" + System.Web.HttpContext.Current.Request.Url.ToString().Substring("h", "/Account") + returnUrl1));
-            AuthenticationResult result = new AuthenticationResult(isSuccessful: true, provider: "facebook", providerUserId: userData["id"], userName: userData["username"], extraData: userData);
-
-            if (!result.IsSuccessful)
-            {
-                return RedirectToAction("ExternalLoginFailure");
-            }
-            else
-            {
-                // new EMail().SendMail("Registration", userData["email"], new System.String[] { userData["name"], userData["id"] });
-            }
-
-            return null;
-
             // AuthenticationResult result = OAuthWebSecurity.VerifyAuthentication(Url.Action("ExternalLoginCallback", new { ReturnUrl = returnUrl }));
             //if (!result.IsSuccessful)
             //{
@@ -101,7 +82,29 @@ namespace futonFinder.Site.Controllers
             //    ViewBag.ProviderDisplayName = OAuthWebSecurity.GetOAuthClientData(result.Provider).DisplayName;
             //    ViewBag.ReturnUrl = returnUrl;
             //    return View("~/views/home/ExternalLoginConfirmation.cshtml", new RegisterExternalLoginModel { UserName = result.UserName, ExternalLoginData = loginData });
-            //}
+            //}            
+            return null;
+        }
+
+        [AllowAnonymous]
+        public ActionResult FacebookLoginCallback(string returnUrl)
+        {
+            string code = Request.QueryString["code"];
+            string returnUrl1 = Url.Action("FacebookLoginCallback", new { ReturnUrl = returnUrl });
+
+            IDictionary<string, string> userData = new Facebook().GetUserData(code, HttpUtility.HtmlEncode("h" + System.Web.HttpContext.Current.Request.Url.ToString().Substring("h", "/Account") + returnUrl1));
+            AuthenticationResult result = new AuthenticationResult(isSuccessful: true, provider: "facebook", providerUserId: userData["id"], userName: userData["username"], extraData: userData);
+
+            if (!result.IsSuccessful)
+            {
+                return RedirectToAction("ExternalLoginFailure");
+            }
+            else
+            {
+                //futonFinder.Data.User
+                Data.DomainModels.User.IssueAuthTicket(userData["email"], true);
+                return RedirectToAction("Index", "Home");
+            }
         }
 
         //

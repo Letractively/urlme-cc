@@ -53,37 +53,17 @@ namespace futonFinder.Site.Controllers
         [AllowAnonymous]
         public ActionResult GoogleLoginCallback(string returnUrl)
         {
-            // AuthenticationResult result = OAuthWebSecurity.VerifyAuthentication(Url.Action("ExternalLoginCallback", new { ReturnUrl = returnUrl }));
-            //if (!result.IsSuccessful)
-            //{
-            //    return RedirectToAction("ExternalLoginFailure");
-            //}
-
-            //OAuthClaims.SetClaimsFromAuthenticationResult(result);
-
-            //var principal = System.Security.Claims.ClaimsPrincipal.Current;
-            //var emailClaim = principal.FindFirst("email");
-
-            //if (OAuthWebSecurity.Login(result.Provider, result.ProviderUserId, createPersistentCookie: false))
-            //{
-            //    return RedirectToLocal(returnUrl);
-            //}
-
-            //if (User.Identity.IsAuthenticated)
-            //{
-            //    // If the current user is logged in add the new account
-            //    OAuthWebSecurity.CreateOrUpdateAccount(result.Provider, result.ProviderUserId, User.Identity.Name);
-            //    return RedirectToLocal(returnUrl);
-            //}
-            //else
-            //{
-            //    // User is new, ask for their desired membership name
-            //    string loginData = OAuthWebSecurity.SerializeProviderUserId(result.Provider, result.ProviderUserId);
-            //    ViewBag.ProviderDisplayName = OAuthWebSecurity.GetOAuthClientData(result.Provider).DisplayName;
-            //    ViewBag.ReturnUrl = returnUrl;
-            //    return View("~/views/home/ExternalLoginConfirmation.cshtml", new RegisterExternalLoginModel { UserName = result.UserName, ExternalLoginData = loginData });
-            //}            
-            return null;
+            AuthenticationResult result = OAuthWebSecurity.VerifyAuthentication(Url.Action("GoogleLoginCallback", new { ReturnUrl = returnUrl }));
+            if (!result.IsSuccessful)
+            {
+                return RedirectToAction("ExternalLoginFailure");
+            }
+            else
+            {
+                var email = result.ExtraData["email"];
+                Data.DomainModels.User.IssueAuthTicket(email, true);
+                return RedirectToAction("Index", "Home");
+            }
         }
 
         [AllowAnonymous]

@@ -17,9 +17,9 @@ namespace futonFinder.Site
             //    clientId: "",
             //    clientSecret: "");
 
-            //OAuthWebSecurity.RegisterTwitterClient(
-            //    consumerKey: "",
-            //    consumerSecret: "");
+            OAuthWebSecurity.RegisterTwitterClient(
+                consumerKey: "oubhYrc5iKo7G3EVyqKRng",
+                consumerSecret: "hBkifIbyM5Tb599obm1jDkVoaNgZE4K29ESZDZd2o");
 
             OAuthWebSecurity.RegisterFacebookClient(
                 appId: "314488141986761",

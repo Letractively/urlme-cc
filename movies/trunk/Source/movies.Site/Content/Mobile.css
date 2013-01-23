@@ -64,7 +64,7 @@ p { color: #535156; } /* grey bullet color */
 /* google places */
 .pac-item { font-size: 18px; padding: 5px; }
 
-#showtimes > div[data-role='content'] > div { margin-top: 10px; font-size: 140%; }
+#showtimes > div[data-role='content'] > div { margin-top: 10px; font-size: 120%; }
 #theaters .favoriteLink { float: left; height: 36px; width: 19px; padding: 0 10px; margin-top: 3px; }
 #theaters .favoriteLink.lit { background:url('content/images/icons/star_lit.png') no-repeat center center transparent; }
 #theaters .favoriteLink.default { background:url('content/images/icons/star_default.png') no-repeat center center transparent; }
@@ -118,8 +118,8 @@ h2 { position: relative; border-bottom: 1px solid #B3B3B3; background: #EEE; col
 
 nav, section { display:block; }
 nav { padding: 12px 0 10px 0; border-bottom: 1px solid #B3B3B3; }
-nav > a { font-weight: bold; color: #fff; text-decoration: none; margin-right: 10px; text-shadow: 0 -1px 1px #65b145; }
-nav > a.selected { background: #65b145; padding: 12px 12px 10px 12px; text-shadow:none; }
+nav > a { font-weight: bold; color: #fff; text-decoration: none; margin: 0 20px; text-shadow: 0 -1px 1px #65b145; }
+nav > a.selected { background: #65b145; padding: 12px 20px 10px 20px; text-shadow:none; margin:0; }
 
 #search { padding: 15px; }
     #search #cancelSearch { display: none; }

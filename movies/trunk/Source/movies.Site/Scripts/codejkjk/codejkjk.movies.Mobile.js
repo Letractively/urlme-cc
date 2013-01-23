@@ -21,6 +21,7 @@ codejkjk.movies.mobile = {
         , Movie: function () { return $("#movie div[data-role='content']"); }
         , MovieBackLink: function () { return $("#movie a.back"); }
         , movieSliderWrappers: function () { return $(".sliderWrapper"); }
+        , navItems: function () { return $("nav a"); }
         , searchBox: function () { return $("#search input"); }
         , showtimeDays: function () { return $("#theater #showtimeDays"); }
         , showtimeDaySelector: function () { return "#theater #showtimeDays a" }
@@ -266,14 +267,8 @@ codejkjk.movies.mobile = {
             sectionToShow.addClass("lazyLoaded");
         }
 
-        //var header = codejkjk.movies.mobile.controls.header();
-        //if (sectionId == "whatsHot") {
-        //    header.html("What's Hot");
-        //} else if (sectionId == "showtimes") {
-        //    header.html("Showtimes");
-        //} else {
-        //    header.html("&nbsp;");
-        //}
+        codejkjk.movies.mobile.controls.navItems().removeClass("selected");
+        $("nav a[data-section-id='{0}']".format(sectionId)).addClass("selected");
     },
 
     initGooglePlaces: function (inputId) {

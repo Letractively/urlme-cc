@@ -114,24 +114,18 @@ h2 { position: relative; border-bottom: 1px solid #B3B3B3; background: #EEE; col
 .ui-menu .ui-menu-item .right { float: left; }
 .ui-menu .ui-menu-item .right div.cast { color: #666; font-size: 12px; margin-top: 5px; }    
     
-#body.small { float: left; width: 30%; }    
-
 nav, section { display:block; }
 nav { padding: 12px 0 10px 0; border-bottom: 1px solid #B3B3B3; }
 nav > a { font-weight: bold; color: #fff; text-decoration: none; margin: 0 20px; text-shadow: 0 -1px 1px #65b145; }
 nav > a.selected { background: #65b145; padding: 12px 20px 10px 20px; text-shadow:none; margin:0; }
 
 #search { padding: 15px; }
-    #search #cancelSearch { display: none; }
-#search #left { width:100%; display:table-cell; }
-    #search #left input { width:100%; }
-#search #cancelSearch { display:table-cell; padding-left: 27px; vertical-align:middle; }
+#search #left { /*width:100%;*/ display:block; }
+    #search #left.focused { width: 100%; display: table-cell; }
+    #search #left.focused input { width:100%; }
+#search #cancelSearch { display:none; padding-left: 27px; vertical-align:middle; }
+    #search #cancelSearch.focused { display: table-cell; }
 
-/*nav > #q { float:right; margin-top:-6px; position: relative; }
-    nav > #q > input[type='text'] { padding: 6px; outline: none; width: 262px; border: 1px solid #ccc; font-size: 14px; }
-    nav > #q > input[type='submit'] { cursor:pointer; border: none; color: transparent; font-size: 0; background: url('content/images/rt-sprite4.png') -106px -107px; width: 18px; height: 18px; display: inline-block; position: absolute; top: 7px; right: 10px; opacity: 0.4; }*/
-    
-/* nav */
 h1 { position: relative; }
 h1 a#menuLink { font-size: 16px; position:absolute; left: 0; width: 45px; padding:0; height:35px; }
     h1 a#menuLink span { display: block; border-bottom: 2px solid #fff; margin: 7px 10px; }

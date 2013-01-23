@@ -11,7 +11,6 @@ codejkjk.movies.mobile = {
         , FavoriteTheaterListContent: function () { return $("#showtimes > #theaters div[data-role='content']:first"); }
         , FavoriteTheaterListTemplate: function () { return $("#favoriteTheaterListTemplate"); }
         , InputShowtimesZip: function () { return $("#inputShowtimesZip"); }
-        , cancelSearch: function () { return $("#cancelSearch"); }
         , CurrentMovie: function () { return $("#movie h2 span"); }
         , CurrentMovieId: function () { return $("#currentMovieId"); }
         , CurrentShowtimesZip: function () { return $("#currentShowtimesZip"); }
@@ -23,6 +22,7 @@ codejkjk.movies.mobile = {
         , movieSliderWrappers: function () { return $(".sliderWrapper"); }
         , navItems: function () { return $("nav a"); }
         , searchBox: function () { return $("#search input"); }
+        , searchElements: function () { return $("#search .shift"); }
         , showtimeDays: function () { return $("#theater #showtimeDays"); }
         , showtimeDaySelector: function () { return "#theater #showtimeDays a" }
         , ShowtimesHeader: function () { return $("#showtimes > #theaters h2"); }
@@ -124,12 +124,13 @@ codejkjk.movies.mobile = {
         var searchBox = codejkjk.movies.mobile.controls.searchBox();
         searchBox.autocomplete({
             minLength: 2,
-            source: apiBaseUrl + 'search_movies.json', // change
+            source: apiBaseUrl + 'search_movies.json',
             focus: function (event, ui) {
                 // nothing
             },
             select: function (event, ui) {
                 History.pushState(null, null, ui.item.url);
+                codejkjk.movies.mobile.controls.searchBox().blur();
                 return false;
             }
         })
@@ -467,9 +468,13 @@ codejkjk.movies.mobile = {
     },
 
     bindControls: function () {
-        codejkjk.movies.mobile.controls.cancelSearch().click(function (e) {
-            e.preventDefault();
-            // codejkjk.movies.mobile.controls.body().toggle();
+        // focus search box
+        codejkjk.movies.mobile.controls.searchBox().focus(function () {
+            codejkjk.movies.mobile.controls.searchElements().addClass("focused");
+        });
+
+        codejkjk.movies.mobile.controls.searchBox().blur(function () {
+            codejkjk.movies.mobile.controls.searchElements().removeClass("focused");
         });
 
         // handle showtime day links

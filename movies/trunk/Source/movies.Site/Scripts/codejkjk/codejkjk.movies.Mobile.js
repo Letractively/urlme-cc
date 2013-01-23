@@ -17,10 +17,7 @@ codejkjk.movies.mobile = {
         , CurrentShowtimesZip: function () { return $("#currentShowtimesZip"); }
         , CurrentTheater: function () { return $("#theater h2:first span"); }
         , CurrentTheaterMovie: function () { return $("#theatermovie h2 span"); }
-        , header: function () { return $("#header"); }
         , loading: function () { return $(".loading"); }
-        , menu: function () { return $("#menu"); }
-        , menuLink: function () { return $("#menuLink"); }
         , Movie: function () { return $("#movie div[data-role='content']"); }
         , MovieBackLink: function () { return $("#movie a.back"); }
         , movieSliderWrappers: function () { return $(".sliderWrapper"); }
@@ -178,10 +175,6 @@ codejkjk.movies.mobile = {
             return;
         }
 
-        // reset menu if it's been messed with
-        codejkjk.movies.mobile.controls.menu().removeClass("big").hide();
-        codejkjk.movies.mobile.controls.body().removeClass("small").show();
-
         // primary nav link?
         if (firstPath === "/" || (firstPath === "/redbox" && !paths[2])) {
             codejkjk.movies.mobile.showSection(firstPath);
@@ -273,18 +266,14 @@ codejkjk.movies.mobile = {
             sectionToShow.addClass("lazyLoaded");
         }
 
-        var header = codejkjk.movies.mobile.controls.header();
-        if (sectionId == "whatsHot") {
-            header.html("What's Hot");
-        } else if (sectionId == "showtimes") {
-            header.html("Showtimes");
-        } else {
-            header.html("&nbsp;");
-        }
-
-        if (codejkjk.movies.mobile.controls.menu().is(":visible")) {
-            codejkjk.movies.mobile.controls.menuLink().trigger('click');
-        }
+        //var header = codejkjk.movies.mobile.controls.header();
+        //if (sectionId == "whatsHot") {
+        //    header.html("What's Hot");
+        //} else if (sectionId == "showtimes") {
+        //    header.html("Showtimes");
+        //} else {
+        //    header.html("&nbsp;");
+        //}
     },
 
     initGooglePlaces: function (inputId) {
@@ -483,26 +472,9 @@ codejkjk.movies.mobile = {
     },
 
     bindControls: function () {
-        // handle menu link click
-        codejkjk.movies.mobile.controls.menuLink().click(function (e) {
-            e.preventDefault();
-            var menu = codejkjk.movies.mobile.controls.menu();
-            codejkjk.movies.mobile.controls.body().toggleClass("small");
-            menu.toggle();
-        });
-
-        codejkjk.movies.mobile.controls.searchBox().focus(function () {
-            var menu = codejkjk.movies.mobile.controls.menu();
-            if (!menu.hasClass("big")) {
-                codejkjk.movies.mobile.controls.body().toggle();
-                codejkjk.movies.mobile.controls.menu().toggleClass("big");
-            }
-        });
-
         codejkjk.movies.mobile.controls.cancelSearch().click(function (e) {
             e.preventDefault();
-            codejkjk.movies.mobile.controls.body().toggle();
-            codejkjk.movies.mobile.controls.menu().toggleClass("big");
+            // codejkjk.movies.mobile.controls.body().toggle();
         });
 
         // handle showtime day links

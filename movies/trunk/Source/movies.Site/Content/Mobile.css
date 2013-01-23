@@ -116,17 +116,6 @@ h2 { position: relative; border-bottom: 1px solid #B3B3B3; background: #EEE; col
     
 #body.small { float: left; width: 30%; }    
 
-/* menu */
-#menu { float: left; width: 70%; display:none; }
-#menu.big { width: auto; float: none; }
-    #menu #search { padding: 15px; }
-    #menu a:not(#cancelSearch) { display:block; padding: 15px; font-size: 16px; background: -moz-linear-gradient(white,#F1F1F1) repeat scroll 0 0 #F1F1F1; background: -webkit-linear-gradient(top, white, #F1F1F1); background: -webkit-gradient(linear,0% 0%,0% 100%,from(white),to(#F1F1F1)); border-color: #CCC; }
-    #menu #cancelSearch { display:none; }
-#menu #search #left { width:100%; display:table-cell; }
-    #menu #search #left input { width:100%; }
-#menu.big #search #cancelSearch { display:table-cell; padding-left: 27px; vertical-align:middle; }
-#menu.big #menuItems { display: none; }
-
 nav, section { display:block; }
 nav { padding: 12px 0 10px 0; border-bottom: 1px solid #B3B3B3; }
 nav > a { font-weight: bold; color: #fff; text-decoration: none; margin-right: 10px; text-shadow: 0 -1px 1px #65b145; }
@@ -134,6 +123,9 @@ nav > a.selected { background: #65b145; padding: 12px 12px 10px 12px; text-shado
 
 #search { padding: 15px; }
     #search #cancelSearch { display: none; }
+#search #left { width:100%; display:table-cell; }
+    #search #left input { width:100%; }
+#search #cancelSearch { display:table-cell; padding-left: 27px; vertical-align:middle; }
 
 /*nav > #q { float:right; margin-top:-6px; position: relative; }
     nav > #q > input[type='text'] { padding: 6px; outline: none; width: 262px; border: 1px solid #ccc; font-size: 14px; }

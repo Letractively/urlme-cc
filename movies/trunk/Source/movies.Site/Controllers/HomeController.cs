@@ -33,7 +33,7 @@ namespace movies.Site.Controllers
             if (!Request.Browser.IsMobileDevice)
             {
                 vm.FeatureTrailers = TrailerAddict.GetFeatured(20).Take(8).ToList();
-                vm.RedboxMovies = Redbox.GetMovies();
+                // vm.RedboxMovies = Redbox.GetMovies();
                 vm.RecentReviews = Data.DomainModels.MovieReview.GetLatest(7);
                 //if (!Request.Url.ToString().Contains("localhost"))
                 //{
@@ -132,7 +132,7 @@ namespace movies.Site.Controllers
                 }
             }
 
-            var redboxMovies = Model.Redbox.GetMovies();
+            // var redboxMovies = Model.Redbox.GetMovies();
 
             var featuredTrailers = TrailerAddict.GetFeatured(20);
 

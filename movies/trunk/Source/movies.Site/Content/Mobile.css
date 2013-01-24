@@ -115,9 +115,9 @@ h2 { position: relative; border-bottom: 1px solid #B3B3B3; background: #EEE; col
 .ui-menu .ui-menu-item .right div.cast { color: #666; font-size: 12px; margin-top: 5px; }    
     
 nav, section { display:block; }
-nav { padding: 12px 0 10px 0; border-bottom: 1px solid #B3B3B3; }
-nav > a { font-weight: bold; color: #fff; text-decoration: none; margin: 0 20px; text-shadow: 0 -1px 1px #65b145; }
-nav > a.selected { background: #65b145; padding: 12px 20px 10px 20px; text-shadow:none; margin:0; }
+nav { border-bottom: 1px solid #B3B3B3; }
+nav > a { float: left; font-weight: bold; color: #fff; text-decoration: none; padding: 15px 24px 13px 24px; text-shadow: 0 -1px 1px #65b145; }
+nav > a.selected { background: #65b145; text-shadow:none; margin:0; }
 
 #search { padding: 15px; }
 #search #left { /*width:100%;*/ display:block; }

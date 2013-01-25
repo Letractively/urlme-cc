@@ -41,8 +41,21 @@
 
     // add edit form if it does not exist already in dom
     if (!$("#editForm").length) {
-        var editFormHtml = "<form id='editForm' class='admin' title='Edit Review'><p></p><input type='hidden' name='movieId' /><div><textarea name='text' maxlength='140' placeholder='Enter review...'></textarea></div><div><input class='iPhoneCheckBox' checked='checked' type='checkbox' name='seeIt' /></div><div><input type='text' name='url' placeholder='Enter Read More url...' /></div><p></p></form>";
+        var gradeLetters = "<div id='gradeLetters' class='buttonset'>";
+        $.each("A,B,C,D,F".split(','), function(i, letter) {
+            gradeLetters += "<input type='radio' name='gradeLetter' id='{0}' /><label for='{0}'>{0}</label>".format(letter);
+        });
+        gradeLetters += "</div>";
+        var gradeSuffices = "<div id='gradeSuffices' class='buttonset'>";
+        gradeSuffices += "<input type='radio' name='gradeLetter' id='Nothing' /><label for='Nothing'>{0}</label>".format("&nbsp;");
+        gradeSuffices += "<input type='radio' name='gradeLetter' id='Plus' /><label for='Plus'>{0}</label>".format("+");
+        gradeSuffices += "<input type='radio' name='gradeLetter' id='Minus' /><label for='Minus'>{0}</label>".format("-");
+        gradeSuffices += "</div>";
+
+        var editFormHtml = "<form id='editForm' class='admin' title='Edit Review'><p></p><input type='hidden' name='movieId' /><div><textarea name='text' maxlength='140' placeholder='Enter review...'></textarea></div><div><input class='iPhoneCheckBox' checked='checked' type='checkbox' name='seeIt' /></div><div><input type='text' name='url' placeholder='Enter Read More url...' /></div><div id='grade'>{0}{1}</div><p></p></form>".format(gradeLetters, gradeSuffices);
         $("body").append(editFormHtml);
+        $(".buttonset").buttonset();
+
         $(".iPhoneCheckBox").iphoneStyle({
             checkedLabel: "See It",
             uncheckedLabel: "Or Not"

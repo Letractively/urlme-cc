@@ -53,6 +53,7 @@
       <Column Name="DetailedPosterUrl" Type="System.String" DbType="NVarChar(250) NOT NULL" CanBeNull="false" />
       <Column Name="Review" Type="System.String" DbType="NVarChar(140) NOT NULL" CanBeNull="false" />
       <Column Name="ReviewClass" Type="System.String" DbType="NVarChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="Grade" Type="System.String" DbType="NVarChar(2)" CanBeNull="true" />
       <Column Name="ReviewUrl" Type="System.String" DbType="NVarChar(250) NOT NULL" CanBeNull="false" />
       <Column Name="Status" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
       <Column Name="CreateDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
@@ -104,6 +105,7 @@
     <Type Name="User">
       <Column Name="UserId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="Email" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="UserName" Type="System.String" DbType="NVarChar(15)" CanBeNull="true" />
       <Column Name="FacebookUserId" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="AdminInd" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
       <Column Name="CreateDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />

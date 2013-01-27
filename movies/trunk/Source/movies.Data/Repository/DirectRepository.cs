@@ -59,73 +59,74 @@ namespace movies.Data.Repository
             return true;
         }
 
-        public bool MovieReviewSave(Data.MovieReview movie, bool requiresApproval, string parentalGuideHtml)
+        public bool MovieReviewSave(Data.MovieReview movieReview, bool requiresApproval, string parentalGuideHtml)
         {
             try
             {
                 using (var context = CreateContext(true))
                 {
-                    var dbMovie = context.MovieReviews.FirstOrDefault(x => x.MovieId == movie.MovieId);
-                    bool onSeeItBlackList = context.MovieReviewSeeItBlackLists.FirstOrDefault(x => x.MovieId == movie.MovieId) != null;
-                    bool onSeeItWhiteList = context.MovieReviewSeeItWhiteLists.FirstOrDefault(x => x.MovieId == movie.MovieId) != null;
+                    var dbMovieReview = context.MovieReviews.FirstOrDefault(x => x.MovieId == movieReview.MovieId);
+                    bool onSeeItBlackList = context.MovieReviewSeeItBlackLists.FirstOrDefault(x => x.MovieId == movieReview.MovieId) != null;
+                    bool onSeeItWhiteList = context.MovieReviewSeeItWhiteLists.FirstOrDefault(x => x.MovieId == movieReview.MovieId) != null;
 
-                    if (dbMovie == null)
+                    if (dbMovieReview == null)
                     {
                         // INSERT (b/c it does NOT exist)
-                        dbMovie = new MovieReview
+                        dbMovieReview = new MovieReview
                         {
                             CreateDate = DateTime.Now,
                             ModifyDate = null,
-                            MovieId = movie.MovieId,
+                            MovieId = movieReview.MovieId,
                             Status = Enumerations.MovieReviewStatus.Pending.ToString() // to figure out after this if/else
                         };
 
-                        context.MovieReviews.InsertOnSubmit(dbMovie);
+                        context.MovieReviews.InsertOnSubmit(dbMovieReview);
                     }
                     else
                     {
                         // UPDATE (b/c it already exists)
-                        dbMovie.ModifyDate = DateTime.Now;
+                        dbMovieReview.ModifyDate = DateTime.Now;
                     }
 
                     // determine status
-                    if (dbMovie.Status == Enumerations.MovieReviewStatus.Approved.ToString())
+                    if (dbMovieReview.Status == Enumerations.MovieReviewStatus.Approved.ToString())
                     {
                         // leave as approved
                     }
-                    else if (onSeeItBlackList && movie.ReviewClass == "seeIt")
+                    else if (onSeeItBlackList && movieReview.ReviewClass == "seeIt")
                     {
                         // if on seeItBlackList and it's marked as "seeIt", then DISAPPROVED
-                        dbMovie.Status = Enumerations.MovieReviewStatus.Disapproved.ToString();
+                        dbMovieReview.Status = Enumerations.MovieReviewStatus.Disapproved.ToString();
                     }
-                    else if (!requiresApproval || onSeeItWhiteList || (requiresApproval && movie.ReviewClass == "orNot"))
+                    else if (!requiresApproval || onSeeItWhiteList || (requiresApproval && movieReview.ReviewClass == "orNot"))
                     {
                         // doesn't require approval, OR on seeIt white list, OR requires approval AND it's OrNot
-                        string thumbsUrl = string.Format("http://seeitornot.co/content/images/{0}.png", movie.ReviewClass == "orNot" ? "thumbsDown" : "thumbsUp");
-                        string body = string.Format("Yay, John submitted a review for <b>{0}</b>. <img style='width:16px; vertical-align:text-bottom' src='{1}' /> \"{2}\".", movie.Title, thumbsUrl, movie.Review);
-                        var mailSuccess = Core.Net.Mail.SendFromNoReply("ihdavis@gmail.com", "Ian Davis", string.Format("Review submitted: '{0}' for {1}", movie.ReviewClass, movie.Title), body);
-                        dbMovie.Status = Enumerations.MovieReviewStatus.NotRequired.ToString();
+                        string thumbsUrl = string.Format("http://seeitornot.co/content/images/{0}.png", movieReview.ReviewClass == "orNot" ? "thumbsDown" : "thumbsUp");
+                        string body = string.Format("Yay, John submitted a review for <b>{0}</b>. <img style='width:16px; vertical-align:text-bottom' src='{1}' /> \"{2}\".", movieReview.Title, thumbsUrl, movieReview.Review);
+                        var mailSuccess = Core.Net.Mail.SendFromNoReply("ihdavis@gmail.com", "Ian Davis", string.Format("Review submitted: '{0}' for {1}", movieReview.ReviewClass, movieReview.Title), body);
+                        dbMovieReview.Status = Enumerations.MovieReviewStatus.NotRequired.ToString();
                     }
-                    else if (requiresApproval && movie.ReviewClass == "seeIt")
+                    else if (requiresApproval && movieReview.ReviewClass == "seeIt")
                     {
-                        dbMovie.Status = Enumerations.MovieReviewStatus.Pending.ToString();
+                        dbMovieReview.Status = Enumerations.MovieReviewStatus.Pending.ToString();
                         StringBuilder sb = new StringBuilder();
-                        sb.AppendFormat("Pending review for <b>{0}</b>.<br/><br/>", movie.Title);
-                        sb.AppendFormat("Movie page: <a href=\"http://seeitornot.co/{0}/{1}\">http://seeitornot.co/{0}/{1}</a><br/><br/>", movie.Title.Slugify(), movie.MovieId);
-                        sb.AppendFormat("<a href=\"http://seeitornot.co/reviews/approve/{0}\">Approve</a> or <a href=\"http://seeitornot.co/reviews/disapprove/{0}\">disapprove</a>.<br/><br/>", movie.MovieId);
+                        sb.AppendFormat("Pending review for <b>{0}</b>.<br/><br/>", movieReview.Title);
+                        sb.AppendFormat("Movie page: <a href=\"http://seeitornot.co/{0}/{1}\">http://seeitornot.co/{0}/{1}</a><br/><br/>", movieReview.Title.Slugify(), movieReview.MovieId);
+                        sb.AppendFormat("<a href=\"http://seeitornot.co/reviews/approve/{0}\">Approve</a> or <a href=\"http://seeitornot.co/reviews/disapprove/{0}\">disapprove</a>.<br/><br/>", movieReview.MovieId);
                         sb.Append(parentalGuideHtml);
-                        var mailSuccess = Core.Net.Mail.SendFromNoReply("ihdavis@gmail.com", "Ian Davis", "Pending review: " + movie.Title, sb.ToString());
+                        var mailSuccess = Core.Net.Mail.SendFromNoReply("ihdavis@gmail.com", "Ian Davis", "Pending review: " + movieReview.Title, sb.ToString());
                     }
 
-                    dbMovie.Review = movie.Review;
-                    dbMovie.ReviewClass = movie.ReviewClass;
-                    dbMovie.ReviewUrl = movie.ReviewUrl;
-                    dbMovie.Title = movie.Title;
-                    dbMovie.Year = movie.Year;
-                    dbMovie.DetailedPosterUrl = movie.DetailedPosterUrl;
-                    dbMovie.ProfilePosterUrl = movie.ProfilePosterUrl;
-                    dbMovie.ThumbnailPosterUrl = movie.ThumbnailPosterUrl;
-                    dbMovie.ReleaseDate = movie.ReleaseDate;
+                    dbMovieReview.Review = movieReview.Review;
+                    dbMovieReview.ReviewClass = movieReview.ReviewClass;
+                    dbMovieReview.ReviewUrl = movieReview.ReviewUrl;
+                    dbMovieReview.Title = movieReview.Title;
+                    dbMovieReview.Year = movieReview.Year;
+                    dbMovieReview.DetailedPosterUrl = movieReview.DetailedPosterUrl;
+                    dbMovieReview.ProfilePosterUrl = movieReview.ProfilePosterUrl;
+                    dbMovieReview.ThumbnailPosterUrl = movieReview.ThumbnailPosterUrl;
+                    dbMovieReview.ReleaseDate = movieReview.ReleaseDate;
+                    dbMovieReview.Grade = movieReview.Grade;
                     
                     context.SubmitChanges(ConflictMode.FailOnFirstConflict);
                 }

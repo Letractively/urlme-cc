@@ -1049,6 +1049,8 @@ namespace movies.Data
 		
 		private string _ReviewClass;
 		
+		private string _Grade;
+		
 		private string _ReviewUrl;
 		
 		private string _Status;
@@ -1079,6 +1081,8 @@ namespace movies.Data
     partial void OnReviewChanged();
     partial void OnReviewClassChanging(string value);
     partial void OnReviewClassChanged();
+    partial void OnGradeChanging(string value);
+    partial void OnGradeChanged();
     partial void OnReviewUrlChanging(string value);
     partial void OnReviewUrlChanged();
     partial void OnStatusChanging(string value);
@@ -1270,6 +1274,26 @@ namespace movies.Data
 					this._ReviewClass = value;
 					this.SendPropertyChanged("ReviewClass");
 					this.OnReviewClassChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Grade", DbType="NVarChar(2)")]
+		public string Grade
+		{
+			get
+			{
+				return this._Grade;
+			}
+			set
+			{
+				if ((this._Grade != value))
+				{
+					this.OnGradeChanging(value);
+					this.SendPropertyChanging();
+					this._Grade = value;
+					this.SendPropertyChanged("Grade");
+					this.OnGradeChanged();
 				}
 			}
 		}
@@ -1935,6 +1959,8 @@ namespace movies.Data
 		
 		private string _Email;
 		
+		private string _UserName;
+		
 		private System.Nullable<int> _FacebookUserId;
 		
 		private bool _AdminInd;
@@ -1953,6 +1979,8 @@ namespace movies.Data
     partial void OnUserIdChanged();
     partial void OnEmailChanging(string value);
     partial void OnEmailChanged();
+    partial void OnUserNameChanging(string value);
+    partial void OnUserNameChanged();
     partial void OnFacebookUserIdChanging(System.Nullable<int> value);
     partial void OnFacebookUserIdChanged();
     partial void OnAdminIndChanging(bool value);
@@ -2004,6 +2032,26 @@ namespace movies.Data
 					this._Email = value;
 					this.SendPropertyChanged("Email");
 					this.OnEmailChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UserName", DbType="NVarChar(15)")]
+		public string UserName
+		{
+			get
+			{
+				return this._UserName;
+			}
+			set
+			{
+				if ((this._UserName != value))
+				{
+					this.OnUserNameChanging(value);
+					this.SendPropertyChanging();
+					this._UserName = value;
+					this.SendPropertyChanged("UserName");
+					this.OnUserNameChanged();
 				}
 			}
 		}

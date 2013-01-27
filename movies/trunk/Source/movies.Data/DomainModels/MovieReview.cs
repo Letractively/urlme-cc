@@ -15,6 +15,7 @@ namespace movies.Data.DomainModels
         public string Url { get; set; }
         public string Title { get; set; }
         public int Year { get; set; }
+        public string Grade { get; set; }
         public DateTime ReviewDate { get; set; }
         public DateTime ReleaseDate { get; set; }
         public string ThumbnailPosterUrl { get; set; }
@@ -42,7 +43,8 @@ namespace movies.Data.DomainModels
                 ThumbnailPosterUrl = movieReview.ThumbnailPosterUrl,
                 ProfilePosterUrl = movieReview.ProfilePosterUrl,
                 DetailedPosterUrl = movieReview.DetailedPosterUrl,
-                ReleaseDate = movieReview.ReleaseDate
+                ReleaseDate = movieReview.ReleaseDate,
+                Grade = movieReview.Grade
             };
 
             bool requiresApproval = mpaaRating.ToLower() == "r" || mpaaRating.ToLower() == "unrated" || mpaaRating == "";
@@ -119,7 +121,8 @@ namespace movies.Data.DomainModels
                         Year = x.Year,
                         Status = x.Status,
                         ReviewDate = x.CreateDate,
-                        ReleaseDate = x.ReleaseDate
+                        ReleaseDate = x.ReleaseDate,
+                        Grade = x.Grade
                     }).ToList();
                 });
         }
@@ -143,7 +146,8 @@ namespace movies.Data.DomainModels
                         Year = x.Year,
                         Status = x.Status,
                         ReviewDate = x.CreateDate,
-                        ReleaseDate = x.ReleaseDate
+                        ReleaseDate = x.ReleaseDate,
+                        Grade = x.Grade
                     }).Take(takeCount).ToList();
                 }, 5);
         }
@@ -174,7 +178,8 @@ namespace movies.Data.DomainModels
                         Year = dbMovieReview.Year,
                         Status = dbMovieReview.Status,
                         ReviewDate = dbMovieReview.CreateDate,
-                        ReleaseDate = dbMovieReview.ReleaseDate
+                        ReleaseDate = dbMovieReview.ReleaseDate,
+                        Grade = dbMovieReview.Grade
                     };
                 });
             

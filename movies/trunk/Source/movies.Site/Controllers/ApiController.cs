@@ -91,7 +91,7 @@ namespace movies.Site.Controllers
                     id = movie.id,
                     title = movie.title,
                     statusMsg = statusMsg,
-                    review = review == null ? null : new { Url = review.Url, Text = review.Text, ClassName = review.ClassName }
+                    review = review == null ? null : new { Url = review.Url, Text = review.Text, ClassName = review.ClassName, Grade = review.Grade }
                 }
                 , JsonRequestBehavior.AllowGet);
         }

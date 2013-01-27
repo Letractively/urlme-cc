@@ -47,12 +47,12 @@
         });
         gradeLetters += "</div>";
         var gradeSuffices = "<div id='gradeSuffices' class='buttonset'>";
-        gradeSuffices += "<input type='radio' name='gradeLetter' id='Nothing' /><label for='Nothing'>{0}</label>".format("&nbsp;");
-        gradeSuffices += "<input type='radio' name='gradeLetter' id='Plus' /><label for='Plus'>{0}</label>".format("+");
-        gradeSuffices += "<input type='radio' name='gradeLetter' id='Minus' /><label for='Minus'>{0}</label>".format("-");
+        gradeSuffices += "<input type='radio' name='gradeSuffix' data-value='Nothing' id='Nothing' /><label for='Nothing'>{0}</label>".format("&nbsp;");
+        gradeSuffices += "<input type='radio' name='gradeSuffix' data-value='+' id='Plus' /><label for='Plus'>{0}</label>".format("+");
+        gradeSuffices += "<input type='radio' name='gradeSuffix' data-value='−' id='Minus' /><label for='Minus'>{0}</label>".format("−");
         gradeSuffices += "</div>";
 
-        var editFormHtml = "<form id='editForm' class='admin' title='Edit Review'><p></p><input type='hidden' name='movieId' /><div><textarea name='text' maxlength='140' placeholder='Enter review...'></textarea></div><div><input class='iPhoneCheckBox' checked='checked' type='checkbox' name='seeIt' /></div><div><input type='text' name='url' placeholder='Enter Read More url...' /></div><div id='grade'>{0}{1}</div><p></p></form>".format(gradeLetters, gradeSuffices);
+        var editFormHtml = "<form id='editForm' class='admin' title='Edit Review'><p></p><input type='hidden' name='movieId' /><div><textarea name='text' maxlength='140' placeholder='Enter review...'></textarea></div><div><input class='iPhoneCheckBox' checked='checked' type='checkbox' name='seeIt' /></div><div id='grade'>{0}{1}</div><div><input type='text' name='url' placeholder='Enter Read More url...' /></div><p></p></form>".format(gradeLetters, gradeSuffices);
         $("body").append(editFormHtml);
         $(".buttonset").buttonset();
 
@@ -70,12 +70,22 @@
                     var form = $("#editForm");
                     var data = {};
                     var readMoreUrl = form.find("[name='url']").val() || "http://johnhanlonreviews.com";
+                    var gradeLetter = $("[name='gradeLetter']:checked").attr("id");
+                    var gradeSuffix = $("[name='gradeSuffix']:checked").attr("data-value");
+                    if (!gradeLetter || !gradeSuffix)
+                    {
+                        alert("Please enter a grade with this review");
+                        return;
+                    }
+                    var grade = gradeLetter + (gradeSuffix === "Nothing" ? "" : gradeSuffix);
+
                     data.facebookUserId = facebookUserId;
                     data.movieReview = {
                         movieId: form.find("[name='movieId']").val(),
                         text: $.trim(form.find("[name='text']").val()),
                         className: form.find("[name='seeIt']").is(":checked") ? "seeIt" : "orNot",
-                        url: $.trim(readMoreUrl)
+                        url: $.trim(readMoreUrl),
+                        grade: grade
                     };
                     $.ajax({
                         url: '@Url.Content("~/moviereview/save")',
@@ -130,6 +140,8 @@
                 var editForm = $("#editForm");
                 editForm.find("[name='text']").val("");
                 editForm.find("[name='url']").val("");
+                editForm.find("[name='gradeLetter']").prop("checked", false).button("refresh");
+                editForm.find("[name='gradeSuffix']").prop("checked", false).button("refresh");
                 var seeItChk = editForm.find("[name='seeIt']");
                 if (!seeItChk.is(":checked")) {
                     seeItChk.trigger("click");
@@ -153,6 +165,19 @@
 
                 if (review.review.ClassName == "orNot") {
                     editForm.find("[name='seeIt']").trigger('click');
+                }
+
+                var grade = review.review.Grade;
+                if (grade) {
+                    var gradeLetterId = "#" + grade[0];
+                    var gradeSuffixId = "Nothing";
+                    if (grade.length === 2) {
+                        gradeSuffixId = grade[1] === "+" ? "Plus" : "Minus";
+                    }
+                    gradeSuffixId = "#" + gradeSuffixId;
+
+                    editForm.find(gradeLetterId).prop("checked", true).button("refresh");
+                    editForm.find(gradeSuffixId).prop("checked", true).button("refresh");
                 }
             } else {
                 editForm.find("[name='url']").val("http://johnhanlonreviews.com");

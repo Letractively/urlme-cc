@@ -47,6 +47,7 @@ div.loading { background: url('content/images/ajax-loader-blue-ribbon_32x32.gif'
 #editForm textarea { width: 258px; height: 72px; padding: 6px 8px; }
 #editForm input[type='text'] { width: 264px; padding: 4px; }
 #editForm .buttonset { display: inline-block; margin-right: 0; }
+    #editForm .buttonset label span.grayedOut { opacity: 0.6; color: gray; }
 #editForm #gradeSuffices { float: right; }
     #editForm #gradeSuffices .ui-button-text { font-size: 16px; padding: .2em 12px; }
     #editForm #gradeSuffices label[for='Nothing'] span { width: 9px; }

@@ -1,7 +1,7 @@
 ﻿@model movies.Site.ViewModels.Shared.AuthUserJs
 <script type="text/javascript">
     var facebookUserId = @Model.FacebookUserId;
-    
+
     function refreshAdmin() {
         @if (Model.IsReviewer || Model.IsAdmin) {
             <text>
@@ -148,6 +148,7 @@
                 editForm.find("[name='url']").val("");
                 editForm.find("[name='gradeLetter']").prop("checked", false).button("refresh");
                 editForm.find("[name='gradeSuffix']").prop("checked", false).button("refresh");
+                editForm.find(".buttonset label span").removeClass("grayedOut");
                 var seeItChk = editForm.find("[name='seeIt']");
                 if (!seeItChk.is(":checked")) {
                     seeItChk.trigger("click");
@@ -155,6 +156,18 @@
             }
         });
     }
+
+    function refreshButtonsets(buttonset) {
+        var buttonset = buttonset || $(".buttonset");
+        buttonset.find("label span").removeClass("grayedOut");
+        buttonset.find("label:not(.ui-state-active) span").addClass("grayedOut");
+    }
+
+    $(document).on("change", ".buttonset input[type='radio']", function() {
+        var radio = $(this);
+        var buttonset = radio.closest(".buttonset");
+        refreshButtonsets(buttonset);
+    });
 
     // edit button clicks
     $(document).on('click',"a[data-role='Reviewer']", function(e) {
@@ -184,6 +197,7 @@
 
                     editForm.find(gradeLetterId).prop("checked", true).button("refresh");
                     editForm.find(gradeSuffixId).prop("checked", true).button("refresh");
+                    refreshButtonsets();
                 }
             } else {
                 editForm.find("[name='url']").val("http://johnhanlonreviews.com");

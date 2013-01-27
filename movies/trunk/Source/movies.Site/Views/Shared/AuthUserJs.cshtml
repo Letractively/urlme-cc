@@ -72,9 +72,15 @@
                     var readMoreUrl = form.find("[name='url']").val() || "http://johnhanlonreviews.com";
                     var gradeLetter = $("[name='gradeLetter']:checked").attr("id");
                     var gradeSuffix = $("[name='gradeSuffix']:checked").attr("data-value");
+                    var reviewText = $.trim(form.find("[name='text']").val());
                     if (!gradeLetter || !gradeSuffix)
                     {
                         alert("Please enter a grade with this review");
+                        return;
+                    }
+                    if (!reviewText)
+                    {
+                        alert("Please enter a review");
                         return;
                     }
                     var grade = gradeLetter + (gradeSuffix === "Nothing" ? "" : gradeSuffix);
@@ -82,7 +88,7 @@
                     data.facebookUserId = facebookUserId;
                     data.movieReview = {
                         movieId: form.find("[name='movieId']").val(),
-                        text: $.trim(form.find("[name='text']").val()),
+                        text: reviewText,
                         className: form.find("[name='seeIt']").is(":checked") ? "seeIt" : "orNot",
                         url: $.trim(readMoreUrl),
                         grade: grade

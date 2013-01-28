@@ -9,8 +9,16 @@
 </head>
 <body>
     <div id="content">
-        <header></header>
-        @RenderBody()
+        <header>
+            <div id="quickDetails">
+                <div class="date">May 17 & 18</div>
+                <div class="time">6:30pm</div>
+                <div class="where">Commonwealth Chapel<br />1836 Park Ave<br />Richmond, VA 23220</div>
+            </div>
+        </header>
+        <div id="body">
+            @RenderBody()
+        </div>
     </div>
 
     @Scripts.Render("~/bundles/jquery")

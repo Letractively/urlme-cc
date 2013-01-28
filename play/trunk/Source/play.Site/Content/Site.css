@@ -17,9 +17,16 @@ html {
     background: url('images/bg.gif'); padding: 30px;
 }
 
-header { background: url('images/ticket.png') no-repeat; width: 766px; height: 259px; }
+h1 { font-size: 14px; }
 
-#content { margin: 0 auto; width: 1000px; background: white; border-radius: 3px; }
+header { background: url('images/blank-ticket.png') no-repeat; width: 766px; height: 259px; border-top-right-radius: 3px; border-top-left-radius: 3px; position: relative; }
+    header #quickDetails { position: absolute; top: 60px; right: 5px; font-family: 'Courier New'; font-size: 22px; font-weight: bolder; }
+        header #quickDetails > div { text-align: center; }
+        header #quickDetails .where { font-size: 12px; margin-top: 91px; }
+
+#content { margin: 0 auto; width: 766px; background: white; border-radius: 3px; }
+
+#body { padding: 30px; }
 
 header, footer, nav, section {
     display: block;

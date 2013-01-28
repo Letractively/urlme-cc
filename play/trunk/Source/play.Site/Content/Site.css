@@ -19,15 +19,24 @@ html {
 
 h1 { font-size: 14px; }
 
-header { background: url('images/blank-ticket.png') no-repeat; width: 766px; height: 259px; border-top-right-radius: 3px; border-top-left-radius: 3px; position: relative; }
-    header #quickDetails { position: absolute; top: 60px; right: 5px; font-family: 'Courier New'; font-size: 22px; font-weight: bolder; }
-        header #quickDetails > div { text-align: center; }
-        header #quickDetails .where { font-size: 12px; margin-top: 91px; }
+#desktop { margin: 0 auto; width: 766px; background: white; border-radius: 3px; }
+#mobile { background: white; }
 
-#content { margin: 0 auto; width: 766px; background: white; border-radius: 3px; }
+#desktop header { background: url('images/blank-ticket.png') no-repeat; width: 766px; height: 259px; border-top-right-radius: 3px; border-top-left-radius: 3px; position: relative; }
+    #desktop header #quickDetails { position: absolute; top: 60px; right: 5px; font-family: 'Courier New'; font-size: 22px; font-weight: bolder; }
+        #desktop header #quickDetails > div { text-align: center; }
+        #desktop header #quickDetails .where { font-size: 12px; margin-top: 91px; }
 
 #body { padding: 30px; }
 
 header, footer, nav, section {
     display: block;
+}
+
+#desktop { display: none; }
+
+/* non-smart phone */
+@media only screen and (min-width: 600px) {
+    #desktop { display: block; }
+    #mobile { display: none; }
 }

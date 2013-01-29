@@ -38,8 +38,12 @@
             {
                 if (Model.Review != null)
                 {
-                <p class="ourReview medium">
-                    <span class="@Model.Review.ClassName icon"></span>"@Model.Review.Text" <a class="text" href="@Model.Review.Url">- JohnHanlonReviews.com</a>
+                <p class="ourReview mediumWithGrade">
+                    <span class="@Model.Review.ClassName icon">
+                        @if (!string.IsNullOrWhiteSpace(Model.Review.Grade)) {
+                            <span class="@(Model.Review.Grade.Length == 2 ? "" : "single")">@Model.Review.Grade</span>
+                        }
+                    </span>"@Model.Review.Text" <a class="text" href="@Model.Review.Url">- JohnHanlonReviews.com</a>
                 </p>                
                 }                
                 

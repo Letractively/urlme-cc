@@ -33,7 +33,7 @@ h1 { font-size: 14px; }
 #dt h2 { font-size: 20px; font-weight: bold; margin-bottom: 30px; text-align: center; }
 #dt .body .left { padding-right: 30px; width: 347px; }
 #dt .body .right { border-left: 4px dashed darkgray; padding-left: 30px; width: 343px; }
-    #dt .body .right img { width: 210px; float: left; margin-left:-15px; margin-right: 5px; }
+    #dt .body .right img { width: 210px; float: left; margin-left: -12px; margin-right: 15px; }
 
 #dt footer { background: url('images/footer-bg.jpg') no-repeat; width: 816px; height: 200px; border-bottom-left-radius: 3px; border-bottom-right-radius: 3px; }
     #dt footer > div { float: left; }

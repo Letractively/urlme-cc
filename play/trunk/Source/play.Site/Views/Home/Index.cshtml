@@ -1,5 +1,14 @@
-﻿@{
-    ViewBag.Title = "Index";
+﻿@model play.Site.ViewModels.HomeIndex
+
+@{
+    ViewBag.Title = "Crazy Capers at Coco's Coffee Shop";
 }
 
-<h1>The future site of the most awesome dinner play in the universe!</h1>
+<div class="left col">
+    <h2>About the Play</h2>
+    @Model.AboutPlay
+</div>
+<div class="right col">
+    <h2>About the Cause</h2>
+    <img src="~/content/images/team-marshall.jpg" />
+</div>

@@ -19,24 +19,31 @@ html {
 
 h1 { font-size: 14px; }
 
-#desktop { margin: 0 auto; width: 766px; background: white; border-radius: 3px; }
-#mobile { background: white; }
+#dt { margin: 0 auto; width: 816px; background: white; border-radius: 3px; }
+#m { background: white; }
 
-#desktop header { background: url('images/blank-ticket.png') no-repeat; width: 766px; height: 259px; border-top-right-radius: 3px; border-top-left-radius: 3px; position: relative; }
-    #desktop header #quickDetails { position: absolute; top: 60px; right: 5px; font-family: 'Courier New'; font-size: 22px; font-weight: bolder; }
-        #desktop header #quickDetails > div { text-align: center; }
-        #desktop header #quickDetails .where { font-size: 12px; margin-top: 91px; }
+#body { padding: 0 30px 30px 30px; }
 
-#body { padding: 30px; }
+#dt header { background: url('images/blank-ticket-3.png') no-repeat; width: 816px; height: 259px; border-top-right-radius: 3px; border-top-left-radius: 3px; position: relative; }
+    #dt header #quickDetails { position: absolute; top: 60px; right: 25px; font-family: 'Courier New'; font-size: 24px; font-weight: bolder; }
+        #dt header #quickDetails > div { text-align: center; }
+        #dt header #quickDetails .where { font-size: 14px; margin-top: 91px; }
+
+#dt .col { float: left; width: 346px; }
+#dt h2 { font-size: 20px; font-weight: bold; margin-bottom: 30px; }
+#dt #body .left { padding-right: 30px; }
+#dt #body .right { border-left: 4px dashed darkgray; }
+    #dt #body .right img { width: 210px; }
+    #dt #body .right h2 { margin-bottom: 0; margin-left: 30px; }
 
 header, footer, nav, section {
     display: block;
 }
 
-#desktop { display: none; }
+#dt { display: none; }
 
 /* non-smart phone */
 @media only screen and (min-width: 600px) {
-    #desktop { display: block; }
-    #mobile { display: none; }
+    #dt { display: block; }
+    #m { display: none; }
 }

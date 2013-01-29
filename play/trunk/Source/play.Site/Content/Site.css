@@ -20,9 +20,9 @@ html {
 h1 { font-size: 14px; }
 
 #dt { margin: 0 auto; width: 816px; }
-#m { background: white; }
+#m { margin: 0 auto; width: 300px; }
 
-#body { padding: 30px; border-top-left-radius: 3px; border-top-right-radius:3px; margin-top: 30px; background: white; }
+.body { padding: 30px; border-top-left-radius: 3px; border-top-right-radius:3px; margin-top: 30px; background: white; }
 
 #dt header { background: url('images/blank-ticket-4.png') no-repeat; width: 816px; height: 200px; border-radius: 3px; position: relative; }
     #dt header #quickDetails { position: absolute; top: 60px; right: 25px; font-family: 'Courier New'; font-size: 24px; font-weight: bolder; }
@@ -31,10 +31,10 @@ h1 { font-size: 14px; }
 
 #dt .col { float: left; line-height: 19px; text-align: justify; }
 #dt h2 { font-size: 20px; font-weight: bold; margin-bottom: 30px; }
-#dt #body .left { padding-right: 30px; width: 347px; }
-    #dt #body .left h2 { text-align: right; }
-#dt #body .right { border-left: 4px dashed darkgray; padding-left: 30px; width: 343px; }
-    #dt #body .right img { width: 210px; float: left; margin-left:-15px; margin-right: 5px; }
+#dt .body .left { padding-right: 30px; width: 347px; }
+    #dt .body .left h2 { text-align: right; }
+#dt .body .right { border-left: 4px dashed darkgray; padding-left: 30px; width: 343px; }
+    #dt .body .right img { width: 210px; float: left; margin-left:-15px; margin-right: 5px; }
 
 #dt footer { background: url('images/footer-bg.jpg') no-repeat; width: 816px; height: 200px; border-bottom-left-radius: 3px; border-bottom-right-radius: 3px; }
     #dt footer > div { float: left; }
@@ -42,6 +42,8 @@ h1 { font-size: 14px; }
     #dt footer .left { text-align: right; }
     #dt footer .right { text-align: left; }
         #dt footer .middle { height: 180px; width: 116px; height: 175px; background: url('images/chalk.png'); margin-top: 18px; }
+
+#m header { background: url('images/m-header.png') no-repeat; width: 300px; height: 110px; border-radius: 3px; }
 
 footer { font-family: 'Courier New'; font-size: 14px; font-weight: bolder; }
 

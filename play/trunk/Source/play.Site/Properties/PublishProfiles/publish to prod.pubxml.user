@@ -24,7 +24,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>01/28/2013 09:06:11</publishTime>
     </File>
     <File Include="bin/play.Site.dll">
-      <publishTime>01/29/2013 13:35:23</publishTime>
+      <publishTime>01/29/2013 15:46:47</publishTime>
     </File>
     <File Include="bin/System.Net.Http.Formatting.dll">
       <publishTime>01/28/2013 09:06:12</publishTime>
@@ -83,6 +83,9 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <File Include="Content/images/footer-bg.jpg">
       <publishTime>01/29/2013 08:57:53</publishTime>
     </File>
+    <File Include="Content/images/m-header.png">
+      <publishTime>01/29/2013 14:52:50</publishTime>
+    </File>
     <File Include="Content/images/poster.png">
       <publishTime>01/28/2013 09:06:07</publishTime>
     </File>
@@ -99,7 +102,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>01/28/2013 09:06:07</publishTime>
     </File>
     <File Include="Content/Site.css">
-      <publishTime>01/29/2013 13:35:03</publishTime>
+      <publishTime>01/29/2013 15:46:31</publishTime>
     </File>
     <File Include="Content/themes/base/images/ui-bg_flat_0_aaaaaa_40x100.png">
       <publishTime>01/28/2013 09:06:06</publishTime>
@@ -312,16 +315,22 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>01/28/2013 09:06:05</publishTime>
     </File>
     <File Include="Views/Home/Index.cshtml">
-      <publishTime>01/29/2013 13:33:52</publishTime>
+      <publishTime>01/29/2013 14:46:27</publishTime>
     </File>
     <File Include="Views/Shared/AboutCause.cshtml">
       <publishTime>01/29/2013 13:22:41</publishTime>
     </File>
+    <File Include="Views/Shared/DoorsOpen.cshtml">
+      <publishTime>01/29/2013 14:44:37</publishTime>
+    </File>
     <File Include="Views/Shared/Error.cshtml">
       <publishTime>01/28/2013 09:06:08</publishTime>
     </File>
+    <File Include="Views/Shared/TicketNote.cshtml">
+      <publishTime>01/29/2013 14:45:31</publishTime>
+    </File>
     <File Include="Views/Shared/_Layout.cshtml">
-      <publishTime>01/29/2013 14:04:27</publishTime>
+      <publishTime>01/29/2013 15:44:22</publishTime>
     </File>
     <File Include="Views/Web.config">
       <publishTime>01/28/2013 09:06:08</publishTime>
@@ -330,7 +339,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>01/28/2013 09:06:08</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>01/29/2013 14:04:45</publishTime>
+      <publishTime>01/29/2013 15:46:49</publishTime>
     </File>
   </ItemGroup>
 </Project>

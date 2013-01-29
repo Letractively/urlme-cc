@@ -7,8 +7,12 @@
 <div class="left col">
     <h2>About the Play</h2>
     @Model.AboutPlay
+    <div>
+        <center><div id="orderTickets" style="margin-top: 30px; background: #660b5a; display:inline-block; color: white; font-weight: bold; font-size: 18px; padding: 10px 14px;">Order Tickets</div></center>
+    </div>
 </div>
 <div class="right col">
     <h2>About the Cause</h2>
     <img src="~/content/images/team-marshall.jpg" />
+    @{ Html.RenderPartial("AboutCause"); }
 </div>

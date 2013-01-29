@@ -37,7 +37,7 @@ h1 { font-size: 14px; }
 
 #dt footer { background: url('images/footer-bg.jpg') no-repeat; width: 816px; height: 200px; border-bottom-left-radius: 3px; border-bottom-right-radius: 3px; }
     #dt footer > div { float: left; }
-        #dt footer .left, #dt footer .right { width: 290px; padding: 30px; line-height: 19px; }
+        #dt footer .left, #dt footer .right { width: 290px; padding: 40px 30px 30px 30px; line-height: 19px; }
     #dt footer .left { text-align: right; }
     #dt footer .right { text-align: left; }
         #dt footer .middle { height: 180px; width: 116px; height: 175px; background: url('images/chalk.png'); margin-top: 18px; }

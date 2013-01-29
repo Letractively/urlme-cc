@@ -19,12 +19,12 @@ html {
 
 h1 { font-size: 14px; }
 
-#dt { margin: 0 auto; width: 816px; background: white; border-radius: 3px; }
+#dt { margin: 0 auto; width: 816px; }
 #m { background: white; }
 
-#body { padding: 0 30px 30px 30px; }
+#body { padding: 30px; border-radius: 3px; margin-top: 30px; background: white; }
 
-#dt header { background: url('images/blank-ticket-3.png') no-repeat; width: 816px; height: 259px; border-top-right-radius: 3px; border-top-left-radius: 3px; position: relative; }
+#dt header { background: url('images/blank-ticket-3.png') no-repeat; width: 816px; height: 259px; border-radius: 3px; position: relative; }
     #dt header #quickDetails { position: absolute; top: 60px; right: 25px; font-family: 'Courier New'; font-size: 24px; font-weight: bolder; }
         #dt header #quickDetails > div { text-align: center; }
         #dt header #quickDetails .where { font-size: 14px; margin-top: 91px; }

@@ -22,12 +22,21 @@ h1 { font-size: 14px; }
 #dt { margin: 0 auto; width: 816px; }
 #m { background: white; }
 
-#body { padding: 30px; border-radius: 3px; margin-top: 30px; background: white; }
+#body { padding: 30px; border-top-left-radius: 3px; border-top-right-radius:3px; margin-top: 30px; background: white; }
 
-#dt header { background: url('images/blank-ticket-3.png') no-repeat; width: 816px; height: 259px; border-radius: 3px; position: relative; }
+#dt header { background: url('images/blank-ticket-4.png') no-repeat; width: 816px; height: 200px; border-radius: 3px; position: relative; }
     #dt header #quickDetails { position: absolute; top: 60px; right: 25px; font-family: 'Courier New'; font-size: 24px; font-weight: bolder; }
         #dt header #quickDetails > div { text-align: center; }
-        #dt header #quickDetails .where { font-size: 14px; margin-top: 91px; }
+        #dt header #quickDetails .where { font-size: 14px; margin-top: 21px; }
+
+#dt footer { background: url('images/footer-bg.jpg') no-repeat; width: 816px; height: 200px; border-bottom-left-radius: 3px; border-bottom-right-radius: 3px; }
+    #dt footer > div { float: left; }
+        #dt footer .left, #dt footer .right { width: 290px; padding: 30px; line-height: 19px; }
+    #dt footer .left { text-align: right; }
+    #dt footer .right { text-align: left; }
+        #dt footer .middle { height: 180px; width: 116px; height: 175px; background: url('images/chalk.png'); margin-top: 18px; }
+
+footer { font-family: 'Courier New'; font-size: 14px; font-weight: bolder; }
 
 #dt .col { float: left; width: 346px; }
 #dt h2 { font-size: 20px; font-weight: bold; margin-bottom: 30px; }

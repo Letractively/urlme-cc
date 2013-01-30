@@ -22,7 +22,7 @@ a { color: #660b5a; font-weight: bold; }
 h1 { font-size: 14px; }
 
 #dt { margin: 0 auto; width: 816px; }
-#m { margin: 0 auto; width: 300px; }
+#m { }
 
 .body { padding: 30px; border-top-left-radius: 3px; border-top-right-radius:3px; margin-top: 30px; background: white; }
 
@@ -46,7 +46,8 @@ h1 { font-size: 14px; }
     #dt footer .right { text-align: left; padding: 42px 0 0 20px; }
         #dt footer .middle { height: 180px; width: 116px; height: 175px; background: url('images/chalk.png'); margin-top: 18px; }
 
-#m header { background: url('images/m-header.png') no-repeat; width: 300px; height: 110px; border-radius: 3px; }
+#m header { background: white; text-align: center; border-radius: 3px; }
+    #m header .img { background: url('images/m-header.png') no-repeat; width: 300px; height: 110px; display:inline-block; }
 
 footer { font-family: 'Courier New'; font-size: 14px; font-weight: bolder; }
 

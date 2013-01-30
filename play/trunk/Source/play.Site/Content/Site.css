@@ -25,6 +25,7 @@ h1 { font-size: 14px; }
 #m { }
 
 .body { padding: 30px; border-top-left-radius: 3px; border-top-right-radius:3px; margin-top: 30px; background: white; }
+footer { font-family: 'Courier New'; font-size: 14px; font-weight: bolder; }
 
 .orderTicketsContainer { text-align: center; }
     .orderTicketsContainer .orderTickets { margin-top: 30px; background: #660b5a; display: inline-block; color: white; font-weight: bold; font-size: 18px; padding: 10px 14px; border-radius: 3px; /*text-shadow: 0 -1px 1px #65b145;*/ }
@@ -65,7 +66,7 @@ h1 { font-size: 14px; }
 
     #m .borderTop { border-top: 4px dashed darkgray; margin-top: 25px; padding-top: 20px; }
 
-footer { font-family: 'Courier New'; font-size: 14px; font-weight: bolder; }
+    #m footer { font-size: 15px; line-height: 19px; padding: 25px 25px 18px 25px; text-align: center; background: url('images/m-blue-bg.jpg') repeat-x; background-position: top; border-bottom-left-radius: 3px; border-bottom-right-radius: 3px; }
 
 header, footer, nav, section {
     display: block;

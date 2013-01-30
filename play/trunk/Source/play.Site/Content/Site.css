@@ -17,6 +17,8 @@ html {
     background: url('images/bg.gif'); padding: 30px;
 }
 
+a { color: #660b5a; font-weight: bold; text-decoration: none; }
+
 h1 { font-size: 14px; }
 
 #dt { margin: 0 auto; width: 816px; }
@@ -24,10 +26,12 @@ h1 { font-size: 14px; }
 
 .body { padding: 30px; border-top-left-radius: 3px; border-top-right-radius:3px; margin-top: 30px; background: white; }
 
+#orderTickets { margin-top: 30px; background: #660b5a; display: inline-block; color: white; font-weight: bold; font-size: 18px; padding: 10px 14px; border-radius: 3px; /*text-shadow: 0 -1px 1px #65b145;*/ }
+
 #dt header { background: url('images/blank-ticket-4.png') no-repeat; width: 816px; height: 200px; border-radius: 3px; position: relative; }
-    #dt header #quickDetails { position: absolute; top: 60px; right: 25px; font-family: 'Courier New'; font-size: 24px; font-weight: bolder; }
+    #dt header #quickDetails { position: absolute; top: 42px; right: 25px; font-family: 'Courier New'; font-size: 24px; font-weight: bolder; }
         #dt header #quickDetails > div { text-align: center; }
-        #dt header #quickDetails .where { font-size: 14px; margin-top: 21px; }
+        #dt header #quickDetails .where { font-size: 14px; margin-top: 26px; }
 
 #dt .col { float: left; line-height: 19px; text-align: justify; }
 #dt h2 { font-size: 20px; font-weight: bold; margin-bottom: 30px; text-align: center; }
@@ -37,9 +41,9 @@ h1 { font-size: 14px; }
 
 #dt footer { background: url('images/footer-bg.jpg') no-repeat; width: 816px; height: 200px; border-bottom-left-radius: 3px; border-bottom-right-radius: 3px; }
     #dt footer > div { float: left; }
-        #dt footer .left, #dt footer .right { width: 290px; padding: 40px 30px 30px 30px; line-height: 19px; }
-    #dt footer .left { text-align: right; }
-    #dt footer .right { text-align: left; }
+        #dt footer .left, #dt footer .right { padding: 0; line-height: 19px; }
+    #dt footer .left { text-align: right; padding: 60px 13px 0 0; width: 337px; }
+    #dt footer .right { text-align: left; padding: 42px 0 0 20px; }
         #dt footer .middle { height: 180px; width: 116px; height: 175px; background: url('images/chalk.png'); margin-top: 18px; }
 
 #m header { background: url('images/m-header.png') no-repeat; width: 300px; height: 110px; border-radius: 3px; }

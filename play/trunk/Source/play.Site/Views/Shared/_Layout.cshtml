@@ -33,20 +33,7 @@
             </div>
         </header>
         <div class="body group">
-            @RenderBody()
-            @*@RenderSection("dt-body", required: true);*@
-            <div class="left col">
-                <h2>About the Play</h2>
-                @Model.AboutPlay
-                <div>
-                    <center><div id="orderTickets" style="margin-top: 30px; background: #660b5a; display:inline-block; color: white; font-weight: bold; font-size: 18px; padding: 10px 14px;">Order Tickets</div></center>
-                </div>
-            </div>
-            <div class="right col">
-                <h2>About the Cause</h2>
-                <img src="~/content/images/team-marshall.png" />
-                @{ Html.RenderPartial("AboutCause"); }
-            </div>
+            @RenderSection("desktopBody", required: true)
         </div>
         <footer class="group">
             <div class="left">
@@ -61,6 +48,9 @@
 
     <div id="m">
         <header></header>
+        <div class="body group">
+            @RenderSection("mobileBody", required: true)
+        </div>
     </div>
 
     @Scripts.Render("~/bundles/jquery")

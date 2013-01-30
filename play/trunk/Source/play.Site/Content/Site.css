@@ -50,7 +50,7 @@ footer { font-family: 'Courier New'; font-size: 14px; font-weight: bolder; }
 
 #m { font-size: 15px; }
 #m header { text-align: center; font-family: 'Courier New'; font-weight: normal; }
-    #m header .imgContainer { border-top-left-radius: 3px; border-top-right-radius: 3px; background: white; }
+    #m header .imgContainer { height: 110px; border-top-left-radius: 3px; border-top-right-radius: 3px; background: white; }
     #m header .img { background: url('images/m-header-4.png') no-repeat; width: 260px; height: 110px; display:inline-block; }
     #m header div.headerFooter { padding: 25px 0 10px 0; background: url('images/m-blue-bg.jpg') repeat-x; background-position: top; line-height: 19px; border-bottom-left-radius: 3px; border-bottom-right-radius: 3px; }
 

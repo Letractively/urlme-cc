@@ -229,7 +229,7 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Shared\AboutCause.cshtml" />
-    <Content Include="Views\Shared\DoorsOpen.cshtml" />
+    <Content Include="Views\Shared\Parking.cshtml" />
     <Content Include="Views\Shared\TicketNote.cshtml" />
   </ItemGroup>
   <ItemGroup>

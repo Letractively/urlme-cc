@@ -1,0 +1,21 @@
+﻿@model play.Site.Models.PlayOrder
+
+@{
+    ViewBag.Title = "Index";
+}
+
+@section desktopBody {
+    @{ Html.RenderPartial("OrderForm"); }
+}
+
+@section mobileBody {
+    @{ Html.RenderPartial("OrderForm"); }
+}
+
+@section scripts {
+<script>
+    $(function () {
+        $("#playDates").buttonset();
+    });
+</script>
+}

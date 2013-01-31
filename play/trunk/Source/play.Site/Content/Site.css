@@ -28,9 +28,9 @@ h1 { font-size: 14px; }
 footer { font-family: 'Courier New'; font-size: 14px; font-weight: bolder; }
 
 .orderTicketsContainer { text-align: center; }
-    .orderTicketsContainer .orderTickets { margin-top: 30px; background: #660b5a; display: inline-block; color: white; font-weight: bold; font-size: 18px; padding: 10px 14px; border-radius: 3px; /*text-shadow: 0 -1px 1px #65b145;*/ }
+    .orderTicketsContainer .orderTickets { text-decoration: none; margin-top: 30px; background: #660b5a; display: inline-block; color: white; font-weight: bold; font-size: 18px; padding: 10px 14px; border-radius: 3px; /*text-shadow: 0 -1px 1px #65b145;*/ }
 
-#dt header { background: url('images/blank-ticket-4.png') no-repeat; width: 816px; height: 200px; border-radius: 3px; position: relative; }
+#dt header { color: #333; background: url('images/blank-ticket-4.png') no-repeat; width: 816px; height: 200px; border-radius: 3px; position: relative; }
     #dt header #quickDetails { position: absolute; top: 42px; right: 25px; font-family: 'Courier New'; font-size: 24px; font-weight: bolder; }
         #dt header #quickDetails > div { text-align: center; }
         #dt header #quickDetails .where { font-size: 14px; margin-top: 26px; }
@@ -49,7 +49,7 @@ footer { font-family: 'Courier New'; font-size: 14px; font-weight: bolder; }
         #dt footer .middle { height: 180px; width: 116px; height: 175px; background: url('images/chalk.png'); margin-top: 18px; }
 
 #m { font-size: 15px; }
-#m header { text-align: center; font-family: 'Courier New'; font-weight: bolder; }
+#m header { color: #333; text-align: center; font-family: 'Courier New'; font-weight: bolder; }
     #m header .img { background: url('images/m-header-4.png') no-repeat #fff; background-position: top center; height: 110px; border-top-left-radius: 3px; border-top-right-radius: 3px; }
     #m header div.headerFooter { padding: 25px 0 10px 0; background: url('images/m-blue-bg.jpg') repeat-x; background-position: top; line-height: 19px; border-bottom-left-radius: 3px; border-bottom-right-radius: 3px; }
 
@@ -66,6 +66,8 @@ footer { font-family: 'Courier New'; font-size: 14px; font-weight: bolder; }
     #m .borderTop { border-top: 4px dashed darkgray; margin-top: 25px; padding-top: 20px; }
 
     #m footer { font-weight: bolder; font-size: 15px; line-height: 19px; padding: 25px 25px 18px 25px; text-align: center; background: url('images/m-blue-bg.jpg') repeat-x; background-position: top; border-bottom-left-radius: 3px; border-bottom-right-radius: 3px; }
+
+.orderIndex #playDates label:first-child { font-weight: bold; margin-right: 15px; }
 
 header, footer, nav, section {
     display: block;

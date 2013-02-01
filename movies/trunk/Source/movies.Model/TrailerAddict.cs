@@ -45,7 +45,7 @@ namespace movies.Model
                             foreach (DataRow row in ds.Tables["trailer"].Rows)
                             {
                                 var rtMovie = Model.Movie.GetRottenTomatoesMovieByIMDbId(row["imdb"].ToString());
-                                if (rtMovie == null)
+                                if (rtMovie == null || rtn.Any(x => x.RtMovieId == rtMovie.id))
                                 {
                                     continue;
                                 }

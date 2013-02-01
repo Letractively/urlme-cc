@@ -5,17 +5,29 @@
 }
 
 @section desktopBody {
-    @{ Html.RenderPartial("OrderForm"); }
+    @{ Html.RenderPartial("OrderForm", "dt"); }
 }
 
 @section mobileBody {
-    @{ Html.RenderPartial("OrderForm"); }
+    @{ Html.RenderPartial("OrderForm", "m"); }
 }
 
 @section scripts {
 <script>
     $(function () {
-        $("#playDates").buttonset();
+        $(".buttonset").buttonset();
+
+        // bind controls
+
+        // change playDate radios - add border left (hack-ish, but otherwise it looks nonconsistent)
+        $("[name='playDate']").change(function () {
+            var radio = $(this);
+            $(".radioLabel").removeClass("borderLeft");
+            if (radio.attr("id").indexOf("day1") >= 0) {
+                var day2Id = radio.attr('id').replace('1', '2');
+                $(".radioLabel[for='" + day2Id + "']").addClass("borderLeft");
+            }
+        });
     });
 </script>
 }

@@ -1,9 +1,46 @@
-﻿<div class="orderIndex">
+﻿@model string
+
+<div class="orderIndex">
 @using (Html.BeginForm("Index", "Account"))
 {
-    <div id="playDates">
-        <label>Which day?</label><input type="radio" id="day1" name="playDate" value="5/17/2013" /><label for="day1">Fri. May 17</label>
-        <input type="radio" id="day2" name="playDate" value="5/18/2013" /><label for="day2">Sat. May 18</label>
+    <div class="playDates buttonset group">
+        <label>Which day?</label><input type="radio" id="@(Model + "_day1")" name="playDate" value="5/17/2013" /><label class="radioLabel" for="@(Model + "_day1")">Fri. May 17</label>
+        <input type="radio" id="@(Model + "_day2")" name="playDate" value="5/18/2013" /><label class="radioLabel" for="@(Model + "_day2")">Sat. May 18</label>
     </div>
+    <div class="group">
+        <label>How many couple tickets?</label>
+        <div class="hint">Each couple ticket is for 2 people. 1 would be for 2 people, 2 for 4 people, etc...</div>
+        <div class="coupleSlider slider" data-display-id="@(Model + "_coupleTicketCount")"></div><div class="sliderDisplay" id="@(Model + "_coupleTicketCount")">0</div>
+    </div>
+    <div class="group">
+        <label>How many individual tickets?</label>
+        <div class="hint">Example scenario: a couple bringing a friend could be 1 couple ticket (see above), 1 individual ticket.</div>
+        <div class="individualSlider slider" data-display-id="@(Model + "_individualTicketCount")"></div><div class="sliderDisplay" id="@(Model + "_individualTicketCount")">0</div>
+    </div>    
 }
 </div>
+
+<script>
+    $(function () {
+        $(".coupleSlider").slider({
+            value: 0,
+            min: 0,
+            max: 5,
+            step: 1,
+            slide: function (e, ui) {
+                var display = $("#" + ui.handle.parentElement.attributes["data-display-id"].value);
+                display.text(ui.value);
+            }
+        });
+        $(".individualSlider").slider({
+            value: 0,
+            min: 0,
+            max: 10,
+            step: 1,
+            slide: function (e, ui) {
+                var display = $("#" + ui.handle.parentElement.attributes["data-display-id"].value);
+                display.text(ui.value);
+            }
+        });
+    });
+</script>

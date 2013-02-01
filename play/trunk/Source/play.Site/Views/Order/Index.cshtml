@@ -19,14 +19,21 @@
 
         // bind controls
 
-        // change playDate radios - add border left (hack-ish, but otherwise it looks nonconsistent)
-        $("[name='playDate']").change(function () {
-            var radio = $(this);
-            $(".radioLabel").removeClass("borderLeft");
-            if (radio.attr("id").indexOf("day1") >= 0) {
-                var day2Id = radio.attr('id').replace('1', '2');
-                $(".radioLabel[for='" + day2Id + "']").addClass("borderLeft");
+        // click a counter up/down (+/-) button
+        $(".countButton").click(function (e) {
+            var btn = $(this);
+            btn.blur();
+            var countUp = btn.hasClass("countUp");
+            var display = countUp ? btn.next("span") : btn.prev("span");
+            var currentCount = parseInt(display.text());
+            if (!currentCount && !countUp)
+                return; // zero. can't get lower than zero.
+            if (countUp) {
+                currentCount++;
+            } else {
+                currentCount--;
             }
+            display.text(currentCount);
         });
     });
 </script>

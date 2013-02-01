@@ -47,8 +47,11 @@ body{font-size:12px;font-family:Arial, "Helvetica Neue", Helvetica, Sans-Serif;}
 .ourReview.medium .orNot { background-position: -25px -161px; }
 
 .ourReview.mediumWithGrade span.icon { width: 45px; height: 55px; position: relative; }
-    .ourReview.mediumWithGrade span.icon span { position: absolute; top: 24px; left: 15px; font-weight: bold; color: white; }
-    .ourReview.mediumWithGrade span.icon span.single { left: 18px; }
+    .ourReview.mediumWithGrade span.icon span { position: absolute; font-weight: bold; color: white; }
+    .ourReview.mediumWithGrade span.seeIt span { top: 23px; left: 16px; }
+    .ourReview.mediumWithGrade span.seeIt span.single { left: 18px; }
+    .ourReview.mediumWithGrade span.orNot span { top: 7px; left: 17px; }
+    .ourReview.mediumWithGrade span.orNot span.single { left: 21px; }
 .ourReview.mediumWithGrade { line-height: 23px; }
 .ourReview.mediumWithGrade .seeIt { background-position: -50px -160px; }
 .ourReview.mediumWithGrade .orNot { background-position: -96px -160px; }

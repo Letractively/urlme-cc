@@ -22,7 +22,6 @@
         // click a counter up/down (+/-) button
         $(".countButton").click(function (e) {
             var btn = $(this);
-            btn.blur();
             var countUp = btn.hasClass("countUp");
             var display = countUp ? btn.next("span") : btn.prev("span");
             var currentCount = parseInt(display.text());
@@ -33,7 +32,7 @@
             } else {
                 currentCount--;
             }
-            display.text(currentCount);
+            display.text(currentCount).focus();
         });
     });
 </script>

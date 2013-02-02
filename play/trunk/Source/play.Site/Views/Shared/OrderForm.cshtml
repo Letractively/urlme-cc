@@ -3,6 +3,9 @@
 <div class="orderIndex">
 @using (Html.BeginForm("Index", "Account"))
 {
+    <div>
+        <label>What's your name?</label>
+    </div>
     <div class="playDates buttonset group">
         <label>Which day?</label>
         <div class="noSelect">
@@ -12,13 +15,15 @@
     </div>
     <div class="group">
         <label>How many couple tickets?</label>
-        <div class="hint">Each couple ticket is for 2 people. 1 would be for 2 people, 2 for 4 people, etc...</div>
-        <div class="counter group noSelect"><span class="countUp countButton">+</span><span class="countDisplay" id="@(Model + "_coupleTicketCount")">0</span><span class="countButton">−</span></div>
+        <div class="hint">$60 per ticket, 1 ticket is for 2 seats</div>
+        <div class="counter group noSelect" data-price-per-id="@(Model + "_couplePricePer")" data-display-class="@(Model + "_coupleCount")" data-total-id="@(Model + "_coupleTotal")"><span class="countUp countButton">+</span><span class="countDisplay @(Model + "_coupleCount")">0</span><span class="countButton">−</span></div>
+        <div class="ticketOrder hint">$<span id="@(Model + "_couplePricePer")">60</span><span class="operand">✕</span><span class="@(Model + "_coupleCount")">0</span><span class="operand">=</span><strong>$<span id="@(Model + "_coupleTotal")">0</span></strong></div>
     </div>
     <div class="group">
         <label>How many individual tickets?</label>
-        <div class="hint">Example scenario: a couple bringing a friend could be 1 couple ticket (see above), 1 individual ticket.</div>
-        <div class="counter group noSelect"><span class="countUp countButton">+</span><span class="countDisplay" id="@(Model + "_individualTicketCount")">0</span><span class="countButton">−</span></div>
+        <div class="hint">$35 per ticket, 1 ticket is for 1 seat</div>
+        <div class="counter group noSelect" data-price-per-id="@(Model + "_individualPricePer")" data-display-class="@(Model + "_individualCount")" data-total-id="@(Model + "_individualTotal")"><span class="countUp countButton">+</span><span class="countDisplay @(Model + "_individualCount")">0</span><span class="countButton">−</span></div>
+        <div class="ticketOrder hint">$<span id="@(Model + "_individualPricePer")">35</span><span class="operand">✕</span><span class="@(Model + "_individualCount")">0</span><span class="operand">=</span><strong>$<span id="@(Model + "_individualTotal")">0</span></strong></div>
     </div>    
 }
 </div>

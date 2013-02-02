@@ -16,6 +16,7 @@ body{font-size:13px;font-family:Arial, "Helvetica Neue", Helvetica, Sans-Serif;}
 html {
     background: url('images/bg.gif');
 }
+.noSelect { -webkit-user-select: none; -khtml-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; }
 
 a { color: #660b5a; font-weight: bold; }
 .borderLeft { border-left-color: #333; }

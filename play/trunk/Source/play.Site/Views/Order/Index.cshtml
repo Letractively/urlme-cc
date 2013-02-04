@@ -26,6 +26,7 @@
 
         // click a counter up/down (+/-) button
         $(".countButton").click(function (e) {
+            e.preventDefault();
             var btn = $(this);
             var countUp = btn.hasClass("countUp");
             var counter = btn.closest(".counter");
@@ -42,7 +43,6 @@
             }
             display.text(currentCount);
             total.text(currentCount * pricePer);
-            document.getSelection().removeAllRanges();
         });
     });
 </script>

@@ -29,7 +29,7 @@ h1 { font-size: 14px; }
 .body { padding: 30px; border-top-left-radius: 3px; border-top-right-radius:3px; margin-top: 30px; background: white; }
 footer { font-family: 'Courier New'; font-size: 14px; font-weight: bolder; }
 
-.orderTicketsContainer { text-align: center; }
+.orderTicketsContainer { text-align: center; padding: 30px 0 0 0; }
     .orderTicketsContainer .orderTickets { text-decoration: none; margin-top: 30px; background: #660b5a; display: inline-block; color: white; font-weight: bold; font-size: 18px; padding: 10px 14px; border-radius: 3px; /*text-shadow: 0 -1px 1px #65b145;*/ }
 
 #dt header { color: #333; background: url('images/blank-ticket-4.png') no-repeat; width: 816px; height: 200px; border-radius: 3px; position: relative; }

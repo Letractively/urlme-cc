@@ -31,6 +31,14 @@ ihdavis.registerNamespace = function () {
     return o;
 };
 
+ihdavis.registerNamespace("form");
+ihdavis.form = {
+    emailIsValid: function (email) {
+        var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        return re.test(email);
+    }
+};
+
 //ihdavis.registerNamespace("Feedback");
 //ihdavis.feedback = {
 //    showSuccess: function () {

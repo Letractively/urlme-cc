@@ -30,6 +30,9 @@ namespace play.Site.Models
 		
     #region Extensibility Method Definitions
     partial void OnCreated();
+    partial void InsertLog(Log instance);
+    partial void UpdateLog(Log instance);
+    partial void DeleteLog(Log instance);
     partial void InsertPlayOrder(PlayOrder instance);
     partial void UpdatePlayOrder(PlayOrder instance);
     partial void DeletePlayOrder(PlayOrder instance);
@@ -65,11 +68,177 @@ namespace play.Site.Models
 			OnCreated();
 		}
 		
+		public System.Data.Linq.Table<Log> Logs
+		{
+			get
+			{
+				return this.GetTable<Log>();
+			}
+		}
+		
 		public System.Data.Linq.Table<PlayOrder> PlayOrders
 		{
 			get
 			{
 				return this.GetTable<PlayOrder>();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="ihdavis2.[Log]")]
+	public partial class Log : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _LogId;
+		
+		private string _LogType;
+		
+		private string _Message;
+		
+		private System.DateTime _CreateDate;
+		
+		private System.Nullable<System.DateTime> _ModifyDate;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnLogIdChanging(int value);
+    partial void OnLogIdChanged();
+    partial void OnLogTypeChanging(string value);
+    partial void OnLogTypeChanged();
+    partial void OnMessageChanging(string value);
+    partial void OnMessageChanged();
+    partial void OnCreateDateChanging(System.DateTime value);
+    partial void OnCreateDateChanged();
+    partial void OnModifyDateChanging(System.Nullable<System.DateTime> value);
+    partial void OnModifyDateChanged();
+    #endregion
+		
+		public Log()
+		{
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LogId", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int LogId
+		{
+			get
+			{
+				return this._LogId;
+			}
+			set
+			{
+				if ((this._LogId != value))
+				{
+					this.OnLogIdChanging(value);
+					this.SendPropertyChanging();
+					this._LogId = value;
+					this.SendPropertyChanged("LogId");
+					this.OnLogIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LogType", DbType="NVarChar(10) NOT NULL", CanBeNull=false)]
+		public string LogType
+		{
+			get
+			{
+				return this._LogType;
+			}
+			set
+			{
+				if ((this._LogType != value))
+				{
+					this.OnLogTypeChanging(value);
+					this.SendPropertyChanging();
+					this._LogType = value;
+					this.SendPropertyChanged("LogType");
+					this.OnLogTypeChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Message", DbType="NVarChar(MAX) NOT NULL", CanBeNull=false)]
+		public string Message
+		{
+			get
+			{
+				return this._Message;
+			}
+			set
+			{
+				if ((this._Message != value))
+				{
+					this.OnMessageChanging(value);
+					this.SendPropertyChanging();
+					this._Message = value;
+					this.SendPropertyChanged("Message");
+					this.OnMessageChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CreateDate", DbType="DateTime NOT NULL")]
+		public System.DateTime CreateDate
+		{
+			get
+			{
+				return this._CreateDate;
+			}
+			set
+			{
+				if ((this._CreateDate != value))
+				{
+					this.OnCreateDateChanging(value);
+					this.SendPropertyChanging();
+					this._CreateDate = value;
+					this.SendPropertyChanged("CreateDate");
+					this.OnCreateDateChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ModifyDate", DbType="DateTime")]
+		public System.Nullable<System.DateTime> ModifyDate
+		{
+			get
+			{
+				return this._ModifyDate;
+			}
+			set
+			{
+				if ((this._ModifyDate != value))
+				{
+					this.OnModifyDateChanging(value);
+					this.SendPropertyChanging();
+					this._ModifyDate = value;
+					this.SendPropertyChanged("ModifyDate");
+					this.OnModifyDateChanged();
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
 		}
 	}
@@ -84,13 +253,19 @@ namespace play.Site.Models
 		
 		private string _Name;
 		
+		private string _Email;
+		
 		private int _CoupleTicketCount;
 		
 		private int _IndividualTicketCount;
 		
 		private System.DateTime _PlayDate;
 		
+		private string _Status;
+		
 		private System.DateTime _CreateDate;
+		
+		private System.Nullable<System.DateTime> _ModifyDate;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -100,14 +275,20 @@ namespace play.Site.Models
     partial void OnPlayOrderIdChanged();
     partial void OnNameChanging(string value);
     partial void OnNameChanged();
+    partial void OnEmailChanging(string value);
+    partial void OnEmailChanged();
     partial void OnCoupleTicketCountChanging(int value);
     partial void OnCoupleTicketCountChanged();
     partial void OnIndividualTicketCountChanging(int value);
     partial void OnIndividualTicketCountChanged();
     partial void OnPlayDateChanging(System.DateTime value);
     partial void OnPlayDateChanged();
+    partial void OnStatusChanging(string value);
+    partial void OnStatusChanged();
     partial void OnCreateDateChanging(System.DateTime value);
     partial void OnCreateDateChanged();
+    partial void OnModifyDateChanging(System.Nullable<System.DateTime> value);
+    partial void OnModifyDateChanged();
     #endregion
 		
 		public PlayOrder()
@@ -151,6 +332,26 @@ namespace play.Site.Models
 					this._Name = value;
 					this.SendPropertyChanged("Name");
 					this.OnNameChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Email", DbType="NVarChar(250) NOT NULL", CanBeNull=false)]
+		public string Email
+		{
+			get
+			{
+				return this._Email;
+			}
+			set
+			{
+				if ((this._Email != value))
+				{
+					this.OnEmailChanging(value);
+					this.SendPropertyChanging();
+					this._Email = value;
+					this.SendPropertyChanged("Email");
+					this.OnEmailChanged();
 				}
 			}
 		}
@@ -215,6 +416,26 @@ namespace play.Site.Models
 			}
 		}
 		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Status", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
+		public string Status
+		{
+			get
+			{
+				return this._Status;
+			}
+			set
+			{
+				if ((this._Status != value))
+				{
+					this.OnStatusChanging(value);
+					this.SendPropertyChanging();
+					this._Status = value;
+					this.SendPropertyChanged("Status");
+					this.OnStatusChanged();
+				}
+			}
+		}
+		
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CreateDate", DbType="DateTime NOT NULL")]
 		public System.DateTime CreateDate
 		{
@@ -231,6 +452,26 @@ namespace play.Site.Models
 					this._CreateDate = value;
 					this.SendPropertyChanged("CreateDate");
 					this.OnCreateDateChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ModifyDate", DbType="DateTime")]
+		public System.Nullable<System.DateTime> ModifyDate
+		{
+			get
+			{
+				return this._ModifyDate;
+			}
+			set
+			{
+				if ((this._ModifyDate != value))
+				{
+					this.OnModifyDateChanging(value);
+					this.SendPropertyChanging();
+					this._ModifyDate = value;
+					this.SendPropertyChanged("ModifyDate");
+					this.OnModifyDateChanged();
 				}
 			}
 		}

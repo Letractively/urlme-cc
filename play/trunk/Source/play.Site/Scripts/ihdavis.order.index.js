@@ -3,13 +3,16 @@ ihdavis.order.index = {
     controls: {
         coupleCount: function () { return $(ihdavis.order.index.controls.envClassPrefix() + "coupleCount").first(); }
         , coupleTotal: function () { return $(ihdavis.order.index.controls.envIdPrefix() + "coupleTotal"); }
+        , countButtons: function () { return $(".countButton"); }
         , email: function () { return ihdavis.order.index.controls.order().find("input[name='email']"); }
         , envClassPrefix: function () { return ihdavis.order.index.controls.order().hasClass("m") ? ".m_" : ".dt_"; }
         , envIdPrefix: function () { return ihdavis.order.index.controls.order().hasClass("m") ? "#m_" : "#dt_"; }
+        , formSubmitButton: function () { return ihdavis.order.index.controls.payButton().find("input[name='submit']"); }
         , hidAmount: function () { return $("input[name='amount']"); }
+        , hidItemId: function () { return $("input[name='custom']"); }
         , indivCount: function () { return $(ihdavis.order.index.controls.envClassPrefix() + "individualCount").first(); }
         , indivTotal: function () { return $(ihdavis.order.index.controls.envIdPrefix() + "individualTotal"); }
-        , name: function() { return ihdavis.order.index.controls.order().find("input[name='name']"); }
+        , name: function () { return ihdavis.order.index.controls.order().find("input[name='name']"); }
         , order: function () { return $(".orderIndex.m").is(":visible") ? $(".orderIndex.m") : $(".orderIndex.dt"); }
         , payButton: function () { return ihdavis.order.index.controls.order().find(".payButton form"); }
         , playDate: function() { return ihdavis.order.index.controls.order().find("input[name='playDate']:checked"); }
@@ -28,7 +31,15 @@ ihdavis.order.index = {
             , playDate = ihdavis.order.index.controls.playDate().val()
             , ticketCount = ihdavis.order.index.calculatedVals.ticketCount()
             , ticketTotal = ihdavis.order.index.calculatedVals.ticketTotal()
-            , payButton = ihdavis.order.index.controls.payButton();
+            , payButton = ihdavis.order.index.controls.payButton()
+            , emailEl = ihdavis.order.index.controls.email();
+
+        if (email && !ihdavis.form.emailIsValid(email) && !emailEl.is(":focus")) {
+            emailEl.css("border-color", "red");
+        } else {
+            emailEl.css("border-color", "#ccc");
+        }
+
         if (name && email && playDate && ticketCount) {
             payButton.show();
             
@@ -47,13 +58,47 @@ ihdavis.order.index = {
             ihdavis.order.index.resetPayButton();
         });
 
+        ihdavis.order.index.controls.formSubmitButton().click(function (e) {
+            e.preventDefault();
+
+            // first, submit the order in our db so we can get the order id to send along w/ paypal payment
+            var data = {};
+            data.Name = $.trim(ihdavis.order.index.controls.name().val());
+            data.Email = $.trim(ihdavis.order.index.controls.email().val());
+            data.CoupleTicketCount = parseInt(ihdavis.order.index.controls.coupleCount().text());
+            data.IndividualTicketCount = parseInt(ihdavis.order.index.controls.indivCount().text());
+            data.PlayDate = ihdavis.order.index.controls.playDate().val();
+
+            $.ajax({
+                url: submitOrderUrl,
+                type: 'POST',
+                dataType: 'json',
+                data: JSON.stringify(data),
+                contentType: 'application/json; charset=utf-8',
+                success: function (resp) {
+                    if (resp.orderId > 0) {
+                        ihdavis.order.index.controls.hidItemId().val(resp.orderId);
+                        ihdavis.order.index.controls.payButton().submit(); // now that we've set the orderId for the IPN callback, we can submit the paypal form
+                    } else {
+                        alert("Error. Please try again.");
+                    }
+                },
+                error: function (xhr) {
+                    alert("Ajax error. Please try again.");
+                }
+            });
+        });
+
         // keyup on name textbox - show/hide payButton
-        $("input[name='name']").keyup(function () {
+        $("input[name='name'],input[name='email']").keyup(function () {
+            ihdavis.order.index.resetPayButton();
+        });
+        $("input[name='email']").blur(function () {
             ihdavis.order.index.resetPayButton();
         });
 
         // click a counter up/down (+/-) button
-        $(".countButton").click(function (e) {
+        ihdavis.order.index.controls.countButtons().click(function (e) {
             e.preventDefault();
             var btn = $(this);
             var countUp = btn.hasClass("countUp");

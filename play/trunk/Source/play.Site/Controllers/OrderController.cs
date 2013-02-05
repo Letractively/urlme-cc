@@ -17,34 +17,27 @@ namespace play.Site.Controllers
         }
 
         [HttpPost]
+        public ActionResult Paypal_Ipn()
+        {
+            int orderId = int.Parse(Request.Form["item_id"]);
+            int result = Models.PlayOrder.MarkAsPaid(orderId);
+            if (result == -1)
+                Models.Log.Save("Error in marking as paid; orderId = " + orderId + ".");
+
+            return null;
+        }
+
+        [HttpPost]
         public JsonResult Submit(Models.PlayOrder order)
         {
-            
-            return null;
+            int orderId = Models.PlayOrder.Save(order);
+            return this.Json(new { orderId = orderId }, JsonRequestBehavior.AllowGet);
         }
 
         [HttpGet]
         public ActionResult ThankYou()
         {
-            return Redirect("~/ThankYou");
-        }
-
-        //
-        // POST: /Order/Create
-
-        [HttpPost]
-        public ActionResult Create(FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add insert logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
+            return View();
         }
     }
 }

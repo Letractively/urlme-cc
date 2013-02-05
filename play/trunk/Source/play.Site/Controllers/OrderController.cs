@@ -19,7 +19,7 @@ namespace play.Site.Controllers
         [HttpPost]
         public ActionResult Paypal_Ipn()
         {
-            int orderId = int.Parse(Request.Form["item_id"]);
+            int orderId = int.Parse(Request.Form["custom"]);
             int result = Models.PlayOrder.MarkAsPaid(orderId);
             if (result == -1)
                 Models.Log.Save("Error in marking as paid; orderId = " + orderId + ".");

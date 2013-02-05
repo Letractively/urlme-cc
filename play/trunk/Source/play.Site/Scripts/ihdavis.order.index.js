@@ -22,7 +22,9 @@ ihdavis.order.index = {
         , ticketCount: function () { return parseInt(ihdavis.order.index.controls.coupleCount().text()) + parseInt(ihdavis.order.index.controls.indivCount().text()); }
     }
     , init: function() {
-        $(".buttonset").buttonset(); // todo: siteActions
+        if (!ihdavis.order.index.controls.order().hasClass("iPhone") || ihdavis.order.index.controls.order().hasClass("dt")) {
+            $(".buttonset").buttonset(); // todo: siteActions
+        }
         ihdavis.order.index.bindControls();
     }
     , resetPayButton: function () {

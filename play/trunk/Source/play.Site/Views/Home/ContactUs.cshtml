@@ -16,9 +16,13 @@
                     var form = $(this);
                     var name = $.trim(form.find("#Name").val());
                     var email = $.trim(form.find("#Email").val());
-                    var msg = $.trim(form.find("#msg").val());
-                    if (name && email && msg && ihdavis.form.emailIsValid(email))
+                    var msg = $.trim(form.find("#Message").val());
+                    if (name && email && msg && ihdavis.form.emailIsValid(email)) {
+                        form.find("#Name").val(name);
+                        form.find("#Email").val(email);
+                        form.find("#Message").val(msg);
                         return true;
+                    }
                     
                     alert("Please fill out all fields.");
                     return false;

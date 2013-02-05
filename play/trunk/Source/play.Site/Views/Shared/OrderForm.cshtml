@@ -1,6 +1,6 @@
 ﻿@model string
 
-<div class="orderIndex @Model">
+<div class="orderIndex @Model @(Request.UserAgent.ToLower().Contains("iphone") ? "iPhone" : "")">
 @using (Html.BeginForm("Submit", "Order"))
 {
     <div>

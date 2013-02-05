@@ -1,0 +1,32 @@
+﻿@model play.Site.ViewModels.ContactUs
+
+@section desktopBody {
+    @{ Html.RenderPartial("ContactUsForm", Model); }
+}
+
+@section mobileBody {
+    @{ Html.RenderPartial("ContactUsForm", Model); }
+}
+
+@section scripts {
+    <script>
+        $(function () {
+            var init = function () {
+                $("form").submit(function (e) {
+                    var form = $(this);
+                    var name = $.trim(form.find("#Name").val());
+                    var email = $.trim(form.find("#Email").val());
+                    var msg = $.trim(form.find("#msg").val());
+                    if (name && email && msg && ihdavis.form.emailIsValid(email))
+                        return true;
+                    
+                    alert("Please fill out all fields.");
+                    return false;
+                });
+            };
+
+            init();
+        });
+    </script>
+}
+

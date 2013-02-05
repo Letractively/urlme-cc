@@ -1,11 +1,9 @@
-﻿@model string
-
-@section desktopBody {
-    Thank you!
+﻿@section desktopBody {
+    @{ Html.RenderPartial("ThankYouSnippet"); }
 }
 
 @section mobileBody {
-    Thank you!
+    @{ Html.RenderPartial("ThankYouSnippet"); }
 }
 
 @section scripts {

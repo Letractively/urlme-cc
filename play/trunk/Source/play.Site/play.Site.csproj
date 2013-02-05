@@ -128,6 +128,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Mail.cs" />
     <Compile Include="Models\Log.cs" />
     <Compile Include="Models\Play.designer.cs">
       <AutoGen>True</AutoGen>
@@ -136,6 +137,7 @@
     </Compile>
     <Compile Include="Models\PlayOrder.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModels\ContactUs.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\images\bg.gif" />
@@ -255,10 +257,14 @@
     <Content Include="Views\Shared\OrderForm.cshtml" />
     <Content Include="Views\Shared\PayButton.cshtml" />
     <Content Include="Views\Order\ThankYou.cshtml" />
+    <Content Include="Views\Shared\ThankYouSnippet.cshtml" />
+    <Content Include="Views\Home\ContactUs.cshtml" />
+    <Content Include="Views\Shared\ContactUsForm.cshtml" />
+    <Content Include="Views\Shared\ContactUsSuccessSnippet.cshtml" />
+    <Content Include="Views\Home\ContactUsSuccess.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="ViewModels\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

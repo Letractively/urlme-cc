@@ -22,7 +22,7 @@ ihdavis.order.index = {
         $(".buttonset").buttonset(); // todo: siteActions
         ihdavis.order.index.bindControls();
     }
-    , showHidePayButton: function () {
+    , resetPayButton: function () {
         var name = $.trim(ihdavis.order.index.controls.name().val())
             , email = $.trim(ihdavis.order.index.controls.email().val())
             , playDate = ihdavis.order.index.controls.playDate().val()
@@ -44,12 +44,12 @@ ihdavis.order.index = {
         // change play date, deselect all selections in document
         $("input[name='playDate']").change(function () {
             document.getSelection().removeAllRanges();
-            ihdavis.order.index.showHidePayButton();
+            ihdavis.order.index.resetPayButton();
         });
 
         // keyup on name textbox - show/hide payButton
         $("input[name='name']").keyup(function () {
-            ihdavis.order.index.showHidePayButton();
+            ihdavis.order.index.resetPayButton();
         });
 
         // click a counter up/down (+/-) button
@@ -71,7 +71,7 @@ ihdavis.order.index = {
             }
             display.text(currentCount);
             total.text(currentCount * pricePer);
-            ihdavis.order.index.showHidePayButton();
+            ihdavis.order.index.resetPayButton();
         });
     }
 };

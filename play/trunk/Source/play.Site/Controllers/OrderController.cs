@@ -16,6 +16,13 @@ namespace play.Site.Controllers
             return View();
         }
 
+        [HttpPost]
+        public JsonResult Submit(Models.PlayOrder order)
+        {
+            
+            return null;
+        }
+
         [HttpGet]
         public ActionResult ThankYou()
         {

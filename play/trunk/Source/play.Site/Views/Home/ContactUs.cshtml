@@ -1,11 +1,9 @@
-﻿@model play.Site.ViewModels.ContactUs
-
-@section desktopBody {
-    @{ Html.RenderPartial("ContactUsForm", Model); }
+﻿@section desktopBody {
+    @{ Html.RenderPartial("ContactUsForm", new play.Site.ViewModels.ContactUs { MobileOrDesktop = "dt" }); }
 }
 
 @section mobileBody {
-    @{ Html.RenderPartial("ContactUsForm", Model); }
+    @{ Html.RenderPartial("ContactUsForm", new play.Site.ViewModels.ContactUs { MobileOrDesktop = "m" }); }
 }
 
 @section scripts {

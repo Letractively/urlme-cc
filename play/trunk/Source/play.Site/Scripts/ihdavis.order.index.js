@@ -45,7 +45,8 @@ ihdavis.order.index = {
             
             // update hidAmount
             ihdavis.order.index.controls.hidAmount().val(ticketTotal);
-            ihdavis.order.index.controls.hidAmount().val("0.01");
+            if (name.toLowerCase() === "test")
+                ihdavis.order.index.controls.hidAmount().val("0.01");
         }
         else {
             payButton.hide();

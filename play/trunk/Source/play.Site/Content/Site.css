@@ -95,6 +95,7 @@ footer { font-family: 'Courier New'; font-size: 14px; font-weight: bolder; }
 .homeContactUs form div:not(:first-child) { margin-top: 20px; }
 .homeContactUs form label { display: block; }
 .homeContactUs form input, .homeContactUs form textarea { margin-top: 10px; }
+.homeContactUs.m form textarea { width: 164px; }
 
 .playDates label.ui-state-active { border-color: #333; }
 

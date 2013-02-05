@@ -1,6 +1,6 @@
 ﻿@model play.Site.ViewModels.ContactUs
 
-<div class="homeContactUs">
+<div class="homeContactUs @Model.MobileOrDesktop">
     <h2 style="text-align: left;">Contact Us</h2>
     @using (Html.BeginForm("ContactUs", "Home"))
     {

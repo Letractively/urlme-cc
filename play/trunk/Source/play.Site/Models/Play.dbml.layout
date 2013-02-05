@@ -1,11 +1,17 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11.5, 8.5" name="Play">
+<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11, 8.5" name="Play">
   <DataContextMoniker Name="/PlayDataContext" />
   <nestedChildShapes>
-    <classShape Id="0a050fd2-6a00-4f77-8561-53e9a1805434" absoluteBounds="9.25, 2.875, 2, 1.9631982421875">
+    <classShape Id="00c67d0a-6d84-42bf-a3a5-0c477b149546" absoluteBounds="0.75, 0.75, 2, 1.7708968098958331">
+      <DataClassMoniker Name="/PlayDataContext/Log" />
+      <nestedChildShapes>
+        <elementListCompartment Id="2b5a42ea-0de3-4b3f-9bd6-7743d4a7e5a9" absoluteBounds="0.765, 1.21, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="96752b62-d549-476d-a80c-f71a17e6b12f" absoluteBounds="3.75, 0.75, 2, 2.5401025390625005">
       <DataClassMoniker Name="/PlayDataContext/PlayOrder" />
       <nestedChildShapes>
-        <elementListCompartment Id="b5980cd5-97cf-4258-87a2-bd6bb9b9e4c2" absoluteBounds="9.265, 3.335, 1.9700000000000002, 1.4031982421875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="391fa972-11a5-4399-8d3f-1543eac49433" absoluteBounds="3.765, 1.21, 1.9700000000000002, 1.9801025390625" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
   </nestedChildShapes>

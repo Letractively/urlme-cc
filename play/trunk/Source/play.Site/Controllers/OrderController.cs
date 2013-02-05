@@ -16,15 +16,10 @@ namespace play.Site.Controllers
             return View();
         }
 
-        [HttpPost]
+        [HttpGet]
         public ActionResult ThankYou()
         {
             return Redirect("~/ThankYou");
-        }
-
-        public ActionResult ThankYou
-        {
-            return View();
         }
 
         //

@@ -6,9 +6,16 @@
     <div>
         <label>What's your name?</label>
         <div>
-            <input type="text" name="name" />
+            <input type="text" name="name" autofocus="autofocus" />
         </div>
     </div>
+    <div>
+        <label>What's your email?</label>
+        <div class="hint">Don't worry, we won't put it on any newsletters or give it away to anyone</div>
+        <div>
+            <input type="email" name="email" />
+        </div>
+    </div>    
     <div class="playDates buttonset group">
         <label>Which day?</label>
         <div class="noSelect">
@@ -29,7 +36,7 @@
         <div class="ticketSummary hint">$<span id="@(Model + "_individualPricePer")">35</span><span class="operand">✕</span><span class="@(Model + "_individualCount")">0</span><span class="operand">=</span><strong>$<span id="@(Model + "_individualTotal")">0</span></strong></div>
     </div>   
 }
-    <div class="payButton @Model">
+    <div class="payButton">
         @{ Html.RenderPartial("PayButton"); }
     </div>
 </div>

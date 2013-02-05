@@ -1,4 +1,44 @@
-﻿var clearSelection = function () {
+﻿// first, some extensions
+String.prototype.endsWith = function (suffix) {
+    return this.indexOf(suffix, this.length - suffix.length) !== -1;
+};
+
+// example: "{0} - {1}".format("hello", "world") results in "hello - world"
+String.prototype.format = function () {
+    var args = arguments;
+    return this.replace(/{(\d+)}/g, function (match, number) {
+        return typeof args[number] != 'undefined' ? args[number] : match;
+    });
+};
+
+/* =ihdavis.registerNamespace */
+if (typeof ihdavis === "undefined" || !ihdavis) {
+    var ihdavis = {};
+}
+
+ihdavis.registerNamespace = function () {
+    var a = arguments, o = null, i, j, d;
+    for (i = 0; i < a.length; i++) {
+        d = a[i].split(".");
+        o = ihdavis;
+
+        // ihdavis is implied, so it is ignored if it is included
+        for (j = (d[0] == "ihdavis") ? 1 : 0; j < d.length; j++) {
+            o[d[j]] = o[d[j]] || {};
+            o = o[d[j]];
+        }
+    }
+    return o;
+};
+
+//ihdavis.registerNamespace("Feedback");
+//ihdavis.feedback = {
+//    showSuccess: function () {
+//        $.growlUI("Success!", null);
+//    }
+//};
+
+var clearSelection = function () {
     if (window.getSelection) {
         if (window.getSelection().empty) {  // Chrome
             window.getSelection().empty();

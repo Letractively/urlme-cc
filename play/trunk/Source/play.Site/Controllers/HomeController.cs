@@ -17,5 +17,22 @@ namespace play.Site.Controllers
             return View();
         }
 
+        public ActionResult ContactUsSuccess()
+        {
+            return View();
+        }
+
+        public ActionResult ContactUs()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult ContactUs(play.Site.ViewModels.ContactUs contactUs)
+        {
+            Mail.Send(contactUs.Name, contactUs.Email, contactUs.Message);
+            return Redirect("~/contactussuccess");
+        }
+
     }
 }

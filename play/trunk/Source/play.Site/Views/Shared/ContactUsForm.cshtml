@@ -1,0 +1,23 @@
+﻿@model play.Site.ViewModels.ContactUs
+
+<div class="homeContactUs">
+    <h2 style="text-align: left;">Contact Us</h2>
+    @using (Html.BeginForm("ContactUs", "Home"))
+    {
+        <div>
+            @Html.LabelFor(m => m.Name)
+            @Html.TextBoxFor(m => m.Name)
+        </div>
+        <div>
+            @Html.LabelFor(m => m.Email)
+            @Html.TextBoxFor(m => m.Email)
+        </div>
+        <div>
+            @Html.LabelFor(m => m.Message)
+            @Html.TextAreaFor(m => m.Message)            
+        </div>
+        <div>
+            <button class="button" type="submit">Submit</button>
+        </div>
+    }
+</div>

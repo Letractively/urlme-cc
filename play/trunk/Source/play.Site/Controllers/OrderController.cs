@@ -30,6 +30,12 @@ namespace play.Site.Controllers
         [HttpPost]
         public JsonResult Submit(Models.PlayOrder order)
         {
+            if (order.Name.ToLower() == "test")
+            {
+                order.Email = System.DateTime.Now.Ticks + "@test.com";
+                order.Name = "test"; // lower-case it incase it's not already
+            }
+
             int orderId = Models.PlayOrder.Save(order);
             return this.Json(new { orderId = orderId }, JsonRequestBehavior.AllowGet);
         }

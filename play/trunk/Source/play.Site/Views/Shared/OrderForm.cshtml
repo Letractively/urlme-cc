@@ -1,6 +1,6 @@
 ﻿@model string
 
-<div class="orderIndex">
+<div class="orderIndex @Model">
 @using (Html.BeginForm("Index", "Account"))
 {
     <div>
@@ -19,17 +19,17 @@
     <div class="group">
         <label>How many couple tickets?</label>
         <div class="hint">$60 per ticket, 1 ticket is for 2 seats</div>
-        <div class="counter group" data-price-per-id="@(Model + "_couplePricePer")" data-display-class="@(Model + "_coupleCount")" data-total-id="@(Model + "_coupleTotal")"><button class="countUp countButton">+</button><span class="countDisplay @(Model + "_coupleCount")">0</span><button class="countButton">−</button></div>
-        <div class="ticketOrder hint">$<span id="@(Model + "_couplePricePer")">60</span><span class="operand">✕</span><span class="@(Model + "_coupleCount")">0</span><span class="operand">=</span><strong>$<span id="@(Model + "_coupleTotal")">0</span></strong></div>
+        <div class="counter group" data-price-per-id="@(Model + "_couplePricePer")" data-display-class="@(Model + "_coupleCount")" data-total-id="@(Model + "_coupleTotal")"><button class="countUp countButton noSelect">+</button><span class="countDisplay @(Model + "_coupleCount")">0</span><button class="countButton noSelect">−</button></div>
+        <div class="ticketSummary hint">$<span id="@(Model + "_couplePricePer")">60</span><span class="operand">✕</span><span class="@(Model + "_coupleCount")">0</span><span class="operand">=</span><strong>$<span id="@(Model + "_coupleTotal")">0</span></strong></div>
     </div>
     <div class="group">
         <label>How many individual tickets?</label>
         <div class="hint">$35 per ticket, 1 ticket is for 1 seat</div>
-        <div class="counter group" data-price-per-id="@(Model + "_individualPricePer")" data-display-class="@(Model + "_individualCount")" data-total-id="@(Model + "_individualTotal")"><button class="countUp countButton">+</button><span class="countDisplay @(Model + "_individualCount")">0</span><button class="countButton">−</button></div>
-        <div class="ticketOrder hint">$<span id="@(Model + "_individualPricePer")">35</span><span class="operand">✕</span><span class="@(Model + "_individualCount")">0</span><span class="operand">=</span><strong>$<span id="@(Model + "_individualTotal")">0</span></strong></div>
+        <div class="counter group" data-price-per-id="@(Model + "_individualPricePer")" data-display-class="@(Model + "_individualCount")" data-total-id="@(Model + "_individualTotal")"><button class="countUp countButton noSelect">+</button><span class="countDisplay @(Model + "_individualCount")">0</span><button class="countButton noSelect">−</button></div>
+        <div class="ticketSummary hint">$<span id="@(Model + "_individualPricePer")">35</span><span class="operand">✕</span><span class="@(Model + "_individualCount")">0</span><span class="operand">=</span><strong>$<span id="@(Model + "_individualTotal")">0</span></strong></div>
     </div>   
-    <div>
-        <a class="wepay-widget-button wepay-green" id="wepay_widget_anchor_51101f72535c9" href="https://www.wepay.com/events/160760">Register and Pay</a><script type="text/javascript">var WePay = WePay || {};WePay.load_widgets = WePay.load_widgets || function() { };WePay.widgets = WePay.widgets || [];WePay.widgets.push( {object_id: 160760,widget_type: "event",anchor_id: "wepay_widget_anchor_51101f72535c9",widget_options: {button_text: "Register and Pay"}});if (!WePay.script) {WePay.script = document.createElement('script');WePay.script.type = 'text/javascript';WePay.script.async = true;WePay.script.src = 'https://static.wepay.com/min/js/widgets.v2.js';var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(WePay.script, s);} else if (WePay.load_widgets) {WePay.load_widgets();}</script>
-    </div>
 }
+    <div class="payButton @Model">
+        @{ Html.RenderPartial("PayButton"); }
+    </div>
 </div>

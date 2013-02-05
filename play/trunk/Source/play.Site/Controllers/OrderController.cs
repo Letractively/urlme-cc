@@ -16,6 +16,17 @@ namespace play.Site.Controllers
             return View();
         }
 
+        [HttpPost]
+        public ActionResult ThankYou()
+        {
+            return Redirect("~/ThankYou");
+        }
+
+        public ActionResult ThankYou
+        {
+            return View();
+        }
+
         //
         // POST: /Order/Create
 

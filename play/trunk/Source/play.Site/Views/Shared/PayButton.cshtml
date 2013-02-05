@@ -1,14 +1,30 @@
-﻿@model string
+﻿@{
+    string baseUrl = Request.Url.ToString().IndexOf("localhost") >= 0 ? "http://localhost:52816/" : "http://cocoscoffeeshop.com/";
+    string notifyUrl = baseUrl + "order/paypal_ipn";
+    string returnUrl = baseUrl + "order/thankyou";
+}
 
-<div class="payButton">
-    <v:buy
-        apikey = "T8YASQO6VFQR8D4U7F4D"
-        token = "4cf521ac3f0b024d8b5b95b01e29b211c46560771eb22be6676274a77fa164ce"
-        amount = "1"
-        currency = "USD"
-        product-id = "cocosproduct"
-        merch-trans = "cocosmerch"
-        collect-shipping = "false"
-        process = "validate">
-    </v:buy> 
-</div>
+<form action="https://www.paypal.com/cgi-bin/webscr" method="post">
+<input type="hidden" name="notify_url" value="@notifyUrl" />
+<input type="hidden" name="return" value="@returnUrl" />
+<input type="hidden" name="item_name" value="Coco's Coffee Shop Ticket(s)">
+<input type="hidden" name="amount" value="0.00">
+<input type="hidden" name="cmd" value="_xclick">
+<input type="hidden" name="business" value="RSNQ9ZGL5DNBC">
+<input type="hidden" name="lc" value="US">
+<input type="hidden" name="currency_code" value="USD">
+<input type="hidden" name="button_subtype" value="services">
+<input type="hidden" name="bn" value="PP-BuyNowBF:buynowa:NonHosted">
+<input type="image" src="http://img339.imageshack.us/img339/6752/buynowa.png" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+<img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
+</form>
+
+@*<form action="https://www.paypal.com/cgi-bin/webscr" method="post">
+<input type="hidden" name="notify_url" value="@notifyUrl" />
+<input type="hidden" name="cmd" value="_s-xclick">
+<input type="hidden" name="amount" value="0.00" />
+<input type="hidden" name="hosted_button_id" value="XMPUWJMMZVW8S">
+<input type="image" src="http://img339.imageshack.us/img339/6752/buynowa.png" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+<img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
+</form>*@
+

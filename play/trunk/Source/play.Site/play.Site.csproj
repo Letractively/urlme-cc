@@ -250,8 +250,8 @@
     <Content Include="Views\Shared\AboutPlay.cshtml" />
     <Content Include="Views\Order\Index.cshtml" />
     <Content Include="Views\Shared\OrderForm.cshtml" />
-    <Content Include="Views\Order\Pay.cshtml" />
     <Content Include="Views\Shared\PayButton.cshtml" />
+    <Content Include="Views\Order\ThankYou.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -284,7 +284,7 @@
         <WebProjectProperties>
           <UseIIS>True</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>0</DevelopmentServerPort>
+          <DevelopmentServerPort>62465</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
           <IISUrl>http://localhost:52816/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>

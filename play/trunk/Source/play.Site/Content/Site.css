@@ -17,6 +17,8 @@ html {
     background: url('images/bg.gif');
 }
 .noSelect { -webkit-user-select: none; -khtml-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; }
+.noSelect::-moz-selection { background: transparent; } 
+.noSelect::selection { background: transparent; }
 
 a { color: #660b5a; font-weight: bold; }
 .borderLeft { border-left-color: #333; }
@@ -29,7 +31,7 @@ h1 { font-size: 14px; }
 .body { padding: 30px; border-top-left-radius: 3px; border-top-right-radius:3px; margin-top: 30px; background: white; }
 footer { font-family: 'Courier New'; font-size: 14px; font-weight: bolder; }
 
-.orderTicketsContainer { text-align: center; padding: 30px 0 0 0; }
+.orderTicketsContainer { text-align: center; }
     .orderTicketsContainer .orderTickets { text-decoration: none; margin-top: 30px; background: #660b5a; display: inline-block; color: white; font-weight: bold; font-size: 18px; padding: 10px 14px; border-radius: 3px; /*text-shadow: 0 -1px 1px #65b145;*/ }
 
 #dt header { color: #333; background: url('images/blank-ticket-4.png') no-repeat; width: 816px; height: 200px; border-radius: 3px; position: relative; }
@@ -78,7 +80,13 @@ footer { font-family: 'Courier New'; font-size: 14px; font-weight: bolder; }
 .orderIndex .countButton { cursor: pointer; padding: 8px 15px; background: #4c4c4c; color: white; font-size: 22px; border-radius: 24px; }
 .orderIndex .countDisplay { border-radius: 3px; padding: 12px 16px; margin: 0 20px; border: 1px solid #999; color: #333; }
 .orderIndex .operand { margin: 0 20px; font-style: normal; }
-.orderIndex input[type='text'] { padding: 11px; font-size: 16px; outline: none; border: 1px solid #ccc; border-radius: 3px; width: 150px; }
+.orderIndex input[type='text'] { padding: 5px; font-size: 16px; outline: none; border: 1px solid #ccc; border-radius: 3px; width: 164px; }
+.orderIndex .payButton { height: 39px; margin-top: 30px; }
+.orderIndex .payButton form { display: none; }
+
+.dt.orderIndex .counter { float: left; margin-right: 20px; }
+.dt.orderIndex .ticketSummary { margin-top: 12px; float: left; } 
+
 #m .playDates label span { font-size: 14px; }
 
 .playDates label.ui-state-active { border-color: #333; }

@@ -147,7 +147,9 @@
     <Content Include="Content\images\blank-ticket-4.png" />
     <Content Include="Content\images\blank-ticket.png" />
     <Content Include="Content\images\bluepaper.jpeg" />
+    <Content Include="Content\images\buyNow.png" />
     <Content Include="Content\images\chalk.png" />
+    <Content Include="Content\images\fb-openGraph.png" />
     <Content Include="Content\images\footer-bg.jpg" />
     <Content Include="Content\images\m-blue-bg.jpg" />
     <Content Include="Content\images\m-header-2.png" />

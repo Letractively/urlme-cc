@@ -24,6 +24,10 @@ namespace play.Site.Controllers
             if (result == -1)
                 Models.Log.Save("Error in marking as paid; orderId = " + orderId + ".");
 
+            var order = Models.PlayOrder.Get(orderId);
+            string body = string.Format("{0} {1} has paid for his/her order of {2} couple ticket(s), {3} indiv. ticket(s) for {4} !<br/><br/><a href='http://cocoscoffeeshop.com/admin'>Go to admin</a>.", order.Name, order.Email, order.CoupleTicketCount, order.IndividualTicketCount, order.PlayDate.ToString("MMM dd"));
+            Mail.SendToShari(string.Format("Order for {0} !", order.PlayDate.ToString("MMM dd")), body, true); 
+
             return null;
         }
 

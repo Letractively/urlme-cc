@@ -8,17 +8,35 @@ namespace play.Site
 {
     public class Mail
     {
-        public static bool Send(string fromEmail, string fromName, string body)
+        public static bool SendToShariContactUs(string fromEmail, string fromName, string body, bool includeIan = false)
+        {
+            return SendToShari(
+                "Contact Us submitted"
+                , string.Format("From \"{0}\" &lt;{1}&gt;<br/><br/>---<br/><br/>{2}", fromName, fromEmail, body)
+                , includeIan
+            );
+        }
+
+        public static bool SendToShari(string subject, string body, bool includeIan = true)
+        {
+            return Send("shariren@gmail.com", "Shari Davis", subject, body, includeIan);
+        }
+
+        public static bool Send(string toEmail, string toName, string subject, string body, bool includeIan = true)
         {
             try
             {
-                SmtpClient smtp = new SmtpClient("smtp.cocoscoffeeshop.com"); // 465 = "No connection could be made because the target machine actively refused it 208.68.106.6:465", 587 = Transaction failed. The server response was: 5.7.1 <ihdavis@gmail.com>: Relay access denied, 25 = Transaction failed. The server response was: 5.7.1 <ihdavis@gmail.com>: Relay access denied
+                SmtpClient smtp = new SmtpClient("smtp.cocoscoffeeshop.com");
                 MailAddress from = new MailAddress("no-reply@cocoscoffeeshop.com", "no-reply@cocoscoffeeshop.com");
-                MailAddress to = new MailAddress("shariren@gmail.com", "Shari Davis");
+                MailAddress to = new MailAddress(toEmail, toName);
                 MailMessage msg = new MailMessage(from, to);
+                
+                if (includeIan)
+                    msg.CC.Add(new MailAddress("ihdavis@gmail.com", "Ian Davis"));
+                
                 msg.IsBodyHtml = true;
-                msg.Subject = "cocoscoffeeshop.com Contact Us submitted";
-                msg.Body = string.Format("From \"{0}\" &lt;{1}&gt;<br/><br/>---<br/><br/>{2}", fromName, fromEmail, body);
+                msg.Subject = "cocoscoffeeshop.com -- " + subject;
+                msg.Body = body;
                 smtp.Send(msg);
             }
             catch (Exception e)

@@ -41,6 +41,21 @@ namespace play.Site.Models
             }
         }
 
+        public static Models.PlayOrder Get(int playOrderId)
+        {
+            try
+            {
+                using (var ctx = new PlayDataContext { ObjectTrackingEnabled = false })
+                {
+                    return ctx.PlayOrders.FirstOrDefault(x => x.PlayOrderId == playOrderId);
+                }
+            }
+            catch
+            {
+                return null;
+            }
+        }
+
         public static int MarkAsPaid(int playOrderId)
         {
             try

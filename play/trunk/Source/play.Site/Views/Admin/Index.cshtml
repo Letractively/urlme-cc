@@ -6,19 +6,29 @@
 
 <html>
     <head>
+        @Scripts.Render("~/bundles/jquery")
+        @Scripts.Render("~/bundles/jqueryui")
+        @Scripts.Render("~/bundles/ihdavis")
+
         @Styles.Render("~/content/site.css")
+        @Styles.Render("~/scripts/plugins/datatables/jquery-ui-1.7.2.custom.css")
+        @Styles.Render("~/scripts/plugins/datatables/datatable_jui.css")
+        
+        @Scripts.Render("~/scripts/plugins/datatables/jquery.dataTables.min.js")
+        @Scripts.Render("~/scripts/ihdavis.admin.index.js")
     </head>
     <body class="adminIndex">
         <h2>Admin</h2>
-        <table>
+        <table id="orders">
             <thead>
                 <tr>
-                    <th>Date</th>
+                    <th>Order date</th>
+                    <th>Play date</th>
                     <th>Name</th>
-                    <th># Couple Tix</th>
-                    <th># Indiv. Tix</th>
+                    <th class="centerText">Couple / Indiv. Tix</th>
                     <th>Platform</th>
-                    <th>Status</th>
+                    <th class="centerText">Paid?</th>
+                    <th>Actions</th>
                 </tr>
             </thead>
             <tbody>
@@ -26,11 +36,21 @@
                 {
                     <tr>
                         <td>@order.CreateDate.ToString("yyyy-MM-dd")</td>
+                        <td>@order.PlayDate.ToString("yyyy-MM-dd")</td>
                         <th>@order.Name</th>
-                        <th>@order.CoupleTicketCount</th>
-                        <th>@order.IndividualTicketCount</th>
+                        <th class="centerText">@order.CoupleTicketCount / @order.IndividualTicketCount</th>
                         <th>@order.Platform</th>
-                        <th>@order.Status</th>
+                        <th class="centerText">
+                            @if (order.Status == "Paid")
+                            {
+                                <span class="active">✔</span>
+                            }
+                            else
+                            {
+                                <span class="inactive">✕</span>   
+                            }
+                        </th>
+                        <th>Mark as seated</th>
                     </tr>    
                 }
             </tbody>

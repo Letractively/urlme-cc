@@ -25,6 +25,22 @@ namespace play.Site.Models
             }
         }
 
+        public static List<Models.PlayOrder> Get()
+        {
+            try
+            {
+                using (var ctx = new PlayDataContext { ObjectTrackingEnabled = false })
+                {
+                    var orders = ctx.PlayOrders.OrderBy(x => x.CreateDate).ToList();
+                    return orders;
+                }
+            }
+            catch
+            {
+                return null;
+            }
+        }
+
         public static int MarkAsPaid(int playOrderId)
         {
             try

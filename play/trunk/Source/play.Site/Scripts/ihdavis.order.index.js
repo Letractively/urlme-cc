@@ -15,6 +15,7 @@ ihdavis.order.index = {
         , name: function () { return ihdavis.order.index.controls.order().find("input[name='name']"); }
         , order: function () { return $(".orderIndex.m").is(":visible") ? $(".orderIndex.m") : $(".orderIndex.dt"); }
         , payButton: function () { return ihdavis.order.index.controls.order().find(".payButton form"); }
+        , platform: function () { return ihdavis.order.index.controls.order().hasClass("m") ? "mobile" : "desktop"; }
         , playDate: function() { return ihdavis.order.index.controls.order().find("input[name='playDate']:checked"); }
     }
     , calculatedVals: {
@@ -71,6 +72,8 @@ ihdavis.order.index = {
             data.CoupleTicketCount = parseInt(ihdavis.order.index.controls.coupleCount().text());
             data.IndividualTicketCount = parseInt(ihdavis.order.index.controls.indivCount().text());
             data.PlayDate = ihdavis.order.index.controls.playDate().val();
+            data.UserAgent = userAgent;
+            data.Platform = ihdavis.order.index.controls.platform();
 
             $.ajax({
                 url: submitOrderUrl,

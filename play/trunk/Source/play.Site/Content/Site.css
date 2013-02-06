@@ -114,4 +114,11 @@ header, footer, nav, section {
     #m { display: none; }
 }
 
-.adminIndex { color: white; padding: 30px; }
+.adminIndex .active { color: green; font-weight: bold; }
+.adminIndex .inactive { color: red; font-weight: bold; }
+.adminIndex .centerText { text-align: center; }
+
+.adminIndex { color: #333; padding: 30px; background: white; }
+    .adminIndex #orders { width: 650px; font-size: 12px; }
+    .adminIndex .ui-toolbar { width: 638px; }
+    .adminIndex th, .adminIndex td { padding: 8px; }

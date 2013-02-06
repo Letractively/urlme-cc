@@ -32,6 +32,13 @@ namespace play.Site.Controllers
         }
 
         [HttpPost]
+        public JsonResult MarkAsSeated(int playOrderId)
+        {
+            bool success = Models.PlayOrder.MarkAsSeated(playOrderId);
+            return this.Json(new { success = success }, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpPost]
         public JsonResult Submit(Models.PlayOrder order)
         {
             if (order.Name.ToLower() == "test")

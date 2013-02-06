@@ -15,6 +15,10 @@
         @Styles.Render("~/scripts/plugins/datatables/datatable_jui.css")
         
         @Scripts.Render("~/scripts/plugins/datatables/jquery.dataTables.min.js")
+
+        <script>
+            var markAsSeatedUrl = '/order/markasseated';
+        </script>
         @Scripts.Render("~/scripts/ihdavis.admin.index.js")
     </head>
     <body class="adminIndex">
@@ -28,19 +32,20 @@
                     <th class="centerText">Couple / Indiv. Tix</th>
                     <th>Platform</th>
                     <th class="centerText">Paid?</th>
+                    <th class="centerText">Seated?</th>
                     <th>Actions</th>
                 </tr>
             </thead>
             <tbody>
                 @foreach (var order in Model)
                 {
-                    <tr>
+                    <tr data-item-id="@order.PlayOrderId">
                         <td>@order.CreateDate.ToString("yyyy-MM-dd")</td>
                         <td>@order.PlayDate.ToString("yyyy-MM-dd")</td>
                         <th>@order.Name</th>
                         <th class="centerText">@order.CoupleTicketCount / @order.IndividualTicketCount</th>
                         <th>@order.Platform</th>
-                        <th class="centerText">
+                        <td class="centerText">
                             @if (order.Status == "Paid")
                             {
                                 <span class="active">✔</span>
@@ -49,8 +54,23 @@
                             {
                                 <span class="inactive">✕</span>   
                             }
-                        </th>
-                        <th>Mark as seated</th>
+                        </td>
+                        <td class="centerText seated">
+                            @if (order.Seated)
+                            {
+                                <span class="active">✔</span>
+                            }
+                            else
+                            {
+                                <span class="inactive">✕</span>   
+                            }
+                        </td>
+                        <td>
+                            @if (!order.Seated)
+                            {
+                                <a href="#" class="markAsSeated">Mark as seated</a>
+                            }
+                        </td>
                     </tr>    
                 }
             </tbody>

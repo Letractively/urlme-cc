@@ -39,6 +39,9 @@ footer { font-family: 'Courier New'; font-size: 14px; font-weight: bolder; }
 .orderTicketsContainer { text-align: center; }
     .orderTicketsContainer .orderTickets { text-decoration: none; margin-top: 30px; background: #660b5a; display: inline-block; color: white; font-weight: bold; font-size: 18px; padding: 10px 14px; border-radius: 3px; /*text-shadow: 0 -1px 1px #65b145;*/ }
 
+.orJustDonate { text-align: center; padding-top: 15px; }
+    .orJustDonate form { margin-top: 15px; }
+
 #dt header { color: #333; background: url('images/blank-ticket-4.png') no-repeat; width: 816px; height: 200px; border-radius: 3px; position: relative; }
 #dt header .fbContainer { top: 14px; right: 233px; position: absolute; }
     #dt header #quickDetails { position: absolute; top: 42px; right: 25px; font-family: 'Courier New'; font-size: 24px; font-weight: bolder; }

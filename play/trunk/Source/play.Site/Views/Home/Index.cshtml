@@ -9,6 +9,10 @@
         <div class="orderTicketsContainer">
             <a href="~/order" class="orderTickets">Order Tickets</a>
         </div>
+        <div class="orJustDonate">
+            Can't make it? You'll be missed! You can still...
+            @{ Html.RenderPartial("DonateButton"); }
+        </div>
     </div>
     <div class="right col">
         <h2>About the Cause</h2>
@@ -23,6 +27,10 @@
         @{ Html.RenderPartial("AboutPlay"); }
         <div class="orderTicketsContainer">
             <a href="~/order" class="orderTickets">Order Tickets</a>
+        </div>
+        <div class="orJustDonate">
+            Can't make it? You'll be missed! You can still...
+            @{ Html.RenderPartial("DonateButton"); }
         </div>
     </div>
     <h2 class="borderTop">About the Cause</h2>

@@ -159,6 +159,7 @@
     <Content Include="Content\images\m-header-4.png" />
     <Content Include="Content\images\m-header.png" />
     <Content Include="Content\images\poster.png" />
+    <Content Include="Content\images\icon-refresh.png" />
     <Content Include="Content\images\sprite.png" />
     <Content Include="Content\images\team-marshall.png" />
     <Content Include="Content\images\teamMarshall-frame.jpg" />

@@ -75,6 +75,25 @@ namespace play.Site.Models
             }
         }
 
+        public static bool TogglePaid(int playOrderId)
+        {
+            try
+            {
+                using (var ctx = new PlayDataContext { ObjectTrackingEnabled = true })
+                {
+                    var playOrder = ctx.PlayOrders.FirstOrDefault(x => x.PlayOrderId == playOrderId);
+                    playOrder.Status = playOrder.Status == "Paid" ? "Pending" : "Paid";
+                    playOrder.ModifyDate = System.DateTime.Now;
+                    ctx.SubmitChanges();
+                    return true;
+                }
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
         public static int MarkAsPaid(int playOrderId)
         {
             try

@@ -18,6 +18,7 @@
 
         <script>
             var toggleSeatedUrl = '/order/toggleseated';
+            var togglePaidUrl = '/order/togglepaid';
             var orderCount = @Model.Count;
         </script>
         @Scripts.Render("~/scripts/ihdavis.admin.index.js")
@@ -35,7 +36,8 @@
                     <th class="centerText">dt&nbsp;/&nbsp;m</th>
                     <th class="centerText">Paid?</th>
                     <th class="centerText">Seated?</th>
-                    <th width="140">Actions</th>
+                    <th width="140">&nbsp;</th>
+                    <th width="140">&nbsp;</th>
                 </tr>
             </thead>
             <tbody>
@@ -48,15 +50,9 @@
                         <td><a href="mailto:@order.Email">@order.Email</a></td>
                         <td class="centerText">@order.CoupleTicketCount / @order.IndividualTicketCount</td>
                         <td class="centerText"><span class="sprite icon @order.Platform"></span></td>
-                        <td class="centerText">
-                            @if (order.Status == "Paid")
-                            {
-                                <span class="active">✔</span>
-                            }
-                            else
-                            {
-                                <span class="inactive">✕</span>   
-                            }
+                        <td class="centerText paidCell">
+                            <span class="active @(order.Status == "Paid" ? "" : "hidden")">✔</span>
+                            <span class="inactive @(order.Status == "Paid" ? "hidden" : "")">✕</span>
                         </td>
                         <td class="centerText seatedCell">
                             <span class="active @(order.Seated ? "" : "hidden")">✔</span>
@@ -64,6 +60,9 @@
                         </td>
                         <td>
                             <a href="#" class="toggleSeated"><span class="sprite icon beforeText @(order.Seated ? "unChair" : "chair")"></span>Mark as <span class="stateText" data-icon-classes="unChair,chair" data-states="UN-seated,seated">@(order.Seated ? "UN-seated" : "seated")</span></a>
+                        </td>
+                        <td>
+                            <a href="#" class="togglePaid">Mark as <span class="stateText" data-states="paid,UN-paid">@(order.Status == "Paid" ? "UN-paid" : "paid")</span></a>
                         </td>
                     </tr>    
                 }

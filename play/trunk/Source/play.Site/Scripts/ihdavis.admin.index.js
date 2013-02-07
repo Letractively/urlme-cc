@@ -4,6 +4,7 @@ ihdavis.admin.index = {
         newCount: function () { return $("#newCount"); }
         , newNotif: function () { return $("#notif"); }
         , newPlural: function () { return $("#newPlural"); }
+        , togglePaidLinks: function () { return $(".togglePaid"); }
         , toggleSeatedLinks: function () { return $(".toggleSeated"); }
     }
     , init: function() {
@@ -33,6 +34,43 @@ ihdavis.admin.index = {
         }, 5000);
     }
     , bindControls: function () {
+        ihdavis.admin.index.controls.togglePaidLinks().click(function (e) {
+            e.preventDefault();
+            var link = $(this);
+            var itemRow = link.closest("[data-item-id]");
+            var paidCell = itemRow.find(".paidCell");
+
+            var data = {};
+            data.playOrderId = itemRow.attr("data-item-id");
+
+            $.ajax({
+                url: togglePaidUrl,
+                type: 'POST',
+                dataType: 'json',
+                data: JSON.stringify(data),
+                contentType: 'application/json; charset=utf-8',
+                success: function (resp) {
+                    if (resp.success) {
+                        // udpate display
+                        paidCell.find("span").toggleClass("hidden");
+                        // update link text
+                        var stateText = link.find(".stateText");
+                        var currentStateText = stateText.text();
+                        var states = stateText.attr("data-states").split(",");
+                        if (currentStateText == states[0])
+                            stateText.text(states[1]);
+                        else
+                            stateText.text(states[0]);
+                    } else {
+                        alert("Error. Please try again.");
+                    }
+                },
+                error: function (xhr) {
+                    alert("Ajax error. Please try again.");
+                }
+            });
+        });
+
         ihdavis.admin.index.controls.toggleSeatedLinks().click(function (e) {
             e.preventDefault();
             var link = $(this);

@@ -32,9 +32,9 @@ namespace play.Site.Controllers
         }
 
         [HttpPost]
-        public JsonResult MarkAsSeated(int playOrderId)
+        public JsonResult ToggleSeated(int playOrderId)
         {
-            bool success = Models.PlayOrder.MarkAsSeated(playOrderId);
+            bool success = Models.PlayOrder.ToggleSeated(playOrderId);
             return this.Json(new { success = success }, JsonRequestBehavior.AllowGet);
         }
 

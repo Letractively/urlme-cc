@@ -1,7 +1,7 @@
 ﻿ihdavis.registerNamespace("admin.index");
 ihdavis.admin.index = {
     controls: {
-        markAsSeatedLinks: function () { return $(".markAsSeated"); }
+        toggleSeatedLinks: function () { return $(".toggleSeated"); }
     }
     , init: function() {
         $("#orders").dataTable({
@@ -14,24 +14,33 @@ ihdavis.admin.index = {
         ihdavis.admin.index.bindControls();
     }
     , bindControls: function () {
-        ihdavis.admin.index.controls.markAsSeatedLinks().click(function (e) {
+        ihdavis.admin.index.controls.toggleSeatedLinks().click(function (e) {
             e.preventDefault();
             var link = $(this);
-            var seatedCell = link.closest("td.seated");
+            var itemRow = link.closest("[data-item-id]");
+            var seatedCell = itemRow.find(".seatedCell");
 
             var data = {};
-            data.playOrderId = link.closest("[data-item-id]").attr("data-item-id");
+            data.playOrderId = itemRow.attr("data-item-id");
 
             $.ajax({
-                url: markAsSeatedUrl,
+                url: toggleSeatedUrl,
                 type: 'POST',
                 dataType: 'json',
                 data: JSON.stringify(data),
                 contentType: 'application/json; charset=utf-8',
                 success: function (resp) {
                     if (resp.success) {
-                        window.location.reload();
-                        //seatedCell.text("<span class=\"active\">✔</span>");
+                        // udpate display
+                        seatedCell.find("span").toggleClass("hidden");
+                        // update link text
+                        var stateText = link.find(".stateText");
+                        var currentStateText = stateText.text();
+                        var states = stateText.attr("data-states").split(",");
+                        if (currentStateText == states[0])
+                            stateText.text(states[1]);
+                        else
+                            stateText.text(states[0]);
                     } else {
                         alert("Error. Please try again.");
                     }

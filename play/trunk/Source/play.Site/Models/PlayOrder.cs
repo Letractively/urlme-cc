@@ -56,14 +56,14 @@ namespace play.Site.Models
             }
         }
 
-        public static bool MarkAsSeated(int playOrderId)
+        public static bool ToggleSeated(int playOrderId)
         {
             try
             {
                 using (var ctx = new PlayDataContext { ObjectTrackingEnabled = true })
                 {
                     var playOrder = ctx.PlayOrders.FirstOrDefault(x => x.PlayOrderId == playOrderId);
-                    playOrder.Seated = true;
+                    playOrder.Seated = !playOrder.Seated;
                     playOrder.ModifyDate = System.DateTime.Now;
                     ctx.SubmitChanges();
                     return true;

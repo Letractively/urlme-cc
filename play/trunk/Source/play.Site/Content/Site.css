@@ -125,7 +125,8 @@ header, footer, nav, section {
 .adminIndex a { color: #0073ea; font-weight: bold; text-decoration: none; }
 .adminIndex .hidden { display: none; }
 .adminIndex .sprite { background: url('images/sprite.png'); display: inline-block; }
-    .adminIndex .sprite.icon { width: 16px; height: 16px; margin-right: 5px; float: left; }
+    .adminIndex .sprite.icon { width: 16px; height: 16px; }
+        .adminIndex .sprite.icon.beforeText { float:left; margin-right: 5px; }
 
 /* icons */
 .sprite.icon.chair { background-position: 0 0; }

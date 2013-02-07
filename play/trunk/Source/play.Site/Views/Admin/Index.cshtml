@@ -32,7 +32,7 @@
                     <th width="140">Name</th>
                     <th>Email</th>
                     <th class="centerText">Tickets</th>
-                    <th>dt&nbsp;/&nbsp;m</th>
+                    <th class="centerText">dt&nbsp;/&nbsp;m</th>
                     <th class="centerText">Paid?</th>
                     <th class="centerText">Seated?</th>
                     <th width="140">Actions</th>
@@ -63,7 +63,7 @@
                             <span class="inactive @(order.Seated ? "hidden" : "")">✕</span>
                         </td>
                         <td>
-                            <a href="#" class="toggleSeated"><span class="sprite icon @(order.Seated ? "unChair" : "chair")"></span>Mark as <span class="stateText" data-icon-classes="unChair,chair" data-states="UN-seated,seated">@(order.Seated ? "UN-seated" : "seated")</span></a>
+                            <a href="#" class="toggleSeated"><span class="sprite icon beforeText @(order.Seated ? "unChair" : "chair")"></span>Mark as <span class="stateText" data-icon-classes="unChair,chair" data-states="UN-seated,seated">@(order.Seated ? "UN-seated" : "seated")</span></a>
                         </td>
                     </tr>    
                 }

@@ -27,25 +27,27 @@
         <table id="orders">
             <thead>
                 <tr>
-                    <th>Order date</th>
-                    <th>Play date</th>
-                    <th>Name</th>
-                    <th class="centerText">Couple / Indiv. Tix</th>
-                    <th>Platform</th>
+                    <th width="70">Order date</th>
+                    <th>Play&nbsp;date</th>
+                    <th width="140">Name</th>
+                    <th>Email</th>
+                    <th class="centerText">Tickets</th>
+                    <th>dt&nbsp;/&nbsp;m</th>
                     <th class="centerText">Paid?</th>
                     <th class="centerText">Seated?</th>
-                    <th class="actions">Actions</th>
+                    <th width="140">Actions</th>
                 </tr>
             </thead>
             <tbody>
-                @foreach (var order in Model)
+                @foreach (var order in Model.Where(x => x.Name.ToLower() != "test"))
                 {
                     <tr data-item-id="@order.PlayOrderId">
                         <td>@order.CreateDate.ToString("yyyy-MM-dd")</td>
-                        <td>@order.PlayDate.ToString("yyyy-MM-dd")</td>
+                        <td>@order.PlayDate.ToString("MMM dd")</td>
                         <td>@order.Name</td>
+                        <td><a href="mailto:@order.Email">@order.Email</a></td>
                         <td class="centerText">@order.CoupleTicketCount / @order.IndividualTicketCount</td>
-                        <td>@order.Platform</td>
+                        <td><span class="sprite icon @order.Platform"></span></td>
                         <td class="centerText">
                             @if (order.Status == "Paid")
                             {

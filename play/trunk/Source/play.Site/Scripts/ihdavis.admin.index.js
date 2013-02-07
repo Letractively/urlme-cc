@@ -17,6 +17,7 @@ ihdavis.admin.index = {
         ihdavis.admin.index.controls.toggleSeatedLinks().click(function (e) {
             e.preventDefault();
             var link = $(this);
+            var icon = link.find(".icon");
             var itemRow = link.closest("[data-item-id]");
             var seatedCell = itemRow.find(".seatedCell");
 
@@ -37,6 +38,8 @@ ihdavis.admin.index = {
                         var stateText = link.find(".stateText");
                         var currentStateText = stateText.text();
                         var states = stateText.attr("data-states").split(",");
+                        var iconClasses = stateText.attr("data-icon-classes").split(",");
+                        icon.toggleClass(iconClasses[0]).toggleClass(iconClasses[1]);
                         if (currentStateText == states[0])
                             stateText.text(states[1]);
                         else

@@ -124,6 +124,12 @@ header, footer, nav, section {
 .adminIndex .centerText { text-align: center; }
 .adminIndex a { color: #0073ea; font-weight: bold; text-decoration: none; }
 .adminIndex .hidden { display: none; }
+.adminIndex .sprite { background: url('images/sprite.png'); display: inline-block; }
+    .adminIndex .sprite.icon { width: 16px; height: 16px; margin-right: 5px; float: left; }
+
+/* icons */
+.sprite.icon.chair { background-position: 0 0; }
+.sprite.icon.unChair { background-position: -16px 0; }
 
 .adminIndex { color: #333; padding: 30px; background: white; }
     .adminIndex #orders { width: 650px; font-size: 12px; }

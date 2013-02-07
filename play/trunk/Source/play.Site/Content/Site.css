@@ -123,8 +123,10 @@ header, footer, nav, section {
 .adminIndex .inactive { color: red; font-weight: bold; }
 .adminIndex .centerText { text-align: center; }
 .adminIndex a { color: #0073ea; font-weight: bold; text-decoration: none; }
+.adminIndex .hidden { display: none; }
 
 .adminIndex { color: #333; padding: 30px; background: white; }
     .adminIndex #orders { width: 650px; font-size: 12px; }
+        .adminIndex #orders th.actions { width: 110px; }
     .adminIndex .ui-toolbar { width: 638px; }
     .adminIndex th, .adminIndex td { padding: 8px; }

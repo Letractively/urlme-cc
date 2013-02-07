@@ -19,16 +19,27 @@ namespace play.Site.Controllers
         [HttpPost]
         public ActionResult Paypal_Ipn()
         {
+            string custom = Request.Form["custom"];
+            if (custom == "donation")
+            {
+                Mail.SendToShari(string.Format("Someone clicked 'Just Donate' button, amount of {0} !", Request.Form["amount"]), "Booyahhh", true);
+                return Content("");
+            }
+
             int orderId = int.Parse(Request.Form["custom"]);
             int result = Models.PlayOrder.MarkAsPaid(orderId);
             if (result == -1)
+            {
                 Models.Log.Save("Error in marking as paid; orderId = " + orderId + ".");
+                Mail.SendToShari("Error in marking as paid; orderId = " + orderId + ".", "Error :/  Ian is CC'ed on this, so he'll take a looksies.", true);
+                return Content("");
+            }
 
             var order = Models.PlayOrder.Get(orderId);
             string body = string.Format("{0} {1} has paid for his/her order of {2} couple ticket(s), {3} indiv. ticket(s) for {4} !<br/><br/><a href='http://cocoscoffeeshop.com/admin'>Go to admin</a>.", order.Name, order.Email, order.CoupleTicketCount, order.IndividualTicketCount, order.PlayDate.ToString("MMM dd"));
-            Mail.SendToShari(string.Format("Order for {0} !", order.PlayDate.ToString("MMM dd")), body, true); 
+            Mail.SendToShari(string.Format("Order for {0} !", order.PlayDate.ToString("MMM dd")), body, true);
 
-            return null;
+            return Content("");
         }
 
         [HttpPost]

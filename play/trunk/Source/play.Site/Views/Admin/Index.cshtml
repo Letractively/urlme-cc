@@ -18,11 +18,12 @@
 
         <script>
             var toggleSeatedUrl = '/order/toggleseated';
+            var orderCount = @Model.Count;
         </script>
         @Scripts.Render("~/scripts/ihdavis.admin.index.js")
     </head>
     <body class="adminIndex">
-        <h2>Admin</h2>
+        <h2>Admin<a id="notif" title="Click to refresh" href="~/admin"><span class="icon"></span>Refresh to see <span id="newCount">0</span> new order<span id="newPlural"></span>!</a></h2>
         <table id="orders">
             <thead>
                 <tr>

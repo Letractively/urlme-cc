@@ -65,6 +65,13 @@ ihdavis.order.index = {
         ihdavis.order.index.controls.formSubmitButton().click(function (e) {
             e.preventDefault();
 
+            var payButtonForm = ihdavis.order.index.controls.payButton();
+            if (payButtonForm.hasClass("working")) {
+                alert("Please only click the button once.");
+                return;
+            }
+            payButtonForm.addClass("working");
+
             // first, submit the order in our db so we can get the order id to send along w/ paypal payment
             var data = {};
             data.Name = $.trim(ihdavis.order.index.controls.name().val());

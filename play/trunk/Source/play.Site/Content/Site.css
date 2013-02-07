@@ -136,3 +136,6 @@ header, footer, nav, section {
         .adminIndex #orders th.actions { width: 110px; }
     .adminIndex .ui-toolbar { width: 638px; }
     .adminIndex th, .adminIndex td { padding: 8px; }
+
+    .adminIndex #notif .icon { background: url('images/icon-refresh.png'); display:inline-block; height: 16px; width: 16px; margin-right: 10px; }
+    .adminIndex #notif { display:none; margin-left: 20px; }

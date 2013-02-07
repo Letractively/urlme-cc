@@ -1,7 +1,10 @@
 ﻿ihdavis.registerNamespace("admin.index");
 ihdavis.admin.index = {
     controls: {
-        toggleSeatedLinks: function () { return $(".toggleSeated"); }
+        newCount: function () { return $("#newCount"); }
+        , newNotif: function () { return $("#notif"); }
+        , newPlural: function () { return $("#newPlural"); }
+        , toggleSeatedLinks: function () { return $(".toggleSeated"); }
     }
     , init: function() {
         $("#orders").dataTable({
@@ -11,7 +14,23 @@ ihdavis.admin.index = {
             "iDisplayLength": 25
         });
 
+        ihdavis.admin.index.initCountChecks();
+
         ihdavis.admin.index.bindControls();
+    }
+    , initCountChecks: function () {
+        setInterval(function () {
+            $.get("/order/getcount", function (resp) {
+                if (resp.count > orderCount) {
+                    var overflow = resp.count - orderCount;
+                    var newPluralText = overflow > 1 ? "(s)" : "";
+                    var controls = ihdavis.admin.index.controls;
+                    controls.newCount().text(overflow);
+                    controls.newPlural().text(newPluralText);
+                    controls.newNotif().show();
+                }
+            });
+        }, 5000);
     }
     , bindControls: function () {
         ihdavis.admin.index.controls.toggleSeatedLinks().click(function (e) {

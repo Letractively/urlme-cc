@@ -17,8 +17,6 @@
         @Scripts.Render("~/scripts/plugins/datatables/jquery.dataTables.min.js")
 
         <script>
-            var toggleSeatedUrl = '/order/toggleseated';
-            var togglePaidUrl = '/order/togglepaid';
             var orderCount = @Model.Count;
         </script>
         @Scripts.Render("~/scripts/ihdavis.admin.index.js")
@@ -36,8 +34,8 @@
                     <th class="centerText">dt&nbsp;/&nbsp;m</th>
                     <th class="centerText">Paid?</th>
                     <th class="centerText">Seated?</th>
-                    <th width="140">&nbsp;</th>
-                    <th width="140">&nbsp;</th>
+                    <th width="135">&nbsp;</th>
+                    <th width="135">&nbsp;</th>
                 </tr>
             </thead>
             <tbody>
@@ -59,10 +57,10 @@
                             <span class="inactive @(order.Seated ? "hidden" : "")">✕</span>
                         </td>
                         <td>
-                            <a href="#" class="toggleSeated"><span class="sprite icon beforeText @(order.Seated ? "unChair" : "chair")"></span>Mark as <span class="stateText" data-icon-classes="unChair,chair" data-states="UN-seated,seated">@(order.Seated ? "UN-seated" : "seated")</span></a>
+                            <a href="/order/togglepaid" data-icon-classes="unDollar,dollar" data-display-class="paidCell" data-states="paid,UN-paid"><span class="sprite icon beforeText @(order.Status == "Paid" ? "unDollar" : "dollar")"></span>Mark as <span class="stateText">@(order.Status == "Paid" ? "UN-paid" : "paid")</span></a>
                         </td>
                         <td>
-                            <a href="#" class="togglePaid">Mark as <span class="stateText" data-states="paid,UN-paid">@(order.Status == "Paid" ? "UN-paid" : "paid")</span></a>
+                            <a href="/order/toggleseated" data-icon-classes="unChair,chair" data-display-class="seatedCell" data-states="UN-seated,seated"><span class="sprite icon beforeText @(order.Seated ? "unChair" : "chair")"></span>Mark as <span class="stateText">@(order.Seated ? "UN-seated" : "seated")</span></a>
                         </td>
                     </tr>    
                 }

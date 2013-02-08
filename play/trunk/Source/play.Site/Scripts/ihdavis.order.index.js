@@ -10,6 +10,7 @@ ihdavis.order.index = {
         , formSubmitButton: function () { return ihdavis.order.index.controls.payButton().find("input[name='submit']"); }
         , hidAmount: function () { return $("input[name='amount']"); }
         , hidItemId: function () { return $("input[name='custom']"); }
+        , howDidYouHear: function () { return ihdavis.order.index.controls.order().find("select[name='howDidYouHear']"); }
         , indivCount: function () { return $(ihdavis.order.index.controls.envClassPrefix() + "individualCount").first(); }
         , indivTotal: function () { return $(ihdavis.order.index.controls.envIdPrefix() + "individualTotal"); }
         , name: function () { return ihdavis.order.index.controls.order().find("input[name='name']"); }
@@ -81,6 +82,7 @@ ihdavis.order.index = {
             data.PlayDate = ihdavis.order.index.controls.playDate().val();
             data.UserAgent = userAgent;
             data.Platform = ihdavis.order.index.controls.platform();
+            data.HowDidYouHear = ihdavis.order.index.controls.howDidYouHear().find("option:selected").val();
 
             $.ajax({
                 url: submitOrderUrl,

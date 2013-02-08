@@ -35,6 +35,17 @@
         <div class="counter group" data-price-per-id="@(Model + "_individualPricePer")" data-display-class="@(Model + "_individualCount")" data-total-id="@(Model + "_individualTotal")"><button class="countUp countButton noSelect">+</button><span class="countDisplay @(Model + "_individualCount")">0</span><button class="countButton noSelect">−</button></div>
         <div class="ticketSummary hint">$<span id="@(Model + "_individualPricePer")">35</span><span class="operand">✕</span><span class="@(Model + "_individualCount")">0</span><span class="operand">=</span><strong>$<span id="@(Model + "_individualTotal")">0</span></strong></div>
     </div>   
+    <div>
+        <label>How did you hear about the event?</label>
+        <select name="howDidYouHear">
+            <option selected="selected" value="Via Facebook">Via Facebook</option>
+            <option value="Word of mouth (friend)">Word of mouth (friend)</option>
+            <option value="Word of mouth (co-worker)">Word of mouth (co-worker)</option>
+            <option value="Saw a flier">Saw a flier</option>
+            <option value="Given a business card">Given a business card</option>
+            <option value="Word of mouth (arch-nemesis)">Word of mouth (arch-nemesis)</option>
+        </select>
+    </div>
 }
     <div class="payButton">
         @{ Html.RenderPartial("PayButton"); }

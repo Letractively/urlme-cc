@@ -3,6 +3,15 @@
 <div class="orderIndex @Model @(Request.UserAgent.ToLower().Contains("iphone") ? "iPhone" : "")">
 @using (Html.BeginForm("Submit", "Order"))
 {
+    <div class="pleaseNote">
+        <strong>Please Note</strong>
+        <ul>
+            <li><span>Where</span> -- at Commonwealth Chapel church (<a href="http://goo.gl/maps/tncWB">map</a>); Coco's Coffee Shop is just the story setting, not an actual place</li>
+            <li><span>Group seating</span> -- if you want to sit with certain people, please order all tickets together, otherwise we cannot accomodate</li>
+            <li><span>Tickets</span> -- include dinner and show, to be picked up at Will Call night of</li>
+            <li><span>Seats</span> -- will fill up front to back in the order they are received</li>
+        </ul>
+    </div>
     <div>
         <label>What's your name?</label>
         <div>

@@ -131,6 +131,8 @@ header, footer, nav, section {
 /* icons */
 .sprite.icon.chair { background-position: 0 0; }
 .sprite.icon.unChair { background-position: -16px 0; }
+.sprite.icon.dollar { background-position: 0 -32px; }
+.sprite.icon.unDollar { background-position: -16px -32px; }
 .sprite.icon.mobile { background-position: 0 -16px; }
 .sprite.icon.desktop { background-position: -16px -16px; }
 

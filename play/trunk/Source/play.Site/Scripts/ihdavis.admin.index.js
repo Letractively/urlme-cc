@@ -4,8 +4,7 @@ ihdavis.admin.index = {
         newCount: function () { return $("#newCount"); }
         , newNotif: function () { return $("#notif"); }
         , newPlural: function () { return $("#newPlural"); }
-        , togglePaidLinks: function () { return $(".togglePaid"); }
-        , toggleSeatedLinks: function () { return $(".toggleSeated"); }
+        , toggleLinks: function () { return $("a[href*='toggle']"); }
     }
     , init: function() {
         $("#orders").dataTable({
@@ -21,7 +20,7 @@ ihdavis.admin.index = {
     }
     , initCountChecks: function () {
         setInterval(function () {
-            $.get("/order/getcount", function (resp) {
+            ihdavis.ajax.get("/order/getcount", function (resp) {
                 if (resp.count > orderCount) {
                     var overflow = resp.count - orderCount;
                     var newPluralText = overflow > 1 ? "(s)" : "";
@@ -34,80 +33,29 @@ ihdavis.admin.index = {
         }, 5000);
     }
     , bindControls: function () {
-        ihdavis.admin.index.controls.togglePaidLinks().click(function (e) {
+        ihdavis.admin.index.controls.toggleLinks().click(function (e) {
             e.preventDefault();
             var link = $(this);
-            var itemRow = link.closest("[data-item-id]");
-            var paidCell = itemRow.find(".paidCell");
+            var icon = link.find(".icon")
+                , stateText = link.find(".stateText")
+                , itemRow = link.closest("[data-item-id]")
+                , display = itemRow.find("." + link.attr("data-display-class"))
+                , currentStateText = stateText.text()
+                , states = link.attr("data-states").split(",")
+                , iconClasses = link.attr("data-icon-classes").split(",")
+                , ajaxUrl = link.attr("href");
 
             var data = {};
             data.playOrderId = itemRow.attr("data-item-id");
 
-            $.ajax({
-                url: togglePaidUrl,
-                type: 'POST',
-                dataType: 'json',
-                data: JSON.stringify(data),
-                contentType: 'application/json; charset=utf-8',
-                success: function (resp) {
-                    if (resp.success) {
-                        // udpate display
-                        paidCell.find("span").toggleClass("hidden");
-                        // update link text
-                        var stateText = link.find(".stateText");
-                        var currentStateText = stateText.text();
-                        var states = stateText.attr("data-states").split(",");
-                        if (currentStateText == states[0])
-                            stateText.text(states[1]);
-                        else
-                            stateText.text(states[0]);
-                    } else {
-                        alert("Error. Please try again.");
-                    }
-                },
-                error: function (xhr) {
-                    alert("Ajax error. Please try again.");
-                }
-            });
-        });
-
-        ihdavis.admin.index.controls.toggleSeatedLinks().click(function (e) {
-            e.preventDefault();
-            var link = $(this);
-            var icon = link.find(".icon");
-            var itemRow = link.closest("[data-item-id]");
-            var seatedCell = itemRow.find(".seatedCell");
-
-            var data = {};
-            data.playOrderId = itemRow.attr("data-item-id");
-
-            $.ajax({
-                url: toggleSeatedUrl,
-                type: 'POST',
-                dataType: 'json',
-                data: JSON.stringify(data),
-                contentType: 'application/json; charset=utf-8',
-                success: function (resp) {
-                    if (resp.success) {
-                        // udpate display
-                        seatedCell.find("span").toggleClass("hidden");
-                        // update link text
-                        var stateText = link.find(".stateText");
-                        var currentStateText = stateText.text();
-                        var states = stateText.attr("data-states").split(",");
-                        var iconClasses = stateText.attr("data-icon-classes").split(",");
-                        icon.toggleClass(iconClasses[0]).toggleClass(iconClasses[1]);
-                        if (currentStateText == states[0])
-                            stateText.text(states[1]);
-                        else
-                            stateText.text(states[0]);
-                    } else {
-                        alert("Error. Please try again.");
-                    }
-                },
-                error: function (xhr) {
-                    alert("Ajax error. Please try again.");
-                }
+            ihdavis.ajax.post(ajaxUrl, data, function (resp) {
+                // udpate display & link text
+                display.find("span").toggleClass("hidden");
+                icon.toggleClass(iconClasses[0]).toggleClass(iconClasses[1]);
+                if (currentStateText == states[0])
+                    stateText.text(states[1]);
+                else
+                    stateText.text(states[0]);
             });
         });
     }

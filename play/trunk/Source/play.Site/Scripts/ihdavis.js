@@ -31,6 +31,36 @@ ihdavis.registerNamespace = function () {
     return o;
 };
 
+ihdavis.registerNamespace("ajax");
+ihdavis.ajax = {
+    post: function (url, jsonObj, success) {
+        $.ajax({
+            url: url,
+            type: 'POST',
+            dataType: 'json',
+            data: JSON.stringify(jsonObj),
+            contentType: 'application/json; charset=utf-8',
+            success: function (resp) {
+                if (resp.success && typeof success === "function") {
+                    success(resp);
+                } else if (!resp.success) {
+                    alert("Error. Please try again.");
+                }
+            },
+            error: function (xhr) {
+                alert("Ajax error. Please try again.");
+            }
+        });
+    }
+    , get: function (url, success) {
+        $.get(url, function (resp) {
+            if (typeof success === "function") {
+                success(resp);
+            }
+        });
+    }
+};
+
 ihdavis.registerNamespace("form");
 ihdavis.form = {
     emailIsValid: function (email) {

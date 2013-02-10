@@ -3,24 +3,27 @@
 
 @Model.title^
 @*json callback looks for above prefix to extract the movie title*@
-<img class="poster" src="@this.Model.posters.detailed" />
-<p><span class='mpaaRating'>@this.Model.mpaa_rating</span></p>
-<p>@this.Model.DurationCompact</p>
-@if (this.Model.IsReleased)
-{
-    this.Html.RenderPartial("Ratings", new movies.Site.ViewModels.Shared.Ratings { Movie = this.Model, RatingSize = Enumerations.RatingSizes.medium });
-}
-else
-{
-    <p class="releaseDate">@this.Model.ReleaseDate</p>    
-}
+<div class="topHalf">
+    <div><img class="poster" src="@this.Model.posters.detailed" /></div>
+    <div>
+        <p class="group"><span class='mpaaRating'>@this.Model.mpaa_rating</span><span class="duration">@this.Model.DurationCompact</span></p>
+        <p><a href="@this.Model.ParentalGuideUrl" target="_blank">Parental Guide</a></p>
+        @if (this.Model.IsReleased)
+        {
+            this.Html.RenderPartial("Ratings", new movies.Site.ViewModels.Shared.Ratings { Movie = this.Model, RatingSize = Enumerations.RatingSizes.small });
+        }
+        else
+        {
+            <p class="releaseDate">@this.Model.ReleaseDate</p>    
+        }
+    </div>
+</div>
 @if (this.Model.Review != null)
 {
     <p class="ourReview medium group">
         <span class="@Model.Review.ClassName icon"></span>"@Model.Review.Text" <a class="text" href="@Model.Review.Url" target="_blank">- JohnHanlonReviews.com</a>
     </p>
 }
-<p class="links"><a href="@(this.Model.links.alternate)trailers" target="_blank">Trailer</a><a href="@this.Model.ParentalGuideUrl" target="_blank">Parental Guide</a></p>
 <p class="starring">
     <strong>Starring</strong>: 
     @{ int i = 0; }

@@ -215,7 +215,7 @@ codejkjk.movies.mobile = {
 
                 // show back link?
                 if (backUrl) {
-                    codejkjk.movies.mobile.controls.TheaterMovieBackLink().attr("href", backUrl).show();
+                    codejkjk.movies.mobile.controls.TheaterMovieBackLink().attr("href", backUrl).css("display","inline-block");
                 } else {
                     codejkjk.movies.mobile.controls.TheaterMovieBackLink().hide();
                 }
@@ -239,7 +239,7 @@ codejkjk.movies.mobile = {
 
                 // show back link?
                 if (backUrl) {
-                    codejkjk.movies.mobile.controls.MovieBackLink().attr("href", backUrl).show();
+                    codejkjk.movies.mobile.controls.MovieBackLink().attr("href", backUrl).css("display","inline-block");
                 } else {
                     codejkjk.movies.mobile.controls.MovieBackLink().hide();
                 }

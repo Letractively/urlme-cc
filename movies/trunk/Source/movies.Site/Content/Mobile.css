@@ -21,6 +21,10 @@ body { font-size: 14px; }
 * html .group { zoom: 1; } /* IE6 */
 *:first-child+html .group { zoom: 1; } /* IE7 */
 
+h2 { position: relative; border-bottom: 1px solid #B3B3B3; background: #EEE; color: #3E3E3E; font-weight: bold; text-shadow: 0 1px 1px white; background-image: -webkit-gradient(linear,left top,left bottom,from(#F0F0F0),to(#DDD)); background-image: -webkit-linear-gradient(#F0F0F0,#DDD); background-image: -moz-linear-gradient(#F0F0F0,#DDD); background-image: -ms-linear-gradient(#F0F0F0,#DDD); background-image: -o-linear-gradient(#F0F0F0,#DDD); background-image: linear-gradient(#F0F0F0,#DDD); font-size: 16px; padding: 13px 12px 10px 10px; text-overflow: ellipsis; overflow: hidden; white-space: nowrap; }
+    h2 a.back { font-size: 16px; padding: 14px 12px 10px 10px; margin: -14px 0px -10px -10px; }
+    h2 a.right { position: absolute; top: 0; right: 10px; font-size: 16px; padding-top:10px; }
+
 div.logo { height: 105px; padding: 0px; background-color: #000; }
 div.logo a { margin:0 auto; display:block; background: url('content/logo4_4.png'); background-repeat:no-repeat; height: 105px; width: 349px;}
 
@@ -53,14 +57,19 @@ p { color: #535156; } /* grey bullet color */
 
 /* MovieIndexMobile page */
 .movieView { padding: 10px; }
-.movieView img { float: left; margin-right: 10px; margin-bottom: 10px; }
+.movieView .topHalf { margin-bottom: 10px; }
+    .movieView .topHalf > div { display: table-cell; vertical-align: top; }
+        .movieView .topHalf > div:first-child { padding-right :10px; }
+        .movieView .topHalf > div:last-child { width: 100%; }
+
 .movieView p { margin-bottom: 10px; font-size: 18px; }
+
 .movieView .ratings { margin:0px; float: left; }
     .movieView .ratings > .icon, .movieView .ratings > .imdbRatingPlugin { clear: left; margin-left: 0; }
     .movieView .ratings > span { margin-bottom: 10px; }
 .movieView .links, .movieView .ourReview { clear: left; }
-    .movieView .links a:first-child { margin-right:20px; }
-.movieView .mpaaRating { font-size: 24px; margin: 0; }
+.movieView .mpaaRating { font-size: 24px; margin: 0; float: left; }
+.movieView .duration { float: right; padding-top:4px; }
 
 /* google places */
 .pac-item { font-size: 18px; padding: 5px; }
@@ -97,10 +106,6 @@ li:hover { background: -moz-linear-gradient(#FDFDFD,#EEE) repeat scroll 0 0 #EEE
         li.movie a h3, li.theater a h3 { color: #2F3E46; font-size: 16px; font-weight: bold; display:block; text-overflow: ellipsis; overflow: hidden; white-space: nowrap; }
     li.movie a > span.rightArrow { opacity: 0.5; position: absolute; top: 28px; right: 5px; background: url('content/images/rt-sprite4.png') -76px -85px; width: 25px; height: 35px; display:inline-block; float: right; }
 
-h2 { position: relative; border-bottom: 1px solid #B3B3B3; background: #EEE; color: #3E3E3E; font-weight: bold; text-shadow: 0 1px 1px white; background-image: -webkit-gradient(linear,left top,left bottom,from(#F0F0F0),to(#DDD)); background-image: -webkit-linear-gradient(#F0F0F0,#DDD); background-image: -moz-linear-gradient(#F0F0F0,#DDD); background-image: -ms-linear-gradient(#F0F0F0,#DDD); background-image: -o-linear-gradient(#F0F0F0,#DDD); background-image: linear-gradient(#F0F0F0,#DDD); font-size: 16px; padding: 10px; text-overflow: ellipsis; overflow: hidden; white-space: nowrap; }
-    h2 a.back { padding-right: 10px; font-size: 16px; padding-top: 10px; }
-    h2 a.right { position: absolute; top: 0; right: 10px; font-size: 16px; padding-top:10px; }
-        
 #showtimeDays { text-align: left; }
     #showtimeDays a { color: #3E3E3E; font-weight:normal; }
     #showtimeDays a:not(:last-child) { margin-right: 10px; }

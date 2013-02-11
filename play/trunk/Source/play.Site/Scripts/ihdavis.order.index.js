@@ -44,8 +44,8 @@ ihdavis.order.index = {
             emailEl.css("border-color", "#ccc");
         }
 
-        if (name && email && playDate && ticketCount) {
-            payButton.show();
+        if (name && email && playDate && ticketCount && ihdavis.form.emailIsValid(email)) {
+            payButton.addClass("enabled");
             
             // update hidAmount
             ihdavis.order.index.controls.hidAmount().val(ticketTotal);
@@ -53,7 +53,7 @@ ihdavis.order.index = {
                 ihdavis.order.index.controls.hidAmount().val("0.01");
         }
         else {
-            payButton.hide();
+            payButton.removeClass("enabled");
         }
     }
     , bindControls: function () {
@@ -69,6 +69,10 @@ ihdavis.order.index = {
             var payButtonForm = ihdavis.order.index.controls.payButton();
             if (payButtonForm.hasClass("working")) {
                 alert("Please only click the button once.");
+                return;
+            }
+            if (!payButtonForm.hasClass("enabled")) {
+                alert("First, please provide name & valid email, select a play date, and order at least 1 ticket.");
                 return;
             }
             payButtonForm.addClass("working");

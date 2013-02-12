@@ -117,7 +117,18 @@ namespace movies.Model
         public Enumerations.MovieType MovieType { get; set; }
         public string ShowtimesHtml { get; set; }
         public bool IsReleased { get { return System.DateTime.Now >= this.release_dates.theater; } }
-        public string ReleaseDate { get { return this.release_dates.theater.ToString("MMM d, yyyy"); } }
+        public bool IsThisWeekend
+        {
+            get
+            {
+                var today = System.DateTime.Today;
+                bool currentlyInWeekend = today.DayOfWeek == DayOfWeek.Friday || today.DayOfWeek == DayOfWeek.Saturday || today.DayOfWeek == DayOfWeek.Sunday;
+                bool releaseDateOnWeekend = this.ReleaseDate.DayOfWeek == DayOfWeek.Friday || this.ReleaseDate.DayOfWeek == DayOfWeek.Saturday || this.ReleaseDate.DayOfWeek == DayOfWeek.Sunday;
+                TimeSpan ts = this.ReleaseDate - today;
+                return currentlyInWeekend && releaseDateOnWeekend && Math.Abs(ts.Days) <= 2;
+            }
+        }
+        public DateTime ReleaseDate { get { return this.release_dates.theater; } }
         public string ParentalGuideUrl { get { return this.alternate_ids != null ? API.IMDb.GetParentalGuideUrl(this.alternate_ids.imdb) : null; } }
         public string ParentalGuideMobileUrl { get { return this.alternate_ids != null ? API.IMDb.GetParentalGuideMobileUrl(this.alternate_ids.imdb) : null; } }
         public string IMDbMovieUrl { get { return this.alternate_ids != null ? API.IMDb.GetMovieUrl(this.alternate_ids.imdb) : null; } }

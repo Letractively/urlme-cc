@@ -25,6 +25,7 @@ namespace movies.Site.Controllers
                 BoxOfficeMovies = Movie.GetMovies(Enumerations.MovieLists.BoxOffice),
                 InTheatersMovies = inTheatersMoviesDisplay,
                 UpcomingMovies = Movie.GetMovies(Enumerations.MovieLists.Upcoming),
+                ThisWeekendMovies = new Dictionary<string,Movie>(),
 
                 OverlayMovie = null
             };
@@ -58,6 +59,20 @@ namespace movies.Site.Controllers
                     vm.InTheatersMovies.Remove(movie.Key);
                 }
             }
+
+            // WHEN WE DO REMOVE IT FROM OPENING, BE CAREFUL WITH CACHE !!!1
+            // add to This Weekend list, pulling (removing) from Opening
+            // var openingKeysToRemove = new List<string>();
+            foreach (var movie in vm.OpeningMovies)
+            {
+                if (movie.Value.IsThisWeekend)
+                {
+                    vm.ThisWeekendMovies.Add(movie.Key, movie.Value);
+                    // openingKeysToRemove.Add(movie.Key);
+                }
+            }
+            // openingKeysToRemove.ForEach(x => vm.OpeningMovies.Remove(x));
+
 
             // movie view?
             if (!string.IsNullOrWhiteSpace(rtMovieId))

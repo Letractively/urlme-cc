@@ -65,7 +65,7 @@ footer { font-family: 'Courier New'; font-size: 14px; font-weight: bolder; }
 #m header { position: relative; color: #333; text-align: center; font-family: 'Courier New'; font-weight: bolder; }
 #m header .fbContainer { top: 8px; right: 8px; position: absolute; }
     #m header .img { background: url('images/m-header-4.png') no-repeat #fff; background-position: top center; height: 110px; border-top-left-radius: 3px; border-top-right-radius: 3px; }
-    #m header div.headerFooter { color: #333; padding: 25px 0 10px 0; background: url('images/m-blue-bg.jpg') repeat-x; background-position: top; line-height: 19px; border-bottom-left-radius: 3px; border-bottom-right-radius: 3px; }
+    #m header div.headerFooter { margin-top:-1px; color: #333; padding: 25px 0 10px 0; background: url('images/m-blue-bg.jpg') repeat-x; background-position: top; line-height: 19px; border-bottom-left-radius: 3px; border-bottom-right-radius: 3px; }
 
 #m .body { padding: 25px; margin-top: 25px; }
 
@@ -79,7 +79,7 @@ footer { font-family: 'Courier New'; font-size: 14px; font-weight: bolder; }
 
     #m .borderTop { border-top: 4px dashed darkgray; margin-top: 25px; padding-top: 20px; }
 
-    #m footer { font-weight: bolder; font-size: 15px; line-height: 19px; padding: 25px 25px 18px 25px; text-align: center; background: url('images/m-blue-bg.jpg') repeat-x; background-position: top; border-bottom-left-radius: 3px; border-bottom-right-radius: 3px; }
+    #m footer { margin-top:-1px; font-weight: bolder; font-size: 15px; line-height: 19px; padding: 25px 25px 18px 25px; text-align: center; background: url('images/m-blue-bg.jpg') repeat-x; background-position: top; border-bottom-left-radius: 3px; border-bottom-right-radius: 3px; }
 
 .orderIndex form > div { clear: both; }
 .orderIndex form > div label:first-child { font-weight: bold; margin-right: 15px; display:block; margin-bottom: 10px; }

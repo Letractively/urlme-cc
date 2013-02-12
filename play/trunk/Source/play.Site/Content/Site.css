@@ -50,8 +50,8 @@ footer { font-family: 'Courier New'; font-size: 14px; font-weight: bolder; }
 
 #dt .col { float: left; line-height: 19px; text-align: justify; }
 #dt h2 { text-align: center; }
-#dt .body .left { padding-right: 30px; width: 347px; }
-#dt .body .right { border-left: 4px dashed darkgray; padding-left: 30px; width: 343px; line-height: 15px; }
+#dt .body .left { padding-right: 30px; /* HIDE*/ /* width: 347px; */ }
+#dt .body .right { /* HIDE */ display:none; border-left: 4px dashed darkgray; padding-left: 30px; width: 343px; line-height: 15px; }
     #dt .body .right img { width: 210px; float: left; margin-left: -12px; margin-right: 15px; }
 
 #dt footer { background: url('images/footer-bg.jpg') no-repeat; width: 816px; height: 200px; border-bottom-left-radius: 3px; border-bottom-right-radius: 3px; }
@@ -72,12 +72,12 @@ footer { font-family: 'Courier New'; font-size: 14px; font-weight: bolder; }
 #m h2 { font-size: 20px; font-weight: bold; margin-bottom: 20px; text-align: center; }
     #m .justify { text-align: justify; }
 #m .aboutPlay { line-height: 19px; }
-#m .aboutCause { line-height: 15px; }
+#m .aboutCause { /* HIDE */ display:none; line-height: 15px; }
     #m .aboutCause img { width: 150px; float: left; margin-right: 15px; margin-left: -4px; }
     
     #m .aboutPlay .orderTickets { margin-top: 20px; }
 
-    #m .borderTop { border-top: 4px dashed darkgray; margin-top: 25px; padding-top: 20px; }
+    #m .borderTop { /* HIDE */ display:none; border-top: 4px dashed darkgray; margin-top: 25px; padding-top: 20px; }
 
     #m footer { margin-top:-1px; font-weight: bolder; font-size: 15px; line-height: 19px; padding: 25px 25px 18px 25px; text-align: center; background: url('images/m-blue-bg.jpg') repeat-x; background-position: top; border-bottom-left-radius: 3px; border-bottom-right-radius: 3px; }
 

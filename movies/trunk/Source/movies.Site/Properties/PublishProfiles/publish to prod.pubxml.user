@@ -250,7 +250,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>04/03/2012 09:38:51</publishTime>
     </File>
     <File Include="Content/Mobile.css">
-      <publishTime>01/25/2013 15:04:37</publishTime>
+      <publishTime>02/12/2013 17:04:25</publishTime>
     </File>
     <File Include="Content/Site.css">
       <publishTime>02/08/2013 13:11:54</publishTime>
@@ -286,7 +286,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>01/07/2013 09:12:35</publishTime>
     </File>
     <File Include="Scripts/codejkjk/codejkjk.movies.Mobile.js">
-      <publishTime>01/23/2013 16:48:22</publishTime>
+      <publishTime>02/12/2013 17:04:25</publishTime>
     </File>
     <File Include="Scripts/codejkjk/codejkjk.movies.redbox.js">
       <publishTime>12/26/2012 16:30:00</publishTime>
@@ -490,7 +490,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>08/31/2012 20:42:04</publishTime>
     </File>
     <File Include="Views/Home/Index.cshtml">
-      <publishTime>02/01/2013 10:51:18</publishTime>
+      <publishTime>02/12/2013 17:02:59</publishTime>
     </File>
     <File Include="Views/Home/Index.Mobile.cshtml">
       <publishTime>02/01/2013 10:51:28</publishTime>
@@ -529,10 +529,10 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>10/18/2011 09:08:53</publishTime>
     </File>
     <File Include="Views/Shared/MovieDetails.cshtml">
-      <publishTime>01/29/2013 11:40:20</publishTime>
+      <publishTime>02/12/2013 10:49:57</publishTime>
     </File>
     <File Include="Views/Shared/MovieDetails.Mobile.cshtml">
-      <publishTime>09/24/2012 14:02:20</publishTime>
+      <publishTime>02/12/2013 17:06:21</publishTime>
     </File>
     <File Include="Views/Shared/MovieDetailsSimple.cshtml">
       <publishTime>07/27/2012 10:07:34</publishTime>
@@ -574,7 +574,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>10/18/2011 09:08:53</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>02/12/2013 17:04:06</publishTime>
+      <publishTime>02/12/2013 17:06:40</publishTime>
     </File>
   </ItemGroup>
 </Project>

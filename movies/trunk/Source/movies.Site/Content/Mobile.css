@@ -51,7 +51,7 @@ a { text-decoration: none; color: #2489CE; font-weight: bold; }
 /* movie list */
 p { color: #535156; } /* grey bullet color */
 
-.mpaaRating { margin-left: 10px; color: #465F82; font-size: 12px; font-weight: bold; }
+.mpaaRating { color: #465F82; font-weight: bold; }
 
 [data-releasedate] { margin-top: 10px; display:block; font-size: 15px; font-weight: normal; }
 
@@ -62,13 +62,13 @@ p { color: #535156; } /* grey bullet color */
         .movieView .topHalf > div:first-child { padding-right :10px; }
         .movieView .topHalf > div:last-child { width: 100%; }
 
-.movieView p { margin-bottom: 10px; font-size: 18px; }
+.movieView p { margin-bottom: 10px; }
 
 .movieView .ratings { margin:0px; float: left; }
     .movieView .ratings > .icon, .movieView .ratings > .imdbRatingPlugin { clear: left; margin-left: 0; }
     .movieView .ratings > span { margin-bottom: 10px; }
 .movieView .links, .movieView .ourReview { clear: left; }
-.movieView .mpaaRating { font-size: 24px; margin: 0; float: left; }
+.movieView .mpaaRating { float: left; }
 .movieView .duration { float: right; padding-top:4px; }
 
 /* google places */

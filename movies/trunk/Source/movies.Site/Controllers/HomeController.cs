@@ -60,19 +60,34 @@ namespace movies.Site.Controllers
                 }
             }
 
-            // WHEN WE DO REMOVE IT FROM OPENING, BE CAREFUL WITH CACHE !!!1
-            // add to This Weekend list, pulling (removing) from Opening
-            // var openingKeysToRemove = new List<string>();
+            // add to This Weekend list, pulling from Opening & box office
+            var openingKeysToFilterOut = new List<string>();
             foreach (var movie in vm.OpeningMovies)
             {
-                if (movie.Value.IsThisWeekend)
+                if (movie.Value.IsThisWeekend && !vm.ThisWeekendMovies.ContainsKey(movie.Key))
                 {
                     vm.ThisWeekendMovies.Add(movie.Key, movie.Value);
-                    // openingKeysToRemove.Add(movie.Key);
+                    openingKeysToFilterOut.Add(movie.Key);
                 }
             }
-            // openingKeysToRemove.ForEach(x => vm.OpeningMovies.Remove(x));
-
+            // trim what we borrowed
+            if (openingKeysToFilterOut.Any())
+            {
+                vm.OpeningMovies = vm.OpeningMovies.Where(x => openingKeysToFilterOut.Contains(x.Key)).ToDictionary(key => key.Key, value => value.Value);
+            }
+            var boxOfficeKeysToFilterOut = new List<string>();
+            foreach (var movie in vm.BoxOfficeMovies)
+            {
+                if (movie.Value.IsThisWeekend && !vm.ThisWeekendMovies.ContainsKey(movie.Key))
+                {
+                    vm.ThisWeekendMovies.Add(movie.Key, movie.Value);
+                    boxOfficeKeysToFilterOut.Add(movie.Key);
+                }
+            }
+            if (boxOfficeKeysToFilterOut.Any())
+            {
+                vm.BoxOfficeMovies = vm.BoxOfficeMovies.Where(x => boxOfficeKeysToFilterOut.Contains(x.Key)).ToDictionary(key => key.Key, value => value.Value);
+            }        
 
             // movie view?
             if (!string.IsNullOrWhiteSpace(rtMovieId))

@@ -167,7 +167,18 @@ namespace movies.Model
         {
             get
             {
-                return "0" + this.Duration.Replace(" ", "").Replace("hr.", ":").Replace("min.", "");
+                string rtn = "0" + this.Duration.Replace(" ", "").Replace("hr.", ":").Replace("min.", "");
+                if (rtn.Length == 5)
+                    return rtn;
+                
+                // 01:2 --> 01:02
+                string rightSide = rtn.Split(':')[1];
+                if (rightSide.Length < 2)
+                {
+                    rightSide = "0" + rightSide;
+                }
+                string leftSide = rtn.Split(':')[0];
+                return leftSide + ":" + rightSide;
             }
         }
 

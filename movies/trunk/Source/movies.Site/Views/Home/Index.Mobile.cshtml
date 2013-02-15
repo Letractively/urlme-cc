@@ -4,6 +4,7 @@
 
 @{
     ViewBag.Title = "See it or Not - Trailers, Movie Ratings and Reviews, Showtimes";
+    bool anyThisWeekend = Model.ThisWeekendMovies.Any();
 }
 
 @section ExtraHeadContent {
@@ -28,18 +29,30 @@
     <div class="loading"><span>Loading...</span></div>
     @* *** What's Hot *** *@
     <section id="whatsHot" data-navitemurl="/">
+        @if (anyThisWeekend)
+        {
+            <h2 class="alert">This Weekend</h2>
+            <div data-role="content" class="group movieList">
+                <div class="sliderWrapper">
+                    @this.Html.Partial("MovieList.Mobile", this.Model.ThisWeekendMovies)
+                </div>
+            </div>            
+        }
         <h2>Top Box Office</h2>
 	    <div data-role="content" class="group movieList">
             <div class="sliderWrapper">
                 @this.Html.Partial("MovieList.Mobile", this.Model.BoxOfficeMovies)
             </div>
         </div>
-        <h2>Opening This Week</h2>
-        <div data-role="content" class="group movieList">
-            <div class="sliderWrapper">
-                @this.Html.Partial("MovieList.Mobile", this.Model.OpeningMovies)
+        @if (!anyThisWeekend)
+        {
+            <h2>Opening This Week</h2>
+            <div data-role="content" class="group movieList">
+                <div class="sliderWrapper">
+                    @this.Html.Partial("MovieList.Mobile", this.Model.OpeningMovies)
+                </div>
             </div>
-        </div>
+        }
         <h2>Also in Theaters</h2>
         <div data-role="content" class="group movieList">
             <div class="sliderWrapper">

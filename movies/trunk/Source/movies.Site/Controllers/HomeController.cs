@@ -61,19 +61,12 @@ namespace movies.Site.Controllers
             }
 
             // add to This Weekend list, pulling from Opening & box office
-            var openingKeysToFilterOut = new List<string>();
             foreach (var movie in vm.OpeningMovies)
             {
                 if (movie.Value.IsThisWeekend && !vm.ThisWeekendMovies.ContainsKey(movie.Key))
                 {
                     vm.ThisWeekendMovies.Add(movie.Key, movie.Value);
-                    openingKeysToFilterOut.Add(movie.Key);
                 }
-            }
-            // trim what we borrowed
-            if (openingKeysToFilterOut.Any())
-            {
-                vm.OpeningMovies = vm.OpeningMovies.Where(x => openingKeysToFilterOut.Contains(x.Key)).ToDictionary(key => key.Key, value => value.Value);
             }
             var boxOfficeKeysToFilterOut = new List<string>();
             foreach (var movie in vm.BoxOfficeMovies)

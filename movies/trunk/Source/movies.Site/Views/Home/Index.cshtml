@@ -2,6 +2,7 @@
 
 @{
     ViewBag.Title = "See it or Not - Trailers, Movie Ratings and Reviews, Showtimes";
+    bool anyThisWeekend = Model.ThisWeekendMovies.Any();
 }
 
 @section ExtraHeadContent {
@@ -54,25 +55,31 @@
             </div>            
 
             <div id="listTabs" class="group">
-                @if (Model.ThisWeekendMovies.Any())
+                @if (anyThisWeekend)
                 {
-                    <h2 class="active" data-id-to-show="thisWeekend">Opening This Week</h2>    
+                    <h2 class="active alert" data-id-to-show="thisWeekend">This Weekend</h2>    
                 }
-                <h2 class="@(!Model.ThisWeekendMovies.Any() ? "active" : "")" data-id-to-show="boxOffice">Top Box Office</h2>
-                <h2 data-id-to-show="opening">Opening This Week</h2>
+                <h2 class="@(!anyThisWeekend ? "active" : "")" data-id-to-show="boxOffice">Top Box Office</h2>
+                @if (!anyThisWeekend)
+                {
+                    <h2 data-id-to-show="opening">Opening This Week</h2>
+                }
                 <h2 data-id-to-show="inTheaters">Also in Theaters</h2>
                 <h2 data-id-to-show="upcoming">Coming Soon</h2>
             </div>
 
             <div class="group" style="height: 1360px">
-                @if (Model.ThisWeekendMovies.Any())
+                @if (anyThisWeekend)
                 {
                     <div id="thisWeekend" class="movieListContainer lazyLoaded">@this.Html.Partial("MovieList", this.Model.ThisWeekendMovies)</div>                    
                 }                
-                <div id="boxOffice" class="movieListContainer @(!Model.ThisWeekendMovies.Any() ? "lazyLoaded" : "")">@this.Html.Partial("MovieList", this.Model.BoxOfficeMovies)</div>
-                <div id="opening" class="movieListContainer">@this.Html.Partial("MovieList", this.Model.OpeningMovies)</div>
-                <div id="upcoming" class="movieListContainer">@this.Html.Partial("MovieList", this.Model.UpcomingMovies)</div>
-                <div id="inTheaters" class="movieListContainer">@this.Html.Partial("MovieList", this.Model.InTheatersMovies)</div>
+                <div id="boxOffice" class="movieListContainer @(!anyThisWeekend ? "lazyLoaded" : "hidden")">@this.Html.Partial("MovieList", this.Model.BoxOfficeMovies)</div>
+                @if (!anyThisWeekend)
+                {
+                    <div id="opening" class="movieListContainer hidden">@this.Html.Partial("MovieList", this.Model.OpeningMovies)</div>
+                }                
+                <div id="upcoming" class="movieListContainer hidden">@this.Html.Partial("MovieList", this.Model.UpcomingMovies)</div>
+                <div id="inTheaters" class="movieListContainer hidden">@this.Html.Partial("MovieList", this.Model.InTheatersMovies)</div>
             </div>
         </div>
         <div class="right group">

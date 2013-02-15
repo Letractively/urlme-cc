@@ -145,11 +145,11 @@ header { background:#2D62AE; }
 .body { width: 996px; margin: 10px auto 0 auto; padding-top: 20px; }
 
 #whatsHotView h2, #redboxView h2 { margin-right: 4px; color: #535156; padding: 10px 0; font-size: 14px; font-weight: bold; margin-bottom: 10px; }
+    #whatsHotView h2.alert, #redboxView h2.alert { color: #b11e24; }
 
 #whatsHotView #listTabs h2 { float: left; cursor: pointer; }
 #whatsHotView #listTabs h2:not(:first-child) { margin-left: 24px; }
 #whatsHotView #listTabs h2:not(.active) { color:#9E9E9E; }
-#whatsHotView .movieListContainer:not(#boxOffice) { display: none; }
 
 #whatsHotView .left { width: 762px; float:left; }
 #whatsHotView .right { width: 213px; float: left; margin-left:24px; }

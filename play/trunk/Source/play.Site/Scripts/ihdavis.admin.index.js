@@ -1,7 +1,9 @@
 ﻿ihdavis.registerNamespace("admin.index");
 ihdavis.admin.index = {
     controls: {
-        newCount: function () { return $("#newCount"); }
+        moreInfo: function () { return $("#moreInfo"); }
+        , moreInfoLinks: function () { return $(".moreInfo"); }
+        , newCount: function () { return $("#newCount"); }
         , newNotif: function () { return $("#notif"); }
         , newPlural: function () { return $("#newPlural"); }
         , toggleLinks: function () { return $("a[href*='toggle']"); }
@@ -17,6 +19,8 @@ ihdavis.admin.index = {
         ihdavis.admin.index.initCountChecks();
 
         ihdavis.admin.index.bindControls();
+
+        ihdavis.admin.index.controls.moreInfo().dialog({ autoOpen: false });
     }
     , initCountChecks: function () {
         setInterval(function () {
@@ -33,6 +37,15 @@ ihdavis.admin.index = {
         }, 5000);
     }
     , bindControls: function () {
+        ihdavis.admin.index.controls.moreInfoLinks().click(function (e) {
+            e.preventDefault();
+            var moreInfo = ihdavis.admin.index.controls.moreInfo();
+            // moreInfo.find(".howDidYouHear").text("hi");
+            ihdavis.admin.index.controls.moreInfo().dialog('open');
+        });
+
+        $('.ui-widget-overlay').click(function () { $("#moreInfo").dialog("close"); });
+
         ihdavis.admin.index.controls.toggleLinks().click(function (e) {
             e.preventDefault();
             var link = $(this);

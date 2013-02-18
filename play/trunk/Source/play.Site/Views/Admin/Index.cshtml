@@ -22,6 +22,12 @@
         @Scripts.Render("~/scripts/ihdavis.admin.index.js")
     </head>
     <body class="adminIndex">
+
+        <div id="moreInfo">
+            How they heard
+            <div></div>
+        </div>
+
         <h2>Admin<a id="notif" title="Click to refresh" href="~/admin"><span class="icon"></span>Refresh to see <span id="newCount">0</span> new order<span id="newPlural"></span>!</a></h2>
         <table id="orders">
             <thead>
@@ -34,6 +40,7 @@
                     <th class="centerText">dt&nbsp;/&nbsp;m</th>
                     <th class="centerText">Paid?</th>
                     <th class="centerText">Seated?</th>
+                    <th width="135">&nbsp;</th>
                     <th width="135">&nbsp;</th>
                     <th width="135">&nbsp;</th>
                 </tr>
@@ -61,6 +68,9 @@
                         </td>
                         <td>
                             <a href="/order/toggleseated" data-icon-classes="unChair,chair" data-display-class="seatedCell" data-states="UN-seated,seated"><span class="sprite icon beforeText @(order.Seated ? "unChair" : "chair")"></span>Mark as <span class="stateText">@(order.Seated ? "UN-seated" : "seated")</span></a>
+                        </td>
+                        <td>
+                            <a href="#" class="moreInfo">More info</a>
                         </td>
                     </tr>    
                 }

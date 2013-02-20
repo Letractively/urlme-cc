@@ -218,6 +218,19 @@
     <Content Include="Content\themes\base\minified\jquery.ui.slider.min.css" />
     <Content Include="Content\themes\base\minified\jquery.ui.tabs.min.css" />
     <Content Include="Content\themes\base\minified\jquery.ui.theme.min.css" />
+    <Content Include="Content\themes\dot-luv\css\images\animated-overlay.gif" />
+    <Content Include="Content\themes\dot-luv\css\images\ui-bg_diagonals-thick_15_0b3e6f_40x40.png" />
+    <Content Include="Content\themes\dot-luv\css\images\ui-bg_dots-medium_30_0b58a2_4x4.png" />
+    <Content Include="Content\themes\dot-luv\css\images\ui-bg_dots-small_20_333333_2x2.png" />
+    <Content Include="Content\themes\dot-luv\css\images\ui-bg_dots-small_30_a32d00_2x2.png" />
+    <Content Include="Content\themes\dot-luv\css\images\ui-bg_dots-small_40_00498f_2x2.png" />
+    <Content Include="Content\themes\dot-luv\css\images\ui-bg_flat_0_aaaaaa_40x100.png" />
+    <Content Include="Content\themes\dot-luv\css\images\ui-bg_flat_40_292929_40x100.png" />
+    <Content Include="Content\themes\dot-luv\css\images\ui-bg_gloss-wave_20_111111_500x100.png" />
+    <Content Include="Content\themes\dot-luv\css\jquery-ui-1.10.1.custom.css" />
+    <Content Include="Content\themes\dot-luv\css\jquery-ui-1.10.1.custom.min.css" />
+    <Content Include="Content\themes\dot-luv\js\jquery-ui-1.10.1.custom.js" />
+    <Content Include="Content\themes\dot-luv\js\jquery-ui-1.10.1.custom.min.js" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="Models\Play.dbml">
@@ -226,12 +239,11 @@
       <SubType>Designer</SubType>
     </Content>
     <None Include="Properties\PublishProfiles\publish to prod.pubxml" />
-    <None Include="Scripts\jquery-1.7.1.intellisense.js" />
+    <Content Include="Scripts\ihdavis.siteActions.js" />
     <Content Include="Scripts\ihdavis.admin.index.js" />
     <Content Include="Scripts\ihdavis.order.index.js" />
     <Content Include="Scripts\ihdavis.js" />
-    <Content Include="Scripts\jquery-1.7.1.js" />
-    <Content Include="Scripts\jquery-1.7.1.min.js" />
+    <Content Include="Scripts\jquery-1.9.1.js" />
     <Content Include="Scripts\jquery-ui-1.8.20.js" />
     <Content Include="Scripts\jquery-ui-1.8.20.min.js" />
     <Content Include="Scripts\knockout-2.1.0.debug.js" />

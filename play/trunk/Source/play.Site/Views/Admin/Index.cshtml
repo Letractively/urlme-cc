@@ -11,6 +11,7 @@
         @Scripts.Render("~/bundles/ihdavis")
 
         @Styles.Render("~/content/site.css")
+        @*@Styles.Render("~/content/themes/dot-luv/css")*@
         @Styles.Render("~/scripts/plugins/datatables/jquery-ui-1.7.2.custom.css")
         @Styles.Render("~/scripts/plugins/datatables/datatable_jui.css")
         
@@ -19,13 +20,16 @@
         <script>
             var orderCount = @Model.Count;
         </script>
+        @Scripts.Render("~/scripts/ihdavis.siteActions.js")
         @Scripts.Render("~/scripts/ihdavis.admin.index.js")
     </head>
     <body class="adminIndex">
 
         <div id="moreInfo">
-            How they heard
-            <div></div>
+            <div>
+                How they heard
+                <div data-bind="text: HowDidYouHear"></div>
+            </div>
         </div>
 
         <h2>Admin<a id="notif" title="Click to refresh" href="~/admin"><span class="icon"></span>Refresh to see <span id="newCount">0</span> new order<span id="newPlural"></span>!</a></h2>

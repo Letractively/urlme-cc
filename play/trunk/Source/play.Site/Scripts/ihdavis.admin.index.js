@@ -20,7 +20,7 @@ ihdavis.admin.index = {
 
         ihdavis.admin.index.bindControls();
 
-        ihdavis.admin.index.controls.moreInfo().dialog({ autoOpen: false });
+        ihdavis.admin.index.controls.moreInfo().dialog({ autoOpen: false, modal: true });
     }
     , initCountChecks: function () {
         setInterval(function () {

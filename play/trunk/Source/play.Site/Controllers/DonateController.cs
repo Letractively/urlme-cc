@@ -15,5 +15,11 @@ namespace play.Site.Controllers
         {
             return View();
         }
+
+        [HttpGet]
+        public ActionResult Kickstarter()
+        {
+            return View();
+        }
     }
 }

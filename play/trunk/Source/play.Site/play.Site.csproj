@@ -320,6 +320,8 @@
     <Content Include="Views\Shared\DonateButton.cshtml" />
     <Content Include="Views\Donate\ThankYou.cshtml" />
     <Content Include="Views\Shared\DonateThankYouSnippet.cshtml" />
+    <Content Include="Views\Shared\KickstarterSnippet.cshtml" />
+    <Content Include="Views\Donate\Kickstarter.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

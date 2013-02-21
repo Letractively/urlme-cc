@@ -227,6 +227,10 @@
     <Content Include="Content\themes\dot-luv\css\images\ui-bg_flat_0_aaaaaa_40x100.png" />
     <Content Include="Content\themes\dot-luv\css\images\ui-bg_flat_40_292929_40x100.png" />
     <Content Include="Content\themes\dot-luv\css\images\ui-bg_gloss-wave_20_111111_500x100.png" />
+    <Content Include="Content\themes\dot-luv\css\images\ui-icons_00498f_256x240.png" />
+    <Content Include="Content\themes\dot-luv\css\images\ui-icons_98d2fb_256x240.png" />
+    <Content Include="Content\themes\dot-luv\css\images\ui-icons_9ccdfc_256x240.png" />
+    <Content Include="Content\themes\dot-luv\css\images\ui-icons_ffffff_256x240.png" />
     <Content Include="Content\themes\dot-luv\css\jquery-ui-1.10.1.custom.css" />
     <Content Include="Content\themes\dot-luv\css\jquery-ui-1.10.1.custom.min.css" />
     <Content Include="Content\themes\dot-luv\js\jquery-ui-1.10.1.custom.js" />

@@ -1,4 +1,5 @@
-﻿@model List<play.Site.Models.PlayOrder>
+﻿@model play.Site.ViewModels.AdminIndex
+@using play.Site.Extensions
 
 @{
     Layout = null;
@@ -13,13 +14,12 @@
 
         @Styles.Render("~/content/site.css")
         @Styles.Render("~/content/themes/dot-luv/css")
-        @*@Styles.Render("~/scripts/plugins/datatables/jquery-ui-1.7.2.custom.css")*@
         @Styles.Render("~/scripts/plugins/datatables/datatable_jui.css")
         
         @Scripts.Render("~/scripts/plugins/datatables/jquery.dataTables.min.js")
 
         <script>
-            var orderCount = @Model.Count;
+            var orderCount = @Model.Orders.Count;
         </script>
         @Scripts.Render("~/scripts/ihdavis.siteActions.js")
         @Scripts.Render("~/scripts/ihdavis.admin.index.js")
@@ -28,8 +28,20 @@
 
         <div id="moreInfo">
             <div>
-                How they heard
+                Name:
+                <div data-bind="text: Name"></div>
+            </div>
+            <div>
+                Email:
+                <div><a tabindex="-1" data-bind="attr: { href: MailTo }, text: Email"></a></div>
+            </div>
+            <div>
+                How they heard:
                 <div data-bind="text: HowDidYouHear"></div>
+            </div>
+            <div>
+                User agent:
+                <div data-bind="text: UserAgent"></div>
             </div>
         </div>
 
@@ -40,7 +52,6 @@
                     <th width="70">Order date</th>
                     <th>Play&nbsp;date</th>
                     <th width="140">Name</th>
-                    <th>Email</th>
                     <th class="centerText">Tickets</th>
                     <th class="centerText">dt&nbsp;/&nbsp;m</th>
                     <th class="centerText">Paid?</th>
@@ -51,13 +62,12 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach (var order in Model.Where(x => x.Name.ToLower() != "test"))
+                @foreach (var order in Model.Orders.Where(x => x.Name.ToLower() != "test"))
                 {
                     <tr data-item-id="@order.PlayOrderId">
                         <td>@order.CreateDate.ToString("yyyy-MM-dd")</td>
                         <td>@order.PlayDate.ToString("MMM dd")</td>
                         <td>@order.Name</td>
-                        <td><a href="mailto:@order.Email">@order.Email</a></td>
                         <td class="centerText">@order.CoupleTicketCount / @order.IndividualTicketCount</td>
                         <td class="centerText"><span class="sprite icon @order.Platform"></span></td>
                         <td class="centerText paidCell">
@@ -75,12 +85,18 @@
                             <a href="/order/toggleseated" data-icon-classes="unChair,chair" data-display-class="seatedCell" data-states="UN-seated,seated"><span class="sprite icon beforeText @(order.Seated ? "unChair" : "chair")"></span>Mark as <span class="stateText">@(order.Seated ? "UN-seated" : "seated")</span></a>
                         </td>
                         <td>
-                            <a href="#" class="moreInfo">More info</a>
+                            <a href="/order/get/@order.PlayOrderId" class="moreInfo">More info</a>
                         </td>
                     </tr>    
                 }
             </tbody>
         </table>
+        <script>
+            var data = @Html.Raw(Model.Order.ToJson());
+            data.MailTo = null;
+            var viewModel = ko.mapping.fromJS(data);
+            ko.applyBindings(viewModel);
+        </script>
     </body>
 </html>
 

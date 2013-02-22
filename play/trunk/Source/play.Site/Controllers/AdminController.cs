@@ -13,8 +13,12 @@ namespace play.Site.Controllers
 
         public ActionResult Index()
         {
-            var orders = Models.PlayOrder.Get();
-            return View(orders);
+            var vm = new play.Site.ViewModels.AdminIndex
+            {
+                Order = new Models.PlayOrder(),
+                Orders = Models.PlayOrder.Get()
+            };
+            return View(vm);
         }
 
     }

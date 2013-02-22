@@ -22,6 +22,12 @@ namespace play.Site.Controllers
             return this.Json(new { count = Models.PlayOrder.Get().Count }, JsonRequestBehavior.AllowGet);
         }
 
+        [HttpGet]
+        public JsonResult Get(int id)
+        {
+            return this.Json(Models.PlayOrder.Get(id), JsonRequestBehavior.AllowGet);
+        }
+
         [HttpPost]
         public ActionResult Paypal_Ipn()
         {

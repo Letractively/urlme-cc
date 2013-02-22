@@ -141,6 +141,7 @@ header, footer, nav, section {
 .sprite.icon.unDollar { background-position: -16px -32px; }
 .sprite.icon.mobile { background-position: 0 -16px; }
 .sprite.icon.desktop { background-position: -16px -16px; }
+.sprite.icon.info { background-position: 0 -48px; }
 
 .adminIndex { color: #333; padding: 30px; background: white; }
     .adminIndex #orders { width: 1000px; font-size: 12px; }

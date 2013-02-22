@@ -45,6 +45,7 @@
     <Reference Include="System.Data.Entity" />
     <Reference Include="System.Data.Linq" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -127,6 +128,7 @@
     <Compile Include="Controllers\DonateController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\OrderController.cs" />
+    <Compile Include="Extensions.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -140,6 +142,7 @@
     <Compile Include="Models\PlayOrder.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModels\ContactUs.cs" />
+    <Compile Include="ViewModels\AdminIndex.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\images\bg.gif" />
@@ -288,7 +291,6 @@
     <Content Include="Scripts\Plugins\datatables\images\ui-icons_fbc856_256x240.png" />
     <Content Include="Scripts\Plugins\datatables\images\ui-icons_ff0084_256x240.png" />
     <Content Include="Scripts\Plugins\datatables\images\ui-icons_ffffff_256x240.png" />
-    <Content Include="Scripts\Plugins\datatables\jquery-ui-1.7.2.custom.css" />
     <Content Include="Scripts\Plugins\datatables\jquery.dataTables.min.js" />
     <Content Include="Scripts\_references.js" />
     <Content Include="Web.config" />

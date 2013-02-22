@@ -39,9 +39,11 @@ ihdavis.admin.index = {
     , bindControls: function () {
         ihdavis.admin.index.controls.moreInfoLinks().click(function (e) {
             e.preventDefault();
-            var moreInfo = ihdavis.admin.index.controls.moreInfo();
-            // moreInfo.find(".howDidYouHear").text("hi");
-            ihdavis.admin.index.controls.moreInfo().dialog('open');
+            ihdavis.ajax.get($(this).attr("href"), function (resp) {
+                resp.MailTo = "mailto:" + resp.Email;
+                ko.mapping.fromJS(resp, viewModel);
+                ihdavis.admin.index.controls.moreInfo().dialog('open');
+            });
         });
 
         $('.ui-widget-overlay').click(function () { $("#moreInfo").dialog("close"); });

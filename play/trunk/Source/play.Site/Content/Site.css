@@ -149,3 +149,8 @@ header, footer, nav, section {
 
     .adminIndex #notif .icon { background: url('images/icon-refresh.png'); display:inline-block; height: 16px; width: 16px; margin-right: 10px; }
     .adminIndex #notif { display:none; margin-left: 20px; }
+
+#moreInfo { padding: 15px; }
+    #moreInfo a { font-weight: normal; border-bottom: 1px solid #e6e6e6; }
+#moreInfo div:not(:first-child) { margin-top:10px; }
+#moreInfo div div { margin-top: 5px; margin-left: 8px; font-size: 12px; }

@@ -247,10 +247,10 @@
     <Content Include="Scripts\ihdavis.admin.index.js" />
     <Content Include="Scripts\ihdavis.order.index.js" />
     <Content Include="Scripts\ihdavis.js" />
+    <Content Include="Scripts\knockout.mapping.js" />
     <Content Include="Scripts\jquery-1.9.1.js" />
     <Content Include="Scripts\jquery-ui-1.8.20.js" />
     <Content Include="Scripts\jquery-ui-1.8.20.min.js" />
-    <Content Include="Scripts\knockout-2.1.0.debug.js" />
     <Content Include="Scripts\knockout-2.1.0.js" />
     <Content Include="Scripts\Plugins\datatables\datatable_jui.css" />
     <Content Include="Scripts\Plugins\datatables\images\back_disabled.png" />

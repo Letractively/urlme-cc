@@ -43,12 +43,24 @@ namespace play.Site.Controllers
 
             var order = Models.PlayOrder.Get(orderId);
 
+            string ticketDisplay = "";
+            int cpl = order.CoupleTicketCount;
+            int ind = order.IndividualTicketCount;
+            if (cpl > 0)
+            {
+                ticketDisplay += string.Format("{0} couple ticket{1}", cpl, cpl > 1 ? "s" : "");
+            }
+            if (ind > 0)
+            {
+                ticketDisplay += string.Format("{0}{1} individual ticket{2}", cpl > 0 ? " and " : "", ind, ind > 1 ? "s" : "");
+            }
+
             // send good news to Shari
-            string body = string.Format("{0} {1} has paid for his/her order of {2} couple ticket(s), {3} indiv. ticket(s) for {4} !<br/><br/><a href='http://cocoscoffeeshop.com/admin'>Go to admin</a>.", order.Name, order.Email, order.CoupleTicketCount, order.IndividualTicketCount, order.PlayDate.ToString("MMM dd"));
+            string body = string.Format("{0} ({1}) has paid for an order of {2} for {3} !<br/><br/><a href='http://cocoscoffeeshop.com/admin'>Go to admin</a>.", order.Name, order.Email, ticketDisplay, order.PlayDate.ToString("MMM dd"));
             Mail.SendToShari(string.Format("Order for {0} !", order.PlayDate.ToString("MMM dd")), body, true);
 
             // send order conf to payer
-            string orderConf = string.Format("Dear {0},<br/><br/>Thank you for your order for {1} couple ticket(s) and {2} individual ticket(s)! We will see you on <b>{3}</b>. Please try and arrive at <b>Commonwealth Chapel</b> (1836 Park Ave, Richmond VA) close to <b>6pm</b> so you can be seated.<br/><br/>Thanks!<br/>- Shari Davis", order.Name, order.CoupleTicketCount, order.IndividualTicketCount, order.PlayDate.ToString("MMM dd, yyyy"));
+            string orderConf = string.Format("Dear {0},<br/><br/>Thank you for your order of {1}! We will see you on <b>{2}</b>. Please try and arrive at <b>Commonwealth Chapel</b> (1836 Park Ave, Richmond VA) close to <b>6pm</b> so you can be seated.<br/><br/>Thanks!<br/>- Shari Davis", order.Name, ticketDisplay, order.PlayDate.ToString("MMM dd, yyyy"));
             Mail.Send(order.Email, order.Name, "Crazy Capers Dinner Theater Order Confirmation", orderConf, false);
 
             return Content("");

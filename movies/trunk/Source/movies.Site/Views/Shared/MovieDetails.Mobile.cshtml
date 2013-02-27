@@ -4,7 +4,7 @@
 @Model.title^
 @*json callback looks for above prefix to extract the movie title*@
 <div class="topHalf">
-    <div><img class="poster" src="@this.Model.posters.detailed" /></div>
+    <div><img width="170" height="270" class="poster" src="@this.Model.posters.detailed" /></div>
     <div>
         <p class="group"><span class='mpaaRating'>@this.Model.mpaa_rating</span><span class="duration">@this.Model.DurationCompact</span></p>
         <p><a href="@this.Model.ParentalGuideUrl" target="_blank">Parental Guide</a></p>

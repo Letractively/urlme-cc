@@ -255,6 +255,9 @@
     <Content Include="Scripts\jquery-ui-1.8.20.js" />
     <Content Include="Scripts\jquery-ui-1.8.20.min.js" />
     <Content Include="Scripts\knockout-2.1.0.js" />
+    <Content Include="Scripts\Plugins\blockUI\check.png" />
+    <Content Include="Scripts\Plugins\blockUI\jquery.blockUI.js" />
+    <Content Include="Scripts\Plugins\blockUI\style.css" />
     <Content Include="Scripts\Plugins\datatables\datatable_jui.css" />
     <Content Include="Scripts\Plugins\datatables\images\back_disabled.png" />
     <Content Include="Scripts\Plugins\datatables\images\back_enabled.png" />

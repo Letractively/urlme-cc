@@ -16,6 +16,9 @@
         @Styles.Render("~/content/themes/dot-luv/css/jquery-ui-1.10.1.custom.css")
         @Styles.Render("~/scripts/plugins/datatables/datatable_jui.css")
         @Scripts.Render("~/scripts/plugins/datatables/jquery.dataTables.min.js")
+        
+        @Scripts.Render("~/scripts/plugins/blockUI/jquery.blockUI.js")
+        @Styles.Render("~/scripts/plugins/blockUI/style.css");
 
         <script>
             var orderCount = @Model.Orders.Count;
@@ -26,10 +29,6 @@
     <body class="adminIndex">
 
         <div id="moreInfo">
-            <div>
-                Name:
-                <div data-bind="text: Name"></div>
-            </div>
             <div>
                 Email:
                 <div><a tabindex="-1" data-bind="attr: { href: MailTo }, text: Email"></a></div>

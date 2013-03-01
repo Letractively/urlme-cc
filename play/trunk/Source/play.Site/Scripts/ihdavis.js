@@ -43,6 +43,7 @@ ihdavis.ajax = {
             success: function (resp) {
                 if (resp.success && typeof success === "function") {
                     success(resp);
+                    ihdavis.feedback.showSuccess();
                 } else if (!resp.success) {
                     alert("Error. Please try again.");
                 }
@@ -69,12 +70,12 @@ ihdavis.form = {
     }
 };
 
-//ihdavis.registerNamespace("Feedback");
-//ihdavis.feedback = {
-//    showSuccess: function () {
-//        $.growlUI("Success!", null);
-//    }
-//};
+ihdavis.registerNamespace("feedback");
+ihdavis.feedback = {
+    showSuccess: function () {
+        $.growlUI("Success!", null);
+    }
+};
 
 var clearSelection = function () {
     if (window.getSelection) {

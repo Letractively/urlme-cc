@@ -155,3 +155,4 @@ header, footer, nav, section {
     #moreInfo a { font-weight: normal; border-bottom: 1px solid #e6e6e6; }
 #moreInfo div:not(:first-child) { margin-top:10px; }
 #moreInfo div div { margin-top: 5px; margin-left: 8px; font-size: 12px; }
+    #moreInfo div div, #moreInfo div div a { color: white; }

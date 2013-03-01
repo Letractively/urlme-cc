@@ -18,7 +18,7 @@
         @Scripts.Render("~/scripts/plugins/datatables/jquery.dataTables.min.js")
         
         @Scripts.Render("~/scripts/plugins/blockUI/jquery.blockUI.js")
-        @Styles.Render("~/scripts/plugins/blockUI/style.css");
+        @Styles.Render("~/scripts/plugins/blockUI/style.css")
 
         <script>
             var orderCount = @Model.Orders.Count;
@@ -77,13 +77,14 @@
                             <span class="inactive @(order.Seated ? "hidden" : "")">✕</span>
                         </td>
                         <td>
-                            <a href="/order/togglepaid" data-icon-classes="unDollar,dollar" data-display-class="paidCell" data-states="paid,UN-paid"><span class="sprite icon beforeText @(order.Status == "Paid" ? "unDollar" : "dollar")"></span>Mark as <span class="stateText">@(order.Status == "Paid" ? "UN-paid" : "paid")</span></a>
+                            <a title="@order.Name" href="togglepaid" data-icon-classes="unDollar,dollar" data-display-class="paidCell" data-states="paid,UN-paid"><span class="sprite icon beforeText @(order.Status == "Paid" ? "unDollar" : "dollar")"></span>Mark as <span class="stateText">@(order.Status == "Paid" ? "UN-paid" : "paid")</span></a>
                         </td>
                         <td>
-                            <a href="/order/toggleseated" data-icon-classes="unChair,chair" data-display-class="seatedCell" data-states="UN-seated,seated"><span class="sprite icon beforeText @(order.Seated ? "unChair" : "chair")"></span>Mark as <span class="stateText">@(order.Seated ? "UN-seated" : "seated")</span></a>
+                            <a title="@order.Name" href="toggleseated" data-icon-classes="unChair,chair" data-display-class="seatedCell" data-states="UN-seated,seated"><span class="sprite icon beforeText @(order.Seated ? "unChair" : "chair")"></span>Mark as <span class="stateText">@(order.Seated ? "UN-seated" : "seated")</span></a>
                         </td>
-                        <td>
-                            <a href="/order/get/@order.PlayOrderId" class="moreInfo"><span class="sprite icon beforeText info"></span>More info</a>
+                        <td class="actions">
+                            <a title="@order.Name" href="get/@order.PlayOrderId" class="moreInfo"><span class="sprite icon beforeText info"></span>More info</a>
+                            <a title="@order.Name" href="delete"><span class="sprite icon beforeText delete"></span>Delete</a>
                         </td>
                     </tr>    
                 }

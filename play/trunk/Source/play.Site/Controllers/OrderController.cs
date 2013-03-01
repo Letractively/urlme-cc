@@ -73,6 +73,13 @@ namespace play.Site.Controllers
         }
 
         [HttpPost]
+        public JsonResult Delete(string secret, int playOrderId)
+        {
+            bool success = Models.PlayOrder.Delete(secret, playOrderId);
+            return this.Json(new { success = success }, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpPost]
         public JsonResult ToggleSeated(int playOrderId)
         {
             bool success = Models.PlayOrder.ToggleSeated(playOrderId);

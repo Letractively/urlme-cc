@@ -56,6 +56,28 @@ namespace play.Site.Models
             }
         }
 
+        public static bool Delete(string secret, int playOrderId)
+        {
+            if (secret.ToLower() != "gas leak" && secret.ToLower() != "gas leek") {
+                return false;
+            }
+
+            try
+            {
+                using (var ctx = new PlayDataContext { ObjectTrackingEnabled = true })
+                {
+                    var playOrder = ctx.PlayOrders.FirstOrDefault(x => x.PlayOrderId == playOrderId);
+                    ctx.PlayOrders.DeleteOnSubmit(playOrder);
+                    ctx.SubmitChanges();
+                    return true;
+                }
+            }
+            catch
+            {
+                return false;
+            }            
+        }
+
         public static bool ToggleSeated(int playOrderId)
         {
             try

@@ -1,4 +1,9 @@
-﻿ihdavis.registerNamespace("admin.index");
+﻿/* constants */
+var constants = {
+    actionBaseUrl: "/order/"
+};
+
+ihdavis.registerNamespace("admin.index");
 ihdavis.admin.index = {
     controls: {
         moreInfo: function () { return $("#moreInfo"); }
@@ -7,6 +12,7 @@ ihdavis.admin.index = {
         , newNotif: function () { return $("#notif"); }
         , newPlural: function () { return $("#newPlural"); }
         , toggleLinks: function () { return $("a[href*='toggle']"); }
+        , deleteLinks: function () { return $("a[href*='delete']"); }
     }
     , init: function() {
         $("#orders").dataTable({
@@ -24,7 +30,7 @@ ihdavis.admin.index = {
     }
     , initCountChecks: function () {
         setInterval(function () {
-            ihdavis.ajax.get("/order/getcount", function (resp) {
+            ihdavis.ajax.get(constants.actionBaseUrl + "getcount", function (resp) {
                 if (resp.count > orderCount) {
                     var overflow = resp.count - orderCount;
                     var newPluralText = overflow > 1 ? "(s)" : "";
@@ -39,12 +45,26 @@ ihdavis.admin.index = {
     , bindControls: function () {
         ihdavis.admin.index.controls.moreInfoLinks().click(function (e) {
             e.preventDefault();
-            var moreInfo = ihdavis.admin.index.controls.moreInfo();
-            ihdavis.ajax.get($(this).attr("href"), function (resp) {
+            ihdavis.ajax.get(constants.actionBaseUrl + $(this).attr("href"), function (resp) {
                 resp.MailTo = "mailto:" + resp.Email;
                 ko.mapping.fromJS(resp, viewModel);
-                moreInfo.dialog('option', 'title', resp.Name).dialog('open');
+                ihdavis.admin.index.controls.moreInfo().dialog('option', 'title', resp.Name).dialog('open');
             });
+        });
+
+        ihdavis.admin.index.controls.deleteLinks().click(function (e) {
+            e.preventDefault();
+            var secret = prompt("A(n) ______ gave way to Team ShariIan for Nerts the first time @ Shockoe.");
+            if (secret) {
+                var link = $(this);
+                var itemRow = link.closest("[data-item-id]");
+                var data = { secret: secret, playOrderId: itemRow.attr("data-item-id") };
+
+                ihdavis.ajax.post(constants.actionBaseUrl + "delete", data, function () {
+                    itemRow.remove();
+                    orderCount--;
+                });
+            }
         });
 
         $('.ui-widget-overlay').click(function () { $("#moreInfo").dialog("close"); });
@@ -59,7 +79,7 @@ ihdavis.admin.index = {
                 , currentStateText = stateText.text()
                 , states = link.attr("data-states").split(",")
                 , iconClasses = link.attr("data-icon-classes").split(",")
-                , ajaxUrl = link.attr("href");
+                , ajaxUrl = constants.actionBaseUrl + link.attr("href");
 
             var data = {};
             data.playOrderId = itemRow.attr("data-item-id");

@@ -132,6 +132,8 @@ header, footer, nav, section {
 /* icons */
 td.actions a:not(:first-child) { margin-left: 15px; }
 td.actions a { display: inline-block; }
+    td.actions a[href='togglepaid'] { width: 114px; }
+    td.actions a[href='toggleseated'] { width: 129px; }
 
 .sprite { background: url('images/sprite.png'); display: inline-block; }
 .sprite.icon { width: 16px; height: 16px; }

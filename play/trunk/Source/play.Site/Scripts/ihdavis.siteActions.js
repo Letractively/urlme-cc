@@ -6,7 +6,9 @@ ihdavis.siteActions = {
         });
     },
     wireTooltips: function () {
-        $(document).tooltip();
+        if ($(".tooltip").length) {
+            $(".tooltip").tooltip();
+        }
     }
 };
 

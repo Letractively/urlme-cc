@@ -148,6 +148,13 @@ td.actions a { display: inline-block; }
 .sprite.icon.info { background-position: 0 -48px; }
 .sprite.icon.delete { background-position: -32px 0; }
 
+.adminIndex #stats { font-size: 16px; padding: 15px; border-radius: 3px; background: #e6e6e6; border: 1px solid #333; position: fixed; top: 20px; right: 20px; }
+    .adminIndex #stats .header { font-weight: bold; }
+    .adminIndex #stats .numbers { margin-top: 15px; }
+        .adminIndex #stats .numbers > div { float: left; }
+        .adminIndex #stats .numbers > div:not(:first-child) { margin-left: 15px; }
+.adminIndex #stats .icon { margin-top: 2px; }
+
 .adminIndex { color: #333; padding: 30px; background: white; }
     .adminIndex #orders { width: 1000px; font-size: 12px; }
     .adminIndex .ui-toolbar { width: 988px; }

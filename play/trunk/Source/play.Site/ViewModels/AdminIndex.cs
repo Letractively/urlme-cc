@@ -9,5 +9,7 @@ namespace play.Site.ViewModels
     {
         public List<Models.PlayOrder> Orders { get; set; }
         public Models.PlayOrder Order { get; set; }
+        public int SeatCount { get; set; }
+        public int OrderTotal { get; set; }
     }
 }

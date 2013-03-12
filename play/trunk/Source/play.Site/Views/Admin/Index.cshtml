@@ -44,6 +44,15 @@
         </div>
 
         <h2>Admin<a id="notif" title="Click to refresh" href="~/admin"><span class="icon"></span>Refresh to see <span id="newCount">0</span> new order<span id="newPlural"></span>!</a></h2>
+        
+        <div id="stats">
+            <div class="header">Totals</div>
+            <div class="numbers group">
+                <div><span class="sprite icon beforeText chair"></span>@Model.SeatCount</div>
+                <div><span class="sprite icon beforeText dollar"></span>@Model.OrderTotal.00</div>
+            </div>
+        </div>
+        
         <table id="orders">
             <thead>
                 <tr>

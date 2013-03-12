@@ -18,6 +18,18 @@ namespace play.Site.Controllers
                 Order = new Models.PlayOrder(),
                 Orders = Models.PlayOrder.Get()
             };
+
+            int seatCount = 0;
+            int orderTotal = 0;
+            foreach (var order in vm.Orders)
+            {
+                seatCount += (order.CoupleTicketCount * 2) + order.IndividualTicketCount;
+                orderTotal += (order.CoupleTicketCount * 60) + (order.IndividualTicketCount * 35);
+            }
+
+            vm.SeatCount = seatCount;
+            vm.OrderTotal = orderTotal;
+
             return View(vm);
         }
 

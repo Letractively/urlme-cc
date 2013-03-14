@@ -1,13 +1,6 @@
 ﻿registerNS("codejkjk.siteActions");
 
 codejkjk.siteActions = {
-    // make html 5 features work in browsers that don't support it innately, like IE
-    html5ize: function () {
-        if (!codejkjk.browserCompatability.testAttribute('input', 'placeholder')) {
-            codejkjk.form.smartTextBox($("input[placeholder]"), 'placeholder');
-        }
-    },
-
     wireReleaseDates: function () {
         $("[data-releasedate]:not(.wired)").each(function (i, rd) {
             var rdContainer = $(rd);
@@ -39,7 +32,5 @@ codejkjk.siteActions = {
 }
 
 $(document).ready(function () {
-    codejkjk.siteActions.html5ize();
-
     codejkjk.siteActions.wireReleaseDates();
 });

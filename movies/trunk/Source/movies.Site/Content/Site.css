@@ -380,5 +380,8 @@ a.external:hover { background: url('content/images/icons/external-link-icon.png'
 
 /* smart phone */
 @media only screen and (max-width: 600px) {
-    
+    .dt { display:none; }
+    header #headerAd { display: none; }
+    header #headerContent { width: 349px; padding: 0; }
+        header #headerContent #fbLikeContainer { top: 73px; left: 149px; bottom: auto; }
 }

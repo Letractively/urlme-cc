@@ -14,6 +14,7 @@ namespace movies.Model
         {
             public string id { get; set; }
             public string imageUrl { get; set; }
+            public string profileImageUrl { get; set; }
             public string title { get; set; }
             public string mpaaRating { get; set; }
             public string duration { get; set; }
@@ -105,6 +106,7 @@ namespace movies.Model
                                     duration = fullMovie.Duration,
                                     id = fullMovie.id,
                                     imageUrl = fullMovie.posters.thumbnail,
+                                    profileImageUrl = fullMovie.posters.profile,
                                     movieSlug = fullMovie.MovieSlug,
                                     mpaaRating = fullMovie.mpaa_rating,
                                     showtimesHtml = fullMovie.ShowtimesHtml,

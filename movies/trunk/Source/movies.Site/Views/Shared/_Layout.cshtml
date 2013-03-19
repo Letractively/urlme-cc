@@ -145,19 +145,20 @@
             <div class="showtimeDays"></div>
             <div class="showHiddenMoviesLinkContainer {{#if numHiddenMovies}} {{else}} hidden {{/if}}"><a href="#" class="showHiddenMoviesLink">Show hidden movies (<span class="numHiddenMovies">{{=numHiddenMovies}}</span>)</a></div>
             {{#each movies}}
-                <div class="movie rounded glowing gradient {{=movieClass}}" class="group" data-rtmovieid="{{=id}}">
+                <div class="movie rounded glowing gradient {{=movieClass}} group" data-rtmovieid="{{=id}}">
                     <a href="/{{=movieSlug}}" class="group">                    
-                        <img src="{{=imageUrl}}" />
+                        <img src="{{=profileImageUrl}}" />
                         <div class="details">
-                            <h2>{{=title}}</h2><span class='mpaaRating'>{{=mpaaRating}}</span>
-                            <p class="ratings small">
+                            <p class="ratings smaller">
                                 <span data-rtratingtitle="{{=criticsRating}}" class="rottenTomato icon"></span><span class="rt text">{{=criticsScore}}</span>
                                 <span data-rtratingtitle="{{=audienceRating}}" class="rottenTomato icon"></span><span class="rt text">{{=audienceScore}}</span>
-                            </p> 
+                                <span class="imdb icon"></span><iframe class="imdbRatingFrame" src="/imdb-rating/{{=id}}" frameborder="0" width="35" height="26"></iframe>
+                            </p>
                             <p>{{=duration}}</p> 
+                            <span class='mpaaRating'>{{=mpaaRating}}</span>
+                            <p class="showtimes">{{=showtimesHtml!}}</p>
                         </div>
                     </a>
-                    <p class="showtimes">{{=showtimesHtml!}}</p>
                     <div class="actions">
                         <a class="button hideMovieLink" data-theatermovie="{{=$parent.parent.data.id}}-{{=id}}"><span class="x">&#10006;</span>Hide</a>
                     </div>

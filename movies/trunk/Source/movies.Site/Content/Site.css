@@ -333,7 +333,7 @@ header { background:#2D62AE; }
             #showtimesView #currentTheaterContainer .theater .movie .details .mpaaRating { position: absolute; top: 10px; right: 10px; }
             #showtimesView #currentTheaterContainer .theater .movie img { float: left; margin: 0; width: 104px; height: 156px; }
             #showtimesView #currentTheaterContainer .theater .movie .showtimes { word-wrap: break-word; }
-            #showtimesView #currentTheaterContainer .theater .movie .details { padding-top:10px; float: left; padding-left:10px; }
+            #showtimesView #currentTheaterContainer .theater .movie .details { padding: 10px 10px 0 10px; float: left; width: 202px; }
 
 /* begin: theater view */
 #showtimesView #currentTheaterContainer .theater .showHiddenMoviesLinkContainer { overflow:auto; }

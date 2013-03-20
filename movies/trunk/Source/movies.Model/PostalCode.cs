@@ -13,6 +13,7 @@ namespace movies.Model
         public class Movie
         {
             public string id { get; set; }
+            public string imdbId { get; set; }
             public string imageUrl { get; set; }
             public string profileImageUrl { get; set; }
             public string title { get; set; }
@@ -105,6 +106,7 @@ namespace movies.Model
                                     criticsScore = fullMovie.ratings.critics_score,
                                     duration = fullMovie.Duration,
                                     id = fullMovie.id,
+                                    imdbId = fullMovie.IMDbId,
                                     imageUrl = fullMovie.posters.thumbnail,
                                     profileImageUrl = fullMovie.posters.profile,
                                     movieSlug = fullMovie.MovieSlug,

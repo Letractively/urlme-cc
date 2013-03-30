@@ -384,7 +384,7 @@ a.external:hover { background: url('content/images/icons/external-link-icon.png'
 @media only screen and (max-width: 600px) {
     .dt { display:none; }
     header #headerAd { display: none; }
-    header #headerContent { width: 349px; padding: 0; }
-        header #headerContent #fbLikeContainer { top: 73px; left: 149px; bottom: auto; }
-        header #headerContent #logo { width: 146px; height: 44px; background-image: url('content/logo_mobile.png'); }
+    header #headerContent { width: auto; padding: 0; }
+        header #headerContent #fbLikeContainer { top: 12px; left: 148px; bottom: auto; }
+        header #headerContent #logo { width: 146px; height: 44px; background-image: url('content/logo_mobile.png'); margin-left: 0;}
 }

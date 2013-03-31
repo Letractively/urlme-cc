@@ -381,10 +381,20 @@ a.external:hover { background: url('content/images/icons/external-link-icon.png'
 .masked-hidden { visibility: hidden !important; }
 
 /* smart phone */
+.m { display: none; }
 @media only screen and (max-width: 600px) {
+
     .dt { display:none; }
+    .m { display: block; }
+    input[type='text'], input[type='search'] { padding: .4em; line-height: 1.4; font-size: 16px; display: block; width: 100%; outline: 0; -moz-box-shadow: inset 0 1px 4px rgba(0,0,0,.2); -webkit-box-shadow: inset 0 1px 4px rgba(0, 0, 0, .2); box-shadow: inset 0 1px 4px rgba(0, 0, 0, .2); -moz-border-radius: .6em; -webkit-border-radius: .6em; border-radius: .6em; }
+    .greyBox { background:#eee; border-bottom: 1px solid #B3B3B3; padding: 15px; }
+
     header #headerAd { display: none; }
     header #headerContent { width: auto; padding: 0; }
         header #headerContent #fbLikeContainer { top: 12px; left: 148px; bottom: auto; }
         header #headerContent #logo { width: 146px; height: 44px; background-image: url('content/logo_mobile.png'); margin-left: 0;}
+    .navBar { position: relative; }
+    .navBar .searchButton { position: absolute; display: inline-block; background: url('content/images/rt-sprite4.png') -144px -162px; width: 38px; height: 38px; right: 10px; top: 2px; }
+    .searchBar { display: none; }
+
 }

@@ -18,7 +18,7 @@ codejkjk.movies.mobile = {
         codejkjk.movies.mobile.controls.searchButton().click(function (e) {
             e.preventDefault();
             var searchBar = codejkjk.movies.mobile.controls.searchBar();
-            searchBar.toggle("fast", function () {
+            searchBar.slideToggle("fast", function () {
                 if (searchBar.is(":visible")) {
                     searchBar.find("input").focus();
                 }

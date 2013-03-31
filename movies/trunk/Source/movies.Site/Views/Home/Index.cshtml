@@ -11,6 +11,7 @@
         var baseUrl = '@this.Url.Content("~/")';
     </script>
     <script src="~/scripts/codejkjk/codejkjk.movies.HomeIndex.js"></script>
+    <script src="~/scripts/codejkjk/codejkjk.movies.mobile2.js"></script>
     <script src="~/scripts/codejkjk/codejkjk.movies.redbox.js"></script>
     <script src="~/scripts/plugins/lazyload/jquery.lazyload.min.js"></script>
 }
@@ -23,9 +24,13 @@
             <a href="~/redbox" class="dt">Redbox</a>
             <a href="~/reviews" class="dt noPush">Reviews</a>
             <a href="~/about" class="dt noPush">About</a>
-            <div id="q"><input class="rounded" type="text" placeholder="Search movies..." /><input type='submit' /></div>
+            <div id="q" class="dt"><input class="rounded" type="text" placeholder="Search movies..." /><input type='submit' /></div>
         </nav>
+        <a href="#" class="m searchButton"></a>
     </div>@*end: navBar*@
+    <div class="m searchBar greyBox">
+        <input type="search" placeholder="Search movies..." />
+    </div>
 }
 
 <div class="body">

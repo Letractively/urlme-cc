@@ -19,16 +19,30 @@ namespace play.Site.Controllers
                 Orders = Models.PlayOrder.Get()
             };
 
-            int seatCount = 0;
-            int orderTotal = 0;
+            int seatCount = 0, satSeatCount = 0, sunSeatCount = 0;
+            int orderTotal = 0, satOrderTotal = 0, sunOrderTotal = 0;
             foreach (var order in vm.Orders)
             {
                 seatCount += (order.CoupleTicketCount * 2) + order.IndividualTicketCount;
                 orderTotal += (order.CoupleTicketCount * 60) + (order.IndividualTicketCount * 35);
+                if (order.PlayDate.Day == 17)
+                {
+                    satSeatCount += (order.CoupleTicketCount * 2) + order.IndividualTicketCount;
+                    satOrderTotal += (order.CoupleTicketCount * 60) + (order.IndividualTicketCount * 35);
+                }
+                else
+                {
+                    sunSeatCount += (order.CoupleTicketCount * 2) + order.IndividualTicketCount;
+                    sunOrderTotal += (order.CoupleTicketCount * 60) + (order.IndividualTicketCount * 35);
+                }
             }
 
             vm.SeatCount = seatCount;
             vm.OrderTotal = orderTotal;
+            vm.SatOrderTotal = satOrderTotal;
+            vm.SatSeatCount = satSeatCount;
+            vm.SunOrderTotal = sunOrderTotal;
+            vm.SunSeatCount = sunSeatCount;
 
             return View(vm);
         }

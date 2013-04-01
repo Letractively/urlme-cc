@@ -25,6 +25,10 @@
         </script>
         @Scripts.Render("~/scripts/ihdavis.siteActions.js")
         @Scripts.Render("~/scripts/ihdavis.admin.index.js")
+        @Scripts.Render("http://www.openjs.com/scripts/events/keyboard_shortcuts/shortcut.js")
+        
+        @Scripts.Render("~/scripts/plugins/intro/intro.min.js");
+        @Styles.Render("~/scripts/plugins/intro/introjs.min.css");
     </head>
     <body class="adminIndex">
 
@@ -46,10 +50,21 @@
         <h2>Admin<a id="notif" title="Click to refresh" href="~/admin"><span class="icon"></span>Refresh to see <span id="newCount">0</span> new order<span id="newPlural"></span>!</a></h2>
         
         <div id="stats">
-            <div class="header">Totals</div>
+            <div class="header">
+                <a href="#" class="active">Both</a><a href="#">Saturday</a><a href="#">Sunday</a>
+            </div>
             <div class="numbers group">
-                <div><span class="sprite icon beforeText chair"></span>@Model.SeatCount</div>
-                <div><span class="sprite icon beforeText dollar"></span>@Model.OrderTotal.00</div>
+                <script>
+                    @{ var totalFormat = "#,#0"; }
+                    var bothSeatCount = @Model.SeatCount;
+                    var bothOrderTotal = '@(Model.OrderTotal.ToString(totalFormat)).00';
+                    var satSeatCount = @Model.SatSeatCount;
+                    var satOrderTotal = '@(Model.SatOrderTotal.ToString(totalFormat)).00';
+                    var sunSeatCount = @Model.SunSeatCount;
+                    var sunOrderTotal = '@(Model.SunOrderTotal.ToString(totalFormat)).00';
+                </script>
+                <div><span class="sprite icon beforeText chair"></span><span class="seatCount">@Model.SeatCount</span></div>
+                <div><span class="sprite icon beforeText dollar"></span><span class="orderTotal">@(Model.OrderTotal.ToString(totalFormat)).00</span></div>
             </div>
         </div>
         
@@ -72,7 +87,7 @@
                     <tr data-item-id="@order.PlayOrderId">
                         <td>@order.CreateDate.ToString("yyyy-MM-dd")</td>
                         <td>@order.PlayDate.ToString("MMM dd")</td>
-                        <td>@order.Name</td>
+                        <td><a class="moreInfo" href="get/@order.PlayOrderId">@order.Name</a></td>
                         <td class="centerText">@order.CoupleTicketCount / @order.IndividualTicketCount</td>
                         <td class="centerText"><span class="sprite icon @order.Platform"></span></td>
                         <td class="centerText paidCell">
@@ -86,7 +101,6 @@
                         <td class="actions">
                             <a class="tooltip" title="@order.Name" href="togglepaid" data-icon-classes="unDollar,dollar" data-display-class="paidCell" data-states="paid,UN-paid"><span class="sprite icon beforeText @(order.Status == "Paid" ? "unDollar" : "dollar")"></span>Mark as <span class="stateText">@(order.Status == "Paid" ? "UN-paid" : "paid")</span></a>
                             <a class="tooltip" title="@order.Name" href="toggleseated" data-icon-classes="unChair,chair" data-display-class="seatedCell" data-states="UN-seated,seated"><span class="sprite icon beforeText @(order.Seated ? "unChair" : "chair")"></span>Mark as <span class="stateText">@(order.Seated ? "UN-seated" : "seated")</span></a>
-                            <a class="tooltip moreInfo" title="@order.Name" href="get/@order.PlayOrderId"><span class="sprite icon beforeText info"></span>More info</a>
                             <a class="tooltip" title="@order.Name" href="delete"><span class="sprite icon beforeText delete"></span>Delete</a>
                         </td>
                     </tr>    

@@ -11,7 +11,9 @@ ihdavis.admin.index = {
         , newCount: function () { return $("#newCount"); }
         , newNotif: function () { return $("#notif"); }
         , newPlural: function () { return $("#newPlural"); }
+        , search: function () { return $("#orders_filter input"); }
         , toggleLinks: function () { return $("a[href*='toggle']"); }
+        , totalFilters: function () { return $(".header a"); }
         , deleteLinks: function () { return $("a[href*='delete']"); }
     }
     , init: function() {
@@ -21,6 +23,21 @@ ihdavis.admin.index = {
             "bJQueryUI": true,
             "iDisplayLength": 25
         });
+
+        ihdavis.admin.index.controls.search()
+            .attr("data-intro", "Remember, you can press 'q' and filter on the orders")
+            .attr("data-step", "1");
+
+        setTimeout(function () {
+            if (!localStorage.getItem("introRan")) {
+                introJs().start();
+                localStorage.setItem("introRan", "true, on " + new Date());
+            }
+        }, 1000);
+
+        shortcut.add("q", function () {
+            ihdavis.admin.index.controls.search().focus();
+        }, { "disable_in_input": true });
 
         ihdavis.admin.index.initCountChecks();
 
@@ -43,6 +60,27 @@ ihdavis.admin.index = {
         }, 5000);
     }
     , bindControls: function () {
+        ihdavis.admin.index.controls.totalFilters().click(function (e) {
+            e.preventDefault();
+            var link = $(this);
+            var seats = link.parent().next().find(".seatCount");
+            var total = link.parent().next().find(".orderTotal");
+            link.parent().find("a").removeClass("active");
+            link.addClass("active");
+            var txt = link.text();
+            if (txt === "Both") {
+                seats.text(bothSeatCount);
+                total.text(bothOrderTotal);
+            }
+            else if (txt === "Saturday") {
+                seats.text(satSeatCount);
+                total.text(satOrderTotal);
+            } else {
+                seats.text(sunSeatCount);
+                total.text(sunOrderTotal);
+            }
+        });
+
         ihdavis.admin.index.controls.moreInfoLinks().click(function (e) {
             e.preventDefault();
             ihdavis.ajax.get(constants.actionBaseUrl + $(this).attr("href"), function (resp) {

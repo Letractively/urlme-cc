@@ -295,6 +295,8 @@
     <Content Include="Scripts\Plugins\datatables\images\ui-icons_ff0084_256x240.png" />
     <Content Include="Scripts\Plugins\datatables\images\ui-icons_ffffff_256x240.png" />
     <Content Include="Scripts\Plugins\datatables\jquery.dataTables.min.js" />
+    <Content Include="Scripts\Plugins\intro\intro.min.js" />
+    <Content Include="Scripts\Plugins\intro\introjs.min.css" />
     <Content Include="Scripts\_references.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">

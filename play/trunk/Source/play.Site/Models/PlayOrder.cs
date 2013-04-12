@@ -78,6 +78,25 @@ namespace play.Site.Models
             }            
         }
 
+        public static bool ToggleThanked(int playOrderId)
+        {
+            try
+            {
+                using (var ctx = new PlayDataContext { ObjectTrackingEnabled = true })
+                {
+                    var playOrder = ctx.PlayOrders.FirstOrDefault(x => x.PlayOrderId == playOrderId);
+                    playOrder.Thanked = !playOrder.Thanked;
+                    playOrder.ModifyDate = System.DateTime.Now;
+                    ctx.SubmitChanges();
+                    return true;
+                }
+            }
+            catch
+            {
+                return false;
+            }
+        }        
+
         public static bool ToggleSeated(int playOrderId)
         {
             try

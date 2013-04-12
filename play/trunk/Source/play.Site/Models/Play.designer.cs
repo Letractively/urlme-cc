@@ -107,6 +107,8 @@ namespace play.Site.Models
 		
 		private bool _Seated;
 		
+		private bool _Thanked;
+		
 		private string _HowDidYouHear;
 		
 		private string _UserAgent;
@@ -137,6 +139,8 @@ namespace play.Site.Models
     partial void OnStatusChanged();
     partial void OnSeatedChanging(bool value);
     partial void OnSeatedChanged();
+    partial void OnThankedChanging(bool value);
+    partial void OnThankedChanged();
     partial void OnHowDidYouHearChanging(string value);
     partial void OnHowDidYouHearChanged();
     partial void OnUserAgentChanging(string value);
@@ -310,6 +314,26 @@ namespace play.Site.Models
 					this._Seated = value;
 					this.SendPropertyChanged("Seated");
 					this.OnSeatedChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Thanked", DbType="Bit NOT NULL")]
+		public bool Thanked
+		{
+			get
+			{
+				return this._Thanked;
+			}
+			set
+			{
+				if ((this._Thanked != value))
+				{
+					this.OnThankedChanging(value);
+					this.SendPropertyChanging();
+					this._Thanked = value;
+					this.SendPropertyChanged("Thanked");
+					this.OnThankedChanged();
 				}
 			}
 		}

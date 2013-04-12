@@ -24,10 +24,11 @@ namespace play.Site
 
         public static bool Send(string toEmail, string toName, string subject, string body, bool includeIan = true)
         {
+            MailAddress from = new MailAddress("no-reply@cocoscoffeeshop.com", "no-reply@cocoscoffeeshop.com");
+
             try
             {
                 SmtpClient smtp = new SmtpClient("smtp.cocoscoffeeshop.com");
-                MailAddress from = new MailAddress("no-reply@cocoscoffeeshop.com", "no-reply@cocoscoffeeshop.com");
                 MailAddress to = new MailAddress(toEmail, toName);
                 MailMessage msg = new MailMessage(from, to);
                 
@@ -41,7 +42,7 @@ namespace play.Site
             }
             catch (Exception e)
             {
-                Models.Log.Save("Would not email due to exception: '" + e.Message + "'.");
+                Models.Log.Save(string.Format("Error in sending mail, to={0}, from={1}, exception='{2}.'", toEmail, from.Address, e.Message));
                 return false;
             }
 

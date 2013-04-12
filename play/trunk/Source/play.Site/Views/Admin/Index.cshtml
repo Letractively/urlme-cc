@@ -27,8 +27,8 @@
         @Scripts.Render("~/scripts/ihdavis.admin.index.js")
         @Scripts.Render("http://www.openjs.com/scripts/events/keyboard_shortcuts/shortcut.js")
         
-        @Scripts.Render("~/scripts/plugins/intro/intro.min.js");
-        @Styles.Render("~/scripts/plugins/intro/introjs.min.css");
+        @Scripts.Render("~/scripts/plugins/intro/intro.min.js")
+        @Styles.Render("~/scripts/plugins/intro/introjs.min.css")
     </head>
     <body class="adminIndex">
 
@@ -78,6 +78,7 @@
                     <th class="centerText"></th>
                     <th class="centerText">Paid?</th>
                     <th class="centerText">Seated?</th>
+                    <th class="centerText">Thanked?</th>
                     <th>&nbsp;</th>
                 </tr>
             </thead>
@@ -98,9 +99,14 @@
                             <span class="active @(order.Seated ? "" : "hidden")">✔</span>
                             <span class="inactive @(order.Seated ? "hidden" : "")">✕</span>
                         </td>
+                        <td class="centerText thankedCell">
+                            <span class="active @(order.Thanked ? "" : "hidden")">✔</span>
+                            <span class="inactive @(order.Thanked ? "hidden" : "")">✕</span>
+                        </td>
                         <td class="actions">
                             <a class="tooltip" title="@order.Name" href="togglepaid" data-icon-classes="unDollar,dollar" data-display-class="paidCell" data-states="paid,UN-paid"><span class="sprite icon beforeText @(order.Status == "Paid" ? "unDollar" : "dollar")"></span>Mark as <span class="stateText">@(order.Status == "Paid" ? "UN-paid" : "paid")</span></a>
                             <a class="tooltip" title="@order.Name" href="toggleseated" data-icon-classes="unChair,chair" data-display-class="seatedCell" data-states="UN-seated,seated"><span class="sprite icon beforeText @(order.Seated ? "unChair" : "chair")"></span>Mark as <span class="stateText">@(order.Seated ? "UN-seated" : "seated")</span></a>
+                            <a class="tooltip" title="@order.Name" href="toggleThanked" data-icon-classes="unSmiley,smiley" data-display-class="thankedCell" data-states="UN-thanked,thanked"><span class="sprite icon beforeText @(order.Thanked ? "unSmiley" : "smiley")"></span>Mark as <span class="stateText">@(order.Thanked ? "UN-thanked" : "thanked")</span></a>
                             <a class="tooltip" title="@order.Name" href="delete"><span class="sprite icon beforeText delete"></span>Delete</a>
                         </td>
                     </tr>    

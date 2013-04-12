@@ -87,6 +87,13 @@ namespace play.Site.Controllers
         }
 
         [HttpPost]
+        public JsonResult ToggleThanked(int playOrderId)
+        {
+            bool success = Models.PlayOrder.ToggleThanked(playOrderId);
+            return this.Json(new { success = success }, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpPost]
         public JsonResult TogglePaid(int playOrderId)
         {
             bool success = Models.PlayOrder.TogglePaid(playOrderId);

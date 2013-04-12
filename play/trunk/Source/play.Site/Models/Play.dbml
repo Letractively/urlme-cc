@@ -10,6 +10,7 @@
       <Column Name="PlayDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
       <Column Name="Status" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
       <Column Name="Seated" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="Thanked" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
       <Column Name="HowDidYouHear" Type="System.String" DbType="NVarChar(250)" CanBeNull="true" />
       <Column Name="UserAgent" Type="System.String" DbType="NVarChar(250) NOT NULL" CanBeNull="false" />
       <Column Name="Platform" Type="System.String" DbType="NChar(10) NOT NULL" CanBeNull="false" />

@@ -49,17 +49,7 @@ namespace play.Site.Controllers
 
             var order = Models.PlayOrder.Get(orderId);
 
-            string ticketDisplay = "";
-            int cpl = order.CoupleTicketCount;
-            int ind = order.IndividualTicketCount;
-            if (cpl > 0)
-            {
-                ticketDisplay += string.Format("{0} couple ticket{1}", cpl, cpl > 1 ? "s" : "");
-            }
-            if (ind > 0)
-            {
-                ticketDisplay += string.Format("{0}{1} individual ticket{2}", cpl > 0 ? " and " : "", ind, ind > 1 ? "s" : "");
-            }
+            string ticketDisplay = GetTicketDisplay(order);
 
             // send good news to Shari
             string body = string.Format("{0} ({1}) has paid for an order of {2} for {3} !<br/><br/><a href='http://cocoscoffeeshop.com/admin'>Go to admin</a>.", order.Name, order.Email, ticketDisplay, order.PlayDate.ToString("MMM dd"));
@@ -72,10 +62,34 @@ namespace play.Site.Controllers
             return Content("");
         }
 
+        private string GetTicketDisplay(Models.PlayOrder order) {
+            string rtn = "";
+            int cpl = order.CoupleTicketCount;
+            int ind = order.IndividualTicketCount;
+            if (cpl > 0)
+            {
+                rtn += string.Format("{0} couple ticket{1}", cpl, cpl > 1 ? "s" : "");
+            }
+            if (ind > 0)
+            {
+                rtn += string.Format("{0}{1} individual ticket{2}", cpl > 0 ? " and " : "", ind, ind > 1 ? "s" : "");
+            }
+            return rtn;
+        }
+
         [HttpPost]
         public JsonResult Delete(string secret, int playOrderId)
         {
             bool success = Models.PlayOrder.Delete(secret, playOrderId);
+            return this.Json(new { success = success }, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpPost]
+        public JsonResult SendConfirmation(int playOrderId)
+        {
+            var order = Models.PlayOrder.Get(playOrderId);
+            var ticketDisplay = GetTicketDisplay(order);
+            bool success = Models.PlayOrder.SendConfirmation(order, ticketDisplay);
             return this.Json(new { success = success }, JsonRequestBehavior.AllowGet);
         }
 

@@ -32,7 +32,7 @@
     </head>
     <body class="adminIndex">
 
-        <div id="moreInfo">
+        <div id="moreInfo" data-bind="attr: { 'data-item-id': PlayOrderId }">
             <div>
                 Email:
                 <div><a tabindex="-1" data-bind="attr: { href: MailTo }, text: Email"></a></div>
@@ -44,6 +44,9 @@
             <div>
                 User agent:
                 <div data-bind="text: UserAgent"></div>
+            </div>
+            <div>
+                <a href="sendconfirmation" data-bind="text: ResendConfText" class="sendConfirmation"></a>
             </div>
         </div>
 
@@ -116,6 +119,7 @@
         <script>
             var data = @Html.Raw(Model.Order.ToJson());
             data.MailTo = null;
+            data.ResendConfText = null;
             var viewModel = ko.mapping.fromJS(data);
             ko.applyBindings(viewModel);
         </script>

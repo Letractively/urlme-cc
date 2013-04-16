@@ -22,7 +22,7 @@ namespace play.Site
             return Send("shariren@gmail.com", "Shari Davis", subject, body, includeIan);
         }
 
-        public static bool Send(string toEmail, string toName, string subject, string body, bool includeIan = true)
+        public static bool Send(string toEmail, string toName, string subject, string body, bool includeIan = true, bool bccTeamDavis = false)
         {
             MailAddress from = new MailAddress("no-reply@cocoscoffeeshop.com", "no-reply@cocoscoffeeshop.com");
 
@@ -34,6 +34,12 @@ namespace play.Site
                 
                 if (includeIan)
                     msg.CC.Add(new MailAddress("ihdavis@gmail.com", "Ian Davis"));
+
+                if (bccTeamDavis)
+                {
+                    msg.Bcc.Add(new MailAddress("ihdavis@gmail.com", "Ian Davis"));
+                    msg.Bcc.Add(new MailAddress("shariren@gmail.com", "Shari Davis"));
+                }
                 
                 msg.IsBodyHtml = true;
                 msg.Subject = "cocoscoffeeshop.com -- " + subject;

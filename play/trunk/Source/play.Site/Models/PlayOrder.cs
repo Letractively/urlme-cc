@@ -25,6 +25,15 @@ namespace play.Site.Models
             }
         }
 
+        public static bool SendConfirmation(Models.PlayOrder order, string ticketDisplay)
+        {
+            // send order conf to payer
+            string orderConf = string.Format("Dear {0},<br/><br/>Thank you for your order of {1}! We will see you on <b>{2}</b>. Please try and arrive at <b>Commonwealth Chapel</b> (1836 Park Ave, Richmond VA) close to <b>6pm</b> so you can be seated.<br/><br/>Thanks!<br/>- Shari Davis", order.Name, ticketDisplay, order.PlayDate.ToString("MMM dd, yyyy"));
+            Mail.Send(order.Email, order.Name, "Crazy Capers Dinner Theater Order Confirmation", orderConf, false, true);
+
+            return true;
+        }
+
         public static List<Models.PlayOrder> Get()
         {
             try

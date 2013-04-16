@@ -11,6 +11,7 @@ ihdavis.admin.index = {
         , newCount: function () { return $("#newCount"); }
         , newNotif: function () { return $("#notif"); }
         , newPlural: function () { return $("#newPlural"); }
+        , sendConfirmation: function () { return $(".sendConfirmation"); }
         , search: function () { return $("#orders_filter input"); }
         , toggleLinks: function () { return $("a[href*='toggle']"); }
         , totalFilters: function () { return $(".header a"); }
@@ -85,8 +86,11 @@ ihdavis.admin.index = {
             e.preventDefault();
             ihdavis.ajax.get(constants.actionBaseUrl + $(this).attr("href"), function (resp) {
                 resp.MailTo = "mailto:" + resp.Email;
+                resp.ResendConfText = "Resend confirmation to " + resp.Name;
                 ko.mapping.fromJS(resp, viewModel);
-                ihdavis.admin.index.controls.moreInfo().dialog('option', 'title', resp.Name).dialog('open');
+                var dialog = ihdavis.admin.index.controls.moreInfo();
+                dialog.dialog('option', 'title', resp.Name).dialog('open');
+                dialog.find("a").blur(); // this is annoying to have to un-auto focus
             });
         });
 
@@ -106,6 +110,16 @@ ihdavis.admin.index = {
         });
 
         $('.ui-widget-overlay').click(function () { $("#moreInfo").dialog("close"); });
+
+        ihdavis.admin.index.controls.sendConfirmation().click(function (e) {
+            e.preventDefault();
+            var el = $(this);
+            var itemId = el.closest("[data-item-id]").attr("data-item-id")
+                , ajaxUrl = constants.actionBaseUrl + el.attr("href")
+                , data = { playOrderId: itemId };
+
+            ihdavis.ajax.post(ajaxUrl, data);
+        });
 
         ihdavis.admin.index.controls.toggleLinks().click(function (e) {
             e.preventDefault();

@@ -67,7 +67,7 @@ namespace play.Site.Models
 
         public static bool Delete(string secret, int playOrderId)
         {
-            if (secret.ToLower() != "gas leak" && secret.ToLower() != "gas leek") {
+            if (secret.ToLower() != "oblivion") {
                 return false;
             }
 

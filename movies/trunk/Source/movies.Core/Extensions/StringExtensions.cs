@@ -67,6 +67,11 @@ namespace movies.Core.Extensions
             return s;
         }
 
+        public static string StripHtml(this string s)
+        {
+            return Regex.Replace(s, "<.*?>", string.Empty);
+        }
+
         //public static string JsonSerializeToString(this object obj)
         //{
         //    string json = string.Empty;

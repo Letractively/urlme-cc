@@ -328,11 +328,11 @@ header { background:#2D62AE; }
         #showtimesView #currentTheaterContainer .theater .movie { float: left; width: 326px; position: relative; margin-top: 14px; padding-bottom: 10px; height: 143px; }
         #showtimesView #currentTheaterContainer .theater .movie:nth-child(2n+2) { margin-left: 14px; }
         #showtimesView #currentTheaterContainer .theater .movie > a { display: block; }
-            #showtimesView #currentTheaterContainer .theater .movie .details p:not(:first-child) { margin-top: 10px; }
+            #showtimesView #currentTheaterContainer .theater .movie .details p:not(:first-child) { margin-top: 15px; }
             #showtimesView #currentTheaterContainer .theater .movie .details .ratings { margin-top: 0; }
             #showtimesView #currentTheaterContainer .theater .movie .details .mpaaRating { position: absolute; top: 10px; right: 10px; }
             #showtimesView #currentTheaterContainer .theater .movie img { float: left; margin: 0; width: 104px; height: 156px; }
-            #showtimesView #currentTheaterContainer .theater .movie .showtimes { word-wrap: break-word; }
+            #showtimesView #currentTheaterContainer .theater .movie .showtimes { word-wrap: break-word; line-height: 21px; }
             #showtimesView #currentTheaterContainer .theater .movie .details { padding: 10px 10px 0 10px; float: left; width: 202px; }
 
 /* begin: theater view */

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using movies.Core.Web.Caching;
 using HtmlAgilityPack;
+using movies.Core.Extensions;
 
 namespace movies.Model
 {
@@ -96,7 +97,7 @@ namespace movies.Model
                                 var h3ToRemove = showtimeDiv.SelectSingleNode("h3");
                                 h3ToRemove.ParentNode.RemoveChild(h3ToRemove);
                                 string showtimes = showtimeDiv.InnerHtml.Trim().Replace("\t", "").Replace("\n", "").Replace("&nbsp;", "&nbsp;&nbsp;&nbsp;");
-                                fullMovie.ShowtimesHtml = showtimes;
+                                fullMovie.ShowtimesHtml = showtimes.StripHtml();
 
                                 var theaterMovie = new Model.PostalCode.Movie
                                 {

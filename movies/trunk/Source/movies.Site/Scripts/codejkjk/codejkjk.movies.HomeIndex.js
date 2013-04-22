@@ -438,10 +438,6 @@ codejkjk.movies.desktop = {
         $.each(theaters, function (i, theater) {
             var numHiddenTheaterMovies = 0;
             $.each(theater.movies, function (j, theaterMovie) {
-                if (theater.name.indexOf("Bow Tie") >= 0) {
-                    var xy = hiddenTheaterMovies.indexOf("{0}-{1}".format(theater.id, theaterMovie.id)) >= 0 ? "FOUND" : "NOT FOUND";
-                    console.log("looking for {0}-{1} in {2} -- {3}".format(theater.id, theaterMovie.id, hiddenTheaterMovies, xy));
-                }
                 var movieClass = hiddenTheaterMovies.indexOf("{0}-{1}".format(theater.id, theaterMovie.id)) >= 0 ? "hidden" : "";
                 numHiddenTheaterMovies = movieClass == "hidden" ? ++numHiddenTheaterMovies : numHiddenTheaterMovies;
                 theaterMovie.movieClass = movieClass;

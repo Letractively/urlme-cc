@@ -7,15 +7,15 @@ ihdavis.registerNamespace("admin.index");
 ihdavis.admin.index = {
     controls: {
         moreInfo: function () { return $("#moreInfo"); }
-        , moreInfoLinks: function () { return $(".moreInfo"); }
+        , moreInfoLinksSelector: function () { return ".moreInfo"; }
         , newCount: function () { return $("#newCount"); }
         , newNotif: function () { return $("#notif"); }
         , newPlural: function () { return $("#newPlural"); }
         , sendConfirmation: function () { return $(".sendConfirmation"); }
         , search: function () { return $("#orders_filter input"); }
-        , toggleLinks: function () { return $("a[href*='toggle']"); }
+        , toggleLinksSelector: function () { return "a[href*='toggle']"; }
         , totalFilters: function () { return $(".header a"); }
-        , deleteLinks: function () { return $("a[href*='delete']"); }
+        , deleteLinksSelector: function () { return "a[href*='delete']"; }
     }
     , init: function() {
         $("#orders").dataTable({
@@ -82,7 +82,7 @@ ihdavis.admin.index = {
             }
         });
 
-        ihdavis.admin.index.controls.moreInfoLinks().click(function (e) {
+        $(document).on('click', ihdavis.admin.index.controls.moreInfoLinksSelector(), function (e) {
             e.preventDefault();
             ihdavis.ajax.get(constants.actionBaseUrl + $(this).attr("href"), function (resp) {
                 resp.MailTo = "mailto:" + resp.Email;
@@ -94,7 +94,7 @@ ihdavis.admin.index = {
             });
         });
 
-        ihdavis.admin.index.controls.deleteLinks().click(function (e) {
+        $(document).on('click', ihdavis.admin.index.controls.deleteLinksSelector(), function (e) {
             e.preventDefault();
             var secret = prompt("What was the title of movie #2 at the drive-in theater SharIan saw in April, 2013?");
             if (secret) {
@@ -121,7 +121,7 @@ ihdavis.admin.index = {
             ihdavis.ajax.post(ajaxUrl, data);
         });
 
-        ihdavis.admin.index.controls.toggleLinks().click(function (e) {
+        $(document).on('click', ihdavis.admin.index.controls.toggleLinksSelector(), function (e) {
             e.preventDefault();
             var link = $(this);
             var icon = link.find(".icon")

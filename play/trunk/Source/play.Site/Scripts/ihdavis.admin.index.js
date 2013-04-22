@@ -96,7 +96,7 @@ ihdavis.admin.index = {
 
         ihdavis.admin.index.controls.deleteLinks().click(function (e) {
             e.preventDefault();
-            var secret = prompt("A(n) ______ gave way to Team ShariIan for Nerts the first time @ Shockoe.");
+            var secret = prompt("What was the title of movie #2 at the drive-in theater SharIan saw in April, 2013?");
             if (secret) {
                 var link = $(this);
                 var itemRow = link.closest("[data-item-id]");

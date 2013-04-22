@@ -127,6 +127,7 @@
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\DonateController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ObjectController.cs" />
     <Compile Include="Controllers\OrderController.cs" />
     <Compile Include="Controllers\TestController.cs" />
     <Compile Include="Extensions.cs" />
@@ -134,6 +135,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Mail.cs" />
+    <Compile Include="Models\Object.cs" />
     <Compile Include="Models\Log.cs" />
     <Compile Include="Models\Play.designer.cs">
       <AutoGen>True</AutoGen>

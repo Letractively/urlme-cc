@@ -6,7 +6,7 @@ namespace Salem.AllPass.Admin.Controllers
 {
     public class ObjectController : Controller
     {
-        private Assembly asm = typeof(play.Site.Models.PlayOrder).Assembly; // get assembly of any object w/in our model namespace
+        private Assembly asm = typeof(play.Site.Models.Object).Assembly; // get assembly of any object w/in our model namespace
         private System.Type type = typeof(play.Site.Models.Object);
         private play.Site.Models.Object obj = new play.Site.Models.Object();
 
@@ -18,7 +18,7 @@ namespace Salem.AllPass.Admin.Controllers
             var genericMethod = genericMethodDefinition.MakeGenericMethod(targetEntityType);
             bool success = (bool)genericMethod.Invoke(obj, new object[] { itemId, propertyName });
 
-            return this.Json(new { WasSuccessful = success }, JsonRequestBehavior.DenyGet);
+            return this.Json(new { success = success }, JsonRequestBehavior.DenyGet);
         }
 
         [HttpPost]
@@ -29,7 +29,7 @@ namespace Salem.AllPass.Admin.Controllers
             var genericMethod = genericMethodDefinition.MakeGenericMethod(targetEntityType);
             bool success = (bool)genericMethod.Invoke(obj, new object[] { itemId, propertyName, newValue });
 
-            return this.Json(new { WasSuccessful = success }, JsonRequestBehavior.DenyGet);
+            return this.Json(new { success = success }, JsonRequestBehavior.DenyGet);
         }
     }
 }

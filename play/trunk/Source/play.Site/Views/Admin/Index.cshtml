@@ -88,7 +88,7 @@
             <tbody>
                 @foreach (var order in Model.Orders.Where(x => x.Name.ToLower() != "test"))
                 {
-                    <tr data-item-id="@order.PlayOrderId">
+                    <tr data-item-id="@order.PlayOrderId" data-type-name="@typeof(play.Site.Models.PlayOrder)">
                         <td>@order.CreateDate.ToString("yyyy-MM-dd")</td>
                         <td>@order.PlayDate.ToString("MMM dd")</td>
                         <td><a class="moreInfo" href="get/@order.PlayOrderId">@order.Name</a></td>
@@ -107,9 +107,9 @@
                             <span class="inactive @(order.Thanked ? "hidden" : "")">✕</span>
                         </td>
                         <td class="actions">
-                            <a class="tooltip" title="@order.Name" href="togglepaid" data-class-states="unDollar:paid,dollar:UN-paid" data-icon-classes="unDollar,dollar" data-display-class="paidCell" data-states="paid,UN-paid"><span class="sprite icon beforeText @(order.Status == "Paid" ? "unDollar" : "dollar")"></span>Mark as <span class="stateText">@(order.Status == "Paid" ? "UN-paid" : "paid")</span></a>
-                            <a class="tooltip" title="@order.Name" href="toggleseated" data-class-states="unChair:seated,chair:UN-seated" data-icon-classes="unChair,chair" data-display-class="seatedCell" data-states="UN-seated,seated"><span class="sprite icon beforeText @(order.Seated ? "unChair" : "chair")"></span>Mark as <span class="stateText">@(order.Seated ? "UN-seated" : "seated")</span></a>
-                            <a class="tooltip" title="@order.Name" href="toggleThanked" data-class-states="unSmiley:thanked,smiley:UN-thanked" data-icon-classes="unSmiley,smiley" data-display-class="thankedCell" data-states="UN-thanked,thanked"><span class="sprite icon beforeText @(order.Thanked ? "unSmiley" : "smiley")"></span>Mark as <span class="stateText">@(order.Thanked ? "UN-thanked" : "thanked")</span></a>
+                            <a class="tooltip" title="@order.Name" href="/object/toggle/Paid" data-class-states="unDollar:UN-paid,dollar:paid" data-display-class="paidCell"><span class="sprite icon beforeText @(order.Status == "Paid" ? "unDollar" : "dollar")"></span>Mark as <span class="stateText">@(order.Status == "Paid" ? "UN-paid" : "paid")</span></a>
+                            <a class="tooltip" title="@order.Name" href="/object/toggle/Seated" data-class-states="unChair:UN-seated,chair:seated" data-display-class="seatedCell"><span class="sprite icon beforeText @(order.Seated ? "unChair" : "chair")"></span>Mark as <span class="stateText">@(order.Seated ? "UN-seated" : "seated")</span></a>
+                            <a class="tooltip" title="@order.Name" href="/object/toggle/Thanked" data-class-states="unSmiley:UN-thanked,smiley:thanked" data-display-class="thankedCell"><span class="sprite icon beforeText @(order.Thanked ? "unSmiley" : "smiley")"></span>Mark as <span class="stateText">@(order.Thanked ? "UN-thanked" : "thanked")</span></a>
                             <a class="tooltip" title="@order.Name" href="delete"><span class="sprite icon beforeText delete"></span>Delete</a>
                         </td>
                     </tr>    

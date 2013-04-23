@@ -13,7 +13,7 @@ ihdavis.admin.index = {
         , newPlural: function () { return $("#newPlural"); }
         , sendConfirmation: function () { return $(".sendConfirmation"); }
         , search: function () { return $("#orders_filter input"); }
-        , toggleLinksSelector: function () { return "a[href*='toggle']"; }
+        , toggleLinksSelector: function () { return "a[href*='/object/toggle/']"; }
         , totalFilters: function () { return $(".header a"); }
         , deleteLinksSelector: function () { return "a[href*='delete']"; }
     }
@@ -129,21 +129,21 @@ ihdavis.admin.index = {
                 , itemRow = link.closest("[data-item-id]")
                 , display = itemRow.find("." + link.attr("data-display-class"))
                 , currentStateText = stateText.text()
-                , states = link.attr("data-states").split(",")
-                , iconClasses = link.attr("data-icon-classes").split(",")
-                , ajaxUrl = constants.actionBaseUrl + link.attr("href");
+                , classStates = link.attr("data-class-states").split(",")
+                , href = link.attr("href")
+                , propertyName = href.substr(href.lastIndexOf("/") + 1)
+                , ajaxUrl = "/object/toggleproperty";
 
-            var data = {};
-            data.playOrderId = itemRow.attr("data-item-id");
+            var data = { itemId: itemRow.attr("data-item-id"), typeName: itemRow.attr("data-type-name"), propertyName: propertyName };
 
             ihdavis.ajax.post(ajaxUrl, data, function (resp) {
                 // udpate display & link text
                 display.find("span").toggleClass("hidden");
-                icon.toggleClass(iconClasses[0]).toggleClass(iconClasses[1]);
-                if (currentStateText == states[0])
-                    stateText.text(states[1]);
-                else
-                    stateText.text(states[0]);
+                //icon.toggleClass(iconClasses[0]).toggleClass(iconClasses[1]);
+                //if (currentStateText == states[0])
+                //    stateText.text(states[1]);
+                //else
+                //    stateText.text(states[0]);
             });
         });
     }

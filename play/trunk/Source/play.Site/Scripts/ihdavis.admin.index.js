@@ -139,11 +139,11 @@ ihdavis.admin.index = {
             ihdavis.ajax.post(ajaxUrl, data, function (resp) {
                 // udpate display & link text
                 display.find("span").toggleClass("hidden");
-                //icon.toggleClass(iconClasses[0]).toggleClass(iconClasses[1]);
-                //if (currentStateText == states[0])
-                //    stateText.text(states[1]);
-                //else
-                //    stateText.text(states[0]);
+                icon.toggleClass(classStates[0].split(':')[0]).toggleClass(classStates[1].split(':')[0]);
+                if (currentStateText == classStates[0].split(':')[1])
+                    stateText.text(classStates[1].split(':')[1]);
+                else
+                    stateText.text(classStates[0].split(':')[1]);
             });
         });
     }

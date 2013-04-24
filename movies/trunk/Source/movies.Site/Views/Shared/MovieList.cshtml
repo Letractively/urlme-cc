@@ -18,17 +18,7 @@
             </p>
             @if (movie.IsReleased)
             {
-                this.Html.RenderPartial("Ratings", new movies.Site.ViewModels.Shared.Ratings { Movie = movie, RatingSize = Enumerations.RatingSizes.smaller, IFrameIMDbRating = false });
-                if (movie.Review != null)
-                {
-                <a href="~/@movie.MovieSlug" class="ourReview mediumWithGrade" title="Click to see review from John Hanlon">
-                    <span class="@movie.Review.ClassName icon">
-                        @if (!string.IsNullOrWhiteSpace(movie.Review.Grade)) {
-                            <span class="@(movie.Review.Grade.Length == 2 ? "" : "single")">@movie.Review.Grade</span>
-                        }
-                    </span>
-                </a>                
-                }
+                this.Html.RenderPartial("Ratings", new movies.Site.ViewModels.Shared.Ratings { Movie = movie, RatingSize = Enumerations.RatingSizes.smaller, IFrameIMDbRating = false, ShowSion = true });
             }
             else
             {

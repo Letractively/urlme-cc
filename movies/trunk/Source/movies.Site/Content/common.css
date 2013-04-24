@@ -15,6 +15,7 @@ body{font-size:12px;font-family:Arial, "Helvetica Neue", Helvetica, Sans-Serif;}
 
 /* common */
 .alert { color:#b11e24 }
+.noRightMargin { margin-right: 0; }
 
 /* css 3... */
 .rounded { border-radius: 3px; -moz-border-radius: 3px; -webkit-border-radius: 3px; }
@@ -62,7 +63,7 @@ body{font-size:12px;font-family:Arial, "Helvetica Neue", Helvetica, Sans-Serif;}
 .ourReview.small .orNot { background-position: -167px -5px; }
 
 /* rt icons */
-.rottenTomato,.sion,.imdb { background: url("content/images/rt-sprite4.png") no-repeat scroll left center transparent; }
+.rottenTomato,.imdb,.sion .icon { background: url("content/images/rt-sprite4.png") no-repeat scroll left center transparent; }
 .ratings span.icon, .ratings span.rt.text { float: left; display:inline-block; } /* todo: repetitive? */
 .ratings .rtLinks { float: left; }
 .ratings .imdbRatingFrame { float: left; margin-top:-1px; }
@@ -97,12 +98,13 @@ body{font-size:12px;font-family:Arial, "Helvetica Neue", Helvetica, Sans-Serif;}
 .ratings.smaller { font-size: 14px; }
 .ratings.smaller .icon { width: 14px; height: 14px; margin-top:1px; }
 .ratings.smaller .rt.text:after { content: '%'; vertical-align: super; font-size: 8px; } /* text */
-.ratings.smaller .text { margin-top: 0; padding-left: 4px; margin-right: 8px; }
+.ratings.smaller .text { margin-top: 0; padding-left: 4px; margin-right: 11px; }
 .ratings.smaller .icon.imdb { background-position: -277px -161px; margin-right: 5px; }
 .ratings.smaller .icon.rottenTomato[data-rtratingtitle*="Fresh"] { background-position: -257px -144px; }
 .ratings.smaller .icon.rottenTomato[data-rtratingtitle*="Rotten"] { background-position: -273px -144px; }
 .ratings.smaller .icon.rottenTomato[data-rtratingtitle*="Upright"] { background-position: -289px -145px; }
 .ratings.smaller .icon.rottenTomato[data-rtratingtitle*="Spilled"] { background-position: -209px -144px; }
-.ratings.smaller .icon.sion { width: 12px; height: 15px; }
-.ratings.smaller .icon.sion.seeIt { background-position: -212px -160px; }
-.ratings.smaller .icon.sion.orNot { background-position: -200px -160px; }
+.ratings.smaller .sion .icon { width: 12px; height: 15px; margin-left: 14px; }
+    .ratings.smaller .sion .text { margin-right: 0; }
+.ratings.smaller .sion .icon.seeIt { background-position: -212px -175px; }
+.ratings.smaller .sion .icon.orNot { background-position: -200px -175px; }

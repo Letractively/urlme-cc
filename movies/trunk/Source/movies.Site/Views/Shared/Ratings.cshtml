@@ -3,7 +3,6 @@
 
 <p class="ratings group @this.Model.RatingSize.ToString()">
     @if (isDesktop) {<text><a class="group rtLinks" href="@this.Model.Movie.links.alternate"></text>}
-        <span title="@this.Model.Movie.ratings.critics_score% of critics liked it" data-rtratingtitle="@this.Model.Movie.ratings.critics_rating" class="rottenTomato icon"></span><span title="@this.Model.Movie.ratings.critics_score% of critics liked it" class="rt text">@this.Model.Movie.ratings.critics_score</span>
         <span title="@this.Model.Movie.ratings.audience_score% of audience liked it" data-rtratingtitle="@this.Model.Movie.ratings.audience_rating" class="rottenTomato icon"></span><span title="@this.Model.Movie.ratings.audience_score% of audience liked it" class="rt text">@this.Model.Movie.ratings.audience_score</span>
     @this.Html.Raw(isDesktop ? "</a>" : "")
     @if (Model.IFrameIMDbRating)
@@ -16,8 +15,8 @@
     }
     @if (Model.ShowSion && Model.Movie.Review != null)
     {
-        if (isDesktop) {<text><a class="movieDetailsLink" href="~/@Model.Movie.MovieSlug"></text>}
-        <span title="Click to see review from John Hanlon" class="sion icon @Model.Movie.Review.ClassName"></span>
-        if (isDesktop) {<text>@Html.Raw("</a>")</text>}
+        if (isDesktop) {<text><a class="movieDetailsLink sion" href="~/@Model.Movie.MovieSlug"></text>}else{<text><div class="sion"></text>}
+        <span title="Click to see review from John Hanlon" class="icon @Model.Movie.Review.ClassName"></span>if (!string.IsNullOrEmpty(Model.Movie.Review.Grade)) {<span class="text">@Model.Movie.Review.Grade</span>}
+        if (isDesktop) {<text>@Html.Raw("</a>")</text>}else{<text>@Html.Raw("</div>")</text>}
     }
 </p>

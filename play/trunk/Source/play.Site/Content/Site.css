@@ -133,9 +133,9 @@ header, footer, nav, section {
 /* icons */
 td.actions a:not(:first-child) { margin-left: 15px; }
 td.actions a { display: inline-block; }
-    td.actions a[href='togglepaid'] { width: 114px; }
-    td.actions a[href='toggleseated'] { width: 129px; }
-    td.actions a[href='toggleThanked'] { width: 136px; }
+    td.actions a[href='/object/toggle/Paid'] { width: 114px; }
+    td.actions a[href='/object/toggle/Seated'] { width: 129px; }
+    td.actions a[href='/object/toggle/Thanked'] { width: 136px; }
 
 .sprite { background: url('images/sprite.png'); display: inline-block; }
 .sprite.icon { width: 16px; height: 16px; }

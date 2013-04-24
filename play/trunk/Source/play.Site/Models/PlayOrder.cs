@@ -13,7 +13,7 @@ namespace play.Site.Models
                 using (var ctx = new PlayDataContext { ObjectTrackingEnabled = true })
                 {
                     playOrder.CreateDate = System.DateTime.Now;
-                    playOrder.Status = "Pending";
+                    playOrder.Paid = false;
                     ctx.PlayOrders.InsertOnSubmit(playOrder);
                     ctx.SubmitChanges();
                     return playOrder.PlayOrderId;
@@ -132,7 +132,7 @@ namespace play.Site.Models
                 using (var ctx = new PlayDataContext { ObjectTrackingEnabled = true })
                 {
                     var playOrder = ctx.PlayOrders.FirstOrDefault(x => x.PlayOrderId == playOrderId);
-                    playOrder.Status = playOrder.Status == "Paid" ? "Pending" : "Paid";
+                    playOrder.Paid = !playOrder.Paid;
                     playOrder.ModifyDate = System.DateTime.Now;
                     ctx.SubmitChanges();
                     return true;
@@ -151,7 +151,7 @@ namespace play.Site.Models
                 using (var ctx = new PlayDataContext { ObjectTrackingEnabled = true })
                 {
                     var playOrder = ctx.PlayOrders.FirstOrDefault(x => x.PlayOrderId == playOrderId);
-                    playOrder.Status = "Paid";
+                    playOrder.Paid = true;
                     playOrder.ModifyDate = System.DateTime.Now;
                     ctx.SubmitChanges();
                     return playOrderId;

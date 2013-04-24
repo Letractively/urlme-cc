@@ -94,27 +94,6 @@ namespace play.Site.Controllers
         }
 
         [HttpPost]
-        public JsonResult ToggleSeated(int playOrderId)
-        {
-            bool success = Models.PlayOrder.ToggleSeated(playOrderId);
-            return this.Json(new { success = success }, JsonRequestBehavior.AllowGet);
-        }
-
-        [HttpPost]
-        public JsonResult ToggleThanked(int playOrderId)
-        {
-            bool success = Models.PlayOrder.ToggleThanked(playOrderId);
-            return this.Json(new { success = success }, JsonRequestBehavior.AllowGet);
-        }
-
-        [HttpPost]
-        public JsonResult TogglePaid(int playOrderId)
-        {
-            bool success = Models.PlayOrder.TogglePaid(playOrderId);
-            return this.Json(new { success = success }, JsonRequestBehavior.AllowGet);
-        }
-
-        [HttpPost]
         public JsonResult Submit(Models.PlayOrder order)
         {
             if (order.Name.ToLower() == "test")

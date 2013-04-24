@@ -4,6 +4,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{492EA35F-AED4-4822-861B-0345245422DE}"
 	ProjectSection(SolutionItems) = preProject
 		imdb_json.txt = imdb_json.txt
+		imdb_legit_json.txt = imdb_legit_json.txt
 		redbox_top20_xml.txt = redbox_top20_xml.txt
 		rt_json.txt = rt_json.txt
 		showtimes_html.txt = showtimes_html.txt

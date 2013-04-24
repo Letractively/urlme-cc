@@ -2,6 +2,18 @@
 {
     public class IMDb
     {
+        private const string BaseUrl = "http://app.imdb.com/title/maindetails?tconst=";
+
+        public static string GetMovieJson(string imdbMovieId)
+        {
+            // make sure passed-in imbMovieId starts with "tt", per url example above
+            if (!imdbMovieId.StartsWith("tt"))
+                imdbMovieId = "tt" + imdbMovieId;
+
+            string url = string.Format("{0}{1}", BaseUrl, imdbMovieId);
+            return Core.Net.HttpWebRequest.GetResponse(url);
+        }        
+
         public static string GetParentalGuideUrl(string imdbMovieId)
         {
             // e.g., http://www.imdb.com/title/tt1606389/parentalguide

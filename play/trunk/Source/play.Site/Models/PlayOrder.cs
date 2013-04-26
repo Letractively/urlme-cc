@@ -40,7 +40,7 @@ namespace play.Site.Models
             {
                 using (var ctx = new PlayDataContext { ObjectTrackingEnabled = false })
                 {
-                    var orders = ctx.PlayOrders.OrderBy(x => x.CreateDate).ToList();
+                    var orders = ctx.PlayOrders.Where(x => x.Name != "test" && x.Name != "Test").OrderBy(x => x.CreateDate).ToList();
                     return orders;
                 }
             }

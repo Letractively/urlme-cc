@@ -22,7 +22,8 @@ ihdavis.admin.index = {
             "sPaginationType": "full_numbers",
             "bSort": true,
             "bJQueryUI": true,
-            "iDisplayLength": 25
+            "iDisplayLength": 25,
+            "bStateSave": true
         });
 
         ihdavis.admin.index.controls.search()
@@ -103,8 +104,9 @@ ihdavis.admin.index = {
                 var data = { secret: secret, playOrderId: itemRow.attr("data-item-id") };
 
                 ihdavis.ajax.post(constants.actionBaseUrl + "delete", data, function () {
-                    itemRow.remove();
-                    orderCount--;
+                    setTimeout(function () {
+                        window.location.reload(true);
+                    }, 1500);
                 });
             }
         });

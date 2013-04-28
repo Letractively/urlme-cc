@@ -7,6 +7,13 @@ namespace futonFinder.Data
 {
     public class Enums
     {
+        public enum FormMethod
+        {
+            Get,
+            Post,
+            Delete
+        }
+
         public enum MovieReviewStatus
         {
             Approved,

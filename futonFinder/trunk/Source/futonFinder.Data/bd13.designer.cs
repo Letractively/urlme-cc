@@ -33,6 +33,15 @@ namespace futonFinder.Data
     partial void InsertUser(User instance);
     partial void UpdateUser(User instance);
     partial void DeleteUser(User instance);
+    partial void InsertSite(Site instance);
+    partial void UpdateSite(Site instance);
+    partial void DeleteSite(Site instance);
+    partial void InsertProvider(Provider instance);
+    partial void UpdateProvider(Provider instance);
+    partial void DeleteProvider(Provider instance);
+    partial void InsertSiteProvider(SiteProvider instance);
+    partial void UpdateSiteProvider(SiteProvider instance);
+    partial void DeleteSiteProvider(SiteProvider instance);
     #endregion
 		
 		public bd13DataContext() : 
@@ -70,6 +79,30 @@ namespace futonFinder.Data
 			get
 			{
 				return this.GetTable<User>();
+			}
+		}
+		
+		public System.Data.Linq.Table<Site> Sites
+		{
+			get
+			{
+				return this.GetTable<Site>();
+			}
+		}
+		
+		public System.Data.Linq.Table<Provider> Providers
+		{
+			get
+			{
+				return this.GetTable<Provider>();
+			}
+		}
+		
+		public System.Data.Linq.Table<SiteProvider> SiteProviders
+		{
+			get
+			{
+				return this.GetTable<SiteProvider>();
 			}
 		}
 	}
@@ -231,6 +264,858 @@ namespace futonFinder.Data
 					this._CreateDate = value;
 					this.SendPropertyChanged("CreateDate");
 					this.OnCreateDateChanged();
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="ihdavis2.Site")]
+	public partial class Site : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private string _SiteCd;
+		
+		private string _Title;
+		
+		private string _Domain;
+		
+		private System.DateTime _CreateDate;
+		
+		private System.Nullable<System.DateTime> _ModifyDate;
+		
+		private EntitySet<SiteProvider> _SiteProviders;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnSiteCdChanging(string value);
+    partial void OnSiteCdChanged();
+    partial void OnTitleChanging(string value);
+    partial void OnTitleChanged();
+    partial void OnDomainChanging(string value);
+    partial void OnDomainChanged();
+    partial void OnCreateDateChanging(System.DateTime value);
+    partial void OnCreateDateChanged();
+    partial void OnModifyDateChanging(System.Nullable<System.DateTime> value);
+    partial void OnModifyDateChanged();
+    #endregion
+		
+		public Site()
+		{
+			this._SiteProviders = new EntitySet<SiteProvider>(new Action<SiteProvider>(this.attach_SiteProviders), new Action<SiteProvider>(this.detach_SiteProviders));
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SiteCd", DbType="NVarChar(10) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
+		public string SiteCd
+		{
+			get
+			{
+				return this._SiteCd;
+			}
+			set
+			{
+				if ((this._SiteCd != value))
+				{
+					this.OnSiteCdChanging(value);
+					this.SendPropertyChanging();
+					this._SiteCd = value;
+					this.SendPropertyChanged("SiteCd");
+					this.OnSiteCdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Title", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
+		public string Title
+		{
+			get
+			{
+				return this._Title;
+			}
+			set
+			{
+				if ((this._Title != value))
+				{
+					this.OnTitleChanging(value);
+					this.SendPropertyChanging();
+					this._Title = value;
+					this.SendPropertyChanged("Title");
+					this.OnTitleChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Domain", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
+		public string Domain
+		{
+			get
+			{
+				return this._Domain;
+			}
+			set
+			{
+				if ((this._Domain != value))
+				{
+					this.OnDomainChanging(value);
+					this.SendPropertyChanging();
+					this._Domain = value;
+					this.SendPropertyChanged("Domain");
+					this.OnDomainChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CreateDate", DbType="DateTime NOT NULL")]
+		public System.DateTime CreateDate
+		{
+			get
+			{
+				return this._CreateDate;
+			}
+			set
+			{
+				if ((this._CreateDate != value))
+				{
+					this.OnCreateDateChanging(value);
+					this.SendPropertyChanging();
+					this._CreateDate = value;
+					this.SendPropertyChanged("CreateDate");
+					this.OnCreateDateChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ModifyDate", DbType="DateTime")]
+		public System.Nullable<System.DateTime> ModifyDate
+		{
+			get
+			{
+				return this._ModifyDate;
+			}
+			set
+			{
+				if ((this._ModifyDate != value))
+				{
+					this.OnModifyDateChanging(value);
+					this.SendPropertyChanging();
+					this._ModifyDate = value;
+					this.SendPropertyChanged("ModifyDate");
+					this.OnModifyDateChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Site_SiteProvider", Storage="_SiteProviders", ThisKey="SiteCd", OtherKey="SiteCd")]
+		public EntitySet<SiteProvider> SiteProviders
+		{
+			get
+			{
+				return this._SiteProviders;
+			}
+			set
+			{
+				this._SiteProviders.Assign(value);
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_SiteProviders(SiteProvider entity)
+		{
+			this.SendPropertyChanging();
+			entity.Site = this;
+		}
+		
+		private void detach_SiteProviders(SiteProvider entity)
+		{
+			this.SendPropertyChanging();
+			entity.Site = null;
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="ihdavis2.Provider")]
+	public partial class Provider : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _ProviderId;
+		
+		private string _Title;
+		
+		private string _Slug;
+		
+		private string _RedirectUri;
+		
+		private string _CodeEndpoint;
+		
+		private string _CodeEndpointFormat;
+		
+		private string _AccessTokenEndpoint;
+		
+		private string _AccessTokenEndpointFormat;
+		
+		private string _AccessTokenEndpointMethod;
+		
+		private string _UserEndpoint;
+		
+		private string _Scope;
+		
+		private System.DateTime _CreateDate;
+		
+		private System.Nullable<System.DateTime> _ModifyDate;
+		
+		private EntitySet<SiteProvider> _SiteProviders;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnProviderIdChanging(int value);
+    partial void OnProviderIdChanged();
+    partial void OnTitleChanging(string value);
+    partial void OnTitleChanged();
+    partial void OnSlugChanging(string value);
+    partial void OnSlugChanged();
+    partial void OnRedirectUriChanging(string value);
+    partial void OnRedirectUriChanged();
+    partial void OnCodeEndpointChanging(string value);
+    partial void OnCodeEndpointChanged();
+    partial void OnCodeEndpointFormatChanging(string value);
+    partial void OnCodeEndpointFormatChanged();
+    partial void OnAccessTokenEndpointChanging(string value);
+    partial void OnAccessTokenEndpointChanged();
+    partial void OnAccessTokenEndpointFormatChanging(string value);
+    partial void OnAccessTokenEndpointFormatChanged();
+    partial void OnAccessTokenEndpointMethodChanging(string value);
+    partial void OnAccessTokenEndpointMethodChanged();
+    partial void OnUserEndpointChanging(string value);
+    partial void OnUserEndpointChanged();
+    partial void OnScopeChanging(string value);
+    partial void OnScopeChanged();
+    partial void OnCreateDateChanging(System.DateTime value);
+    partial void OnCreateDateChanged();
+    partial void OnModifyDateChanging(System.Nullable<System.DateTime> value);
+    partial void OnModifyDateChanged();
+    #endregion
+		
+		public Provider()
+		{
+			this._SiteProviders = new EntitySet<SiteProvider>(new Action<SiteProvider>(this.attach_SiteProviders), new Action<SiteProvider>(this.detach_SiteProviders));
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ProviderId", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int ProviderId
+		{
+			get
+			{
+				return this._ProviderId;
+			}
+			set
+			{
+				if ((this._ProviderId != value))
+				{
+					this.OnProviderIdChanging(value);
+					this.SendPropertyChanging();
+					this._ProviderId = value;
+					this.SendPropertyChanged("ProviderId");
+					this.OnProviderIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Title", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
+		public string Title
+		{
+			get
+			{
+				return this._Title;
+			}
+			set
+			{
+				if ((this._Title != value))
+				{
+					this.OnTitleChanging(value);
+					this.SendPropertyChanging();
+					this._Title = value;
+					this.SendPropertyChanged("Title");
+					this.OnTitleChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Slug", DbType="NVarChar(10) NOT NULL", CanBeNull=false)]
+		public string Slug
+		{
+			get
+			{
+				return this._Slug;
+			}
+			set
+			{
+				if ((this._Slug != value))
+				{
+					this.OnSlugChanging(value);
+					this.SendPropertyChanging();
+					this._Slug = value;
+					this.SendPropertyChanged("Slug");
+					this.OnSlugChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RedirectUri", DbType="NVarChar(250) NOT NULL", CanBeNull=false)]
+		public string RedirectUri
+		{
+			get
+			{
+				return this._RedirectUri;
+			}
+			set
+			{
+				if ((this._RedirectUri != value))
+				{
+					this.OnRedirectUriChanging(value);
+					this.SendPropertyChanging();
+					this._RedirectUri = value;
+					this.SendPropertyChanged("RedirectUri");
+					this.OnRedirectUriChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CodeEndpoint", DbType="NVarChar(250) NOT NULL", CanBeNull=false)]
+		public string CodeEndpoint
+		{
+			get
+			{
+				return this._CodeEndpoint;
+			}
+			set
+			{
+				if ((this._CodeEndpoint != value))
+				{
+					this.OnCodeEndpointChanging(value);
+					this.SendPropertyChanging();
+					this._CodeEndpoint = value;
+					this.SendPropertyChanged("CodeEndpoint");
+					this.OnCodeEndpointChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CodeEndpointFormat", DbType="NVarChar(250) NOT NULL", CanBeNull=false)]
+		public string CodeEndpointFormat
+		{
+			get
+			{
+				return this._CodeEndpointFormat;
+			}
+			set
+			{
+				if ((this._CodeEndpointFormat != value))
+				{
+					this.OnCodeEndpointFormatChanging(value);
+					this.SendPropertyChanging();
+					this._CodeEndpointFormat = value;
+					this.SendPropertyChanged("CodeEndpointFormat");
+					this.OnCodeEndpointFormatChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AccessTokenEndpoint", DbType="NVarChar(250) NOT NULL", CanBeNull=false)]
+		public string AccessTokenEndpoint
+		{
+			get
+			{
+				return this._AccessTokenEndpoint;
+			}
+			set
+			{
+				if ((this._AccessTokenEndpoint != value))
+				{
+					this.OnAccessTokenEndpointChanging(value);
+					this.SendPropertyChanging();
+					this._AccessTokenEndpoint = value;
+					this.SendPropertyChanged("AccessTokenEndpoint");
+					this.OnAccessTokenEndpointChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AccessTokenEndpointFormat", DbType="NVarChar(250) NOT NULL", CanBeNull=false)]
+		public string AccessTokenEndpointFormat
+		{
+			get
+			{
+				return this._AccessTokenEndpointFormat;
+			}
+			set
+			{
+				if ((this._AccessTokenEndpointFormat != value))
+				{
+					this.OnAccessTokenEndpointFormatChanging(value);
+					this.SendPropertyChanging();
+					this._AccessTokenEndpointFormat = value;
+					this.SendPropertyChanged("AccessTokenEndpointFormat");
+					this.OnAccessTokenEndpointFormatChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AccessTokenEndpointMethod", DbType="NVarChar(4) NOT NULL", CanBeNull=false)]
+		public string AccessTokenEndpointMethod
+		{
+			get
+			{
+				return this._AccessTokenEndpointMethod;
+			}
+			set
+			{
+				if ((this._AccessTokenEndpointMethod != value))
+				{
+					this.OnAccessTokenEndpointMethodChanging(value);
+					this.SendPropertyChanging();
+					this._AccessTokenEndpointMethod = value;
+					this.SendPropertyChanged("AccessTokenEndpointMethod");
+					this.OnAccessTokenEndpointMethodChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UserEndpoint", DbType="NVarChar(250) NOT NULL", CanBeNull=false)]
+		public string UserEndpoint
+		{
+			get
+			{
+				return this._UserEndpoint;
+			}
+			set
+			{
+				if ((this._UserEndpoint != value))
+				{
+					this.OnUserEndpointChanging(value);
+					this.SendPropertyChanging();
+					this._UserEndpoint = value;
+					this.SendPropertyChanged("UserEndpoint");
+					this.OnUserEndpointChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Scope", DbType="NVarChar(250) NOT NULL", CanBeNull=false)]
+		public string Scope
+		{
+			get
+			{
+				return this._Scope;
+			}
+			set
+			{
+				if ((this._Scope != value))
+				{
+					this.OnScopeChanging(value);
+					this.SendPropertyChanging();
+					this._Scope = value;
+					this.SendPropertyChanged("Scope");
+					this.OnScopeChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CreateDate", DbType="DateTime NOT NULL")]
+		public System.DateTime CreateDate
+		{
+			get
+			{
+				return this._CreateDate;
+			}
+			set
+			{
+				if ((this._CreateDate != value))
+				{
+					this.OnCreateDateChanging(value);
+					this.SendPropertyChanging();
+					this._CreateDate = value;
+					this.SendPropertyChanged("CreateDate");
+					this.OnCreateDateChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ModifyDate", DbType="DateTime")]
+		public System.Nullable<System.DateTime> ModifyDate
+		{
+			get
+			{
+				return this._ModifyDate;
+			}
+			set
+			{
+				if ((this._ModifyDate != value))
+				{
+					this.OnModifyDateChanging(value);
+					this.SendPropertyChanging();
+					this._ModifyDate = value;
+					this.SendPropertyChanged("ModifyDate");
+					this.OnModifyDateChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Provider_SiteProvider", Storage="_SiteProviders", ThisKey="ProviderId", OtherKey="ProviderId")]
+		public EntitySet<SiteProvider> SiteProviders
+		{
+			get
+			{
+				return this._SiteProviders;
+			}
+			set
+			{
+				this._SiteProviders.Assign(value);
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_SiteProviders(SiteProvider entity)
+		{
+			this.SendPropertyChanging();
+			entity.Provider = this;
+		}
+		
+		private void detach_SiteProviders(SiteProvider entity)
+		{
+			this.SendPropertyChanging();
+			entity.Provider = null;
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="ihdavis2.SiteProvider")]
+	public partial class SiteProvider : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _SiteProviderId;
+		
+		private string _SiteCd;
+		
+		private int _ProviderId;
+		
+		private string _ClientId;
+		
+		private string _ClientSecret;
+		
+		private System.DateTime _CreateDate;
+		
+		private System.Nullable<System.DateTime> _ModifyDate;
+		
+		private EntityRef<Provider> _Provider;
+		
+		private EntityRef<Site> _Site;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnSiteProviderIdChanging(int value);
+    partial void OnSiteProviderIdChanged();
+    partial void OnSiteCdChanging(string value);
+    partial void OnSiteCdChanged();
+    partial void OnProviderIdChanging(int value);
+    partial void OnProviderIdChanged();
+    partial void OnClientIdChanging(string value);
+    partial void OnClientIdChanged();
+    partial void OnClientSecretChanging(string value);
+    partial void OnClientSecretChanged();
+    partial void OnCreateDateChanging(System.DateTime value);
+    partial void OnCreateDateChanged();
+    partial void OnModifyDateChanging(System.Nullable<System.DateTime> value);
+    partial void OnModifyDateChanged();
+    #endregion
+		
+		public SiteProvider()
+		{
+			this._Provider = default(EntityRef<Provider>);
+			this._Site = default(EntityRef<Site>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SiteProviderId", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int SiteProviderId
+		{
+			get
+			{
+				return this._SiteProviderId;
+			}
+			set
+			{
+				if ((this._SiteProviderId != value))
+				{
+					this.OnSiteProviderIdChanging(value);
+					this.SendPropertyChanging();
+					this._SiteProviderId = value;
+					this.SendPropertyChanged("SiteProviderId");
+					this.OnSiteProviderIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SiteCd", DbType="NVarChar(10) NOT NULL", CanBeNull=false)]
+		public string SiteCd
+		{
+			get
+			{
+				return this._SiteCd;
+			}
+			set
+			{
+				if ((this._SiteCd != value))
+				{
+					if (this._Site.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnSiteCdChanging(value);
+					this.SendPropertyChanging();
+					this._SiteCd = value;
+					this.SendPropertyChanged("SiteCd");
+					this.OnSiteCdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ProviderId", DbType="Int NOT NULL")]
+		public int ProviderId
+		{
+			get
+			{
+				return this._ProviderId;
+			}
+			set
+			{
+				if ((this._ProviderId != value))
+				{
+					if (this._Provider.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnProviderIdChanging(value);
+					this.SendPropertyChanging();
+					this._ProviderId = value;
+					this.SendPropertyChanged("ProviderId");
+					this.OnProviderIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ClientId", DbType="NVarChar(250) NOT NULL", CanBeNull=false)]
+		public string ClientId
+		{
+			get
+			{
+				return this._ClientId;
+			}
+			set
+			{
+				if ((this._ClientId != value))
+				{
+					this.OnClientIdChanging(value);
+					this.SendPropertyChanging();
+					this._ClientId = value;
+					this.SendPropertyChanged("ClientId");
+					this.OnClientIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ClientSecret", DbType="NVarChar(250) NOT NULL", CanBeNull=false)]
+		public string ClientSecret
+		{
+			get
+			{
+				return this._ClientSecret;
+			}
+			set
+			{
+				if ((this._ClientSecret != value))
+				{
+					this.OnClientSecretChanging(value);
+					this.SendPropertyChanging();
+					this._ClientSecret = value;
+					this.SendPropertyChanged("ClientSecret");
+					this.OnClientSecretChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CreateDate", DbType="DateTime NOT NULL")]
+		public System.DateTime CreateDate
+		{
+			get
+			{
+				return this._CreateDate;
+			}
+			set
+			{
+				if ((this._CreateDate != value))
+				{
+					this.OnCreateDateChanging(value);
+					this.SendPropertyChanging();
+					this._CreateDate = value;
+					this.SendPropertyChanged("CreateDate");
+					this.OnCreateDateChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ModifyDate", DbType="DateTime")]
+		public System.Nullable<System.DateTime> ModifyDate
+		{
+			get
+			{
+				return this._ModifyDate;
+			}
+			set
+			{
+				if ((this._ModifyDate != value))
+				{
+					this.OnModifyDateChanging(value);
+					this.SendPropertyChanging();
+					this._ModifyDate = value;
+					this.SendPropertyChanged("ModifyDate");
+					this.OnModifyDateChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Provider_SiteProvider", Storage="_Provider", ThisKey="ProviderId", OtherKey="ProviderId", IsForeignKey=true)]
+		public Provider Provider
+		{
+			get
+			{
+				return this._Provider.Entity;
+			}
+			set
+			{
+				Provider previousValue = this._Provider.Entity;
+				if (((previousValue != value) 
+							|| (this._Provider.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Provider.Entity = null;
+						previousValue.SiteProviders.Remove(this);
+					}
+					this._Provider.Entity = value;
+					if ((value != null))
+					{
+						value.SiteProviders.Add(this);
+						this._ProviderId = value.ProviderId;
+					}
+					else
+					{
+						this._ProviderId = default(int);
+					}
+					this.SendPropertyChanged("Provider");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Site_SiteProvider", Storage="_Site", ThisKey="SiteCd", OtherKey="SiteCd", IsForeignKey=true)]
+		public Site Site
+		{
+			get
+			{
+				return this._Site.Entity;
+			}
+			set
+			{
+				Site previousValue = this._Site.Entity;
+				if (((previousValue != value) 
+							|| (this._Site.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Site.Entity = null;
+						previousValue.SiteProviders.Remove(this);
+					}
+					this._Site.Entity = value;
+					if ((value != null))
+					{
+						value.SiteProviders.Add(this);
+						this._SiteCd = value.SiteCd;
+					}
+					else
+					{
+						this._SiteCd = default(string);
+					}
+					this.SendPropertyChanged("Site");
 				}
 			}
 		}

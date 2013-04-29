@@ -8,21 +8,22 @@ namespace play.Site
 {
     public class Mail
     {
-        public static bool SendToShariContactUs(string fromEmail, string fromName, string body, bool includeIan = false)
+        public static bool SendToShariContactUs(string fromEmail, string fromName, string body, bool includeIan = false, bool includeHeather = false)
         {
             return SendToShari(
                 "Contact Us submitted"
                 , string.Format("From \"{0}\" &lt;{1}&gt;<br/><br/>---<br/><br/>{2}", fromName, fromEmail, body)
                 , includeIan
+                , includeHeather
             );
         }
 
-        public static bool SendToShari(string subject, string body, bool includeIan = true)
+        public static bool SendToShari(string subject, string body, bool includeIan = true, bool includeHeather = false)
         {
-            return Send("shariren@gmail.com", "Shari Davis", subject, body, includeIan);
+            return Send("shariren@gmail.com", "Shari Davis", subject, body, includeIan, includeHeather);
         }
 
-        public static bool Send(string toEmail, string toName, string subject, string body, bool includeIan = true, bool bccTeamDavis = false)
+        public static bool Send(string toEmail, string toName, string subject, string body, bool includeIan = true, bool includeHeather = false, bool bccTeamDavis = false)
         {
             MailAddress from = new MailAddress("no-reply@cocoscoffeeshop.com", "no-reply@cocoscoffeeshop.com");
 
@@ -34,6 +35,9 @@ namespace play.Site
                 
                 if (includeIan)
                     msg.CC.Add(new MailAddress("ihdavis@gmail.com", "Ian Davis"));
+
+                if (includeHeather)
+                    msg.CC.Add(new MailAddress("hmarshall27@yahoo.com", "Ian Davis"));
 
                 if (bccTeamDavis)
                 {

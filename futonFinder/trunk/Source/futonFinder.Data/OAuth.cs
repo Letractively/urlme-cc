@@ -10,10 +10,16 @@
     using futonFinder.Core.Extensions;
     using futonFinder.Data;
 
-    public partial class Provider
+    public partial class OAuth
     {
-        public Provider(string providerSlug)
+        public OAuth(string providerSlug)
         {
+            
+            Data.Site site = new Site();
+            Data.SiteProvider siteProvider = new SiteProvider();
+            Data.Provider provider = new Data.Provider();
+
+
             var oAuthProvider = null; // Data.Repositories.Current.Repository.GetOAuth(providerSlug);
             this.ProviderId = oAuthProvider.ProviderId;
             this.CodeEndpoint = oAuthProvider.CodeEndpoint;

@@ -11,9 +11,9 @@ namespace play.Site.ViewModels
         public Models.PlayOrder Order { get; set; }
         public int SeatCount { get; set; }
         public int OrderTotal { get; set; }
+        public int FriSeatCount { get; set; }
         public int SatSeatCount { get; set; }
-        public int SunSeatCount { get; set; }
+        public int FriOrderTotal { get; set; }
         public int SatOrderTotal { get; set; }
-        public int SunOrderTotal { get; set; }
     }
 }

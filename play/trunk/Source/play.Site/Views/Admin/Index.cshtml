@@ -54,7 +54,7 @@
         
         <div id="stats">
             <div class="header">
-                <a href="#" class="active">Both</a><a href="#">Saturday</a><a href="#">Sunday</a>
+                <a href="#" class="active">Both</a><a href="#">Friday</a><a href="#">Saturday</a>
             </div>
             <div class="numbers group">
                 <script>
@@ -63,8 +63,8 @@
                     var bothOrderTotal = '@(Model.OrderTotal.ToString(totalFormat)).00';
                     var satSeatCount = @Model.SatSeatCount;
                     var satOrderTotal = '@(Model.SatOrderTotal.ToString(totalFormat)).00';
-                    var sunSeatCount = @Model.SunSeatCount;
-                    var sunOrderTotal = '@(Model.SunOrderTotal.ToString(totalFormat)).00';
+                    var friSeatCount = @Model.FriSeatCount;
+                    var friOrderTotal = '@(Model.FriOrderTotal.ToString(totalFormat)).00';
                 </script>
                 <div><span class="sprite icon beforeText chair"></span><span class="seatCount">@Model.SeatCount</span></div>
                 <div><span class="sprite icon beforeText dollar"></span><span class="orderTotal">@(Model.OrderTotal.ToString(totalFormat)).00</span></div>

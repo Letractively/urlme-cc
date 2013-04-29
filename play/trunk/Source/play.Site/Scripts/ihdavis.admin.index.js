@@ -74,12 +74,12 @@ ihdavis.admin.index = {
                 seats.text(bothSeatCount);
                 total.text(bothOrderTotal);
             }
-            else if (txt === "Saturday") {
+            else if (txt === "Friday") {
+                seats.text(friSeatCount);
+                total.text(friOrderTotal);
+            } else {
                 seats.text(satSeatCount);
                 total.text(satOrderTotal);
-            } else {
-                seats.text(sunSeatCount);
-                total.text(sunOrderTotal);
             }
         });
 

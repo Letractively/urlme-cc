@@ -92,10 +92,10 @@ footer { font-family: 'Courier New'; font-size: 14px; font-weight: bolder; }
 .orderIndex .operand { margin: 0 20px; font-style: normal; }
 .orderIndex .payButton { height: 39px; margin-top: 30px; }
 .orderIndex .payButton form { }
-.orderIndex .pleaseNote { border: 2px solid #e6e6e6; padding: 10px; border-radius: 3px; }
 
-    .orderIndex .pleaseNote ul li:not(:first-child) { margin-top: 8px; }
-        .orderIndex .pleaseNote ul li span { color: #660b5a; font-weight: bold; }
+.pleaseNote { border: 2px solid #e6e6e6; padding: 10px; border-radius: 3px; }
+    .pleaseNote ul li:not(:first-child) { margin-top: 8px; }
+        .pleaseNote ul li span { color: #660b5a; font-weight: bold; }
 
 .dt.orderIndex .counter { float: left; margin-right: 20px; }
 .dt.orderIndex .ticketSummary { margin-top: 12px; float: left; } 

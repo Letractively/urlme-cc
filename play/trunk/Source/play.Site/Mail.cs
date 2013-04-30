@@ -37,7 +37,7 @@ namespace play.Site
                     msg.CC.Add(new MailAddress("ihdavis@gmail.com", "Ian Davis"));
 
                 if (includeHeather)
-                    msg.CC.Add(new MailAddress("hmarshall27@yahoo.com", "Ian Davis"));
+                    msg.CC.Add(new MailAddress("hmarshall27@yahoo.com", "Heather Marshall"));
 
                 if (bccTeamDavis)
                 {

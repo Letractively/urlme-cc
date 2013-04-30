@@ -106,7 +106,7 @@ namespace play.Site.Controllers
             return this.Json(new { orderId = orderId }, JsonRequestBehavior.AllowGet);
         }
 
-        [HttpGet]
+        [AcceptVerbs(HttpVerbs.Get | HttpVerbs.Post)]
         public ActionResult ThankYou()
         {
             return View();

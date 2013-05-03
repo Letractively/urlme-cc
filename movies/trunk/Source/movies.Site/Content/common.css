@@ -104,7 +104,7 @@ body{font-size:12px;font-family:Arial, "Helvetica Neue", Helvetica, Sans-Serif;}
 .ratings.smaller .icon.rottenTomato[data-rtratingtitle*="Rotten"] { background-position: -273px -144px; }
 .ratings.smaller .icon.rottenTomato[data-rtratingtitle*="Upright"] { background-position: -289px -145px; }
 .ratings.smaller .icon.rottenTomato[data-rtratingtitle*="Spilled"] { background-position: -209px -144px; }
-.ratings.smaller .sion .icon { width: 12px; height: 15px; margin-left: 14px; }
+.ratings.smaller .sion .icon { width: 12px; height: 15px; margin-left: 13px; }
     .ratings.smaller .sion .text { margin-right: 0; }
 .ratings.smaller .sion .icon.seeIt { background-position: -212px -175px; }
 .ratings.smaller .sion .icon.orNot { background-position: -200px -175px; }

@@ -27,6 +27,7 @@
         <a href="#" id="cancelSearch" class="shift">Cancel</a>
     </div>
     <div class="loading"><span>Loading...</span></div>
+    
     @* *** What's Hot *** *@
     <section id="whatsHot" data-navitemurl="/">
         @if (anyThisWeekend)
@@ -53,7 +54,7 @@
                 </div>
             </div>
         }
-        <h2>Also in Theaters</h2>
+        <h2>In Theaters</h2>
         <div data-role="content" class="group movieList">
             <div class="sliderWrapper">
                 @this.Html.Partial("MovieList.Mobile", this.Model.InTheatersMovies)

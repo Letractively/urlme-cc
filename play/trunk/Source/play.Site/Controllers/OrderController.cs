@@ -52,12 +52,16 @@ namespace play.Site.Controllers
             string ticketDisplay = GetTicketDisplay(order);
 
             // send good news to Shari
-            string body = string.Format("{0} ({1}) has paid for an order of {2} for {3} !<br/><br/><a href='http://cocoscoffeeshop.com/admin'>Go to admin</a>.", order.Name, order.Email, ticketDisplay, order.PlayDate.ToString("MMM dd"));
+            string body = string.Format("{0} ({1}) ordered {2} for {3}!<br/><br/><a href='http://cocoscoffeeshop.com/admin'>Go to admin</a>.", order.Name, order.Email, ticketDisplay, order.PlayDate.ToString("MMM dd"));
             Mail.SendToShari(string.Format("Order for {0} !", order.PlayDate.ToString("MMM dd")), body, true, true);
 
             // send order conf to payer
             string orderConf = string.Format("Dear {0},<br/><br/>Thank you for your order of {1}! We will see you on <b>{2}</b>. Please try and arrive at <b>Commonwealth Chapel</b> (1836 Park Ave, Richmond VA) close to <b>6pm</b> so you can be seated.<br/><br/>Thanks!<br/>- Shari Davis", order.Name, ticketDisplay, order.PlayDate.ToString("MMM dd, yyyy"));
             Mail.Send(order.Email, order.Name, "Crazy Capers Dinner Theater Order Confirmation", orderConf, false);
+
+            // SEND A TXT !!1
+            string txt = string.Format("{0} ordered {1} for {2}!", order.Name, ticketDisplay, order.PlayDate.ToString("MMM dd"));
+            Sms.SendToIan(txt);
 
             return Content("");
         }

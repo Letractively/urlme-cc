@@ -22,15 +22,7 @@ namespace play.Site.Controllers
 
             var twilio = new TwilioRestClient(sid, token);
             var msg = twilio.SendSmsMessage("+15403524840", "+15408183073", "Hello from live");
-            rtn += msg.RestException == null ? "live Success, " : "live Error: " + msg.RestException.Message;
-
-            // TEST
-            var sidTest = "AC63fbeae101a3864919b3d76f3c802d03";
-            var tokenTest = "87071d4ec5f1228cd591fd2f5f61fc0d";
-
-            var twilioTest = new TwilioRestClient(sidTest, tokenTest);
-            var msgTest = twilioTest.SendSmsMessage("+15403524840", "+15408183073", "Hello from test");
-            rtn += msgTest.RestException == null ? "test Success, " : "test Error: " + msgTest.RestException.Message;
+            rtn += msg.RestException == null ? "Success, " : "Error: " + msg.RestException.Message;
 
             return Content("Status - " + rtn);
         }

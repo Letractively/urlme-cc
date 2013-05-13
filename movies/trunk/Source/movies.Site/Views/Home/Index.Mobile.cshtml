@@ -28,6 +28,140 @@
     </div>
     <div class="loading"><span>Loading...</span></div>
     
+    <script src="~/scripts/plugins/touchcarousel/jquery.touchcarousel-1.2.min.js"></script>
+    <link href="~/scripts/plugins/touchcarousel/touchcarousel.css" rel="stylesheet" />
+    <link href="~/scripts/plugins/touchcarousel/grey-blue-skin/grey-blue-skin.css" rel="stylesheet" />
+    <style>
+		/**
+		* Carousel with image and text, custom skinned scrollbar
+		**/
+		#carousel-image-and-text {
+			width: 940px;
+			height: 279px;
+			margin: 0 auto;	
+		}	
+		#carousel-image-and-text .arrow-holder {
+			height: 250px;
+		}		
+		#carousel-image-and-text .touchcarousel-item {
+			margin-right: 1px;	
+			width: 170px;
+			height: 277px;		
+		}
+		#carousel-image-and-text .item-block {
+			width: 170px;
+			height: 277px;
+			display: block;
+		}
+		#carousel-image-and-text .item-block img,
+		#carousel-image-and-text .item-block h4, 
+		#carousel-image-and-text .item-block p {
+			float: left;
+			position: relative;
+			display: block;
+			margin: 0;			
+		}
+		#carousel-image-and-text .item-block img {
+			width: 170px;
+			height: 230px;		
+			border: 0;
+			padding: 0;		
+		}
+		#carousel-image-and-text .item-block {			
+			text-decoration: none;
+			color: inherit;			
+		}					
+		#carousel-image-and-text .item-block h4 {
+			font: bold 13px/20px Helvetica, Arial, sans-serif;
+			color: #000;
+			width: 158px;
+			height: auto;		
+			padding: 2px 0 0 6px;
+			-webkit-transition: color 0.2s ease-out; 
+			-moz-transition: color 0.2s ease-out;
+			transition: color 0.2s ease-out;  	
+		}
+		#carousel-image-and-text .item-block:hover h4 {	
+			color: #1873c9;		
+		}
+		#carousel-image-and-text .item-block p {			
+			font: normal 13px/20px Helvetica, Arial, sans-serif;
+			color: #555;		
+			width: 158px;
+			padding: 0 0 0 6px;
+		}
+		#carousel-image-and-text .scrollbar-holder {
+			background: #CED7DB;
+			bottom: 0;
+			height: 1px;
+			left: 0;
+			right: 0;
+		}
+		#carousel-image-and-text .scrollbar {
+			background-color: #45a8ce !important;
+			bottom: 0;
+		}
+    </style>
+
+	<div id="carousel-image-and-text" class="touchcarousel grey-blue">       
+		<ul class="touchcarousel-container">
+			<li class="touchcarousel-item">
+				<a class="item-block" href="#">
+					<img src="http://placehold.it/170x230" width="170" height="230" />
+					<h4>Lorem Ipsum</h4>    
+					<p>Dolor sit amet</p>
+				</a>
+			</li>
+			<li class="touchcarousel-item">
+				<a class="item-block" href="#">
+					<img src="http://placehold.it/170x230" width="170" height="230" />
+					<h4>Lorem Ipsum</h4>    
+					<p>Dolor sit amet</p>
+				</a>
+			</li>
+			<li class="touchcarousel-item">
+				<a class="item-block" href="#">
+					<img src="http://placehold.it/170x230" width="170" height="230" />
+					<h4>Lorem Ipsum</h4>    
+					<p>Dolor sit amet</p>
+				</a>
+			</li>
+			<li class="touchcarousel-item">
+				<a class="item-block" href="#">
+					<img src="http://placehold.it/170x230" width="170" height="230" />
+					<h4>Lorem Ipsum</h4>    
+					<p>Dolor sit amet</p>
+				</a>
+			</li>
+			<li class="touchcarousel-item">
+				<a class="item-block" href="#">
+					<img src="http://placehold.it/170x230" width="170" height="230" />
+					<h4>Lorem Ipsum</h4>    
+					<p>Dolor sit amet</p>
+				</a>
+			</li>
+			<li class="touchcarousel-item">
+				<a class="item-block" href="#">
+					<img src="http://placehold.it/170x230" width="170" height="230" />
+					<h4>Lorem Ipsum</h4>    
+					<p>Dolor sit amet</p>
+				</a>
+			</li>
+		</ul> 
+	</div>
+    <script>
+        $(document).ready(function () {
+            $("#carousel-image-and-text").touchCarousel({
+                pagingNav: false,
+                snapToItems: false,
+                itemsPerMove: 4,
+                scrollToLast: false,
+                loopItems: false,
+                scrollbar: true
+            });
+        });
+    </script>
+
     @* *** What's Hot *** *@
     <section id="whatsHot" data-navitemurl="/">
         @if (anyThisWeekend)

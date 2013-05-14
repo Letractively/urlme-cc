@@ -7,7 +7,8 @@ namespace play.Site.Models
 {
     public partial class PlayOrder
     {
-        public static int Save(Models.PlayOrder playOrder) {
+        public static int Save(Models.PlayOrder playOrder)
+        {
             try
             {
                 using (var ctx = new PlayDataContext { ObjectTrackingEnabled = true })
@@ -32,6 +33,57 @@ namespace play.Site.Models
             Mail.Send(order.Email, order.Name, "Crazy Capers Dinner Theater Order Confirmation", orderConf, false, false, true);
 
             return true;
+        }
+
+        public class Summary
+        {
+            public int SeatCount { get; set; }
+            public int OrderTotal { get; set; }
+            public int FriSeatCount { get; set; }
+            public int FriOrderTotal { get; set; }
+            public int SatSeatCount { get; set; }
+            public int SatOrderTotal { get; set; }
+            public string SummaryText
+            {
+                get
+                {
+                    return string.Format("Fri {0} seats, ${1}; Sat {2} seats, ${3}; Total {4} seats, ${5}. Reply '?' for more commands.", this.FriSeatCount, this.FriOrderTotal, this.SatSeatCount, this.SatOrderTotal, this.SeatCount, this.OrderTotal);
+                }
+            }
+
+            public Summary(List<Models.PlayOrder> orders)
+            {
+                int seatCount = 0, friSeatCount = 0, satSeatCount = 0;
+                int orderTotal = 0, friOrderTotal = 0, satOrderTotal = 0;
+                foreach (var order in orders)
+                {
+                    seatCount += (order.CoupleTicketCount * 2) + order.IndividualTicketCount;
+                    orderTotal += (order.CoupleTicketCount * 60) + (order.IndividualTicketCount * 35);
+                    if (order.PlayDate.Day == 17)
+                    {
+                        friSeatCount += (order.CoupleTicketCount * 2) + order.IndividualTicketCount;
+                        friOrderTotal += (order.CoupleTicketCount * 60) + (order.IndividualTicketCount * 35);
+                    }
+                    else
+                    {
+                        satSeatCount += (order.CoupleTicketCount * 2) + order.IndividualTicketCount;
+                        satOrderTotal += (order.CoupleTicketCount * 60) + (order.IndividualTicketCount * 35);
+                    }
+                }
+
+                this.SeatCount = seatCount;
+                this.OrderTotal = orderTotal;
+                this.FriOrderTotal = friOrderTotal;
+                this.FriSeatCount = friSeatCount;
+                this.SatOrderTotal = satOrderTotal;
+                this.SatSeatCount = satSeatCount;
+            }
+        }
+
+        public static Summary SummaryGet()
+        {
+            var orders = Get();
+            return new Summary(orders);
         }
 
         public static List<Models.PlayOrder> Get()
@@ -67,7 +119,8 @@ namespace play.Site.Models
 
         public static bool Delete(string secret, int playOrderId)
         {
-            if (secret.ToLower() != "oblivion") {
+            if (secret.ToLower() != "oblivion")
+            {
                 return false;
             }
 
@@ -84,7 +137,7 @@ namespace play.Site.Models
             catch
             {
                 return false;
-            }            
+            }
         }
 
         public static int MarkAsPaid(int playOrderId)

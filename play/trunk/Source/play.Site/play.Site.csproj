@@ -135,6 +135,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ObjectController.cs" />
     <Compile Include="Controllers\OrderController.cs" />
+    <Compile Include="Controllers\SmsController.cs" />
     <Compile Include="Controllers\TestController.cs" />
     <Compile Include="Extensions.cs" />
     <Compile Include="Global.asax.cs">

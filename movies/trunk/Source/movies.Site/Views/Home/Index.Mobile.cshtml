@@ -36,12 +36,13 @@
 		* Carousel with image and text, custom skinned scrollbar
 		**/
 		#carousel-image-and-text {
-			width: 940px;
-			height: 279px;
-			margin: 0 auto;	
+			width: 100%; /* orig: 940px */
+			height: 280px; /* orig: 279px */
+			/* margin: 0 auto; */
 		}	
 		#carousel-image-and-text .arrow-holder {
-			height: 250px;
+			/*height: 250px;*/
+            display:none;
 		}		
 		#carousel-image-and-text .touchcarousel-item {
 			margin-right: 1px;	
@@ -105,48 +106,16 @@
 
 	<div id="carousel-image-and-text" class="touchcarousel grey-blue">       
 		<ul class="touchcarousel-container">
-			<li class="touchcarousel-item">
-				<a class="item-block" href="#">
-					<img src="http://placehold.it/170x230" width="170" height="230" />
-					<h4>Lorem Ipsum</h4>    
-					<p>Dolor sit amet</p>
-				</a>
-			</li>
-			<li class="touchcarousel-item">
-				<a class="item-block" href="#">
-					<img src="http://placehold.it/170x230" width="170" height="230" />
-					<h4>Lorem Ipsum</h4>    
-					<p>Dolor sit amet</p>
-				</a>
-			</li>
-			<li class="touchcarousel-item">
-				<a class="item-block" href="#">
-					<img src="http://placehold.it/170x230" width="170" height="230" />
-					<h4>Lorem Ipsum</h4>    
-					<p>Dolor sit amet</p>
-				</a>
-			</li>
-			<li class="touchcarousel-item">
-				<a class="item-block" href="#">
-					<img src="http://placehold.it/170x230" width="170" height="230" />
-					<h4>Lorem Ipsum</h4>    
-					<p>Dolor sit amet</p>
-				</a>
-			</li>
-			<li class="touchcarousel-item">
-				<a class="item-block" href="#">
-					<img src="http://placehold.it/170x230" width="170" height="230" />
-					<h4>Lorem Ipsum</h4>    
-					<p>Dolor sit amet</p>
-				</a>
-			</li>
-			<li class="touchcarousel-item">
-				<a class="item-block" href="#">
-					<img src="http://placehold.it/170x230" width="170" height="230" />
-					<h4>Lorem Ipsum</h4>    
-					<p>Dolor sit amet</p>
-				</a>
-			</li>
+			@for (var i = 0; i < 8; i++)
+            {
+                <li class="touchcarousel-item">
+				    <a class="item-block" href="#">
+					    <img src="http://placehold.it/170x230" width="170" height="230" />
+					    <h4>Lorem Ipsum</h4>    
+					    <p>Dolor sit amet</p>
+				    </a>
+			    </li>       
+            }
 		</ul> 
 	</div>
     <script>

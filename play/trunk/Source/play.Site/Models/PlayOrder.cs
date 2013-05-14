@@ -47,7 +47,7 @@ namespace play.Site.Models
             {
                 get
                 {
-                    return string.Format("Fri {0} seats, ${1}; Sat {2} seats, ${3}; Total {4} seats, ${5}. Reply '?' for more commands.", this.FriSeatCount, this.FriOrderTotal, this.SatSeatCount, this.SatOrderTotal, this.SeatCount, this.OrderTotal);
+                    return string.Format("Friday {0} seats, Saturday {1} seats, Total {2} seats for ${3}. Reply '?' for more commands.", this.FriSeatCount, this.SatSeatCount, this.SeatCount, this.OrderTotal);
                 }
             }
 

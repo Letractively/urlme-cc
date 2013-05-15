@@ -56,7 +56,7 @@ namespace play.Site.Controllers
             Mail.SendToShari(string.Format("Order for {0} !", order.PlayDate.ToString("MMM dd")), body, false, true);
 
             // send order conf to payer
-            string orderConf = string.Format("Dear {0},<br/><br/>Thank you for your order of {1}! We will see you on <b>{2}</b>. Please try and arrive at <b>Commonwealth Chapel</b> (1836 Park Ave, Richmond VA) close to <b>6pm</b> so you can be seated.<br/><br/>Thanks!<br/>- Shari Davis", order.Name, ticketDisplay, order.PlayDate.ToString("MMM dd, yyyy"));
+            string orderConf = string.Format("Dear {0},<br/><br/>Thank you for your order of {1}! You can pick up your ticket(s) at will call on <b>{2}</b>. Please try and arrive at <b>Commonwealth Chapel</b> (1836 Park Ave, Richmond VA) close to <b>6pm</b> so you can be seated.<br/><br/>Thanks!<br/>- Shari Davis", order.Name, ticketDisplay, order.PlayDate.ToString("MMM dd, yyyy"));
             Mail.Send(order.Email, order.Name, "Crazy Capers Dinner Theater Order Confirmation", orderConf, false);
 
             // SEND A TXT !!1

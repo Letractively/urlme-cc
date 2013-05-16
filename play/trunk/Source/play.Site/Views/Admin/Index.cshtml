@@ -53,7 +53,7 @@
         <h2>Admin<a id="notif" title="Click to refresh" href="~/admin"><span class="icon"></span>Refresh to see <span id="newCount">0</span> new order<span id="newPlural"></span>!</a></h2>
         
         @{
-            var unseated = this.Model.Orders.Where(x => !x.Paid).ToList();
+            var unseated = this.Model.Orders.Where(x => !x.Seated).ToList();
         }
         @if (unseated.Any())
         {

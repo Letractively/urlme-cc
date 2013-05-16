@@ -120,7 +120,7 @@ ihdavis.admin.index = {
                 , ajaxUrl = constants.actionBaseUrl + el.attr("href")
                 , data = { playOrderId: itemId };
 
-            ihdavis.ajax.post(ajaxUrl, data);
+            ihdavis.ajax.post(ajaxUrl, data, function () { ihdavis.feedback.showSuccess(); });
         });
 
         $(document).on('click', ihdavis.admin.index.controls.toggleLinksSelector(), function (e) {

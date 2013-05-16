@@ -88,6 +88,13 @@ namespace play.Site.Controllers
             return this.Json(new { success = success }, JsonRequestBehavior.AllowGet);
         }
 
+        [HttpGet]
+        public ActionResult BlastReminder(int day)
+        {
+            
+            return Content("Sent, done and done-sies.");
+        }
+
         [HttpPost]
         public JsonResult SendConfirmation(int playOrderId)
         {

@@ -58,6 +58,7 @@
         @if (unseated.Any())
         {
             <div id="unseatedOrders" class="group">
+                <span class="note">Pending&nbsp;&nbsp;➨</span>
                 @foreach (var order in unseated)
                 {
                     <button class="button" data-refresh-on-success="true" data-item-id="@order.PlayOrderId" data-type-name="@typeof(play.Site.Models.PlayOrder)" href="/object/toggle/Seated">Mark @order.Name as seated</button>

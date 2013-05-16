@@ -28,6 +28,10 @@ h2 { font-size: 20px; font-weight: bold; margin-bottom: 30px; }
 input[type='text'], input[type='email'], textarea { padding: 5px; font-size: 16px; outline: none; border: 1px solid #ccc; border-radius: 3px; width: 164px; }
 textarea { width: 275px; height: 160px; }
 
+ /*yellow note that Google has on their stuff. really nice.*/
+.note { background-color: #f9edbe; border: 1px solid #f0c35d; padding: 6px 12px; font-size: 14px; border-radius: 2px; }
+span.note { display: inline-block; }
+
 #dt { padding: 30px; margin: 0 auto; width: 816px; }
 #m { padding: 25px; }
 

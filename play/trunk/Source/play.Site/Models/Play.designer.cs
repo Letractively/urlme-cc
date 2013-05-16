@@ -277,6 +277,8 @@ namespace play.Site.Models
 		
 		private System.Nullable<System.DateTime> _ModifyDate;
 		
+		private bool _ReminderSent;
+		
     #region Extensibility Method Definitions
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
@@ -309,6 +311,8 @@ namespace play.Site.Models
     partial void OnCreateDateChanged();
     partial void OnModifyDateChanging(System.Nullable<System.DateTime> value);
     partial void OnModifyDateChanged();
+    partial void OnReminderSentChanging(bool value);
+    partial void OnReminderSentChanged();
     #endregion
 		
 		public PlayOrder()
@@ -592,6 +596,26 @@ namespace play.Site.Models
 					this._ModifyDate = value;
 					this.SendPropertyChanged("ModifyDate");
 					this.OnModifyDateChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ReminderSent", DbType="Bit NOT NULL")]
+		public bool ReminderSent
+		{
+			get
+			{
+				return this._ReminderSent;
+			}
+			set
+			{
+				if ((this._ReminderSent != value))
+				{
+					this.OnReminderSentChanging(value);
+					this.SendPropertyChanging();
+					this._ReminderSent = value;
+					this.SendPropertyChanged("ReminderSent");
+					this.OnReminderSentChanged();
 				}
 			}
 		}

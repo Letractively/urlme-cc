@@ -13,7 +13,7 @@ ihdavis.admin.index = {
         , newPlural: function () { return $("#newPlural"); }
         , sendConfirmation: function () { return $(".sendConfirmation"); }
         , search: function () { return $("#orders_filter input"); }
-        , toggleLinksSelector: function () { return "a[href*='/object/toggle/']"; }
+        , toggleLinksSelector: function () { return "[href*='/object/toggle/']"; }
         , totalFilters: function () { return $(".header a"); }
         , deleteLinksSelector: function () { return "a[href*='delete']"; }
     }
@@ -125,21 +125,34 @@ ihdavis.admin.index = {
 
         $(document).on('click', ihdavis.admin.index.controls.toggleLinksSelector(), function (e) {
             e.preventDefault();
-            var link = $(this);
-            var icon = link.find(".icon")
-                , stateText = link.find(".stateText")
-                , itemRow = link.closest("[data-item-id]")
-                , display = itemRow.find("." + link.attr("data-display-class"))
-                , currentStateText = stateText.text()
-                , classStates = link.attr("data-class-states").split(",")
+
+            var link = $(this)
+                , item = link.closest("[data-item-id]")
+                , itemId = item.attr("data-item-id")
+                , typeName = item.attr("data-type-name")
                 , href = link.attr("href")
                 , propertyName = href.substr(href.lastIndexOf("/") + 1)
                 , ajaxUrl = "/object/toggleproperty";
 
-            var data = { itemId: itemRow.attr("data-item-id"), typeName: itemRow.attr("data-type-name"), propertyName: propertyName };
+            var data = { itemId: itemId, typeName: typeName, propertyName: propertyName };
+
+            // if this is a simple post via ajax and then a refresh of the page
+            if (link.attr("data-refresh-on-success")) {
+                ihdavis.ajax.post(ajaxUrl, data, function (resp) {
+                    location.reload(true);
+                });
+                return;
+            }
+
+            // fancy where we have icons & table cells to update
+            var icon = link.find(".icon")
+                , stateText = link.find(".stateText")
+                , display = item.find("." + link.attr("data-display-class"))
+                , currentStateText = stateText.text()
+                , classStates = link.attr("data-class-states").split(",");
 
             ihdavis.ajax.post(ajaxUrl, data, function (resp) {
-                // udpate display & link text
+                // update display & link text
                 display.find("span").toggleClass("hidden");
                 icon.toggleClass(classStates[0].split(':')[0]).toggleClass(classStates[1].split(':')[0]);
                 if (currentStateText == classStates[0].split(':')[1])

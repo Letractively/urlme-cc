@@ -174,3 +174,6 @@ td.actions a { display: inline-block; }
 #moreInfo div:not(:first-child) { margin-top:10px; }
 #moreInfo div div { margin-top: 5px; margin-left: 8px; font-size: 12px; }
     #moreInfo div div, #moreInfo div div a { color: white; }
+
+#unseatedOrders { margin-top: -50px; margin-bottom: 10px; }
+#unseatedOrders a { display: block; }

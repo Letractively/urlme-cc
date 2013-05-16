@@ -52,6 +52,19 @@
 
         <h2>Admin<a id="notif" title="Click to refresh" href="~/admin"><span class="icon"></span>Refresh to see <span id="newCount">0</span> new order<span id="newPlural"></span>!</a></h2>
         
+        @{
+            var unseated = this.Model.Orders.Where(x => !x.Paid).ToList();
+        }
+        @if (unseated.Any())
+        {
+            <div id="unseatedOrders" class="group">
+                @foreach (var order in unseated)
+                {
+                    <button class="button" data-refresh-on-success="true" data-item-id="@order.PlayOrderId" data-type-name="@typeof(play.Site.Models.PlayOrder)" href="/object/toggle/Seated">Mark @order.Name as seated</button>
+                }
+            </div>
+        }
+
         <div id="stats">
             <div class="header">
                 <a href="#" class="active">Both</a><a href="#">Friday</a><a href="#">Saturday</a>

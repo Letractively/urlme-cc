@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using System.Web;
 using System.Web.Mvc;
 
@@ -66,7 +67,8 @@ namespace play.Site.Controllers
             return Content("");
         }
 
-        private string GetTicketDisplay(Models.PlayOrder order) {
+        private string GetTicketDisplay(Models.PlayOrder order)
+        {
             string rtn = "";
             int cpl = order.CoupleTicketCount;
             int ind = order.IndividualTicketCount;
@@ -89,9 +91,37 @@ namespace play.Site.Controllers
         }
 
         [HttpGet]
-        public ActionResult BlastReminder(int day)
+        public ActionResult BlastReminder()
         {
-            
+            var sb = new StringBuilder();
+            sb.Append("Dear {NAME},<br/>");
+            sb.Append("<br/>");
+            sb.Append("We're so excited that you can be a part of the dinner theater this weekend!<br/>");
+            sb.Append("<br/>");
+            sb.Append("Your tickets are for <b>{PLAY_DATE}</b>.<br/>");
+            sb.Append("<br/>");
+            sb.Append("Just a few notes to have fresh in your inbox:<br/>");
+            sb.Append("- please arrive <b>close to 6pm</b> so you can be seated, and feel free to take a look at the set and see the fun little details :)<br/>");
+            sb.Append("- the where! - address is <b>1836 Park Ave, Richmond VA, 23220</b>, the church with the red door on the corner of Park & Meadow<br/>");
+            sb.Append("- tickets at Will Call under your last name<br/>");
+            sb.Append("<br/>");
+            sb.Append("Thanks and we'll see you soon!<br/>");
+            sb.Append("<br/>");
+            sb.Append("Shari Davis, Director<br/>");
+            sb.Append("<br/>");
+            sb.Append("Ps. any questions? Please visit the <a href='http://cocoscoffeeshop.com'>event website<a>, then click Contact Us at the very bottom. If you reply to this email, it'll get lost into the ether.");
+
+            var orders = play.Site.Models.PlayOrder.Get();
+            foreach (var order in orders)
+            {
+                string day = order.PlayDate.ToString("MM-dd-yyyy").Contains("-17-") ? "Friday" : "Saturday";
+                string body = sb.ToString().Replace("{NAME}", order.Name).Replace("{PLAY_DATE}", day);
+                bool success = Mail.Send(order.Email.Trim(), order.Name.Trim(), "Details on dinner theater this weekend", body, false, false, false, false, true);
+                if (success)
+                {
+                    play.Site.Models.PlayOrder.MarkAsReminded(order.PlayOrderId);
+                }
+            }
             return Content("Sent, done and done-sies.");
         }
 

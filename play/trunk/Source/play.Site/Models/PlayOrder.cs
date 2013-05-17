@@ -140,6 +140,25 @@ namespace play.Site.Models
             }
         }
 
+        public static int MarkAsReminded(int playOrderId)
+        {
+            try
+            {
+                using (var ctx = new PlayDataContext { ObjectTrackingEnabled = true })
+                {
+                    var playOrder = ctx.PlayOrders.FirstOrDefault(x => x.PlayOrderId == playOrderId);
+                    playOrder.ReminderSent = true;
+                    playOrder.ModifyDate = System.DateTime.Now;
+                    ctx.SubmitChanges();
+                    return playOrderId;
+                }
+            }
+            catch
+            {
+                return -1;
+            }
+        }
+
         public static int MarkAsPaid(int playOrderId)
         {
             try

@@ -21,7 +21,19 @@ namespace play.Site.Views.Tools
             to = to.Replace("-", "");
             to = to.Trim();
 
-            category = category.ToLower().Trim() == "house" ? "House" : "Stage";
+            category = category.ToLower().Trim();
+            if (category == "house")
+            {
+                category = "House";
+            }
+            else if (category == "spot")
+            {
+                category = "Spot";
+            }
+            else
+            {
+                category = "Stage";
+            }
 
             string txt = string.Format("{0}{1} {2}{3}", soon ? "Soon... " : "", category, onOff.Trim().ToUpper(), !soon ? " - Now please" : "");
             bool success = Sms.Send(to, txt);

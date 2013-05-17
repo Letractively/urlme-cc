@@ -28,7 +28,7 @@
         a[href$='-now'] { font-weight: bold; }
         a[href*='/on'] { color: green; }
         a[href*='/off'] { color: #333; }
-        a[href*='house'], a[href*='stage'] { border-radius: 3px; font-size: 18px; text-decoration: none; display:inline-block; width: 250px; padding: 20px 25px; border: 1px solid #333; background: #e6e6e6; }
+        a[href*='house'], a[href*='stage'],a[href*='spot'] { border-radius: 3px; font-size: 18px; text-decoration: none; display:inline-block; width: 250px; padding: 20px 25px; border: 1px solid #333; background: #e6e6e6; }
         .category > div:not(:last-child) { margin-bottom: 10px; }
         .category { margin-bottom: 40px; }
         a[href*='/on'] span, a[href*='/off'] span { float: left; display:inline-block; width: 32px; height: 32px; margin-right: 20px; }
@@ -38,15 +38,17 @@
         .category h1 { display:block; height: 32px; padding-left: 40px; }
         h1.house { background: url('http://i.imgur.com/6mgnYzA.png') no-repeat; }
         h1.stage { background: url('http://i.imgur.com/ZXwlqZK.png') no-repeat; }
+        h1.spot { background: url('http://i.imgur.com/2ssrmSU.png') no-repeat; }
         .controls { margin-bottom: 20px; }
             .controls button { margin-left: 10px; padding: 4px 6px; font-size: 16px; }
+            .controls input { width: 150px; }
     </style>
 </head>
 <body>
     <div class="controls">
         <input id="number" type="tel" placeholder="xxx-xxx-xxxx" /><button onclick="localStorage.setItem('number',$('#number').val()); ihdavis.feedback.showSuccess(); return false;">Set</button>
     </div>
-    <div class="category">
+    <div class="category" data-number-id="number">
         <h1 class="house">HOUSE</h1>
         <div>
             <a href="~/house/on-now"><span></span>HOUSE ON!</a>
@@ -57,7 +59,7 @@
             <a href="~/house/off"><span></span>Headsup...House Off</a>
         </div>
     </div>
-    <div class="category">
+    <div class="category" data-number-id="number">
         <h1 class="stage">STAGE</h1>
         <div>
             <a href="~/stage/on-now"><span></span>STAGE ON!</a>
@@ -68,35 +70,40 @@
             <a href="~/stage/off"><span></span>Headsup...Stage Off</a>
         </div>
     </div>
+    <div class="controls">
+        <input id="number2" type="tel" placeholder="xxx-xxx-xxxx" /><button onclick="localStorage.setItem('number2',$('#number2').val()); ihdavis.feedback.showSuccess(); return false;">Set</button>
+    </div>
+    <div class="category" data-number-id="number2">
+        <h1 class="spot">SPOT</h1>
+        <div>
+            <a href="~/spot/on-now"><span></span>Spot ON!</a>
+            <a href="~/spot/off-now"><span></span>Spot OFF!</a>
+        </div>
+        <div>
+            <a href="~/spot/on"><span></span>Headsup...Spot On</a>
+            <a href="~/spot/off"><span></span>Headsup...Spot Off</a>
+        </div>
+    </div>
 </body>
 </html>
 <script>
     $(document).ready(function () {
         // set display
         $("#number").val(localStorage.getItem('number'));
-
-        // click txt display
-        $(document).on("click", ".category h1 a", function (e) {
-            e.preventDefault();
-            var number = $.trim(prompt("Enter cell with dashes, example provided below", "xxx-xxx-xxxx"));
-            var link = $(this);
-            var h = link.closest("h1");
-            var cat = h.attr('class');
-            localStorage.setItem("number", number);
-            link.text(number);
-        });
+        $("#number2").val(localStorage.getItem('number2'));
 
         $(document).on('click', '.category > div > a', function (e) {
             e.preventDefault();
             var el = $(this);
             var cat = el.closest(".category").find("h1").attr("class");
+            var telId = el.closest(".category").attr("data-number-id");
 
             var data = {};
             // bool soon, string category, string onOff, string to
             data.soon = el.text().indexOf("Headsup") >= 0;
             data.category = cat;
             data.onOff = el.attr("href").indexOf("on") >= 0 ? "on" : "off";
-            data.to = localStorage.getItem("number");
+            data.to = localStorage.getItem(telId);
 
             if (!data.to) {
                 alert("Set receiver number first");
@@ -104,7 +111,7 @@
             }
 
             ihdavis.ajax.post("/tools/txt", data, function (resp) {
-
+                // silent
             });
         });
     });

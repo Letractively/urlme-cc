@@ -1,5 +1,6 @@
 ﻿@{
     ViewBag.Title = "Crazy Capers at Coco's Coffee Shop";
+    var onOrderClick = "alert('Sorry, online ticket sales are closed. You can still come either night with a check. Thanks!'); return false;";
 }
 
 @section desktopBody {
@@ -7,7 +8,7 @@
         <h2>About the Play</h2>
         @{ Html.RenderPartial("AboutPlay"); }
         <div class="orderTicketsContainer">
-            <a href="~/order" class="orderTickets">Order Tickets</a>
+            <a href="~/order" onclick="@Html.Raw(onOrderClick)" class="orderTickets">Order Tickets</a>
         </div>
         <div class="orJustDonate">
             Can't make it? You'll be missed! You can still...
@@ -27,7 +28,7 @@
     <div class="aboutPlay justify">
         @{ Html.RenderPartial("AboutPlay"); }
         <div class="orderTicketsContainer">
-            <a href="~/order" class="orderTickets">Order Tickets</a>
+            <a href="~/order" onclick="@Html.Raw(onOrderClick)" class="orderTickets">Order Tickets</a>
         </div>
         <div class="orJustDonate">
             Can't make it? You'll be missed! You can still...

@@ -137,6 +137,7 @@
     <Compile Include="Controllers\OrderController.cs" />
     <Compile Include="Controllers\SmsController.cs" />
     <Compile Include="Controllers\TestController.cs" />
+    <Compile Include="Controllers\ToolsController.cs" />
     <Compile Include="Extensions.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -340,6 +341,7 @@
     <Content Include="Views\Shared\DonateThankYouSnippet.cshtml" />
     <Content Include="Views\Shared\KickstarterSnippet.cshtml" />
     <Content Include="Views\Donate\Kickstarter.cshtml" />
+    <Content Include="Views\Tools\Director.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

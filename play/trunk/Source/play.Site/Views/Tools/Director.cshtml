@@ -1,0 +1,111 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+
+    @* scripts *@
+    @Scripts.Render("~/bundles/ihdavis")
+    @Scripts.Render("~/bundles/jquery")
+
+    @Scripts.Render("~/scripts/plugins/blockUI/jquery.blockUI.js")
+    @Styles.Render("~/scripts/plugins/blockUI/style.css")
+
+     @*styles *@
+    @*@Styles.Render("~/Content/css")*@
+
+    <title>Director</title>
+    <style>
+        body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,code,form,fieldset,legend,input,button,textarea,p,blockquote{margin:0;padding:0;}fieldset,img{border:0;}address,caption,cite,code,dfn,em,strong,th,var,optgroup{font-style:inherit;font-weight:inherit;}del,ins{text-decoration:none;}li{list-style:none;}caption,th{text-align:left;}h1,h2,h3,h4,h5,h6{font-size:100%;font-weight:normal;}q:before,q:after{content:'';}abbr,acronym{border:0;font-variant:normal;}sup{vertical-align:baseline;}sub{vertical-align:baseline;}legend{color:#000;}input,button,textarea,select,optgroup,option{font-family:inherit;font-size:inherit;font-style:inherit;font-weight:inherit;}input,button,textarea,select{*font-size:100%;}
+
+        html { font-size: 22px; font-family: Arial; padding: 20px; }
+        h1 { margin-bottom: 20px; font-weight: bold; }
+        a[href$='-now'] { font-weight: bold; }
+        a[href*='/on'] { color: green; }
+        a[href*='/off'] { color: #333; }
+        a[href*='house'], a[href*='stage'] { border-radius: 3px; font-size: 18px; text-decoration: none; display:inline-block; width: 250px; padding: 20px 25px; border: 1px solid #333; background: #e6e6e6; }
+        .category > div:not(:last-child) { margin-bottom: 10px; }
+        .category { margin-bottom: 40px; }
+        a[href*='/on'] span, a[href*='/off'] span { float: left; display:inline-block; width: 32px; height: 32px; margin-right: 20px; }
+        a[href*='/on'] span { background: url('http://i.imgur.com/yOA1tZH.png'); }
+        a[href*='/off'] span { background: url('http://i.imgur.com/mC5IgyH.png') #333; }
+        a[href*='/off'] { background: #333; color: white; }
+        .category h1 { display:block; height: 32px; padding-left: 40px; }
+        h1.house { background: url('http://i.imgur.com/6mgnYzA.png') no-repeat; }
+        h1.stage { background: url('http://i.imgur.com/ZXwlqZK.png') no-repeat; }
+        .controls { margin-bottom: 20px; }
+            .controls button { margin-left: 10px; padding: 4px 6px; font-size: 16px; }
+    </style>
+</head>
+<body>
+    <div class="controls">
+        <input id="number" type="tel" placeholder="xxx-xxx-xxxx" /><button onclick="localStorage.setItem('number',$('#number').val()); ihdavis.feedback.showSuccess(); return false;">Set</button>
+    </div>
+    <div class="category">
+        <h1 class="house">HOUSE</h1>
+        <div>
+            <a href="~/house/on-now"><span></span>HOUSE ON!</a>
+            <a href="~/house/off-now"><span></span>HOUSE OFF!</a>
+        </div>
+        <div>
+            <a href="~/house/on"><span></span>Headsup...House On</a>
+            <a href="~/house/off"><span></span>Headsup...House Off</a>
+        </div>
+    </div>
+    <div class="category">
+        <h1 class="stage">STAGE</h1>
+        <div>
+            <a href="~/stage/on-now"><span></span>STAGE ON!</a>
+            <a href="~/stage/off-now"><span></span>STAGE OFF!</a>
+        </div>
+        <div>
+            <a href="~/stage/on"><span></span>Headsup...Stage On</a>
+            <a href="~/stage/off"><span></span>Headsup...Stage Off</a>
+        </div>
+    </div>
+</body>
+</html>
+<script>
+    $(document).ready(function () {
+        // set display
+        $("#number").val(localStorage.getItem('number'));
+
+        // click txt display
+        $(document).on("click", ".category h1 a", function (e) {
+            e.preventDefault();
+            var number = $.trim(prompt("Enter cell with dashes, example provided below", "xxx-xxx-xxxx"));
+            var link = $(this);
+            var h = link.closest("h1");
+            var cat = h.attr('class');
+            localStorage.setItem("number", number);
+            link.text(number);
+        });
+
+        $(document).on('click', '.category > div > a', function (e) {
+            e.preventDefault();
+            var el = $(this);
+            var cat = el.closest(".category").find("h1").attr("class");
+
+            var data = {};
+            // bool soon, string category, string onOff, string to
+            data.soon = el.text().indexOf("Headsup") >= 0;
+            data.category = cat;
+            data.onOff = el.attr("href").indexOf("on") >= 0 ? "on" : "off";
+            data.to = localStorage.getItem("number");
+
+            if (!data.to) {
+                alert("Set receiver number first");
+                return;
+            }
+
+            ihdavis.ajax.post("/tools/txt", data, function (resp) {
+
+            });
+        });
+    });
+</script>

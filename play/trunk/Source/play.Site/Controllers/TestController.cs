@@ -12,7 +12,8 @@ namespace play.Site.Controllers
         //
         // GET: /Test/
 
-        public ActionResult Text()
+        [HttpGet]
+        public ActionResult Text(string to = null)
         {
             string rtn = "";
             
@@ -21,7 +22,7 @@ namespace play.Site.Controllers
             string token = "8366472fc26eb896a54a2bbedc1cf259";
 
             var twilio = new TwilioRestClient(sid, token);
-            var msg = twilio.SendSmsMessage("+15403524840", "+15408183073", "Hello from live");
+            var msg = twilio.SendSmsMessage("+15403524840", to ?? "+15408183073", "Hello world");
             rtn += msg.RestException == null ? "Success, " : "Error: " + msg.RestException.Message;
 
             return Content("Status - " + rtn);

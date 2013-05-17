@@ -109,9 +109,11 @@ namespace play.Site.Controllers
             sb.Append("<br/>");
             sb.Append("Shari Davis, Director<br/>");
             sb.Append("<br/>");
-            sb.Append("Ps. any questions? Please visit the <a href='http://cocoscoffeeshop.com'>event website<a>, then click Contact Us at the very bottom. If you reply to this email, it'll get lost into the ether.");
+            sb.Append("Ps. any questions? Please visit the <a href='http://cocoscoffeeshop.com'>event website</a>, then click Contact Us at the very bottom. If you reply to this email, it'll get lost into the ether.");
 
             var orders = play.Site.Models.PlayOrder.Get();
+            orders = orders.Where(x => !x.ReminderSent).ToList();
+
             foreach (var order in orders)
             {
                 string day = order.PlayDate.ToString("MM-dd-yyyy").Contains("-17-") ? "Friday" : "Saturday";

@@ -2,16 +2,22 @@
 <ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11, 8.5" name="Play">
   <DataContextMoniker Name="/PlayDataContext" />
   <nestedChildShapes>
-    <classShape Id="35bd188a-b6f5-4c5b-87e2-d0e94ead9792" absoluteBounds="0.75, 0.75, 2, 1.7708968098958331">
-      <DataClassMoniker Name="/PlayDataContext/Log" />
-      <nestedChildShapes>
-        <elementListCompartment Id="13976a77-d515-4cc9-9bb7-b924a16fb926" absoluteBounds="0.765, 1.21, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
-      </nestedChildShapes>
-    </classShape>
-    <classShape Id="81be2aba-9256-47c7-ac52-ace20cf59079" absoluteBounds="3.75, 0.75, 2, 3.6939111328124996">
+    <classShape Id="a4d938e0-031f-4bfd-b669-9cdfd1949d8e" absoluteBounds="0.75, 0.75, 2, 3.6939111328124996">
       <DataClassMoniker Name="/PlayDataContext/PlayOrder" />
       <nestedChildShapes>
-        <elementListCompartment Id="6c7a3e17-162c-41c3-a4c5-99546eaa9c6a" absoluteBounds="3.765, 1.21, 1.9700000000000002, 3.1339111328125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="2c05c606-ef5b-4310-90e6-fe241712ed9e" absoluteBounds="0.765, 1.21, 1.9700000000000002, 3.1339111328125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="72069467-fb93-45be-a19e-6ba9b7c33c3e" absoluteBounds="3.75, 0.75, 2, 1.5785953776041666">
+      <DataClassMoniker Name="/PlayDataContext/AdHoc" />
+      <nestedChildShapes>
+        <elementListCompartment Id="0b91e6d7-d3eb-4250-91e9-2e6dd30afa6b" absoluteBounds="3.765, 1.21, 1.9700000000000002, 1.0185953776041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="1ae13605-11f0-48a0-b69b-a57d9b13f53a" absoluteBounds="3.75, 3.75, 2, 1.7708968098958327">
+      <DataClassMoniker Name="/PlayDataContext/Log" />
+      <nestedChildShapes>
+        <elementListCompartment Id="f05dbc20-1eb6-4203-b5e7-61c154476134" absoluteBounds="3.765, 4.21, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
   </nestedChildShapes>

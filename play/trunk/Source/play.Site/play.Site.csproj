@@ -142,6 +142,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\AdHoc.cs" />
     <Compile Include="Utils\Caching\Cache.cs" />
     <Compile Include="Utils\Caching\CacheItem.cs" />
     <Compile Include="Utils\Caching\CacheItemManager.cs" />
@@ -158,6 +159,7 @@
     <Compile Include="Utils\Sms.cs" />
     <Compile Include="ViewModels\ContactUs.cs" />
     <Compile Include="ViewModels\AdminIndex.cs" />
+    <Compile Include="ViewModels\ToolsMail.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\audio\a-tone\a-tone.mp3" />
@@ -349,6 +351,7 @@
     <Content Include="Views\Shared\KickstarterSnippet.cshtml" />
     <Content Include="Views\Donate\Kickstarter.cshtml" />
     <Content Include="Views\Tools\Director.cshtml" />
+    <Content Include="Views\Tools\Mail.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

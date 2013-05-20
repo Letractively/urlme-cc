@@ -30,7 +30,7 @@ namespace play.Site.Controllers
         [HttpPost]
         public ActionResult ContactUs(play.Site.ViewModels.ContactUs contactUs)
         {
-            Mail.SendToShariContactUs(contactUs.Email, contactUs.Name, contactUs.Message);
+            Utils.Mail.SendToShariContactUs(contactUs.Email, contactUs.Name, contactUs.Message);
             return Redirect("~/contactussuccess");
         }
 

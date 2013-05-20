@@ -142,7 +142,10 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Mail.cs" />
+    <Compile Include="Utils\Caching\Cache.cs" />
+    <Compile Include="Utils\Caching\CacheItem.cs" />
+    <Compile Include="Utils\Caching\CacheItemManager.cs" />
+    <Compile Include="Utils\Mail.cs" />
     <Compile Include="Models\Object.cs" />
     <Compile Include="Models\Log.cs" />
     <Compile Include="Models\Play.designer.cs">
@@ -152,11 +155,14 @@
     </Compile>
     <Compile Include="Models\PlayOrder.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Sms.cs" />
+    <Compile Include="Utils\Sms.cs" />
     <Compile Include="ViewModels\ContactUs.cs" />
     <Compile Include="ViewModels\AdminIndex.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\audio\a-tone\a-tone.mp3" />
+    <Content Include="Content\audio\a-tone\example_a-tone.htm" />
+    <Content Include="Content\audio\robot-blip\robot-blip.mp3" />
     <Content Include="Content\images\bg.gif" />
     <Content Include="Content\images\blank-ticket-2.png" />
     <Content Include="Content\images\blank-ticket-3.png" />
@@ -257,6 +263,7 @@
       <LastGenOutput>Play.designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </Content>
+    <Content Include="Content\audio\a-tone\a-tone.ogg" />
     <None Include="Properties\PublishProfiles\publish to prod.pubxml" />
     <Content Include="Scripts\ihdavis.siteActions.js" />
     <Content Include="Scripts\ihdavis.admin.index.js" />

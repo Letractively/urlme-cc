@@ -16,6 +16,14 @@ namespace play.Site.Views.Tools
             return View();
         }
 
+        public class Alert {
+            public string category { get; set; }
+            public string onOff { get; set; }
+            public string to { get; set; }
+            public string message { get; set; }
+        }
+
+        // ?soon=false&category=house&onOff=off&to=555
         public JsonResult Txt(bool soon, string category, string onOff, string to)
         {
             to = to.Replace("-", "");
@@ -35,10 +43,27 @@ namespace play.Site.Views.Tools
                 category = "Stage";
             }
 
-            string txt = string.Format("{0}{1} {2}{3}", soon ? "Soon... " : "", category, onOff.Trim().ToUpper(), !soon ? " - Now please" : "");
-            bool success = Sms.Send(to, txt);
+            string soonStr = soon ? "Soon... " : "";
+            onOff = onOff.Trim().ToUpper();
+            onOff = onOff == "ON" ? "UP" : "DOWN";
+            string postfix = !soon ? " - Now please" : "";
 
-            return this.Json(new { success = success }, JsonRequestBehavior.AllowGet);
+            string msg = string.Format("{0}{1} {2}{3}", soonStr, category, onOff, postfix);
+
+            var alert = new Alert()
+            {
+                category = category,
+                message = msg,
+                onOff = onOff,
+                to = to
+            };
+
+            Utils.Caching.Cache.Store("alert", alert);
+
+            // bool success = Utils.Sms.Send(to, msg);
+            bool success = alert != null;
+
+            return this.Json(new { success = true }, JsonRequestBehavior.AllowGet);
         }
     }
 }

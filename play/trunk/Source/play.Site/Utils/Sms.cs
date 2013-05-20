@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using Twilio;
 
-namespace play.Site
+namespace play.Site.Utils
 {
     public class Sms
     {

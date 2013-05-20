@@ -31,7 +31,7 @@ namespace play.Site.Controllers
 
             if (!string.IsNullOrWhiteSpace(txt))
             {
-                Sms.Send(From, txt);
+                Utils.Sms.Send(From, txt);
             }
             
             return Content("");

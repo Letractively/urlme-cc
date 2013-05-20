@@ -1,5 +1,7 @@
 ﻿@{
     Layout = null;
+    bool iPad = Request.RawUrl.ToString().ToLower().Contains("ipad");
+    bool headsUp = Request.RawUrl.ToString().ToLower().Contains("headsup");
 }
 
 <!DOCTYPE html>
@@ -25,6 +27,9 @@
 
         html { font-size: 22px; font-family: Arial; padding: 20px; }
         h1 { margin-bottom: 20px; font-weight: bold; }
+
+        .hidden { display: none; }
+
         a[href$='-now'] { font-weight: bold; }
         a[href*='/on'] { color: green; }
         a[href*='/off'] { color: #333; }
@@ -39,12 +44,28 @@
         h1.house { background: url('http://i.imgur.com/6mgnYzA.png') no-repeat; }
         h1.stage { background: url('http://i.imgur.com/ZXwlqZK.png') no-repeat; }
         h1.spot { background: url('http://i.imgur.com/2ssrmSU.png') no-repeat; }
+        h1.iPad { background: url('http://i.imgur.com/bzecaTq.png') no-repeat; }
         .controls { margin-bottom: 20px; }
             .controls button { margin-left: 10px; padding: 4px 6px; font-size: 16px; }
             .controls input { width: 150px; }
     </style>
 </head>
 <body>
+
+    <audio id="aTone" preload="auto">
+	    <source src="~/content/audio/a-tone/a-tone.mp3"></source>
+	    <source src="~/content/audio/a-tone/a-tone.ogg"></source>
+	    Your browser isn't invited for super fun audio time.
+    </audio>
+    <script>var upAudio = document.getElementById("aTone");</script>
+
+    <audio id="robotBlip" preload="auto">
+	    <source src="~/content/audio/robot-blip/robot-blip.mp3"></source>
+	    <source src="~/content/audio/robot-blip/robot-blip.ogg"></source>
+	    Your browser isn't invited for super fun audio time.
+    </audio>
+    <script>var downAudio = document.getElementById("robotBlip");</script>
+
     <div class="controls">
         <input id="number" type="tel" placeholder="xxx-xxx-xxxx" /><button onclick="localStorage.setItem('number',$('#number').val()); ihdavis.feedback.showSuccess(); return false;">Set</button>
     </div>
@@ -54,9 +75,13 @@
             <a href="~/house/on-now"><span></span>HOUSE ON!</a>
             <a href="~/house/off-now"><span></span>HOUSE OFF!</a>
         </div>
-        <div>
+        <div class="@(headsUp ? "" : "hidden")">
             <a href="~/house/on"><span></span>Headsup...House On</a>
             <a href="~/house/off"><span></span>Headsup...House Off</a>
+        </div>
+        <div class="@(iPad ? "" : "hidden")">
+            <a href="~/house/on" data-ipad="true"><span></span>iPad...House On</a>
+            <a href="~/house/off" data-ipad="true"><span></span>iPad...House Off</a>
         </div>
     </div>
     <div class="category" data-number-id="number">
@@ -65,9 +90,13 @@
             <a href="~/stage/on-now"><span></span>STAGE ON!</a>
             <a href="~/stage/off-now"><span></span>STAGE OFF!</a>
         </div>
-        <div>
+        <div class="@(headsUp ? "" : "hidden")">
             <a href="~/stage/on"><span></span>Headsup...Stage On</a>
             <a href="~/stage/off"><span></span>Headsup...Stage Off</a>
+        </div>
+        <div class="@(iPad ? "" : "hidden")">
+            <a href="~/stage/on" data-ipad="true"><span></span>iPad...Stage On</a>
+            <a href="~/stage/off" data-ipad="true"><span></span>iPad...Stage Off</a>
         </div>
     </div>
     <div class="controls">

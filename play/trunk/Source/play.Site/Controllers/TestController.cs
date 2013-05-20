@@ -30,8 +30,8 @@ namespace play.Site.Controllers
 
         public ActionResult Send()
         {
-            Mail.Send("ihdavis@gmail.com", "Ian Davis", "Test Subject w/ includeIan", "Test body w/ includeIan", true);
-            Mail.Send("ihdavis@gmail.com", "Ian Davis", "Test Subject w/ !includeIan", "Test body w/ !includeIan", false);
+            Utils.Mail.Send("ihdavis@gmail.com", "Ian Davis", "Test Subject w/ includeIan", "Test body w/ includeIan", true);
+            Utils.Mail.Send("ihdavis@gmail.com", "Ian Davis", "Test Subject w/ !includeIan", "Test body w/ !includeIan", false);
             return Content("Sent!");
         }
     }

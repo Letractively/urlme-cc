@@ -1,0 +1,81 @@
+﻿@model play.Site.ViewModels.ToolsMail
+@using play.Site.Extensions
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+    
+    @* scripts *@
+    @Scripts.Render("~/bundles/ihdavis")
+    @Scripts.Render("~/bundles/jquery")
+
+    @* plugins *@
+    @Scripts.Render("~/scripts/plugins/blockUI/jquery.blockUI.js")
+    @Styles.Render("~/scripts/plugins/blockUI/style.css")
+
+    <title>Mail</title>
+    <style>
+        body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,code,form,fieldset,legend,input,button,textarea,p,blockquote{margin:0;padding:0;}fieldset,img{border:0;}address,caption,cite,code,dfn,em,strong,th,var,optgroup{font-style:inherit;font-weight:inherit;}del,ins{text-decoration:none;}li{list-style:none;}caption,th{text-align:left;}h1,h2,h3,h4,h5,h6{font-size:100%;font-weight:normal;}q:before,q:after{content:'';}abbr,acronym{border:0;font-variant:normal;}sup{vertical-align:baseline;}sub{vertical-align:baseline;}legend{color:#000;}input,button,textarea,select,optgroup,option{font-family:inherit;font-size:inherit;font-style:inherit;font-weight:inherit;}input,button,textarea,select{*font-size:100%;}
+
+        html { font-size: 22px; font-family: Arial; padding: 20px; }
+        h1 { margin-bottom: 20px; font-weight: bold; }
+
+        .hidden { display: none; }
+
+        form { margin-bottom: 20px; }
+            form button { padding: 4px 6px; font-size: 16px; }
+            form input { width: 275px; margin-right: 10px; padding: 5px; }
+                form input#ToName { width: 180px; }
+            form textarea { margin: 20px 0; padding: 5px; width: 481px; font-size: 12px; height: 200px; }
+    </style>
+</head>
+<body>
+    @using (Html.BeginForm())
+    {
+        @Html.TextBoxFor(m => m.ToName, new { placeholder = "Michael Vick", required="required" })
+        @Html.TextBoxFor(m => m.ToEmail, new { placeholder = "michael.vick@gmail.com", type = "email", required="required" })
+        <input type="hidden" name="ToAllTicketHolders" value="false" />
+        @Html.HiddenFor(m => m.Template)
+        <div>
+            @Html.TextAreaFor(m => m.Body)
+        </div>
+        <div><button type="submit">Send</button></div>
+    }
+
+    @if (Model.AdHocs.Any())
+    {
+        <div style="margin-top:20px;">
+            <div>Already sent to...</div>
+            @foreach (var adHoc in Model.AdHocs)
+            {
+                <div>@adHoc.Value</div>        
+            }
+        </div>    
+    }
+</body>
+</html>
+
+<script>
+    var adHocs = @Html.Raw(Model.AdHocs.ToJson());
+    $(document).on("click", "[type='submit']", function(e) {
+        var email = $.trim($("#ToEmail").val());
+        var existingEmail = $.grep(adHocs, function(adHoc, i) {
+            var adHocEmail = adHoc.Value.toLowerCase();
+            adHocEmail = adHocEmail.split('-')[1];
+            adHocEmail = $.trim(adHocEmail);
+            return adHocEmail === email.toLowerCase();
+        });
+        if (existingEmail.length) {
+            alert('This email has been sent already, try another please.');
+            return false;
+        }
+        return true;
+    });
+</script>

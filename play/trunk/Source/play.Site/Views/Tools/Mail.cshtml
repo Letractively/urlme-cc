@@ -24,7 +24,7 @@
     <style>
         body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,code,form,fieldset,legend,input,button,textarea,p,blockquote{margin:0;padding:0;}fieldset,img{border:0;}address,caption,cite,code,dfn,em,strong,th,var,optgroup{font-style:inherit;font-weight:inherit;}del,ins{text-decoration:none;}li{list-style:none;}caption,th{text-align:left;}h1,h2,h3,h4,h5,h6{font-size:100%;font-weight:normal;}q:before,q:after{content:'';}abbr,acronym{border:0;font-variant:normal;}sup{vertical-align:baseline;}sub{vertical-align:baseline;}legend{color:#000;}input,button,textarea,select,optgroup,option{font-family:inherit;font-size:inherit;font-style:inherit;font-weight:inherit;}input,button,textarea,select{*font-size:100%;}
 
-        html { font-size: 22px; font-family: Arial; padding: 20px; }
+        html { font-size: 18px; font-family: Arial; padding: 20px; }
         h1 { margin-bottom: 20px; font-weight: bold; }
 
         .hidden { display: none; }
@@ -63,6 +63,10 @@
 </html>
 
 <script>
+    // show success?
+    var showSuccess = '@Request.RawUrl.ToString()'.indexOf("showSuccess=true") >= 0;
+    if (showSuccess) { ihdavis.feedback.showSuccess(); }
+
     var adHocs = @Html.Raw(Model.AdHocs.ToJson());
     $(document).on("click", "[type='submit']", function(e) {
         var email = $.trim($("#ToEmail").val());

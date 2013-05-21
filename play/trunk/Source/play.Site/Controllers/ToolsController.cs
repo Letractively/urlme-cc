@@ -76,6 +76,8 @@ namespace play.Site.Views.Tools
             bool toAll = vm.ToEmail == "all@all.com";
             vm.ToAllTicketHolders = toAll;
 
+            string redirectUrl = string.Format("~/tools/mail?template={0}&showSuccess=true", vm.Template);
+
             if (!vm.ToAllTicketHolders)
             {
                 // send to one specific person
@@ -84,7 +86,7 @@ namespace play.Site.Views.Tools
                 {
                     vm.Body = vm.Body.Replace("{NAME}", vm.ToName);
                     bool success = Utils.Mail.Send(vm.ToEmail, vm.ToName, "Net proceeds from the play", vm.Body, false, false, false, false, true);
-                    return Redirect("~/tools/mail?template=" + vm.Template);
+                    return Redirect(redirectUrl);
                 }
                 else
                 {
@@ -104,7 +106,7 @@ namespace play.Site.Views.Tools
                 }
             }
 
-            return Redirect("~/tools/mail?template=" + vm.Template);
+            return Redirect(redirectUrl);
         }
 
         public class Alert

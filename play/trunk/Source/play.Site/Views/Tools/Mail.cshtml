@@ -51,11 +51,11 @@
 
     @if (Model.AdHocs.Any())
     {
-        <div style="margin-top:20px;">
+        <div style="margin-top:20px; display:none;">
             <div>Already sent to...</div>
             @foreach (var adHoc in Model.AdHocs)
             {
-                <div>@adHoc.Value</div>        
+                <div>@adHoc.Value.Split('^')[0] - @adHoc.Value.Split('^')[1]</div>
             }
         </div>    
     }
@@ -66,9 +66,12 @@
     var adHocs = @Html.Raw(Model.AdHocs.ToJson());
     $(document).on("click", "[type='submit']", function(e) {
         var email = $.trim($("#ToEmail").val());
+        $("#ToEmail").val(email);
+        var name = $.trim($("#ToName").val());
+        $("#ToName").val(name);
         var existingEmail = $.grep(adHocs, function(adHoc, i) {
             var adHocEmail = adHoc.Value.toLowerCase();
-            adHocEmail = adHocEmail.split('-')[1];
+            adHocEmail = adHocEmail.split('^')[1];
             adHocEmail = $.trim(adHocEmail);
             return adHocEmail === email.toLowerCase();
         });

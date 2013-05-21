@@ -34,9 +34,9 @@ namespace play.Site.Views.Tools
                     sb.Append("<br/>");
                     sb.Append("We have the answer to The Question! <i>So, how much was raised from this weekend?</i><br/>");
                     sb.Append("<br/>");
-                    sb.Append("<span style='font-weight:bold; color: blue;'>$3,643.41</span> net proceeds going directly into the Abigail Grace Adoption Fund!<br/>");
+                    sb.Append("<span style='font-weight:bold; color: blue;'>$3,593.41</span> net proceeds going directly into the Abigail Grace Adoption Fund!<br/>");
                     sb.Append("<br/>");
-                    sb.Append("Thanks to you, Heather and Benson are that much closer to meeting their future daughter. Check out <a href='http://abigailsadoption.blogspot.com/'>their Blog</a> for updates on their adoption, and for news on future events. Please contact them if you have any ideas. Thanks!");
+                    sb.Append("Thanks to you, Heather and Benson are that much closer to meeting their future daughter. Check out <a href='http://abigailsadoption.blogspot.com/'>their blog</a> for updates on their adoption, and for news on future events. Please contact them if you have any ideas. Thanks!");
                     break;
                 default:
                     break;
@@ -51,35 +51,58 @@ namespace play.Site.Views.Tools
             {
                 Body = sb.ToString()
                 , Template = template
-                , AdHocs = Models.AdHoc.Get("tools-mail-" + template)
+                , AdHocs = Models.AdHoc.Get("tools-mail-" + template).OrderByDescending(x => x.AdHocId).ToList()
             };
 
             return View(vm);
+        }
 
-            //var orders = play.Site.Models.PlayOrder.Get();
+        private bool Proceed(string email, string name, string template)
+        {
+            bool notAlreadySent = NotAlreadySent(email.ToLower(), template);
+            return notAlreadySent && Models.AdHoc.Save(new Models.AdHoc { Tag = "tools-mail-" + template, Value = string.Format("{0}^{1}", name.ToLower(), email.ToLower()) });
+        }
 
-            //foreach (var order in orders)
-            //{
-            //    string body = sb.ToString().Replace("{NAME}", order.Name);
-            //    bool success = Utils.Mail.Send(order.Email.Trim(), order.Name.Trim(), "Net proceeds from the play", body, false, false, false, false, false);
-            //}
-            //return Content("Sent, done and done-sies.");
+        private bool NotAlreadySent(string email, string template)
+        {
+            var adHocs = Models.AdHoc.Get("tools-mail-" + template).Where(x => x.Value != null).ToList();
+            adHocs = adHocs.Where(x => x.Value.Contains("^")).ToList();
+            return !adHocs.Any(x => x.Value.Split('^')[1].ToLower() == email.ToLower());
         }
 
         [HttpPost, ValidateInput(false)]
         public ActionResult Mail(ViewModels.ToolsMail vm)
         {
+            bool toAll = vm.ToEmail == "all@all.com";
+            vm.ToAllTicketHolders = toAll;
+
             if (!vm.ToAllTicketHolders)
             {
                 // send to one specific person
-                bool notAlreadySent = Models.AdHoc.Save(new Models.AdHoc { Tag = "tools-mail-" + vm.Template, Value = string.Format("{0} - {1}", vm.ToName, vm.ToEmail) });
-                if (notAlreadySent)
+                bool proceed = Proceed(vm.ToEmail, vm.ToName, vm.Template);
+                if (proceed)
                 {
                     vm.Body = vm.Body.Replace("{NAME}", vm.ToName);
                     bool success = Utils.Mail.Send(vm.ToEmail, vm.ToName, "Net proceeds from the play", vm.Body, false, false, false, false, true);
                     return Redirect("~/tools/mail?template=" + vm.Template);
                 }
-            }            
+                else
+                {
+                    return Content("Already sent to this email");
+                }
+            }
+
+            // email to all ticket holders
+            var orders = play.Site.Models.PlayOrder.Get();
+            foreach (var order in orders)
+            {
+                bool proceed = Proceed(order.Email, order.Name, vm.Template);
+                if (proceed)
+                {
+                    string body = vm.Body.ToString().Replace("{NAME}", order.Name);
+                    bool success = Utils.Mail.Send(order.Email.Trim(), order.Name.Trim(), "Net proceeds from the play", body, false, false, false, false, false);
+                }
+            }
 
             return Redirect("~/tools/mail?template=" + vm.Template);
         }

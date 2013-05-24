@@ -386,7 +386,8 @@ namespace movies.Model
                     }
                     var movieCollection = rtJson.FromJson<MovieCollection>();
                     movieCollection.movies.ForEach(x => ret.Add(x));
-                    return ret.Where(x => x.alternate_ids != null && !x.posters.detailed.Contains("poster_default.gif") && x.mpaa_rating != "Unrated").ToDictionary(key => key.id, value => value);
+
+                    return ret.Where(x => !x.posters.detailed.Contains("poster_default.gif") && x.mpaa_rating != "Unrated").ToDictionary(key => key.id, value => value);
                 });
 
             // set reviews for each movie

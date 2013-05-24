@@ -383,8 +383,8 @@ namespace movies.Model
                         case Enumerations.MovieLists.Upcoming:
                             rtJson = API.RottenTomatoes.GetUpcomingJson();
                             break;
-
-                            var movieCollection = rtJson.FromJson<MovieCollection>();
+                    }
+                    var movieCollection = rtJson.FromJson<MovieCollection>();
                     movieCollection.movies.ForEach(x => ret.Add(x));
                     return ret.Where(x => x.alternate_ids != null && !x.posters.detailed.Contains("poster_default.gif") && x.mpaa_rating != "Unrated").ToDictionary(key => key.id, value => value);
                 });

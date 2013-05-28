@@ -1,0 +1,14 @@
+﻿body {
+    font-size: 12px;
+    font-family: "Segoe UI", Verdana, Helvetica, Sans-Serif;
+    color: #232323;
+    background-color: #fff;
+}
+
+header, footer, nav, section {
+    display: block;
+}
+
+#content { margin: 0 auto; width: 193px; padding: 20px; }
+    #content #logo { background: url('images/logo.jpg') no-repeat; width:193px; height: 242px; }
+

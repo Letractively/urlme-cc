@@ -43,6 +43,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="TMS.cs" />
     <Compile Include="TrailerAddict.cs" />
     <Compile Include="IVA.cs" />
     <Compile Include="Twitter.cs" />

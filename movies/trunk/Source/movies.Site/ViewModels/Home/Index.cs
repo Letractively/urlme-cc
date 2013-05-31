@@ -5,9 +5,8 @@ namespace movies.Site.ViewModels.Home
     public class Index : ViewModelBase
     {
         public Dictionary<string, Model.Movie> ThisWeekendMovies { get; set; }
-        public Dictionary<string, Model.Movie> OpeningMovies { get; set; }
-        public Dictionary<string, Model.Movie> BoxOfficeMovies { get; set; }
         public Dictionary<string, Model.Movie> UpcomingMovies { get; set; }
+        public Dictionary<string, Model.Movie> OpeningMovies { get; set; }
         public Dictionary<string, Model.Movie> InTheatersMovies { get; set; }
         public List<Model.TrailerAddict.Trailer> FeatureTrailers { get; set; }
         public Dictionary<string, Model.Redbox.Movie> RedboxMovies { get; set; }

@@ -21,68 +21,38 @@ namespace movies.Site.Controllers
 
             var vm = new ViewModels.Home.Index
             {
-                OpeningMovies = Movie.GetMovies(Enumerations.MovieLists.Opening),
-                BoxOfficeMovies = Movie.GetMovies(Enumerations.MovieLists.BoxOffice),
                 InTheatersMovies = inTheatersMoviesDisplay,
                 UpcomingMovies = Movie.GetMovies(Enumerations.MovieLists.Upcoming),
                 ThisWeekendMovies = new Dictionary<string,Movie>(),
+                OpeningMovies = Movie.GetMovies(Enumerations.MovieLists.Opening),
+                FeatureTrailers = TrailerAddict.GetFeatured(20).Take(8).ToList(),
+                RecentReviews = Data.DomainModels.MovieReview.GetLatest(7),
 
                 OverlayMovie = null
             };
 
-            // DESKTOP VIEW? 
-            if (!Request.Browser.IsMobileDevice)
+            // build This Weekend list, pulling from in theater movies and opening movies
+            var inTheaterKeysToFilterOut = new List<string>();
+            var pullMovieLists = new List<Dictionary<string, Movie>>();
+            pullMovieLists.Add(vm.InTheatersMovies);
+            pullMovieLists.Add(vm.OpeningMovies);
+            foreach (var movieList in pullMovieLists)
             {
-                vm.FeatureTrailers = TrailerAddict.GetFeatured(20).Take(8).ToList();
-                // vm.RedboxMovies = Redbox.GetMovies();
-                vm.RecentReviews = Data.DomainModels.MovieReview.GetLatest(7);
-                //if (!Request.Url.ToString().Contains("localhost"))
-                //{
-                // vm.RedboxMovies = Redbox.GetMovies();
-                //}
-            }
-
-            // remove any movies in InTheatersMovies that are already in Box Office
-            foreach (var movie in vm.BoxOfficeMovies)
-            {
-                if (vm.InTheatersMovies.ContainsKey(movie.Key))
+                foreach (var movie in movieList)
                 {
-                    vm.InTheatersMovies.Remove(movie.Key);
+                    if (movie.Value.IsThisWeekend && !vm.ThisWeekendMovies.ContainsKey(movie.Key))
+                    {
+                        vm.ThisWeekendMovies.Add(movie.Key, movie.Value);
+                        inTheaterKeysToFilterOut.Add(movie.Key);
+                    }
                 }
             }
-
-            // remove any movies in InTheatersMovies that are in Opening
-            foreach (var movie in vm.OpeningMovies)
+            if (inTheaterKeysToFilterOut.Any())
             {
-                if (vm.InTheatersMovies.ContainsKey(movie.Key))
-                {
-                    vm.InTheatersMovies.Remove(movie.Key);
-                }
-            }
-
-            // add to This Weekend list, pulling from Opening & box office
-            foreach (var movie in vm.OpeningMovies)
-            {
-                if (movie.Value.IsThisWeekend && !vm.ThisWeekendMovies.ContainsKey(movie.Key))
-                {
-                    vm.ThisWeekendMovies.Add(movie.Key, movie.Value);
-                }
-            }
-            var boxOfficeKeysToFilterOut = new List<string>();
-            foreach (var movie in vm.BoxOfficeMovies)
-            {
-                if (movie.Value.IsThisWeekend && !vm.ThisWeekendMovies.ContainsKey(movie.Key))
-                {
-                    vm.ThisWeekendMovies.Add(movie.Key, movie.Value);
-                    boxOfficeKeysToFilterOut.Add(movie.Key);
-                }
-            }
-            if (boxOfficeKeysToFilterOut.Any())
-            {
-                vm.BoxOfficeMovies = vm.BoxOfficeMovies.Where(x => boxOfficeKeysToFilterOut.Contains(x.Key)).ToDictionary(key => key.Key, value => value.Value);
+                vm.InTheatersMovies = vm.InTheatersMovies.Where(x => !inTheaterKeysToFilterOut.Contains(x.Key)).ToDictionary(key => key.Key, value => value.Value);
             }        
 
-            // movie view?
+            // movie or trailer view?
             if (!string.IsNullOrWhiteSpace(rtMovieId))
             {
                 Model.Movie movie = null;
@@ -118,7 +88,7 @@ namespace movies.Site.Controllers
                 // non-movie view. still set open graph stuff
                 this.OpenGraphImage = "http://seeitornot.co/content/logo_fbopengraph.png";
                 this.OpenGraphTitle = "See it or Not";
-                this.OpenGraphDescription = "Movie reviews from JohnHanlonReviews.com and RottenTomatoes.com, showtimes, and quick parental guide access for box office, coming soon, and movies opening this week!";
+                this.OpenGraphDescription = "Movie reviews, showtimes, and quick parental guide access for all movies!";
             }
 
             return View(vm);

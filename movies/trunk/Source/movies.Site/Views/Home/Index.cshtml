@@ -63,12 +63,7 @@
                 {
                     <h2 class="active alert" data-id-to-show="thisWeekend">This Weekend</h2>    
                 }
-                <h2 class="@(!anyThisWeekend ? "active" : "")" data-id-to-show="boxOffice">Top Box Office</h2>
-                @if (!anyThisWeekend)
-                {
-                    <h2 data-id-to-show="opening">Opening This Week</h2>
-                }
-                <h2 data-id-to-show="inTheaters">In Theaters</h2>
+                <h2 class="@(!anyThisWeekend ? "active" : "")" data-id-to-show="inTheaters">In Theaters</h2>
                 <h2 data-id-to-show="upcoming">Coming Soon</h2>
             </div>
 
@@ -77,13 +72,8 @@
                 {
                     <div id="thisWeekend" class="movieListContainer lazyLoaded">@this.Html.Partial("MovieList", this.Model.ThisWeekendMovies)</div>                    
                 }                
-                <div id="boxOffice" class="movieListContainer @(!anyThisWeekend ? "lazyLoaded" : "hidden")">@this.Html.Partial("MovieList", this.Model.BoxOfficeMovies)</div>
-                @if (!anyThisWeekend)
-                {
-                    <div id="opening" class="movieListContainer hidden">@this.Html.Partial("MovieList", this.Model.OpeningMovies)</div>
-                }                
+                <div id="inTheaters" class="movieListContainer @(!anyThisWeekend ? "lazyLoaded" : "hidden")">@this.Html.Partial("MovieList", this.Model.InTheatersMovies)</div>
                 <div id="upcoming" class="movieListContainer hidden">@this.Html.Partial("MovieList", this.Model.UpcomingMovies)</div>
-                <div id="inTheaters" class="movieListContainer hidden">@this.Html.Partial("MovieList", this.Model.InTheatersMovies)</div>
             </div>
         </div>
         <div class="right group">

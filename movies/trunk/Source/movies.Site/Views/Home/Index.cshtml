@@ -34,8 +34,14 @@
 }
 
 <div class="body">
+    <div class="m">
+        mobile
+    </div>@* end mobile *@
+
+    <div class="dt">
+
     <!-- WHAT'S HOT -->
-    <section id="whatsHotView" class="content" data-navitemtext="What's Hot">
+    <section id="whatsHotView" class="dt content" data-navitemtext="What's Hot">
         <div class="left group">
             <h2 class="dt">Trailers</h2>
             <div class="dt trailersContainer rounded glowing group">
@@ -76,7 +82,7 @@
                 <div id="upcoming" class="movieListContainer hidden">@this.Html.Partial("MovieList", this.Model.UpcomingMovies)</div>
             </div>
         </div>
-        <div class="right group">
+        <div class="dt right group">
             <h2>Reviews by John Hanlon</h2>
             <div class="reviews rounded glowing group">
                 @foreach (var review in this.Model.RecentReviews)
@@ -176,5 +182,6 @@
         this.Html.RenderPartial("TrailerDetails", this.Model.OverlayTrailer);
     }
     </section>
+    </div>@* end desktop *@
     <div id="overlay" class="closeMovieDetails"></div>
 </div>

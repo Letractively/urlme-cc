@@ -37,9 +37,12 @@
     @if (anyThisWeekend)
     {
         <h2>This Weekend</h2>
+        <div>@this.Html.Partial("MovieList.Mobile", this.Model.ThisWeekendMovies)</div>
     }
     <h2>@(anyThisWeekend ? "Also " : "")In Theaters</h2>
+    <div>@this.Html.Partial("MovieList.Mobile", this.Model.InTheatersMovies)</div>
     <h2>Coming Soon</h2>
+    <div>@this.Html.Partial("MovieList.Mobile", this.Model.UpcomingMovies)</div>
 </div>@* end mobile *@
 
 <div class="body">

@@ -39,6 +39,9 @@ div.loading { background: url('content/images/ajax-loader-blue-ribbon_32x32.gif'
     filter: progid:DXImageTransform.Microsoft.gradient(startColorStr='#171717', endColorStr='#1f1f20');
 }
 
+.m { }
+    .m h2 { border-bottom: 1px solid #b3b3b3; background: #eee; color: #3e3e3e; font-weight: bold; text-shadow: 0 1px 1px white; background-image: -webkit-gradient(linear,left top,left bottom,from(#f0f0f0),to(#ddd)); background-image: -webkit-linear-gradient(#f0f0f0,#ddd); background-image: -moz-linear-gradient(#f0f0f0,#ddd); background-image: -ms-linear-gradient(#f0f0f0,#ddd); background-image: -o-linear-gradient(#f0f0f0,#ddd); background-image: linear-gradient(#f0f0f0,#ddd); font-size: 16px; padding: 13px 12px 10px 10px; text-overflow: ellipsis; overflow: hidden; white-space: nowrap; }
+
 /* -- Floating Containers --- */
 .movie a[data-role='Reviewer'] { display:none; position: absolute; top: 5px; right: 5px; }
 #movieDetailsPopup a[data-role='Reviewer'] { display:none; position: fixed; top: 99px; left: 496px; }

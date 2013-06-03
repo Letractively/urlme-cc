@@ -33,18 +33,23 @@
     </div>
 }
 
-<div class="body">
-    <div class="m">
-        mobile
-    </div>@* end mobile *@
+<div class="m">
+    @if (anyThisWeekend)
+    {
+        <h2>This Weekend</h2>
+    }
+    <h2>@(anyThisWeekend ? "Also " : "")In Theaters</h2>
+    <h2>Coming Soon</h2>
+</div>@* end mobile *@
 
+<div class="body">
     <div class="dt">
 
     <!-- WHAT'S HOT -->
     <section id="whatsHotView" class="dt content" data-navitemtext="What's Hot">
         <div class="left group">
-            <h2 class="dt">Trailers</h2>
-            <div class="dt trailersContainer rounded glowing group">
+            <h2>Trailers</h2>
+            <div class="trailersContainer rounded glowing group">
                 <a href="#" class="slideButtonContainer rounded inactive" id="prev">
                     <span></span>
                 </a>

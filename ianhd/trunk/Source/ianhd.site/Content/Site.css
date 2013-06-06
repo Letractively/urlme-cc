@@ -17,7 +17,7 @@ a { color: #357ae8; }
 h1 { text-align: center; font-size: 36px; margin-bottom: 0; padding-bottom: 0; }
 
 .tagline { font-size: 12px; text-align: center; }
-    .tagline span { display: none; }
+    .tagline span { display: none; cursor: pointer; }
 
 #controls { margin-top: 25px; background: #f5f5f5; border: 1px solid #ebebeb; padding: 20px; border-radius: 2px; }
     #controls input, #controls button { float: left; }

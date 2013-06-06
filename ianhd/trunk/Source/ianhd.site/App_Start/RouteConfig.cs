@@ -14,6 +14,12 @@ namespace ianhd.site
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
+            routes.MapRoute(
+                name: "Home",
+                url: "",
+                defaults: new { controller = "Home", action = "Index" }
+            );            
+
             routes.MapRouteLowercase(
                 "PathRedirect",
                 "{*path}",

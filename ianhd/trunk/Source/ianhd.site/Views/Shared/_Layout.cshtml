@@ -14,7 +14,23 @@
 <body>
     <div class="body">
         <h1>ianhd.com</h1>
-        <div class="tagline">because <a target="_blank" href="http://tr.im">tr.im</a> was taken</div>
+        <div class="tagline">
+            <span>because <a target="_blank" href="http://tr.im">tr.im</a> was taken</span>
+            <span>it's almost <i>too</i> easy to use</span>
+            <span>Ian is the developer... in <i>HD!!1</i></span>
+            <span>will Logan Thomas rock it out this year in VT football?</span>
+            <span><a target="_blank" href="http://www.imdb.com/title/tt1954347/">Continuum</a> -- great show on Netflix FYI</span>
+            <script>
+                var taglines = $(".tagline span");
+                var lastIdxKey = "lastTaglineIdx";
+                var lastIdx = localStorage.getItem(lastIdxKey);
+                var nextIdx = lastIdx == null ? 0 : parseInt(lastIdx) + 1;
+                nextIdx = nextIdx >= taglines.length ? 0 : nextIdx;
+                localStorage.setItem(lastIdxKey, nextIdx);
+                taglines.eq(nextIdx).show();
+                // todo: enable user to click on tagline to auto refresh with random idx
+            </script>
+        </div>
         @RenderBody()
     </div>
 

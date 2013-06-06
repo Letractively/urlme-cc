@@ -15,6 +15,7 @@ a { color: #357ae8; }
     a:active { color:#357ae8; }
 
 h1 { text-align: center; font-size: 36px; margin-bottom: 0; padding-bottom: 0; }
+    h1 a { text-decoration: none; }
 
 .tagline { font-size: 12px; text-align: center; }
     .tagline span { display: none; cursor: pointer; }

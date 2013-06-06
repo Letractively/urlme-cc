@@ -16,7 +16,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>06/04/2013 09:08:53</publishTime>
     </File>
     <File Include="bin/ianhd.site.dll">
-      <publishTime>06/06/2013 08:58:27</publishTime>
+      <publishTime>06/06/2013 09:10:54</publishTime>
     </File>
     <File Include="bin/Microsoft.Web.Infrastructure.dll">
       <publishTime>06/04/2013 09:09:03</publishTime>
@@ -252,6 +252,9 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <File Include="packages.config">
       <publishTime>06/04/2013 09:09:15</publishTime>
     </File>
+    <File Include="Scripts/ianhd/ianhd.home.index.js">
+      <publishTime>06/06/2013 09:10:04</publishTime>
+    </File>
     <File Include="Scripts/jquery-1.8.2.js">
       <publishTime>06/04/2013 09:08:58</publishTime>
     </File>
@@ -301,7 +304,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>06/04/2013 09:08:50</publishTime>
     </File>
     <File Include="Views/Shared/_Layout.cshtml">
-      <publishTime>06/06/2013 08:57:15</publishTime>
+      <publishTime>06/06/2013 09:09:34</publishTime>
     </File>
     <File Include="Views/Web.config">
       <publishTime>06/04/2013 09:08:50</publishTime>

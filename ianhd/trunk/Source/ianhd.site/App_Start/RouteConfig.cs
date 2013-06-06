@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
+using ianhd.site.Helpers;
 
 namespace ianhd.site
 {
@@ -12,6 +13,12 @@ namespace ianhd.site
         public static void RegisterRoutes(RouteCollection routes)
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
+
+            routes.MapRouteLowercase(
+                "PathRedirect",
+                "{*path}",
+                new { controller = "Link", action = "RedirectToDestinationUrl" }
+            );
 
             routes.MapRoute(
                 name: "Default",

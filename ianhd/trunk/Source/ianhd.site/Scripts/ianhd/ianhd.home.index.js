@@ -1,22 +1,27 @@
 ﻿ianhd.registerNamespace("home.index");
 ianhd.home.index = {
     controls: {
-        taglineSelector: function () { return ".tagline span:visible"; }
     },
     init: function () {
         ianhd.home.index.bindControls();
         ianhd.home.index.initTaglines();
+        ianhd.home.index.initShortcuts();
     },
     bindControls: function () {
         var controls = ianhd.home.index.controls;
-
-        $(document).on('click', controls.taglineSelector(), function (e) {
+    },
+    initShortcuts: function () {
+        shortcut.add("r", function () {
             alert('Stay tuned...');
-        });
+        }, { "disable_in_input": true });
+
+        //shortcut.add("Ctrl+s", function () {
+        //  ...
+        //}, { "propagate": false });
     },
     initTaglines: function () {
         var taglines = $(".tagline span");
-        taglines.attr("title", "Click to refresh tagline");
+        taglines.attr("title", "Tap 'r' on your keyboard to refresh tagline");
 
         var lastIdxKey = "lastTaglineIdx";
         var lastIdx = localStorage.getItem(lastIdxKey);

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace ianhd.site.ViewModels
+namespace ianhd.core.Mvc.ViewModels
 {
     public class ViewModelBase
     {

@@ -1,0 +1,16 @@
+﻿@model ianhd.admin.ViewModels.TaglineIndex
+
+@{
+    ViewBag.Title = "Taglines";
+}
+
+@Scripts.Render("~/scripts/ianhd/ianhd.tagline.index.js")
+
+<h2>> Taglines</h2>
+@using (Html.BeginForm("Index", "Tagline", FormMethod.Post))
+{
+    @Html.TextAreaFor(m => m.NewTagline.Text, new { placeholder="Enter tagline...", maxlength = "50", @class = "input", autofocus="autofocus" })
+    <div id="controls">
+        <button class="blueButton">Save</button> or <a href="#" class="cancel">Cancel</a>
+    </div>
+}

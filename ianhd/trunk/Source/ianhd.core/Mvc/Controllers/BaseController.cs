@@ -1,5 +1,5 @@
 ﻿using System.Web.Mvc;
-using ianhd.site.ViewModels;
+using ianhd.core.Mvc.ViewModels;
 
 namespace ianhd.core.Mvc.Controllers
 {

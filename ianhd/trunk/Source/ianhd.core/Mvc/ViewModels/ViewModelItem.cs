@@ -1,4 +1,4 @@
-﻿namespace ianhd.site.ViewModels
+﻿namespace ianhd.core.Mvc.ViewModels
 {
     public class ViewModelItem<T> : ViewModelBase
     {

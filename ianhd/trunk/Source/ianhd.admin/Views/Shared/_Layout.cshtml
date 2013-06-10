@@ -1,0 +1,22 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+
+    <link rel="icon" href="http://i.imgur.com/PLuBQfs.gif" />    <title>@ViewBag.Title</title>
+    @Styles.Render("~/Content/css")
+    @Styles.Render("http://files.ianhd.com/css/common.css")
+    
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("http://files.ianhd.com/js/ianhd.js")
+
+    @* plugins *@
+    @Scripts.Render("http://files.ianhd.com/plugins/shortcut.js")
+</head>
+<body>
+    @RenderBody()
+
+    @RenderSection("scripts", required: false)
+</body>
+</html>

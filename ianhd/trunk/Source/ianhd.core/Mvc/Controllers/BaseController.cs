@@ -1,9 +1,9 @@
 ﻿using System.Web.Mvc;
 using ianhd.site.ViewModels;
 
-namespace ianhd.site.Controllers
+namespace ianhd.core.Mvc.Controllers
 {
-    public class BaseController : Controller
+    public class BaseController : System.Web.Mvc.Controller
     {
         public string OpenGraphTitle { get; set; }
         public string OpenGraphImage { get; set; }

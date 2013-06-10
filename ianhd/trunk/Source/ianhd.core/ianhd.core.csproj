@@ -40,7 +40,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Extensions\StringExtensions.cs" />
     <Compile Include="Mvc\Controllers\BaseController.cs" />
+    <Compile Include="Mvc\Controllers\ObjectController.cs" />
     <Compile Include="Mvc\ViewModels\ViewModelBase.cs" />
     <Compile Include="Mvc\ViewModels\ViewModelItem.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

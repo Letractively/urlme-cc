@@ -19,5 +19,9 @@ h1 { font-size: 14px; }
 
 #homeIndex a.button { display: block; }
 
-textarea { width: 300px; }
-#controls { margin-top: 10px; }
+textarea { width: 286px; }
+
+form > div { margin-top: 10px; }
+
+#taglineIndex #taglines { padding-top: 20px; margin-top: 20px; width: 300px; border-top: 1px solid #ccc;  }
+    #taglineIndex #taglines > div { margin-bottom: 10px; }

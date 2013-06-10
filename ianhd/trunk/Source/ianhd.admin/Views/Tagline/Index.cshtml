@@ -6,11 +6,29 @@
 
 @Scripts.Render("~/scripts/ianhd/ianhd.tagline.index.js")
 
-<h2>> Taglines</h2>
-@using (Html.BeginForm("Index", "Tagline", FormMethod.Post))
-{
-    @Html.TextAreaFor(m => m.NewTagline.Text, new { placeholder="Enter tagline...", maxlength = "50", @class = "input", autofocus="autofocus" })
-    <div id="controls">
-        <button class="blueButton">Save</button> or <a href="#" class="cancel">Cancel</a>
+<div id="taglineIndex">
+    <h2>> Taglines</h2>
+    @using (Html.BeginForm("Index", "Tagline", FormMethod.Post))
+    {
+        @Html.HiddenFor(m => m.NewTagline.Archive)
+        @Html.HiddenFor(m => m.NewTagline.SiteCd)
+        // more hiddens?
+    
+        @Html.TextAreaFor(m => m.NewTagline.Text, new { placeholder="Enter tagline...", maxlength = "50", @class = "input", autofocus="autofocus" })
+        <div>
+            <span>Starting&nbsp;&nbsp;</span><input type="date" class="input" name="NewTagline.StartDate" value="@Model.NewTagline.StartDate.ToString("yyyy-MM-dd")" />
+        </div>
+        <div id="controls">
+            <button class="blueButton" type="submit">Save</button> or <a href="onclick:location.reload();return false;" class="cancel">Cancel</a>
+        </div>
+    }
+
+    <div id="taglines">
+    @foreach (var tagline in Model.Taglines.OrderByDescending(x => x.CreateDate))
+    {
+        <div>
+            <span>@tagline.Text</span> - <a href="~/tagline/delete/@tagline.TaglineId" class="delete">Delete</a>
+        </div>
+    }
     </div>
-}
+</div>

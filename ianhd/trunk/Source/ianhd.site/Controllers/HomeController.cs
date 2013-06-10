@@ -6,7 +6,7 @@ using System.Web.Mvc;
 
 namespace ianhd.site.Controllers
 {
-    public class HomeController : BaseController
+    public class HomeController : ianhd.core.Mvc.Controllers.BaseController
     {
         //
         // GET: /Home/

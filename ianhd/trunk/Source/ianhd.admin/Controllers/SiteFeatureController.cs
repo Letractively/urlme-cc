@@ -25,6 +25,7 @@ namespace ianhd.admin.Controllers
         }
 
         [HttpPost]
+        [ValidateInput(false)]
         public ActionResult Index(ViewModels.SiteFeatureIndex vm, int id)
         {
             var dbSiteFeature = new data.SiteFeature {

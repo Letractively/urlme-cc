@@ -1,18 +1,18 @@
 ﻿// $(".Search-Box input").keyup(function (event) { if (event.keyCode == 13) { var idPrefix = "#" + $(this).closest(".Column").attr("id") + " "; $(idPrefix + "#SearchButton").trigger("click"); } });
-ianhd.registerNamespace("tagline.index");
-ianhd.tagline.index = {
+ianhd.registerNamespace("siteFeature.index");
+ianhd.siteFeature.index = {
     controls: {
 
     },
     init: function () {
-        ianhd.tagline.index.bindControls();
+        ianhd.siteFeature.index.bindControls();
     },
     bindControls: function () {
-        var controls = ianhd.tagline.index.controls;
+        var controls = ianhd.siteFeature.index.controls;
 
     }
 };
 
 $(function () {
-    ianhd.tagline.index.init();
+    ianhd.siteFeature.index.init();
 });

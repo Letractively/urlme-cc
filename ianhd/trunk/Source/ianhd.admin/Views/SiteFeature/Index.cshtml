@@ -1,0 +1,33 @@
+﻿@model ianhd.admin.ViewModels.SiteFeatureIndex
+
+@{
+    ViewBag.Title = "SiteFeatures";
+}
+
+@Scripts.Render("~/scripts/ianhd/ianhd.siteFeature.index.js")
+
+<div id="taglineIndex">
+    <h2>> SiteFeatures</h2>
+    @using (Html.BeginForm("Index", "SiteFeature", FormMethod.Post))
+    {
+        @Html.HiddenFor(m => m.NewSiteFeature.Archive)
+        // more hiddens?
+    
+        @Html.TextAreaFor(m => m.NewSiteFeature.Value, new { placeholder="Enter tagline...", maxlength = "50", @class = "input", autofocus="autofocus" })
+        <div>
+            <span>Starting&nbsp;&nbsp;</span><input type="date" class="input" name="NewSiteFeature.StartDate" value="@Model.NewSiteFeature.StartDate.ToString("yyyy-MM-dd")" />
+        </div>
+        <div id="controls">
+            <button class="blueButton" type="submit">Save</button> or <a href="onclick:location.reload();return false;" class="cancel">Cancel</a>
+        </div>
+    }
+
+    <div id="taglines">
+    @foreach (var tagline in Model.SiteFeatures.OrderByDescending(x => x.CreateDate))
+    {
+        <div>
+            <span>@tagline.Value</span> - <a href="~/tagline/delete/@tagline.SiteFeatureId" class="delete">Delete</a>
+        </div>
+    }
+    </div>
+</div>

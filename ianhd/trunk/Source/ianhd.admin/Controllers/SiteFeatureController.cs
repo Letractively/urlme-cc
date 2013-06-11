@@ -25,19 +25,19 @@ namespace ianhd.admin.Controllers
         }
 
         [HttpPost]
-        public ActionResult Index(ViewModels.SiteFeatureIndex vm, int siteFeatureCategoryId)
+        public ActionResult Index(ViewModels.SiteFeatureIndex vm, int id)
         {
             var dbSiteFeature = new data.SiteFeature {
                 Archive = vm.NewSiteFeature.Archive,
                 LastDate = vm.NewSiteFeature.LastDate,
-                SiteFeatureCategoryId = siteFeatureCategoryId,
+                SiteFeatureCategoryId = id,
                 StartDate = vm.NewSiteFeature.StartDate,
                 Value = vm.NewSiteFeature.Value.TrimToNull()
             };
 
             bool success = data.SiteFeature.CreateUpdate(dbSiteFeature);
             
-            return Redirect("~/siteFeature");
+            return Redirect("~/siteFeature/index/" + id);
         }
 
         [HttpGet]
@@ -45,7 +45,7 @@ namespace ianhd.admin.Controllers
         {
             bool success = data.SiteFeature.Delete(id);
 
-            return Redirect("~/siteFeature");
+            return Redirect("~/siteFeature/index/" + id);
         }
     }
 }

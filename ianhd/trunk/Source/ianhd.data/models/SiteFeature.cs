@@ -6,22 +6,20 @@ using System.Threading.Tasks;
 
 namespace ianhd.data
 {
-    public partial class Tagline
+    public partial class SiteFeature
     {
-        public Tagline(string siteCd)
+        public SiteFeature(int siteFeatureCategoryId)
         {
-            this.Archive = false;
             this.LastDate = null;
-            this.SiteCd = siteCd;
             this.StartDate = System.DateTime.Now;
         }
 
-        public static List<Tagline> Get(string siteCd)
+        public static List<SiteFeature> Get(int siteFeatureCategoryId)
         {
             using (var ctx = new bd13DataContext { ObjectTrackingEnabled = false })
             {
                 var now = System.DateTime.Now;
-                return ctx.Taglines.Where(x => x.SiteCd == siteCd && !x.Archive && x.StartDate <= now && (!x.LastDate.HasValue || x.LastDate >= now)).ToList();
+                return ctx.SiteFeatures.Where(x => x.SiteFeatureCategoryId == siteFeatureCategoryId && !x.Archive && (!x.StartDate.HasValue || x.StartDate <= now) && (!x.LastDate.HasValue || x.LastDate >= now)).ToList();
             }
         }
         public static bool Delete(int id)
@@ -30,11 +28,11 @@ namespace ianhd.data
             {
                 using (var db = new bd13DataContext { ObjectTrackingEnabled = true })
                 {
-                    var record = db.Taglines.FirstOrDefault(x => x.TaglineId == id);
+                    var record = db.SiteFeatures.FirstOrDefault(x => x.SiteFeatureCategoryId == id);
                     if (record != null)
                     {
                         // delete
-                        db.Taglines.DeleteOnSubmit(record);
+                        db.SiteFeatures.DeleteOnSubmit(record);
                         db.SubmitChanges();
                     }
                 }
@@ -47,27 +45,27 @@ namespace ianhd.data
             }
             return false;
         }
-        public static bool CreateUpdate(Tagline tagline) {
+        public static bool CreateUpdate(SiteFeature siteFeature) {
             try
             {
                 using (var db = new bd13DataContext { ObjectTrackingEnabled = true })
                 {
-                    var record = db.Taglines.FirstOrDefault(x => x.TaglineId == tagline.TaglineId);
+                    var record = db.SiteFeatures.FirstOrDefault(x => x.SiteFeatureId == siteFeature.SiteFeatureId);
                     if (record == null) {
                         // create
-                        record = new Tagline { CreateDate = System.DateTime.Now };
-                        db.Taglines.InsertOnSubmit(record);
+                        record = new SiteFeature { CreateDate = System.DateTime.Now };
+                        db.SiteFeatures.InsertOnSubmit(record);
                     } else {
                         // update
                         record.ModifyDate = System.DateTime.Now;
                     }
 
                     // update props
-                    record.SiteCd = tagline.SiteCd;
-                    record.Text = tagline.Text;
-                    record.StartDate = tagline.StartDate;
-                    record.LastDate = tagline.LastDate;
-                    record.Archive = tagline.Archive;
+                    record.SiteFeatureCategoryId = siteFeature.SiteFeatureCategoryId;
+                    record.Value = siteFeature.Value;
+                    record.StartDate = siteFeature.StartDate;
+                    record.LastDate = siteFeature.LastDate;
+                    record.Archive = siteFeature.Archive;
                     
                     db.SubmitChanges();
                 }

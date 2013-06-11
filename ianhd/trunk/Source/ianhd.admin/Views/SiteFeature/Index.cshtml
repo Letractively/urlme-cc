@@ -13,7 +13,7 @@
         @Html.HiddenFor(m => m.NewSiteFeature.Archive)
         // more hiddens?
     
-        @Html.TextAreaFor(m => m.NewSiteFeature.Value, new { placeholder="Enter tagline...", maxlength = "50", @class = "input", autofocus="autofocus" })
+        @Html.TextAreaFor(m => m.NewSiteFeature.Value, new { placeholder="Enter tagline...", maxlength = "250", @class = "input", autofocus="autofocus" })
         <div>
             <span>Starting&nbsp;&nbsp;</span><input type="checkbox" id="whenever" checked="checked" />&nbsp;<label for="whenever">Whenever</label>&nbsp;&nbsp;<input type="date" class="input" name="NewSiteFeature.StartDate" value="@(Model.NewSiteFeature.StartDate.HasValue ? Model.NewSiteFeature.StartDate.Value.ToString("yyyy-MM-dd") : "")" />
         </div>

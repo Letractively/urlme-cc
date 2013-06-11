@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using ianhd.core.Extensions;
+using ianhd.data;
 
 namespace ianhd.admin.Controllers
 {
@@ -17,8 +18,9 @@ namespace ianhd.admin.Controllers
         {
             var vm = new ViewModels.SiteFeatureIndex
             {
-                NewSiteFeature = new data.SiteFeature(id),
-                SiteFeatures = ianhd.data.SiteFeature.Get(id)
+                NewSiteFeature = new SiteFeature(id),
+                SiteFeatures = SiteFeature.Get(id),
+                SiteFeatureCategory = SiteFeature.CategoryGet(id)
             };
 
             return View(vm);

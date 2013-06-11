@@ -12,12 +12,13 @@ namespace ianhd.admin.Controllers
         //
         // GET: /Home/
 
-        public ActionResult Index(int siteFeatureCategoryId)
+        [HttpGet]
+        public ActionResult Index(int id)
         {
             var vm = new ViewModels.SiteFeatureIndex
             {
-                NewSiteFeature = new data.SiteFeature(siteFeatureCategoryId),
-                SiteFeatures = ianhd.data.SiteFeature.Get(siteFeatureCategoryId)
+                NewSiteFeature = new data.SiteFeature(id),
+                SiteFeatures = ianhd.data.SiteFeature.Get(id)
             };
 
             return View(vm);

@@ -10,8 +10,7 @@ namespace ianhd.data
     {
         public SiteFeature(int siteFeatureCategoryId)
         {
-            this.LastDate = null;
-            this.StartDate = System.DateTime.Now;
+            this.SiteFeatureCategoryId = siteFeatureCategoryId;
         }
 
         public static List<SiteFeature> Get(int siteFeatureCategoryId)

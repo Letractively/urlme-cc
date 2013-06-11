@@ -45,7 +45,8 @@ namespace ianhd.admin.Controllers
         {
             bool success = data.SiteFeature.Delete(id);
 
-            return Redirect("~/siteFeature/index/" + id);
+            // HACK - need to make this NOT hard-coded
+            return Redirect("~/siteFeature/index/1");
         }
     }
 }

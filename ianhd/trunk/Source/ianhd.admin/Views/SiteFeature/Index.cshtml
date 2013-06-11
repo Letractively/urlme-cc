@@ -26,7 +26,7 @@
     @foreach (var tagline in Model.SiteFeatures.OrderByDescending(x => x.CreateDate))
     {
         <div>
-            <span>@tagline.Value</span> - <a href="~/tagline/delete/@tagline.SiteFeatureId" class="delete">Delete</a>
+            <span>@tagline.Value</span> - <a href="~/sitefeature/delete/@tagline.SiteFeatureId" class="delete">Delete</a>
         </div>
     }
     </div>

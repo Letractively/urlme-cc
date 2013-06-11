@@ -17,7 +17,7 @@ a { color: #357ae8; }
 h1 { font-size: 14px; }
     h1 a { text-decoration: none; }
 
-#homeIndex a.button { display: block; }
+#homeIndex a.button { display: block; margin-bottom: 10px; }
 
 textarea { width: 286px; }
 

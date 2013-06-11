@@ -18,9 +18,11 @@ namespace ianhd.admin.Controllers
         {
             var vm = new ViewModels.SiteFeatureIndex
             {
+                // id = siteFeatureCategoryId
+
                 NewSiteFeature = new SiteFeature(id),
                 SiteFeatures = SiteFeature.Get(id),
-                SiteFeatureCategory = SiteFeature.CategoryGet(id)
+                FeatureCategory = SiteFeature.CategoryGet("FINISH-THIS")
             };
 
             return View(vm);

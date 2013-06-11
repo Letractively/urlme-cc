@@ -12,11 +12,11 @@ namespace ianhd.data
         {
             this.SiteFeatureCategoryId = siteFeatureCategoryId;
         }
-        public static SiteFeatureCategory CategoryGet(int siteFeatureCategoryId)
+        public static FeatureCategory CategoryGet(string featureCategoryCd)
         {
             using (var ctx = new bd13DataContext { ObjectTrackingEnabled = false })
             {
-                return ctx.SiteFeatureCategories.FirstOrDefault(x => x.SiteFeatureCategoryId == siteFeatureCategoryId);
+                return ctx.FeatureCategories.FirstOrDefault(x => x.FeatureCategoryCd == featureCategoryCd);
             }
         }
         public static List<SiteFeature> Get(int siteFeatureCategoryId)

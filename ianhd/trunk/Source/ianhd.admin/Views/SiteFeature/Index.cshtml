@@ -31,6 +31,6 @@
 </div>
 <script>
     var data = {};
-    var viewModel = ko.mapping.fromJS(data);
-    ko.applyBindings(viewModel);</script>
+    var viewModel = ianhd.pluginHelpers.ko.getViewModel(data);
+    ianhd.pluginHelpers.ko.bind(viewModel);</script>
 @Scripts.Render("~/scripts/ianhd/ianhd.siteFeature.index.js")

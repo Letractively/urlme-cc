@@ -13,20 +13,6 @@ ianhd.siteFeature.index = {
         ianhd.siteFeature.index.bindControls();
     },
     bindControls: function () {
-        // change "starting whenever" checkbox
-        //ianhd.siteFeature.index.controls.whenever().on('change', function () {
-        //    var startWheneverKey = ianhd.siteFeature.index.constants.startWheneverKey;
-        //    var controls = ianhd.siteFeature.index.controls;
-        //    var chk = $(this);
-        //    if (chk.is(":checked")) {
-        //        controls.startDate().attr("disabled", "disabled");
-        //        localStorage.setItem(startWheneverKey, "true");
-        //    } else {
-        //        controls.startDate().removeAttr("disabled");
-        //        localStorage.setItem(startWheneverKey, "false");
-        //    }
-        //});
-
         // submit form
         ianhd.siteFeature.index.controls.submit().on('click', function (e) {
             // validate

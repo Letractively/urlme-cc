@@ -42,10 +42,8 @@
 
     var viewModel = ianhd.pluginHelpers.ko.getViewModel(data);
 
-    viewModel.startWhenever = ko.computed({
-        read: function () { return this.startWhenever(); }
-        , write: function (value) { this.startWhenever(value); console.log("writing " + value); }
-        , owner: this
+    viewModel.startWhenever.subscribe(function (val) {
+        localStorage.setItem(startWheneverKey, val);
     });
 
     ianhd.pluginHelpers.ko.bind(viewModel);</script>

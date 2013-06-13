@@ -14,7 +14,7 @@ ianhd.siteFeature.index = {
         ianhd.siteFeature.index.setDateControls();
     },
     bindControls: function () {
-        // change "staring whenever" checkbox
+        // change "starting whenever" checkbox
         ianhd.siteFeature.index.controls.whenever().on('change', function () {
             var startWheneverKey = ianhd.siteFeature.index.constants.startWheneverKey;
             var controls = ianhd.siteFeature.index.controls;

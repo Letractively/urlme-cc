@@ -8,13 +8,17 @@
 
     <title>@ViewBag.Title</title>
     @Styles.Render("~/Content/css")
-    @Styles.Render("http://cdn.ianhd.com/css/common.css")
+    @Styles.Render("//cdn.ianhd.com/css/common.css")
     
     @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("http://cdn.ianhd.com/js/ianhd.js")
+    @Scripts.Render("//cdn.ianhd.com/js/ianhd.js")
+
+    @* knockout *@
+    @Scripts.Render("//cdn.ianhd.com/plugins/knockout/knockout-2.2.1.js")
+    @Scripts.Render("//cdn.ianhd.com/plugins/knockout/knockout.mapping.js")
 
     @* plugins *@
-    @Scripts.Render("http://cdn.ianhd.com/plugins/shortcut.js")
+    @Scripts.Render("//cdn.ianhd.com/plugins/shortcut.js")
 </head>
 <body>
     <div class="body">

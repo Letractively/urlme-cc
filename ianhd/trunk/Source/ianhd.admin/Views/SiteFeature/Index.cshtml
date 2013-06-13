@@ -4,8 +4,6 @@
     ViewBag.Title = "SiteFeatures";
 }
 
-@Scripts.Render("~/scripts/ianhd/ianhd.siteFeature.index.js")
-
 <div id="taglineIndex">
     <h2>> SiteFeatures</h2>
     @using (Html.BeginForm("Index", "SiteFeature", FormMethod.Post))
@@ -31,3 +29,8 @@
     }
     </div>
 </div>
+<script>
+    var data = {};
+    var viewModel = ko.mapping.fromJS(data);
+    ko.applyBindings(viewModel);</script>
+@Scripts.Render("~/scripts/ianhd/ianhd.siteFeature.index.js")

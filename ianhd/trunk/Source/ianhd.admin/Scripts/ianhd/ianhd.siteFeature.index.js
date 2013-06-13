@@ -11,22 +11,21 @@ ianhd.siteFeature.index = {
     },
     init: function () {
         ianhd.siteFeature.index.bindControls();
-        ianhd.siteFeature.index.setDateControls();
     },
     bindControls: function () {
         // change "starting whenever" checkbox
-        ianhd.siteFeature.index.controls.whenever().on('change', function () {
-            var startWheneverKey = ianhd.siteFeature.index.constants.startWheneverKey;
-            var controls = ianhd.siteFeature.index.controls;
-            var chk = $(this);
-            if (chk.is(":checked")) {
-                controls.startDate().attr("disabled", "disabled");
-                localStorage.setItem(startWheneverKey, "true");
-            } else {
-                controls.startDate().removeAttr("disabled");
-                localStorage.setItem(startWheneverKey, "false");
-            }
-        });
+        //ianhd.siteFeature.index.controls.whenever().on('change', function () {
+        //    var startWheneverKey = ianhd.siteFeature.index.constants.startWheneverKey;
+        //    var controls = ianhd.siteFeature.index.controls;
+        //    var chk = $(this);
+        //    if (chk.is(":checked")) {
+        //        controls.startDate().attr("disabled", "disabled");
+        //        localStorage.setItem(startWheneverKey, "true");
+        //    } else {
+        //        controls.startDate().removeAttr("disabled");
+        //        localStorage.setItem(startWheneverKey, "false");
+        //    }
+        //});
 
         // submit form
         ianhd.siteFeature.index.controls.submit().on('click', function (e) {
@@ -38,19 +37,6 @@ ianhd.siteFeature.index = {
                 startDate.val("");
             }
         });
-    },
-    setDateControls: function () {
-        var controls = ianhd.siteFeature.index.controls;
-        var startWheneverKey = ianhd.siteFeature.index.constants.startWheneverKey;
-        var saved = localStorage.getItem(startWheneverKey);
-        var startWhenever = saved === null || saved === "true";
-        if (startWhenever) {
-            controls.whenever().attr("checked", "checked");
-            controls.startDate().attr("disabled", "disabled");
-        } else {
-            controls.whenever().removeAttr("checked");
-            controls.startDate().removeAttr("disabled");
-        }
     }
 };
 

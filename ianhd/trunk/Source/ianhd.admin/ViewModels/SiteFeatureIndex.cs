@@ -10,6 +10,5 @@ namespace ianhd.admin.ViewModels
     {
         public List<SiteFeature> SiteFeatures { get; set; }
         public SiteFeature NewSiteFeature { get; set; }
-        public FeatureCategory FeatureCategory { get; set; }
     }
 }

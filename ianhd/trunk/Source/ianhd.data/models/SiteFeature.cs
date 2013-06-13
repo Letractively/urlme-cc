@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Linq;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,12 +12,17 @@ namespace ianhd.data
         public SiteFeature(int siteFeatureCategoryId)
         {
             this.SiteFeatureCategoryId = siteFeatureCategoryId;
+            this.SiteFeatureCategory = SiteFeatureCategoryGet(siteFeatureCategoryId);
         }
-        public static FeatureCategory CategoryGet(string featureCategoryCd)
+        public static SiteFeatureCategory SiteFeatureCategoryGet(int siteFeatureCategoryId)
         {
             using (var ctx = new bd13DataContext { ObjectTrackingEnabled = false })
             {
-                return ctx.FeatureCategories.FirstOrDefault(x => x.FeatureCategoryCd == featureCategoryCd);
+                var dlo = new DataLoadOptions();
+                dlo.LoadWith<SiteFeatureCategory>(x => x.FeatureCategory);
+                ctx.LoadOptions = dlo;
+
+                return ctx.SiteFeatureCategories.FirstOrDefault(x => x.SiteFeatureCategoryId == siteFeatureCategoryId);
             }
         }
         public static List<SiteFeature> Get(int siteFeatureCategoryId)

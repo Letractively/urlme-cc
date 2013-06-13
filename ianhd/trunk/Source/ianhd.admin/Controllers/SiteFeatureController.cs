@@ -14,15 +14,12 @@ namespace ianhd.admin.Controllers
         // GET: /Home/
 
         [HttpGet]
-        public ActionResult Index(int id)
+        public ActionResult Index(int siteFeatureCategoryId)
         {
             var vm = new ViewModels.SiteFeatureIndex
             {
-                // id = siteFeatureCategoryId
-
-                NewSiteFeature = new SiteFeature(id),
-                SiteFeatures = SiteFeature.Get(id),
-                FeatureCategory = SiteFeature.CategoryGet("FINISH-THIS")
+                NewSiteFeature = new SiteFeature(siteFeatureCategoryId),
+                SiteFeatures = SiteFeature.Get(siteFeatureCategoryId)
             };
 
             return View(vm);

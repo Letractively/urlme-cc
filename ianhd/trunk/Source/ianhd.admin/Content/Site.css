@@ -26,3 +26,7 @@ form > div { margin-top: 10px; }
 
 #taglineIndex #taglines { padding-top: 20px; margin-top: 20px; width: 300px; border-top: 1px solid #ccc;  }
     #taglineIndex #taglines > div { margin-bottom: 10px; }
+
+#taglineIndex input[type='checkbox'] { margin: 0 5px 0 10px; display:inline-block; }
+#taglineIndex input[type='date'] { margin-left: 10px; }
+#taglineIndex button[type='submit'] { margin-right: 5px; }

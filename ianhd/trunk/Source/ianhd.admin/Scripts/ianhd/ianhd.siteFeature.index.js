@@ -2,7 +2,8 @@
 ianhd.registerNamespace("siteFeature.index");
 ianhd.siteFeature.index = {
     constants: {
-        startWheneverKey: "startWhenever"
+        noEndDateKey: "noEndDate"
+        , startWheneverKey: "startWhenever"
     },
     controls: {
         startDate: function () { return $("input[name='NewSiteFeature.StartDate']"); }
@@ -18,7 +19,7 @@ ianhd.siteFeature.index = {
             // validate
             var controls = ianhd.siteFeature.index.controls;
             var startDate = controls.startDate();
-            var whenever = controls.whenever();
+            var whenever = viewModel.startWhenever();
             if (whenever.is(":checked")) {
                 startDate.val("");
             }

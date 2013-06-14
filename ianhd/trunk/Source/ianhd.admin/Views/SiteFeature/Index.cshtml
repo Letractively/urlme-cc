@@ -13,8 +13,11 @@
     
         @Html.TextAreaFor(m => m.NewSiteFeature.Value, new { placeholder="Enter tagline...", maxlength = "250", @class = "input", autofocus="autofocus", max_value_length=Model.NewSiteFeature.SiteFeatureCategory.FeatureCategory.MaxValueLength })
         <div>
-            <span>Starting&nbsp;&nbsp;</span><input type="checkbox" id="whenever" data-bind="checked: startWhenever" />&nbsp;<label for="whenever">Whenever</label>&nbsp;&nbsp;<input data-bind="enable: !startWhenever()" type="date" class="input" name="NewSiteFeature.StartDate" value="@(Model.NewSiteFeature.StartDate.HasValue ? Model.NewSiteFeature.StartDate.Value.ToString("yyyy-MM-dd") : "")" />
+            <span>Starting</span><input type="checkbox" id="startWhenever" data-bind="checked: startWhenever" /><label for="startWhenever">Whenever</label><input data-bind="enable: !startWhenever()" type="date" class="input" name="NewSiteFeature.StartDate" value="@(Model.NewSiteFeature.StartDate.HasValue ? Model.NewSiteFeature.StartDate.Value.ToString("yyyy-MM-dd") : "")" />
         </div>
+        <div data-bind="visible: !startWhenever()">
+            <span>Last day</span><input type="checkbox" id="noEndDate" data-bind="checked: noEndDate" /><label for="noEndDate">No end date</label><input data-bind="enable: !noEndDate()" type="date" class="input" name="NewSiteFeature.LastDate" value="@(Model.NewSiteFeature.LastDate.HasValue ? Model.NewSiteFeature.LastDate.Value.ToString("yyyy-MM-dd") : "")" />
+        </div>        
         <div id="controls">
             <button class="blueButton" type="submit">Save</button> or <a href="onclick:location.reload();return false;" class="cancel">Cancel</a>
         </div>
@@ -36,14 +39,21 @@
 
     var controls = ianhd.siteFeature.index.controls;
     var startWheneverKey = ianhd.siteFeature.index.constants.startWheneverKey;
-    var saved = localStorage.getItem(startWheneverKey);
+    var noEndDateKey = ianhd.siteFeature.index.constants.noEndDateKey;
+    var savedStartWhenever = localStorage.getItem(startWheneverKey);
+    var savedNoEndDate = localStorage.getItem(noEndDateKey);
 
-    data.startWhenever = saved === null || saved === "true";
+    data.startWhenever = savedStartWhenever === null || savedStartWhenever === "true";
+    data.noEndDate = savedNoEndDate === null || savedNoEndDate === "true";
 
     var viewModel = ianhd.pluginHelpers.ko.getViewModel(data);
 
     viewModel.startWhenever.subscribe(function (val) {
         localStorage.setItem(startWheneverKey, val);
+    });
+
+    viewModel.noEndDate.subscribe(function (val) {
+        localStorage.setItem(noEndDateKey, val);
     });
 
     ianhd.pluginHelpers.ko.bind(viewModel);</script>

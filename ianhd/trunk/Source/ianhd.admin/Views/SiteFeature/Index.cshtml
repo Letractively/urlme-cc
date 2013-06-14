@@ -12,8 +12,12 @@
         // more hiddens?
     
         @Html.TextAreaFor(m => m.NewSiteFeature.Value, new { placeholder="Enter tagline...", maxlength = "250", @class = "input", autofocus="autofocus", max_value_length=Model.NewSiteFeature.SiteFeatureCategory.FeatureCategory.MaxValueLength })
-        <div>
-            <span>Starting</span><input type="checkbox" id="startWhenever" data-bind="checked: startWhenever" /><label for="startWhenever">Whenever</label><input data-bind="enable: !startWhenever()" type="date" class="input" name="NewSiteFeature.StartDate" value="@(Model.NewSiteFeature.StartDate.HasValue ? Model.NewSiteFeature.StartDate.Value.ToString("yyyy-MM-dd") : "")" />
+        <div class="buttonset">
+            <span>When?</span>
+            <input type="radio" name="step1" data-bind="checked: startWhenever" id="step1_startWhenever" value="startWhenever" /><label for="step1_startWhenever">Whenever</label>
+            <input type="radio" name="step1" data-bind="checked: !startWhenever" id="step1_specificDates" value="specificDates" /><label for="step1_specificDates">Specific days</label>
+            
+            @*<span>Starting</span><input type="checkbox" id="startWhenever" data-bind="checked: startWhenever" /><label for="startWhenever">Whenever</label><input data-bind="enable: !startWhenever()" type="date" class="input" name="NewSiteFeature.StartDate" value="@(Model.NewSiteFeature.StartDate.HasValue ? Model.NewSiteFeature.StartDate.Value.ToString("yyyy-MM-dd") : "")" />*@
         </div>
         <div data-bind="visible: !startWhenever()">
             <span>Last day</span><input type="checkbox" id="noEndDate" data-bind="checked: noEndDate" /><label for="noEndDate">No end date</label><input data-bind="enable: !noEndDate()" type="date" class="input" name="NewSiteFeature.LastDate" value="@(Model.NewSiteFeature.LastDate.HasValue ? Model.NewSiteFeature.LastDate.Value.ToString("yyyy-MM-dd") : "")" />
@@ -33,13 +37,12 @@
     </div>
 </div>
 
-@Scripts.Render("~/scripts/ianhd/ianhd.siteFeature.index.js")
 <script>
     var data = {};
+    data.test = true;
 
-    var controls = ianhd.siteFeature.index.controls;
-    var startWheneverKey = ianhd.siteFeature.index.constants.startWheneverKey;
-    var noEndDateKey = ianhd.siteFeature.index.constants.noEndDateKey;
+    var startWheneverKey = "startWhenever";
+    var noEndDateKey = "noEndDate";
     var savedStartWhenever = localStorage.getItem(startWheneverKey);
     var savedNoEndDate = localStorage.getItem(noEndDateKey);
 
@@ -57,3 +60,4 @@
     });
 
     ianhd.pluginHelpers.ko.bind(viewModel);</script>
+@Scripts.Render("~/scripts/ianhd/ianhd.siteFeature.index.js")

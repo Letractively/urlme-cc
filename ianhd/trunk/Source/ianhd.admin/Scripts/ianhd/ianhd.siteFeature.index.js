@@ -2,8 +2,6 @@
 ianhd.registerNamespace("siteFeature.index");
 ianhd.siteFeature.index = {
     constants: {
-        noEndDateKey: "noEndDate"
-        , startWheneverKey: "startWhenever"
     },
     controls: {
         startDate: function () { return $("input[name='NewSiteFeature.StartDate']"); }
@@ -12,6 +10,7 @@ ianhd.siteFeature.index = {
     },
     init: function () {
         ianhd.siteFeature.index.bindControls();
+        //$(".buttonset").buttonset(); // todo: siteActions
     },
     bindControls: function () {
         // submit form

@@ -1,21 +1,16 @@
 ﻿@model ianhd.admin.ViewModels.SiteFeatureIndex
 @using ianhd.core.Extensions
 
-@{
-    var title = Model.NewSiteFeature.SiteFeatureCategory.FeatureCategory.Title;
-    var hintText = Model.NewSiteFeature.SiteFeatureCategory.FeatureCategory.HintText;
-}
-
 <div id="siteFeatureIndex">
-    <h2>> @title</h2>
-    @using (Html.BeginForm("Index", "SiteFeature", FormMethod.Post))
+    <h2>> KO:title</h2>
+    @*@using (Html.BeginForm("Index", "SiteFeature", FormMethod.Post))
     {
-        @Html.HiddenFor(m => m.NewSiteFeature.Archive)
-        // more hiddens?
+        // hiddens?
     
         @Html.TextAreaFor(m => m.NewSiteFeature.Value, new { placeholder = hintText, maxlength = "250", @class = "input", autofocus="autofocus", max_value_length=Model.NewSiteFeature.SiteFeatureCategory.FeatureCategory.MaxValueLength })
+        *@
         <div data-bind="data: newSiteFeature">
-            <span data-bind="text: Value"></span>
+            <span data-bind="text: value"></span>
         </div>
         
         <div class="buttonset">
@@ -52,13 +47,13 @@
     var savedNoEndDate = localStorage.getItem(noEndDateKey);
 
     // new item
-    data.newSiteFeature = @Html.Raw(Model.NewSiteFeature.ToJson());
+    data.newSiteFeature = @Html.Raw(Model.newSiteFeature.ToJson());
 
     data.startWhenever = savedStartWhenever === null || savedStartWhenever === "true";
     data.noEndDate = savedNoEndDate === null || savedNoEndDate === "true";
 
     // list
-    data.siteFeatures = @Html.Raw(Model.SiteFeatures.OrderByDescending(x => x.CreateDate).ToJson());
+    data.siteFeatures = @Html.Raw(Model.siteFeatures.OrderByDescending(x => x.CreateDate).ToJson());
 
     var viewModel = ianhd.pluginHelpers.ko.getViewModel(data);
 

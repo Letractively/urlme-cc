@@ -30,3 +30,6 @@ form > div { margin-top: 10px; }
 #siteFeatureIndex input[type='checkbox'] { margin: 0 5px 0 10px; display:inline-block; }
 #siteFeatureIndex input[type='date'] { margin-left: 10px; }
 #siteFeatureIndex button[type='submit'] { margin-right: 5px; }
+
+#siteFeatureIndex .dateControls { height: 35px; }
+    #siteFeatureIndex .dateControls .allButDatePicker { padding-top: 10px; display:inline-block; }

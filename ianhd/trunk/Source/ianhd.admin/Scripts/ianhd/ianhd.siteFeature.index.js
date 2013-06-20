@@ -20,14 +20,15 @@ ianhd.siteFeature = {
     },
     initDateOptions: function () {
         // Whenever true? then make it selected in button set
-
-        // else, select Specific days
+        var labelIdx = viewModel.startWhenever() ? 0 : 1;
+        ianhd.siteFeature.controls.buttonSetRadios().eq(labelIdx).attr("checked", "checked");
+        // next in main init is to initialize buttonset()
     },
     bindControls: function () {
         ianhd.siteFeature.controls.buttonSetRadios().change(function () {
             var buttonSet = ianhd.siteFeature.controls.buttonSet();
             var selectedVal = buttonSet.find("input[type='radio']:checked").val();
-            console.log(selectedVal);
+            viewModel.startWhenever(selectedVal === "startWhenever");
         });
 
         // submit form

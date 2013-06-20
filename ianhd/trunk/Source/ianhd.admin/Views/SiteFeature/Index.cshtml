@@ -21,9 +21,14 @@
             
             @*<span>Starting</span><input type="checkbox" id="startWhenever" data-bind="checked: startWhenever" /><label for="startWhenever">Whenever</label><input data-bind="enable: !startWhenever()" type="date" class="input" name="NewSiteFeature.StartDate" value="@(Model.NewSiteFeature.StartDate.HasValue ? Model.NewSiteFeature.StartDate.Value.ToString("yyyy-MM-dd") : "")" />*@
         </div>
-        <div data-bind="visible: !startWhenever()">
-            <span>Last day</span><input type="checkbox" id="noEndDate" data-bind="checked: noEndDate" /><label for="noEndDate">No end date</label><input data-bind="enable: !noEndDate()" type="date" class="input" name="NewSiteFeature.LastDate" value="@(Model.NewSiteFeature.LastDate.HasValue ? Model.NewSiteFeature.LastDate.Value.ToString("yyyy-MM-dd") : "")" />
-        </div>        
+        <div class="dateControls" data-bind="visible: !startWhenever()">
+            <div class="allButDatePicker"><span>Starting on</span></div>
+            <input type="date" class="input" value="@(Model.NewSiteFeature.LastDate.HasValue ? Model.NewSiteFeature.LastDate.Value.ToString("yyyy-MM-dd") : "")" />
+        </div>
+        <div class="dateControls" data-bind="visible: !startWhenever()">
+            <div class="allButDatePicker"><span>Last day</span><input id="noEndDate" type="checkbox" data-bind="checked: noEndDate" /><label for="noEndDate">No end date</label></div>
+            <input data-bind="visible: !noEndDate()" type="date" class="input" value="@(Model.NewSiteFeature.LastDate.HasValue ? Model.NewSiteFeature.LastDate.Value.ToString("yyyy-MM-dd") : "")" />
+        </div>
         <div id="controls">
             <button class="blueButton" type="submit">Save</button> or <a href="onclick:location.reload();return false;" class="cancel">Cancel</a>
         </div>
@@ -44,21 +49,21 @@
     var savedStartWhenever = localStorage.getItem(startWheneverKey);
     var savedNoEndDate = localStorage.getItem(noEndDateKey);
 
+    // new item
     data.startWhenever = savedStartWhenever === null || savedStartWhenever === "true";
     data.noEndDate = savedNoEndDate === null || savedNoEndDate === "true";
+
+    // list
     data.siteFeatures = @Html.Raw(Model.SiteFeatures.OrderByDescending(x => x.CreateDate).ToJson());
 
     var viewModel = ianhd.pluginHelpers.ko.getViewModel(data);
 
-    // bind this thing    ianhd.pluginHelpers.ko.bind(viewModel);    viewModel.startWhenever.subscribe(function (val) {
-        // TODO: remove all console log's
-        console.log("subscribe startWhenever");
+    // bind this thing    ianhd.pluginHelpers.ko.bind(viewModel);    // subscribers    viewModel.startWhenever.subscribe(function (val) {
         localStorage.setItem(startWheneverKey, val);
         // update viewModel's startDate, and endDate for that matter
     });
 
     viewModel.noEndDate.subscribe(function (val) {
-        console.log("subscribe noEndDate");
         localStorage.setItem(noEndDateKey, val);
     });</script>
 @Scripts.Render("~/scripts/ianhd/ianhd.siteFeature.index.js")

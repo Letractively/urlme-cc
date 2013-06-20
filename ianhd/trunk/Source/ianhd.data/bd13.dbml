@@ -143,6 +143,7 @@
       <Column Name="Title" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
       <Column Name="ValueType" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
       <Column Name="MaxValueLength" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="HintText" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
       <Column Name="CreateDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
       <Column Name="ModifyDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
       <Association Name="FeatureCategory_SiteFeatureCategory" Member="SiteFeatureCategories" ThisKey="FeatureCategoryCd" OtherKey="FeatureCategoryCd" Type="SiteFeatureCategory" />

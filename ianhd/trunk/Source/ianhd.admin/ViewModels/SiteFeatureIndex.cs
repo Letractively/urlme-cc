@@ -15,6 +15,7 @@ namespace ianhd.admin.ViewModels
             public DateTime? lastDate { get; set; }
             public string categoryTitle { get; set; }
             public string categoryHintText { get; set; }
+            public DateTime? createDate { get; set; }
 
             public siteFeature(data.SiteFeature dbSiteFeature)
             {
@@ -24,11 +25,12 @@ namespace ianhd.admin.ViewModels
                 var featureCategory = dbSiteFeature.SiteFeatureCategory.FeatureCategory;
                 this.categoryTitle = featureCategory.Title;
                 this.categoryHintText = featureCategory.HintText;
+                this.createDate = dbSiteFeature.CreateDate;
             }
 
-            public List<siteFeature> siteFeatures(List<data.SiteFeature> dbSiteFeatures) {
+            public static List<siteFeature> siteFeatures(List<data.SiteFeature> dbSiteFeatures) {
                 var rtn = new List<siteFeature>();
-                // fill with dbSiteFeatures
+                dbSiteFeatures.ForEach(x => rtn.Add(new siteFeature(x)));
                 return rtn;
             }
         }

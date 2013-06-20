@@ -22,7 +22,7 @@ namespace ianhd.admin.Controllers
             var vm = new ViewModels.SiteFeatureIndex
             {
                 newSiteFeature = new ViewModels.SiteFeatureIndex.siteFeature(dbNewSiteFeature),
-                siteFeatures = new List<ViewModels.SiteFeatureIndex.siteFeature>(dbSiteFeatures)
+                siteFeatures = ViewModels.SiteFeatureIndex.siteFeature.siteFeatures(dbSiteFeatures)
             };
 
             return View(vm);

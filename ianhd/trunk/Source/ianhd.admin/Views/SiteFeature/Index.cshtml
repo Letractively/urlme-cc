@@ -1,10 +1,12 @@
 ﻿@model ianhd.admin.ViewModels.SiteFeatureIndex
+@using ianhd.core.Extensions
 
 @{
+    // TODO: appropr title
     ViewBag.Title = "SiteFeatures";
 }
 
-<div id="taglineIndex">
+<div id="siteFeatureIndex">
     <h2>> SiteFeatures</h2>
     @using (Html.BeginForm("Index", "SiteFeature", FormMethod.Post))
     {
@@ -14,8 +16,8 @@
         @Html.TextAreaFor(m => m.NewSiteFeature.Value, new { placeholder="Enter tagline...", maxlength = "250", @class = "input", autofocus="autofocus", max_value_length=Model.NewSiteFeature.SiteFeatureCategory.FeatureCategory.MaxValueLength })
         <div class="buttonset">
             <span>When?</span>
-            <input type="radio" name="step1" data-bind="checked: startWhenever" id="step1_startWhenever" value="startWhenever" /><label for="step1_startWhenever">Whenever</label>
-            <input type="radio" name="step1" data-bind="checked: !startWhenever" id="step1_specificDates" value="specificDates" /><label for="step1_specificDates">Specific days</label>
+            <input type="radio" name="buttonset" id="step1_startWhenever" value="startWhenever" /><label for="step1_startWhenever">Whenever</label>
+            <input type="radio" name="buttonset" id="step1_specificDates" value="specificDates" /><label for="step1_specificDates">Specific days</label>
             
             @*<span>Starting</span><input type="checkbox" id="startWhenever" data-bind="checked: startWhenever" /><label for="startWhenever">Whenever</label><input data-bind="enable: !startWhenever()" type="date" class="input" name="NewSiteFeature.StartDate" value="@(Model.NewSiteFeature.StartDate.HasValue ? Model.NewSiteFeature.StartDate.Value.ToString("yyyy-MM-dd") : "")" />*@
         </div>
@@ -27,19 +29,15 @@
         </div>
     }
 
-    <div id="taglines">
-    @foreach (var tagline in Model.SiteFeatures.OrderByDescending(x => x.CreateDate))
-    {
-        <div>
-            <span>@tagline.Value</span> - <a href="~/sitefeature/delete/@tagline.SiteFeatureId" onclick="alert('working on delete links...'); return false;" class="delete">Delete</a>
+    <div id="siteFeatures" data-bind="foreach: siteFeatures">
+        <div data-bind="attr: { id: SiteFeatureId }">
+            <span data-bind="text: Value"></span> - <a href="~/sitefeature/delete/tagline.SiteFeatureId" onclick="alert('working on delete links...'); return false;" class="delete">Delete</a>
         </div>
-    }
     </div>
 </div>
 
 <script>
     var data = {};
-    data.test = true;
 
     var startWheneverKey = "startWhenever";
     var noEndDateKey = "noEndDate";
@@ -48,16 +46,19 @@
 
     data.startWhenever = savedStartWhenever === null || savedStartWhenever === "true";
     data.noEndDate = savedNoEndDate === null || savedNoEndDate === "true";
+    data.siteFeatures = @Html.Raw(Model.SiteFeatures.OrderByDescending(x => x.CreateDate).ToJson());
 
     var viewModel = ianhd.pluginHelpers.ko.getViewModel(data);
 
-    viewModel.startWhenever.subscribe(function (val) {
+    // bind this thing    ianhd.pluginHelpers.ko.bind(viewModel);    viewModel.startWhenever.subscribe(function (val) {
+        // TODO: remove all console log's
+        console.log("subscribe startWhenever");
         localStorage.setItem(startWheneverKey, val);
+        // update viewModel's startDate, and endDate for that matter
     });
 
     viewModel.noEndDate.subscribe(function (val) {
+        console.log("subscribe noEndDate");
         localStorage.setItem(noEndDateKey, val);
-    });
-
-    ianhd.pluginHelpers.ko.bind(viewModel);</script>
+    });</script>
 @Scripts.Render("~/scripts/ianhd/ianhd.siteFeature.index.js")

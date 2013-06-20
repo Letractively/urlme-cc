@@ -24,9 +24,9 @@ textarea { width: 286px; }
 
 form > div { margin-top: 10px; }
 
-#taglineIndex #taglines { padding-top: 20px; margin-top: 20px; width: 300px; border-top: 1px solid #ccc;  }
-    #taglineIndex #taglines > div { margin-bottom: 10px; }
+#siteFeatureIndex #siteFeatures { padding-top: 20px; margin-top: 20px; width: 300px; border-top: 1px solid #ccc;  }
+    #siteFeatureIndex #siteFeatures > div { margin-bottom: 10px; }
 
-#taglineIndex input[type='checkbox'] { margin: 0 5px 0 10px; display:inline-block; }
-#taglineIndex input[type='date'] { margin-left: 10px; }
-#taglineIndex button[type='submit'] { margin-right: 5px; }
+#siteFeatureIndex input[type='checkbox'] { margin: 0 5px 0 10px; display:inline-block; }
+#siteFeatureIndex input[type='date'] { margin-left: 10px; }
+#siteFeatureIndex button[type='submit'] { margin-right: 5px; }

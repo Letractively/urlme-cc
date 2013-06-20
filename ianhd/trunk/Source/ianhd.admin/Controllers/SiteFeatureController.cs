@@ -16,10 +16,13 @@ namespace ianhd.admin.Controllers
         [HttpGet]
         public ActionResult Index(int siteFeatureCategoryId)
         {
+            var dbNewSiteFeature = new SiteFeature(siteFeatureCategoryId);
+            var dbSiteFeatures = SiteFeature.Get(siteFeatureCategoryId);
+
             var vm = new ViewModels.SiteFeatureIndex
             {
-                NewSiteFeature = new SiteFeature(siteFeatureCategoryId),
-                SiteFeatures = SiteFeature.Get(siteFeatureCategoryId)
+                newSiteFeature = new ViewModels.SiteFeatureIndex.siteFeature(dbNewSiteFeature),
+                siteFeatures = new List<ViewModels.SiteFeatureIndex.siteFeature>(dbSiteFeatures)
             };
 
             return View(vm);

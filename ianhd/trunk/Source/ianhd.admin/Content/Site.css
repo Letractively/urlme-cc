@@ -22,7 +22,7 @@ h1 { font-size: 14px; }
 
 textarea { width: 286px; }
 
-form > div { margin-top: 10px; }
+form > div { margin-top: 20px; }
 
 #siteFeatureIndex #siteFeatures { padding-top: 20px; margin-top: 20px; width: 300px; border-top: 1px solid #ccc;  }
     #siteFeatureIndex #siteFeatures > div { margin-bottom: 10px; }

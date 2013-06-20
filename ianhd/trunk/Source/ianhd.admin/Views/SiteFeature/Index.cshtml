@@ -2,24 +2,26 @@
 @using ianhd.core.Extensions
 
 @{
-    // TODO: appropr title
-    ViewBag.Title = "SiteFeatures";
+    var title = Model.NewSiteFeature.SiteFeatureCategory.FeatureCategory.Title;
+    var hintText = Model.NewSiteFeature.SiteFeatureCategory.FeatureCategory.HintText;
 }
 
 <div id="siteFeatureIndex">
-    <h2>> SiteFeatures</h2>
+    <h2>> @title</h2>
     @using (Html.BeginForm("Index", "SiteFeature", FormMethod.Post))
     {
         @Html.HiddenFor(m => m.NewSiteFeature.Archive)
         // more hiddens?
     
-        @Html.TextAreaFor(m => m.NewSiteFeature.Value, new { placeholder="Enter tagline...", maxlength = "250", @class = "input", autofocus="autofocus", max_value_length=Model.NewSiteFeature.SiteFeatureCategory.FeatureCategory.MaxValueLength })
+        @Html.TextAreaFor(m => m.NewSiteFeature.Value, new { placeholder = hintText, maxlength = "250", @class = "input", autofocus="autofocus", max_value_length=Model.NewSiteFeature.SiteFeatureCategory.FeatureCategory.MaxValueLength })
+        <div data-bind="data: newSiteFeature">
+            <span data-bind="text: Value"></span>
+        </div>
+        
         <div class="buttonset">
             <span>When?</span>
             <input type="radio" name="buttonset" id="step1_startWhenever" value="startWhenever" /><label for="step1_startWhenever">Whenever</label>
             <input type="radio" name="buttonset" id="step1_specificDates" value="specificDates" /><label for="step1_specificDates">Specific days</label>
-            
-            @*<span>Starting</span><input type="checkbox" id="startWhenever" data-bind="checked: startWhenever" /><label for="startWhenever">Whenever</label><input data-bind="enable: !startWhenever()" type="date" class="input" name="NewSiteFeature.StartDate" value="@(Model.NewSiteFeature.StartDate.HasValue ? Model.NewSiteFeature.StartDate.Value.ToString("yyyy-MM-dd") : "")" />*@
         </div>
         <div class="dateControls" data-bind="visible: !startWhenever()">
             <div class="allButDatePicker"><span>Starting on</span></div>
@@ -50,6 +52,8 @@
     var savedNoEndDate = localStorage.getItem(noEndDateKey);
 
     // new item
+    data.newSiteFeature = @Html.Raw(Model.NewSiteFeature.ToJson());
+
     data.startWhenever = savedStartWhenever === null || savedStartWhenever === "true";
     data.noEndDate = savedNoEndDate === null || savedNoEndDate === "true";
 

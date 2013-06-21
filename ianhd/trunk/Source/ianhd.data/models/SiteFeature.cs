@@ -13,6 +13,10 @@ namespace ianhd.data
         {
             this.SiteFeatureCategoryId = siteFeatureCategoryId;
             this.SiteFeatureCategory = SiteFeatureCategoryGet(siteFeatureCategoryId);
+
+            // figure out default start date
+            var siteFeatures = Get(siteFeatureCategoryId);
+
         }
         public static SiteFeatureCategory SiteFeatureCategoryGet(int siteFeatureCategoryId)
         {

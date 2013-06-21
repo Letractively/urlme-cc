@@ -16,7 +16,16 @@ namespace ianhd.data
 
             // figure out default start date
             var siteFeatures = Get(siteFeatureCategoryId);
+            var tryDate = System.DateTime.Now;
+            bool found = false;
+            while (!found)
+            {
+                found = siteFeatures.FirstOrDefault(x => x.StartDate == tryDate) == null;
+                if (!found)
+                    tryDate = tryDate.AddDays(1);
+            }
 
+            this.StartDate = tryDate;
         }
         public static SiteFeatureCategory SiteFeatureCategoryGet(int siteFeatureCategoryId)
         {

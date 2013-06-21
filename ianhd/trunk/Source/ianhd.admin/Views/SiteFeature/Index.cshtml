@@ -11,8 +11,9 @@
         
         <div class="buttonset">
             <span>When?</span>
+            <input type="radio" name="buttonset" id="step1_nextVacantDay" value="nextVacantDay" /><label for="step1_nextVacantDay">Next vacant day</label>
             <input type="radio" name="buttonset" id="step1_startWhenever" value="startWhenever" /><label for="step1_startWhenever">Whenever</label>
-            <input type="radio" name="buttonset" id="step1_specificDates" value="specificDates" /><label for="step1_specificDates">Specific days</label>
+            <input type="radio" name="buttonset" id="step1_custom" value="custom" /><label for="step1_custom">Custom...</label>
         </div>
         <div class="dateControls" data-bind="visible: !startWhenever()">
             <div class="allButDatePicker"><span>Starting on</span></div>
@@ -37,9 +38,9 @@
 <script>
     var data = {};
 
-    var startWheneverKey = "startWhenever";
+    var dateOptionKey = "dateOption";
     var noEndDateKey = "noEndDate";
-    var savedStartWhenever = localStorage.getItem(startWheneverKey);
+    var savedDateOption = localStorage.getItem(dateOptionKey);
     var savedNoEndDate = localStorage.getItem(noEndDateKey);
 
     // new item
@@ -48,7 +49,8 @@
     data.hintText = '@Model.newSiteFeature.hintText';
     data.categoryTitle = '> @Model.newSiteFeature.categoryTitle';
 
-    data.startWhenever = savedStartWhenever === null || savedStartWhenever === "true";
+    // initial buttonset value
+    data.dateOption = savedDateOption || "nextVacantDay"; // nextVacantDay || startWhenever || custom
     data.noEndDate = savedNoEndDate === null || savedNoEndDate === "true";
 
     // list
@@ -56,11 +58,10 @@
 
     var viewModel = ianhd.pluginHelpers.ko.getViewModel(data);
 
-    // bind this thing    ianhd.pluginHelpers.ko.bind(viewModel);    // subscribers    viewModel.startWhenever.subscribe(function (val) {
-        localStorage.setItem(startWheneverKey, val);
+    // bind this thing    ianhd.pluginHelpers.ko.bind(viewModel);    // subscriptions    viewModel.dateOption.subscribe(function (val) {
+        localStorage.setItem(dateOptionKey, val);
         // update viewModel's startDate, and endDate for that matter
     });
-
     viewModel.noEndDate.subscribe(function (val) {
         localStorage.setItem(noEndDateKey, val);
     });</script>

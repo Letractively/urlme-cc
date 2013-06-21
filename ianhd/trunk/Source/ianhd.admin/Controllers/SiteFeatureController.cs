@@ -32,15 +32,15 @@ namespace ianhd.admin.Controllers
         [ValidateInput(false)]
         public ActionResult Index(ViewModels.SiteFeatureIndex vm, int id)
         {
-            var dbSiteFeature = new data.SiteFeature {
-                Archive = vm.NewSiteFeature.Archive,
-                LastDate = vm.NewSiteFeature.LastDate,
-                SiteFeatureCategoryId = id,
-                StartDate = vm.NewSiteFeature.StartDate,
-                Value = vm.NewSiteFeature.Value.TrimToNull()
-            };
+            //var dbSiteFeature = new data.SiteFeature {
+            //    Archive = vm.NewSiteFeature.Archive,
+            //    LastDate = vm.NewSiteFeature.LastDate,
+            //    SiteFeatureCategoryId = id,
+            //    StartDate = vm.NewSiteFeature.StartDate,
+            //    Value = vm.NewSiteFeature.Value.TrimToNull()
+            //};
 
-            bool success = data.SiteFeature.CreateUpdate(dbSiteFeature);
+            //bool success = data.SiteFeature.CreateUpdate(dbSiteFeature);
             
             return Redirect("~/siteFeature/index/" + id);
         }

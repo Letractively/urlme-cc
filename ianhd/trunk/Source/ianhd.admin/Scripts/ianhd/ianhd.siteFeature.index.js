@@ -19,10 +19,10 @@ ianhd.siteFeature = {
     },
     initDateOptions: function () {
         // Whenever true? then make it selected in button set
-        var dateOption = viewModel.dateOption(); // nextVacantDay || startWhenever || custom
+        var dateOption = viewModel.dateOption(); // nextVacantDay || whenever || custom
         var buttonSet = ianhd.siteFeature.controls.buttonSet();
         buttonSet.find("input[value='{0}']".format(dateOption)).attr("checked", "checked");
-        buttonSet().buttonset(); // todo: siteActions
+        buttonSet.buttonset(); // todo: siteActions
     },
     bindControls: function () {
         // change button set radios
@@ -40,7 +40,7 @@ ianhd.siteFeature = {
             // can do all below using subscribe, shooooooot.
 
             //var startDate = controls.startDate();
-            //var whenever = viewModel.startWhenever();
+            //var whenever = viewModel.whenever();
             //if (whenever.is(":checked")) {
             //    startDate.val("");
             //}

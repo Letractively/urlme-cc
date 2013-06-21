@@ -1,7 +1,7 @@
 ﻿@import url("normalize.css");
 
 body {
-    font-size: 14px;
+    font-size: 15px;
     font-family: "Arial";
     color: #333;
     background-color: #fff;
@@ -14,10 +14,10 @@ a { color: #357ae8; }
     a:hover { color: #357ae8; }
     a:active { color:#357ae8; }
 
-h1 { font-size: 14px; }
+h1, h2 { font-size: 20px; }
     h1 a { text-decoration: none; }
 
-#homeIndex a.button { display: block; margin-bottom: 10px; }
+#homeIndex a.button { display: block; margin-bottom: 10px; font-size: 18px; }
     #homeIndex a.button:visited { color: #444; }
 
 textarea { width: 286px; }

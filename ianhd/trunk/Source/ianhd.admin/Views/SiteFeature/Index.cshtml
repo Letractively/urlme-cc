@@ -2,16 +2,12 @@
 @using ianhd.core.Extensions
 
 <div id="siteFeatureIndex">
-    <h2>> KO:title</h2>
-    @*@using (Html.BeginForm("Index", "SiteFeature", FormMethod.Post))
+    <h2 data-bind="text: categoryTitle"></h2>
+    @using (Html.BeginForm("Index", "SiteFeature", FormMethod.Post))
     {
         // hiddens?
-    
-        @Html.TextAreaFor(m => m.NewSiteFeature.Value, new { placeholder = hintText, maxlength = "250", @class = "input", autofocus="autofocus", max_value_length=Model.NewSiteFeature.SiteFeatureCategory.FeatureCategory.MaxValueLength })
-        *@
-        <div data-bind="data: newSiteFeature">
-            <span data-bind="text: value"></span>
-        </div>
+
+        <textarea data-bind="value: value, attr: { 'max-value-length': maxValueLength, 'placeholder': hintText }" maxlength="250" cols="20" class="input"></textarea>
         
         <div class="buttonset">
             <span>When?</span>
@@ -20,11 +16,11 @@
         </div>
         <div class="dateControls" data-bind="visible: !startWhenever()">
             <div class="allButDatePicker"><span>Starting on</span></div>
-            <input type="date" class="input" value="@(Model.NewSiteFeature.LastDate.HasValue ? Model.NewSiteFeature.LastDate.Value.ToString("yyyy-MM-dd") : "")" />
+            <input type="date" class="input" value="" />
         </div>
         <div class="dateControls" data-bind="visible: !startWhenever()">
             <div class="allButDatePicker"><span>Last day</span><input id="noEndDate" type="checkbox" data-bind="checked: noEndDate" /><label for="noEndDate">No end date</label></div>
-            <input data-bind="visible: !noEndDate()" type="date" class="input" value="@(Model.NewSiteFeature.LastDate.HasValue ? Model.NewSiteFeature.LastDate.Value.ToString("yyyy-MM-dd") : "")" />
+            <input data-bind="visible: !noEndDate()" type="date" class="input" value="yyyy-MM-dd" />
         </div>
         <div id="controls">
             <button class="blueButton" type="submit">Save</button> or <a href="onclick:location.reload();return false;" class="cancel">Cancel</a>
@@ -32,8 +28,8 @@
     }
 
     <div id="siteFeatures" data-bind="foreach: siteFeatures">
-        <div data-bind="attr: { id: SiteFeatureId }">
-            <span data-bind="text: Value"></span> - <a href="~/sitefeature/delete/tagline.SiteFeatureId" onclick="alert('working on delete links...'); return false;" class="delete">Delete</a>
+        <div data-bind="attr: { id: siteFeatureId }">
+            <span data-bind="text: value"></span> - <a href="~/sitefeature/delete/tagline.SiteFeatureId" onclick="alert('working on delete links...'); return false;" class="delete">Delete</a>
         </div>
     </div>
 </div>
@@ -47,13 +43,16 @@
     var savedNoEndDate = localStorage.getItem(noEndDateKey);
 
     // new item
-    data.newSiteFeature = @Html.Raw(Model.newSiteFeature.ToJson());
+    data.value = '@Html.Raw(Model.newSiteFeature.value)';
+    data.maxValueLength = '@Model.newSiteFeature.maxValueLength';
+    data.hintText = '@Model.newSiteFeature.hintText';
+    data.categoryTitle = '> @Model.newSiteFeature.categoryTitle';
 
     data.startWhenever = savedStartWhenever === null || savedStartWhenever === "true";
     data.noEndDate = savedNoEndDate === null || savedNoEndDate === "true";
 
     // list
-    data.siteFeatures = @Html.Raw(Model.siteFeatures.OrderByDescending(x => x.CreateDate).ToJson());
+    data.siteFeatures = @Html.Raw(Model.siteFeatures.OrderByDescending(x => x.createDate).ToJson());
 
     var viewModel = ianhd.pluginHelpers.ko.getViewModel(data);
 

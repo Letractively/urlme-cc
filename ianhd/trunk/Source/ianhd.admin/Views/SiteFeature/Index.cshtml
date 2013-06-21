@@ -12,14 +12,14 @@
         <div class="buttonset">
             <span>When?</span>
             <input type="radio" name="buttonset" id="step1_nextVacantDay" value="nextVacantDay" /><label for="step1_nextVacantDay">Next vacant day</label>
-            <input type="radio" name="buttonset" id="step1_startWhenever" value="startWhenever" /><label for="step1_startWhenever">Whenever</label>
+            <input type="radio" name="buttonset" id="step1_whenever" value="whenever" /><label for="step1_whenever">Whenever</label>
             <input type="radio" name="buttonset" id="step1_custom" value="custom" /><label for="step1_custom">Custom...</label>
         </div>
-        <div class="dateControls" data-bind="visible: !startWhenever()">
+        <div class="dateControls" data-bind="visible: !whenever()">
             <div class="allButDatePicker"><span>Starting on</span></div>
             <input type="date" class="input" value="" />
         </div>
-        <div class="dateControls" data-bind="visible: !startWhenever()">
+        <div class="dateControls" data-bind="visible: !whenever()">
             <div class="allButDatePicker"><span>Last day</span><input id="noEndDate" type="checkbox" data-bind="checked: noEndDate" /><label for="noEndDate">No end date</label></div>
             <input data-bind="visible: !noEndDate()" type="date" class="input" value="yyyy-MM-dd" />
         </div>
@@ -37,6 +37,7 @@
 
 <script>
     var data = {};
+    var wheneverVal = "whenever", customVal = "custom", nextVacantDayVal = "nextVacantDay";
 
     var dateOptionKey = "dateOption";
     var noEndDateKey = "noEndDate";
@@ -50,7 +51,10 @@
     data.categoryTitle = '> @Model.newSiteFeature.categoryTitle';
 
     // initial buttonset value
-    data.dateOption = savedDateOption || "nextVacantDay"; // nextVacantDay || startWhenever || custom
+    data.dateOption = savedDateOption || nextVacantDayVal; // nextVacantDay || whenever || custom
+    data.whenever = data.dateOption === wheneverVal;
+    data.nextVacantDay = data.dateOption === nextVacantDayVal;
+    data.custom = data.dateOption === customVal;
     data.noEndDate = savedNoEndDate === null || savedNoEndDate === "true";
 
     // list
@@ -60,6 +64,9 @@
 
     // bind this thing    ianhd.pluginHelpers.ko.bind(viewModel);    // subscriptions    viewModel.dateOption.subscribe(function (val) {
         localStorage.setItem(dateOptionKey, val);
+        viewModel.whenever(val === wheneverVal);
+        viewModel.nextVacantDay(val === nextVacantDayVal);
+        viewModel.custom(val === customVal);
         // update viewModel's startDate, and endDate for that matter
     });
     viewModel.noEndDate.subscribe(function (val) {

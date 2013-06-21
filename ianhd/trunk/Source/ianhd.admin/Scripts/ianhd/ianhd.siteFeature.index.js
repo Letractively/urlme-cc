@@ -25,10 +25,11 @@ ianhd.siteFeature = {
         buttonSet().buttonset(); // todo: siteActions
     },
     bindControls: function () {
+        // change button set radios
         ianhd.siteFeature.controls.buttonSetRadios().change(function () {
             var buttonSet = ianhd.siteFeature.controls.buttonSet();
             var selectedVal = buttonSet.find("input[type='radio']:checked").val();
-            viewModel.startWhenever(selectedVal === "startWhenever");
+            viewModel.dateOption(selectedVal);
         });
 
         // submit form

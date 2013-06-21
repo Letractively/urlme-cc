@@ -16,13 +16,13 @@ ianhd.siteFeature = {
     init: function () {
         ianhd.siteFeature.bindControls();
         ianhd.siteFeature.initDateOptions();
-        ianhd.siteFeature.controls.buttonSet().buttonset(); // todo: siteActions
     },
     initDateOptions: function () {
         // Whenever true? then make it selected in button set
-        var labelIdx = viewModel.startWhenever() ? 0 : 1;
-        ianhd.siteFeature.controls.buttonSetRadios().eq(labelIdx).attr("checked", "checked");
-        // next in main init is to initialize buttonset()
+        var dateOption = viewModel.dateOption(); // nextVacantDay || startWhenever || custom
+        var buttonSet = ianhd.siteFeature.controls.buttonSet();
+        buttonSet.find("input[value='{0}']".format(dateOption)).attr("checked", "checked");
+        buttonSet().buttonset(); // todo: siteActions
     },
     bindControls: function () {
         ianhd.siteFeature.controls.buttonSetRadios().change(function () {

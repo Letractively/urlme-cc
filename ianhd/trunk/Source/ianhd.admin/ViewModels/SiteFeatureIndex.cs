@@ -18,6 +18,7 @@ namespace ianhd.admin.ViewModels
             public string categoryTitle { get; set; }
             public string hintText { get; set; }
             public int maxValueLength { get; set; }
+            public string valueType { get; set; }
             public DateTime? createDate { get; set; }
 
             public siteFeature() { }
@@ -37,6 +38,7 @@ namespace ianhd.admin.ViewModels
                 this.hintText = featureCategory.HintText;
                 this.maxValueLength = featureCategory.MaxValueLength;
                 this.siteFeatureCategoryId = dbSiteFeature.SiteFeatureCategory.SiteFeatureCategoryId;
+                this.valueType = featureCategory.ValueType;
             }
 
             public static List<siteFeature> siteFeatures(List<data.SiteFeature> dbSiteFeatures) {

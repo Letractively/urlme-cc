@@ -9,7 +9,7 @@
         <input name="lastDate" data-bind="value: lastDate" type="hidden" />
         <input name="siteFeatureCategoryId" data-bind="value: siteFeatureCategoryId" type="hidden" />
         
-        <textarea name="value" data-bind="value: value, attr: { 'max-value-length': maxValueLength, 'placeholder': hintText }" maxlength="250" cols="20" class="input"></textarea>
+        <textarea name="value" data-bind="visible: html(), value: value, attr: { 'max-value-length': maxValueLength, 'placeholder': hintText }" maxlength="250" cols="20" class="input"></textarea>
         
         <div>When?</div>
         <div class="buttonset">
@@ -49,6 +49,9 @@
     data.startDate = '@Model.newSiteFeature.startDate.Value.ToString("yyyy-MM-dd")';
     data.lastDate = data.startDate;
     data.siteFeatureCategoryId = @Model.newSiteFeature.siteFeatureCategoryId;
+    data.valueType = '@Model.newSiteFeature.valueType';
+    data.html = data.valueType === "html";
+    data.imageUrl = data.valueType === "imageUrl";
 
     // initial buttonset value
     data.dateOption = savedDateOption || nextVacantDayVal; // nextVacantDay || whenever || custom

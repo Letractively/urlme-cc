@@ -9,17 +9,17 @@
 
         <textarea data-bind="value: value, attr: { 'max-value-length': maxValueLength, 'placeholder': hintText }" maxlength="250" cols="20" class="input"></textarea>
         
+        <div>When?</div>
         <div class="buttonset">
-            <span>When?</span>
-            <input type="radio" name="buttonset" id="step1_nextVacantDay" value="nextVacantDay" /><label for="step1_nextVacantDay">Next vacant day</label>
+            <input type="radio" name="buttonset" id="step1_nextVacantDay" value="nextVacantDay" /><label for="step1_nextVacantDay" data-bind="text: startDateFriendly"></label>
             <input type="radio" name="buttonset" id="step1_whenever" value="whenever" /><label for="step1_whenever">Whenever</label>
             <input type="radio" name="buttonset" id="step1_custom" value="custom" /><label for="step1_custom">Custom...</label>
         </div>
-        <div class="dateControls" data-bind="visible: !whenever()">
+        <div class="dateControls" data-bind="visible: custom()">
             <div class="allButDatePicker"><span>Starting on</span></div>
-            <input type="date" class="input" value="" />
+            <input type="date" class="input" data-bind="value: startDate" />
         </div>
-        <div class="dateControls" data-bind="visible: !whenever()">
+        <div class="dateControls" data-bind="visible: custom()">
             <div class="allButDatePicker"><span>Last day</span><input id="noEndDate" type="checkbox" data-bind="checked: noEndDate" /><label for="noEndDate">No end date</label></div>
             <input data-bind="visible: !noEndDate()" type="date" class="input" value="yyyy-MM-dd" />
         </div>
@@ -49,6 +49,8 @@
     data.maxValueLength = '@Model.newSiteFeature.maxValueLength';
     data.hintText = '@Model.newSiteFeature.hintText';
     data.categoryTitle = '> @Model.newSiteFeature.categoryTitle';
+    data.startDateFriendly = '@Model.newSiteFeature.startDate.Value.ToString("MMM d, yyyy")';
+    data.startDate = '@Model.newSiteFeature.startDate.Value.ToString("yyyy-MM-dd")';
 
     // initial buttonset value
     data.dateOption = savedDateOption || nextVacantDayVal; // nextVacantDay || whenever || custom

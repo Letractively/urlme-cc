@@ -16,6 +16,10 @@ ianhd.siteFeature = {
     init: function () {
         ianhd.siteFeature.bindControls();
         ianhd.siteFeature.initDateOptions();
+        ianhd.siteFeature.initDropZone();
+    },
+    initDropZone: function () {
+
     },
     initDateOptions: function () {
         // Whenever true? then make it selected in button set

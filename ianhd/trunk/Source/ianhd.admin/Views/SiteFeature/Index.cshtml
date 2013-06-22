@@ -10,6 +10,7 @@
         <input name="siteFeatureCategoryId" data-bind="value: siteFeatureCategoryId" type="hidden" />
         
         <textarea name="value" data-bind="visible: html(), value: value, attr: { 'max-value-length': maxValueLength, 'placeholder': hintText }" maxlength="250" cols="20" class="input"></textarea>
+        <div id="drop" data-bind="visible: imageUrl()">Drop bulldog(s) here</div>
         
         <div>When?</div>
         <div class="buttonset">

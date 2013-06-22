@@ -42,16 +42,16 @@ namespace ianhd.admin.Controllers
 
             bool success = data.SiteFeature.CreateUpdate(dbSiteFeature);
             
-            return Redirect("~/siteFeatures/" + siteFeature.siteFeatureCategoryId);
+            return Redirect("~/sitefeatures/" + siteFeature.siteFeatureCategoryId);
         }
 
         [HttpGet]
-        public ActionResult Delete(int id)
+        public ActionResult Delete(int siteFeatureId)
         {
-            bool success = data.SiteFeature.Delete(id);
-
-            // HACK - need to make this NOT hard-coded
-            return Redirect("~/siteFeature/index/1");
+            var siteFeature = data.SiteFeature.GetById(siteFeatureId);
+            bool success = data.SiteFeature.Delete(siteFeatureId);
+            
+            return Redirect("~/sitefeatures/" + siteFeature.SiteFeatureCategoryId);
         }
     }
 }

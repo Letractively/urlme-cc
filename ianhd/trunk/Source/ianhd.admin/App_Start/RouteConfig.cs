@@ -20,6 +20,12 @@ namespace ianhd.admin
             );
 
             routes.MapRoute(
+                name: "SiteFeature-Delete",
+                url: "sitefeatures/delete/{siteFeatureId}",
+                defaults: new { controller = "SiteFeature", action = "Delete" }
+            );
+
+            routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }

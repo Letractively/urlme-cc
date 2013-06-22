@@ -31,5 +31,7 @@ form > div { margin-top: 20px; }
 #siteFeatureIndex input[type='date'] { margin-left: 10px; }
 #siteFeatureIndex button[type='submit'] { margin-right: 5px; }
 
+#siteFeatureIndex .buttonset { margin-top: 5px; }
+    #siteFeatureIndex .buttonset .ui-button-text { font-size: 14px; }
 #siteFeatureIndex .dateControls { height: 35px; }
     #siteFeatureIndex .dateControls .allButDatePicker { padding-top: 10px; display:inline-block; }

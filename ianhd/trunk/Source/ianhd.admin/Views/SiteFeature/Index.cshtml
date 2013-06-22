@@ -28,7 +28,7 @@
 
     <div id="siteFeatures" data-bind="foreach: siteFeatures">
         <div data-bind="attr: { id: siteFeatureId }">
-            <span data-bind="text: value"></span> - <a href="~/sitefeature/delete/tagline.SiteFeatureId" onclick="alert('working on delete links...'); return false;" class="delete">Delete</a>
+            <span data-bind="text: value"></span> - <a data-bind="attr: { 'href': deleteUrl }" class="delete">Delete</a>
         </div>
     </div>
 </div>
@@ -58,6 +58,9 @@
 
     // list
     data.siteFeatures = @Html.Raw(Model.siteFeatures.OrderByDescending(x => x.createDate).ToJson());
+    $.each(data.siteFeatures, function(i, sf) {
+        sf.deleteUrl = '@Url.Content("~/")' + "sitefeatures/delete/" + sf.siteFeatureId;
+    });
 
     var viewModel = ianhd.pluginHelpers.ko.getViewModel(data);
 

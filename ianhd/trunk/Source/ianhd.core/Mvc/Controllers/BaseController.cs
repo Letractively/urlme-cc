@@ -8,6 +8,7 @@ namespace ianhd.core.Mvc.Controllers
         public string OpenGraphTitle { get; set; }
         public string OpenGraphImage { get; set; }
         public string OpenGraphDescription { get; set; }
+        public string ShowSuccessOnNextAction { get; set; }
 
         protected override void OnActionExecuted(ActionExecutedContext filterContext)
         {

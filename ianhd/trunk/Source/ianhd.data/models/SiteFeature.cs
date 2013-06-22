@@ -38,11 +38,18 @@ namespace ianhd.data
                 return ctx.SiteFeatureCategories.FirstOrDefault(x => x.SiteFeatureCategoryId == siteFeatureCategoryId);
             }
         }
+        public static SiteFeature GetById(int siteFeatureId)
+        {
+            using (var ctx = new bd13DataContext { ObjectTrackingEnabled = false })
+            {
+                return ctx.SiteFeatures.FirstOrDefault(x => x.SiteFeatureId == siteFeatureId);
+            }
+        }
         public static List<SiteFeature> Get(int siteFeatureCategoryId)
         {
             using (var ctx = new bd13DataContext { ObjectTrackingEnabled = false })
             {
-                var now = System.DateTime.Now;
+                var now = System.DateTime.Today;
                 return ctx.SiteFeatures.Where(x => x.SiteFeatureCategoryId == siteFeatureCategoryId && !x.Archive && (!x.StartDate.HasValue || x.StartDate <= now) && (!x.LastDate.HasValue || x.LastDate >= now)).ToList();
             }
         }
@@ -52,7 +59,7 @@ namespace ianhd.data
             {
                 using (var db = new bd13DataContext { ObjectTrackingEnabled = true })
                 {
-                    var record = db.SiteFeatures.FirstOrDefault(x => x.SiteFeatureCategoryId == id);
+                    var record = db.SiteFeatures.FirstOrDefault(x => x.SiteFeatureId == id);
                     if (record != null)
                     {
                         // delete

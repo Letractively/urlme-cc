@@ -37,13 +37,6 @@ ianhd.siteFeature = {
             // validate
             var controls = ianhd.siteFeature.controls;
 
-            // can do all below using subscribe, shooooooot.
-
-            //var startDate = controls.startDate();
-            //var whenever = viewModel.whenever();
-            //if (whenever.is(":checked")) {
-            //    startDate.val("");
-            //}
         });
     }
 };

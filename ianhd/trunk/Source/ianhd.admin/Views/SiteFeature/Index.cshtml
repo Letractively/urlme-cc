@@ -6,8 +6,10 @@
     @using (Html.BeginForm("Index", "SiteFeature", FormMethod.Post))
     {
         // hiddens?
-
-        <textarea data-bind="value: value, attr: { 'max-value-length': maxValueLength, 'placeholder': hintText }" maxlength="250" cols="20" class="input"></textarea>
+        <input name="lastDate" data-bind="value: lastDate" type="hidden" />
+        <input name="siteFeatureCategoryId" data-bind="value: siteFeatureCategoryId" type="hidden" />
+        
+        <textarea name="value" data-bind="value: value, attr: { 'max-value-length': maxValueLength, 'placeholder': hintText }" maxlength="250" cols="20" class="input"></textarea>
         
         <div>When?</div>
         <div class="buttonset">
@@ -16,12 +18,8 @@
             <input type="radio" name="buttonset" id="step1_custom" value="custom" /><label for="step1_custom">...</label>
         </div>
         <div class="dateControls" data-bind="visible: custom()">
-            <div class="allButDatePicker"><span>Starting on</span></div>
-            <input type="date" class="input" data-bind="value: startDate" />
-        </div>
-        <div class="dateControls" data-bind="visible: custom()">
-            <div class="allButDatePicker"><span>Last day</span><input id="noEndDate" type="checkbox" data-bind="checked: noEndDate" /><label for="noEndDate">No end date</label></div>
-            <input data-bind="visible: !noEndDate()" type="date" class="input" value="yyyy-MM-dd" />
+            <div class="allButDatePicker"><span>Show on</span></div>
+            <input name="startDate" type="date" class="input" data-bind="value: startDate" />
         </div>
         <div id="controls">
             <button class="blueButton" type="submit">Save</button> or <a href="onclick:location.reload();return false;" class="cancel">Cancel</a>
@@ -40,9 +38,7 @@
     var wheneverVal = "whenever", customVal = "custom", nextVacantDayVal = "nextVacantDay";
 
     var dateOptionKey = "dateOption";
-    var noEndDateKey = "noEndDate";
     var savedDateOption = localStorage.getItem(dateOptionKey);
-    var savedNoEndDate = localStorage.getItem(noEndDateKey);
 
     // new item
     data.value = '@Html.Raw(Model.newSiteFeature.value)';
@@ -51,27 +47,40 @@
     data.categoryTitle = '> @Model.newSiteFeature.categoryTitle';
     data.startDateFriendly = '@Model.newSiteFeature.startDate.Value.ToString("MMM d, yyyy")';
     data.startDate = '@Model.newSiteFeature.startDate.Value.ToString("yyyy-MM-dd")';
+    data.lastDate = data.startDate;
+    data.siteFeatureCategoryId = @Model.newSiteFeature.siteFeatureCategoryId;
 
     // initial buttonset value
     data.dateOption = savedDateOption || nextVacantDayVal; // nextVacantDay || whenever || custom
     data.whenever = data.dateOption === wheneverVal;
     data.nextVacantDay = data.dateOption === nextVacantDayVal;
     data.custom = data.dateOption === customVal;
-    data.noEndDate = savedNoEndDate === null || savedNoEndDate === "true";
 
     // list
     data.siteFeatures = @Html.Raw(Model.siteFeatures.OrderByDescending(x => x.createDate).ToJson());
 
     var viewModel = ianhd.pluginHelpers.ko.getViewModel(data);
 
-    // bind this thing    ianhd.pluginHelpers.ko.bind(viewModel);    // subscriptions    viewModel.dateOption.subscribe(function (val) {
+    // subscriptions    viewModel.dateOption.subscribe(function (val) {
         localStorage.setItem(dateOptionKey, val);
         viewModel.whenever(val === wheneverVal);
         viewModel.nextVacantDay(val === nextVacantDayVal);
         viewModel.custom(val === customVal);
+        
         // update viewModel's startDate, and endDate for that matter
+        if (viewModel.whenever()) {
+            viewModel.startDate(null);
+        } else if (viewModel.nextVacantDay() || viewModel.custom()) {
+            // if custom, then preset it for them to whatever nextVacantDay val is
+            viewModel.startDate(data.startDate);
+        }
     });
-    viewModel.noEndDate.subscribe(function (val) {
-        localStorage.setItem(noEndDateKey, val);
-    });</script>
+    viewModel.startDate.subscribe(function(val) {
+        console.log("subscribe startDate");
+        // for now, match starting with end date
+        viewModel.lastDate(val);
+    });
+
+    // bind this thing    ianhd.pluginHelpers.ko.bind(viewModel);
+</script>
 @Scripts.Render("~/scripts/ianhd/ianhd.siteFeature.index.js")

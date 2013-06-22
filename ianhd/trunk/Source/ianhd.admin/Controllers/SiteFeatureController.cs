@@ -30,19 +30,19 @@ namespace ianhd.admin.Controllers
 
         [HttpPost]
         [ValidateInput(false)]
-        public ActionResult Index(ViewModels.SiteFeatureIndex vm, int id)
+        public ActionResult Index(ViewModels.SiteFeatureIndex.siteFeature siteFeature)
         {
-            //var dbSiteFeature = new data.SiteFeature {
-            //    Archive = vm.NewSiteFeature.Archive,
-            //    LastDate = vm.NewSiteFeature.LastDate,
-            //    SiteFeatureCategoryId = id,
-            //    StartDate = vm.NewSiteFeature.StartDate,
-            //    Value = vm.NewSiteFeature.Value.TrimToNull()
-            //};
+            var dbSiteFeature = new data.SiteFeature {
+                Archive = false,
+                LastDate = siteFeature.lastDate,
+                SiteFeatureCategoryId = siteFeature.siteFeatureCategoryId,
+                StartDate = siteFeature.startDate,
+                Value = siteFeature.value.TrimToNull()
+            };
 
-            //bool success = data.SiteFeature.CreateUpdate(dbSiteFeature);
+            bool success = data.SiteFeature.CreateUpdate(dbSiteFeature);
             
-            return Redirect("~/siteFeature/index/" + id);
+            return Redirect("~/siteFeatures/" + siteFeature.siteFeatureCategoryId);
         }
 
         [HttpGet]

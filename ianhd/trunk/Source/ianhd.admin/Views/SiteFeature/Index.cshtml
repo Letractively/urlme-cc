@@ -13,9 +13,14 @@
         
         <div>When?</div>
         <div class="buttonset">
-            <input type="radio" name="buttonset" id="step1_nextVacantDay" value="nextVacantDay" /><label for="step1_nextVacantDay" data-bind="text: startDateFriendly"></label>
-            <input type="radio" name="buttonset" id="step1_whenever" value="whenever" /><label for="step1_whenever">∞</label>
-            <input type="radio" name="buttonset" id="step1_custom" value="custom" /><label for="step1_custom">...</label>
+            @{ var dateOptions = string.Format("nextVacantDay`{0}|whenever`∞|custom`...", Model.newSiteFeature.startDate.Value.ToString("MMM d, yyyy")); }
+            @foreach (var dateOption in dateOptions.Split('|'))
+            {
+                var parts = dateOption.Split('`');
+                var value = parts[0];
+                var text = parts[1];
+                <input type="radio" name="buttonset" id="step1_@value" value="@value" /><label for="step1_@value">@text</label>
+            }
         </div>
         <div class="dateControls" data-bind="visible: custom()">
             <div class="allButDatePicker"><span>Show on</span></div>
@@ -45,7 +50,6 @@
     data.maxValueLength = '@Model.newSiteFeature.maxValueLength';
     data.hintText = '@Model.newSiteFeature.hintText';
     data.categoryTitle = '> @Model.newSiteFeature.categoryTitle';
-    data.startDateFriendly = '@Model.newSiteFeature.startDate.Value.ToString("MMM d, yyyy")';
     data.startDate = '@Model.newSiteFeature.startDate.Value.ToString("yyyy-MM-dd")';
     data.lastDate = data.startDate;
     data.siteFeatureCategoryId = @Model.newSiteFeature.siteFeatureCategoryId;

@@ -35,3 +35,5 @@ form > div { margin-top: 20px; }
     #siteFeatureIndex .buttonset .ui-button-text { font-size: 14px; }
 #siteFeatureIndex .dateControls { height: 35px; }
     #siteFeatureIndex .dateControls .allButDatePicker { padding-top: 10px; display:inline-block; }
+
+#siteFeatureIndex #drop { border: 4px dashed #ccc; padding: 100px; width: 400px; text-align: center; font-weight: bold; }

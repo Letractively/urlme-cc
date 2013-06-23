@@ -16,7 +16,7 @@ namespace ianhd.data
 
             // figure out default start date
             var siteFeatures = Get(siteFeatureCategoryId);
-            var tryDate = System.DateTime.Now;
+            var tryDate = System.DateTime.Today;
             bool found = false;
             while (!found)
             {

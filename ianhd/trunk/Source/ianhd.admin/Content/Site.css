@@ -26,6 +26,7 @@ form > div { margin-top: 20px; }
 
 #siteFeatureIndex #siteFeatures { padding-top: 20px; margin-top: 20px; width: 300px; border-top: 1px solid #ccc;  }
     #siteFeatureIndex #siteFeatures > div { margin-bottom: 10px; }
+        #siteFeatureIndex #siteFeatures > div .when { font-style: italic; color: #808080; }
 
 #siteFeatureIndex input[type='checkbox'] { margin: 0 5px 0 10px; display:inline-block; }
 #siteFeatureIndex input[type='date'] { margin-left: 10px; }

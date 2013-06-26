@@ -34,7 +34,7 @@
 
     <div id="siteFeatures" data-bind="foreach: siteFeatures">
         <div data-bind="attr: { id: siteFeatureId }">
-            <span data-bind="text: value"></span> - <a data-bind="attr: { 'href': deleteUrl }" class="delete">Delete</a>
+            <span data-bind="text: value"></span> - <span class="when" data-bind="text: when"></span> - <a data-bind="attr: { 'href': deleteUrl }" class="delete">Delete</a>
         </div>
     </div>
 </div>
@@ -72,7 +72,7 @@
 
     var viewModel = ianhd.pluginHelpers.ko.getViewModel(data);
 
-    // subscriptions    viewModel.dateOption.subscribe(function (val) {
+    var updateDateOption = function(val) {
         localStorage.setItem(dateOptionKey, val);
         viewModel.whenever(val === wheneverVal);
         viewModel.nextVacantDay(val === nextVacantDayVal);
@@ -85,6 +85,11 @@
             // if custom, then preset it for them to whatever nextVacantDay val is
             viewModel.startDate(data.startDate);
         }
+    };
+    updateDateOption(data.dateOption);
+
+    // subscriptions    viewModel.dateOption.subscribe(function (val) {
+        updateDateOption(val);
     });
     viewModel.startDate.subscribe(function(val) {
         console.log("subscribe startDate");

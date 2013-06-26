@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using ianhd.data;
+using System.Text;
 
 namespace ianhd.admin.ViewModels
 {
@@ -20,6 +21,24 @@ namespace ianhd.admin.ViewModels
             public int maxValueLength { get; set; }
             public string valueType { get; set; }
             public DateTime? createDate { get; set; }
+            public string when
+            {
+                get
+                {
+                    if (!this.startDate.HasValue) // no start date value, which means no end date value
+                    {
+                        return "Whenever";
+                    }
+                    else if (this.startDate.HasValue && this.lastDate.HasValue && this.startDate.Value == this.lastDate.Value)
+                    {
+                        // same day for both start and last date
+                        return this.startDate.Value.ToString("MM-dd-yyyy");
+                    }
+
+                    // custom
+                    return string.Format("{0} - {1}", this.startDate.Value.ToString("MM-dd-yyyy"), this.lastDate.Value.ToString("MM-dd-yyyy"));
+                }
+            }
 
             public siteFeature() { }
             public siteFeature(data.SiteFeature dbSiteFeature)
@@ -41,7 +60,8 @@ namespace ianhd.admin.ViewModels
                 this.valueType = featureCategory.ValueType;
             }
 
-            public static List<siteFeature> siteFeatures(List<data.SiteFeature> dbSiteFeatures) {
+            public static List<siteFeature> siteFeatures(List<data.SiteFeature> dbSiteFeatures)
+            {
                 var rtn = new List<siteFeature>();
                 dbSiteFeatures.ForEach(x => rtn.Add(new siteFeature(x)));
                 return rtn;

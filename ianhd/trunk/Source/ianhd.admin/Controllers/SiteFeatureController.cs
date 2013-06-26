@@ -17,7 +17,7 @@ namespace ianhd.admin.Controllers
         public ActionResult Index(int siteFeatureCategoryId)
         {
             var dbNewSiteFeature = new SiteFeature(siteFeatureCategoryId);
-            var dbSiteFeatures = SiteFeature.Get(siteFeatureCategoryId);
+            var dbSiteFeatures = SiteFeature.GetAll(siteFeatureCategoryId);
 
             var vm = new ViewModels.SiteFeatureIndex
             {

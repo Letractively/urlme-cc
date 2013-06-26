@@ -53,6 +53,14 @@ namespace ianhd.data
                 return ctx.SiteFeatures.Where(x => x.SiteFeatureCategoryId == siteFeatureCategoryId && !x.Archive && (!x.StartDate.HasValue || x.StartDate <= now) && (!x.LastDate.HasValue || x.LastDate >= now)).ToList();
             }
         }
+        public static List<SiteFeature> GetAll(int siteFeatureCategoryId)
+        {
+            using (var ctx = new bd13DataContext { ObjectTrackingEnabled = false })
+            {
+                var now = System.DateTime.Today;
+                return ctx.SiteFeatures.Where(x => x.SiteFeatureCategoryId == siteFeatureCategoryId && !x.Archive).ToList();
+            }
+        }
         public static bool Delete(int id)
         {
             try

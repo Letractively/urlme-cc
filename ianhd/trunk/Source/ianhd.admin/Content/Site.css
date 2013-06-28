@@ -20,6 +20,11 @@ h1, h2 { font-size: 20px; }
 #homeIndex a.button { display: block; margin-bottom: 10px; font-size: 18px; }
     #homeIndex a.button:visited { color: #444; }
 
+header.noneHomeHeader { margin-bottom: 20px; }
+header.noneHomeHeader h1, header.noneHomeHeader h2 { margin: 0; padding: 0; float: left; }
+    header.noneHomeHeader h1 { margin-right: 10px; }
+    header.noneHomeHeader h2 { margin-top: 5px; }
+
 textarea { width: 286px; }
 
 form > div { margin-top: 20px; }

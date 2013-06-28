@@ -1,8 +1,12 @@
 ﻿@model ianhd.admin.ViewModels.SiteFeatureIndex
 @using ianhd.core.Extensions
 
-<div id="siteFeatureIndex">
+<header class="noneHomeHeader group">
+    <h1><a href="~/" style="background: url('http://the3d.co/wp-content/themes/Latest_3D/images/home_icon.png'); height: 32px; width: 32px; display:inline-block;"></a></h1>
     <h2 data-bind="text: categoryTitle"></h2>
+</header>
+
+<div id="siteFeatureIndex">
     @using (Html.BeginForm("Index", "SiteFeature", FormMethod.Post))
     {
         // hiddens?
@@ -50,7 +54,7 @@
     data.value = '@Html.Raw(Model.newSiteFeature.value)';
     data.maxValueLength = '@Model.newSiteFeature.maxValueLength';
     data.hintText = '@Model.newSiteFeature.hintText';
-    data.categoryTitle = '> @Model.newSiteFeature.categoryTitle';
+    data.categoryTitle = '/ @Model.newSiteFeature.categoryTitle';
     data.startDate = '@Model.newSiteFeature.startDate.Value.ToString("yyyy-MM-dd")';
     data.lastDate = data.startDate;
     data.siteFeatureCategoryId = @Model.newSiteFeature.siteFeatureCategoryId;

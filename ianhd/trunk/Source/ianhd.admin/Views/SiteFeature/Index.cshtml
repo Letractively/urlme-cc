@@ -14,7 +14,7 @@
         
         <div>When?</div>
         <div class="buttonset">
-            @{ var dateOptions = string.Format("nextVacantDay`{0}|whenever`Whenever|custom`...", Model.newSiteFeature.startDate.Value.ToString("MMM d, yyyy")); }
+            @{ var dateOptions = string.Format("whenever`Whenever|nextVacantDay`{0}|custom`...", Model.newSiteFeature.startDate.Value.ToString("MMM d, yyyy")); }
             @foreach (var dateOption in dateOptions.Split('|'))
             {
                 var parts = dateOption.Split('`');

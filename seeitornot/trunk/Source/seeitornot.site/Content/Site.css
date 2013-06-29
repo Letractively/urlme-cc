@@ -13,7 +13,10 @@ header, footer, nav, section {
 .greenGradient { background: #65b145; /* fallback */ background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#79d153), to(#65b145)); background: -webkit-linear-gradient(top, #79d153, #65b145); background: -moz-linear-gradient(top, #79d153, #65b145); }
 
 /* header */
+header { padding-bottom: 10px; }
 header .content { width: 1000px; margin: 0 auto; }
-    header .content .logo { background: url('logo.png'); width: 349px; height: 105px; display: inline-block; margin-left: -41px; float:left; }
-    .m header .content .logo { background: url('logo_mobile.png'); width: 146px; height: 44px; margin-left: 0; }
-
+.m header .content { width: auto; margin: 0; }
+    header .content #logo { background: url('logo.png'); width: 349px; height: 105px; display: inline-block; margin-left: -41px; float:left; }
+    .m header .content #logo { background: url('logo_mobile.png'); width: 146px; height: 44px; margin-left: 0; }
+    header .content #fbLikeContainer { float: left; display:inline-block; margin-top: 73px; margin-left: -24px; }
+    .m header .content #fbLikeContainer { margin: 20px 0 0 0; }

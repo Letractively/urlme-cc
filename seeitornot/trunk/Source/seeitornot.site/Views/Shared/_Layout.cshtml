@@ -9,11 +9,14 @@
     <link rel="icon" href="~/content/favicon.jpg" />
     @Styles.Render("//cdn.ianhd.com/css/common.css")
     @Styles.Render("~/Content/css")
+    @Html.Partial("BeforeEndHead")
 </head>
 <body class="@platform">
+    @Html.Partial("AfterBody")
     <header class="orangeDiag group">
-        <div class="content">
-            <a class="logo" href="~/"></a>
+        <div class="content group">
+            <a id="logo" href="~/"></a>
+            <div id="fbLikeContainer">@Html.Partial("FacebookLike")</div>
         </div>
     </header>
     @RenderBody()

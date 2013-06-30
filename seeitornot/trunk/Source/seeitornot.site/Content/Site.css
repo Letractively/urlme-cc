@@ -1,7 +1,7 @@
 ﻿body {
     font-size: .85em;
-    font-family: "Segoe UI", Verdana, Helvetica, Sans-Serif;
-    color: #232323;
+    font-family: Arial;
+    color: #333;
     background-color: #fff;
 }
 
@@ -20,3 +20,16 @@ header .content { width: 1000px; margin: 0 auto; }
     .m header .content #logo { background: url('logo_mobile.png'); width: 146px; height: 44px; margin-left: 0; }
     header .content #fbLikeContainer { float: left; display:inline-block; margin-top: 73px; margin-left: -24px; }
     .m header .content #fbLikeContainer { margin: 20px 0 0 0; }
+
+/* nav */
+nav .content { width: 990px; margin:0 auto; }
+nav .content ul { list-style: none; padding: 0; margin:0; float:left; }
+    nav .content ul li { float: left; }
+        nav .content ul li a { text-shadow: 0 -1px 1px #65b145; padding: 12px 14px 10px 14px; display:inline-block; text-decoration: none; font-weight: bold; color: #fff; font-size: 16px; }
+        nav .content ul li a.selected { background: #65b145; text-shadow: none; }
+.m nav .content { width: auto; margin: 0; }
+
+/* search */
+nav #searchContainer { float: right; position: relative; }
+    nav #searchContainer input { border-radius: 3px; margin-top: 5px; padding: 6px; outline: none; width: 262px; border: 1px solid #ccc; font-size: 14px; }
+.m nav #searchContainer { display: none; }

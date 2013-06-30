@@ -19,6 +19,17 @@
             <div id="fbLikeContainer">@Html.Partial("FacebookLike")</div>
         </div>
     </header>
+    <nav class="greenGradient">
+        <div class="content group">
+            <ul>
+                <li><a class="selected" href="~/">What's Hot</a></li>
+                <li><a href="~/showtimes">Showtimes</a></li>
+                <li><a class="noPush" href="~/reviews">Reviews</a></li>
+                <li><a class="noPush" href="~/about">About</a></li>
+            </ul>
+            <div id="searchContainer"><input type="text" /></div>
+        </div>
+    </nav>
     @RenderBody()
 
     @Scripts.Render("~/bundles/jquery")

@@ -26,9 +26,10 @@ header .content { width: 1000px; margin: 0 auto; }
 #navBar .content nav ul { list-style: none; padding: 0; margin:0; float:left; }
     #navBar .content nav ul li { float: left; }
         #navBar .content nav ul li a { text-shadow: 0 -1px 1px #65b145; padding: 12px 14px 10px 14px; display:inline-block; text-decoration: none; font-weight: bold; color: #fff; font-size: 16px; }
-        #navBar .content nav ul li a.selected { background: #65b145; text-shadow: none; }
+        #navBar .content nav ul li a.selected { text-shadow: none; }
+        .dt #navBar .content nav ul li a.selected { background: #65b145; }
 .m #navBar .content { width: auto; margin: 0; }
-    .m #navBar .content nav ul li a { display: none; }
+    .m #navBar .content nav ul li a { display: none; padding: 13px 14px 11px 14px; }
     .m #navBar .content nav ul li a.selected { display: inline-block; }
 
 /* search */

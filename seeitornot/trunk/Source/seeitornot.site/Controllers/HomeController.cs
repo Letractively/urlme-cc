@@ -13,6 +13,7 @@ namespace seeitornot.site.Controllers
 
         public ActionResult Index()
         {
+            // HttpCookie cookie = new HttpCookie(FormsAuthentication.FormsCookieName, encryptedTicket);
             return View();
         }
 

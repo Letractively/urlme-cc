@@ -1,5 +1,12 @@
 ﻿@{ 
-    var platform = Request.UserAgent.ToString().ToLower().Contains("mobi") ? "m" : "dt"; 
+    // figure out mobile vs. desktop
+    var platform = Request.UserAgent.ToString().ToLower().Contains("mobi") ? "m" : "dt";
+    var platFormOverrideCookieName = "platformOverride";
+    string platformOverride = Request.Cookies[platFormOverrideCookieName] == null ? null : Request.Cookies[platFormOverrideCookieName].Value;
+    if (platformOverride != null) {
+        platform = platformOverride;
+    }
+    
     bool isMobile = platform == "m";
 }
 
@@ -12,46 +19,42 @@
     <link rel="icon" href="~/content/favicon.jpg" />
     @Styles.Render("//cdn.ianhd.com/css/common.css")
     @Styles.Render("~/Content/css")
-    @Styles.Render("~/bundles/mobile-styles")
-    @if (isMobile)
-    {
-        @Styles.Render("~/bundles/mobile-styles")
-    }
     @Html.Partial("BeforeEndHead")
 </head>
 <body class="@platform">
     @Html.Partial("AfterBody")
-    <div>@* wrapper *@
-        <header class="orangeDiag group">
-            <div class="content group">
-                <a id="logo" href="~/"></a>
-                <div id="fbLikeContainer">@Html.Partial("FacebookLike")</div>
-            </div>
-        </header>
-        <nav class="greenGradient">
-            <div class="content group" id="navWrapper">
+    <header class="orangeDiag group">
+        <div class="content group">
+            <a id="logo" href="~/"></a>
+            <div id="fbLikeContainer">@Html.Partial("FacebookLike")</div>
+        </div>
+    </header>
+    <div id="navBar" class="greenGradient">
+        <div class="content group">
+            <nav>
                 <ul>
                     <li><a class="selected" href="~/">What's Hot</a></li>
                     <li><a href="~/showtimes">Showtimes</a></li>
                     <li><a class="noPush" href="~/reviews">Reviews</a></li>
                     <li><a class="noPush" href="~/about">About</a></li>
                 </ul>
-                @*<div id="searchContainer"><input type="text" /></div>*@
-            </div>
-        </nav>
-        @RenderBody()
+            </nav>
+            <div id="searchContainer"><input type="text" /></div>
+        </div>
     </div>
-    @Scripts.Render("~/Scripts/jquery-1.8.2.min.js")
-    @Scripts.Render("~/bundles/mobile-scripts")
-    @if (isMobile)
-    {
-        @Scripts.Render("~/bundles/mobile-scripts")
+    @RenderBody()
+
+    @* switch to different platform *@
+    @{ 
+        var switchTo = isMobile ? "desktop`dt" : "mobile`m";
+        var parts = switchTo.Split('`');
+        var label = parts[0];
+        var cookieValue = parts[1];
     }
-    <script>
-        $(document).ready(function () {
-            $("#navWrapper").mmenu({ configuration: { menuNodetype: "div" } });
-        });
-    </script>
+    Switch to <a href="#" onclick="$.cookie('@platFormOverrideCookieName','@cookieValue'); location.reload(true); return false;">@label</a>
+
+    @Scripts.Render("~/bundles/js/jquery")
+    @Scripts.Render("~/bundles/js/plugins")
     @RenderSection("scripts", required: false)
 </body>
 </html>

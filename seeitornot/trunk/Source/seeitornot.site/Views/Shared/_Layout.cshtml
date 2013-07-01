@@ -12,6 +12,7 @@
     <link rel="icon" href="~/content/favicon.jpg" />
     @Styles.Render("//cdn.ianhd.com/css/common.css")
     @Styles.Render("~/Content/css")
+    @Styles.Render("~/bundles/mobile-styles")
     @if (isMobile)
     {
         @Styles.Render("~/bundles/mobile-styles")
@@ -20,25 +21,26 @@
 </head>
 <body class="@platform">
     @Html.Partial("AfterBody")
-    <header class="orangeDiag group">
-        <div class="content group">
-            <a id="logo" href="~/"></a>
-            <div id="fbLikeContainer">@Html.Partial("FacebookLike")</div>
-        </div>
-    </header>
-    <nav class="greenGradient">
-        <div class="content group">
-            <ul>
-                <li><a class="selected" href="~/">What's Hot</a></li>
-                <li><a href="~/showtimes">Showtimes</a></li>
-                <li><a class="noPush" href="~/reviews">Reviews</a></li>
-                <li><a class="noPush" href="~/about">About</a></li>
-            </ul>
-            <div id="searchContainer"><input type="text" /></div>
-        </div>
-    </nav>
-    @RenderBody()
-
+    <div>@* wrapper *@
+        <header class="orangeDiag group">
+            <div class="content group">
+                <a id="logo" href="~/"></a>
+                <div id="fbLikeContainer">@Html.Partial("FacebookLike")</div>
+            </div>
+        </header>
+        <nav class="greenGradient">
+            <div class="content group" id="navWrapper">
+                <ul>
+                    <li><a class="selected" href="~/">What's Hot</a></li>
+                    <li><a href="~/showtimes">Showtimes</a></li>
+                    <li><a class="noPush" href="~/reviews">Reviews</a></li>
+                    <li><a class="noPush" href="~/about">About</a></li>
+                </ul>
+                @*<div id="searchContainer"><input type="text" /></div>*@
+            </div>
+        </nav>
+        @RenderBody()
+    </div>
     @Scripts.Render("~/Scripts/jquery-1.8.2.min.js")
     @Scripts.Render("~/bundles/mobile-scripts")
     @if (isMobile)
@@ -46,7 +48,9 @@
         @Scripts.Render("~/bundles/mobile-scripts")
     }
     <script>
-        $("nav .content").mmenu();
+        $(document).ready(function () {
+            $("#navWrapper").mmenu({ configuration: { menuNodetype: "div" } });
+        });
     </script>
     @RenderSection("scripts", required: false)
 </body>

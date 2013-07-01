@@ -16,6 +16,16 @@ namespace seeitornot.site
                 "~/Content/site.css"
             ));
 
+            // mobile scripts
+            bundles.Add(new ScriptBundle("~/bundles/mobile-scripts").Include(
+                "~/scripts/plugins/mmenu/jquery.mmenu.min.js"        
+            ));
+
+            // mobile styles
+            bundles.Add(new StyleBundle("~/bundles/mobile-styles").Include(
+                "~/scripts/plugins/mmenu/mmenu.css"
+            ));
+
             // BundleTable.EnableOptimizations = true;
         }
     }

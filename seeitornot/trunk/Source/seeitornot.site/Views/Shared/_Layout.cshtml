@@ -1,4 +1,7 @@
-﻿@{ var platform = Request.UserAgent.ToString().ToLower().Contains("mobi") ? "m" : "dt"; }
+﻿@{ 
+    var platform = Request.UserAgent.ToString().ToLower().Contains("mobi") ? "m" : "dt"; 
+    bool isMobile = platform == "m";
+}
 
 <!DOCTYPE html>
 <html>
@@ -9,6 +12,10 @@
     <link rel="icon" href="~/content/favicon.jpg" />
     @Styles.Render("//cdn.ianhd.com/css/common.css")
     @Styles.Render("~/Content/css")
+    @if (isMobile)
+    {
+        @Styles.Render("~/bundles/mobile-styles")
+    }
     @Html.Partial("BeforeEndHead")
 </head>
 <body class="@platform">
@@ -33,6 +40,10 @@
     @RenderBody()
 
     @Scripts.Render("~/bundles/jquery")
+    @if (isMobile)
+    {
+        @Scripts.Render("~/bundles/mobile-scripts")
+    }
     @RenderSection("scripts", required: false)
 </body>
 </html>

@@ -22,7 +22,7 @@ header .content { width: 1000px; margin: 0 auto; }
     .m header .content #fbLikeContainer { margin: 20px 0 0 0; }
 
 /* nav */
-nav .content { width: 990px; margin:0 auto; }
+/*nav .content { width: 990px; margin:0 auto; }
 nav .content ul { list-style: none; padding: 0; margin:0; float:left; }
     nav .content ul li { float: left; }
         nav .content ul li a { text-shadow: 0 -1px 1px #65b145; padding: 12px 14px 10px 14px; display:inline-block; text-decoration: none; font-weight: bold; color: #fff; font-size: 16px; }
@@ -30,6 +30,7 @@ nav .content ul { list-style: none; padding: 0; margin:0; float:left; }
 .m nav .content { width: auto; margin: 0; }
     .m nav .content ul li a { display: none; }
     .m nav .content ul li a.selected { display: inline-block; }
+*/
 
 /* search */
 nav #searchContainer { float: right; position: relative; }

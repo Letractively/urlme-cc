@@ -39,11 +39,15 @@
     </nav>
     @RenderBody()
 
-    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/Scripts/jquery-1.8.2.min.js")
+    @Scripts.Render("~/bundles/mobile-scripts")
     @if (isMobile)
     {
         @Scripts.Render("~/bundles/mobile-scripts")
     }
+    <script>
+        $("nav .content").mmenu();
+    </script>
     @RenderSection("scripts", required: false)
 </body>
 </html>

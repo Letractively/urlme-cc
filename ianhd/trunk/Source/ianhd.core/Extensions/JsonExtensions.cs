@@ -13,7 +13,7 @@ namespace ianhd.core.Extensions
     {
         public static string JsonSerializeToString(this object obj)
         {
-            string json = string.Empty;
+            string json = string.Empty; 
             DataContractJsonSerializer ser = new DataContractJsonSerializer(obj.GetType());
             using (MemoryStream ms = new MemoryStream())
             {

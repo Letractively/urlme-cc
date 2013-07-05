@@ -1,11 +1,7 @@
-﻿@{ 
-    // figure out mobile vs. desktop
-    var platform = Request.UserAgent.ToString().ToLower().Contains("mobi") ? "m" : "dt";
+﻿@using ianhd.core.Extensions
+@{ 
     var platFormOverrideCookieName = "platformOverride";
-    string platformOverride = Request.Cookies[platFormOverrideCookieName] == null ? null : Request.Cookies[platFormOverrideCookieName].Value;
-    if (platformOverride != null) {
-        platform = platformOverride;
-    }
+    var platform = Request.GetPlatform(platFormOverrideCookieName);
     
     bool isMobile = platform == "m";
 }

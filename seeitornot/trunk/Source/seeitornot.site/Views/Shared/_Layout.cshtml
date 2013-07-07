@@ -32,13 +32,14 @@
             <a class="m burger" href="#" onclick="$('nav').toggle(); return false;"></a>
             <nav class="group">
                 <ul>
-                    <li><a class="selected" href="~/">What's Hot</a></li>
-                    <li><a href="~/showtimes">Showtimes</a></li>
-                    <li><a class="noPush" href="~/reviews">Reviews</a></li>
-                    <li><a class="noPush" href="~/about">About</a></li>
+                    <li><a class="navItem selected" href="~/">What's Hot</a></li>
+                    <li><a class="navItem" href="~/showtimes">Showtimes</a></li>
+                    <li><a class="navItem noPush" href="~/reviews">Reviews</a></li>
+                    <li><a class="navItem noPush" href="~/about">About</a></li>
                 </ul>
             </nav>
-            <div id="searchContainer"><input type="text" /></div>
+            <span class="m navItem">What's Hot</span>
+            <div class="dt" id="searchContainer"><input type="text" /></div>
         </div>
     </div>
     @RenderBody()

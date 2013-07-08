@@ -36,12 +36,12 @@ header .content { width: 1000px; margin: 0 auto; }
     .m #navBar .content nav ul li a { padding: 13px 14px 11px 14px; }
     .m #navBar .content nav ul li a.selected { display: inline-block; }
 
-/* mobile menu */
+/* mobile menu, burger */
 .m #navBar .content { position: relative; }
 .m #navBar .content nav { display:none; position: absolute; background: #79d153; top: 46px; }
 .m #navBar .content nav ul li { float: none; }
-.burger { position: relative; padding-left: 1.25em; height: 20px; display: inline-block; width: 32px; float: left; padding: 5px; border: 1px solid #65b145; background: #79d153; margin: 6px 0 6px 10px; border-radius: 2px; }
-.burger:before { content: ""; position: absolute; top: 7px; left: 7px; width: 29px; height: 4px; border-top: 10px double #fff; border-bottom: 3px solid #fff; }
+.burger { position: relative; display: inline-block; width: 44px; float: left; height: 44px; border-right: 1px solid #65b145; background: #79d153; }
+.burger:before { content: ""; position: absolute; top: 15px; left: 11px; width: 20px; height: 4px; border-top: 10px double #fff; border-bottom: 3px solid #fff; }
 
 /* search */
 #navBar .content #searchContainer { float: right; position: relative; }

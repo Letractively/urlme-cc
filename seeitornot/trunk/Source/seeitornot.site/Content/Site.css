@@ -32,14 +32,13 @@ header .content { width: 1000px; margin: 0 auto; }
 #navBar .content { width: 990px; margin:0 auto; }
 #navBar .content nav ul { list-style: none; padding: 0; margin:0; float:left; }
     #navBar .content nav ul li { float: left; }
-.m #navBar .content { width: auto; margin: 0; }
-    .m #navBar .content nav ul li a { padding: 13px 14px 11px 14px; }
-    .m #navBar .content nav ul li a.selected { display: inline-block; }
 
 /* mobile menu, burger */
-.m #navBar .content { position: relative; }
-.m #navBar .content nav { display:none; position: absolute; background: #79d153; top: 46px; }
-.m #navBar .content nav ul li { float: none; }
+.m #navBar .content { width: auto; margin: 0; position: relative; }
+.m #navBar .content nav { display:none; position: absolute; background: #79d153; top: 44px; }
+.m #navBar .content nav ul li { float: none; border-bottom: 1px solid #65b145; border-right: 1px solid #65b145; }
+    .m #navBar .content nav ul li a { padding: 13px 14px 11px 14px; }
+    .m #navBar .content nav ul li a.selected { display: block; }
 .burger { position: relative; display: inline-block; width: 44px; float: left; height: 44px; border-right: 1px solid #65b145; background: #79d153; }
 .burger:before { content: ""; position: absolute; top: 15px; left: 11px; width: 20px; height: 4px; border-top: 10px double #fff; border-bottom: 3px solid #fff; }
 

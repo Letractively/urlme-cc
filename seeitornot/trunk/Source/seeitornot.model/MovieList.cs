@@ -1,0 +1,14 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace seeitornot.model
+{
+    public class MovieList
+    {
+        public string title { get; set; }
+        public Dictionary<string, model.Movie> movies { get; set; }
+    }
+}

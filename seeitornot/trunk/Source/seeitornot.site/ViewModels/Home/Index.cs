@@ -9,9 +9,9 @@ namespace seeitornot.site.ViewModels.Home
     {
         public List<model.MovieList> movieLists { get; set; }
 
-        public Dictionary<string, model.Movie> ThisWeekendMovies { get; set; }
-        public Dictionary<string, model.Movie> UpcomingMovies { get; set; } // be sure to include OpeningMovies
-        public Dictionary<string, model.Movie> InTheatersMovies { get; set; }
+        //public Dictionary<string, model.Movie> ThisWeekendMovies { get; set; }
+        //public Dictionary<string, model.Movie> UpcomingMovies { get; set; } // be sure to include OpeningMovies
+        //public Dictionary<string, model.Movie> InTheatersMovies { get; set; }
 
         //public List<Model.TrailerAddict.Trailer> FeatureTrailers { get; set; }
         //public Dictionary<string, Model.Redbox.Movie> RedboxMovies { get; set; }

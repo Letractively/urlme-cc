@@ -14,7 +14,19 @@ namespace seeitornot.site.Controllers
         public ActionResult Index()
         {
             // HttpCookie cookie = new HttpCookie(FormsAuthentication.FormsCookieName, encryptedTicket);
-            return View();
+            var vm = new ViewModels.Home.Index();
+            vm.movieLists = new List<model.MovieList>();
+            vm.movieLists.Add(
+                new model.MovieList { title = "This Weekend", movies = new Dictionary<string,model.Movie>() }
+            );
+            vm.movieLists.Add(
+                new model.MovieList { title = "In Theaters", movies = new Dictionary<string,model.Movie>() }
+            );
+            vm.movieLists.Add(
+                new model.MovieList { title = "Coming Soon", movies = new Dictionary<string,model.Movie>() }
+            );
+
+            return View(vm);
         }
 
     }

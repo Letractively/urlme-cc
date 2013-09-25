@@ -21,6 +21,11 @@ namespace movies.Model
             public string mpaaRating { get; set; }
             public string duration { get; set; }
             public string showtimesHtml { get; set; }
+            public bool threeD { 
+                get {
+                    return !string.IsNullOrWhiteSpace(this.title) && this.title.ToLower().Contains("3d"); 
+                } 
+            }
             public string criticsRating { get; set; }
             public int criticsScore { get; set; }
             public string audienceRating { get; set; }

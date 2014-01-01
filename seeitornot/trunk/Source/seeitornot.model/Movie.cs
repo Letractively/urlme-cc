@@ -8,5 +8,6 @@ namespace seeitornot.model
 {
     public class Movie
     {
+
     }
 }

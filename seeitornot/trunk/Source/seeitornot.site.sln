@@ -5,6 +5,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "seeitornot.site", "seeitorn
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "seeitornot.model", "seeitornot.model\seeitornot.model.csproj", "{172DC3D5-6591-4460-839E-7281611B274D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "seeitornot.api", "seeitornot.api\seeitornot.api.csproj", "{9C46FB84-F295-42EA-BD6C-52EE399BF4D5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -19,6 +21,10 @@ Global
 		{172DC3D5-6591-4460-839E-7281611B274D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{172DC3D5-6591-4460-839E-7281611B274D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{172DC3D5-6591-4460-839E-7281611B274D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9C46FB84-F295-42EA-BD6C-52EE399BF4D5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9C46FB84-F295-42EA-BD6C-52EE399BF4D5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9C46FB84-F295-42EA-BD6C-52EE399BF4D5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9C46FB84-F295-42EA-BD6C-52EE399BF4D5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

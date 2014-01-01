@@ -53,6 +53,7 @@
     <Compile Include="Mvc\Controllers\ObjectController.cs" />
     <Compile Include="Mvc\ViewModels\ViewModelBase.cs" />
     <Compile Include="Mvc\ViewModels\ViewModelItem.cs" />
+    <Compile Include="Net\HttpWebRequest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup />

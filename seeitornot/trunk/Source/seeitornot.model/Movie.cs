@@ -16,6 +16,8 @@ namespace seeitornot.model
     }    
     public class Movie
     {
+        public string id { get; set; }
+
         public static Dictionary<string, Movie> GetMovies(Enumerations.MovieLists movielist)
         {
             // get list of rt movies from cache
@@ -43,11 +45,12 @@ namespace seeitornot.model
                     var movieCollection = rtJson.FromJson<MovieCollection>();
                     movieCollection.movies.ForEach(x => ret.Add(x));
 
-                    return ret.Where(x => !x.posters.detailed.Contains("poster_default.gif") && x.mpaa_rating != "Unrated").ToDictionary(key => key.id, value => value);
+                    return ret.ToDictionary(key => key.id, value => value);
+                    // TODO: return ret.Where(x => !x.posters.detailed.Contains("poster_default.gif") && x.mpaa_rating != "Unrated").ToDictionary(key => key.id, value => value);
                 });
 
             // set reviews for each movie
-            movies.Values.ToList().ForEach(x => x.Review = Data.DomainModels.MovieReview.Get(int.Parse(x.id)));
+            // TODO: movies.Values.ToList().ForEach(x => x.Review = Data.DomainModels.MovieReview.Get(int.Parse(x.id)));
 
             return movies;
         }

@@ -175,6 +175,10 @@
     <Content Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\seeitornot.data\seeitornot.data.csproj">
+      <Project>{00f217b0-d8f0-4508-a997-5811ddfc6ecc}</Project>
+      <Name>seeitornot.data</Name>
+    </ProjectReference>
     <ProjectReference Include="..\seeitornot.model\seeitornot.model.csproj">
       <Project>{172dc3d5-6591-4460-839e-7281611b274d}</Project>
       <Name>seeitornot.model</Name>

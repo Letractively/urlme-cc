@@ -16,5 +16,11 @@
             string url = string.Format("{0}lists/movies/box_office.json?page_limit=20&page=1&country=us&apikey={1}", BaseUrl, ApiKey);
             return ianhd.core.Net.HttpWebRequest.GetResponse(url);
         }
+
+        public static string GetOpeningJson()
+        {
+            string url = string.Format("{0}lists/movies/opening.json?page_limit=20&page=1&country=us&apikey={1}", BaseUrl, ApiKey);
+            return ianhd.core.Net.HttpWebRequest.GetResponse(url);
+        }
     }
 }

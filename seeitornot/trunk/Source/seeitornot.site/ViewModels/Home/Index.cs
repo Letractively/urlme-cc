@@ -16,13 +16,10 @@ namespace seeitornot.site.ViewModels.Home
         {
             this.movieLists = new List<model.MovieList>();
             this.movieLists.Add(
-                new model.MovieList { title = "This Weekend", movies = new Dictionary<string, model.Movie>() }
-            );
-            this.movieLists.Add(
                 new model.MovieList { title = "In Theaters", movies = Movie.GetMovies(Enumerations.MovieLists.InTheaters) }
             );
             this.movieLists.Add(
-                new model.MovieList { title = "Coming Soon", movies = new Dictionary<string, model.Movie>() }
+                new model.MovieList { title = "Opening", movies = Movie.GetMovies(Enumerations.MovieLists.Opening) }
             );
         }
     }

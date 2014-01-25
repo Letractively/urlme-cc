@@ -43,7 +43,7 @@ namespace seeitornot.model
                             json = api.RottenTomatoes.GetInTheatersJson();
                             break;
                         case Enumerations.MovieLists.Opening:
-                            //rtJson = api.RottenTomatoes.GetOpeningJson();
+                            json = api.RottenTomatoes.GetOpeningJson();
                             break;
                         case Enumerations.MovieLists.Upcoming:
                             //rtJson = api.RottenTomatoes.GetUpcomingJson();

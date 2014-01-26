@@ -5,11 +5,15 @@
 
 @*<h2>Trailers</h2>*@
 
-@foreach (var movieList in Model.movieLists)
-{
-    <h2>@movieList.title</h2>
-    foreach (var movie in movieList.movies.Values)
+<div class="dt body group">
+    @foreach (var movieList in Model.movieLists)
     {
-        <h3>@movie.title</h3>
+        <h2>@movieList.title</h2>
+        foreach (var movie in movieList.movies.Values)
+        {
+            <a href="#" class="group movie">
+                <img src="@movie.posterDetailed" />
+            </a>
+        }
     }
-}
+</div>

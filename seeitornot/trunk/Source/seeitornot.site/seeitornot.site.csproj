@@ -144,6 +144,7 @@
     <Content Include="Content\logo.png" />
     <Content Include="Content\logo_mobile.png" />
     <Content Include="Content\normalize.css" />
+    <Content Include="Content\sprite.png" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <None Include="Properties\PublishProfiles\publish to c - publish.pubxml" />

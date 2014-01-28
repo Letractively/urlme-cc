@@ -12,10 +12,18 @@
         <h2>@movieList.title</h2>
         foreach (var movie in movieList.movies.Values)
         {
-            <a href="#" class="group movie">
+            <a href="#" class="group movie bottomShadow">
                 <img src="@movie.posterDetailed" />
+                <div class="details">
+                    <div class="mpaaRating">
+                        @movie.mpaa_rating
+                    </div>
+                </div>
             </a>
         }
     }
+    </div>
+    <div class="right group">
+        <h2>Other things</h2>
     </div>
 </div>

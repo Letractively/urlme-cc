@@ -8,6 +8,7 @@ body {
     color: #333;
     background-color: #fff;
 }
+body.dt { background: #f5f5f5; }
 
 header, footer, nav, section {
     display: block;
@@ -49,9 +50,14 @@ header .content { width: 1000px; margin: 0 auto; }
 
 /* body */
 .body.dt { width: 990px; margin: 0 auto; padding-top: 24px; }
-    .body.dt .movie { float: left; margin-right: 24px; margin-bottom: 24px; }
-    .body.dt .movie:nth-child(4n+1) { margin-right:0; }
-        .body.dt .movie img { width: 172px; height: 255px; }
+
+/* movie */
+.body.dt .movie { float: left; margin-right: 24px; margin-bottom: 24px; text-decoration:none; }
+.body.dt .movie:nth-child(4n+1) { margin-right:0; }
+    .body.dt .movie img { width: 172px; height: 255px; }
+    .body.dt .movie .details { padding:10px; background:white; }
+    
+    .body.dt .movie .details .mpaaRating { color: #465f82; font-weight: bold; }
 
 /* columns */
 .body.dt .left, .body.dt .right { float: left; }

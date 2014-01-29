@@ -1,6 +1,9 @@
 ﻿namespace ianhd.core.Extensions
 {
     using System;
+    using System.Globalization;
+    using System.Text;
+    using System.Text.RegularExpressions;
 
     public static class StringExtensions
     {
@@ -45,6 +48,18 @@
             }
 
             return rtn;
+        }
+
+        public static string RemoveExtraDashes(this string s)
+        {
+            while (s.Contains("--"))
+            {
+                s = s.Replace("--", "-");
+            }
+
+            s = s.Trim("-".ToCharArray());
+
+            return s;
         }
     }
 }

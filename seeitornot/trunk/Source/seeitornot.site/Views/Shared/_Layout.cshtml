@@ -17,6 +17,7 @@
     <link rel="icon" href="~/content/favicon.jpg" />
     @Styles.Render("//cdn.ianhd.com/css/common.css")
     @Styles.Render("~/Content/css")
+    
     @Html.Partial("BeforeEndHead")
 </head>
 <body class="@platform">
@@ -55,6 +56,8 @@
 
     @Scripts.Render("~/bundles/js/jquery")
     @Scripts.Render("~/bundles/js/plugins")
+    @Scripts.Render("//cdn.ianhd.com/js/ianhd.js")
+    @Scripts.Render("~/scripts/ianhd.app.js")
     @RenderSection("scripts", required: false)
 </body>
 </html>

@@ -131,6 +131,7 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\MovieController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -170,6 +171,7 @@
     <Content Include="Views\Shared\AfterBody.cshtml" />
     <Content Include="Views\Shared\FacebookLike.cshtml" />
     <None Include="Properties\PublishProfiles\publish to c -- publish.pubxml" />
+    <Content Include="Views\Shared\Movie.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

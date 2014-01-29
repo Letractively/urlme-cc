@@ -14,6 +14,18 @@ namespace seeitornot.site
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
             routes.MapRoute(
+                name: "Movie-Index",
+                url: "movie/{rtMovieId}",
+                defaults: new { controller = "Movie", action = "Index" }
+            );
+
+            routes.MapRoute(
+                name: "Home-Index",
+                url: "{titleSlug}/{rtMovieId}",
+                defaults: new { controller = "Home", action = "Index" }
+            );
+
+            routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }

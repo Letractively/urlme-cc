@@ -12,7 +12,7 @@
         <h2>@movieList.title</h2>
         foreach (var movie in movieList.movies.Values)
         {
-            <a href="#" class="group movie bottomShadow">
+            <a href="~/@movie.movieSlug" class="group movie bottomShadow">
                 <img src="@movie.posterDetailed" />
                 <div class="details">
                     <div class="mpaaRating">

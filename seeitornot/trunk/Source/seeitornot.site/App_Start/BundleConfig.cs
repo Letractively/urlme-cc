@@ -10,10 +10,13 @@ namespace seeitornot.site
         {
             bundles.IgnoreList.Clear();
             bundles.Add(new ScriptBundle("~/bundles/js/jquery").Include(
-                        "~/Scripts/jquery-1.8.3.min.js"));
+                "~/Scripts/jquery-1.8.3.min.js"
+            ));
 
             bundles.Add(new ScriptBundle("~/bundles/js/plugins").Include(
-                        "~/Scripts/plugins/jquery.cookie.js"));
+                "~/Scripts/plugins/jquery.cookie.js",
+                "~/scripts/plugins/jquery.history.js"
+            ));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                 "~/content/normalize.css",

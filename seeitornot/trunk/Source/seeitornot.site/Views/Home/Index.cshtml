@@ -27,3 +27,10 @@
         <h2>Other things</h2>
     </div>
 </div>
+
+<section id="movie" class="popup rounded">
+@if (Model.OverlayMovie != null)
+{
+    this.Html.RenderPartial("Movie", this.Model.OverlayMovie);
+}
+</section>

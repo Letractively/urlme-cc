@@ -14,8 +14,8 @@ ianhd.app = {
     },
     handlePushState: function (hash) {
         var parts = hash.split('/');
-        var first = parts[0]; // showtimes, {movieTitle}
-        var second = parts[1]; // {movieId}
+        var first = parts[1]; // showtimes, {movieTitle}
+        var second = parts[2]; // {movieId}
 
         switch (first) {
             case "":
@@ -23,7 +23,10 @@ ianhd.app = {
             case "showtimes":
                 break;
             default:
-                alert('loading movie...');
+                // TODO: don't double-load since this call could happen on init
+                $.get('/movie/' + second, function (resp) {
+                    alert(resp);
+                });
                 break;
         }
     },

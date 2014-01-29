@@ -9,11 +9,26 @@ namespace seeitornot.model
 {
     public partial class Movie
     {
+        public static Movie GetMovie(string rtMovieId)
+        {
+            var movie = Cache.GetValue<Movie>(
+                string.Format("codejkjk.movies.Model.GetMovie.{0}", rtMovieId),
+                () =>
+                {
+                    string json = api.RottenTomatoes.GetMovieJson(rtMovieId);
+                    var jObj = (JObject)JsonConvert.DeserializeObject(json);
+
+                    return new Movie(jObj);
+                });
+
+            return movie;
+        }
+
         public static Dictionary<string, Movie> GetMovies(Enumerations.MovieLists movielist)
         {
             // get list of rt movies from cache
             Dictionary<string, Movie> movies = Cache.GetValue<Dictionary<string, Movie>>(
-                string.Format("codejkjk.movies.Model.Movie.{0}", movielist.ToString()),
+                string.Format("codejkjk.movies.Model.GetMovies.{0}", movielist.ToString()),
                 () =>
                 {
                     string json = string.Empty;

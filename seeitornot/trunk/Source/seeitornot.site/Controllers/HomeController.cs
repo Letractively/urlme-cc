@@ -11,10 +11,10 @@ namespace seeitornot.site.Controllers
         //
         // GET: /Home/
 
-        public ActionResult Index()
+        public ActionResult Index(string rtMovieId)
         {
             // HttpCookie cookie = new HttpCookie(FormsAuthentication.FormsCookieName, encryptedTicket);
-            var vm = new ViewModels.Home.Index();
+            var vm = new ViewModels.Home.Index(rtMovieId);
             return View(vm);
         }
 

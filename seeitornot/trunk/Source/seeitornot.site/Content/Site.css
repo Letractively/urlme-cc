@@ -17,6 +17,7 @@ header, footer, nav, section {
 .orangeDiag { background-image: -webkit-gradient(linear, left top, right bottom, color-stop(0, #e76801), color-stop(0.25, #e76801), color-stop(0.25, #ec7f24), color-stop(0.5, #ec7f24), color-stop(0.5, #e76801), color-stop(0.75, #e76801), color-stop(0.75, #ec7f24));	background-image: -webkit-linear-gradient(left top, #e76801 0%, #e76801 25%, #ec7f24 25%, #ec7f24 50%, #e76801 50%, #e76801 75%, #ec7f24 75%); background-image: -moz-linear-gradient(left top, #e76801 0%, #e76801 25%, #ec7f24 25%, #ec7f24 50%, #e76801 50%, #e76801 75%, #ec7f24 75%); background-image: -ms-linear-gradient(left top, #e76801 0%, #e76801 25%, #ec7f24 25%, #ec7f24 50%, #e76801 50%, #e76801 75%, #ec7f24 75%); background-image: -o-linear-gradient(left top, #e76801 0%, #e76801 25%, #ec7f24 25%, #ec7f24 50%, #e76801 50%, #e76801 75%, #ec7f24 75%);	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e76801', endColorstr='#ec7f24',GradientType=0 ); /* IE6-8 */ background-image: linear-gradient(left top, #e76801 0%, #e76801 25%, #ec7f24 25%, #ec7f24 50%, #e76801 50%, #e76801 75%, #ec7f24 75%); background-size: 20px 20px; }
 .greenGradient { background: #65b145; /* fallback */ background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#79d153), to(#65b145)); background: -webkit-linear-gradient(top, #79d153, #65b145); background: -moz-linear-gradient(top, #79d153, #65b145); }
 .bottomShadow { -webkit-box-shadow: 0 2px 8px #999; -moz-box-shadow: 0 2px 8px #999; box-shadow: 0 2px 8px #999; }
+.rounded { border-radius: 3px; }
 
 /* header */
 header { padding-bottom: 10px; }
@@ -60,11 +61,18 @@ header .content { width: 1000px; margin: 0 auto; }
     .body.dt .movie .details .mpaaRating { color: #465f82; font-weight: bold; }
 
 /* columns */
-.body.dt .left, .body.dt .right { float: left; }
-    .body.dt .left { width: 760px; }
+.left, .right { float: left; }
+.body.dt .left { width: 760px; }
 
 /* headers */
 .dt h2 { padding: 0 0 24px 0; margin: 0; }
+
+/* popup */
+.popup { background: white; position: fixed; top: 68px; padding: 24px; }
+
+/* movie popup */
+#movie { width: 590px; left: 50%; margin-left: -295px; }
+#movie .right { margin-left: 24px; }
 
 /* rt icons */
 .rottenTomato,.imdb,.sion .icon { background: url("content/sprite.png") no-repeat scroll left center transparent; }

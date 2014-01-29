@@ -12,8 +12,9 @@ namespace seeitornot.site.ViewModels.Home
         public List<model.MovieList> movieLists { get; set; }
         public model.Movie OverlayMovie { get; set; }
 
-        public Index()
+        public Index(string rtMovieId)
         {
+            // build movie lists
             this.movieLists = new List<model.MovieList>();
             this.movieLists.Add(
                 new model.MovieList { title = "In Theaters", movies = Movie.GetMovies(Enumerations.MovieLists.InTheaters) }
@@ -21,6 +22,12 @@ namespace seeitornot.site.ViewModels.Home
             this.movieLists.Add(
                 new model.MovieList { title = "Opening", movies = Movie.GetMovies(Enumerations.MovieLists.Opening) }
             );
+
+            // build overlay movie, if passed in
+            if (rtMovieId != null)
+            {
+                this.OverlayMovie = Movie.GetMovie(rtMovieId);
+            }
         }
     }
 }

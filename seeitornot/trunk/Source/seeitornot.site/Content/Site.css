@@ -55,10 +55,10 @@ header .content { width: 1000px; margin: 0 auto; }
 .body.dt { width: 990px; margin: 0 auto; padding-top: 24px; }
 
 /* movie */
-.body.dt .movie { float: left; margin-right: 24px; margin-bottom: 24px; text-decoration:none; }
+.body.dt .movie { float: left; margin-right: 24px; margin-bottom: 24px; text-decoration:none; border-bottom-left-radius:3px; border-bottom-right-radius:3px; }
 .body.dt .movie:nth-child(4n+1) { margin-right:0; }
-    .body.dt .movie img { width: 172px; height: 255px; }
-    .body.dt .movie .details { padding:10px; background:white; }
+    .body.dt .movie img { width: 172px; height: 255px; float:left; }
+    .body.dt .movie .details { padding:10px; background:white; clear:left; border-bottom-left-radius:3px; border-bottom-right-radius:3px; }
     .body.dt .movie .details .mpaaRating { color: #465f82; font-weight: bold; }
 
 /* columns */
@@ -79,6 +79,9 @@ header .content { width: 1000px; margin: 0 auto; }
 #movie { width: 590px; left: 50%; margin-left: -295px; }
 #movie .right { margin-left: 24px; }
     #movie .right .links { margin-top: 24px; }
+    #movie .right .links span { display:inline-block; width: 16px; height: 16px; background: url("sprite.png"); }
+        #movie .right .links .parentalGuide { font-weight: bold; font-size: 13px; }
+            #movie .right .links .parentalGuide span { background-position: -258px -177px; padding-right: 7px; float:left; }
 
 /* rt icons */
 .rottenTomato,.imdb,.sion .icon { background: url("content/sprite.png") no-repeat scroll left center transparent; }

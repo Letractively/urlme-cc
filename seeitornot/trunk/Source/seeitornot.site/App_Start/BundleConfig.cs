@@ -10,7 +10,9 @@ namespace seeitornot.site
         {
             bundles.IgnoreList.Clear();
             bundles.Add(new ScriptBundle("~/bundles/js/jquery").Include(
-                "~/Scripts/jquery-1.8.3.min.js"
+                "~/Scripts/jquery-1.8.3.min.js",
+                "~/scripts/knockout-2.2.1.js",
+                "~/scripts/knockout.mapping.js"
             ));
 
             bundles.Add(new ScriptBundle("~/bundles/js/plugins").Include(

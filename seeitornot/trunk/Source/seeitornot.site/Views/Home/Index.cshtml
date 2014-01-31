@@ -3,6 +3,15 @@
     ViewBag.Title = "See it or Not - Trailers, Movie Ratings, Reviews and Showtimes";
 }
 
+@section scripts {
+    <script>
+        var viewModel = ko.mapping.fromJS({
+            overlayMovieId: '@(Model.OverlayMovie != null ? Model.OverlayMovie.id : "")'
+        });
+        ko.applyBindings(viewModel);
+    </script>
+}
+
 @*<h2>Trailers</h2>*@
 
 <div class="dt body group">
@@ -28,9 +37,10 @@
     </div>
 </div>
 
-<section id="movie" class="popup rounded">
+<section id="movie" class="popup rounded" data-bind="visible: overlayMovieId()">
 @if (Model.OverlayMovie != null)
 {
     this.Html.RenderPartial("Movie", this.Model.OverlayMovie);
 }
 </section>
+<div id="overlay" data-bind="visible: overlayMovieId()"></div>

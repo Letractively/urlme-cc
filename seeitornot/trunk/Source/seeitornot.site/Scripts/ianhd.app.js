@@ -1,5 +1,12 @@
 ﻿ianhd.registerNamespace("app");
 ianhd.app = {
+    controls: {
+        movie: function () { return $("#movie"); },
+        overlay: function () { return $("#overlay"); }
+    },
+    selectors: {
+        closePopup: "#overlay,.closePopup"
+    },
     init: function () {
         // init history
         var History = window.History;
@@ -10,7 +17,11 @@ ianhd.app = {
             return;
         }
 
+        // set height of overlay
+        ianhd.app.controls.overlay().css("height", $(document).height());
+
         ianhd.app.initHistory(History);
+        ianhd.app.bindControls();
     },
     handlePushState: function (hash) {
         var parts = hash.split('/');
@@ -18,17 +29,27 @@ ianhd.app = {
         var second = parts[2]; // {movieId}
 
         switch (first) {
-            case "":
+            case "": // homepage
+                viewModel.overlayMovieId("");
+                console.log("Loading homepage");
                 break;
             case "showtimes":
+                console.log("Loading showtimes");
                 break;
             default:
-                // TODO: don't double-load since this call could happen on init
+                if (viewModel.overlayMovieId()) return; // movie is already loaded from server-side, so leave it alone
                 $.get('/movie/' + second, function (resp) {
-                    alert(resp);
+                    ianhd.app.controls.movie().html(resp);
+                    viewModel.overlayMovieId("some-movie");
                 });
+                console.log("Loading movie");
                 break;
         }
+    },
+    bindControls: function () {
+        $(document).on('click', ianhd.app.selectors.closePopup, function (e) {
+            History.pushState(null, null, "/");
+        });
     },
     initHistory: function (History) {
         // handle any state changes

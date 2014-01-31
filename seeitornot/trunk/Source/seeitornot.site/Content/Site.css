@@ -14,6 +14,8 @@ header, footer, nav, section {
     display: block;
 }
 
+a { color: #2489ce; text-decoration: none; }
+
 .orangeDiag { background-image: -webkit-gradient(linear, left top, right bottom, color-stop(0, #e76801), color-stop(0.25, #e76801), color-stop(0.25, #ec7f24), color-stop(0.5, #ec7f24), color-stop(0.5, #e76801), color-stop(0.75, #e76801), color-stop(0.75, #ec7f24));	background-image: -webkit-linear-gradient(left top, #e76801 0%, #e76801 25%, #ec7f24 25%, #ec7f24 50%, #e76801 50%, #e76801 75%, #ec7f24 75%); background-image: -moz-linear-gradient(left top, #e76801 0%, #e76801 25%, #ec7f24 25%, #ec7f24 50%, #e76801 50%, #e76801 75%, #ec7f24 75%); background-image: -ms-linear-gradient(left top, #e76801 0%, #e76801 25%, #ec7f24 25%, #ec7f24 50%, #e76801 50%, #e76801 75%, #ec7f24 75%); background-image: -o-linear-gradient(left top, #e76801 0%, #e76801 25%, #ec7f24 25%, #ec7f24 50%, #e76801 50%, #e76801 75%, #ec7f24 75%);	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e76801', endColorstr='#ec7f24',GradientType=0 ); /* IE6-8 */ background-image: linear-gradient(left top, #e76801 0%, #e76801 25%, #ec7f24 25%, #ec7f24 50%, #e76801 50%, #e76801 75%, #ec7f24 75%); background-size: 20px 20px; }
 .greenGradient { background: #65b145; /* fallback */ background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#79d153), to(#65b145)); background: -webkit-linear-gradient(top, #79d153, #65b145); background: -moz-linear-gradient(top, #79d153, #65b145); }
 .bottomShadow { -webkit-box-shadow: 0 2px 8px #999; -moz-box-shadow: 0 2px 8px #999; box-shadow: 0 2px 8px #999; }
@@ -57,7 +59,6 @@ header .content { width: 1000px; margin: 0 auto; }
 .body.dt .movie:nth-child(4n+1) { margin-right:0; }
     .body.dt .movie img { width: 172px; height: 255px; }
     .body.dt .movie .details { padding:10px; background:white; }
-    
     .body.dt .movie .details .mpaaRating { color: #465f82; font-weight: bold; }
 
 /* columns */
@@ -68,11 +69,16 @@ header .content { width: 1000px; margin: 0 auto; }
 .dt h2 { padding: 0 0 24px 0; margin: 0; }
 
 /* popup */
-.popup { background: white; position: fixed; top: 68px; padding: 24px; }
+.popup { background: white; position: fixed; top: 68px; padding: 24px; z-index: 1002; }
+    .popup h1 { font-weight: bold; padding:0; margin:0; font-size:18px; }
+
+/* overlay */
+#overlay { background: #333; opacity: .9; z-index: 1001; position: absolute; top:0; left: 0; width: 100%; }
 
 /* movie popup */
 #movie { width: 590px; left: 50%; margin-left: -295px; }
 #movie .right { margin-left: 24px; }
+    #movie .right .links { margin-top: 24px; }
 
 /* rt icons */
 .rottenTomato,.imdb,.sion .icon { background: url("content/sprite.png") no-repeat scroll left center transparent; }

@@ -59,7 +59,9 @@ header .content { width: 1000px; margin: 0 auto; }
 .body.dt .movie:nth-child(4n+1) { margin-right:0; }
     .body.dt .movie img { width: 172px; height: 255px; float:left; }
     .body.dt .movie .details { padding:10px; background:white; clear:left; border-bottom-left-radius:3px; border-bottom-right-radius:3px; }
-    .body.dt .movie .details .mpaaRating { color: #465f82; font-weight: bold; }
+
+/* movie in list & movie popup */
+.mpaa { font-weight: bold; color: #465f82; font-size:12px; }
 
 /* columns */
 .left, .right { float: left; }
@@ -78,6 +80,8 @@ header .content { width: 1000px; margin: 0 auto; }
 /* movie popup */
 #movie { width: 590px; left: 50%; margin-left: -295px; }
 #movie .right { margin-left: 24px; }
+    #movie .right h1 { display:inline-block; margin-right: 24px; }
+    #movie .right .mpaa { font-size: 18px; font-weight:normal; }
     #movie .right .links { margin-top: 24px; }
     #movie .right .links span { display:inline-block; width: 16px; height: 16px; background: url("sprite.png"); }
         #movie .right .links .parentalGuide { font-weight: bold; font-size: 13px; }

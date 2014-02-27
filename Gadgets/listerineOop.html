@@ -1,0 +1,304 @@
+<script>
+	/* ******************************* NEXT: NEW LIST ********************************/
+	// track this gadget load
+	_IG_Analytics("UA-380203-3", "/listerine");
+</script>
+<style type="text/css">
+	#content_div { font-size:12px; }
+	#listDropdown_div { float:right; margin:5px 5px 0 0; }
+	#list_div { padding:5px; }
+	#msg_div { padding:5px; font-style:italic }	
+	#global_div { padding:5px; }		
+	#links_div { padding:5px; }
+	.msg { font-style:italic }
+	.spcNewItem {}
+	.checked { color:#AAA; text-decoration:line-through; }
+	.unchecked { color:black; text-decoration:none; }
+	a:link,a:visited,a:hover,a:active { color:blue; }
+	a.feedback:link,a.feedback:visited,a.feedback:hover,a.feedback:active { color:green; }
+	.editUnchecked { border-bottom:dashed 1px black; }
+	.editChecked { border-bottom:dashed 1px #AAA; color: #AAA; text-decoration:line-through; }
+	a.noUnderline:link,a.noUnderline:visited,a.noUnderline:hover,a.noUnderline:active { text-decoration:none; }
+	/* a.delete:link,a.delete:visited,a.delete:hover,a.delete:active { color: red; text-decoration:none } */
+</style>
+<div id="content_div">
+	<div><!-- container for logo, dropdown and delete list -->
+		<div style="float:left; width:122px; padding:0; margin:0">
+			<img onclick="alert(debugStr)" src="http://hosting.gmodules.com/ig/gadgets/file/110347073994798694526/listerine_logo.png" border="0" />
+		</div>
+		<div id="listDropdown_div" style="display:none"><span id="listDropdown"></span><a class="noUnderline" href="#" onclick="deleteList(_gel('ddlLists').value)">&nbsp;&nbsp;<img title="Delete Current List" border="0" src="http://hosting.gmodules.com/ig/gadgets/file/110347073994798694526/x_11x11.png" />&nbsp;</a>
+		</div><!-- /listDropdown_div -->
+	</div><!-- /container for logo, dropdown and delete list -->
+	<div style="padding:23px"></div>
+	<div id="msg_div" style="display:none"></div>
+	<div id="list_div" style="display:none"></div>
+	<div id="global_div" style="display:none"></div>	
+	<div id="links_div">
+		<span id="newItem" style="display:none"><a href="#" onclick="newListItem()">New Item</a>&nbsp;&nbsp;|&nbsp;&nbsp;</span><a href="#" onclick="newList()">New List</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="mailto:dbsmilr@gmail.com?subject=Listerine%20Feedback" class="feedback">Feedback (please!)</a>
+	</div><!-- /links_div -->
+</div><!-- /content_div -->
+
+<script type="text/javascript">
+// constants
+var BR = '<br />';
+var BG_COLORS = '#FFFFFF,#E1E0E0'; // white, light gray
+var GLOBAL_LIST = '(global view)'; // global list title, keyword
+var prefs;
+var debugStr;
+
+function egg(str) {
+	if (debugStr != '') { debugStr += ' - ' + str; } else { debugStr = str }
+} // debug(...)
+
+function init() {
+	var mini;
+	var myListCol;
+	var update = 'Update(s) on 2/23/08: turn on/off alternating bg colors in settings; data now tied to your gAccount';
+	update = 'Update(s) on 2/25/08: on refresh, the last selected list is pre-selected vs. reverting back to first list in dropdown';
+	update = 'Update(s) on 2/25/08: click items to edit their name';
+	update = 'Update(s) on 2/27/08: now works in IE!';
+	prefs = new _IG_Prefs();
+	mini = new _IG_MiniMessage(__MODULE_ID__);
+	debugStr = '';
+	
+	// load the data
+	myListCol = new ListCollection();
+	myListCol.gLoad();
+	
+	// display the update
+	if (prefs.getString('update') != update) {
+		mini.createDismissibleMessage(update);
+		prefs.set('update',update);
+	} // update
+} // init()
+
+function switchView(view) {
+	switch (view.toLowerCase()) {
+		case 'listview': // standard view of selected list and items
+			show($('list_div'));
+			hide($('global_div'));		
+			showInline($('newItem'));
+			show($('listDropdown_div'));			
+			break;
+		case 'globalview': // global view of all lists and items
+			hide($('list_div'));
+			show($('global_div'));
+			hide($('newItem'));
+			show($('listDropdown_div'));		
+			break;
+		case 'nolistsview': // no lists
+			$('list_div').innerHTML = '<span class=\"msg\"\>No lists to display. Click New List below.</span\>';		
+			show($('list_div'));
+			hide($('global_div'));
+			hide($('newItem')); // n/a if there isn't a list to add items to
+			hide($('listDropdown_div')); // n/a if there aren't any lists for ddl
+			break;
+		case 'noitemsview': // no items
+			$('list_div').innerHTML = '<span class=\"msg\"\>No items to display. Click New Item below.</span\>';		
+			show($('list_div'));
+			hide($('global_div'));
+			showInline($('newItem')); // n/a if there isn't a list to add items to
+			show($('listDropdown_div')); // n/a if there aren't any lists for ddl
+			break;			
+		// default: 
+	} // switch
+} // switchView(...)
+
+function loadListDropdown() {
+	var ddlHtml = '';
+	
+	if (myListCol.lists().length == 0) {
+		// no lists
+		switchView('noListsView');
+	} else {
+		// lists exist, so load them into dropdown
+		ddlHtml += '<select id=\"ddlLists\" onchange=\"displayList(this.value);prefs.set(\'defaultList\',this.value);\"\>';
+		for (var i=0; i<myListCol.lists().length; i++) {
+			ddlHtml += '<option value=\"' + myListCol.lists()[i].getTitle() + '\"\>' + myListCol.lists()[i].getTitle() + '</option\>';
+		} // each list
+		ddlHtml += '</select\>';
+		_gel('listDropdown').innerHTML = ddlHtml;
+		if (prefs.getString("defaultList") != null && prefs.getString("defaultList") != '') { _gel('ddlLists').value = prefs.getString("defaultList"); }
+		displayList(_gel('ddlLists').value);
+	} // if there are any lists
+} // loadListDropdown()
+
+function displayList(listStr) {
+	// listStr example: To Do
+	var listHtml = '';
+	var rowIdx = 0; // used for alternating bg colors
+	var iItemName = ''; // iterative value for each list item name
+	var iItemChecked; // iterative value for each list item checked value
+
+	// global view or list-specific view ?
+	if (listStr == GLOBAL_LIST) { // display global view
+		displayGlobal();
+		switchView('globalView');
+	} else { // show passed-in list items
+		for (var i=0; i<myListCol.lists(listStr).listItems().length; i++) {
+			iItemName = myListCol.lists(listStr).listItems()[i].getName();
+			iItemChecked = myListCol.lists(listStr).listItems()[i].getChecked();
+
+			// wrap this row w/ a span w/ a style of background-color = bg_colors[...]
+			if (prefs.getBool("altBgColors")) { listHtml += '<div style=\"background-color:' + BG_COLORS.split(',')[rowIdx % 2] + '\"\>'; }
+			listHtml += '<input type=\"checkbox\" onchange=\"updateChecked(this.value)\" value=\"' + listStr.replace('\'','\\\'') + '^' + iItemName.replace('\'','\\\'') + '\"';
+			if (iItemChecked) {
+				listHtml += ' checked';
+			} // item is checked
+			listHtml += '/>&nbsp;';
+			listHtml += '<span onclick=\"editListItem(\'' + listStr.replace('\'','\\\'') + '^' + iItemName.replace('\'','\\\'') + '\')\" '
+			if (iItemChecked) { 
+				listHtml += 'class=\"checked\" onmouseover=\"setCssClass(this,\'editChecked\')\" onmouseout=\"setCssClass(this,\'checked\')\"\>'; 
+			} else { 
+				listHtml += 'class=\"unchecked\" onmouseover=\"setCssClass(this,\'editUnchecked\')\" onmouseout=\"setCssClass(this,\'unchecked\')\"\>'; 
+			}
+			listHtml += iItemName + '</span\>';
+			listHtml += '<a class=\"noUnderline\" href=\"\#\" ';
+			listHtml += 'onclick=\"deleteListItem(\'' + listStr.replace('\'','\\\'') + '^' + iItemName.replace('\'','\\\'') + '\')\"\>&nbsp;&nbsp;<img title=\"Delete Item\" border=\"0\" src=\"http://hosting.gmodules.com/ig/gadgets/file/110347073994798694526/x_11x11.png\" /\>&nbsp;</a\>';
+			if (prefs.getBool("altBgColors")) { listHtml += '</div\>'; } else { listHtml += BR; }
+			
+			rowIdx += 1;
+		} // next item	
+
+		// show/hide controls
+		if (listHtml != '') {
+			_gel('list_div').innerHTML = listHtml;
+			switchView('listView');		
+		} else { switchView('noItemsView'); }
+	} // global list or not
+		
+	_IG_AdjustIFrameHeight();
+} // displayList(...)
+
+function displayGlobal() {
+	var globalHtml = '';
+	var arrLists = prefs.getString("lists").split('|'); // list1|list2|list3...	
+	var arrItems = prefs.getString("items").split('|'); // list1^list1item1^true|list1^listitem2^false|list2^list2item1^true...	
+	var iListTitle = ''; // used iteratively for each list title
+	var iItemListTitle = '';
+	var iItemName = ''; // used iteratively for each item name
+	var iItemChecked = ''; // used iteratively for each item checked value
+	var rowIdx = 0; // used for alternating bg colors	
+
+	// loop thru all lists and append each w/ their items to globalHtml
+	for (var i=0; i<arrLists.length; i++) {
+		iListTitle = arrLists[i]; // get listTitle
+		if (iListTitle != GLOBAL_LIST) {
+			globalHtml += '<strong\>' + iListTitle + '</strong\>' + BR;
+			rowIdx = 0; // reset to zero for each list
+			
+			// call displayList(iListTitle,byref globalHtml) ?
+			for (var j=0; j<arrItems.length; j++) {
+				iItemListTitle = arrItems[j].split('^')[0];
+				iItemName = arrItems[j].split('^')[1];
+				iItemChecked = arrItems[j].split('^')[2];
+				
+				if (iItemListTitle == iListTitle) { // only display items for current List in iteration, which serves as List PK, FK in listItems
+					// wrap this row w/ a span w/ a style of background-color = bg_colors[...]
+					if (prefs.getBool("altBgColors")) { globalHtml += '<div style=\"background-color:' + BG_COLORS.split(',')[rowIdx % 2] + '\"\>'; }
+					globalHtml += '<input onchange=\"updateChecked(this.value,this.checked)\" type=\"checkbox\" value=\"' + iListTitle + '^' + iItemName + '\"';
+					if (iItemChecked.toLowerCase() == 'true') {
+						globalHtml += ' checked';
+					} // item is checked
+					globalHtml += '/>&nbsp;';
+					globalHtml += '<span onclick=\"editListItem(\'' + iListTitle.replace('\'','\\\'') + '^' + iItemName.replace('\'','\\\'') + '\')\" '
+					if (iItemChecked.toLowerCase() == 'true') { 
+						globalHtml += 'class=\"checked\" onmouseover=\"setCssClass(this,\'editChecked\')\" onmouseout=\"setCssClass(this,\'checked\')\"\>'; 
+					} else { 
+						globalHtml += 'class=\"unchecked\" onmouseover=\"setCssClass(this,\'editUnchecked\')\" onmouseout=\"setCssClass(this,\'unchecked\')\"\>'; 
+					}
+					globalHtml += iItemName + '</span\>';
+					globalHtml += '<a class=\"noUnderline\" href=\"\#\" ';
+					globalHtml += 'onclick=\"deleteListItem(\'' + iListTitle.replace('\'','\\\'') + '^' + iItemName.replace('\'','\\\'') + '\')\"\>&nbsp;&nbsp;<img title=\"Delete Item\" border=\"0\" src=\"http://hosting.gmodules.com/ig/gadgets/file/110347073994798694526/x_11x11.png\" /\>&nbsp;</a\>';
+					if (prefs.getBool("altBgColors")) { globalHtml += '</div\>'; } else { globalHtml += BR; }
+					
+					rowIdx += 1;
+				} // item belongs to passed-in list			
+			} // next item
+		} // don't display the actual "(global list)" list, since this is a keyword
+	} // next list
+	
+	// show/hide controls
+	_gel('global_div').innerHTML = globalHtml;
+} // displayGlobal()
+
+function newList() {
+	var listTitle = prompt('Please enter a list title', '');
+	var listObj;
+	if ( (listTitle!='') && (listTitle!=null) && (listTitle!=' ') ) {
+		listObj = new List(listTitle);
+		myListCol.addList(listObj);
+		myListCol.gCommit();
+		prefs.set("defaultList",listTitle);
+		loadListDropdown();
+		_IG_Analytics("UA-380203-3", "/listerine/newList");
+	} // input is legit
+} // newList()
+
+function newListItem() {
+	var itemName = prompt('Please enter the item name', '');
+	var listItemObj;
+	if ( (itemName!='') && (itemName!=null) && (itemName!=' ') ) {
+		listItemObj = new ListItem(itemName);
+		myListCol.lists(_gel('ddlLists').value).addListItem(listItemObj);
+		myListCol.gCommit();
+		loadListDropdown();
+		_IG_Analytics("UA-380203-3", "/listerine/newListItem");
+	} // input is legit
+} // newListItem()
+
+function updateChecked(listItemStr) {
+	// listItemStr example: list1^list1item1
+	var listTitle = listItemStr.split('^')[0];
+	var listItemName = listItemStr.split('^')[1];
+	
+	myListCol.lists(listTitle).listItems(listItemName).changeChecked();	
+	myListCol.gCommit();
+	loadListDropdown();
+	_IG_Analytics("UA-380203-3", "/listerine/updateChecked");
+} // updateChecked(...)
+
+function deleteList(listTitle) {
+	if (confirm("Delete this list?")) {
+		myListCol.removeList(listTitle);
+		myListCol.gCommit();
+		prefs.set("defaultList",null);
+		loadListDropdown(); // reload list dropdown
+		_IG_Analytics("UA-380203-3", "/listerine/deleteList");
+	} // confirm delete
+} // deleteList()
+
+function deleteListItem(listItemStr) {
+	// in param: listItemStr, to do^get a haircut
+	var listTitle = listItemStr.split('^')[0];
+	var listItemName = listItemStr.split('^')[1];
+	
+	myListCol.lists(listTitle).removeListItem(listItemName);
+	myListCol.gCommit();
+	loadListDropdown(); // reload list dropdown
+	_IG_Analytics("UA-380203-3", "/listerine/deleteListItem");
+} // deleteListItem()
+
+function editListItem(listItem) {
+	var oldItemName = listItem.split('^')[1].replace('\\','');
+	var listTitle = listItem.split('^')[0].replace('\\','');
+	var findStr = listTitle + '^' + oldItemName;
+	var replaceStr;
+	var newItemName = prompt('Please enter a new item name', oldItemName);
+	if ( newItemName!='' && newItemName!=null && newItemName!=' ' && newItemName != oldItemName ) {
+		replaceStr = listTitle + '^' + newItemName;
+		prefs.set("items",prefs.getString("items").replace(findStr,replaceStr));
+		loadListDropdown();
+		_IG_Analytics("UA-380203-3", "/listerine/editListItem");
+	} // input is legit
+}
+
+function setCssClass(ctl,inClass) {if(ctl){ctl.className=inClass;}}
+function $(id){return document.getElementById(id);}
+function hide(ctl){if(ctl){ctl.style.display='none';}}
+function show(ctl){if(ctl){ctl.style.display='block';}}
+function showInline(ctl){if(ctl){ctl.style.display='inline';}}
+
+init();
+loadListDropdown();
+</script>

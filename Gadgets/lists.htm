@@ -1,0 +1,172 @@
+<style type="text/css">
+	.checked { color:#AAAAAA; text-decoration:line-through; }
+	.unchecked { color:black; text-decoration:none; }
+	a:link,a:visited,a:hover,a:active { color:blue; }
+	a.delete:link,a.delete:visited,a.delete:hover,a.delete:active { color: red; text-decoration:none }
+</style>
+<div id="content_div" style="font-size:12px">
+	<div id="dropdown_div" style="float:right; margin:5px;"></div>
+	<div style="padding:12px"></div>
+	<div id="list_div" style="padding:5px"></div>
+	<div id="newLinks_div" style="padding:5px;display:none;">
+		<a href="#" onclick="newListItem()">New Item</a>&nbsp;|&nbsp;
+		<a href="#" onclick="newList()">New List</a>&nbsp;
+		<a href="#" class="delete" onclick="deleteList(_gel('ddlLists').value)">(X)</a>
+	</div>
+</div>
+
+<script type="text/javascript"> 
+// constants
+var BR = '<br />';
+var listDropdownUrl = "http://bakersdozen13.lfchosting.com/List2000/ListDropdownXml.aspx";
+var listUrl = "http://bakersdozen13.lfchosting.com/List2000/ListXml.aspx";
+var updateCheckedUrl = "http://bakersdozen13.lfchosting.com/List2000/UpdateChecked.aspx";
+var newListItemUrl = "http://bakersdozen13.lfchosting.com/List2000/NewListItem.aspx";
+var newListUrl = "http://bakersdozen13.lfchosting.com/List2000/NewList.aspx";
+var deleteListItemUrl = "http://bakersdozen13.lfchosting.com/List2000/DeleteListItem.aspx";
+var deleteListUrl = "http://bakersdozen13.lfchosting.com/List2000/DeleteList.aspx";
+
+function newListItem() {
+	var action = ''; var d = new Date();
+	var name = prompt('Please enter the item name', '');
+	if ( (name!='') && (name!=null) && (name!=' ') ) {
+		action = newListItemUrl + '?' + escape('listId=' + _gel('ddlLists').value + '&name=' + name + '&' + Math.floor(Math.random()*101) + d.getTime());		
+		_IG_FetchContent(action, function(response) {  
+			if (response.toLowerCase().indexOf('success') == 0) {
+				// reload selected list
+				displayList(_gel('ddlLists').value);
+			} else { // error
+				alert(response);
+				_gel('list_div').innerHTML = action;
+			}
+		}); // _IG_FetchXmlContent(...)
+	} // name is legit
+} // newListItem()
+
+function newList() {
+	var action = ''; var d = new Date();
+	var title = prompt('Please enter a list title', '');
+	if ( (title!='') && (title!=null) && (title!=' ') ) {
+		action = newListUrl + '?' + escape('title=' + title + '&' + Math.floor(Math.random()*101) + d.getTime());		
+		_IG_FetchContent(action, function(response) {  
+			if (response.toLowerCase().indexOf('success') == 0) {
+				// reload selected list
+				loadListDropdown();
+			} else { // error
+				alert(response);
+				_gel('list_div').innerHTML = action;
+			}
+		}); // _IG_FetchXmlContent(...)
+	} // name is legit
+} // newListItem()
+
+function deleteListItem(listItemId) {
+	var action = ''; var d = new Date();
+	
+	action = deleteListItemUrl + '?' + 'listItemId=' + listItemId + '&' + Math.floor(Math.random()*101) + d.getTime();
+	_IG_FetchContent(action, function(response) {
+		if (response.toLowerCase().indexOf('success') == 0) {
+			// reload selected list
+			displayList(_gel('ddlLists').value);
+		} else { // error
+			alert(response);
+			_gel('list_div').innerHTML = action;
+		}
+   	}); // _IG_FetchXmlContent(...)
+} // deleteListItem()
+
+function deleteList(listId) {
+	var action = ''; var d = new Date();
+	
+	if (confirm("Delete this list?")) {
+		action = deleteListUrl + '?' + 'listId=' + listId + '&' + Math.floor(Math.random()*101) + d.getTime();
+		_IG_FetchContent(action, function(response) {
+			if (response.toLowerCase().indexOf('success') == 0) {
+				// reload selected list
+				loadListDropdown();
+			} else { // error
+				alert(response);
+				_gel('list_div').innerHTML = action;
+			}
+		}); // _IG_FetchXmlContent(...)
+	} // confirm delete
+} // deleteListItem()
+
+function loadListDropdown() {
+	var action = ''; var d = new Date();
+	var ddlHtml = '';
+	var listElements = '';
+
+	action = listDropdownUrl + '?' + Math.floor(Math.random()*101) + d.getTime();
+	_IG_FetchXmlContent(action, function(response) {
+		listElements = response.getElementsByTagName('List'); // list of all lists		
+		ddlHtml += '<select id=\"ddlLists\" onchange=\"displayList(this.value)\"\>';
+		for (var i=0; i<listElements.length; i++) {
+			ddlHtml += '<option value=\"' + listElements.item(i).getAttribute('ListId') + '\"\>';
+			ddlHtml += listElements.item(i).getAttribute('Title') + '</option\>'
+		} // each list element		
+		ddlHtml += '</select\>';
+		_gel('dropdown_div').innerHTML = ddlHtml;
+		displayList(_gel('ddlLists').value);
+	}); // _IG_FetchXmlContent(...)
+} // loadLists()
+
+function updateChecked(listItemId,checked) {
+	var action = ''; var d = new Date();
+	
+	action = updateCheckedUrl + '?' + 'listItemId=' + listItemId + '&checked=' + checked + '&' + Math.floor(Math.random()*101) + d.getTime();
+	_IG_FetchContent(action, function(response) {   
+		if (response.toLowerCase().indexOf('success') == 0) {
+			if (checked) { setCssClass($('item'+listItemId),'checked'); } else { setCssClass($('item'+listItemId),'unchecked'); }
+		} else { // error
+			alert(response);
+			_gel('list_div').innerHTML = action;
+		}	
+   	}); // _IG_FetchXmlContent(...)
+}
+
+function displayList(listId) { 
+	var action = ''; var d = new Date();
+	var listHtml = '';  
+   	var listElements = '';
+	var listItemElements = '';
+   
+	action = listUrl + '?' + 'listId=' + listId + '&' + Math.floor(Math.random()*101) + d.getTime();
+	_IG_FetchXmlContent(action, function(response) {   
+		listElements = response.getElementsByTagName('List'); // list of all lists
+		
+		for (var l=0; l<listElements.length; l++) {
+			if (listElements.item(l).getAttribute('ListId') == listId) {
+				listItemElements = listElements.item(l).getElementsByTagName('ListItem');
+				// loop thru list items
+// 				listHtml += BR;
+				for (var i=0; i<listItemElements.length; i++) {
+					listHtml += '<input onchange=\"updateChecked(this.value,this.checked)\" type=\"checkbox\" value=\"' + listItemElements.item(i).getAttribute('ListItemId') + '\"';
+					if (listItemElements.item(i).getElementsByTagName('Checked').item(0).childNodes[0].nodeValue == 'True') {
+						listHtml += ' checked';
+					}
+					listHtml += '/>&nbsp;';
+					listHtml += '<span id=\"item' + listItemElements.item(i).getAttribute('ListItemId') + '\" '
+					if (listItemElements.item(i).getElementsByTagName('Checked').item(0).childNodes[0].nodeValue == 'True') {
+						listHtml += 'class=\"checked\"\>'; } else { listHtml += 'class=\"unchecked\"\>'; } 
+					listHtml += listItemElements.item(i).getElementsByTagName('Name').item(0).childNodes[0].nodeValue + '</span\>&nbsp;' 
+					listHtml += '<a href=\"\#\" class=\"delete\" '
+					listHtml += 'onclick=\"deleteListItem(' + listItemElements.item(i).getAttribute('ListItemId') + ')\"\>(X)</a\>' 
+					listHtml += BR;
+				} // for each listItem 
+			} // found listId			
+		} // for each List
+	
+		_gel('list_div').innerHTML = listHtml;
+		// show new item link now that list is loaded
+		show($('newLinks_div'));
+   	}); // _IG_FetchXmlContent(...)
+} // displayList(...)
+
+function setCssClass(ctl,inClass) {if(ctl){ctl.className=inClass;}}
+function $(id){return document.getElementById(id);}
+function hide(ctl){if(ctl){ctl.style.display='none';}}
+function show(ctl){if(ctl){ctl.style.display='block';}}
+
+loadListDropdown();
+</script>

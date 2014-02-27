@@ -1,0 +1,168 @@
+<html>
+<script>
+	/* reqs:
+		myListCol.lists('to do').listItems('taxes').changeChecked; - OK
+		myListCol.lists('to do').removeListItem('taxes');
+	*/
+	
+	var BR = "<br/>";
+
+	// OOP
+	function ListCollection() {
+		this.addList = function(list) { this.listArr.push(list) }
+		this.lists = function(title) {
+				if (title != null) {// passed in or not 
+					for (var i=0; i<this.listArr.length; i++) {
+						if (this.listArr[i].getTitle() == title) { return this.listArr[i] }
+					} // next list
+				} else { // no title passed in, so return the entire array
+					return this.listArr;
+				} // title is provided
+			} // lists function
+		this.removeList = function(title) {
+				var newListArr = new Array;
+				for (var i=0; i<this.listArr.length; i++) {
+					if (this.listArr[i].getTitle() != title) { 
+						newListArr.push(this.listArr[i]) 
+					} else { // title match, so delete all items in this list
+						this.listArr[i].clearListItems();
+					}
+				} // next list
+				this.listArr = newListArr;
+			} // removeList function
+		this.printAll = function() {
+				for (var i=0; i<this.listArr.length; i++) {
+					document.write('<strong\>' + this.listArr[i].getString() + ':</strong\>' + BR);
+					this.listArr[i].printListItems();
+					document.write(BR);
+				} // next list
+			} // printAll function
+		this.gCommit = function() {
+				// save to both lists and items user prefs
+				var listStrArr = new Array; // array of list strings
+				var getListItemsStr = '';
+				var listItemsStr = ''; // array of list items
+				var delim = '';
+				
+				for (var i=0; i<this.listArr.length; i++) {
+					listStrArr.push(this.listArr[i].getString());
+					getListItemsStr = this.listArr[i].getListItemsStr();
+					if (getListItemsStr != '' && getListItemsStr != null) {
+						listItemsStr += delim + getListItemsStr;
+					 	delim = '|'; 
+					}
+				} // next list				
+				prefs.set("lists",listStrArr.join('|'));
+				//alert('lists = ' + listStrArr.join('|'));
+				prefs.set("items",listItemsStr);				
+				//alert('items = ' + listItemsStr);
+			} // commit to google
+		this.gLoad = function () {
+				this.listArr = new Array;
+				var gListArr = prefs.getString('lists').split('|');
+				var gListItemArr = prefs.getString('items').split('|');
+				var iListItem; // list item object, we'll create new ones and add them to the lists
+				var iList; // list object
+				
+				for (var i=0; i<gListArr.length; i++) {
+					iList = new List(gListArr[i]);
+					for (var j=0; j<gListItemArr.length; j++) {
+						if (iList.getTitle() == gListItemArr[j].split('^')[0]) {
+							iListItem = new ListItem(gListItemArr[j].split('^')[1]);
+							iListItem.setChecked(Boolean(gListItemArr[j].split('^')[2]));
+							iList.addListItem(iListItem);
+						} // item belongs in list
+					} // next list item
+					this.listArr.push(iList);
+				} // next list				
+			} // load from google
+	} // ListCollection obj declaration
+	
+	function List(title) {
+		this.title = title;
+		this.listItemArr = new Array;
+		this.getTitle = function() { return this.title }
+		this.getString = function() { return this.title }
+		this.setTitle = function(title) { this.title = title }
+		this.addListItem = function(listItem) { this.listItemArr.push(listItem) }
+		this.printListItems = function() { 
+				for (var i=0; i<this.listItemArr.length; i++) {
+					document.write(this.listItemArr[i].getString() + BR);
+				} // next list				
+			} // printListItems function
+		this.getListItemsStr = function() { // returns bananas^false|cereal^true|...
+				var listItemStrArr = new Array;
+				for (var i=0; i<this.listItemArr.length; i++) {
+					listItemStrArr.push(this.title + '^' + this.listItemArr[i].getString());
+				} // next list	
+				return listItemStrArr.join('|');				
+			} // getListItemsStr
+		this.listItems = function(name) {
+				if (name != null) { // name specified, so just return that item
+					for (var i=0; i<this.listItemArr.length; i++) {
+						if (this.listItemArr[i].getName() == name) { return this.listItemArr[i] }
+					} // next list
+				} else { // no name specified, so return entire array
+					return this.listItemArr;
+				}
+			} // listItems function	
+		this.removeListItem = function(name) {
+				var newListItemArr = new Array;
+				for (var i=0; i<this.listItemArr.length; i++) {
+					if (this.listItemArr[i].getName() != name) { newListItemArr.push(this.listItemArr[i]) }
+				} // next list
+				this.listItemArr = newListItemArr;
+			} // removeListItem function
+		this.clearListItems = function() {
+			this.listItemArr = new Array;
+		} // clearListItems() function				
+	} // List obj declaration
+	
+	function ListItem(name) {
+		this.name = name;
+		this.checked = false; // init to false
+		this.getName = function() { return this.name }
+		this.setName = function(name) { this.name = name }
+		this.getChecked = function() { return this.checked }
+		this.changeChecked = function() { this.checked = !this.checked }
+		this.setChecked = function(bool) { this.checked = bool }
+		this.getString = function() { return this.name + '^' + String(this.checked) }
+	} // ListItem obj declaration
+	
+	var lc = new ListCollection();
+	var list1 = new List('To Do');
+	var list2 = new List('Groceries');
+	var list3 = new List('crap');
+	
+	var item1 = new ListItem('taxes');
+	list1.addListItem(item1);
+		
+	var item2 = new ListItem('write Jose');
+	list1.addListItem(item2);
+
+	var item3 = new ListItem('pay Joc');
+	list1.addListItem(item3);	
+	
+	var groc1 = new ListItem('cereal');
+	list2.addListItem(groc1);
+	
+
+	// add lists to ListCollection
+	lc.addList(list1);
+	lc.gCommit();
+	lc.addList(list2);
+	lc.addList(list3);
+	lc.gCommit();
+
+	
+	lc.lists('To Do').listItems('taxes').changeChecked();
+	lc.lists('To Do').listItems('taxes').setName('taxes2');
+	lc.lists('To Do').setTitle('To Do 1');
+	lc.gCommit();
+//	lc.lists('To Do 1').removeListItem('taxes');
+	lc.printAll();	
+	
+	/* arr.push('item1');
+	document.write(arr.pop()); */
+</script>
+</html>

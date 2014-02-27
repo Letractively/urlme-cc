@@ -1,0 +1,937 @@
+
+
+
+<style type="text/css">
+<!--
+
+	.d__MODULE_ID__-sizer-Small #d__MODULE_ID__-canvas { height: 100px; }
+	.d__MODULE_ID__-sizer-Small #d__MODULE_ID__-list { height: 80px; }
+	
+	#d__MODULE_ID__-canvas,
+	.d__MODULE_ID__-sizer-Medium #d__MODULE_ID__-canvas { height: 150px; }
+	#d__MODULE_ID__-list,
+	.d__MODULE_ID__-sizer-Medium #d__MODULE_ID__-list { height: 130px; }
+	
+	.d__MODULE_ID__-sizer-Large #d__MODULE_ID__-canvas { height: 250px; }
+	.d__MODULE_ID__-sizer-Large #d__MODULE_ID__-list { height: 230px; }
+	
+	.d__MODULE_ID__-sizer-WhoaMama #d__MODULE_ID__-canvas { height: 350px; }
+	.d__MODULE_ID__-sizer-WhoaMama #d__MODULE_ID__-list { height: 330px; }
+	
+	
+	#d__MODULE_ID__-canvas { overflow: hidden; width: 100%; }
+	#d__MODULE_ID__-canvas,
+	#d__MODULE_ID__-list { font-size: 10pt; font-family: helvetica, arial, verdana, sans-serif; position: relative; }
+
+
+	#d__MODULE_ID__-canvas a,
+	* html #d__MODULE_ID__-list li.hover,
+	#d__MODULE_ID__-list span.txt:hover { cursor: pointer; color: #00c; text-decoration: underline; }
+	
+	#d__MODULE_ID__-list li.done .txt { text-decoration: line-through; color: #aaa; }
+
+	#d__MODULE_ID__-none p { margin: .15em 0 .35em; }
+	#d__MODULE_ID__-newWrap { position: absolute; bottom: 0; left: 0; margin: 0; width: 100%; padding: 2px; }
+	#d__MODULE_ID__-list { list-style-type: none; padding: 0; margin: 0; overflow: auto; background-color: #fff; color: #000; }
+	#d__MODULE_ID__-list li { position: relative; padding: 2px 20px 0; margin: 0 0 2px; }
+	#d__MODULE_ID__-list li { zoom: 1; } /* hasLayout */
+	#d__MODULE_ID__-list span.ck { position: absolute; top: 0; left: 0; }
+	#d__MODULE_ID__-list a { position: absolute; top: 4px; right: 2px; text-decoration: none; width: 11px; height: 11px; display: none; }
+	#d__MODULE_ID__-list li:hover { background-color: #fff; }	/* IE7 requires this to make it receive :hover along its whole width */
+	* html #d__MODULE_ID__-list li.hover a,	
+	#d__MODULE_ID__-list li:hover a { display: block; }
+	
+	#d__MODULE_ID__-canvas .icon { vertical-align: middle; border: none; }
+-->
+</style>
+
+<div id="d__MODULE_ID__-sizer">
+	<div id="d__MODULE_ID__-canvas">
+
+		<ol id="d__MODULE_ID__-list">
+		</ol>
+		<div id="d__MODULE_ID__-none">
+			<p>You have no pending tasks.</p>
+		</div>
+
+		<p id="d__MODULE_ID__-newWrap"><a href="#" id="d__MODULE_ID__-new"><img src="http://mostlycloudy.net/~dnl2ba/subpages/gdir-test/icons/new.png" alt="New" class="icon"> New task</a></p>
+	</div>
+
+	<ol style="display: none;">
+		<li id="d__MODULE_ID__-template-input" class="input">
+			<span class="ck"><input type="checkbox"></span>
+			<span class="txtfield"><input text="text" size="20"></span>
+		</li>
+		<li id="d__MODULE_ID__-template-display" class="display">
+			<span class="ck"><input type="checkbox"></span>
+			<span class="txt" title="Click to edit">Description</span>
+			<a href="#" class="del" title="Remove"><img src="http://mostlycloudy.net/~dnl2ba/subpages/gdir-test/icons/delete.png" alt="Remove" class="icon"></a>
+		</li>
+	</ol>
+</div>
+
+<script type="text/javascript">
+
+
+
+var d__MODULE_ID__DOM = {
+	gfd: function(el, tagName, className) {
+		tagName = tagName || "*";
+
+		var t = el.getElementsByTagName(tagName);
+		if (!t || t.length == 0) return null;
+		if (className) {
+			for (var i = 0; i < t.length; i++) {
+				if (t[i].className && d__MODULE_ID__Style.hasClass(t[i].className, className)) {
+					return t[i];
+				}
+			}
+
+			return null;
+		}
+		else return t[0];
+	}
+};
+
+var d__MODULE_ID__Sizes = {
+
+	id: "d__MODULE_ID__-sizer",
+	persistName: "displaysize",	// needs to match the value in the XML above
+	
+	validSizes: {
+		Small: 1,
+		Medium: 2,
+		Large: 3,
+		WhoaMama: 4
+	},
+	
+	init: function() {	// Load from saved value
+		var sizeKey = d__MODULE_ID__Env.prefs.getString(this.persistName);
+		this.setSize(this.validSizes[sizeKey] ? sizeKey : "Medium");
+	},
+	
+	setSize: function(sizeKey) {
+		_gel(this.id).className = "d__MODULE_ID__-sizer-" + sizeKey;
+	}
+};
+
+
+
+
+
+var d__MODULE_ID__Env =
+{
+	prefs: null,
+
+	main: function() {
+		this.prefs = new _IG_Prefs(__MODULE_ID__);
+		d__MODULE_ID__Sizes.init();
+		d__MODULE_ID__UAs.init();
+		d__MODULE_ID__TaskList.init();
+	},
+
+	trim: function(str) {
+		return str.replace(/^\s*(.*)/, "$1").replace(/(.*?)\s*$/, "$1");
+	}
+};
+
+
+
+
+/*** TaskList ***/
+
+var d__MODULE_ID__TaskList =
+{
+	persistName: null,	// set in init
+	persistDelim: "~+~",
+	persistPieceDelim: "~/~",
+	all: {},	// hashed by DOM ID
+	length: 0,
+	add: function(desc, editMode, done) {
+		var id = this.makeId();
+		var task = new d__MODULE_ID__Task(id, desc, editMode, done);
+		this.all[id] = task;
+
+		task.render();
+
+		if (++this.length == 1)
+			this.evalShow();
+
+		return task;
+	},
+	get: function(id) { return d__MODULE_ID__TaskList.all[id]; },
+	remove: function(id) {
+		var t = d__MODULE_ID__TaskList;
+		task = t.get(id);
+		var el = task.getEl();
+		if (el) el.parentNode.removeChild(el);
+		delete t.all[id];
+
+		if (--t.length == 0) {
+			t.evalShow();
+		}
+
+		t.save();
+	},
+	counter: 0,	// use this to generate unique IDs on every run
+	makeId: function() { return "d__MODULE_ID__-task" + this.counter++; },
+	makePersistName: function(listNum) { return "dnl2ba_todo_" + listNum; },
+
+	init: function() {
+		this.persistName = this.makePersistName(d__MODULE_ID__Env.prefs.getString("listnum"));
+		this.load();
+
+		_gel("d__MODULE_ID__-new").onclick = this.create_onclick;
+		d__MODULE_ID__Events.add(document.documentElement, "click", this.finishEdits);
+	},
+
+	// Figure out whether to show the task list or the "no tasks" message
+	evalShow: function() {
+		var s = false;
+		for (var id in this.all) {
+			s = true;
+			break;
+		}
+
+		d__MODULE_ID__Style.showHideEl(_gel("d__MODULE_ID__-list"), s);
+		d__MODULE_ID__Style.showHideEl(_gel("d__MODULE_ID__-none"), !s);
+	},
+
+	load: function() {
+		var loadStr = d__MODULE_ID__Env.prefs.getString(this.persistName);
+		if (!loadStr) { loadStr = d__MODULE_ID__C.get(this.persistName); }	// Try to load a legacy value from a cookie
+		if (!loadStr) { this.evalShow(); return; }
+
+		var taskArr = loadStr.split(this.persistDelim);
+		for (var i = 0; i < taskArr.length; i++) {
+			this.fromPS(taskArr[i]);
+		}
+	},
+
+	save: function()
+	{
+		var taskArr = [];
+		var i = 0;
+		for (var key in this.all)
+			taskArr[i++] = this.toPS(this.all[key]);
+
+		var saveStr = taskArr.join(this.persistDelim);
+		d__MODULE_ID__Env.prefs.set(this.persistName, saveStr);
+		d__MODULE_ID__C.set(this.persistName, saveStr);	// back-up save to cookie in case XHR doesn't work for this user
+	},
+
+	// to/from persist string (any reason to make these JSON? Probably not, plus backward compat complicates things)
+	toPS: function(task)
+	{
+		return (task.getDone() ? 1 : 0) + d__MODULE_ID__TaskList.persistPieceDelim + task.getDesc();
+	},
+
+	fromPS: function(str)
+	{
+		var pieces = str.split(d__MODULE_ID__TaskList.persistPieceDelim);
+		this.add(pieces[1], false, pieces[0] == "1");
+	},
+
+	create_onclick: function()
+	{
+		var t = d__MODULE_ID__TaskList;
+		var fx = d__MODULE_ID__Effects;
+		var task = t.add("Enter your task here", true, false);
+		task.getEditBox().scrollIntoView(false);
+		fx.doEffect(
+			task.getId(),
+			fx.types.FADE,
+			{
+				duration: 250,
+				startOpacity: 0,
+				endOpacity: d__MODULE_ID__UAs.currentIsGecko() ? 99 : 100,	// Gecko flickers at 100
+				onfinish: d__MODULE_ID__TaskList.task_onappear,
+				onfinishParams: task.getId()
+			}
+		);
+
+		return false;
+	},
+
+	task_onappear: function(id)
+	{
+		var task = d__MODULE_ID__TaskList.get(id);
+		if (task)
+		{
+			if (!task.getEditMode()) {
+				task.setEditMode(true);
+			}
+
+			task.getEditBox().select();	// may have un-selected during effects
+		}
+	},
+
+	// Click checkbox to toggle whether the task is done
+	cb_onclick: function() {
+		var t = d__MODULE_ID__TaskList;
+		t.get(this.parentNode.parentNode.id).setDone(this.checked);
+		t.save();
+	},
+
+	del_onclick: function() {
+		d__MODULE_ID__TaskList.get(this.parentNode.id).disappear();
+		return false;
+	},
+
+	// Click description to change to input
+	desc_onclick: function(e) {
+		var t = d__MODULE_ID__TaskList;
+		t.finishEdits();	// close any open ones
+		t.get(this.parentNode.id).setEditMode(true);
+		d__MODULE_ID__Events.stopPropag(e);
+	},
+
+	input_onkeypress: function(e) {
+		if (!e) e = window.event;
+		if (e.keyCode == 10 || e.keyCode == 13) {	// pressed enter
+			var task = d__MODULE_ID__TaskList.get(this.parentNode.parentNode.id);
+
+			if (task.finishEdit(this.value)) {	// This doesn't count as a blur, so we still need to finishEdit() and save()
+				d__MODULE_ID__TaskList.save();
+			}
+
+			return false;
+		}
+	},
+
+	input_onclick: function(e) {
+		d__MODULE_ID__Events.stopPropag(e);
+	},
+
+	// onblur isn't fired reliably in IE6, so we capture document clicks.
+	// Remember to stop event propagation for certain clicks (e.g. on the edit box)
+	finishEdits: function() {
+		var t = d__MODULE_ID__TaskList;
+		var doSave = false;
+		for (id in t.all)
+		{
+			var task = t.get(id);
+			if (task.getEditMode() && task.finishEdit(task.getEditBox().value))
+				doSave = true;
+		}
+
+		if (doSave)
+			t.save();
+	},
+
+	shrink: function(id) {
+		var task = d__MODULE_ID__TaskList.get(id);
+		if (task) { task.disappearShrink(); }
+	}
+};
+
+
+
+
+/*** Task ***/
+
+function d__MODULE_ID__Task(id, desc, editMode, done) {
+	this.id = id;
+	this.desc = desc || "";
+	this.done = done || false;
+	this.editMode = editMode || false;
+
+	this.destroyed = false;
+}
+
+d__MODULE_ID__Task.prototype = {
+	getEl: function() { return _gel(this.id); },
+	getId: function() { return this.id; },
+	getDesc: function() { return this.desc; },
+	setDesc: function(s) { this.desc = s; },
+	getDone: function() { return this.done; },
+	setDone: function(b) { this.done = b; this.setDoneStyle(this.getEl()); },
+	setDoneStyle: function(el) { d__MODULE_ID__Style.addRmvClass(el, "done", this.getDone()); },	// sometimes need to call it for an el not on the DOM
+	finishEdit: function(newDesc) {	// Returns whether changes were made
+		newDesc = d__MODULE_ID__Env.trim(newDesc);
+
+		if (newDesc.indexOf(d__MODULE_ID__TaskList.persistDelim) != -1 || newDesc.indexOf(d__MODULE_ID__TaskList.persistPieceDelim) != -1)
+		{
+			alert("Sorry, your task description may not contain these terms because pigs hate ham:\n" + d__MODULE_ID__TaskList.persistDelim + "\n" + d__MODULE_ID__TaskList.persistPieceDelim);
+			return false;
+		}
+		else if (newDesc.length == 0) { this.disappear(); return true; }
+		else if (this.getDesc() == newDesc) { this.setEditMode(false); return false; }
+		else { this.setDesc(newDesc); this.setEditMode(false); return true; }
+	},
+	getEditBox: function(el) {
+		el = el || this.getEl();	// supply el if this isn't on the DOM yet
+		return d__MODULE_ID__DOM.gfd(d__MODULE_ID__DOM.gfd(el, "span", "txtfield"), "input");
+	},
+	getEditMode: function() { return this.editMode; },
+	setEditMode: function(b) {
+		if (this.editMode != b) {
+			this.editMode = b;
+			this.render();
+		}
+	},
+
+	render: function() {
+		var t = d__MODULE_ID__TaskList;
+		var d = d__MODULE_ID__DOM;
+
+		var el = _gel("d__MODULE_ID__-template-" + (this.getEditMode() ? "input" : "display")).cloneNode(true);
+		el.id = this.getId();
+
+		var ckEl = d.gfd(el, "input");
+		ckEl.onclick = t.cb_onclick;
+
+		this.setDoneStyle(el);
+
+		var inputEl = null;
+		if (this.getEditMode())
+		{
+			inputEl = this.getEditBox(el);
+			inputEl.value = this.getDesc();
+			inputEl.onkeypress = t.input_onkeypress;
+			inputEl.onclick = t.input_onclick;
+		}
+		else
+		{
+			var descEl = d.gfd(el, "span", "txt");
+			descEl.firstChild.nodeValue = this.getDesc();
+			descEl.onclick = t.desc_onclick;
+
+			var delEl = d.gfd(el, "a");
+			delEl.onclick = t.del_onclick;
+
+			if (d__MODULE_ID__UAs.currentIsIELT7Win()) {
+				d__MODULE_ID__Style.addHoverHandlers(el);
+			}
+		}
+
+		var oldEl = this.getEl();
+		if (oldEl)
+			oldEl.parentNode.replaceChild(el, oldEl);
+		else
+			_gel("d__MODULE_ID__-list").appendChild(el);
+
+		// Do these now that it's on the DOM
+		ckEl.checked = this.getDone();
+		if (inputEl)
+			inputEl.select();
+
+		return el;
+	},
+
+	disappear: function()
+	{
+		if (this.destroyed) return;	// ignore repeats (might be multiple events that can trigger this)
+		this.destroyed = true;
+
+		var fx = d__MODULE_ID__Effects;
+		fx.doEffect(
+			this.getId(),
+			fx.types.FADE,
+			{
+				duration: 250,
+				startOpacity: 100,
+				endOpacity: 0,
+				onfinish: d__MODULE_ID__TaskList.shrink,
+				onfinishParams: this.getId()
+			}
+		);
+	},
+
+	disappearShrink: function()
+	{
+		var fx = d__MODULE_ID__Effects;
+		fx.doEffect(
+			this.getId(),
+			fx.types.SIZE,
+			{
+				duration: 250,
+				appear: false,
+				doX: false,
+				doY: true,
+				onfinish: d__MODULE_ID__TaskList.remove,
+				onfinishParams: this.getId()
+			}
+		);
+	}
+};
+
+
+
+
+
+
+
+
+function d__MODULE_ID__UA(re, styleClass)
+{
+	this.re = re;
+	this.styleClass = styleClass;
+}
+
+d__MODULE_ID__UA.prototype = {
+	getRE: function() { return this.re; },
+	getStyleClass: function() { return this.styleClass; },
+	isCurrent: function() { return d__MODULE_ID__UAs.current == this; }
+};
+
+var d__MODULE_ID__UAs =
+{
+	current: null,
+	all: null,
+
+	init: function()
+	{
+		var ua = d__MODULE_ID__UA;
+
+		// need to evaluate them in this order, since some UA strings contain pieces of others' strings
+		// These are the only ones that matter for this app.
+		this.all =
+		{
+			KHTML: new ua(/konqueror/i, "ua-khtml"),
+			SAFARI: new ua(/safari/i, "ua-khtml"),
+			OPERA: new ua(/opera/i, "ua-opera"),
+			MSIE7_WIN: new ua(/msie 7.*? windows/i, "ua-iewin ua-ie7win"),
+			MSIE_WIN: new ua(/msie .*? windows/i, "ua-iewin"),
+			GECKO: new ua(/mozilla\/5/i, "ua-gecko"),
+			OTHER: new ua(/.*/i, "ua-other")
+		};
+
+		this.detect();
+	},
+
+	detect: function()
+	{
+		var uaString = navigator.userAgent.toLowerCase();
+		for (var i in this.all)
+		{
+			if (this.all[i].getRE().test(uaString))
+			{
+				this.setCurrent(this.all[i]);
+				break;
+			}
+		}
+	},
+
+	setCurrent: function(ua) { this.current = ua; },
+	isCurrent: function(ua) { return d__MODULE_ID__UAs.current == ua; },
+	currentIsIELT7Win: function() { var sc = d__MODULE_ID__UAs.current.getStyleClass(); return sc.indexOf("iewin") != -1 && sc.indexOf("ie7win") == -1; },
+	currentIsIEWin: function() { return d__MODULE_ID__UAs.current.getStyleClass().indexOf("iewin") != -1; },
+	currentIsGecko: function() { return d__MODULE_ID__UAs.current == d__MODULE_ID__UAs.all.GECKO; }
+};
+
+
+
+
+
+var d__MODULE_ID__Events =
+{
+	add: function(el, eventName, eventHandler)
+	{
+		if (el.attachEvent)
+			el.attachEvent("on" + eventName, eventHandler);
+		else if (el.addEventListener)
+			el.addEventListener(eventName, eventHandler, false);
+	},
+
+	stopPropag: function(e)
+	{
+		if (window.event) window.event.cancelBubble = true; // MS way
+		else if (e.stopPropagation) e.stopPropagation();	// W3C way
+	}
+};
+
+
+
+
+var d__MODULE_ID__C =
+{
+	// From around the web, with no consistently attributed original author.
+
+	set: function(name, value)
+	{
+		document.cookie = [name, "=", encodeURIComponent(value), "; expires=", (new Date("January 1, 2015")).toGMTString()].join("");
+	},
+
+	getVal: function(offset)
+	{
+		var dc = document.cookie;
+		var endstr = dc.indexOf(";", offset);
+		return decodeURIComponent(dc.substring(offset, endstr != -1 ? endstr : dc.length));
+	},
+
+	get: function(name)
+	{
+		var arg = name + "=";
+		var i = 0;
+
+		var dc = document.cookie;
+		while (i < dc.length)
+		{
+			var j = i + arg.length;
+			if (dc.substring(i, j) == arg) return this.getVal(j);
+			i = dc.indexOf(" ", i) + 1;
+			if (i == 0) break;
+		}
+		return null;
+	}
+};
+
+
+
+
+var d__MODULE_ID__Style = {
+	addRmvClass: function(el, className, add) {
+		if (add) {
+			this.addClass(el, className);
+		} else {
+			this.rmvClass(el, className);
+		}
+	},
+
+	addClass: function(el, className) {
+		if (!el.className || el.className.length == 0) {
+			el.className = className;
+		} else {	// has 1 or more classes already
+			if (d__MODULE_ID__Style.hasClass(el.className, className)) { return; }
+			el.className += " " + className;
+		}
+	},
+
+	rmvClass: function(el, className) {
+		var classes = el.className.split(" ");
+		var outClasses = [];
+		for (var i = 0; i < classes.length; i++) {
+			if (classes[i] != className) {
+				outClasses.push(classes[i]);
+			}
+		}
+
+		el.className = outClasses.join(" ");
+	},
+
+	hasClass: function(haystackStr, needle)
+	{
+		if (!haystackStr) { return false; } // often a null className
+		return new RegExp("(^|\\s)" + needle + "($|\\s)","g").test(haystackStr);
+	},
+
+	// By PPK of Quirksmode.
+	// Pass in JS-style property names, e.g. backgroundColor.
+	getStyle: function(el, styleProp)
+	{
+		if (document.defaultView && !d__MODULE_ID__UAs.all.SAFARI.isCurrent()) {	// Mozilla and supposedly the Safari 1.3 way, but Safari sucks and always returns null for getComputedStyle
+			return document.defaultView.getComputedStyle(el, "").getPropertyValue(styleProp);
+		} else if (el.currentStyle) {	// MS way
+			return el.currentStyle[styleProp];
+		} else {
+			return el.style[styleProp];
+		}
+	},
+
+	// This actually works fine without the try/catch, but IE6 is stupid and says style is null sometimes.
+	showHideEl: function(el, show, displayType) {
+		try { el.style.display = show ? (displayType ? displayType : "block") : "none"; }
+		catch (e) { }
+	},
+
+	addHoverHandlers: function(el) {	
+		el.attachEvent("onmouseover", function() {
+			d__MODULE_ID__Style.addClass(el, "hover");
+		});
+		el.attachEvent("onmouseout", function() {
+			d__MODULE_ID__Style.rmvClass(el, "hover");
+		});
+	}
+};
+
+
+
+
+var d__MODULE_ID__Effects =
+{
+	FPS: 30,
+
+	all: {},	// key: DOM ID, value: hashmap of Effect objects (key: effect type, value: effect object)
+
+	doEffect: function(domId, effectType, params) {
+		switch (effectType) {
+			case this.types.FADE:
+				this.add(domId, new d__MODULE_ID__FadeEffect(domId, params));
+				break;
+
+			case this.types.SIZE:
+				this.add(domId, new d__MODULE_ID__SizeEffect(domId, params));
+				break;
+
+			default:
+				throw "Unexpected effect type: " + effectType;
+		}
+	},
+
+	getEffect: function(domId, effectType)
+	{
+		var elFx = this.all[domId];
+		return elFx ? elFx[effectType] : null;
+	},
+
+	add: function(domId, effect)
+	{
+		var effectType = effect.getType();
+		var elFx = this.all[domId];
+
+		if (!elFx) {	// This element has no effects yet
+			this.all[domId] = {};
+		} else if (elFx[effectType]) {	// There's already an effect of this type. Finish it before continuing.
+			elFx[effectType].skipToEnd();	// unregister & finish
+		}
+
+		this.all[domId][effectType] = effect;
+		effect.init();	// now that old/new is resolved, start!
+	},
+
+	remove: function(domId, effectType) {
+		if (this.all[domId] && this.all[domId][effectType]) {
+			this.all[domId][effectType].cancelPending();
+			delete this.all[domId][effectType];
+		}
+	},
+
+	// private
+	q: {	// Quick APIs
+		fadeIn: function(domId) { d__MODULE_ID__Effects.doEffect(domId, d__MODULE_ID__Effects.types.FADE, { duration: 250, startOpacity: 0, endOpacity: 100 }); },
+		fadeOut: function(domId) { d__MODULE_ID__Effects.doEffect(domId, d__MODULE_ID__Effects.types.FADE, { duration: 250, startOpacity: 100, endOpacity: 0 }); },
+		sizeAppear: function(domId, appear, doX, doY) { d__MODULE_ID__Effects.doEffect(domId, d__MODULE_ID__Effects.types.SIZE, { duration: 250, appear: appear, doX: doX, doY: doY }); }
+	},
+
+	setOpacity: function(el, n) {
+		if (d__MODULE_ID__UAs.currentIsIEWin())
+			el.style.filter = "alpha(opacity=" + n + ")";	// IE/Win
+		else
+			el.style.opacity = n / 100;	// Mozilla, Opera 9, Safari
+	},
+
+	types: {
+		FADE: "fade",
+		SIZE: "size"
+	}
+};
+
+var d__MODULE_ID__Effect = function() {
+	this.domId = null;
+	this.step = 0;
+	this.type = null;
+	this.numSteps = 0;
+	this.stepTimeout = null;
+	this.onfinish = null;
+	this.onfinishParams = null;
+}
+
+d__MODULE_ID__Effect.prototype = {
+	getType: function() { return this.type; },
+	getEl: function() { return _gel(this.getDomId()); },
+	getDomId: function() { return this.domId; },
+	setDomId: function(domId) { this.domId = domId; },
+	cancelPending: function()
+	{
+		if (this.stepTimeout)
+		{
+			clearTimeout(this.stepTimeout);
+			this.stepTimeout = null;
+		}
+	},
+	getOnfinish: function() { return this.onfinish; },
+	getOnfinishParams: function() { return this.onfinishParams; },
+	doOnfinish: function() { if (this.getOnfinish()) this.getOnfinish()(this.getOnfinishParams()); },
+	unregister: function() { d__MODULE_ID__Effects.remove(this.getDomId(), this.getType()); },
+	restart: null,
+	undo: null,
+	skipToEnd: null,
+	makeTimeoutFn: function() {
+		var oThis = this;
+		return function() {
+			d__MODULE_ID__Effects.getEffect(oThis.getDomId(), oThis.getType()).doStep();
+		};
+	}
+};
+
+
+
+var d__MODULE_ID__FadeEffect = function(domId, params) {
+	this.domId = domId;
+	this.type = d__MODULE_ID__Effects.types.FADE;
+
+	this.so = params.startOpacity;
+	this.eo = params.endOpacity;
+	this.dur = params.duration;
+	this.onfinish = params.onfinish;
+	this.onfinishParams = params.onfinishParams;
+}
+
+d__MODULE_ID__FadeEffect.prototype = new d__MODULE_ID__Effect;
+
+d__MODULE_ID__FadeEffect.prototype.init = function()
+{
+	this.step = 0;
+	this.numSteps = Math.floor(d__MODULE_ID__Effects.FPS * (this.dur / 1000));
+	this.interval = this.dur / this.numSteps;
+
+	this.doStep();
+}
+
+d__MODULE_ID__FadeEffect.prototype.doStep = function()
+{
+	if (!this.getEl())	// No element with that ID now
+		this.finish();
+	else if (this.step >= this.numSteps)	// We're on the last step
+	{
+		d__MODULE_ID__Effects.setOpacity(this.getEl(), this.eo);
+		this.finish();
+	}
+	else
+	{
+		var opacity = Math.round((Math.abs(this.eo - this.so) / this.numSteps) * this.step) * (this.eo < this.so ? -1 : 1) + this.so;
+
+		d__MODULE_ID__Effects.setOpacity(this.getEl(), opacity);
+		this.stepTimeout = setTimeout(this.makeTimeoutFn(), this.interval);
+		this.step++;
+	}
+}
+
+d__MODULE_ID__FadeEffect.prototype.restart = function()
+{
+	this.undo();
+	this.init();
+}
+
+d__MODULE_ID__FadeEffect.prototype.undo = function()
+{
+	d__MODULE_ID__Effects.setOpacity(this.getEl(), this.so);
+}
+
+d__MODULE_ID__FadeEffect.prototype.skipToEnd = function()
+{
+	d__MODULE_ID__Effects.setOpacity(this.getEl(), this.eo);
+	this.finish();
+}
+
+d__MODULE_ID__FadeEffect.prototype.finish = function()
+{
+	this.unregister();
+	this.doOnfinish();
+}
+
+
+
+
+function d__MODULE_ID__SizeEffect(domId, params)
+{
+	this.domId = domId;
+	this.type = d__MODULE_ID__Effects.types.SIZE;
+
+	this.onfinish = params.onfinish;
+	this.onfinishParams = params.onfinishParams;
+	this.appear = params.appear;
+	this.dur = params.duration || 500;
+	this.doX = params.doX;
+	this.doY = params.doY;
+	this.finalX = params.finalX;	// instead of using original px, specify a value (doesn't have to be px). When the effect is done, we'll set this as the final size. Good if you need it to be "auto."
+	this.finalY = params.finalY;
+
+	if (!(this.doX || this.doY))
+		throw "SizeEffect initialized without either doX or doY specified.";
+}
+
+d__MODULE_ID__SizeEffect.prototype = new d__MODULE_ID__Effect;
+
+d__MODULE_ID__SizeEffect.prototype.init = function()
+{
+	var el = this.getEl();
+
+	this.origWidth = d__MODULE_ID__UAs.currentIsIEWin() ? el.offsetWidth : parseInt(d__MODULE_ID__Style.getStyle(el, "width"));
+	this.origHeight = d__MODULE_ID__UAs.currentIsIEWin() ? el.offsetHeight : parseInt(d__MODULE_ID__Style.getStyle(el, "height"));
+
+	this.origOverflow = d__MODULE_ID__Style.getStyle(el, "overflow");
+	el.style.overflow = "hidden";
+
+	this.step = 0;
+	this.numSteps = Math.floor(d__MODULE_ID__Effects.FPS * (this.dur / 1000));
+	this.interval = Math.round(this.dur / this.numSteps);
+
+	this.doStep();
+}
+
+d__MODULE_ID__SizeEffect.prototype.doStep = function()
+{
+	if (!this.getEl())	// No element with that ID now
+		this.unregister();
+	else if (this.step >= this.numSteps)	// We're on the last step
+		this.finish();
+	else
+	{
+		if (this.doX)
+			this.setSize("width", "origWidth");
+
+		if (this.doY)
+			this.setSize("height", "origHeight");
+
+		this.stepTimeout = setTimeout(this.makeTimeoutFn(), this.interval);
+		this.step++;
+	}
+}
+
+d__MODULE_ID__SizeEffect.prototype.setSize = function(styleProp, origProp)
+{
+	var startVal = this.appear ? 0 : this[origProp];
+	var endVal = this.appear ? this[origProp] : 0;
+
+	var val =
+		Math.round(
+			(
+				Math.abs(
+					endVal - startVal
+				) / this.numSteps
+			) * this.step
+		) * (endVal < startVal ? -1 : 1) + startVal;
+
+	this.getEl().style[styleProp] = val + "px";
+}
+
+d__MODULE_ID__SizeEffect.prototype.restart = function()
+{
+	this.undo();
+	this.init();
+}
+
+d__MODULE_ID__SizeEffect.prototype.undo = function()
+{
+	var st = this.getEl().style;
+	st.width = this.finalX || this.origWidth + "px";
+	st.height = this.finalY || this.origHeight + "px";
+	st.overflow = this.origOverflow;
+}
+
+d__MODULE_ID__SizeEffect.prototype.skipToEnd = function()
+{
+	this.finish();
+}
+
+d__MODULE_ID__SizeEffect.prototype.finish = function()
+{
+	this.undo();	// Since we only support 0 -> 100 and 100 -> 0, we don't want to keep any size changes.
+
+	if (!this.appear)
+		d__MODULE_ID__Style.showHideEl(this.getEl(), false);
+
+	this.unregister();	// cancels pending
+	this.doOnfinish();
+}
+
+
+
+
+_IG_RegisterOnloadHandler(function() {
+	d__MODULE_ID__Env.main();
+});
+
+        </script>

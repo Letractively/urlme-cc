@@ -20,6 +20,7 @@ namespace urlme.site
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.min.css",
+                      "~/Content/bootstrap-social.css",
                       //"~/Content/bootstrap-theme.min.css",
                       //"~/content/todc-bootstrap.min.css",
                       "~/Content/site.css"));

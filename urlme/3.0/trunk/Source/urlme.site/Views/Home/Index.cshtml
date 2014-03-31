@@ -12,8 +12,8 @@
         </div>
     </form>
 </div>
-<div class="row bottomBuffer">
-    link goes here
+<div class="row bottomBuffer" data-bind="visible: link">
+    <span data-bind="text: link"></span>
 </div>
 <div class="row bottomBuffer">
     Sign in to manage your links:
@@ -35,3 +35,12 @@
         </a>
     </div>
 </div>
+@section scripts
+{
+    <script>
+        var viewModel = ko.mapping.fromJS({
+            link: '',
+        });
+        ko.applyBindings(viewModel);
+    </script>
+}

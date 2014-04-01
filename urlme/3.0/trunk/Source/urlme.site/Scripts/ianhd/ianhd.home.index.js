@@ -2,10 +2,24 @@
 
 ianhd.home.index = {
 	controls: {
-		shortenUrl: function () { return $("button[type='submit']"); },
+	    copyLink: function () { return $("#copyLink"); },
+	    shortenUrl: function () { return $("button[type='submit']"); },
 	},
 	init: function () {
-		ianhd.home.index.bindControls();
+	    ianhd.home.index.bindControls();
+	    ianhd.home.index.initZeroClipboard();
+	},
+	initZeroClipboard: function () {
+	    // zero clipboard
+	    ZeroClipboard.config({ moviePath: "/scripts/plugins/zeroclipboard/ZeroClipboard.swf" });
+	    var client = new ZeroClipboard($("#copyLink"));
+	    $("#copyLink").attr("data-clipboard-text", "hiyooo");
+
+	    client.on("load", function (client) {
+	        client.on("complete", function (client, args) {
+	            alert("Copied text to clipboard: " + args.text);
+	        });
+	    });
 	},
 	bindControls: function () {
 		// shorten url

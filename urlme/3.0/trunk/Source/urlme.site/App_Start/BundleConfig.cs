@@ -12,6 +12,7 @@ namespace urlme.site
                         "~/Scripts/jquery-{version}.js",
                         "~/scripts/knockout-{version}.js",
                         "~/scripts/knockout.mapping.js",
+                        "~/scripts/plugins/zeroclipboard/zeroclipboard.min.js",
                         "~/scripts/ianhd/ianhd.js"
             ));
 

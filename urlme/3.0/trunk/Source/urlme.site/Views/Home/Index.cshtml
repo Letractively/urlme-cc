@@ -36,6 +36,10 @@ else
             longUrl: '',
         });
         ko.applyBindings(viewModel);
+        function removeHash() {
+            history.pushState("", document.title, window.location.pathname + window.location.search);
+        }
+        removeHash();
     </script>
     @Scripts.Render("~/scripts/ianhd/ianhd.home.index.js")
 }

@@ -1,0 +1,31 @@
+﻿@using Microsoft.Owin.Security
+@{
+    var loginProviders = Context.GetOwinContext().Authentication.GetExternalAuthenticationTypes();
+    using (Html.BeginForm("ExternalLogin", "Account", new { ReturnUrl = "" }))
+    {
+        @Html.AntiForgeryToken()
+        <div id="socialLoginList">
+            <input type="hidden" name="provider" />
+            <p>
+                @foreach (AuthenticationDescription p in loginProviders)
+                {
+                    <button type="submit" onclick="$('input[name=provider]').val('@p.AuthenticationType'); $(this).closest('form').submit();" class="btn btn-default" id="@p.AuthenticationType" title="Log in using your @p.Caption account">@p.AuthenticationType</button>
+                }
+            </p>
+        </div>
+    }
+}
+
+<div class="row bottomBuffer">
+    Sign in to manage your links:
+</div>
+<div class="row">
+    @foreach (var provider in "google-plus,facebook,twitter".Split(','))
+    {
+        <div class="col-xs-4">
+            <a class="btn btn-block btn-social btn-@provider">
+                <i class="fa fa-@provider"></i> Sign in with @provider
+            </a>
+        </div>
+    }
+</div>

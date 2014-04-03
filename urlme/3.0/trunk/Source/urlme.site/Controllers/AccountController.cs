@@ -198,8 +198,19 @@ namespace urlme.site.Controllers
         {
             var externalIdentity = HttpContext.GetOwinContext().Authentication.GetExternalIdentityAsync(DefaultAuthenticationTypes.ExternalCookie);
             var emailClaim = externalIdentity.Result.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Email);
-            var email = emailClaim.Value;            
-            
+            var email = emailClaim.Value;
+
+            var claims = new List<Claim>();
+            claims.Add(new Claim(ClaimTypes.Name, email));
+            claims.Add(new Claim("http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier", email));
+            var id = new ClaimsIdentity(claims, DefaultAuthenticationTypes.ApplicationCookie);
+
+            var ctx = Request.GetOwinContext();
+            var authenticationManager = ctx.Authentication;
+            authenticationManager.SignIn(id);
+            return Redirect("~/");
+            //return RedirectToLocal("");
+
             var loginInfo = await AuthenticationManager.GetExternalLoginInfoAsync();
             if (loginInfo == null)
             {
@@ -339,6 +350,7 @@ namespace urlme.site.Controllers
         {
             AuthenticationManager.SignOut(DefaultAuthenticationTypes.ExternalCookie);
             var identity = await UserManager.CreateIdentityAsync(user, DefaultAuthenticationTypes.ApplicationCookie);
+            //ClaimsIdentity id = new ClaimsIdentity(DefaultAuthenticationTypes.ApplicationCookie);
             AuthenticationManager.SignIn(new AuthenticationProperties() { IsPersistent = isPersistent }, identity);
         }
 

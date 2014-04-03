@@ -21,6 +21,10 @@
 {
     Html.RenderPartial("_NotLoggedIn");
 }
+else
+{
+    <div>Logged in! name=@User.Identity.Name</div>
+}
 
 @Html.Partial("_LoginPartial")
 

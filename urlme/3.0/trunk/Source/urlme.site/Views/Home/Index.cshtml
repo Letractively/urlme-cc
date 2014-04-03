@@ -1,4 +1,5 @@
-﻿@{
+﻿@using Microsoft.AspNet.Identity
+@{
     ViewBag.Title = "Home Page";
 }
 
@@ -12,30 +13,17 @@
         </div>
     </form>
 </div>
-<button id="copyLink" class="btn btn-primary" data-clipboard-text="Copy me!">Copy to clipboard</button>
+@*<button id="copyLink" class="btn btn-primary" data-clipboard-text="Copy me!">Copy to clipboard</button>*@
 <div class="row bottomBuffer" data-bind="visible: link">
     <span data-bind="text: link"></span>
 </div>
-<div class="row bottomBuffer">
-    Sign in to manage your links:
-</div>
-<div class="row">
-    <div class="col-xs-4">
-        <a class="btn btn-block btn-social btn-google-plus">
-            <i class="fa fa-google-plus"></i> Sign in with Google
-        </a>
-    </div>
-    <div class="col-xs-4">
-        <a class="btn btn-block btn-social btn-facebook">
-            <i class="fa fa-facebook"></i> Sign in with Facebook
-        </a>
-    </div>
-    <div class="col-xs-4">
-        <a class="btn btn-block btn-social btn-twitter">
-            <i class="fa fa-twitter"></i> Sign in with Twitter
-        </a>
-    </div>
-</div>
+@if (!Request.IsAuthenticated)
+{
+    Html.RenderPartial("_NotLoggedIn");
+}
+
+@Html.Partial("_LoginPartial")
+
 @section scripts
 {
     <script>

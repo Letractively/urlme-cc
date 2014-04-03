@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNet.Identity;
 using Microsoft.Owin;
 using Microsoft.Owin.Security.Cookies;
+using Microsoft.Owin.Security.Facebook;
 using Owin;
 
 namespace urlme.site
@@ -24,13 +25,17 @@ namespace urlme.site
             //    clientId: "",
             //    clientSecret: "");
 
-            //app.UseTwitterAuthentication(
-            //   consumerKey: "",
-            //   consumerSecret: "");
+            app.UseTwitterAuthentication(
+               consumerKey: "t-key",
+               consumerSecret: "t-secret");
 
-            app.UseFacebookAuthentication(
-               appId: "97294448011",
-               appSecret: "d0140785285682511eb137104673586a");
+            var facebookAuthOptions = new FacebookAuthenticationOptions()
+            {
+                AppId = "97294448011",
+                AppSecret = "d0140785285682511eb137104673586a"
+            };
+            facebookAuthOptions.Scope.Add("email");
+            app.UseFacebookAuthentication(facebookAuthOptions);
 
             app.UseGoogleAuthentication();
         }

@@ -21,7 +21,8 @@ namespace ianhd.data.Models
         {
             get
             {
-                return _db ?? (_db = ianhd.core.Data.Database.CreateDatabase("conn-str"));
+                var connStr = "Data Source=sqlserver8.loosefoot.com;Initial Catalog=bakersdozen132;Persist Security Info=True;User ID=ihdavis2;Password=pchang";
+                return _db ?? (_db = ianhd.core.Data.Database.CreateDatabase(connStr));
             }
         }
     }

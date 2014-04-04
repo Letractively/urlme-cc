@@ -46,6 +46,35 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Data\Connection.cs" />
+    <Compile Include="Data\Dapper\ColumnAttributeTypeMapper.cs" />
+    <Compile Include="Data\Dapper\Dapper.cs" />
+    <Compile Include="Data\Dapper\DapperAsync.cs" />
+    <Compile Include="Data\Dapper\DynamicQuery.cs" />
+    <Compile Include="Data\Dapper\IBaseModel.cs" />
+    <Compile Include="Data\Dapper\QueryResult.cs" />
+    <Compile Include="Data\Dapper\Repository.cs" />
+    <Compile Include="Data\Database.cs" />
+    <Compile Include="Data\Extensions\DapperExtensions.cs" />
+    <Compile Include="Data\Extensions\DapperExtensionsConfiguration.cs" />
+    <Compile Include="Data\Extensions\DapperImplementor.cs" />
+    <Compile Include="Data\Extensions\Database.cs" />
+    <Compile Include="Data\Extensions\GetMultiplePredicate.cs" />
+    <Compile Include="Data\Extensions\GetMultipleResult.cs" />
+    <Compile Include="Data\Extensions\Mapper\AutoClassMapper.cs" />
+    <Compile Include="Data\Extensions\Mapper\ClassMapper.cs" />
+    <Compile Include="Data\Extensions\Mapper\PluralizedAutoClassMapper.cs" />
+    <Compile Include="Data\Extensions\Mapper\PropertyMap.cs" />
+    <Compile Include="Data\Extensions\Predicates.cs" />
+    <Compile Include="Data\Extensions\ReflectionHelper.cs" />
+    <Compile Include="Data\Extensions\Sql\MySqlDialect.cs" />
+    <Compile Include="Data\Extensions\Sql\PostgreSqlDialect.cs" />
+    <Compile Include="Data\Extensions\Sql\SqlCeDialect.cs" />
+    <Compile Include="Data\Extensions\Sql\SqlDialectBase.cs" />
+    <Compile Include="Data\Extensions\Sql\SqlGenerator.cs" />
+    <Compile Include="Data\Extensions\Sql\SqliteDialect.cs" />
+    <Compile Include="Data\Extensions\Sql\SqlServerDialect.cs" />
+    <Compile Include="Data\IgnoreField.cs" />
     <Compile Include="Extensions\HttpRequestBaseExtensions.cs" />
     <Compile Include="Extensions\JsonExtensions.cs" />
     <Compile Include="Extensions\StringExtensions.cs" />

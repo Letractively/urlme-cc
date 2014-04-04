@@ -40,6 +40,8 @@ namespace urlme.site.Controllers
             claims.Add(new Claim("http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier", email));
             var id = new ClaimsIdentity(claims, DefaultAuthenticationTypes.ApplicationCookie);
 
+            var user = ianhd.data.Models.User.Get(email);
+
             var ctx = Request.GetOwinContext();
             var authenticationManager = ctx.Authentication;
             authenticationManager.SignIn(id);

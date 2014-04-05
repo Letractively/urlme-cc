@@ -31,7 +31,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="ianhd.core">
+    <Reference Include="ianhd.core, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\Assemblies\ianhd.core\ianhd.core.dll</HintPath>
     </Reference>
     <Reference Include="System" />

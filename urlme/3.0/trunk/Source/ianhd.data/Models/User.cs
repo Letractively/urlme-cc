@@ -12,7 +12,16 @@ namespace ianhd.data.Models
         {
             using (var conn = Db.CreateConnection())
             {
-                return conn.Query<User>("select * from [bakersdozen132].[ihdavis].[User] where Email=@email", new { email }).FirstOrDefault();
+                var query = "select * from [ihdavis].[User] where Email=@email";
+                var @params = new { email };
+
+                var user = conn.Query<User>(query, @params).FirstOrDefault();
+                if (user == null)
+                {
+                    conn.Execute("insert [ihdavis].[User] (Email) values (@email)", @params);
+                    user = conn.Query<User>(query, @params).FirstOrDefault();
+                }
+                return user;
             }
         }
     }

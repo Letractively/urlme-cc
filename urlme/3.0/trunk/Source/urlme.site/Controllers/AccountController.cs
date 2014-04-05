@@ -35,12 +35,13 @@ namespace urlme.site.Controllers
             var emailClaim = externalIdentity.Result.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Email);
             var email = emailClaim.Value;
 
-            var claims = new List<Claim>();
-            claims.Add(new Claim(ClaimTypes.Name, email));
-            claims.Add(new Claim("http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier", email));
-            var id = new ClaimsIdentity(claims, DefaultAuthenticationTypes.ApplicationCookie);
-
             var user = ianhd.data.Models.User.Get(email);
+            var name = string.Format("{0}^{1}", user.UserId, email);
+
+            var claims = new List<Claim>();
+            claims.Add(new Claim(ClaimTypes.Name, name));
+            claims.Add(new Claim("http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier", name));
+            var id = new ClaimsIdentity(claims, DefaultAuthenticationTypes.ApplicationCookie);
 
             var ctx = Request.GetOwinContext();
             var authenticationManager = ctx.Authentication;

@@ -2,7 +2,11 @@
 @{
     ViewBag.Title = "Home Page";
 }
-
+@if (Request.IsAuthenticated) {
+    <div class="row text-right bottomBuffer">
+        <a href="#">@User.Identity.Name.Email() ▼</a>
+    </div>
+}
 <div class="row">
     <form class="form" role="form">
         <div class="form-group col-md-10">
@@ -23,7 +27,7 @@
 }
 else
 {
-    <div>Logged in! name=@User.Identity.Name</div>
+    <div>Logged in! name=@User.Identity.Name.Email()</div>
 }
 
 @Html.Partial("_LoginPartial")

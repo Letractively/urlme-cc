@@ -25,9 +25,10 @@ namespace urlme.site
             //    clientId: "",
             //    clientSecret: "");
 
-            app.UseTwitterAuthentication(
-               consumerKey: "t-key",
-               consumerSecret: "t-secret");
+            // Twitter does not give you email :/
+            //app.UseTwitterAuthentication(
+            //   consumerKey: "",
+            //   consumerSecret: "");
 
             var facebookAuthOptions = new FacebookAuthenticationOptions()
             {

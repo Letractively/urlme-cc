@@ -4,20 +4,22 @@
 }
 @if (Request.IsAuthenticated) {
     
-<div class="dropdown">
-  <button class="btn dropdown-toggle sr-only" type="button" id="dropdownMenu1" data-toggle="dropdown">
-    Dropdown
-    <span class="caret"></span>
-  </button>
-  <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
-    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Action</a></li>
-    <li role="presentation" class="divider"></li>
-    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Separated link</a></li>
-  </ul>
-</div>    
+    // sign out form
+    using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+    { 
+        @Html.AntiForgeryToken()
+    }       
     
-    <div class="row text-right bottomBuffer">
-        <a href="#">@User.Identity.Name.Email() ▼</a>
+    <div class="row navbar-right bottomBuffer">
+        <div class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                @User.Identity.Name.Email()
+                <span class="caret"></span>
+            </a>
+            <ul class="dropdown-menu">
+                <li><a href="javascript:document.getElementById('logoutForm').submit()">Sign out</a></li>
+            </ul>
+        </div>
     </div>
 }
 <div class="row">
@@ -42,8 +44,6 @@ else
 {
     <div>Logged in! name=@User.Identity.Name.Email()</div>
 }
-
-@Html.Partial("_LoginPartial")
 
 @section scripts
 {

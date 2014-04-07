@@ -42,7 +42,7 @@
 }
 else
 {
-    <div>Logged in! name=@User.Identity.Name.Email()</div>
+    Html.RenderPartial("_LoggedIn");
 }
 
 @section scripts

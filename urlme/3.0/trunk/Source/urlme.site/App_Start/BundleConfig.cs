@@ -15,6 +15,7 @@ namespace urlme.site
                         "~/scripts/plugins/zeroclipboard/zeroclipboard.min.js",
                         "~/scripts/plugins/datatables/jquery.dataTables.min.js",
                         "~/scripts/plugins/datatables/datatables.bootstrap.js",
+                        "~/scripts/plugins/jquery.timeago.js",
                         "~/scripts/ianhd/ianhd.js"
             ));
 

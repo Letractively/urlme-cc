@@ -3,20 +3,20 @@
 <table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered" id="example">
     <thead>
         <tr>
-            <th>UrlMe Link</th>
-            <th>Destination Url</th>
-            <th># Hits</th>
+            <th>Long Url</th>
+            <th>Short Url</th>
             <th>Created</th>
+            <th># Hits</th>
         </tr>
     </thead>
     <tbody>
         @foreach (var link in this.Model)
         {
             <tr>
-                <td>http://urlme.cc/@link.Path</td>
                 <td>@link.DestinationUrl.Snippet()</td>
+                <td>http://urlme.cc/@link.Path</td>
+                <td><span style="display:none">@link.CreateDate</span><abbr class="timeago" title="@link.CreateDate.ToString("o")">@link.CreateDate.ToString("MM/dd/yyyy")</abbr></td>
                 <td>@link.HitCount.ToString("#,#0")</td>
-                <td>@link.CreateDate.ToString("MM/dd/yyyy")</td>
             </tr>
         }
     </tbody>

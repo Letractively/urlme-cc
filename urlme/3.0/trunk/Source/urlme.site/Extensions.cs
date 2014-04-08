@@ -20,6 +20,8 @@ namespace urlme.site
         {
             if (string.IsNullOrWhiteSpace(s)) { return s; }
 
+            s = s.Replace("http://", "").Replace("https://", "");
+
             if (s.Length > ifMoreThan)
             {
                 return s.Substring(0, ifMoreThan) + "...";

@@ -5,28 +5,28 @@
     ViewBag.Title = "Home Page";
 }
 
-<div class="row col-xs-offset-3 col-xs-6 bottomBuffer">
+<div class="row col-xs-offset-1 col-xs-10 bottomBuffer">@*col-xs-offset-3 col-xs-6*@
     @{ Html.RenderPartial("_Header"); }
     @{ Html.RenderPartial("_LinkForm"); }
     @if (!Request.IsAuthenticated)
     {
         Html.RenderPartial("_NotLoggedIn");
     }
-</div>
-
-@if (Request.IsAuthenticated)
-{
+    else
+    {
     <div class="row">
         @Html.Partial("_LoggedIn")
-    </div>
-}
+    </div>        
+    }
+</div>
 
 @section scripts
 {
     <script>
         var viewModel = ko.mapping.fromJS({
-            link: '',
+            result: '',
             longUrl: '',
+            path: '',
         });
         ko.applyBindings(viewModel);
         function removeHash() {

@@ -1,20 +1,28 @@
-﻿@if (Request.IsAuthenticated) {
-
-    // sign out form
-    using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+﻿<div class="row bigBottomBuffer">
+    <div class="navbar-left">
+        <a href="~/" class="logo"></a>
+    </div>
+    
+    <div class="dropdown navbar-right">
+    @if (Request.IsAuthenticated)
     {
-        @Html.AntiForgeryToken()
+        // sign out form
+        using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+        {
+            @Html.AntiForgeryToken()
+        }
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+            @User.Identity.Name.Email()
+            <span class="caret"></span>
+        </a>
+        <ul class="dropdown-menu">
+            <li><a href="javascript:document.getElementById('logoutForm').submit()">Sign out</a></li>
+        </ul>
     }
-    <div class="row navbar-right bottomBuffer">
-        <div class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                @User.Identity.Name.Email()
-                <span class="caret"></span>
-            </a>
-            <ul class="dropdown-menu">
-                <li><a href="javascript:document.getElementById('logoutForm').submit()">Sign out</a></li>
-            </ul>
-        </div>
-    </div>    
-}
+    else
+    {
+        <a href="#">Tools</a>
+    }
+    </div>
+</div>    
 

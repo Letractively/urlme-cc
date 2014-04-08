@@ -35,7 +35,7 @@ namespace urlme.site.Controllers
             var emailClaim = externalIdentity.Result.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Email);
             var email = emailClaim.Value;
 
-            var user = ianhd.data.Models.User.Get(email);
+            var user = urlme.data.Models.User.Get(email);
             var name = string.Format("{0}^{1}", user.UserId, email);
 
             var claims = new List<Claim>();

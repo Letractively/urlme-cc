@@ -13,6 +13,7 @@ namespace urlme.site
                         "~/scripts/knockout-{version}.js",
                         "~/scripts/knockout.mapping.js",
                         "~/scripts/plugins/zeroclipboard/zeroclipboard.min.js",
+                        "~/scripts/plugins/datatables/datatables.bootstrap.js",
                         "~/scripts/ianhd/ianhd.js"
             ));
 
@@ -25,6 +26,7 @@ namespace urlme.site
                       "~/Content/bootstrap-social.css",
                       //"~/Content/bootstrap-theme.min.css",
                       //"~/content/todc-bootstrap.min.css",
+                      "~/scripts/plugins/datatables/datatables.bootstrap.css",
                       "~/Content/site.css"));
         }
     }

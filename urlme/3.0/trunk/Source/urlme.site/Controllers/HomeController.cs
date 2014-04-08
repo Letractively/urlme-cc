@@ -10,20 +10,16 @@ namespace urlme.site.Controllers
     {
         public ActionResult Index()
         {
-            return View();
+            var links = new List<urlme.data.Models.Link>();
+            if (Request.IsAuthenticated)
+            {
+                links = data.Models.Link.Get(User.Identity.Name.UserId());
+            }
+            return View(links);
         }
 
-        public ActionResult About()
+        public ActionResult Test()
         {
-            ViewBag.Message = "Your application description page.";
-
-            return View();
-        }
-
-        public ActionResult Contact()
-        {
-            ViewBag.Message = "Your contact page.";
-
             return View();
         }
     }

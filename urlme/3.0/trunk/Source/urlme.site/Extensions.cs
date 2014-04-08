@@ -15,5 +15,17 @@ namespace urlme.site
         {
             return s.Split('^')[1];
         }
+
+        public static string Snippet(this string s, int ifMoreThan = 30)
+        {
+            if (string.IsNullOrWhiteSpace(s)) { return s; }
+
+            if (s.Length > ifMoreThan)
+            {
+                return s.Substring(0, ifMoreThan) + "...";
+            }
+
+            return s;
+        }
     }
 }

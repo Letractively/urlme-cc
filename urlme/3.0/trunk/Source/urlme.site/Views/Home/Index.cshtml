@@ -1,48 +1,24 @@
 ﻿@using Microsoft.AspNet.Identity
+@model List<urlme.data.Models.Link>
+
 @{
     ViewBag.Title = "Home Page";
 }
-@if (Request.IsAuthenticated) {
-    
-    // sign out form
-    using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
-    { 
-        @Html.AntiForgeryToken()
-    }       
-    
-    <div class="row navbar-right bottomBuffer">
-        <div class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                @User.Identity.Name.Email()
-                <span class="caret"></span>
-            </a>
-            <ul class="dropdown-menu">
-                <li><a href="javascript:document.getElementById('logoutForm').submit()">Sign out</a></li>
-            </ul>
-        </div>
+
+<div class="row col-xs-offset-3 col-xs-6 bottomBuffer">
+    @{ Html.RenderPartial("_Header"); }
+    @{ Html.RenderPartial("_LinkForm"); }
+    @if (!Request.IsAuthenticated)
+    {
+        Html.RenderPartial("_NotLoggedIn");
+    }
+</div>
+
+@if (Request.IsAuthenticated)
+{
+    <div class="row">
+        @Html.Partial("_LoggedIn")
     </div>
-}
-<div class="row">
-    <form class="form" role="form">
-        <div class="form-group col-md-10">
-            <input type="url" class="form-control" placeholder="Paste a link to shorten it" autofocus="autofocus" data-bind="value: longUrl" />
-        </div>
-        <div class="form-group col-md-2">
-            <button type="submit" class="btn btn-primary">Shorten</button>
-        </div>
-    </form>
-</div>
-@*<button id="copyLink" class="btn btn-primary" data-clipboard-text="Copy me!">Copy to clipboard</button>*@
-<div class="row bottomBuffer" data-bind="visible: link">
-    <span data-bind="text: link"></span>
-</div>
-@if (!Request.IsAuthenticated)
-{
-    Html.RenderPartial("_NotLoggedIn");
-}
-else
-{
-    Html.RenderPartial("_LoggedIn");
 }
 
 @section scripts

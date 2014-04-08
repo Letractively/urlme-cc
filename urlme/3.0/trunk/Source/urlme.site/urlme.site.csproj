@@ -175,6 +175,7 @@
     <Content Include="Content\bootstrap-social.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\logo.jpg" />
     <Content Include="Content\todc-bootstrap.min.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -190,6 +191,7 @@
     <Content Include="Scripts\knockout.mapping.js" />
     <Content Include="Scripts\Plugins\DataTables\dataTables.bootstrap.css" />
     <Content Include="Scripts\Plugins\DataTables\dataTables.bootstrap.js" />
+    <Content Include="Scripts\Plugins\DataTables\jquery.dataTables.min.js" />
     <Content Include="Scripts\Plugins\ZeroClipboard\ZeroClipboard.min.js" />
     <Content Include="Scripts\Plugins\ZeroClipboard\ZeroClipboard.swf" />
     <Content Include="Scripts\respond.js" />

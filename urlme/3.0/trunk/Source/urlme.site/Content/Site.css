@@ -10,3 +10,7 @@
 }
 
 .bottomBuffer { margin-bottom: 20px; }
+.bigBottomBuffer { margin-bottom: 40px; }
+.linkForm input { margin-right: 15px; }
+.linkForm input[type='url'] { width: 438px !important; }
+.logo { background: url('logo.jpg'); display:inline-block; width: 170px; height: 37px; }

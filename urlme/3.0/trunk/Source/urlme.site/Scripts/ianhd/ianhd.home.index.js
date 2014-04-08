@@ -6,6 +6,8 @@ ianhd.home.index = {
 	    shortenUrl: function () { return $("button[type='submit']"); },
 	},
 	init: function () {
+	    $('#example').dataTable();
+
 	    ianhd.home.index.bindControls();
 	    ianhd.home.index.initZeroClipboard();
 	},
@@ -23,7 +25,7 @@ ianhd.home.index = {
                 contentType: 'application/json',
                 type: 'POST',
                 success: function (resp) {
-                    viewModel.link(resp.id);
+                    viewModel.result(resp.id);
                 }
             });
 		});

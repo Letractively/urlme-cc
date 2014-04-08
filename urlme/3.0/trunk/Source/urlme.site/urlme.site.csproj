@@ -188,6 +188,8 @@
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <Content Include="Scripts\knockout-3.1.0.js" />
     <Content Include="Scripts\knockout.mapping.js" />
+    <Content Include="Scripts\Plugins\DataTables\dataTables.bootstrap.css" />
+    <Content Include="Scripts\Plugins\DataTables\dataTables.bootstrap.js" />
     <Content Include="Scripts\Plugins\ZeroClipboard\ZeroClipboard.min.js" />
     <Content Include="Scripts\Plugins\ZeroClipboard\ZeroClipboard.swf" />
     <Content Include="Scripts\respond.js" />
@@ -220,6 +222,9 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Shared\_NotLoggedIn.cshtml" />
     <Content Include="Views\Shared\_LoggedIn.cshtml" />
+    <Content Include="Views\Home\Test.cshtml" />
+    <Content Include="Views\Shared\_LinkForm.cshtml" />
+    <Content Include="Views\Shared\_Header.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -231,9 +236,9 @@
     <Content Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\ianhd.data\ianhd.data.csproj">
+    <ProjectReference Include="..\urlme.data\urlme.data.csproj">
       <Project>{b229c39e-9117-4723-a9c6-d3ff8f25d01d}</Project>
-      <Name>ianhd.data</Name>
+      <Name>urlme.data</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

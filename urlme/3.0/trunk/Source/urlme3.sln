@@ -5,7 +5,7 @@ VisualStudioVersion = 12.0.21005.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "urlme.site", "urlme.site\urlme.site.csproj", "{1383FB5C-4090-45FC-ADD7-F38B01C9355E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ianhd.data", "ianhd.data\ianhd.data.csproj", "{B229C39E-9117-4723-A9C6-D3FF8F25D01D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "urlme.data", "urlme.data\urlme.data.csproj", "{B229C39E-9117-4723-A9C6-D3FF8F25D01D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

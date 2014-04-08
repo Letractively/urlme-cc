@@ -6,9 +6,10 @@ ianhd.home.index = {
 	    shortenUrl: function () { return $("button[type='submit']"); },
 	},
 	init: function () {
+	    $("abbr.timeago").timeago();
 	    $('#example').dataTable();
 
-	    ianhd.home.index.bindControls();
+        ianhd.home.index.bindControls();
 	    ianhd.home.index.initZeroClipboard();
 	},
 	initZeroClipboard: function () {

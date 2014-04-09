@@ -5,6 +5,9 @@ ianhd.home.index = {
 	    copyLink: function () { return $("#copyLink"); },
 	    shortenUrl: function () { return $("button[type='submit']"); },
 	},
+	selectors: {
+	    deleteLinks: ".delete"
+	},
 	init: function () {
 	    $("abbr.timeago").timeago();
 	    //$('#example').dataTable();
@@ -17,7 +20,23 @@ ianhd.home.index = {
 	initZeroClipboard: function () {
 	},
 	bindControls: function () {
-		// shorten url
+	    // delete link
+	    $(document).on("click", ianhd.home.index.selectors.deleteLinks, function (e) {
+	        e.preventDefault();
+	        var item = $(this).closest('tr')[0];
+	        var itemId = item.attributes["data-item-id"].value;
+	        var rowIndex = dt.fnGetPosition(item);
+	        dt.fnDeleteRow(rowIndex);
+
+	        $.ajax({
+	            url: "/link/" + itemId,
+	            type: 'DELETE',
+	            success: function(resp) { /* silent */ },
+	            error: function () { alert("Error :/"); }
+	        });
+	    });
+
+	    // shorten url
 		ianhd.home.index.controls.shortenUrl().click(function (e) {
 			e.preventDefault();
 			var data = ko.mapping.toJS(viewModel);
@@ -37,6 +56,8 @@ ianhd.home.index = {
 	    if (!viewModel.signedIn()) { return; }
 	    $.get('/link', function (resp) {
 	        viewModel.items(resp);
+	        // datatable-ize the table
+	        dt = $("#example").dataTable();
 	    });
 	},
 	removeHash: function () {

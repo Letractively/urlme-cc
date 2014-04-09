@@ -5,14 +5,16 @@
             <th>Short Url</th>
             <th>Created</th>
             <th># Hits</th>
+            <th>Edit</th>
         </tr>
     </thead>
     <tbody data-bind="foreach: items">
-        <tr data-bind="attr: { 'data-link-id': LinkId }">
+        <tr data-bind="attr: { 'data-item-id': LinkId }">
             <td data-bind="text: LongUrl"></td>
             <td data-bind="text: Path"></td>
             <td data-bind="text: Created"></td>
             <td data-bind="text: Hits"></td>
+            <td><a class="delete" href="#">Delete</a></td>
         </tr>
     </tbody>
 </table>

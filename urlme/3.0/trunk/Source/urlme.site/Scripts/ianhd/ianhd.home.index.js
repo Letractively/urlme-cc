@@ -7,8 +7,9 @@ ianhd.home.index = {
 	},
 	init: function () {
 	    $("abbr.timeago").timeago();
-	    $('#example').dataTable();
+	    //$('#example').dataTable();
 
+	    ianhd.home.index.loadData();
         ianhd.home.index.bindControls();
 	    ianhd.home.index.initZeroClipboard();
 	},
@@ -31,6 +32,12 @@ ianhd.home.index = {
             });
 		});
 	},
+	loadData: function () {
+	    if (!viewModel.signedIn()) { return; }
+	    $.get('/link', function (resp) {
+	        viewModel.items(resp);
+	    });
+    },
 };
 
 $(function () {

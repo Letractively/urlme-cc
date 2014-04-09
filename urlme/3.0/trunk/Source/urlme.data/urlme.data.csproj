@@ -44,6 +44,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Extensions.cs" />
     <Compile Include="Models\Database\BaseModel.cs" />
     <Compile Include="Models\Database\Link.cs" />
     <Compile Include="Models\Database\User.cs" />

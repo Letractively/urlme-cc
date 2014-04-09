@@ -27,6 +27,8 @@
             result: '',
             longUrl: '',
             path: '',
+            signedIn: @Request.IsAuthenticated.ToString().ToLower(),
+            items: []
         });
         ko.applyBindings(viewModel);
         function removeHash() {

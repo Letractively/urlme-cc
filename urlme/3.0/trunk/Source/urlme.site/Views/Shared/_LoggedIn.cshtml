@@ -1,6 +1,4 @@
-﻿@model List<urlme.data.Models.Link>
-
-<table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered" id="example">
+﻿<table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered" id="example">
     <thead>
         <tr>
             <th>Long Url</th>
@@ -9,15 +7,12 @@
             <th># Hits</th>
         </tr>
     </thead>
-    <tbody>
-        @foreach (var link in this.Model)
-        {
-            <tr>
-                <td>@link.DestinationUrl.Snippet()</td>
-                <td>http://urlme.cc/@link.Path</td>
-                <td><span style="display:none">@link.CreateDate</span><abbr class="timeago" title="@link.CreateDate.ToString("o")">@link.CreateDate.ToString("MM/dd/yyyy")</abbr></td>
-                <td>@link.HitCount.ToString("#,#0")</td>
-            </tr>
-        }
+    <tbody data-bind="foreach: items">
+        <tr data-bind="attr: { 'data-link-id': LinkId }">
+            <td data-bind="text: LongUrl"></td>
+            <td data-bind="text: Path"></td>
+            <td data-bind="text: Created"></td>
+            <td data-bind="text: Hits"></td>
+        </tr>
     </tbody>
 </table>

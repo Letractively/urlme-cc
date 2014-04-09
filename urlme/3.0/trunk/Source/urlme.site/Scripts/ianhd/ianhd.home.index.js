@@ -11,7 +11,8 @@ ianhd.home.index = {
 
 	    ianhd.home.index.loadData();
         ianhd.home.index.bindControls();
-	    ianhd.home.index.initZeroClipboard();
+        ianhd.home.index.initZeroClipboard();
+        ianhd.home.index.removeHash();
 	},
 	initZeroClipboard: function () {
 	},
@@ -37,7 +38,10 @@ ianhd.home.index = {
 	    $.get('/link', function (resp) {
 	        viewModel.items(resp);
 	    });
-    },
+	},
+	removeHash: function () {
+	    history.pushState("", document.title, window.location.pathname + window.location.search);
+	},
 };
 
 $(function () {

@@ -31,10 +31,7 @@
             items: []
         });
         ko.applyBindings(viewModel);
-        function removeHash() {
-            history.pushState("", document.title, window.location.pathname + window.location.search);
-        }
-        removeHash();
+        var dt = $("#example").dataTable();
     </script>
     @Scripts.Render("~/scripts/ianhd/ianhd.home.index.js")
 }

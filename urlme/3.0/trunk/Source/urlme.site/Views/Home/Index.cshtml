@@ -31,7 +31,15 @@
             items: []
         });
         ko.applyBindings(viewModel);
-        var dt = $("#example").dataTable();
+        var dt = null; // for datatable
+
+        // $("#example").dataTable();
+        //viewModel.items.subscribe(function (val) {
+        //     Find the row in the DataTable and invalidate it, which will
+        //     cause DataTables to re-read the data
+        //    var rowIdx = dt.column(0).data().indexOf(val.LinkId);
+        //    dt.row(rowIdx).invalidate();
+        //});
     </script>
     @Scripts.Render("~/scripts/ianhd/ianhd.home.index.js")
 }

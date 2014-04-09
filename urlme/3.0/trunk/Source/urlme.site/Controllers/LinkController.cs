@@ -4,14 +4,13 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using urlme.data.Models;
+using urlme.site.Models.Response;
 
 namespace urlme.site.Controllers
 {
     [RoutePrefix("link")]
     public class LinkController : Controller
     {
-        //
-        // GET: /Link/
         [Route("")]
         public JsonResult Get()
         {
@@ -24,6 +23,23 @@ namespace urlme.site.Controllers
             }
 
             return this.Json(links, JsonRequestBehavior.AllowGet);
+        }
+
+        [Route("{linkId}")]
+        [HttpDelete]
+        public JsonResult Delete(int linkId)
+        {
+            var response = new SuccessResponse { Success = false };
+            
+            if (!Request.IsAuthenticated) {
+               throw new HttpException(401, "Unauthorized access");
+            }
+
+            if (Link.Delete(linkId)) {
+                response.Success = true;
+            }
+
+            return this.Json(response, JsonRequestBehavior.DenyGet);
         }
 	}
 }

@@ -6,8 +6,10 @@ using System.Web.Mvc;
 
 namespace urlme.site.Controllers
 {
+    [RoutePrefix("")]
     public class HomeController : Controller
     {
+        [Route("")]
         public ActionResult Index()
         {
             var links = new List<urlme.data.Models.Link>();
@@ -16,11 +18,6 @@ namespace urlme.site.Controllers
                 links = data.Models.Link.Get(User.Identity.Name.UserId());
             }
             return View(links);
-        }
-
-        public ActionResult Test()
-        {
-            return View();
         }
     }
 }

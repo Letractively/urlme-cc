@@ -35,7 +35,8 @@ namespace urlme.site.Controllers
                throw new HttpException(401, "Unauthorized access");
             }
 
-            if (Link.Delete(linkId)) {
+            if (Link.Delete(linkId))
+            {
                 response.Success = true;
             }
 

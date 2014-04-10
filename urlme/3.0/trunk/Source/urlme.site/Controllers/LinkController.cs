@@ -39,7 +39,7 @@ namespace urlme.site.Controllers
                 response.Success = true;
             }
 
-            return this.Json(response, JsonRequestBehavior.DenyGet);
+            return this.Json(response, JsonRequestBehavior.AllowGet);
         }
 	}
 }

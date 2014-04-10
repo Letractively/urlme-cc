@@ -10,10 +10,12 @@ using System.Web.Mvc;
 namespace urlme.site.Controllers
 {
     [Authorize]
+    [RoutePrefix("account")]
     public class AccountController : Controller
     {
         //
         // POST: /Account/ExternalLogin
+        [Route("externallogin")]
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
@@ -25,6 +27,7 @@ namespace urlme.site.Controllers
 
         //
         // GET: /Account/ExternalLoginCallback
+        [Route("externallogincallback")]
         [AllowAnonymous]
         public async Task<ActionResult> ExternalLoginCallback(string returnUrl)
         {
@@ -48,6 +51,7 @@ namespace urlme.site.Controllers
 
         //
         // POST: /Account/LogOff
+        [Route("logoff")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult LogOff()
@@ -58,6 +62,7 @@ namespace urlme.site.Controllers
 
         //
         // GET: /Account/ExternalLoginFailure
+        [Route("externalloginfailure")]
         [AllowAnonymous]
         public ActionResult ExternalLoginFailure()
         {

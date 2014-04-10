@@ -16,12 +16,6 @@ namespace urlme.site.Controllers
         {
             var links = Link.Get(User.Identity.Name.UserId());
             
-            // tweak data for front-end
-            foreach (var link in links)
-            {
-                link.DestinationUrl = link.DestinationUrl.Snippet();
-            }
-
             return this.Json(links, JsonRequestBehavior.AllowGet);
         }
 

@@ -18,6 +18,15 @@ namespace urlme.data.Models
         }
 
         [IgnoreField]
+        public string ShortUrl
+        {
+            get
+            {
+                return "http://urlme.cc/" + this.Path;
+            }
+        }
+
+        [IgnoreField]
         public string Created
         {
             get

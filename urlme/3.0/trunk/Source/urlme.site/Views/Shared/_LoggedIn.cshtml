@@ -10,8 +10,8 @@
     </thead>
     <tbody data-bind="foreach: items">
         <tr data-bind="attr: { 'data-item-id': LinkId }">
-            <td data-bind="text: LongUrl"></td>
-            <td data-bind="text: Path"></td>
+            <td><a target="_blank" data-bind="attr: { 'href': DestinationUrl, 'title': DestinationUrl }, text: LongUrl"></a></td>
+            <td><a target="_blank" data-bind="attr: { 'href': ShortUrl }, text: ShortUrl"></a></td>
             <td data-bind="text: Created"></td>
             <td data-bind="text: Hits"></td>
             <td><a class="delete" href="#">Delete</a></td>

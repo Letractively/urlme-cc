@@ -15,6 +15,7 @@ namespace urlme.site
                         "~/scripts/plugins/zeroclipboard/zeroclipboard.min.js",
                         "~/scripts/plugins/datatables/jquery.dataTables.min.js",
                         "~/scripts/plugins/datatables/datatables.bootstrap.js",
+                        "~/scripts/plugins/bootstrap-dialog/bootstrap-dialog.min.js",
                         "~/scripts/plugins/jquery.timeago.js",
                         "~/scripts/ianhd/ianhd.js"
             ));
@@ -28,6 +29,7 @@ namespace urlme.site
                       "~/Content/bootstrap-social.css",
                       //"~/Content/bootstrap-theme.min.css",
                       //"~/content/todc-bootstrap.min.css",
+                      "~/scripts/plugins/bootstrap-dialog/bootstrap-dialog.min.css",
                       "~/scripts/plugins/datatables/datatables.bootstrap.css",
                       "~/Content/site.css"));
         }

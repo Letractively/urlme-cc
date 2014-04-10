@@ -4,6 +4,7 @@ ianhd.home.index = {
 	controls: {
 	    copyLink: function () { return $("#copyLink"); },
 	    shortenUrl: function () { return $("button[type='submit']"); },
+	    success: function () { return $(".alert-success"); },
 	},
 	selectors: {
 	    deleteLinks: ".delete"
@@ -23,16 +24,31 @@ ianhd.home.index = {
 	    // delete link
 	    $(document).on("click", ianhd.home.index.selectors.deleteLinks, function (e) {
 	        e.preventDefault();
-	        var item = $(this).closest('tr')[0];
-	        var itemId = item.attributes["data-item-id"].value;
-	        var rowIndex = dt.fnGetPosition(item);
-	        dt.fnDeleteRow(rowIndex);
+	        var el = $(this);
 
-	        $.ajax({
-	            url: "/link/" + itemId,
-	            type: 'DELETE',
-	            success: function(resp) { /* silent */ },
-	            error: function () { alert("Error :/"); }
+	        BootstrapDialog.show({
+	            title: 'Please Confirm',
+	            message: 'Are you sure?',
+	            cssClass: 'login-dialog',
+	            buttons: [{
+	                label: 'Yes, delete',
+	                cssClass: 'btn-primary',
+	                action: function (dialog) {
+	                    var item = el.closest('tr')[0];
+	                    var itemId = item.attributes["data-item-id"].value;
+	                    var rowIndex = dt.fnGetPosition(item);
+	                    dt.fnDeleteRow(rowIndex);
+	                    ianhd.home.index.showSuccess();
+
+	                    $.ajax({
+	                        url: "/link/" + itemId,
+	                        type: 'DELETE',
+	                        success: function (resp) { /* silent */ },
+	                        error: function () { alert("Error :/"); }
+	                    });
+	                    dialog.close();
+	                }
+	            }]
 	        });
 	    });
 
@@ -51,6 +67,9 @@ ianhd.home.index = {
                 }
             });
 		});
+	},
+	showSuccess: function () {
+	    ianhd.home.index.controls.success().fadeIn(300).delay(1500).fadeOut(500);
 	},
 	loadData: function () {
 	    if (!viewModel.signedIn()) { return; }

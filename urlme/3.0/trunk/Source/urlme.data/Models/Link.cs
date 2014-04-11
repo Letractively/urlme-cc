@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using ianhd.core.Data.Extensions;
 using ianhd.core.Data;
+using ianhd.core.Net;
+using System.Net;
 
 namespace urlme.data.Models
 {

@@ -41,7 +41,7 @@ ianhd.home.index = {
 	                    ianhd.home.index.showSuccess();
 
 	                    $.ajax({
-	                        url: "/link/" + itemId,
+	                        url: "links/" + itemId,
 	                        type: 'DELETE',
 	                        success: function (resp) { /* silent */ },
 	                        error: function () { alert("Error :/"); }
@@ -57,15 +57,25 @@ ianhd.home.index = {
 			e.preventDefault();
 			var data = ko.mapping.toJS(viewModel);
 
-			$.ajax("https://www.googleapis.com/urlshortener/v1/url",
-            {
-                data: JSON.stringify(data),
-                contentType: 'application/json',
-                type: 'POST',
-                success: function (resp) {
-                    viewModel.result(resp.id);
-                }
-            });
+            // custom path provided?
+			if (viewModel.path()) {
+			    // create link on server
+			    alert('Stay tuned...');
+			} else {
+			    // trim data obj to only what goo.gl needs
+			    data = { longUrl: data.longUrl };
+
+			    // use goo.gl to create link
+			    $.ajax("https://www.googleapis.com/urlshortener/v1/url",
+                {
+                    data: JSON.stringify(data),
+                    contentType: 'application/json',
+                    type: 'POST',
+                    success: function (resp) {
+                        viewModel.result(resp.id);
+                    }
+                });
+			}
 		});
 	},
 	showSuccess: function () {
@@ -73,7 +83,7 @@ ianhd.home.index = {
 	},
 	loadData: function () {
 	    if (!viewModel.signedIn()) { return; }
-	    $.get('/link', function (resp) {
+	    $.get('links', function (resp) {
 	        viewModel.items(resp);
 	        // datatable-ize the table
 	        dt = $("#example").dataTable();

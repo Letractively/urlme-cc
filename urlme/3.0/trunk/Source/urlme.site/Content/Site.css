@@ -12,7 +12,11 @@
 .bottomBuffer { margin-bottom: 20px; }
 .bigBottomBuffer { margin-bottom: 40px; }
 .linkForm input { margin-right: 15px; }
-.linkForm input[type='url'] { width: 438px !important; }
+.linkForm input[type='url'] { width: 350px !important; } /* goo.gl's is 438px wide */
 .logo { background: url('logo.jpg'); display:inline-block; width: 170px; height: 37px; }
 .login-dialog .modal-dialog { width: 300px; }
 .alert-success { width: 250px; position: fixed; top: 20px; left: 50%; margin-left: -150px; display:none; }
+
+/* datatable overrides */
+.dataTables_wrapper.form-inline .dataTables_filter .form-control[type='search'] { margin-left:10px; }
+.dataTables_wrapper tr td { vertical-align: middle!important; }

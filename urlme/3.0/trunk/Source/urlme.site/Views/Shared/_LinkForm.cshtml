@@ -4,12 +4,17 @@
             <input type="url" class="form-control" placeholder="Paste a link to shorten it" autofocus="autofocus" data-bind="value: longUrl" />
             @if (Request.IsAuthenticated)
             {
-                <span>http://urlme.cc/</span><input type="text" class="form-control" placeholder="Custom path (optional)" data-bind="value: longUrl" />    
+                <span>http://urlme.cc/</span><input type="text" class="form-control" placeholder="Custom path (optional)" data-bind="value: path" />    
             }
             <button type="submit" class="btn btn-primary">Shorten</button>
         </div>
     </form>
 </div>
-<div class="row bottomBuffer" data-bind="visible: result">
-    <span data-bind="text: result"></span>
+
+<div class="row">
+    <div class="panel col-xs-2 panel-success" data-bind="visible: result">
+        <div class="panel-body">
+            <span data-bind="text: result"></span>
+        </div>
+    </div>
 </div>

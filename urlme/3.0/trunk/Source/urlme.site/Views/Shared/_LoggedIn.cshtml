@@ -14,7 +14,11 @@
             <td><a target="_blank" data-bind="attr: { 'href': ShortUrl }, text: ShortUrl"></a></td>
             <td data-bind="text: Created"></td>
             <td data-bind="text: Hits"></td>
-            <td><a class="delete" href="#">Delete</a></td>
+            <td>
+                <button type="button" class="delete btn btn-default btn-sm">
+                    <span class="glyphicon glyphicon-trash"></span> Delete
+                </button>
+            </td>
         </tr>
     </tbody>
 </table>

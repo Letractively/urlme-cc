@@ -8,7 +8,7 @@ using urlme.site.Models.Response;
 
 namespace urlme.site.Controllers
 {
-    [RoutePrefix("link")]
+    [RoutePrefix("links")]
     public class LinkController : Controller
     {
         [Route("")]

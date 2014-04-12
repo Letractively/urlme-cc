@@ -13,6 +13,13 @@ namespace urlme.site.Controllers
     [RoutePrefix("account")]
     public class AccountController : Controller
     {
+        [Route("sign-in")]
+        [AllowAnonymous]
+        public ActionResult SignIn(string returnUrl)
+        {
+            return Content("You need to sign in to do that.");
+        }
+
         //
         // POST: /Account/ExternalLogin
         [Route("externallogin")]

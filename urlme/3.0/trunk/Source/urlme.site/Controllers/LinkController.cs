@@ -9,10 +9,10 @@ using urlme.site.Models.Response;
 namespace urlme.site.Controllers
 {
     [RoutePrefix("links")]
+    [Authorize]
     public class LinkController : Controller
     {
         [Route("")]
-        [Authorize]
         public JsonResult Get()
         {
             var links = Link.GetByUserId(User.Identity.Name.UserId());
@@ -25,10 +25,6 @@ namespace urlme.site.Controllers
         public JsonResult Delete(int linkId)
         {
             var response = new SuccessResponse { Success = false };
-            
-            if (!Request.IsAuthenticated) {
-               throw new HttpException(401, "Unauthorized access");
-            }
 
             if (Link.Delete(linkId, User.Identity.Name.UserId()))
             {

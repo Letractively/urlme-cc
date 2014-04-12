@@ -46,6 +46,30 @@ namespace urlme.data.Models
             }
         }
 
+        public static Link GetByLinkId(int linkId)
+        {
+            using (var conn = Db.CreateConnection())
+            {
+                return conn.Query<Link>("select * from [ihdavis].[Link] where LinkId=@linkId", new { linkId }).FirstOrDefault();
+            }
+        }
+
+        public static Link Get(string path)
+        {
+            using (var conn = Db.CreateConnection())
+            {
+                return conn.Query<Link>("select * from [ihdavis].[Link] where Path=@path", new { path }).FirstOrDefault();
+            }
+        }
+        
+        public static bool Save(Link source)
+        {
+            using (var conn = Db.CreateConnection())
+            {
+                return null;
+            }
+        }
+
         public static bool Delete(int linkId)
         {
             using (var conn = Db.CreateConnection())
@@ -57,7 +81,7 @@ namespace urlme.data.Models
             }
         }
 
-        public static List<Link> Get(int userId)
+        public static List<Link> GetByUserId(int userId)
         {
             using (var conn = Db.CreateConnection())
             {

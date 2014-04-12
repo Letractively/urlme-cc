@@ -15,7 +15,7 @@ namespace urlme.site.Controllers
             var links = new List<urlme.data.Models.Link>();
             if (Request.IsAuthenticated)
             {
-                links = data.Models.Link.Get(User.Identity.Name.UserId());
+                links = data.Models.Link.GetByUserId(User.Identity.Name.UserId());
             }
             return View(links);
         }

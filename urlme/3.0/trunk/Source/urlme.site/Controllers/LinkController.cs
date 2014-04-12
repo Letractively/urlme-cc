@@ -14,7 +14,7 @@ namespace urlme.site.Controllers
         [Route("")]
         public JsonResult Get()
         {
-            var links = Link.Get(User.Identity.Name.UserId());
+            var links = Link.GetByUserId(User.Identity.Name.UserId());
             
             return this.Json(links, JsonRequestBehavior.AllowGet);
         }

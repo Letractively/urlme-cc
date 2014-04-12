@@ -66,16 +66,16 @@ namespace urlme.data.Models
         {
             using (var conn = Db.CreateConnection())
             {
-                return null;
+                return false;
             }
         }
 
-        public static bool Delete(int linkId)
+        public static bool Delete(int linkId, int userId)
         {
             using (var conn = Db.CreateConnection())
             {
-                var query = "delete from [ihdavis].[Link] where LinkId=@linkId";
-                var @params = new { linkId };
+                var query = "delete from [ihdavis].[Link] where LinkId=@linkId and UserId=@userId";
+                var @params = new { linkId, userId };
 
                 return conn.Execute(query, @params) == 1;
             }

@@ -12,6 +12,7 @@ namespace urlme.site.Controllers
     public class LinkController : Controller
     {
         [Route("")]
+        [Authorize]
         public JsonResult Get()
         {
             var links = Link.GetByUserId(User.Identity.Name.UserId());
@@ -29,7 +30,7 @@ namespace urlme.site.Controllers
                throw new HttpException(401, "Unauthorized access");
             }
 
-            if (Link.Delete(linkId))
+            if (Link.Delete(linkId, User.Identity.Name.UserId()))
             {
                 response.Success = true;
             }

@@ -8,13 +8,13 @@ namespace ianhd.core.Validation
 {
     public class OperationResult
     {
-        public string Message { get; set; }
+        public string ErrorMessage { get; set; }
         public bool WasSuccessful { get; set; }
-        public bool HasMessage
+        public bool HasErrorMessage
         {
             get
             {
-                return !string.IsNullOrWhiteSpace(this.Message);
+                return !string.IsNullOrWhiteSpace(this.ErrorMessage);
             }
         }
     }

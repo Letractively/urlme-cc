@@ -58,7 +58,7 @@ ianhd.home.index = {
 			var data = ko.mapping.toJS(viewModel);
 
             // custom path provided?
-			if (viewModel.path()) {
+			if ($.trim(viewModel.path())) {
 			    // create link on server
 			    alert('Stay tuned...');
 			} else {

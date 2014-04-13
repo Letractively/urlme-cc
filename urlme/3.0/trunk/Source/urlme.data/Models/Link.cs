@@ -64,9 +64,40 @@ namespace urlme.data.Models
         
         public static bool Save(Link source)
         {
+            var now = System.DateTime.Now;
+            var insert = false;
+
             using (var conn = Db.CreateConnection())
             {
-                return false;
+                var target = conn.Query<Link>("select * from [ihdavis].[Link] where LinkId=@linkId"
+                    , new { linkId = source.LinkId }).FirstOrDefault();
+
+                if (target == null)
+                {
+                    // insert
+                    target = new Link
+                    {
+                        CreateDate = now
+                    };
+                    insert = true;
+                }
+
+                target.UserId = source.UserId;
+                target.Path = source.Path;
+                target.DestinationUrl = source.DestinationUrl;
+                target.Description = source.Description;
+                target.ExpirationDate = null; // todo: delete
+                target.HitCount = source.HitCount;
+                target.ActiveInd = source.ActiveInd;
+
+                if (insert)
+                {
+                }
+                else
+                {
+                }
+
+                return true;
             }
         }
 

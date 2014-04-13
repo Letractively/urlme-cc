@@ -10,29 +10,43 @@ namespace urlme.data.Services
 {
     public static class SiteService
     {
-        public static OperationResult<Link> Save(data.Models.Link source)
+        public static Operations.SaveLink Save(data.Models.Link source)
         {
-            var or = new OperationResult<Link>();
+            var op = new data.Operations.SaveLink();
+            
             var insert = source.LinkId == default(int);
             var update = !insert;
+
+            // trim everything
+            source.DestinationUrl = source.DestinationUrl.Trim();
+            source.Path = source.Path.Trim();
 
             // if it exists already, not cool
             var existing = Link.Get(source.Path);
             if (insert && existing != null) {
                 if (existing.UserId == source.UserId)
-                    or.ErrorMessage = "You already have a link with this custom path";
+                    op.Result = Enumerations.SaveLinkResult.UserAlreadyHasLink;
                 else
-                    or.ErrorMessage = "This path is already taken";
+                    op.Result = Enumerations.SaveLinkResult.PathAlreadyTaken;
             }
 
-            if (!or.HasErrorMessage && update && existing != null && existing.LinkId != source.LinkId) {
+            if (!op.HasError
+                && update 
+                && existing != null 
+                && existing.LinkId != source.LinkId
+            ) {
                 if (existing.UserId == source.UserId)
-                    or.ErrorMessage = "You already have a link with this custom path";
+                    op.Result = Enumerations.SaveLinkResult.UserAlreadyHasLink;
                 else
-                    or.ErrorMessage = "This path is already taken";
+                    op.Result = Enumerations.SaveLinkResult.PathAlreadyTaken;
             }
 
-            return or;
+            if (!op.HasError && !Link.Save(source)
+            ) {
+                op.Result = Enumerations.SaveLinkResult.UnknownError;
+            }
+
+            return op;
         }
     }
 }

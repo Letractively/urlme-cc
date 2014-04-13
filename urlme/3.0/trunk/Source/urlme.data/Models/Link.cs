@@ -92,9 +92,24 @@ namespace urlme.data.Models
 
                 if (insert)
                 {
+                    return conn.Execute(
+                        @"insert [ihdavis].[Link] (UserId,Path,DestinationUrl) 
+                          values (@userId,@destinationUrl,@description,@expirationDate,@hitCount,@activeInd,@createDate)"
+                        , new { target.UserId, target.Path, target.DestinationUrl, 
+                            target.Description, target.ExpirationDate, target.HitCount, 
+                            target.ActiveInd, target.CreateDate }
+                        ) == 1;
                 }
                 else
                 {
+                    return conn.Execute(
+                        @"update [ihdavis].[Link] 
+                          set UserId=@userId, Path=@path, DestinationUrl=@destinationUrl, 
+                            Description=@description, ExpirationDate=@expirationDate, 
+                            HitCount=@hitCount, ActiveInd=@activeInd, CreateDate=@createDate
+                          where UserId=@userId and LinkId=@linkId"
+                        , new { target.UserId, target.DestinationUrl, target.Description, target.ExpirationDate, target.HitCount, target.ActiveInd, target.CreateDate }
+                        ) == 1;
                 }
 
                 return true;

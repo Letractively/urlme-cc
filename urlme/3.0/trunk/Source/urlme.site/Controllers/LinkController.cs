@@ -20,6 +20,15 @@ namespace urlme.site.Controllers
             return this.Json(links, JsonRequestBehavior.AllowGet);
         }
 
+        [Route("")]
+        [HttpPost]
+        public JsonResult Post(Link source)
+        {
+            source.UserId = User.Identity.Name.UserId();
+            var result = urlme.data.Services.SiteService.LinkSave(source);
+            return this.Json(result, JsonRequestBehavior.DenyGet);
+        }
+
         [Route("{linkId}")]
         [HttpDelete]
         public JsonResult Delete(int linkId)

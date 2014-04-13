@@ -60,7 +60,18 @@ ianhd.home.index = {
             // custom path provided?
 			if ($.trim(viewModel.path())) {
 			    // create link on server
-			    alert('Stay tuned...');
+			    data = { destinationUrl: data.longUrl, path: data.path };
+
+			    // use goo.gl to create link
+			    $.ajax("links",
+                {
+                    data: JSON.stringify(data),
+                    contentType: 'application/json',
+                    type: 'POST',
+                    success: function (resp) {
+                        viewModel.result('http://urlme.cc/' + data.path);
+                    }
+                });
 			} else {
 			    // trim data obj to only what goo.gl needs
 			    data = { longUrl: data.longUrl };

@@ -12,10 +12,7 @@ namespace urlme.data.Models
         public int UserId { get; set; }
         public string Path { get; set; }
         public string DestinationUrl { get; set; }
-        public string Description { get; set; }
-        public DateTime? ExpirationDate { get; set; }
         public int HitCount { get; set; }
-        public bool ActiveInd { get; set; }
         public DateTime CreateDate { get; set; }
     }
 }

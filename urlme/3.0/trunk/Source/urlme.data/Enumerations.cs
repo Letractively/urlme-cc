@@ -17,7 +17,9 @@ namespace urlme.data
             [Description("You already have a link with this custom path.")]
             UserAlreadyHasLink,
             [Description("Unkown error, please try again.")]
-            UnknownError
+            UnknownError,
+            [Description("Please provide both a long url and path")]
+            InvalidInput
         }
     }
 }

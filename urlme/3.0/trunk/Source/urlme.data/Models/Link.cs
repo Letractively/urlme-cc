@@ -64,38 +64,17 @@ namespace urlme.data.Models
         
         public static bool Save(Link source)
         {
-            var now = System.DateTime.Now;
-            var insert = false;
-
             using (var conn = Db.CreateConnection())
             {
-                var target = conn.Query<Link>("select * from [ihdavis].[Link] where LinkId=@linkId"
-                    , new { linkId = source.LinkId }).FirstOrDefault();
-
-                if (target == null)
-                {
-                    // insert
-                    target = new Link
-                    {
-                        CreateDate = now
-                    };
-                    insert = true;
-                }
-
-                target.UserId = source.UserId;
-                target.Path = source.Path;
-                target.DestinationUrl = source.DestinationUrl;
-                target.Description = source.Description;
-                target.ExpirationDate = null; // todo: delete
-                target.HitCount = source.HitCount;
-                target.ActiveInd = source.ActiveInd;
+                var insert = conn.Query<Link>("select LinkId from [ihdavis].[Link] where LinkId=@linkId"
+                    , new { linkId = source.LinkId }).FirstOrDefault() == null; // todo: need linkId = ?
 
                 if (insert)
                 {
                     return conn.Execute(
                         @"insert [ihdavis].[Link] (UserId,Path,DestinationUrl) 
                           values (@userId,@path,@destinationUrl)"
-                        , new { target.UserId, target.Path, target.DestinationUrl }
+                        , new { source.UserId, source.Path, source.DestinationUrl }
                         ) == 1;
                 }
                 else
@@ -104,7 +83,7 @@ namespace urlme.data.Models
                         @"update [ihdavis].[Link] 
                           set UserId=@userId, Path=@path, DestinationUrl=@destinationUrl, 
                           where UserId=@userId and LinkId=@linkId"
-                        , new { target.UserId, target.Path, target.DestinationUrl, target.LinkId }
+                        , new { source.UserId, source.Path, source.DestinationUrl, source.LinkId }
                         ) == 1;
                 }
             }

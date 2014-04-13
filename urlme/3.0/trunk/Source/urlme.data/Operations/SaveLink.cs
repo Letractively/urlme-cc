@@ -1,4 +1,6 @@
-﻿namespace urlme.data.Operations
+﻿using ianhd.core.Extensions;
+
+namespace urlme.data.Operations
 {
     public class SaveLink
     {
@@ -9,6 +11,13 @@
             get
             {
                 return this.Result != Enumerations.SaveLinkResult.Success;
+            }
+        }
+        public string Message
+        {
+            get
+            {
+                return this.Result.GetDescription();
             }
         }
 

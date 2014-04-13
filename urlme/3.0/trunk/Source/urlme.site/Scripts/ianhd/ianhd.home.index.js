@@ -69,7 +69,11 @@ ianhd.home.index = {
                     contentType: 'application/json',
                     type: 'POST',
                     success: function (resp) {
-                        viewModel.result('http://urlme.cc/' + data.path);
+                        if (resp.WasSuccessful === "Success") {
+                            viewModel.result('http://urlme.cc/' + resp.Item.ShortUrl);
+                        } else {
+                            viewModel.result("Oops! " + resp.Message);
+                        }
                     }
                 });
 			} else {

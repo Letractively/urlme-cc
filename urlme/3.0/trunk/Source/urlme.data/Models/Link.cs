@@ -94,10 +94,8 @@ namespace urlme.data.Models
                 {
                     return conn.Execute(
                         @"insert [ihdavis].[Link] (UserId,Path,DestinationUrl) 
-                          values (@userId,@destinationUrl,@description,@expirationDate,@hitCount,@activeInd,@createDate)"
-                        , new { target.UserId, target.Path, target.DestinationUrl, 
-                            target.Description, target.ExpirationDate, target.HitCount, 
-                            target.ActiveInd, target.CreateDate }
+                          values (@userId,@path,@destinationUrl)"
+                        , new { target.UserId, target.Path, target.DestinationUrl }
                         ) == 1;
                 }
                 else
@@ -105,14 +103,10 @@ namespace urlme.data.Models
                     return conn.Execute(
                         @"update [ihdavis].[Link] 
                           set UserId=@userId, Path=@path, DestinationUrl=@destinationUrl, 
-                            Description=@description, ExpirationDate=@expirationDate, 
-                            HitCount=@hitCount, ActiveInd=@activeInd, CreateDate=@createDate
                           where UserId=@userId and LinkId=@linkId"
-                        , new { target.UserId, target.DestinationUrl, target.Description, target.ExpirationDate, target.HitCount, target.ActiveInd, target.CreateDate }
+                        , new { target.UserId, target.Path, target.DestinationUrl, target.LinkId }
                         ) == 1;
                 }
-
-                return true;
             }
         }
 

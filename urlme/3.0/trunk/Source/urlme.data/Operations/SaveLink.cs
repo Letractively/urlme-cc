@@ -20,6 +20,13 @@ namespace urlme.data.Operations
                 return this.Result.GetDescription();
             }
         }
+        public bool WasSuccessful
+        {
+            get
+            {
+                return !this.HasError;
+            }
+        }
 
         public SaveLink()
         {

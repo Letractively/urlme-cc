@@ -104,7 +104,7 @@ namespace urlme.data.Models
         {
             using (var conn = Db.CreateConnection())
             {
-                var query = "select * from [ihdavis].[Link] where UserId=@userId";
+                var query = "select LinkId,DestinationUrl,Path,HitCount,CreateDate from [ihdavis].[Link] where UserId=@userId";
                 var @params = new { userId };
 
                 return conn.Query<Link>(query, @params).ToList();

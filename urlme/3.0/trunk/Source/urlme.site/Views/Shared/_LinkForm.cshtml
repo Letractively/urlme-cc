@@ -1,20 +1,21 @@
 ﻿<div class="row bigBottomBuffer">
     <form class="linkForm form form-inline" role="form">
-        <div class="form-group">
+        @*<div class="form-group">*@
             <input type="url" class="form-control" placeholder="Paste a link to shorten it" autofocus="autofocus" data-bind="value: longUrl" />
             @if (Request.IsAuthenticated)
             {
                 <span>http://urlme.cc/</span><input type="text" class="form-control" placeholder="Custom path (optional)" data-bind="value: path" />    
             }
             <button type="submit" class="btn btn-primary">Shorten</button>
-        </div>
+            
+        @*</div>*@
     </form>
 </div>
 
 <div class="row">
     <div class="panel panel-success" data-bind="visible: result">
-        <div class="panel-body">
-            <span data-bind="text: result"></span>
+        <div class="panel-body form-inline">
+            Shortened! <input class="result form-control" data-bind="value: result" />
         </div>
     </div>
 </div>

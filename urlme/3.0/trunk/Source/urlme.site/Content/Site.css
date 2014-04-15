@@ -14,7 +14,7 @@
 .linkForm input { margin-right: 15px; }
 .linkForm input[type='url'] { width: 350px !important; } /* goo.gl's is 438px wide */
 .linkForm input.path { width: 160px !important; } /* goo.gl's is 438px wide */
-.linkForm .result { display:inline-block; margin-left: 15px; }
+.linkForm .result { display:inline-block; margin-left: 10px; }
 .logo { background: url('logo.jpg'); display:inline-block; width: 170px; height: 37px; }
 .login-dialog .modal-dialog { width: 300px; }
 .alert-success { width: 250px; position: fixed; top: 20px; left: 50%; margin-left: -150px; display:none; }

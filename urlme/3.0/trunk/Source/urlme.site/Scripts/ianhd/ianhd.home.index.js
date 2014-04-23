@@ -20,6 +20,11 @@ ianhd.home.index = {
 	},
 	initZeroClipboard: function () {
 	},
+	clearViewModel: function () {
+	    viewModel.longUrl("");
+	    viewModel.path("");
+	    viewModel.message("");
+	},
 	bindControls: function () {
 	    // delete link
 	    $(document).on("click", ianhd.home.index.selectors.deleteLinks, function (e) {
@@ -69,10 +74,11 @@ ianhd.home.index = {
                     contentType: 'application/json',
                     type: 'POST',
                     success: function (resp) {
-                        if (resp.WasSuccessful === "Success") {
+                        if (resp.WasSuccessful) {
                             viewModel.result('http://urlme.cc/' + resp.Item.ShortUrl);
+                            ianhd.home.index.clearViewModel();
                         } else {
-                            viewModel.result("Oops! " + resp.Message);
+                            viewModel.message(resp.Message);
                         }
                     }
                 });
@@ -88,6 +94,7 @@ ianhd.home.index = {
                     type: 'POST',
                     success: function (resp) {
                         viewModel.result(resp.id);
+                        ianhd.home.index.clearViewModel();
                     }
                 });
 			}

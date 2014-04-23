@@ -7,15 +7,13 @@
                 <span>http://urlme.cc/</span><input type="text" class="path form-control" placeholder="custom-path (optional)" data-bind="value: path" />    
             }
             <button type="submit" class="btn btn-primary">Shorten</button>
-            <div class="result" data-bind="visible: result"><span class="arrow">➔</span><span data-bind="text: result"></span></div>
+            <div class="result" data-bind="visible: result" style="display:none"><span class="arrow noSelect">➔</span><span data-bind="text: result"></span></div>
         @*</div>*@
     </form>
 </div>
 
 <div class="row">
-    <div class="panel panel-warning" data-bind="visible: message">
-        <div class="panel-body form-inline">
-            <span data-bind="text: message"></span>
-        </div>
+    <div class="alert alert-warning" data-bind="visible: message" style="display:none;">
+        <strong>Oops!</strong> <span data-bind="text: message"></span>
     </div>
 </div>

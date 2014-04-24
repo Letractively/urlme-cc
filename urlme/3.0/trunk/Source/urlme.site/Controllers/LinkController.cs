@@ -29,6 +29,15 @@ namespace urlme.site.Controllers
             return this.Json(result, JsonRequestBehavior.DenyGet);
         }
 
+        [Route("overwrite")]
+        [HttpPost]
+        public JsonResult Overwrite(Link source)
+        {
+            source.UserId = User.Identity.Name.UserId();
+            var result = urlme.data.Services.SiteService.LinkOverwrite(source);
+            return this.Json(result, JsonRequestBehavior.DenyGet);
+        }
+
         [Route("{linkId}")]
         [HttpDelete]
         public JsonResult Delete(int linkId)

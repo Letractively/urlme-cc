@@ -62,5 +62,43 @@ namespace urlme.data.Services
 
             return op;
         }
+
+        public static Operations.SaveLink LinkOverwrite(data.Models.Link source)
+        {
+            var op = new data.Operations.SaveLink();
+
+            // trim everything
+            source.DestinationUrl = source.DestinationUrl.TrimToNull();
+
+            // valid input?
+            if (string.IsNullOrWhiteSpace(source.DestinationUrl))
+            {
+                op.Result = Enumerations.SaveLinkResult.InvalidInput;
+                return op;
+            }
+
+            // make sure existing's userId matches source's userId
+            var existing = Link.Get(source.LinkId);
+            if (existing.UserId != source.UserId)
+            {
+                op.Result = Enumerations.SaveLinkResult.PathAlreadyTaken;
+                return op;
+            }
+
+            // save existing again, but with different destinationUrl
+            existing.DestinationUrl = source.DestinationUrl;
+
+            if (!op.HasError && !Link.Save(existing))
+            {
+                op.Result = Enumerations.SaveLinkResult.UnknownError;
+            }
+
+            if (op.Result == Enumerations.SaveLinkResult.Success)
+            {
+                op.Item = Link.Get(source.LinkId);
+            }
+
+            return op;
+        }
     }
 }

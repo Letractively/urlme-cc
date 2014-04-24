@@ -20,6 +20,13 @@ namespace urlme.data.Operations
                 return this.Result.GetDescription();
             }
         }
+        public string ResultEnum
+        {
+            get
+            {
+                return this.Result.ToString();
+            }
+        }
         public bool WasSuccessful
         {
             get

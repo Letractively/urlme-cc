@@ -78,6 +78,10 @@ ianhd.home.index = {
                             viewModel.result('http://urlme.cc/' + resp.Item.ShortUrl);
                             ianhd.home.index.clearViewModel();
                         } else {
+                            if (resp.ResultEnum === "UserAlreadyHasLink") {
+                                var link = "<a href='{0}' target='_blank'>link</a>".format(resp.Item.DestinationUrl);
+                                resp.Message = resp.Message.replace("link", link);
+                            }
                             viewModel.message(resp.Message);
                         }
                     }

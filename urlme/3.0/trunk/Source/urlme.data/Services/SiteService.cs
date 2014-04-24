@@ -50,13 +50,12 @@ namespace urlme.data.Services
                     op.Result = Enumerations.SaveLinkResult.PathAlreadyTaken;
             }
 
-            if (!op.HasError && !Link.Save(source)
-            )
+            if (!op.HasError && !Link.Save(source))
             {
                 op.Result = Enumerations.SaveLinkResult.UnknownError;
             }
 
-            if (op.Result == Enumerations.SaveLinkResult.Success)
+            if (op.Result == Enumerations.SaveLinkResult.Success || op.Result == Enumerations.SaveLinkResult.UserAlreadyHasLink)
             {
                 op.Item = Link.Get(source.Path);
             }

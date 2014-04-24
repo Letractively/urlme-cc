@@ -7,7 +7,8 @@ ianhd.home.index = {
 	    success: function () { return $(".alert-success"); },
 	},
 	selectors: {
-	    deleteLinks: ".delete"
+	    deleteLinks: ".delete",
+        overwrite: '.overwrite',
 	},
 	init: function () {
 	    $("abbr.timeago").timeago();
@@ -26,6 +27,32 @@ ianhd.home.index = {
 	    viewModel.message("");
 	},
 	bindControls: function () {
+	    $(document).on("click", ianhd.home.index.selectors.overwrite, function (e) {
+	        e.preventDefault();
+	        var el = $(this);
+
+	        BootstrapDialog.show({
+	            title: 'Please Confirm',
+	            message: 'Are you sure?',
+	            cssClass: 'login-dialog',
+	            buttons: [{
+	                label: 'Yes, overwrite',
+	                cssClass: 'btn-primary',
+	                action: function (dialog) {
+	                    var itemId = el.attr("data-item-id");
+	                    var data = { destinationUrl: viewModel.longUrl(), linkId: itemId };
+
+	                    $.post("links/overwrite", data, function (resp) {
+	                        alert(resp);
+	                        ianhd.home.index.showSuccess();
+	                    });
+
+	                    dialog.close();
+	                }
+	            }]
+	        });
+	    });
+
 	    // delete link
 	    $(document).on("click", ianhd.home.index.selectors.deleteLinks, function (e) {
 	        e.preventDefault();
@@ -80,7 +107,10 @@ ianhd.home.index = {
                         } else {
                             if (resp.ResultEnum === "UserAlreadyHasLink") {
                                 var link = "<a href='{0}' target='_blank'>link</a>".format(resp.Item.DestinationUrl);
-                                resp.Message = resp.Message.replace("link", link);
+                                var overwrite = "<a href='#' class='overwrite' data-item-id='{0}'>Overwrite it</a>".format(resp.Item.LinkId);
+                                resp.Message = resp.Message
+                                    .replace("link", link)
+                                    .replace("Overwrite it", overwrite);
                             }
                             viewModel.message(resp.Message);
                         }

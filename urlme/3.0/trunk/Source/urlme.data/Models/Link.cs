@@ -46,7 +46,7 @@ namespace urlme.data.Models
             }
         }
 
-        public static Link GetByLinkId(int linkId)
+        public static Link Get(int linkId)
         {
             using (var conn = Db.CreateConnection())
             {
@@ -61,7 +61,7 @@ namespace urlme.data.Models
                 return conn.Query<Link>("select * from [ihdavis].[Link] where Path=@path", new { path }).FirstOrDefault();
             }
         }
-        
+
         public static bool Save(Link source)
         {
             using (var conn = Db.CreateConnection())
@@ -81,7 +81,7 @@ namespace urlme.data.Models
                 {
                     return conn.Execute(
                         @"update [ihdavis].[Link] 
-                          set UserId=@userId, Path=@path, DestinationUrl=@destinationUrl, 
+                          set UserId=@userId, Path=@path, DestinationUrl=@destinationUrl 
                           where UserId=@userId and LinkId=@linkId"
                         , new { source.UserId, source.Path, source.DestinationUrl, source.LinkId }
                         ) == 1;

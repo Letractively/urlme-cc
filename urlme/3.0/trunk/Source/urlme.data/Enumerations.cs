@@ -14,7 +14,7 @@ namespace urlme.data
             Success,
             [Description("This path is already taken.")]
             PathAlreadyTaken,
-            [Description("You already have a link with this custom path.")]
+            [Description("You already have a link with this custom path. Overwrite it.")]
             UserAlreadyHasLink,
             [Description("Unkown error, please try again.")]
             UnknownError,

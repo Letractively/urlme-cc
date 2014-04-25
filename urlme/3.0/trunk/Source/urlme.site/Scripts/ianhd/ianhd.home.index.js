@@ -43,8 +43,21 @@ ianhd.home.index = {
 	                    var data = { destinationUrl: viewModel.longUrl(), linkId: itemId };
 
 	                    $.post("links/overwrite", data, function (resp) {
-	                        alert(resp);
-	                        ianhd.home.index.showSuccess();
+	                        if (resp.WasSuccessful) {
+	                            viewModel.result(resp.Item.ShortUrl);
+
+	                            // update datatable - get row
+	                            var item = $("tr[data-item-id='{0}']".format(itemId))[0];
+	                            var rowIndex = dt.fnGetPosition(item);
+                                dt.fnUpdate(resp.Item.LongUrl, rowIndex, 0);
+	                            //dt.fnDeleteRow(rowIndex);
+
+	                            ianhd.home.index.showSuccess();
+	                            ianhd.home.index.clearViewModel();
+                                // todo: update record in datatable
+	                        } else {
+	                            viewModel.message(resp.Message);
+	                        }
 	                    });
 
 	                    dialog.close();
@@ -94,28 +107,21 @@ ianhd.home.index = {
 			    // create link on server
 			    data = { destinationUrl: data.longUrl, path: data.path };
 
-			    // use goo.gl to create link
-			    $.ajax("links",
-                {
-                    data: JSON.stringify(data),
-                    contentType: 'application/json',
-                    type: 'POST',
-                    success: function (resp) {
-                        if (resp.WasSuccessful) {
-                            viewModel.result('http://urlme.cc/' + resp.Item.ShortUrl);
-                            ianhd.home.index.clearViewModel();
-                        } else {
-                            if (resp.ResultEnum === "UserAlreadyHasLink") {
-                                var link = "<a href='{0}' target='_blank'>link</a>".format(resp.Item.DestinationUrl);
-                                var overwrite = "<a href='#' class='overwrite' data-item-id='{0}'>Overwrite it</a>".format(resp.Item.LinkId);
-                                resp.Message = resp.Message
-                                    .replace("link", link)
-                                    .replace("Overwrite it", overwrite);
-                            }
-                            viewModel.message(resp.Message);
-                        }
-                    }
-                });
+			    $.post("links", data, function (resp) {
+			        if (resp.WasSuccessful) {
+			            viewModel.result(resp.Item.ShortUrl);
+			            ianhd.home.index.clearViewModel();
+			        } else {
+			            if (resp.ResultEnum === "UserAlreadyHasLink") {
+			                var link = "<a href='{0}' target='_blank' title='{0}'>link</a>".format(resp.Item.DestinationUrl);
+			                var overwrite = "<a href='#' class='overwrite' data-item-id='{0}'>Overwrite it</a>".format(resp.Item.LinkId);
+			                resp.Message = resp.Message
+                                .replace("link", link)
+                                .replace("Overwrite it", overwrite);
+			            }
+			            viewModel.message(resp.Message);
+			        }
+			    });
 			} else {
 			    // trim data obj to only what goo.gl needs
 			    data = { longUrl: data.longUrl };

@@ -21,7 +21,8 @@ user-select: none;
 .bottomBuffer { margin-bottom: 20px; }
 .bigBottomBuffer { margin-bottom: 40px; }
 .linkForm input { margin-right: 15px; }
-.linkForm input[type='url'] { width: 312px !important; } /* goo.gl's is 438px wide */
+.linkForm input.loggedIn[type='url'] { width: 312px !important; } /* goo.gl's is 438px wide */
+.linkForm input[type='url'] { width: 475px !important; }
 .linkForm input.path { width: 170px !important; } /* goo.gl's is 438px wide */
 .linkForm .result { display:inline-block; margin-left: 5px; width: 252px; }
 .linkForm .arrow { display:inline-block; margin-right: 10px; }

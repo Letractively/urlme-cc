@@ -9,6 +9,12 @@ namespace urlme.site.Controllers
     [RoutePrefix("")]
     public class HomeController : Controller
     {
+        [Route("add")]
+        public ActionResult Add(string url)
+        {
+            return View();
+        }
+        
         [Route("")]
         public ActionResult Index()
         {

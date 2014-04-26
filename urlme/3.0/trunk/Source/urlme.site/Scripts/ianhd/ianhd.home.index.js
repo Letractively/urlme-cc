@@ -148,7 +148,9 @@ ianhd.home.index = {
 	    $.get('links', function (resp) {
 	        viewModel.items(resp);
 	        // datatable-ize the table
-	        dt = $("#example").dataTable();
+	        dt = $("#example").dataTable({
+	            "aaSorting": [[2, "desc"]]
+	        });
 	    });
 	},
 	removeHash: function () {

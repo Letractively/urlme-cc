@@ -33,7 +33,7 @@ namespace urlme.data.Models
         {
             get
             {
-                return this.CreateDate.ToString("MM/dd/yyyy");
+                return this.CreateDate.ToString("yyyy-MM-dd");
             }
         }
 

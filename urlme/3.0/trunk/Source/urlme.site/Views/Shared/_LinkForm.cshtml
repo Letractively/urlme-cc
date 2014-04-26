@@ -1,7 +1,11 @@
-﻿<div class="row bigBottomBuffer">
+﻿@{
+    var loggedInClass = Request.IsAuthenticated ? "loggedIn" : "";
+}
+
+<div class="row bigBottomBuffer">
     <form class="linkForm form form-inline" role="form">
         @*<div class="form-group">*@
-            <input type="url" class="form-control" placeholder="Paste a link to shorten it" autofocus="autofocus" data-bind="value: longUrl" />
+            <input type="url" class="form-control @loggedInClass" placeholder="Paste a link to shorten it" autofocus="autofocus" data-bind="value: longUrl" />
             @if (Request.IsAuthenticated)
             {
                 <span>http://urlme.cc/</span><input type="text" class="path form-control" placeholder="custom-path (optional)" data-bind="value: path" />    

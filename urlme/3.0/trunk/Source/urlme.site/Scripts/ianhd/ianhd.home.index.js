@@ -49,10 +49,10 @@ ianhd.home.index = {
 	                            // update datatable - get row
 	                            var item = $("tr[data-item-id='{0}']".format(itemId))[0];
 	                            var rowIndex = dt.fnGetPosition(item);
-                                dt.fnUpdate(resp.Item.LongUrl, rowIndex, 0);
-	                            //dt.fnDeleteRow(rowIndex);
+	                            var newLongUrl = "<a target='_blank' title='{0}' href='{0}'>{1}</a>".format(resp.Item.DestinationUrl, resp.Item.LongUrl);
+                                dt.fnUpdate(newLongUrl, rowIndex, 0);
 
-	                            ianhd.home.index.showSuccess();
+                                ianhd.home.index.showSuccess();
 	                            ianhd.home.index.clearViewModel();
                                 // todo: update record in datatable
 	                        } else {
@@ -141,7 +141,7 @@ ianhd.home.index = {
 		});
 	},
 	showSuccess: function () {
-	    ianhd.home.index.controls.success().fadeIn(300).delay(1500).fadeOut(500);
+	    ianhd.home.index.controls.success().fadeIn(300).delay(2000).fadeOut(500);
 	},
 	loadData: function () {
 	    if (!viewModel.signedIn()) { return; }

@@ -37,4 +37,8 @@ user-select: none;
 .dataTables_wrapper tr td { vertical-align: middle!important; }
 
 /* add bookmarklet */
-body.addBody { padding: 20px; }
+body.noPadding { padding: 0; }
+.addBody { padding: 20px; width:361px; }
+    .addBody .linkForm { margin-top: 20px; }
+.addBody .form-inline .form-group { display: block; margin-bottom: 20px; }
+.addBody button { margin-left: 15px; }

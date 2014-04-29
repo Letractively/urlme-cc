@@ -6,27 +6,32 @@
 <!DOCTYPE html>
 <html>
 <head>
-@Styles.Render("~/Content/css")
+    @Styles.Render("~/Content/css")
+    <link rel="icon" href="~/content/link.png" />
 </head>
-<body class="addBody">
-    <div>
-        <div class="logo"></div>
-    </div>
-    <form class="linkForm form" role="form">
-        <div class="form-group">
-            <input type="url" class="form-control @loggedInClass" placeholder="Paste a link to shorten it" autofocus="autofocus" data-bind="value: longUrl" />
+<body class="noPadding">
+    <div class="addBody">
+        <div>
+            <div class="logo"></div>
         </div>
-        @if (Request.IsAuthenticated)
-        {
+        <form class="linkForm form form-inline" role="form">
             <div class="form-group">
-                <span>http://urlme.cc/</span><input type="text" class="path form-control" placeholder="custom-path (optional)" data-bind="value: path" />
+                <input type="url" class="form-control @loggedInClass" placeholder="Paste a link to shorten it" autofocus="autofocus" data-bind="value: longUrl" />
             </div>
-        }
-        <div class="form-group">
-            <button type="submit" class="btn btn-primary">Shorten</button>
-        </div>
-        <div class="result @loggedInClass" data-bind="visible: result" style="display:none"><span class="arrow noSelect">➔</span><span data-bind="text: result"></span></div>
-    </form>
+            @if (Request.IsAuthenticated)
+            {
+                <div class="form-group">
+                    <span>http://urlme.cc/</span><input type="text" class="path form-control" placeholder="custom-path (optional)" data-bind="value: path" />
+                </div>
+            }
+            <div class="result @loggedInClass" data-bind="visible: result" style="display:none"><span class="arrow noSelect">➔</span><span data-bind="text: result"></span></div>            
+            <div class="form-group text-right">
+                <button type="submit" class="btn btn-primary">Shorten</button>
+                @*<button class="btn btn-default">Shorten, copy & close</button>*@
+                <button class="btn btn-default">Cancel</button>
+            </div>
+        </form>
+    </div>
 </body>
 @Scripts.Render("~/bundles/jquery")
 @Scripts.Render("~/bundles/bootstrap")

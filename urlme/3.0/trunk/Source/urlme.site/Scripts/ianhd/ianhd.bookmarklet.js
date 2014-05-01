@@ -2,7 +2,7 @@
 
 ianhd.bookmarklet = {
 	controls: {
-	    close: function () { return $(".close"); },
+	    close: function () { return $(".closeWindow"); },
 	},
 	selectors: {
         overwrite: '.overwrite',

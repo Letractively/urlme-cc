@@ -28,11 +28,24 @@
             <div class="form-group text-right">
                 <button type="submit" class="btn btn-primary">Shorten</button>
                 @*<button class="btn btn-default">Shorten, copy & close</button>*@
-                <button class="btn btn-default">Cancel</button>
+                <button class="btn btn-default closeWindow">Cancel</button>
             </div>
         </form>
     </div>
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    <script>
+        var viewModel = ko.mapping.fromJS({
+            result: '',
+            message: '',
+            longUrl: '',
+            path: '',
+            signedIn: @Request.IsAuthenticated.ToString().ToLower(),
+            items: []
+        });
+        ko.applyBindings(viewModel);
+        var dt = null; // for datatable
+    </script>
+    @Scripts.Render("~/scripts/ianhd/ianhd.bookmarklet.js")
 </body>
-@Scripts.Render("~/bundles/jquery")
-@Scripts.Render("~/bundles/bootstrap")
 </html>

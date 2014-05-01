@@ -27,6 +27,7 @@ ianhd.home.index = {
 	    viewModel.message("");
 	},
 	bindControls: function () {
+        // overwrite
 	    $(document).on("click", ianhd.home.index.selectors.overwrite, function (e) {
 	        e.preventDefault();
 	        var el = $(this);

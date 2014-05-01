@@ -40,11 +40,9 @@
             message: '',
             longUrl: '',
             path: '',
-            signedIn: @Request.IsAuthenticated.ToString().ToLower(),
-            items: []
+            signedIn: @Request.IsAuthenticated.ToString().ToLower()
         });
         ko.applyBindings(viewModel);
-        var dt = null; // for datatable
     </script>
     @Scripts.Render("~/scripts/ianhd/ianhd.bookmarklet.js")
 </body>

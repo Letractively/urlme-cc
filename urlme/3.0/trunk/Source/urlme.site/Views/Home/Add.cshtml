@@ -24,12 +24,11 @@
                     <span>http://urlme.cc/</span><input type="text" class="path form-control" placeholder="custom-path (optional)" data-bind="value: path" />
                 </div>
             }
-            <div class="result @loggedInClass" data-bind="visible: result" style="display:none"><span class="arrow noSelect">➔</span><span data-bind="text: result"></span></div>            
             <div class="form-group text-right">
                 <button type="submit" class="btn btn-primary">Shorten</button>
-                @*<button class="btn btn-default">Shorten, copy & close</button>*@
-                <button class="btn btn-default closeWindow">Cancel</button>
+                <button class="btn btn-default closeWindow">Close</button>
             </div>
+            <div class="result @loggedInClass" data-bind="visible: result" style="display:none"><span class="arrow noSelect">➔</span><span data-bind="text: result"></span></div>
         </form>
     </div>
     @Scripts.Render("~/bundles/jquery")

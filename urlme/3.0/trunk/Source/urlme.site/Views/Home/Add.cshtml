@@ -1,12 +1,14 @@
 ﻿@{
     Layout = null;
     var loggedInClass = Request.IsAuthenticated ? "loggedIn" : "";
+    var exampleLink = "http://urlme.cc/awesome";
 }
 
 <!DOCTYPE html>
 <html>
 <head>
     @Styles.Render("~/Content/css")
+    @Styles.Render("//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css")
     <link rel="icon" href="~/content/link.png" />
 </head>
 <body class="noPadding">
@@ -18,14 +20,17 @@
             <div class="form-group">
                 <input type="url" class="form-control @loggedInClass" placeholder="Paste a link to shorten it" autofocus="autofocus" data-bind="value: longUrl" />
             </div>
-            <div class="form-group">
-                <span>http://urlme.cc/</span><input type="text" class="path form-control" placeholder="custom-path (optional)" data-bind="value: path, enable: signedIn" />
+            <div class="form-group" data-bind="visible: signedIn">
+                <span>http://urlme.cc/</span><input type="text" class="path form-control" placeholder="custom-path (optional)" data-bind="value: path" />
             </div>
             <div class="form-group text-right">
                 <button type="submit" class="btn btn-primary">Shorten</button>
                 <button class="btn btn-default closeWindow">Close</button>
             </div>
-            <div class="result @loggedInClass" data-bind="visible: result" style="display:none"><span class="arrow noSelect">➔</span><span data-bind="text: result"></span></div>
+            <div class="form-group result @loggedInClass" data-bind="visible: result" style="display:none"><span class="arrow noSelect">➔</span><span data-bind="text: result"></span></div>
+            <div class="form-group signIn" data-bind="visible: !signedIn()">
+                <a href="~/" target="_blank">Sign in <i class="fa fa-external-link"></i></a> to create custom paths, like <a href="@exampleLink">@exampleLink</a>
+            </div>
         </form>
     </div>
     @Scripts.Render("~/bundles/jquery")

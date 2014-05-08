@@ -12,7 +12,7 @@ namespace urlme.data
         public enum SaveLinkResult
         {
             Success,
-            [Description("This path is already taken.")]
+            [Description("Someone else already has this path.")]
             PathAlreadyTaken,
             [Description("You already have a link with this custom path. Overwrite it.")]
             UserAlreadyHasLink,

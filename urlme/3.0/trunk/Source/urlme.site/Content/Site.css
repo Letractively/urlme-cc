@@ -42,3 +42,4 @@ body.noPadding { padding: 0; }
     .addBody .linkForm { margin-top: 20px; }
 .addBody .form-inline .form-group { display: block; margin-bottom: 20px; }
 .addBody button { margin-left: 15px; }
+.addBody .signIn { line-height: 30px; }

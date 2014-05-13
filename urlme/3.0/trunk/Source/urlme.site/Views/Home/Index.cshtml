@@ -33,7 +33,8 @@
             longUrl: '',
             path: '',
             signedIn: @Request.IsAuthenticated.ToString().ToLower(),
-            items: []
+            items: [],
+            loading: true
         });
         ko.applyBindings(viewModel);
         var dt = null; // for datatable

@@ -24,12 +24,12 @@ user-select: none;
 .linkForm input.loggedIn[type='url'] { width: 312px !important; } /* goo.gl's is 438px wide */
 .linkForm input[type='url'] { width: 321px !important; }
 .linkForm input.path { width: 170px !important; display:inline-block; margin-left: 10px; } /* goo.gl's is 438px wide */
-.linkForm .result { display:inline-block; margin-left: 5px; width: 145px; }
+.linkForm .result { color: green; display:inline-block; margin-left: 5px; width: 145px; }
 .linkForm .result.loggedIn { width: 242px; }
 .linkForm .arrow { display:inline-block; margin-right: 10px; }
 .logo { background: url('logo.jpg'); display:inline-block; width: 170px; height: 37px; }
 .login-dialog .modal-dialog { width: 300px; }
-.alert-success { width: 250px; position: fixed; top: 20px; left: 50%; margin-left: -150px; display:none; }
+.alert-success.primary { width: 250px; position: fixed; top: 20px; left: 50%; margin-left: -150px; display:none; }
 .alert-warning { margin-top: -20px; }
 
 /* datatable overrides */
@@ -46,3 +46,4 @@ body.noOverflow { overflow: hidden; }
 .addBody .signIn { line-height: 30px; }
 .addBody .alert { margin-bottom: 0; }
 .addBody .alert-warning { margin-top: 0; }
+.addBody .alert-success.primary { width: 100px; top: 10px; right: 0; margin-right: 10px; left: auto; }

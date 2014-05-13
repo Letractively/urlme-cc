@@ -20,6 +20,13 @@ namespace urlme.site.Controllers
             return Content("You need to sign in to do that.");
         }
 
+        [Route("signed-in")]
+        [AllowAnonymous]
+        public JsonResult SignedIn()
+        {
+            return this.Json(new { signedIn = Request.IsAuthenticated }, JsonRequestBehavior.AllowGet);
+        }
+
         //
         // POST: /Account/ExternalLogin
         [Route("externallogin")]

@@ -4,6 +4,7 @@ ianhd.bookmarklet = {
 	controls: {
 	    close: function () { return $(".closeWindow"); },
 	    shortenUrl: function () { return $("button[type='submit']"); },
+	    success: function () { return $(".alert-success.primary"); },
 	},
 	selectors: {
         overwrite: '.overwrite',
@@ -11,6 +12,7 @@ ianhd.bookmarklet = {
 	init: function () {
 	    ianhd.bookmarklet.bindControls();
 	    ianhd.bookmarklet.removeHash();
+	    ianhd.bookmarklet.listenForSignedIn();
 	},
 	bindControls: function () {
 	    // shorten url
@@ -35,7 +37,8 @@ ianhd.bookmarklet = {
                                 .replace("link", link)
                                 .replace("Overwrite it", overwrite);
 	                    }
-	                    viewModel.message(resp.Message);
+	                    viewModel.error(resp.Message);
+	                    viewModel.success("");
 	                    viewModel.result("");
 	                }
 	            });
@@ -57,17 +60,64 @@ ianhd.bookmarklet = {
 	        }
 	    });
 
+	    // overwrite
+	    $(document).on("click", ianhd.bookmarklet.selectors.overwrite, function (e) {
+	        e.preventDefault();
+	        var el = $(this);
+
+	        BootstrapDialog.show({
+	            title: 'Please Confirm',
+	            message: 'Are you sure?',
+	            cssClass: 'login-dialog',
+	            buttons: [{
+	                label: 'Yes, overwrite',
+	                cssClass: 'btn-primary',
+	                action: function (dialog) {
+	                    var itemId = el.attr("data-item-id");
+	                    var data = { destinationUrl: viewModel.longUrl(), linkId: itemId };
+
+	                    $.post("links/overwrite", data, function (resp) {
+	                        if (resp.WasSuccessful) {
+	                            viewModel.result(resp.Item.ShortUrl);
+	                            ianhd.bookmarklet.showSuccess();
+	                            ianhd.bookmarklet.clearViewModel();
+	                        } else {
+	                            viewModel.error(resp.Message);
+	                            viewModel.success("");
+	                        }
+	                    });
+
+	                    dialog.close();
+	                }
+	            }]
+	        });
+	    });
+
 	    // cancel/close window
 	    ianhd.bookmarklet.controls.close().click(function (e) {
 	        e.preventDefault();
 	        window.close();
 	    });
+	},
+	listenForSignedIn: function() {
+	    if (viewModel.signedIn()) return;
 
+	    setInterval(function() {
+	        if (!viewModel.signedIn()) {
+	            $.get("account/signed-in", function (resp) {
+	                if (resp.signedIn) {
+	                    viewModel.signedIn(true);
+	                    viewModel.success("You've been signed in.");
+	                }
+	            });
+	        }
+	    }, 1000);
 	},
 	clearViewModel: function () {
 	    viewModel.longUrl("");
 	    viewModel.path("");
-	    viewModel.message("");
+	    viewModel.error("");
+	    viewModel.success("");
 	},
 	showSuccess: function () {
 	    ianhd.bookmarklet.controls.success().fadeIn(300).delay(2000).fadeOut(500);

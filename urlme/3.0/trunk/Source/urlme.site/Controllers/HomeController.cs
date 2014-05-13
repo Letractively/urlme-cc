@@ -14,7 +14,7 @@ namespace urlme.site.Controllers
         {
             return View();
         }
-        
+
         [Route("")]
         public ActionResult Index()
         {

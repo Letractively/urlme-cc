@@ -1,7 +1,7 @@
 ﻿@{
     Layout = null;
     var loggedInClass = Request.IsAuthenticated ? "loggedIn" : "";
-    var exampleLink = "http://urlme.cc/awesome";
+    var exampleLink = "http://urlme.cc/hokie-football";
         // javascript:(function(){  var url="http://localhost:1522", w=362, h=338, left=window.screenX + ((screen.width/2)-(w/2)), top=85; window.open(url + '/add?url=' + encodeURIComponent(document.location), 'UrlMe', 'status=1,width='+w+',height='+h+',left='+left+',top='+top+',scrollbars=no,toolbar=no'); })();
 }
 
@@ -14,6 +14,7 @@
 </head>
 <body class="noPadding noOverflow">
     <div class="addBody">
+        <div class="alert alert-success text-center primary">Success!</div>
         <div>
             <div class="logo"></div>
         </div>
@@ -28,11 +29,13 @@
                 <button type="submit" class="btn btn-primary">Shorten</button>
                 <button class="btn btn-default closeWindow">Close</button>
             </div>
-            <div data-bind="visible: result" style="display:none"><span class="arrow noSelect">➔</span><span data-bind="text: result"></span></div>
-            <div>
-                <div class="alert alert-warning" data-bind="visible: message" style="display:none;">
-                    <strong>Oops!</strong> <span data-bind="html: message"></span>
-                </div>
+            <div data-bind="visible: result" style="display:none; color: green;"><span class="arrow noSelect">➔</span><span data-bind="text: result"></span></div>
+            <div class="alert alert-warning" data-bind="visible: error" style="display:none;">
+                <strong>Oops!</strong> <span data-bind="html: error"></span>
+            </div>
+            <div class="alert alert-success" data-bind="visible: success" style="display:none;">
+                <button type="button" class="close" onclick="$(this).parent().hide();return false;" aria-hidden="true">&times;</button>
+                <strong>Yay!</strong> <span data-bind="html: success"></span>
             </div>
             <div class="form-group signIn" data-bind="visible: !signedIn()" style="display:none">
                 <a href="~/" target="_blank">Sign in <i class="fa fa-external-link"></i></a> to create custom paths, like <a href="@exampleLink">@exampleLink</a>
@@ -44,7 +47,8 @@
     <script>
         var viewModel = ko.mapping.fromJS({
             result: '',
-            message: '',
+            error: '',
+            success: '',
             longUrl: '@Request.QueryString["url"]',
             path: '',
             signedIn: @Request.IsAuthenticated.ToString().ToLower()

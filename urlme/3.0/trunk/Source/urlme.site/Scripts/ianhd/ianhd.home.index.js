@@ -55,7 +55,6 @@ ianhd.home.index = {
 
                                 ianhd.home.index.showSuccess();
 	                            ianhd.home.index.clearViewModel();
-                                // todo: update record in datatable
 	                        } else {
 	                            viewModel.message(resp.Message);
 	                        }
@@ -111,6 +110,12 @@ ianhd.home.index = {
 			    $.post("links", data, function (resp) {
 			        if (resp.WasSuccessful) {
 			            viewModel.result(resp.Item.ShortUrl);
+			            // if this is the user's first item, then load all the data
+			            if (!viewModel.items().length) {
+			                ianhd.home.index.loadData();
+			            } else {
+			                viewModel.items.push(resp.Item);
+			            }
 			            ianhd.home.index.clearViewModel();
 			        } else {
 			            if (resp.ResultEnum === "UserAlreadyHasLink") {
@@ -145,9 +150,14 @@ ianhd.home.index = {
 	    ianhd.home.index.controls.success().fadeIn(300).delay(2000).fadeOut(500);
 	},
 	loadData: function () {
-	    if (!viewModel.signedIn()) { return; }
+	    if (!viewModel.signedIn()) return;
 	    $.get('links', function (resp) {
 	        viewModel.items(resp);
+	        viewModel.loading(false);
+
+            // do not dataTable-ize it until we have items
+	        if (!viewModel.items().length) return;
+
 	        // datatable-ize the table
 	        dt = $("#example").dataTable({
 	            "aaSorting": [[2, "desc"]]

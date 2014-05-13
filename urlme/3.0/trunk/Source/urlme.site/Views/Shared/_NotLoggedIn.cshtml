@@ -10,18 +10,22 @@
             Sign in to manage your links:
         </div>    
     
-        <div class="row bottomBuffer">
+        <div class="row bigBottomBuffer">
             @foreach (AuthenticationDescription p in loginProviders)
             {
                 var className = p.AuthenticationType == "Google" ? "google-plus" : p.AuthenticationType;
                 className = className.ToLower();
                 
-                <div class="col-xs-6">
+                <div class="col-xs-12 col-sm-6">
                     <a href="#" onclick="$('input[name=provider]').val('@p.AuthenticationType'); $(this).closest('form').submit(); return false;" class="btn btn-block btn-social btn-@className">
                         <i class="fa fa-@className"></i> Sign in with @p.AuthenticationType
                     </a>
                 </div>
             }
+        </div>
+    
+        <div class="row bottomBuffer">
+            Drag'n'drop the below bookmarklets into your toolbar to make it super easy to manage your links:
         </div>
     }
 }

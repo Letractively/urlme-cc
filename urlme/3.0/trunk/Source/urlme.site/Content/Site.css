@@ -23,9 +23,9 @@ user-select: none;
 .linkForm input { margin-right: 15px; }
 .linkForm input.loggedIn[type='url'] { width: 312px !important; } /* goo.gl's is 438px wide */
 .linkForm input[type='url'] { width: 321px !important; }
-.linkForm input.path { width: 170px !important; } /* goo.gl's is 438px wide */
+.linkForm input.path { width: 170px !important; display:inline-block; margin-left: 10px; } /* goo.gl's is 438px wide */
 .linkForm .result { display:inline-block; margin-left: 5px; width: 145px; }
-.linkForm .result.loggedIn { width: 252px; }
+.linkForm .result.loggedIn { width: 242px; }
 .linkForm .arrow { display:inline-block; margin-right: 10px; }
 .logo { background: url('logo.jpg'); display:inline-block; width: 170px; height: 37px; }
 .login-dialog .modal-dialog { width: 300px; }
@@ -38,8 +38,11 @@ user-select: none;
 
 /* add bookmarklet */
 body.noPadding { padding: 0; }
+body.noOverflow { overflow: hidden; }
 .addBody { padding: 20px; width:361px; }
     .addBody .linkForm { margin-top: 20px; }
 .addBody .form-inline .form-group { display: block; margin-bottom: 20px; }
 .addBody button { margin-left: 15px; }
 .addBody .signIn { line-height: 30px; }
+.addBody .alert { margin-bottom: 0; }
+.addBody .alert-warning { margin-top: 0; }

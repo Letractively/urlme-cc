@@ -16,7 +16,6 @@ ianhd.bookmarklet = {
 	    // shorten url
 	    ianhd.bookmarklet.controls.shortenUrl().click(function (e) {
 	        e.preventDefault();
-	        alert('clicked');
 	        var data = ko.mapping.toJS(viewModel);
 
 	        // custom path provided?
@@ -27,7 +26,7 @@ ianhd.bookmarklet = {
 	            $.post("links", data, function (resp) {
 	                if (resp.WasSuccessful) {
 	                    viewModel.result(resp.Item.ShortUrl);
-	                    ianhd.home.index.clearViewModel();
+	                    ianhd.bookmarklet.clearViewModel();
 	                } else {
 	                    if (resp.ResultEnum === "UserAlreadyHasLink") {
 	                        var link = "<a href='{0}' target='_blank' title='{0}'>link</a>".format(resp.Item.DestinationUrl);
@@ -37,6 +36,7 @@ ianhd.bookmarklet = {
                                 .replace("Overwrite it", overwrite);
 	                    }
 	                    viewModel.message(resp.Message);
+	                    viewModel.result("");
 	                }
 	            });
 	        } else {

@@ -179,6 +179,7 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\link.png" />
     <Content Include="Content\logo.jpg" />
+    <Content Include="Content\openhand.ico" />
     <Content Include="Content\todc-bootstrap.min.css" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />

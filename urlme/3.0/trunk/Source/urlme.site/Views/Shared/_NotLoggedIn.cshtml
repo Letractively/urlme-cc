@@ -1,13 +1,15 @@
 ﻿@using Microsoft.Owin.Security
 @{
     var loginProviders = Context.GetOwinContext().Authentication.GetExternalAuthenticationTypes();
+    var exampleLink = "http://urlme.cc/hokie-football";
+    
     using (Html.BeginForm("ExternalLogin", "Account", new { ReturnUrl = "" }))
     {
         @Html.AntiForgeryToken()
         <input type="hidden" name="provider" />
     
         <div class="row bottomBuffer">
-            Sign in to manage your links:
+            Sign in to create links with your own custom path, like <a href="@exampleLink" target="_blank">@exampleLink</a>:
         </div>    
     
         <div class="row bigBottomBuffer">
@@ -26,6 +28,15 @@
     
         <div class="row bottomBuffer">
             Drag'n'drop the below bookmarklets into your toolbar to make it super easy to manage your links:
+        </div>
+    
+        <div class="row">
+            <div class="col-xs-12">
+                <a href="#">+urlme</a> - click this on any page you want to shorten
+            </div>
+            <div class="col-xs-12">
+                <a href="#">urlme.cc</a> - this will take you to your saved links
+            </div>
         </div>
     }
 }

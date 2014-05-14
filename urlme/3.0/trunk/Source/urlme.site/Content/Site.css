@@ -24,7 +24,7 @@ user-select: none;
 .linkForm input { margin-right: 15px; }
 .linkForm input.path { width: 170px !important; display:inline-block; margin-left: 10px; } /* goo.gl's is 438px wide */
 .linkForm input[type='url'] { width: 100%; }
-.linkForm button[type='submit'] { float:right; }
+.linkForm button[type='submit'] { float:right; margin-top: 20px; }
 .linkForm .result { color: green; display:inline-block; margin-left: 5px; width: 145px; }
 .linkForm .result.loggedIn { width: 242px; }
 .linkForm .arrow { display:inline-block; margin-right: 10px; }
@@ -42,6 +42,8 @@ body.noPadding { padding: 0; }
 body.noOverflow { overflow: hidden; }
 .addBody { padding: 20px; width:361px; }
     .addBody .linkForm { margin-top: 20px; }
+.addBody .linkForm button[type='submit'] { float:none; margin-top: 0; }
+
 .addBody .form-inline .form-group { display: block; margin-bottom: 20px; }
 .addBody button { margin-left: 15px; }
 .addBody .signIn { line-height: 30px; }

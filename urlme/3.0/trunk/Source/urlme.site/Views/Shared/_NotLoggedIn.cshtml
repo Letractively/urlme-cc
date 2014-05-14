@@ -2,6 +2,7 @@
 @{
     var loginProviders = Context.GetOwinContext().Authentication.GetExternalAuthenticationTypes();
     var exampleLink = "http://urlme.cc/hokie-football";
+    var addBookmarklet = "javascript:(function(){  var url='http://urlme.cc', w=362, h=338, left=window.screenX + ((screen.width/2)-(w/2)), top=85; window.open(url + '/add?url=' + encodeURIComponent(document.location), 'UrlMe', 'status=1,width='+w+',height='+h+',left='+left+',top='+top+',scrollbars=no,toolbar=no'); })();";
     
     using (Html.BeginForm("ExternalLogin", "Account", new { ReturnUrl = "" }))
     {
@@ -12,7 +13,7 @@
             Sign in to create links with your own custom path, like <a href="@exampleLink" target="_blank">@exampleLink</a>:
         </div>    
     
-        <div class="row bigBottomBuffer">
+        <div class="row bigBottomBuffer signInButtons">
             @foreach (AuthenticationDescription p in loginProviders)
             {
                 var className = p.AuthenticationType == "Google" ? "google-plus" : p.AuthenticationType;
@@ -26,18 +27,17 @@
             }
         </div>
     
-        <div class="row bottomBuffer">
-            Drag'n'drop the below bookmarklets into your toolbar to make it super easy to manage your links:
-        </div>
-
         <div class="bookmarklets">
             <div class="row bottomBuffer">
-                <div class="col-xs-2"><a href="#">+urlme</a></div>
-                <div class="col-xs-10">- click this on any page you want to shorten</div>
+                Drag'n'drop the below bookmarklets into your toolbar to make it super easy to manage your links:
+            </div>
+            <div class="row bottomBuffer">
+                <div class="col-xs-2 col-xs-offset-1"><a href="@addBookmarklet">+urlme</a></div>
+                <div class="col-xs-9 description">— click this on any page you want to shorten</div>
             </div>
             <div class="row">
-                <div class="col-xs-2"><a href="#">urlme.cc</a></div>
-                <div class="col-xs-10">- this will take you to your saved links</div>
+                <div class="col-xs-2 col-xs-offset-1"><a href="http://urlme.cc">urlme.cc</a></div>
+                <div class="col-xs-9 description">— this will take you to your saved links</div>
             </div>
         </div>
     }

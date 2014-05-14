@@ -7,7 +7,9 @@
         <input type="url" class="form-control @loggedInClass" placeholder="Paste a link to shorten it" autofocus="autofocus" data-bind="value: longUrl" />
         @if (Request.IsAuthenticated)
         {
-            <span>http://urlme.cc/</span><input type="text" class="path form-control" placeholder="custom-path (optional)" data-bind="value: path" />    
+            <div class="linkFormPart2">
+                <span>http://urlme.cc/</span><input type="text" class="path form-control" placeholder="custom-path (optional)" data-bind="value: path" />    
+            </div>
         }
         <button type="submit" class="btn btn-primary">Shorten</button>
         <div class="result @loggedInClass" data-bind="visible: result" style="display:none"><span class="arrow noSelect">➔</span><span data-bind="text: result"></span></div>

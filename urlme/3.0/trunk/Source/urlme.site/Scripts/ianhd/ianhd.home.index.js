@@ -16,10 +16,23 @@ ianhd.home.index = {
 
 	    ianhd.home.index.loadData();
         ianhd.home.index.bindControls();
-        ianhd.home.index.initZeroClipboard();
+        //ianhd.home.index.initZeroClipboard();
         ianhd.home.index.removeHash();
 	},
 	initZeroClipboard: function () {
+        $(document).on('mouseover', '.copy', function () {
+	        //turn off this listening event for the element that triggered this
+	        $(this).off('mouseover');
+
+	        //initialize zclip
+	        $(this).zclip({
+	            path: "ZeroClipboard.swf",
+	            copy: function () {
+	                return "this guy";
+	                //return $(this).prev().prop('value');
+	            }
+	        });
+	    });
 	},
 	clearViewModel: function () {
 	    viewModel.longUrl("");

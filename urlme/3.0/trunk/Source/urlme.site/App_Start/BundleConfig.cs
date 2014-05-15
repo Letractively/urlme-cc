@@ -12,7 +12,7 @@ namespace urlme.site
                         "~/Scripts/jquery-{version}.js",
                         "~/scripts/knockout-{version}.js",
                         "~/scripts/knockout.mapping.js",
-                        "~/scripts/plugins/zeroclipboard/zeroclipboard.min.js",
+                        "~/scripts/plugins/zclip/jquery.zclip.min.js",
                         "~/scripts/plugins/datatables/jquery.dataTables.min.js",
                         "~/scripts/plugins/datatables/datatables.bootstrap.js",
                         "~/scripts/plugins/bootstrap-dialog/bootstrap-dialog.min.js",

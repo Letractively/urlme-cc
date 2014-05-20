@@ -139,6 +139,7 @@ ianhd.home.index = {
                                 .replace("Overwrite it", overwrite);
 			            }
 			            viewModel.message(resp.Message);
+			            viewModel.result("");
 			        }
 			    });
 			} else {

@@ -38,7 +38,8 @@
             path: '',
             signedIn: @Request.IsAuthenticated.ToString().ToLower(),
             items: [],
-            loading: true
+            loading: true,
+            toCopy: '',
         });
         ko.applyBindings(viewModel);
         var dt = null; // for datatable

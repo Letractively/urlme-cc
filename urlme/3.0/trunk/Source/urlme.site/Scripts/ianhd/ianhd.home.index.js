@@ -2,36 +2,67 @@
 
 ianhd.home.index = {
 	controls: {
-	    copyLink: function () { return $("#copyLink"); },
 	    shortenUrl: function () { return $("button[type='submit']"); },
 	    success: function () { return $(".alert-success"); },
+	    theRealCopy: function () { return $("#theRealCopy"); },
 	},
 	selectors: {
-	    deleteLinks: ".delete",
+        copyLinks: '.copy',
+	    deleteLinks: '.delete',
         overwrite: '.overwrite',
 	},
 	init: function () {
-	    $("abbr.timeago").timeago();
-	    //$('#example').dataTable();
+	    // $("abbr.timeago").timeago();
 
 	    ianhd.home.index.loadData();
         ianhd.home.index.bindControls();
-        //ianhd.home.index.initZeroClipboard();
+        ianhd.home.index.initZeroClipboard();
         ianhd.home.index.removeHash();
 	},
-	initZeroClipboard: function () {
-        $(document).on('mouseover', '.copy', function () {
-	        //turn off this listening event for the element that triggered this
-	        $(this).off('mouseover');
+	findItemIndex: function (elemInsideOfTr) {
+	    var itemId = elemInsideOfTr.closest('tr').attr("data-item-id");
+	    var found = false;
+	    var itemIdx = -1;
+	    var findItem = $.grep(viewModel.items(), function (item, i) {
+	        if (!found && item.LinkId == itemId) {
+	            found = true;
+	            itemIdx = i;
+	            return true;
+	        }
+	    });
 
-	        //initialize zclip
-	        $(this).zclip({
-	            path: "ZeroClipboard.swf",
-	            copy: function () {
-	                return "this guy";
-	                //return $(this).prev().prop('value');
-	            }
-	        });
+	    return itemIdx;
+    },
+	initZeroClipboard: function () {
+	    ianhd.home.index.controls.theRealCopy().zclip({
+	        path: 'ZeroClipboard.swf',
+	        copy: function () {
+	            return viewModel.toCopy();
+	        },
+	        afterCopy: function () {
+	            ianhd.home.index.showSuccess();
+	        }
+	    });
+	    $(document).on('mouseover', ianhd.home.index.selectors.copyLinks, function () {
+	        var trigger = $(this);
+
+	        // turn on "hover" class
+	        //trigger.addClass("hover");
+
+	        // set toCopy
+	        var itemIdx = ianhd.home.index.findItemIndex(trigger);
+	        var item = viewModel.items()[itemIdx];
+	        viewModel.toCopy(item.ShortUrl);
+
+	        // move swf to over this element
+	        $(".zclip").css("left", trigger.offset().left).css("top", trigger.offset().top);
+	    });
+
+	    $(document).on('mouseout', ianhd.home.index.selectors.copyLinks, function () {
+	        var trigger = $(this);
+
+	        // turn off "hover" class
+	        //trigger.removeClass("hover");
 	    });
 	},
 	clearViewModel: function () {

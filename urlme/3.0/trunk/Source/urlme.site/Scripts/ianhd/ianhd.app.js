@@ -7,7 +7,6 @@ ianhd.app = {
 	    theRealCopy: function () { return $("#theRealCopy"); },
 	},
 	selectors: {
-	    copyCells: '.copyCell',
 	    copyLinks: '.copy',
 	    deleteLinks: '.delete',
         overwrite: '.overwrite',

@@ -2,27 +2,29 @@
     var loggedInClass = Request.IsAuthenticated ? "loggedIn" : "";
 }
 
-<div class="row">
-    <form class="linkForm form form-inline" role="form">
-        <input type="url" class="form-control @loggedInClass" placeholder="Paste a link to shorten it" autofocus="autofocus" data-bind="value: longUrl" />
-        @if (Request.IsAuthenticated)
-        {
-            <div class="linkFormPart2">
-                <span>http://urlme.cc/</span><input type="text" class="path form-control" placeholder="custom-path (optional)" data-bind="value: path" />    
-            </div>
-        }
-        <button type="submit" class="btn btn-primary">Shorten</button>
-    </form>
-</div>
-
-<div class="row output">
-    <div class="result @loggedInClass" data-bind="visible: result" style="display:none">
-        <i class="fa fa-arrow-right arrow noSelect"></i><span data-bind="text: result"></span>
-        <button type="button" class="copy btn btn-default btn-sm">
-            <i class="fa fa-copy"></i>&nbsp;&nbsp;Copy
-        </button>
+<div class="linkFormContainer">
+    <div class="row">
+        <form class="linkForm form form-inline" role="form">
+            <input type="url" class="form-control @loggedInClass" placeholder="Paste a link to shorten it" autofocus="autofocus" data-bind="value: longUrl" />
+            @if (Request.IsAuthenticated)
+            {
+                <div class="linkFormPart2">
+                    <span>http://urlme.cc/</span><input type="text" class="path form-control" placeholder="custom-path (optional)" data-bind="value: path" />
+                </div>
+            }
+            <button type="submit" class="btn btn-primary">Shorten</button>
+        </form>
     </div>
-    <div class="alert alert-warning" data-bind="visible: message" style="display:none;">
-        <strong>Oops!</strong> <span data-bind="html: message"></span>
+
+    <div class="row output">
+        <div class="result" data-bind="visible: result" style="display:none">
+            <div class="resultText"><i class="fa fa-arrow-right arrow noSelect"></i><span data-bind="text: result"></span></div>
+            <button type="button" class="copy outputCopy btn btn-default btn-sm">
+                <i class="fa fa-copy"></i>&nbsp;&nbsp;Copy
+            </button>
+        </div>
+        <div class="alert alert-warning" data-bind="visible: message" style="display:none;">
+            <strong>Oops!</strong> <span data-bind="html: message"></span>
+        </div>
     </div>
 </div>

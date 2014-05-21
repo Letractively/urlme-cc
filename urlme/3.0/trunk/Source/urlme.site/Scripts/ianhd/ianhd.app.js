@@ -56,16 +56,21 @@ ianhd.app = {
 	        trigger.addClass("hover");
 
 	        // set toCopy
-	        var itemIdx = ianhd.app.findItemIndex(trigger);
-	        var item = viewModel.items()[itemIdx];
-	        viewModel.toCopy(item.ShortUrl);
-	        viewModel.copyTriggerSelector("tr[data-item-id='{0}'] .copy".format(trigger.closest("tr").attr("data-item-id")));
+	        if (trigger.hasClass("outputCopy")) {
+	            viewModel.toCopy(viewModel.result());
+	            viewModel.copyTriggerSelector(".outputCopy");
+	        } else {
+	            var itemIdx = ianhd.app.findItemIndex(trigger);
+	            var item = viewModel.items()[itemIdx];
+	            viewModel.toCopy(item.ShortUrl);
+	            viewModel.copyTriggerSelector("tr[data-item-id='{0}'] .copy".format(trigger.closest("tr").attr("data-item-id")));
+	        }
 
 	        // move swf to over this element
 	        $(".zclip").css("left", trigger.offset().left).css("top", trigger.offset().top);
 	    });
 
-	    $(document).on('mouseover', "table", function () {
+	    $(document).on('mouseover', "table,.linkFormContainer", function () {
 	        var trigger = $(this);
 
 	        // turn off inner .copy's hover class

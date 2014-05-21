@@ -9,6 +9,7 @@
         <tr>
             <th>Long Url</th>
             <th>Short Url</th>
+            <th></th>
             <th>Created</th>
             <th># Hits</th>
             <th></th>
@@ -18,12 +19,14 @@
         <tr data-bind="attr: { 'data-item-id': LinkId }">
             <td><a target="_blank" data-bind="attr: { 'href': DestinationUrl, 'title': DestinationUrl }, text: LongUrl"></a></td>
             <td><a target="_blank" data-bind="attr: { 'href': ShortUrl }, text: ShortUrl"></a></td>
-            <td data-bind="text: Created"></td>
-            <td data-bind="text: Hits"></td>
-            <td>
+            <td class="copyCell">
                 <button type="button" class="copy btn btn-default btn-sm">
                     <i class="fa fa-copy"></i>&nbsp;&nbsp;Copy
                 </button>
+            </td>
+            <td data-bind="text: Created"></td>
+            <td data-bind="text: Hits"></td>
+            <td>
                 <button type="button" class="delete btn btn-default btn-sm">
                     <span class="glyphicon glyphicon-trash"></span>&nbsp;&nbsp;Delete
                 </button>

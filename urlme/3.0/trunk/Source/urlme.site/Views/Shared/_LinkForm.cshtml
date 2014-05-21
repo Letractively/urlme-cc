@@ -16,7 +16,12 @@
 </div>
 
 <div class="row output">
-    <div class="result @loggedInClass" data-bind="visible: result" style="display:none"><i class="fa fa-arrow-right arrow noSelect"></i><span data-bind="text: result"></span></div>
+    <div class="result @loggedInClass" data-bind="visible: result" style="display:none">
+        <i class="fa fa-arrow-right arrow noSelect"></i><span data-bind="text: result"></span>
+        <button type="button" class="copy btn btn-default btn-sm">
+            <i class="fa fa-copy"></i>&nbsp;&nbsp;Copy
+        </button>
+    </div>
     <div class="alert alert-warning" data-bind="visible: message" style="display:none;">
         <strong>Oops!</strong> <span data-bind="html: message"></span>
     </div>

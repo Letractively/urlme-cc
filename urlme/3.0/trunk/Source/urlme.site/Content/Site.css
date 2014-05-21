@@ -25,6 +25,7 @@ user-select: none;
 #theRealCopy { position: absolute; top: -100px; left: -100px; }
 .copy.hover { color: #333; background-color: #ebebeb; border-color: #adadad; }
 .copyCell { display: none; }
+.outputCopy { display: none; }
 
 .linkForm .linkFormPart2 { margin-top:20px; }
 .linkForm input { margin-right: 15px; }
@@ -36,8 +37,9 @@ user-select: none;
 
 .output { min-height: 1px; height: 60px; padding-top:20px; }
 .output .arrow { display:inline-block; margin-right: 10px; }
-.output .result { color: green; margin-left: 5px; width: 145px; }
-.output .result.loggedIn { width: 242px; }
+.output .result { color: green; margin-left: 5px; }
+.output .result .resultText { display:inline-block; float: left; }
+.output .result .copy { float: left; margin-top: -4px; margin-left: 15px; }
 
 .logo { background: url('logo.jpg'); display:inline-block; width: 170px; height: 37px; }
 .login-dialog .modal-dialog { width: 300px; }
@@ -97,4 +99,5 @@ body.noOverflow { overflow: hidden; }
 
     .copy { display:inline-block; }
     .copyCell { display:table-cell; }
+    .outputCopy { display: block; }
 }

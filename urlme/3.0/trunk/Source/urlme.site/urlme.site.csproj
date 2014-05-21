@@ -190,7 +190,7 @@
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\ianhd\ianhd.bookmarklet.js" />
-    <Content Include="Scripts\ianhd\ianhd.home.index.js" />
+    <Content Include="Scripts\ianhd\ianhd.app.js" />
     <Content Include="Scripts\ianhd\ianhd.js" />
     <Content Include="Scripts\ianhd\knockout-with-datatables.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />

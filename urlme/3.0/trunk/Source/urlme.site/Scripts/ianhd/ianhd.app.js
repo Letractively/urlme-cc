@@ -1,23 +1,24 @@
-﻿ianhd.registerNamespace("home.index");
+﻿ianhd.registerNamespace("app");
 
-ianhd.home.index = {
+ianhd.app = {
 	controls: {
 	    shortenUrl: function () { return $("button[type='submit']"); },
 	    success: function () { return $(".alert-success"); },
 	    theRealCopy: function () { return $("#theRealCopy"); },
 	},
 	selectors: {
-        copyLinks: '.copy',
+	    copyCells: '.copyCell',
+	    copyLinks: '.copy',
 	    deleteLinks: '.delete',
         overwrite: '.overwrite',
 	},
 	init: function () {
 	    // $("abbr.timeago").timeago();
 
-	    ianhd.home.index.loadData();
-        ianhd.home.index.bindControls();
-        ianhd.home.index.initZeroClipboard();
-        ianhd.home.index.removeHash();
+	    ianhd.app.loadData();
+        ianhd.app.bindControls();
+        ianhd.app.initZeroClipboard();
+        ianhd.app.removeHash();
 	},
 	findItemIndex: function (elemInsideOfTr) {
 	    var itemId = elemInsideOfTr.closest('tr').attr("data-item-id");
@@ -34,35 +35,45 @@ ianhd.home.index = {
 	    return itemIdx;
     },
 	initZeroClipboard: function () {
-	    ianhd.home.index.controls.theRealCopy().zclip({
+	    ianhd.app.controls.theRealCopy().zclip({
 	        path: 'ZeroClipboard.swf',
 	        copy: function () {
 	            return viewModel.toCopy();
 	        },
 	        afterCopy: function () {
-	            ianhd.home.index.showSuccess();
+	            var copyTrigger = $(viewModel.copyTriggerSelector());
+	            var copyHtml = copyTrigger.html();
+	            copyTrigger.html("<span style='text-align: center; width: 46px; display:inline-block; color: green;'><i class='fa fa-check'></i></span>");
+	            setTimeout(function () {
+	                copyTrigger.html(copyHtml);
+	            }, 1500);
 	        }
 	    });
-	    $(document).on('mouseover', ianhd.home.index.selectors.copyLinks, function () {
+	    $(document).on('mouseover', ianhd.app.selectors.copyLinks, function (e) {
+	        e.stopPropagation();
 	        var trigger = $(this);
 
 	        // turn on "hover" class
-	        //trigger.addClass("hover");
+	        trigger.addClass("hover");
 
 	        // set toCopy
-	        var itemIdx = ianhd.home.index.findItemIndex(trigger);
+	        var itemIdx = ianhd.app.findItemIndex(trigger);
 	        var item = viewModel.items()[itemIdx];
 	        viewModel.toCopy(item.ShortUrl);
+	        viewModel.copyTriggerSelector("tr[data-item-id='{0}'] .copy".format(trigger.closest("tr").attr("data-item-id")));
 
 	        // move swf to over this element
 	        $(".zclip").css("left", trigger.offset().left).css("top", trigger.offset().top);
 	    });
 
-	    $(document).on('mouseout', ianhd.home.index.selectors.copyLinks, function () {
+	    $(document).on('mouseover', "table", function () {
 	        var trigger = $(this);
 
-	        // turn off "hover" class
-	        //trigger.removeClass("hover");
+	        // turn off inner .copy's hover class
+	        trigger.find(".copy").removeClass("hover");
+
+	        // move zclip back to its original position, somewhere off the page
+	        $(".zclip").css("left", -100).css("top", -100);
 	    });
 	},
 	clearViewModel: function () {
@@ -72,7 +83,7 @@ ianhd.home.index = {
 	},
 	bindControls: function () {
         // overwrite
-	    $(document).on("click", ianhd.home.index.selectors.overwrite, function (e) {
+	    $(document).on("click", ianhd.app.selectors.overwrite, function (e) {
 	        e.preventDefault();
 	        var el = $(this);
 
@@ -97,8 +108,8 @@ ianhd.home.index = {
 	                            var newLongUrl = "<a target='_blank' title='{0}' href='{0}'>{1}</a>".format(resp.Item.DestinationUrl, resp.Item.LongUrl);
                                 dt.fnUpdate(newLongUrl, rowIndex, 0);
 
-                                ianhd.home.index.showSuccess();
-	                            ianhd.home.index.clearViewModel();
+                                ianhd.app.showSuccess();
+	                            ianhd.app.clearViewModel();
 	                        } else {
 	                            viewModel.message(resp.Message);
 	                        }
@@ -111,7 +122,7 @@ ianhd.home.index = {
 	    });
 
 	    // delete link
-	    $(document).on("click", ianhd.home.index.selectors.deleteLinks, function (e) {
+	    $(document).on("click", ianhd.app.selectors.deleteLinks, function (e) {
 	        e.preventDefault();
 	        var el = $(this);
 
@@ -127,7 +138,7 @@ ianhd.home.index = {
 	                    var itemId = item.attributes["data-item-id"].value;
 	                    var rowIndex = dt.fnGetPosition(item);
 	                    dt.fnDeleteRow(rowIndex);
-	                    ianhd.home.index.showSuccess();
+	                    ianhd.app.showSuccess();
 
 	                    $.ajax({
 	                        url: "links/" + itemId,
@@ -142,7 +153,7 @@ ianhd.home.index = {
 	    });
 
 	    // shorten url
-		ianhd.home.index.controls.shortenUrl().click(function (e) {
+		ianhd.app.controls.shortenUrl().click(function (e) {
 			e.preventDefault();
 			var data = ko.mapping.toJS(viewModel);
 
@@ -156,11 +167,11 @@ ianhd.home.index = {
 			            viewModel.result(resp.Item.ShortUrl);
 			            // if this is the user's first item, then load all the data
 			            if (!viewModel.items().length) {
-			                ianhd.home.index.loadData();
+			                ianhd.app.loadData();
 			            } else {
 			                viewModel.items.push(resp.Item);
 			            }
-			            ianhd.home.index.clearViewModel();
+			            ianhd.app.clearViewModel();
 			        } else {
 			            if (resp.ResultEnum === "UserAlreadyHasLink") {
 			                var link = "<a href='{0}' target='_blank' title='{0}'>link</a>".format(resp.Item.DestinationUrl);
@@ -185,14 +196,14 @@ ianhd.home.index = {
                     type: 'POST',
                     success: function (resp) {
                         viewModel.result(resp.id);
-                        ianhd.home.index.clearViewModel();
+                        ianhd.app.clearViewModel();
                     }
                 });
 			}
 		});
 	},
 	showSuccess: function () {
-	    ianhd.home.index.controls.success().fadeIn(300).delay(2000).fadeOut(500);
+	    ianhd.app.controls.success().fadeIn(300).delay(2000).fadeOut(500);
 	},
 	loadData: function () {
 	    if (!viewModel.signedIn()) return;
@@ -215,5 +226,5 @@ ianhd.home.index = {
 };
 
 $(function () {
-	ianhd.home.index.init();
+	ianhd.app.init();
 });

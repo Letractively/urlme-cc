@@ -1,4 +1,14 @@
-﻿body {
+﻿.group:after {
+        visibility: hidden;
+        display: block;
+        content: "";
+        clear: both;
+        height: 0;
+        }
+* html .group { zoom: 1; } /* IE6 */
+*:first-child+html .group { zoom: 1; } /* IE7 */
+
+body {
     padding-top: 50px;
     padding-bottom: 20px;
 }
@@ -33,11 +43,9 @@ user-select: none;
 .linkForm input[type='url'] { width: 100%; }
 .linkForm button[type='submit'] { float:right; margin-top: 20px; }
 
-.copy { display:none; } /* hide copy buttons for anything but desktop, since aything less than desktop typically does not use flash */
-
 .output { min-height: 1px; height: 60px; padding-top:20px; }
 .output .arrow { display:inline-block; margin-right: 10px; }
-.output .result { color: green; margin-left: 5px; }
+.output .result { color: green; }
 .output .result .resultText { display:inline-block; float: left; }
 .output .result .copy { float: left; margin-top: -4px; margin-left: 15px; }
 
@@ -64,6 +72,7 @@ body.noOverflow { overflow: hidden; }
 .addBody .alert { margin-bottom: 0; }
 .addBody .alert-warning { margin-top: 0; }
 .addBody .alert-success.primary { width: 100px; top: 10px; right: 0; margin-right: 10px; left: auto; }
+.addBody .output { min-height: 1px; height: auto; padding-top:0; }
 
 /* bookmarklets info */
 .bookmarklets { display:none; }

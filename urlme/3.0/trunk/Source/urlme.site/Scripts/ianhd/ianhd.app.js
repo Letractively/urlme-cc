@@ -50,6 +50,7 @@ ianhd.app = {
 	    });
 	    $(document).on('mouseover', ianhd.app.selectors.copyLinks, function (e) {
 	        e.stopPropagation();
+
 	        var trigger = $(this);
 
 	        // turn on "hover" class

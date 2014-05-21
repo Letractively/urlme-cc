@@ -12,6 +12,10 @@
     <link rel="icon" href="~/content/link.png" />
 </head>
 <body class="noPadding noOverflow">
+    <button id="theRealCopy" type="button" class="btn btn-default btn-sm">
+        <i class="fa fa-copy"></i>&nbsp;&nbsp;Copy
+    </button>
+
     <div class="addBody">
         <div class="alert alert-success text-center primary">Success!</div>
         <div>
@@ -28,14 +32,24 @@
                 <button type="submit" class="btn btn-primary">Shorten</button>
                 <button class="btn btn-default closeWindow">Close</button>
             </div>
-            <div data-bind="visible: result" style="display:none; color: green;"><span class="arrow noSelect">➔</span><span data-bind="text: result"></span></div>
-            <div class="alert alert-warning" data-bind="visible: error" style="display:none;">
-                <strong>Oops!</strong> <span data-bind="html: error"></span>
+            
+            <div class="output group">
+                <div class="result" data-bind="visible: result" style="display:none">
+                    <div class="resultText"><i class="fa fa-arrow-right arrow noSelect"></i><span data-bind="text: result"></span></div>
+                    <button type="button" class="copy btn btn-default btn-sm">
+                        <i class="fa fa-copy"></i>&nbsp;&nbsp;Copy
+                    </button>
+                </div>
+
+                <div class="alert alert-warning" data-bind="visible: error" style="display:none;">
+                    <strong>Oops!</strong> <span data-bind="html: error"></span>
+                </div>
+                <div class="alert alert-success" data-bind="visible: success" style="display:none;">
+                    <button type="button" class="close" onclick="$(this).parent().hide();return false;" aria-hidden="true">&times;</button>
+                    <strong>Yay!</strong> <span data-bind="html: success"></span>
+                </div>
             </div>
-            <div class="alert alert-success" data-bind="visible: success" style="display:none;">
-                <button type="button" class="close" onclick="$(this).parent().hide();return false;" aria-hidden="true">&times;</button>
-                <strong>Yay!</strong> <span data-bind="html: success"></span>
-            </div>
+
             <div class="form-group signIn" data-bind="visible: !signedIn()" style="display:none">
                 <a href="~/" target="_blank">Sign in <i class="fa fa-external-link"></i></a> to create custom paths, like <a target="_blank" href="@exampleLink">@exampleLink</a>
             </div>
@@ -50,7 +64,9 @@
             success: '',
             longUrl: '@Request.QueryString["url"]',
             path: '',
-            signedIn: @Request.IsAuthenticated.ToString().ToLower()
+            signedIn: @Request.IsAuthenticated.ToString().ToLower(),
+            toCopy: '',
+            copyTriggerSelector: '',
         });
         ko.applyBindings(viewModel);
     </script>

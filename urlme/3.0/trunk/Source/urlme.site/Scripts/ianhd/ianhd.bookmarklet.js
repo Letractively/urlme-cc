@@ -5,14 +5,58 @@ ianhd.bookmarklet = {
 	    close: function () { return $(".closeWindow"); },
 	    shortenUrl: function () { return $("button[type='submit']"); },
 	    success: function () { return $(".alert-success.primary"); },
+	    theRealCopy: function () { return $("#theRealCopy"); },
 	},
 	selectors: {
-        overwrite: '.overwrite',
+	    copyLinks: '.copy',
+	    overwrite: '.overwrite',
 	},
 	init: function () {
+	    ianhd.bookmarklet.initZeroClipboard();
 	    ianhd.bookmarklet.bindControls();
 	    ianhd.bookmarklet.removeHash();
 	    ianhd.bookmarklet.listenForSignedIn();
+	},
+	initZeroClipboard: function () {
+	    ianhd.bookmarklet.controls.theRealCopy().zclip({
+	        path: 'ZeroClipboard.swf',
+	        copy: function () {
+	            return viewModel.toCopy();
+	        },
+	        afterCopy: function () {
+	            var copyTrigger = $(viewModel.copyTriggerSelector());
+	            var copyHtml = copyTrigger.html();
+	            copyTrigger.html("<span style='text-align: center; width: 46px; display:inline-block; color: green;'><i class='fa fa-check'></i></span>");
+	            setTimeout(function () {
+	                copyTrigger.html(copyHtml);
+	            }, 1500);
+	        }
+	    });
+	    $(document).on('mouseover', ianhd.bookmarklet.selectors.copyLinks, function (e) {
+	        e.stopPropagation();
+
+	        var trigger = $(this);
+
+	        // turn on "hover" class
+	        trigger.addClass("hover");
+
+	        // set toCopy
+	        viewModel.toCopy(viewModel.result());
+	        viewModel.copyTriggerSelector(".copy");
+
+	        // move swf to over this element
+	        $(".zclip").css("left", trigger.offset().left).css("top", trigger.offset().top);
+	    });
+
+	    $(document).on('mouseover', ".addBody", function () {
+	        var trigger = $(this);
+
+	        // turn off inner .copy's hover class
+	        $(".copy").removeClass("hover");
+
+	        // move zclip back to its original position, somewhere off the page
+	        $(".zclip").css("left", -100).css("top", -100);
+	    });
 	},
 	bindControls: function () {
 	    // shorten url

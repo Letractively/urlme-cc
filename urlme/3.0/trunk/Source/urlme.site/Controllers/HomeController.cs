@@ -15,6 +15,12 @@ namespace urlme.site.Controllers
             return View();
         }
 
+        [Route("add-sign-in")]
+        public ActionResult AddSignIn()
+        {
+            return View();
+        }
+
         [Route("")]
         public ActionResult Index()
         {

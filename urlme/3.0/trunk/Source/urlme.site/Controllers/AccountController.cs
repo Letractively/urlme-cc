@@ -60,7 +60,13 @@ namespace urlme.site.Controllers
             var ctx = Request.GetOwinContext();
             var authenticationManager = ctx.Authentication;
             authenticationManager.SignIn(id);
-            return Redirect("~/");
+
+            if (string.IsNullOrEmpty(returnUrl))
+            {
+                return Redirect("~/");
+            }
+
+            return Redirect("~/" + returnUrl);
         }
 
         //

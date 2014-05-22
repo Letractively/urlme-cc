@@ -68,11 +68,15 @@ body.noOverflow { overflow: hidden; }
 
 .addBody .form-inline .form-group { display: block; margin-bottom: 20px; }
 .addBody button { margin-left: 15px; }
-.addBody .signIn { line-height: 30px; }
-.addBody .alert { margin-bottom: 0; }
+.addBody .signIn { line-height: 30px; position: absolute; bottom: 0; margin-bottom: 10px; }
+.addBody .signInSuccess { position: absolute; bottom: 0; margin-bottom: 20px; width: 321px; }
+.addBody .alert:not(.signInSuccess) { margin-bottom: 0; }
 .addBody .alert-warning { margin-top: 0; }
 .addBody .alert-success.primary { width: 100px; top: 10px; right: 0; margin-right: 10px; left: auto; }
 .addBody .output { min-height: 1px; height: auto; padding-top:0; }
+
+/* add sign in */
+.addSignIn h3 { margin: 0; line-height: 40px; }
 
 /* bookmarklets info */
 .bookmarklets { display:none; }

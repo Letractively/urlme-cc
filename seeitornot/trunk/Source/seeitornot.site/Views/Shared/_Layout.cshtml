@@ -1,26 +1,23 @@
 ﻿@using ianhd.core.Extensions
-@{ 
-    var platFormOverrideCookieName = "platformOverride";
-    var platform = Request.GetPlatform(platFormOverrideCookieName);
-    
-    bool isMobile = platform == "m";
-}
 
 <!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
-    @if (isMobile) {
-        <meta name="viewport" content="width=device-width, initial-scale=1"> 
-    }
+    <meta name="viewport" content="width=device-width, initial-scale=1"> 
     <title>@ViewBag.Title</title>
     <link rel="icon" href="~/content/favicon.jpg" />
+
+    @* bootstrap *@
+    @Styles.Render("//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css")
+    @Styles.Render("//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap-theme.min.css")
+
     @Styles.Render("//cdn.ianhd.com/css/common.css")
     @Styles.Render("~/Content/css")
     
     @Html.Partial("BeforeEndHead")
 </head>
-<body class="@platform">
+<body>
     @Html.Partial("AfterBody")
     <header class="orangeDiag group">
         <div class="content group">
@@ -30,32 +27,22 @@
     </header>
     <div id="navBar" class="greenGradient bottomShadow">
         <div class="content group">
-            <a class="m burger" href="#" onclick="$('nav').toggle(); return false;"></a>
             <nav class="group">
                 <ul>
-                    <li><a class="navItem selected" href="~/">What's Hot</a></li>
-                    <li><a class="navItem" href="~/showtimes">Showtimes</a></li>
-                    <li><a class="navItem noPush" href="~/reviews">Reviews</a></li>
-                    <li><a class="navItem noPush" href="~/about">About</a></li>
+                    <li><a class="navItem selected" href="~/showtimes">In Theaters</a></li>
+                    <li><a class="navItem" href="~/showtimes">Coming Soon</a></li>
                 </ul>
             </nav>
-            <span class="m navItem">What's Hot</span>
             <div class="dt" id="searchContainer"><input type="text" placeholder="Search..." /></div>
         </div>
     </div>
     @RenderBody()
 
-    @* switch to different platform *@
-    @{ 
-        var switchTo = isMobile ? "desktop`dt" : "mobile`m";
-        var parts = switchTo.Split('`');
-        var label = parts[0];
-        var cookieValue = parts[1];
-    }
-    Switch to <a href="#" onclick="$.cookie('@platFormOverrideCookieName','@cookieValue'); location.reload(true); return false;">@label</a>
-
     @Scripts.Render("~/bundles/js/jquery")
-    @Scripts.Render("~/bundles/js/plugins")
+
+    @* bootstrap *@
+    @Scripts.Render("//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js")
+
     @Scripts.Render("//cdn.ianhd.com/js/ianhd.js")
     @Scripts.Render("~/scripts/ianhd.app.js")
     @RenderSection("scripts", required: false)

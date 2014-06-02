@@ -56,7 +56,7 @@ header .content { width: 1000px; margin: 0 auto; }
 
 /* movie */
 .body.dt .movie { float: left; margin-right: 24px; margin-bottom: 24px; text-decoration:none; border-bottom-left-radius:3px; border-bottom-right-radius:3px; }
-.body.dt .movie:nth-child(4n+1) { margin-right:0; }
+.body.dt .movie:nth-child(5n+1) { margin-right:0; }
     .body.dt .movie img { width: 172px; height: 255px; float:left; }
     .body.dt .movie .details { padding:10px; background:white; clear:left; border-bottom-left-radius:3px; border-bottom-right-radius:3px; }
 

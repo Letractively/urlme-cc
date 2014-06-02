@@ -38,15 +38,6 @@ header .content { width: 1000px; margin: 0 auto; }
 #navBar .content nav ul { list-style: none; padding: 0; margin:0; float:left; }
     #navBar .content nav ul li { float: left; }
 
-/* mobile menu, burger */
-.m #navBar .content { width: auto; margin: 0; position: relative; }
-.m #navBar .content nav { display:none; position: absolute; background: #79d153; top: 44px; }
-.m #navBar .content nav ul li { float: none; border-bottom: 1px solid #65b145; border-right: 1px solid #65b145; }
-    .m #navBar .content nav ul li a { padding: 13px 14px 11px 14px; }
-    .m #navBar .content nav ul li a.selected { display: block; }
-.burger { position: relative; display: inline-block; width: 44px; float: left; height: 44px; border-right: 1px solid #65b145; background: #79d153; }
-.burger:before { content: ""; position: absolute; top: 15px; left: 11px; width: 20px; height: 4px; border-top: 10px double #fff; border-bottom: 3px solid #fff; }
-
 /* search */
 #navBar .content #searchContainer { float: right; position: relative; }
     #navBar .content #searchContainer input { border-radius: 3px; margin-top: 5px; padding: 6px; outline: none; width: 262px; border: 1px solid #ccc; font-size: 14px; }
@@ -87,56 +78,4 @@ header .content { width: 1000px; margin: 0 auto; }
         #movie .right .links .parentalGuide { font-weight: bold; font-size: 13px; }
             #movie .right .links .parentalGuide span { background-position: -258px -177px; padding-right: 7px; float:left; }
 
-/* rt icons */
-.rottenTomato,.imdb,.sion .icon { background: url("content/sprite.png") no-repeat scroll left center transparent; }
-.ratings span.icon, .ratings span.rt.text { float: left; display:inline-block; } /* todo: repetitive? */
-.ratings .rtLinks { float: left; }
-.ratings .imdbRatingFrame { float: left; margin-top:-1px; }
-
-.ratings { margin-top:10px; font-weight: bold; overflow:auto; }
-.ratings .imdbRatingPlugin { margin: 0; display: inline-block; float: left; }
-
-/* rt icons - small */
-.ratings.small { font-size: 15px; }
-.ratings.small .icon { width: 24px; height: 24px; }
-.ratings.small .rt.text:after { content: '%'; vertical-align: super; font-size: 8px; }
-.ratings.small .text { margin-top:3px; padding-left: 6px; margin-right: 12px; }
-.ratings.small .icon.imdb { background-position: -1px -125px; margin-right: 8px; }
-.ratings.small .icon.rottenTomato[data-rtratingtitle*="Fresh"] { background-position: -287px -49px; }
-.ratings.small .icon.rottenTomato[data-rtratingtitle*="Rotten"] { background-position: -288px -96px; }
-.ratings.small .icon.rottenTomato[data-rtratingtitle*="Upright"] { background-position: -291px -24px; }
-.ratings.small .icon.rottenTomato[data-rtratingtitle*="Spilled"] { background-position: -288px -119px; }
-.ratings.small .icon.sion { width: 19px; height: 24px; }
-.ratings.small .icon.sion.seeIt { background-position: -150px -72px; }
-.ratings.small .icon.sion.orNot { background-position: -150px -99px; }
-
-/* rt icons - medium */
-.ratings.medium { font-size: 18px; }
-.ratings.medium .icon { width: 32px; height: 32px; }
-.ratings.medium .rt.text:after { content: '%'; vertical-align: super; font-size: 10px; }
-.ratings.medium .text { margin-top:5px; padding-left: 13px; margin-right:12px; }
-.ratings.medium .icon.imdb { background-position: -160px -130px; margin-right: 13px; }
-.ratings.medium .icon.rottenTomato[data-rtratingtitle*="Fresh"] { background-position: -63px -128px; }
-.ratings.medium .icon.rottenTomato[data-rtratingtitle*="Rotten"] { background-position: -95px -128px; }
-.ratings.medium .icon.rottenTomato[data-rtratingtitle*="Upright"] { background-position: -32px -128px; }
-.ratings.medium .icon.rottenTomato[data-rtratingtitle*="Spilled"] { background-position: -127px -127px; }
-
-/* rt icons - smaller */
-.ratings.smaller { font-size: 14px; }
-.ratings.smaller .icon { width: 14px; height: 14px; margin-top:1px; }
-.ratings.smaller .rt.text:after { content: '%'; vertical-align: super; font-size: 8px; } /* text */
-.ratings.smaller .text { margin-top: 0; padding-left: 4px; margin-right: 11px; }
-.ratings.smaller .icon.imdb { background-position: -277px -161px; margin-right: 5px; }
-.ratings.smaller .icon.rottenTomato[data-rtratingtitle*="Fresh"] { background-position: -257px -144px; }
-.ratings.smaller .icon.rottenTomato[data-rtratingtitle*="Rotten"] { background-position: -273px -144px; }
-.ratings.smaller .icon.rottenTomato[data-rtratingtitle*="Upright"] { background-position: -289px -145px; }
-.ratings.smaller .icon.rottenTomato[data-rtratingtitle*="Spilled"] { background-position: -209px -144px; }
-.ratings.smaller .sion .icon { width: 12px; height: 15px; margin-left: 13px; }
-    .ratings.smaller .sion .text { margin-right: 0; }
-.ratings.smaller .sion .icon.seeIt { background-position: -212px -175px; }
-.ratings.smaller .sion .icon.orNot { background-position: -200px -175px; }
-
-/* platform */
-body.dt #navBar .content .navItem.m { display: none; }
-body.dt .m { display: none; } /* any mobile elements that are on a dt page, hide */
-body.m .dt { display: none; } /* vise versa */
+/* platforms */

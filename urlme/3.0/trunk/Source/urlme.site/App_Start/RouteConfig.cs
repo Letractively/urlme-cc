@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
+using urlme.site.RouteHandlers;
 
 namespace urlme.site
 {
@@ -15,11 +16,13 @@ namespace urlme.site
 
             routes.MapMvcAttributeRoutes();
 
-            routes.MapRoute(
-                name: "Default",
-                url: "{path}",
-                defaults: new { controller = "Redirect", action = "Index" }
-            );
+            routes.Add(new Route("{path}", new LinkRouteHandler()));
+
+            //routes.MapRoute(
+            //    name: "Default",
+            //    url: "{path}",
+            //    defaults: new { controller = "Redirect", action = "Index" }
+            //);
         }
     }
 }

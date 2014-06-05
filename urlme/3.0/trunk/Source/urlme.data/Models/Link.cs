@@ -62,6 +62,14 @@ namespace urlme.data.Models
             }
         }
 
+        public static Link GetDestinationUrl(string path)
+        {
+            using (var conn = Db.CreateConnection())
+            {
+                return conn.Query<Link>("select DestinationUrl from [ihdavis].[Link] where Path=@path", new { path }).FirstOrDefault();
+            }
+        }
+
         public static bool Save(Link source)
         {
             using (var conn = Db.CreateConnection())

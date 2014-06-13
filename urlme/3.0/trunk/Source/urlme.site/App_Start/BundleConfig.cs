@@ -9,14 +9,14 @@ namespace urlme.site
         public static void RegisterBundles(BundleCollection bundles)
         {
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
-                        "~/Scripts/jquery-{version}.js",
-                        "~/scripts/knockout-{version}.js",
+                        "~/Scripts/jquery-1.10.2.min.js",
+                        "~/scripts/knockout-3.1.0.js",
                         "~/scripts/knockout.mapping.js",
                         "~/scripts/plugins/zclip/jquery.zclip.min.js",
                         "~/scripts/plugins/datatables/jquery.dataTables.min.js",
                         "~/scripts/plugins/datatables/datatables.bootstrap.js",
                         "~/scripts/plugins/bootstrap-dialog/bootstrap-dialog.min.js",
-                        "~/scripts/plugins/jquery.timeago.js",
+                        //"~/scripts/plugins/jquery.timeago.js",
                         "~/scripts/ianhd/ianhd.js"
             ));
 
@@ -32,6 +32,8 @@ namespace urlme.site
                       "~/scripts/plugins/bootstrap-dialog/bootstrap-dialog.min.css",
                       "~/scripts/plugins/datatables/datatables.bootstrap.css",
                       "~/Content/site.css"));
+
+            BundleTable.EnableOptimizations = false;
         }
     }
 }

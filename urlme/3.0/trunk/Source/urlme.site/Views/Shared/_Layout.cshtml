@@ -5,8 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="~/content/link.png" />
     <title>UrlMe</title>
-    @Styles.Render("~/Content/css")
-    @Styles.Render("//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css")
 </head>
 <body>
     <div class="container body-content">
@@ -16,6 +14,9 @@
         <div class="alert alert-success text-center primary">Success!</div>
         @RenderBody()
     </div>
+
+    @Styles.Render("~/Content/css")
+    @Styles.Render("//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css")
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")

@@ -16,7 +16,6 @@ namespace urlme.site
                         "~/scripts/plugins/datatables/jquery.dataTables.min.js",
                         "~/scripts/plugins/datatables/datatables.bootstrap.js",
                         "~/scripts/plugins/bootstrap-dialog/bootstrap-dialog.min.js",
-                        //"~/scripts/plugins/jquery.timeago.js",
                         "~/scripts/ianhd/ianhd.js"
             ));
 

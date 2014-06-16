@@ -181,11 +181,15 @@
     <Content Include="Content\link.png" />
     <Content Include="Content\logo.jpg" />
     <Content Include="Content\openhand.ico" />
+    <Content Include="Content\Site.min.css" />
     <Content Include="Content\todc-bootstrap.min.css" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Scripts\Plugins\font-awesome-4.1.0\css\font-awesome.css" />
+    <Content Include="Scripts\Plugins\font-awesome-4.1.0\fonts\fontawesome-webfont.svg" />
     <Content Include="ZeroClipboard.swf" />
+    <Content Include="Content\Site.less" />
     <None Include="Properties\PublishProfiles\publish to local.pubxml" />
     <None Include="Properties\PublishProfiles\publish to prod.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
@@ -236,6 +240,10 @@
     <Content Include="Views\Shared\_Header.cshtml" />
     <Content Include="Views\Home\Add.cshtml" />
     <Content Include="Views\Home\AddSignIn.cshtml" />
+    <Content Include="Scripts\Plugins\font-awesome-4.1.0\fonts\fontawesome-webfont.eot" />
+    <Content Include="Scripts\Plugins\font-awesome-4.1.0\fonts\fontawesome-webfont.ttf" />
+    <Content Include="Scripts\Plugins\font-awesome-4.1.0\fonts\fontawesome-webfont.woff" />
+    <Content Include="Scripts\Plugins\font-awesome-4.1.0\fonts\FontAwesome.otf" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

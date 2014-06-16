@@ -186,6 +186,8 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Scripts\ianhd\ianhd.app.min.js" />
+    <Content Include="Scripts\ianhd\ianhd.bookmarklet.min.js" />
     <Content Include="Scripts\Plugins\font-awesome-4.1.0\css\font-awesome.css" />
     <Content Include="Scripts\Plugins\font-awesome-4.1.0\fonts\fontawesome-webfont.svg" />
     <Content Include="ZeroClipboard.swf" />

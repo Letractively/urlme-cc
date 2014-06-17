@@ -54,21 +54,10 @@
             </div>
         </form>
     </div>
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")
     <script>
-        var viewModel = ko.mapping.fromJS({
-            result: '',
-            error: '',
-            success: '',
-            longUrl: '@Request.QueryString["url"]',
-            path: '',
-            signedIn: @Request.IsAuthenticated.ToString().ToLower(),
-            toCopy: '',
-            copyTriggerSelector: '',
-        });
-        ko.applyBindings(viewModel);
+        var longUrl = '@Request.QueryString["url"]';
+        var si = @Request.IsAuthenticated.ToString().ToLower();
     </script>
-    @Scripts.Render("~/scripts/ianhd/ianhd.bookmarklet.js")
+    @Scripts.Render("~/Scripts/ianhd/ianhd.bookmarklet.min.js?v=" + urlme.site.MvcApplication.ApplicationBuild)
 </body>
 </html>

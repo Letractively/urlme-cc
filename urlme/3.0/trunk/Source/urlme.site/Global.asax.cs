@@ -12,6 +12,10 @@ namespace urlme.site
 {
     public class MvcApplication : System.Web.HttpApplication
     {
+        public static string ApplicationBuild = string.Format("{0}{1}",
+            System.Reflection.Assembly.GetExecutingAssembly().GetName().Version.Build.ToString(),
+            System.Reflection.Assembly.GetExecutingAssembly().GetName().Version.Revision);
+
         protected void Application_Start()
         {
             AreaRegistration.RegisterAllAreas();

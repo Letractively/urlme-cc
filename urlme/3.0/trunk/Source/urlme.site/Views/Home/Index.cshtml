@@ -31,20 +31,7 @@
 @section scripts
 {
     <script>
-        var viewModel = ko.mapping.fromJS({
-            result: '',
-            message: '',
-            longUrl: '',
-            path: '',
-            signedIn: @Request.IsAuthenticated.ToString().ToLower(),
-            items: [],
-            loading: true,
-            toCopy: '',
-            copyTriggerSelector: '',
-        });
-        ko.applyBindings(viewModel);
-        var dt = null; // for datatable
-        var zClipSwfPath = 'ZeroClipboard.swf';
+        var si = @Request.IsAuthenticated.ToString().ToLower();
     </script>
-    @Scripts.Render("~/scripts/ianhd/ianhd.app.js")
+    @Scripts.Render("~/Scripts/ianhd/ianhd.app.min.js?v=" + urlme.site.MvcApplication.ApplicationBuild)
 }

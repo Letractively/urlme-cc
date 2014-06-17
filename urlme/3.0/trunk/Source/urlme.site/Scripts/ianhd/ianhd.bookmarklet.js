@@ -1,4 +1,24 @@
-﻿ianhd.registerNamespace("bookmarklet");
+﻿// @koala-prepend "../plugins/zclip/jquery.zclip.min.js"
+// @koala-prepend "../plugins/datatables/jquery.dataTables.min.js"
+// @koala-prepend "../plugins/datatables/datatables.bootstrap.js"
+// @koala-prepend "../plugins/bootstrap-dialog/bootstrap-dialog.min.js"
+// @koala-prepend "../bootstrap.min.js",
+// @koala-prepend "../respond.js"));
+// @koala-prepend "ianhd.js"
+
+var viewModel = ko.mapping.fromJS({
+    result: '',
+    error: '',
+    success: '',
+    longUrl: longUrl,
+    path: '',
+    signedIn: si,
+    toCopy: '',
+    copyTriggerSelector: '',
+});
+ko.applyBindings(viewModel);
+
+ianhd.registerNamespace("bookmarklet");
 
 ianhd.bookmarklet = {
 	controls: {

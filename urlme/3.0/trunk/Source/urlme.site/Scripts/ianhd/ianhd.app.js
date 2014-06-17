@@ -1,4 +1,30 @@
-﻿ianhd.registerNamespace("app");
+﻿// @koala-prepend "../jquery-1.10.2.min.js"
+// @koala-prepend "../knockout-3.1.0.js"
+// @koala-prepend "../knockout.mapping.js"
+// @koala-prepend "../plugins/zclip/jquery.zclip.min.js"
+// @koala-prepend "../plugins/datatables/jquery.dataTables.min.js"
+// @koala-prepend "../plugins/datatables/datatables.bootstrap.js"
+// @koala-prepend "../plugins/bootstrap-dialog/bootstrap-dialog.min.js"
+// @koala-prepend "../bootstrap.min.js",
+// @koala-prepend "../respond.js"));
+// @koala-prepend "ianhd.js"
+
+var viewModel = ko.mapping.fromJS({
+    result: '',
+    message: '',
+    longUrl: '',
+    path: '',
+    signedIn: si, // defined in views/home/index
+    items: [],
+    loading: true,
+    toCopy: '',
+    copyTriggerSelector: '',
+});
+ko.applyBindings(viewModel);
+var dt = null; // for datatable
+var zClipSwfPath = 'ZeroClipboard.swf';
+
+ianhd.registerNamespace("app");
 
 ianhd.app = {
 	controls: {

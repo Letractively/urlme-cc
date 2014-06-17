@@ -9,7 +9,7 @@
 // @koala-prepend "../respond.js"));
 // @koala-prepend "ianhd.js"
 
-var viewModel = ko.mapping.fromJS({
+var viewModel = ko.mapping.fromJS({ 
     result: '',
     message: '',
     longUrl: '',

@@ -58,6 +58,6 @@
         var longUrl = '@Request.QueryString["url"]';
         var si = @Request.IsAuthenticated.ToString().ToLower();
     </script>
-    @Scripts.Render("~/Scripts/ianhd/ianhd.bookmarklet.min.js?v=" + urlme.site.MvcApplication.ApplicationBuild)
+    @Scripts.RenderFormat("<script src='{0}' async></script>", "~/Scripts/ianhd/ianhd.bookmarklet.min.js?v=" + urlme.site.MvcApplication.ApplicationBuild)
 </body>
 </html>

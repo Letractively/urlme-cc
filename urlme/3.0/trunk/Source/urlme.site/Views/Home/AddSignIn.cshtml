@@ -48,6 +48,6 @@
         </div>
     </div>
     
-    @Scripts.Render("~/Scripts/ianhd/ianhd.app.min.js")
+    @Scripts.RenderFormat("<script src='{0}' async></script>", "~/Scripts/ianhd/ianhd.app.min.js?v=" + urlme.site.MvcApplication.ApplicationBuild)
 </body>
 </html>

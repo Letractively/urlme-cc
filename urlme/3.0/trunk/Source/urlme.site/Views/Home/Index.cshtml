@@ -33,5 +33,5 @@
     <script>
         var si = @Request.IsAuthenticated.ToString().ToLower();
     </script>
-    @Scripts.Render("~/Scripts/ianhd/ianhd.app.min.js?v=" + urlme.site.MvcApplication.ApplicationBuild)
+    @Scripts.RenderFormat("<script src='{0}' async></script>", "~/Scripts/ianhd/ianhd.app.min.js?v=" + urlme.site.MvcApplication.ApplicationBuild)
 }

@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <link rel="icon" href="~/content/link.png" />
     <title>UrlMe</title>
+    @Styles.Render("~/Content/Site.min.css?v=" + urlme.site.MvcApplication.ApplicationBuild)
 </head>
 <body>
     <div class="container body-content">
@@ -14,8 +15,6 @@
         <div class="alert alert-success text-center primary">Success!</div>
         @RenderBody()
     </div>
-
-    @Styles.Render("~/Content/Site.min.css?v=" + urlme.site.MvcApplication.ApplicationBuild)
 
     @RenderSection("scripts", required: false)
     <script>

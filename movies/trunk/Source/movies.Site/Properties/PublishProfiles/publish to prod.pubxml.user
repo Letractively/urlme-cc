@@ -9,7 +9,8 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <LastUsedPlatform>Any CPU</LastUsedPlatform>
     <TimeStampOfAssociatedLegacyPublishXmlFile>
     </TimeStampOfAssociatedLegacyPublishXmlFile>
-    <EncryptedPassword>AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAwfRcxM9j10K1rCTrPDygxwAAAAACAAAAAAADZgAAwAAAABAAAADC4D+VM5XwGYU0d2TbZvmeAAAAAASAAACgAAAAEAAAAGC1Gx8MEoaURlkv3f24NIIgAAAApB7QeHaIAMDa1VM7HySfU3Ov8tTXxz5fK1E4e/N4/rAUAAAA0ryRHh10BKakPA2ydP8YCMmpSww=</EncryptedPassword>
+    <EncryptedPassword>AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAA0ck1S/OMGUO+6dFWG6+91gAAAAACAAAAAAADZgAAwAAAABAAAABp6NErlisQYwBpqSBrhv17AAAAAASAAACgAAAAEAAAAHolmrWkwD678vhhus50V7gYAAAAqsl+h25tibdZWnhUxGRRDL8D/mImAC77FAAAAGIy119pAuJ72ISrXQ4Hq0VPhlyw</EncryptedPassword>
+    <_PublishTargetUrl>ftp://server37.lfchosting.com</_PublishTargetUrl>
   </PropertyGroup>
   <ItemGroup>
     <File Include="App_Data/51Degrees.mobi.config">

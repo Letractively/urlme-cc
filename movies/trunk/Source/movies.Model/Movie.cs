@@ -384,11 +384,22 @@ namespace movies.Model
                             rtJson = API.RottenTomatoes.GetUpcomingJson();
                             break;
                     }
+                    
+                    if (string.IsNullOrEmpty(rtJson))
+                    {
+                        return new Dictionary<string, Movie>();
+                    }
+
                     var movieCollection = rtJson.FromJson<MovieCollection>();
                     movieCollection.movies.ForEach(x => ret.Add(x));
 
                     return ret.Where(x => !x.posters.detailed.Contains("poster_default.gif") && x.mpaa_rating != "Unrated").ToDictionary(key => key.id, value => value);
                 });
+
+            if (movies == null || !movies.Any())
+            {
+                Cache.Remove(string.Format("codejkjk.movies.Model.Movie.{0}", movielist.ToString()));
+            }
 
             // set reviews for each movie
             movies.Values.ToList().ForEach(x => x.Review = Data.DomainModels.MovieReview.Get(int.Parse(x.id)));

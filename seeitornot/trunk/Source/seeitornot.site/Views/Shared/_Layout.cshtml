@@ -16,10 +16,10 @@
     @Html.Partial("AfterBody")
     <header class="group">
         <div class="content group">
-            <i class="fa fa-bars"></i>
+            <i class="fa fa-bars bars"></i>
             <a id="logo" href="~/"></a>
             <div id="fbLikeContainer">@Html.Partial("FacebookLike")</div>
-            <i class="fa fa-search"></i>
+            <i class="fa fa-search search"></i>
         </div>
     </header>
     <div id="navBar" class="greenGradient bottomShadow">
@@ -30,7 +30,7 @@
                     <li><a class="navItem" href="~/showtimes">Coming Soon</a></li>
                 </ul>
             </nav>
-            <div class="dt" id="searchContainer"><input type="text" placeholder="Search..." /></div>
+            <div id="searchContainer"><input type="text" placeholder="Search..." /></div>
         </div>
     </div>
     @RenderBody()

@@ -1,4 +1,6 @@
-﻿@import '../scripts/plugins/font-awesome-4.1.0/css/font-awesome.min.css';
+﻿@import '../scripts/plugins/bootstrap-3.1.1/css/bootstrap.min.css';
+@import '../scripts/plugins/bootstrap-3.1.1/css/bootstrap-theme.min.css';
+@import '../scripts/plugins/font-awesome-4.1.0/css/font-awesome.min.css';
 
 .group:after { visibility: hidden; display: block; content: ""; clear: both; height: 0; }
 header, footer, nav, section { display: block; }
@@ -43,12 +45,13 @@ header { padding-bottom: 10px; .orangeDiag;
     body { background-color: #fff; }
     .body { width: 40px; margin: 0; }
 
-    header { .greenGradient; padding: 10px; position:relative;
+    header { .greenGradient; position:relative; padding:0; height: 60px;
         .content { width: 100%; margin: 0; 
             #logo { background: url('logo_mobile_white.png'); width: 60px; height: 48px; margin-left: 0; float:none; position: absolute; left: 50%; margin-left:-30px; top:50%; margin-top:-24px; }
             #fbLikeContainer { display:none; }
-            .fa-bars { display:inline-block; float: left; font-size: 51px; color:white; }
-            .fa-search { display:inline-block; float:right; font-size: 51px; color: white; }
+            .fa-bars,.fa-search { display:inline-block; font-size: 40px; color:white;}
+            .fa-bars {  float: left; }
+            .fa-search { float:right; }
         }
     }
 

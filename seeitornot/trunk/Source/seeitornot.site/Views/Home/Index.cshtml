@@ -12,9 +12,7 @@
     </script>
 }
 
-@*<h2>Trailers</h2>*@
-
-<div class="dt body group">
+<div class="body group">
     @foreach (var movieList in Model.movieLists)
     {
         <h2>@movieList.title</h2>
@@ -32,7 +30,7 @@
     }
 </div>
 
-<section id="movie" class="popup rounded" data-bind="visible: overlayMovieId()">
+<section id="movie" class="popup rounded" data-bind="visible: overlayMovieId()" style="display:none;">
 @if (Model.OverlayMovie != null)
 {
     this.Html.RenderPartial("Movie", this.Model.OverlayMovie);

@@ -8,19 +8,12 @@
     <title>@ViewBag.Title</title>
     <link rel="icon" href="~/content/favicon.jpg" />
 
-    @* bootstrap *@
-    @Styles.Render("//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css")
-    @Styles.Render("//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap-theme.min.css")
-
     @Styles.Render("~/Content/css")
     
     @Html.Partial("BeforeEndHead")
 </head>
 <body>
     @Html.Partial("AfterBody")
-    <div class="debug mobile">mobile</div>
-    <div class="debug tablet">tablet</div>
-    <div class="debug desktop">desktop</div>
     <header class="group">
         <div class="content group">
             <i class="fa fa-bars"></i>

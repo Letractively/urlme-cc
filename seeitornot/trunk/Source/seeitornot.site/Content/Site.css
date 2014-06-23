@@ -160,17 +160,22 @@ header .content .fa-search {
   header .content #fbLikeContainer {
     display: none;
   }
-  header .content .fa-bars,
-  header .content .fa-search {
+  header .content .fa {
     display: inline-block;
     font-size: 40px;
     color: white;
+    padding: 10px;
   }
-  header .content .fa-bars {
+  header .content .bars {
     float: left;
+    padding-left: 15px;
   }
-  header .content .fa-search {
+  header .content .search {
     float: right;
+    padding-right: 15px;
+  }
+  #navBar {
+    display: none;
   }
   #navBar .content {
     width: 100%;

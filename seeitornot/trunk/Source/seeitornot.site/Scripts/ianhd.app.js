@@ -3,7 +3,7 @@ ianhd.app = {
     controls: {
         movie: function () { return $("#movie"); },
         overlay: function () { return $("#overlay"); },
-        searchIcon: function() { return $(".fa-search"); }
+        searchIcon: function() { return $(".search"); }
     },
     selectors: {
         closePopup: "#overlay,.closePopup"
@@ -48,8 +48,16 @@ ianhd.app = {
         }
     },
     bindControls: function () {
+        // close popup
         $(document).on('click', ianhd.app.selectors.closePopup, function (e) {
             History.pushState(null, null, "/");
+        });
+
+        // search icon
+        ianhd.app.controls.searchIcon().click(function (e) {
+            e.preventDefault();
+            var trigger = $(this);
+            trigger.toggleClass("fa-search fa-times");
         });
     },
     initHistory: function (History) {

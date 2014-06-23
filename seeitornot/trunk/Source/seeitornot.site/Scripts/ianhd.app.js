@@ -2,7 +2,8 @@
 ianhd.app = {
     controls: {
         movie: function () { return $("#movie"); },
-        overlay: function () { return $("#overlay"); }
+        overlay: function () { return $("#overlay"); },
+        searchIcon: function() { return $(".fa-search"); }
     },
     selectors: {
         closePopup: "#overlay,.closePopup"

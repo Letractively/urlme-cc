@@ -148,6 +148,7 @@
     <Content Include="Content\favicon.jpg" />
     <Content Include="Content\logo.png" />
     <Content Include="Content\logo_mobile.png" />
+    <Content Include="Content\logo_mobile_white.png" />
     <Content Include="Content\Ratings.css" />
     <Content Include="Content\sprite.png" />
     <Content Include="Global.asax" />
@@ -158,6 +159,8 @@
     <Content Include="Scripts\jquery-1.8.3.min.js" />
     <Content Include="Scripts\knockout-2.2.1.js" />
     <Content Include="Scripts\knockout.mapping.js" />
+    <Content Include="Scripts\Plugins\font-awesome-4.1.0\css\font-awesome.min.css" />
+    <Content Include="Scripts\Plugins\font-awesome-4.1.0\fonts\fontawesome-webfont.svg" />
     <Content Include="Scripts\Plugins\jquery.history.js" />
     <Content Include="Scripts\_references.js" />
     <Content Include="Web.config" />
@@ -177,6 +180,10 @@
     <Content Include="Views\Shared\FacebookLike.cshtml" />
     <None Include="Properties\PublishProfiles\publish to c -- publish.pubxml" />
     <Content Include="Views\Shared\Movie.cshtml" />
+    <Content Include="Scripts\Plugins\font-awesome-4.1.0\fonts\fontawesome-webfont.eot" />
+    <Content Include="Scripts\Plugins\font-awesome-4.1.0\fonts\fontawesome-webfont.ttf" />
+    <Content Include="Scripts\Plugins\font-awesome-4.1.0\fonts\fontawesome-webfont.woff" />
+    <Content Include="Scripts\Plugins\font-awesome-4.1.0\fonts\FontAwesome.otf" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

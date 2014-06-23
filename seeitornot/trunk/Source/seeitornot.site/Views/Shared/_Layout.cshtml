@@ -12,7 +12,6 @@
     @Styles.Render("//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css")
     @Styles.Render("//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap-theme.min.css")
 
-    @Styles.Render("//cdn.ianhd.com/css/common.css")
     @Styles.Render("~/Content/css")
     
     @Html.Partial("BeforeEndHead")
@@ -24,8 +23,10 @@
     <div class="debug desktop">desktop</div>
     <header class="group">
         <div class="content group">
+            <i class="fa fa-bars"></i>
             <a id="logo" href="~/"></a>
             <div id="fbLikeContainer">@Html.Partial("FacebookLike")</div>
+            <i class="fa fa-search"></i>
         </div>
     </header>
     <div id="navBar" class="greenGradient bottomShadow">

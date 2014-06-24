@@ -1,6 +1,8 @@
+@import url(http://fonts.googleapis.com/css?family=Open+Sans|Oswald);
 @import '../scripts/plugins/bootstrap-3.1.1/css/bootstrap.min.css';
 @import '../scripts/plugins/bootstrap-3.1.1/css/bootstrap-theme.min.css';
 @import '../scripts/plugins/font-awesome-4.1.0/css/font-awesome.min.css';
+/* to fix: */
 .group:after {
   visibility: hidden;
   display: block;
@@ -45,10 +47,18 @@ div.debug {
 .rounded {
   border-radius: 3px;
 }
+.noSelect {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
 /* default to desktop */
 body {
   font-size: .85em;
-  font-family: Arial;
+  font-family: "Open Sans", sans-serif;
   color: #333;
   background-color: #f5f5f5;
 }
@@ -88,26 +98,20 @@ header .content #fbLikeContainer {
   margin-left: -24px;
 }
 header .content .fa-bars,
-header .content .fa-search {
+header .content .fa-search,
+header .content .fa-times {
   display: none;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 /* nav */
 #navBar .content {
   width: 990px;
   margin: 0 auto;
-}
-#navBar .content .navItem {
-  text-shadow: 0 -1px 1px #65b145;
-  padding: 12px 14px 10px 14px;
-  display: inline-block;
-  text-decoration: none;
-  font-weight: bold;
-  color: #fff;
-  font-size: 16px;
-}
-#navBar .content .navItem.selected {
-  text-shadow: none;
-  background: #65b145;
 }
 #navBar .content nav {
   float: left;
@@ -120,6 +124,30 @@ header .content .fa-search {
 }
 #navBar .content nav ul li {
   float: left;
+}
+#navBar .content nav ul li a.navItem {
+  text-shadow: 0 -1px 1px #65b145;
+  padding: 12px 14px 10px 14px;
+  display: inline-block;
+  text-decoration: none;
+  font-weight: bold;
+  color: #fff;
+  font-size: 16px;
+}
+#navBar .content nav ul li a.navItem.selected {
+  text-shadow: none;
+  background: #65b145;
+}
+#navBar .content input.search {
+  float: right;
+  position: relative;
+  border-radius: 3px;
+  margin-top: 5px;
+  padding: 6px;
+  outline: none;
+  width: 262px;
+  border: 1px solid #ccc;
+  font-size: 14px;
 }
 /* mobile & tablet */
 /* @media (min-width: 768px) and (max-width: 991px) */
@@ -166,20 +194,51 @@ header .content .fa-search {
     color: white;
     padding: 10px;
   }
-  header .content .bars {
+  header .content .fa-bars {
     float: left;
     padding-left: 15px;
+    font-size: 38px;
   }
-  header .content .search {
+  header .content .fa-times {
+    font-size: 44px;
+    margin-top: -4px;
+  }
+  header .content .searchIcon {
     float: right;
     padding-right: 15px;
-  }
-  #navBar {
-    display: none;
   }
   #navBar .content {
     width: 100%;
     margin: 0;
+  }
+  #navBar .content nav {
+    display: none;
+    float: none;
+  }
+  #navBar .content input.search {
+    display: none;
+  }
+  #navBar .content input.search.display {
+    display: block;
+    position: absolute;
+    top: 0;
+    width: calc(100% - 87px);
+    margin: 10px 0 0 15px;
+    padding: 8px;
+  }
+  #navBar .content nav ul {
+    float: none;
+  }
+  #navBar .content nav ul li {
+    float: none;
+  }
+  #navBar .content nav ul li a.navItem {
+    display: block;
+    background: #65b145;
+    padding: 16px 0 14px 16px;
+  }
+  #navBar .content nav ul li a {
+    border-top: 1px solid #79d153;
   }
   .debug.tablet {
     display: block;
@@ -194,20 +253,6 @@ header .content .fa-search {
 a {
   color: #2489ce;
   text-decoration: none;
-}
-/* search */
-#navBar .content #searchContainer {
-  float: right;
-  position: relative;
-}
-#navBar .content #searchContainer input {
-  border-radius: 3px;
-  margin-top: 5px;
-  padding: 6px;
-  outline: none;
-  width: 262px;
-  border: 1px solid #ccc;
-  font-size: 14px;
 }
 /* movie */
 .body.dt .movie {

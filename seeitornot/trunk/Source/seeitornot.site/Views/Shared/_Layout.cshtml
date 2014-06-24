@@ -4,7 +4,7 @@
 <html>
 <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1"> 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"> 
     <title>@ViewBag.Title</title>
     <link rel="icon" href="~/content/favicon.jpg" />
 
@@ -15,22 +15,22 @@
 <body>
     @Html.Partial("AfterBody")
     <header class="group">
-        <div class="content group">
-            <i class="fa fa-bars bars"></i>
+        <div class="content">
+            <i class="fa fa-bars"></i>
             <a id="logo" href="~/"></a>
             <div id="fbLikeContainer">@Html.Partial("FacebookLike")</div>
-            <i class="fa fa-search search"></i>
+            <i class="fa fa-search searchIcon"></i>
         </div>
     </header>
     <div id="navBar" class="greenGradient bottomShadow">
         <div class="content group">
-            <nav class="group">
+            <nav>
                 <ul>
                     <li><a class="navItem selected" href="~/showtimes">In Theaters</a></li>
                     <li><a class="navItem" href="~/showtimes">Coming Soon</a></li>
                 </ul>
             </nav>
-            <div id="searchContainer"><input type="text" placeholder="Search..." /></div>
+            <input type="text" class="search" placeholder="Search..." />
         </div>
     </div>
     @RenderBody()

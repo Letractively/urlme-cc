@@ -1,9 +1,13 @@
 ﻿ianhd.registerNamespace("app");
 ianhd.app = {
     controls: {
+        logo: function () { return $("#logo"); },
+        menu: function () { return $("nav"); },
+        menuIcon: function () { return $(".fa-bars"); },
         movie: function () { return $("#movie"); },
         overlay: function () { return $("#overlay"); },
-        searchIcon: function() { return $(".search"); }
+        searchBox: function() { return $("input.search"); },
+        searchIcon: function() { return $(".fa-search"); }
     },
     selectors: {
         closePopup: "#overlay,.closePopup"
@@ -53,11 +57,36 @@ ianhd.app = {
             History.pushState(null, null, "/");
         });
 
+        // menu icon
+        ianhd.app.controls.menuIcon().click(function (e) {
+            e.preventDefault();
+            var trigger = $(this);
+            trigger.toggleClass("fa-bars fa-times");
+
+            ianhd.app.controls.logo().toggle();
+            ianhd.app.controls.searchIcon().toggle();
+
+            var menu = ianhd.app.controls.menu()
+            if (trigger.hasClass("fa-times")) {
+                menu.slideDown();
+            } else {
+                menu.slideUp();
+            }
+        });
+
         // search icon
         ianhd.app.controls.searchIcon().click(function (e) {
             e.preventDefault();
             var trigger = $(this);
             trigger.toggleClass("fa-search fa-times");
+
+            var searchBox = ianhd.app.controls.searchBox();
+            searchBox.toggleClass("display");
+            ianhd.app.controls.logo().toggle();
+
+            if (searchBox.hasClass("display")) {
+                searchBox.focus();
+            }
         });
     },
     initHistory: function (History) {

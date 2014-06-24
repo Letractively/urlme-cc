@@ -22,7 +22,7 @@ body {
     color: #333;
     background-color: #f5f5f5;
 }
-.body { width: 990px; margin: 0 auto; padding-top: 24px; }
+.mainContent { width: 990px; margin: 0 auto; padding-top: 24px; }
 header { padding-bottom: 10px; .orangeDiag;
     .content { width: 1000px; margin: 0 auto;
         #logo { background: url('logo.png'); width: 349px; height: 105px; display: inline-block; margin-left: -41px; float:left; }
@@ -49,7 +49,7 @@ header { padding-bottom: 10px; .orangeDiag;
 /* @media (min-width: 768px) and (max-width: 991px) */
 @media (max-width: 991px) {
     body { background-color: #fff; }
-    .body { width: 40px; margin: 0; }
+    .mainContent { width: auto; margin: 0; }
 
     header { .greenGradient; position:relative; padding:0; height: 60px;
         .content { width: 100%; margin: 0; 
@@ -89,17 +89,17 @@ header { padding-bottom: 10px; .orangeDiag;
 a { color: #2489ce; text-decoration: none; }
 
 /* movie */
-.body.dt .movie { float: left; margin-right: 24px; margin-bottom: 24px; text-decoration:none; border-bottom-left-radius:3px; border-bottom-right-radius:3px; }
-.body.dt .movie:nth-child(5n+1) { margin-right:0; }
-    .body.dt .movie img { width: 172px; height: 255px; float:left; }
-    .body.dt .movie .details { padding:10px; background:white; clear:left; border-bottom-left-radius:3px; border-bottom-right-radius:3px; }
+.mainContent.dt .movie { float: left; margin-right: 24px; margin-bottom: 24px; text-decoration:none; border-bottom-left-radius:3px; border-bottom-right-radius:3px; }
+.mainContent.dt .movie:nth-child(5n+1) { margin-right:0; }
+    .mainContent.dt .movie img { width: 172px; height: 255px; float:left; }
+    .mainContent.dt .movie .details { padding:10px; background:white; clear:left; border-bottom-left-radius:3px; border-bottom-right-radius:3px; }
 
 /* movie in list & movie popup */
 .mpaa { font-weight: bold; color: #465f82; font-size:12px; }
 
 /* columns */
 .left, .right { float: left; }
-.body.dt .left { width: 760px; }
+.mainContent.dt .left { width: 760px; }
 
 /* headers */
 .dt h2 { padding: 0 0 24px 0; margin: 0; }

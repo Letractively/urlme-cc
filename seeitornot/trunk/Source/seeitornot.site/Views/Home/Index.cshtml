@@ -12,7 +12,11 @@
     </script>
 }
 
-<div class="body group">
+<div class="mainContent group">
+    <section id="showtimes">
+        <h2>Showtimes for <a href="#">all theaters</a> near <a href="#">23221</a>.</h2>
+    </section>
+
     @foreach (var movieList in Model.movieLists)
     {
         <h2>@movieList.title</h2>

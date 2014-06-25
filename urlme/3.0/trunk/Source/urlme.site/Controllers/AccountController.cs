@@ -57,9 +57,8 @@ namespace urlme.site.Controllers
             claims.Add(new Claim("http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier", name));
             var id = new ClaimsIdentity(claims, DefaultAuthenticationTypes.ApplicationCookie);
 
-            var ctx = Request.GetOwinContext();
-            var authenticationManager = ctx.Authentication;
-            authenticationManager.SignIn(id);
+            AuthenticationManager.SignIn(new AuthenticationProperties() { IsPersistent = true }, id);
+            //authenticationManager.SignIn(id); <-------------------- this uses IsPersistent = false by default, it seems
 
             if (string.IsNullOrEmpty(returnUrl))
             {

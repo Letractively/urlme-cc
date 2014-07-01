@@ -1,4 +1,7 @@
-﻿using Microsoft.AspNet.Identity;
+﻿using DotNetOpenAuth.Messaging;
+using DotNetOpenAuth.OpenId.Extensions.SimpleRegistration;
+using DotNetOpenAuth.OpenId.RelyingParty;
+using Microsoft.AspNet.Identity;
 using Microsoft.Owin.Security;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,6 +16,47 @@ namespace urlme.site.Controllers
     [RoutePrefix("account")]
     public class AccountController : Controller
     {
+        // old school (it worked!!! owin sucks.)
+        [Route("openid-sign-in")]
+        [AcceptVerbs(HttpVerbs.Post | HttpVerbs.Get), ValidateInput(false)]
+        [AllowAnonymous]
+        public ActionResult OpenIdLogOn(string returnUrl)
+        {
+            var openId = new OpenIdRelyingParty();
+            var response = openId.GetResponse();
+            if (response == null)  // Initial operation
+            {
+                // make request
+                var req = openId.CreateRequest(Request.Form["openid_identifier"]);
+
+                var fields = new ClaimsRequest();
+                fields.Email = DemandLevel.Require;
+                req.AddExtension(fields);
+
+                return req.RedirectingResponse.AsActionResult();
+            }
+            else  // receiving response
+            {
+                // Step 2: OpenID Provider sending assertion response
+                switch (response.Status)
+                {
+                    case AuthenticationStatus.Authenticated:
+                        var claim = response.GetExtension<ClaimsResponse>();
+                        string email = (claim != null) ? claim.Email : null;
+
+                        string identifier = response.ClaimedIdentifier;
+
+                        // Model.User.IssueAuthTicket(email, true);
+
+                        if (!string.IsNullOrEmpty(returnUrl))
+                            return Redirect(returnUrl);
+
+                        return Redirect("~/");
+                }
+            }
+            return new EmptyResult();
+        }
+
         [Route("sign-in")]
         [AllowAnonymous]
         public ActionResult SignIn(string returnUrl)

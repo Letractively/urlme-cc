@@ -9,13 +9,12 @@ using urlme.site.Models.Response;
 namespace urlme.site.Controllers
 {
     [RoutePrefix("links")]
-    [Authorize]
-    public class LinkController : Controller
+    public class LinkController : BaseController
     {
         [Route("")]
         public JsonResult Get()
         {
-            var links = Link.GetByUserId(User.Identity.Name.UserId());
+            var links = Link.GetByUserId(base.User.UserId);
             
             return this.Json(links, JsonRequestBehavior.AllowGet);
         }
@@ -24,7 +23,7 @@ namespace urlme.site.Controllers
         [HttpPost]
         public JsonResult Post(Link source)
         {
-            source.UserId = User.Identity.Name.UserId();
+            source.UserId = base.User.UserId;
             var result = urlme.data.Services.SiteService.LinkSave(source);
             return this.Json(result, JsonRequestBehavior.DenyGet);
         }
@@ -33,7 +32,7 @@ namespace urlme.site.Controllers
         [HttpPost]
         public JsonResult Overwrite(Link source)
         {
-            source.UserId = User.Identity.Name.UserId();
+            source.UserId = base.User.UserId;
             var result = urlme.data.Services.SiteService.LinkOverwrite(source);
             return this.Json(result, JsonRequestBehavior.DenyGet);
         }
@@ -44,7 +43,7 @@ namespace urlme.site.Controllers
         {
             var response = new SuccessResponse { Success = false };
 
-            if (Link.Delete(linkId, User.Identity.Name.UserId()))
+            if (Link.Delete(linkId, base.User.UserId))
             {
                 response.Success = true;
             }

@@ -7,7 +7,7 @@ using System.Web.Mvc;
 namespace urlme.site.Controllers
 {
     [RoutePrefix("")]
-    public class HomeController : Controller
+    public class HomeController : BaseController
     {
         [Route("add")]
         public ActionResult Add(string url)
@@ -24,12 +24,7 @@ namespace urlme.site.Controllers
         [Route("")]
         public ActionResult Index()
         {
-            var links = new List<urlme.data.Models.Link>();
-            if (Request.IsAuthenticated)
-            {
-                links = data.Models.Link.GetByUserId(User.Identity.Name.UserId());
-            }
-            return View(links);
+            return View();
         }
     }
 }

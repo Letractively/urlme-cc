@@ -95,6 +95,7 @@ ianhd.bookmarklet = {
 	            $.post("links", data, function (resp) {
 	                if (resp.WasSuccessful) {
 	                    viewModel.result(resp.Item.ShortUrl);
+	                    ianhd.bookmarklet.showSuccess();
 	                    ianhd.bookmarklet.clearViewModel();
 	                } else {
 	                    if (resp.ResultEnum === "UserAlreadyHasLink") {

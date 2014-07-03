@@ -1,22 +1,19 @@
-﻿@using Microsoft.AspNet.Identity
-@model List<urlme.data.Models.Link>
-
-@{
-    ViewBag.Title = "Home Page";
+﻿@{ 
+    var isAuthenticated = urlme.data.Models.User.Current.IsAuthenticated;
 }
 
 @{
-    var widthXS = Request.IsAuthenticated ? 12 : 12;
-    var offsetXS = Request.IsAuthenticated ? 0 : 0;
+    var widthXS = isAuthenticated ? 12 : 12;
+    var offsetXS = isAuthenticated ? 0 : 0;
     
-    var widthSM = Request.IsAuthenticated ? 10 : 6;
-    var offsetSM = Request.IsAuthenticated ? 1 : 3;
-    
+    var widthSM = isAuthenticated ? 10 : 6;
+    var offsetSM = isAuthenticated ? 1 : 3;
 }
+
 <div class="row col-xs-offset-@offsetXS col-xs-@widthXS col-sm-@widthSM col-sm-offset-@offsetSM bottomBuffer">@*col-xs-offset-3 col-xs-6*@
     @{ Html.RenderPartial("_Header"); }
     @{ Html.RenderPartial("_LinkForm"); }
-    @if (!Request.IsAuthenticated)
+    @if (!isAuthenticated)
     {
         Html.RenderPartial("_NotLoggedIn");
     }
@@ -31,7 +28,7 @@
 @section scripts
 {
     <script>
-        var si = @Request.IsAuthenticated.ToString().ToLower();
+        var si = @isAuthenticated.ToString().ToLower();
     </script>
     @Scripts.RenderFormat("<script src='{0}' async></script>", "~/Scripts/ianhd/ianhd.app.min.js?v=" + urlme.site.MvcApplication.ApplicationBuild)
 }

@@ -29,6 +29,58 @@ namespace urlme.data.Models
             }
         }
 
+        public static User Current
+        {
+            get
+            {
+                string contextKey = AuthenticationCookieName; // use same
+                User ret = HttpContext.Current.Items[contextKey] as User;
+
+                if (ret == null)
+                {
+                    // check to see if it's in cookie
+                    HttpCookie cookie = HttpContext.Current.Request.Cookies[AuthenticationCookieName];
+                    if (cookie == null || string.IsNullOrEmpty(cookie.Value))
+                        cookie = HttpContext.Current.Response.Cookies[AuthenticationCookieName];
+
+                    if (cookie != null && !string.IsNullOrEmpty(cookie.Value))
+                    {
+                        // parse user properties from cookie
+                        int userId = 0;
+                        string email = null;
+                        FormsAuthenticationTicket ticket = null;
+                        try
+                        {
+                            ticket = FormsAuthentication.Decrypt(cookie.Value);
+                        }
+                        catch
+                        {
+                            User.RemoveAuthenticationCookie();
+                            return new User();
+                        }
+                        
+                        if (ticket != null && !string.IsNullOrEmpty(ticket.UserData))
+                        {
+                            var userData = ticket.UserData;
+                            var parts = userData.Split('^');
+                            userId = int.Parse(parts[0]);
+                            email = parts[1];
+
+                            ret = new User { UserId = userId, Email = email };
+                            HttpContext.Current.Items[contextKey] = ret;
+                        }
+                    }
+                }
+
+                if (ret == null)
+                {
+                    // return a nulled-out user, so u.IsAuthenticated returns False instead of object not found exception
+                    return new User();
+                }
+
+                return ret;
+            }
+        }
 
         public static void IssueAuthTicket(string email, bool rememberMe)
         {
@@ -61,7 +113,7 @@ namespace urlme.data.Models
         }
         private static void SetAuthenticationCookie(int userId, string email, bool rememberMe)
         {
-            string cookieValue = string.Format("UserId={0}&Email={1}", userId, email);
+            string cookieValue = string.Format("{0}^{1}", userId, email);
             FormsAuthenticationTicket ticket = new FormsAuthenticationTicket(1, AuthenticationCookieName, System.DateTime.Now, System.DateTime.Now.AddDays(30), rememberMe, cookieValue);
             HttpCookie cookie = new HttpCookie(AuthenticationCookieName);
             cookie.Value = FormsAuthentication.Encrypt(ticket);

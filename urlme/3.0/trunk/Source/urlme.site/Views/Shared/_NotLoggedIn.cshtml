@@ -1,6 +1,5 @@
 ﻿@using Microsoft.Owin.Security
 @{
-    var loginProviders = Context.GetOwinContext().Authentication.GetExternalAuthenticationTypes();
     var exampleLink = "http://urlme.cc/hokie-football";
     var addBookmarklet = "javascript:(function(){  var url='http://urlme.cc', w=362, h=338, left=window.screenX + ((screen.width/2)-(w/2)), top=85; window.open(url + '/add?url=' + encodeURIComponent(document.location), 'UrlMe', 'status=1,width='+w+',height='+h+',left='+left+',top='+top+',scrollbars=no,toolbar=no'); })();";
 }
@@ -12,31 +11,22 @@
 </div>    
     
 <div class="row bigBottomBuffer signInButtons">
-    @foreach (AuthenticationDescription p in loginProviders)
-    {
-        var className = p.AuthenticationType == "Google" ? "google-plus" : p.AuthenticationType;
-        className = className.ToLower();
-                
-        <div class="col-xs-12 col-sm-6">
+    @* google sign in *@
+    <div class="col-xs-12 col-sm-6">
+        <form id="openIdLoginForm" action="account/openid-sign-in" method="post" style="display:none;">
+            <input name="openid_identifier" type="hidden" value="https://www.google.com/accounts/o8/id">
+        </form>
+        <a href="#" onclick="$('#openIdLoginForm').submit(); return false;" class="btn btn-block btn-social btn-google-plus">
+            <i class="fa fa-google-plus"></i> Sign in with Google
+        </a>
+    </div>
 
-            @if (p.AuthenticationType == "Google")
-            {
-                <form id="openIdLoginForm" action="account/openid-sign-in" method="post" style="display:none;">
-                    <input name="openid_identifier" type="hidden" value="https://www.google.com/accounts/o8/id" />            
-                </form>
-                        
-                <a href="#" onclick="$('#openIdLoginForm').submit(); return false;" class="btn btn-block btn-social btn-@className">
-                    <i class="fa fa-@className"></i> Sign in with @p.AuthenticationType
-                </a>
-            }
-            else
-            {
-                <a href="#" onclick="$('input[name=provider]').val('@p.AuthenticationType'); $(this).closest('form').submit(); return false;" class="btn btn-block btn-social btn-@className">
-                    <i class="fa fa-@className"></i> Sign in with @p.AuthenticationType
-                </a>                        
-            }
-        </div>
-    }
+    @* facebook sign in *@
+    <div class="col-xs-12 col-sm-6">
+        <a href="#" onclick="alert('working on this...'); return false;" class="btn btn-block btn-social btn-facebook">
+            <i class="fa fa-facebook"></i> Sign in with Facebook
+        </a>
+    </div>
 </div>
     
 <div class="bookmarklets">

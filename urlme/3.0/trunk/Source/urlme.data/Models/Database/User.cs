@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ianhd.core.Data;
 
 namespace urlme.data.Models
 {
@@ -14,5 +15,11 @@ namespace urlme.data.Models
         public int? FacebookUserId { get; set; }
         public bool AdminInd { get; set; }
         public DateTime CreateDate { get; set; }
+
+        [IgnoreField]
+        public bool IsAuthenticated
+        {
+            get { return this.UserId != 0; }
+        }
     }
 }

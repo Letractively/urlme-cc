@@ -1,6 +1,7 @@
 ﻿@{
     Layout = null;
-    var loggedInClass = Request.IsAuthenticated ? "loggedIn" : "";
+    var user = urlme.data.Models.User.Current;
+    var loggedInClass = user.IsAuthenticated ? "loggedIn" : "";
     var exampleLink = "http://urlme.cc/hokie-football";
 }
 
@@ -56,7 +57,7 @@
     </div>
     <script>
         var longUrl = '@Request.QueryString["url"]';
-        var si = @Request.IsAuthenticated.ToString().ToLower();
+        var si = @user.IsAuthenticated.ToString().ToLower();
     </script>
     @Scripts.RenderFormat("<script src='{0}' async></script>", "~/Scripts/ianhd/ianhd.bookmarklet.min.js?v=" + urlme.site.MvcApplication.ApplicationBuild)
 </body>

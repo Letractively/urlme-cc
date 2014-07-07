@@ -27,7 +27,7 @@
                 {
                     @* google sign in *@
                     <div class="col-xs-6">
-                        <form id="openIdLoginForm" action="account/openid-sign-in" method="post" style="display:none;">
+                        <form id="openIdLoginForm" action="account/openid-sign-in?returnUrl=add-sign-in" method="post" style="display:none;">
                             <input name="openid_identifier" type="hidden" value="https://www.google.com/accounts/o8/id">
                         </form>
                         <a href="#" onclick="$('#openIdLoginForm').submit(); return false;" class="btn btn-block btn-social btn-google-plus">

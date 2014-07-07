@@ -1,13 +1,6 @@
 ﻿using DotNetOpenAuth.Messaging;
 using DotNetOpenAuth.OpenId.Extensions.AttributeExchange;
-using DotNetOpenAuth.OpenId.Extensions.SimpleRegistration;
 using DotNetOpenAuth.OpenId.RelyingParty;
-//using Microsoft.Owin.Security;
-using System.Collections.Generic;
-using System.Linq;
-//using System.Security.Claims;
-using System.Threading.Tasks;
-using System.Web;
 using System.Web.Mvc;
 
 namespace urlme.site.Controllers
@@ -25,10 +18,6 @@ namespace urlme.site.Controllers
             {
                 // make request
                 var req = openId.CreateRequest(Request.Form["openid_identifier"]);
-
-                //var fields = new ClaimsRequest();
-                //fields.Email = DemandLevel.Require;
-                //req.AddExtension(fields);
 
                 var fetch = new FetchRequest();
                 fetch.Attributes.AddRequired(WellKnownAttributes.Contact.Email);
@@ -49,15 +38,10 @@ namespace urlme.site.Controllers
                             email = fetch.GetAttributeValue(WellKnownAttributes.Contact.Email);
                         }
 
-                        //var claim = response.GetExtension<ClaimsResponse>();
-                        //string email = (claim != null) ? claim.Email : null;
-
-                        //string identifier = response.ClaimedIdentifier;
-
                         urlme.data.Models.User.IssueAuthTicket(email, true);
 
                         if (!string.IsNullOrEmpty(returnUrl))
-                            return Redirect(returnUrl);
+                            return Redirect("~/" + returnUrl);
 
                         return Redirect("~/");
                 }

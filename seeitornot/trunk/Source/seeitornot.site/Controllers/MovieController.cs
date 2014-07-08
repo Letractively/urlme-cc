@@ -13,7 +13,7 @@ namespace seeitornot.site.Controllers
 
         public ActionResult Index(string rtMovieId)
         {
-            var movie = model.Movie.GetMovie(rtMovieId);
+            var movie = model.Movie.Get(rtMovieId);
             return PartialView("Movie", movie);
         }
 

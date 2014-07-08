@@ -3,6 +3,11 @@
 @import '../scripts/plugins/bootstrap-3.1.1/css/bootstrap-theme.min.css';
 @import '../scripts/plugins/font-awesome-4.1.0/css/font-awesome.min.css';
 /* to fix: */
+h1,
+h2,
+h3 {
+  margin: 0;
+}
 .group:after {
   visibility: hidden;
   display: block;
@@ -65,7 +70,7 @@ body {
 .mainContent {
   width: 990px;
   margin: 0 auto;
-  padding-top: 24px;
+  padding: 30px 0;
 }
 header {
   padding-bottom: 10px;
@@ -152,12 +157,16 @@ header .content .fa-times {
 /* mobile & tablet */
 /* @media (min-width: 768px) and (max-width: 991px) */
 @media (max-width: 991px) {
+  h2 {
+    line-height: 50px;
+  }
   body {
     background-color: #fff;
   }
   .mainContent {
     width: auto;
     margin: 0;
+    padding: 30px;
   }
   header {
     background: #65b145;

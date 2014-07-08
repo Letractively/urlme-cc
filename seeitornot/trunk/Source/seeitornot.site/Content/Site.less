@@ -5,6 +5,8 @@
 @import '../scripts/plugins/bootstrap-3.1.1/css/bootstrap-theme.min.css';
 @import '../scripts/plugins/font-awesome-4.1.0/css/font-awesome.min.css';
 
+h1,h2,h3 { margin:0; }
+
 .group:after { visibility: hidden; display: block; content: ""; clear: both; height: 0; }
 header, footer, nav, section { display: block; }
 div.debug { display:none; font-size: 24px; text-align: center; }
@@ -22,7 +24,7 @@ body {
     color: #333;
     background-color: #f5f5f5;
 }
-.mainContent { width: 990px; margin: 0 auto; padding-top: 24px; }
+.mainContent { width: 990px; margin: 0 auto; padding: 30px 0; }
 header { padding-bottom: 10px; .orangeDiag;
     .content { width: 1000px; margin: 0 auto;
         #logo { background: url('logo.png'); width: 349px; height: 105px; display: inline-block; margin-left: -41px; float:left; }
@@ -48,8 +50,9 @@ header { padding-bottom: 10px; .orangeDiag;
 /* mobile & tablet */
 /* @media (min-width: 768px) and (max-width: 991px) */
 @media (max-width: 991px) {
+    h2 { line-height: 50px; }
     body { background-color: #fff; }
-    .mainContent { width: auto; margin: 0; }
+    .mainContent { width: auto; margin: 0; padding: 30px; }
 
     header { .greenGradient; position:relative; padding:0; height: 60px;
         .content { width: 100%; margin: 0; 

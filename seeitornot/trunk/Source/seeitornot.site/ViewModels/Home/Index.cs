@@ -26,7 +26,7 @@ namespace seeitornot.site.ViewModels.Home
             // build overlay movie, if passed in
             if (rtMovieId != null)
             {
-                this.OverlayMovie = Movie.GetMovie(rtMovieId);
+                this.OverlayMovie = Movie.Get(rtMovieId);
             }
         }
     }

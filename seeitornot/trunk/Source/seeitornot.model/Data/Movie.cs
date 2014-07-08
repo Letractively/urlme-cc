@@ -9,7 +9,7 @@ namespace seeitornot.model
 {
     public partial class Movie
     {
-        public static Movie GetMovie(string rtMovieId)
+        public static Movie Get(string rtMovieId)
         {
             var movie = Cache.GetValue<Movie>(
                 string.Format("codejkjk.movies.Model.GetMovie.{0}", rtMovieId),
@@ -24,7 +24,7 @@ namespace seeitornot.model
             return movie;
         }
 
-        public static Dictionary<string, Movie> GetMovies(Enumerations.MovieLists movielist)
+        public static Dictionary<string, Movie> Get(Enumerations.MovieLists movielist)
         {
             // get list of rt movies from cache
             Dictionary<string, Movie> movies = Cache.GetValue<Dictionary<string, Movie>>(

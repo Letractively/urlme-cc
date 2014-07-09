@@ -7,7 +7,9 @@ ianhd.app = {
         movie: function () { return $("#movie"); },
         overlay: function () { return $("#overlay"); },
         searchBox: function() { return $("input.search"); },
-        searchIcon: function() { return $(".fa-search"); }
+        searchIcon: function () { return $(".fa-search"); },
+        theater: function () { return $(".theater"); },
+        zip: function () { return $(".zip"); }
     },
     selectors: {
         closePopup: "#overlay,.closePopup"
@@ -55,6 +57,15 @@ ianhd.app = {
         // close popup
         $(document).on('click', ianhd.app.selectors.closePopup, function (e) {
             History.pushState(null, null, "/");
+        });
+
+        // theater click
+        ianhd.app.controls.theater().click(function (e) {
+            e.preventDefault();
+            BootstrapDialog.alert({
+                title: "Select a theater",
+                message: "<div class='selectTheater'><a href='#'>* All Theaters *</a><a href='#'>Theater 1</a></div>",
+            });
         });
 
         // menu icon

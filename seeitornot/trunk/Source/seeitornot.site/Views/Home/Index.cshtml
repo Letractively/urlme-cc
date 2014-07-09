@@ -6,7 +6,9 @@
 @section scripts {
     <script>
         var viewModel = ko.mapping.fromJS({
-            overlayMovieId: '@(Model.OverlayMovie != null ? Model.OverlayMovie.id : "")'
+            overlayMovieId: '@(Model.OverlayMovie != null ? Model.OverlayMovie.id : "")',
+            theater: localStorage.getItem("theater") || "all theaters",
+            zip: localStorage.getItem("zip") || "23221"
         });
         ko.applyBindings(viewModel);
     </script>
@@ -14,7 +16,7 @@
 
 <div class="mainContent group">
     <section id="showtimes">
-        <h2>Showtimes for <a href="#">all theaters</a> near <a href="#">23221</a>.</h2>
+        <h2 class="filter">Showtimes for <a data-bind="text: theater" class="theater" href="#"></a> near <a data-bind="text: zip" class="zip" href="#"></a>.</h2>
     </section>
 
     @foreach (var movieList in Model.movieLists)

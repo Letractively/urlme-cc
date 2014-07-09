@@ -14,13 +14,13 @@ namespace seeitornot.site
                 "~/scripts/knockout-2.2.1.js",
                 "~/scripts/knockout.mapping.js",
                 "~/scripts/plugins/jquery.history.js",
-                "~/scripts/plugins/bootstrap-dialog/bootstrap-dialog.min.js"
+                "~/scripts/plugins/bootstrap-dialog/bootstrap-dialog.min.js",
+                "~/scripts/ianhd.js"
             ));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                 "~/Content/site.css",
-                "~/Content/ratings.css",
-                "~/scripts/plugins/bootstrap-dialog/bootstrap-dialog.min.css"
+                "~/Content/ratings.css"
             ));
 
             // BundleTable.EnableOptimizations = true;

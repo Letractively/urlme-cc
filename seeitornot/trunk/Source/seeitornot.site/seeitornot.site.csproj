@@ -156,6 +156,7 @@
     <Content Include="Content\Site.less" />
     <None Include="Properties\PublishProfiles\publish to c - publish.pubxml" />
     <Content Include="Scripts\ianhd.app.js" />
+    <Content Include="Scripts\ianhd.js" />
     <Content Include="Scripts\jquery-1.8.3.min.js" />
     <Content Include="Scripts\knockout-2.2.1.js" />
     <Content Include="Scripts\knockout.mapping.js" />
@@ -189,6 +190,7 @@
     <Content Include="Scripts\Plugins\font-awesome-4.1.0\fonts\fontawesome-webfont.ttf" />
     <Content Include="Scripts\Plugins\font-awesome-4.1.0\fonts\fontawesome-webfont.woff" />
     <Content Include="Scripts\Plugins\font-awesome-4.1.0\fonts\FontAwesome.otf" />
+    <None Include="Properties\PublishProfiles\publish to local.pubxml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

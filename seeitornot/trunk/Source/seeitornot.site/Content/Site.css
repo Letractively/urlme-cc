@@ -174,18 +174,19 @@ header .content .fa-times {
 .selectTheater a:not(:last-child) {
   border-bottom: 1px solid #e5e5e5;
 }
+/* select zip */
+.selectZip .modal-body {
+  padding: 20px;
+}
 /* mobile & tablet */
 /* @media (min-width: 768px) and (max-width: 991px) */
 @media (max-width: 991px) {
-  a {
+  .filter a {
     border-bottom: 1px solid #2489ce;
   }
   a:hover {
     color: #2489ce;
     text-decoration: none;
-  }
-  .selectTheater a {
-    border-bottom: none;
   }
   h2 {
     line-height: 50px;

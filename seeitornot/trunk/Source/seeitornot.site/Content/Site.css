@@ -3,10 +3,21 @@
 @import '../scripts/plugins/bootstrap-3.1.1/css/bootstrap-theme.min.css';
 @import '../scripts/plugins/font-awesome-4.1.0/css/font-awesome.min.css';
 /* to fix: */
+/* bootstrap overrides */
 h1,
 h2,
 h3 {
   margin: 0;
+}
+a {
+  color: #2489ce;
+  text-decoration: none;
+}
+.modal-footer {
+  margin-top: 0;
+}
+.modal-body {
+  padding: 0;
 }
 .group:after {
   visibility: hidden;
@@ -154,9 +165,27 @@ header .content .fa-times {
   border: 1px solid #ccc;
   font-size: 14px;
 }
+/* select dialog (for selecting theater) */
+.selectTheater a {
+  display: block;
+  padding: 20px;
+}
+.selectTheater a:not(:last-child) {
+  border-bottom: 1px solid #e5e5e5;
+}
 /* mobile & tablet */
 /* @media (min-width: 768px) and (max-width: 991px) */
 @media (max-width: 991px) {
+  a {
+    border-bottom: 1px solid #2489ce;
+  }
+  a:hover {
+    color: #2489ce;
+    text-decoration: none;
+  }
+  .selectTheater a {
+    border-bottom: none;
+  }
   h2 {
     line-height: 50px;
   }
@@ -183,6 +212,7 @@ header .content .fa-times {
     margin: 0;
   }
   header .content #logo {
+    border: none;
     background: url('logo_mobile_white.png');
     width: 60px;
     height: 48px;
@@ -258,10 +288,6 @@ header .content .fa-times {
   .debug.desktop {
     display: block;
   }
-}
-a {
-  color: #2489ce;
-  text-decoration: none;
 }
 /* movie */
 .mainContent.dt .movie {

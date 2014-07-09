@@ -59,12 +59,37 @@ ianhd.app = {
             History.pushState(null, null, "/");
         });
 
-        // theater click
+        // theater prompt
         ianhd.app.controls.theater().click(function (e) {
             e.preventDefault();
-            BootstrapDialog.alert({
+            BootstrapDialog.show({
                 title: "Select a theater",
-                message: "<div class='selectTheater'><a href='#'>* All Theaters *</a><a href='#'>Theater 1</a></div>",
+                message: "<a href='#'>* All Theaters *</a><a href='#'>Theater 1</a>",
+                cssClass: "selectTheater",
+                buttons: [{
+                    label: 'Cancel',
+                    cssClass: 'btn-default',
+                    action: function (dialog) {
+                        dialog.close();
+                    }
+                }]
+            });
+        });
+
+        // zip prompt
+        ianhd.app.controls.zip().click(function (e) {
+            e.preventDefault();
+            BootstrapDialog.show({
+                title: "Select a zip code",
+                message: "<form class='form-inline'><input class='form-control' class='enterZip' placeholder='Enter zip code...' /><button class='btn btn-primary'>Go</button></form>",
+                cssClass: "selectZip",
+                buttons: [{
+                    label: 'Cancel',
+                    cssClass: 'btn-default',
+                    action: function (dialog) {
+                        dialog.close();
+                    }
+                }]
             });
         });
 

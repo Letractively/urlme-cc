@@ -5,9 +5,12 @@ namespace seeitornot.model
 {
     public partial class Theater
     {
-        public string id { get; set; }
-        public string title { get; set; }
-
+        public int id { get; set; }
+        public string name { get; set; }
+        public string address { get; set; }
+        public string theaterUrl { get; set; }
+        public string mapUrl { get; set; }
+        
         public Theater() { }
     }
 }

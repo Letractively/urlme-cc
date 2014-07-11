@@ -6,11 +6,13 @@ using System.Web.Mvc;
 
 namespace seeitornot.site.Controllers
 {
+    [RoutePrefix("")]
     public class HomeController : BaseController
     {
         //
         // GET: /Home/
 
+        [Route("")]
         public ActionResult Index(string rtMovieId)
         {
             // HttpCookie cookie = new HttpCookie(FormsAuthentication.FormsCookieName, encryptedTicket);

@@ -16,6 +16,7 @@ namespace seeitornot.site
                 "~/scripts/plugins/jquery.history.js",
                 "~/scripts/plugins/bootstrap-dialog/bootstrap-dialog.min.js",
                 "~/scripts/plugins/iscroll.js",
+                "~/scripts/plugins/Router.js",
                 "~/scripts/ianhd.js"
             ));
 

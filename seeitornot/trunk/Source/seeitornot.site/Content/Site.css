@@ -184,9 +184,6 @@ header .content .fa-times {
   display: inline-block;
   width: 200px;
 }
-.welcome .goZip {
-  margin-top: -3px;
-}
 /* select dialog (for selecting theater) */
 .selectTheater .modal-body {
   padding: 0;
@@ -315,7 +312,7 @@ header .content .fa-times {
     line-height: normal;
   }
   .welcome .enterZip {
-    width: calc(100% - 44px);
+    width: 100%;
   }
   .debug.tablet {
     display: block;

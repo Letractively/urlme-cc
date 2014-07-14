@@ -69,8 +69,15 @@ ianhd.app = {
         ianhd.app.controls.nearMe().click(function (e) {
             if (navigator.geolocation) {
                 navigator.geolocation.getCurrentPosition(function (position) {
-                    alert(JSON.stringify(position));
-                    //$("#location").val(position.address.city + ", " + position.address.region);
+                    var url = "http://api.geonames.org/findNearbyPostalCodesJSON?lat={0}&lng={1}&username=codejkjk".format(position.coords.latitude, position.coords.longitude);
+                    $.ajax({
+                        url: url,
+                        dataType: "jsonp",
+                        success: function (resp) { viewModel.zip(resp.postalCodes[0].postalCode); }, // todo: check if postalCodes[0]
+                        error: function () { }
+                    });
+                }, function (error) {
+                    alert("Error, please try again.");
                 });
             }
         });

@@ -143,6 +143,7 @@
     <Compile Include="ViewModels\ViewModelItem.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\boostrap-flatly.min.css" />
     <Content Include="Content\bootstrap-social.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.min.css" />
@@ -169,6 +170,7 @@
     <Content Include="Scripts\Plugins\bootstrap-dialog\bootstrap-dialog.min.js" />
     <Content Include="Scripts\Plugins\font-awesome-4.1.0\css\font-awesome.min.css" />
     <Content Include="Scripts\Plugins\font-awesome-4.1.0\fonts\fontawesome-webfont.svg" />
+    <Content Include="Scripts\Plugins\iscroll.js" />
     <Content Include="Scripts\Plugins\jquery.history.js" />
     <Content Include="Scripts\_references.js" />
     <Content Include="Web.config" />

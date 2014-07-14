@@ -1,9 +1,10 @@
 @import url(http://fonts.googleapis.com/css?family=Open+Sans|Oswald);
 @import '../scripts/plugins/bootstrap-3.1.1/css/bootstrap.min.css';
-@import '../scripts/plugins/bootstrap-3.1.1/css/bootstrap-theme.min.css';
 @import '../scripts/plugins/bootstrap-dialog/bootstrap-dialog.min.css';
 @import '../scripts/plugins/font-awesome-4.1.0/css/font-awesome.min.css';
 /* to fix: */
+/*@import 'http://bootswatch.com/flatly/bootstrap.min.css';*/
+/*@import '../scripts/plugins/bootstrap-3.1.1/css/bootstrap-theme.min.css';*/
 /* bootstrap overrides */
 h1,
 h2,
@@ -17,8 +18,16 @@ a {
 .modal-footer {
   margin-top: 0;
 }
-.modal-body {
-  padding: 0;
+.hint {
+  font-style: italic;
+  display: inline-block;
+}
+.row {
+  margin-right: 0;
+  margin-left: 0;
+}
+.row:not(:first-child) {
+  margin-top: 30px;
 }
 .group:after {
   visibility: hidden;
@@ -74,7 +83,7 @@ div.debug {
 }
 /* default to desktop */
 body {
-  font-size: .85em;
+  font-size: 16px;
   font-family: "Open Sans", sans-serif;
   color: #333;
   background-color: #f5f5f5;
@@ -166,7 +175,25 @@ header .content .fa-times {
   border: 1px solid #ccc;
   font-size: 14px;
 }
+/* welcome (no zip has been specified yet) */
+.welcome .or {
+  display: inline-block;
+  margin: 0 20px;
+}
+.welcome .enterZip {
+  display: inline-block;
+  width: 200px;
+}
+.welcome .goZip {
+  margin-top: -3px;
+}
 /* select dialog (for selecting theater) */
+.selectTheater .modal-body {
+  padding: 0;
+}
+.selectTheater .hint {
+  padding: 20px;
+}
 .selectTheater a {
   display: block;
   padding: 20px;
@@ -175,9 +202,6 @@ header .content .fa-times {
   border-bottom: 1px solid #e5e5e5;
 }
 /* select zip */
-.selectZip .modal-body {
-  padding: 20px;
-}
 /* mobile & tablet */
 /* @media (min-width: 768px) and (max-width: 991px) */
 @media (max-width: 991px) {
@@ -192,7 +216,7 @@ header .content .fa-times {
     line-height: 50px;
   }
   body {
-    background-color: #fff;
+    /*background-color: #fff;*/
   }
   .mainContent {
     width: auto;
@@ -280,6 +304,18 @@ header .content .fa-times {
   }
   #navBar .content nav ul li a {
     border-top: 1px solid #79d153;
+  }
+  .welcome #nearMe {
+    width: 100%;
+  }
+  .welcome .or {
+    display: block;
+    text-align: center;
+    margin: 20px 0;
+    line-height: normal;
+  }
+  .welcome .enterZip {
+    width: calc(100% - 44px);
   }
   .debug.tablet {
     display: block;

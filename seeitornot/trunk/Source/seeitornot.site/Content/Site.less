@@ -1,8 +1,10 @@
 ﻿/* to fix: */
 
 @import url(http://fonts.googleapis.com/css?family=Open+Sans|Oswald);
+/*@import 'http://bootswatch.com/flatly/bootstrap.min.css';*/
 @import '../scripts/plugins/bootstrap-3.1.1/css/bootstrap.min.css';
-@import '../scripts/plugins/bootstrap-3.1.1/css/bootstrap-theme.min.css';
+/*@import '../scripts/plugins/bootstrap-3.1.1/css/bootstrap-theme.min.css';*/
+
 @import '../scripts/plugins/bootstrap-dialog/bootstrap-dialog.min.css';
 @import '../scripts/plugins/font-awesome-4.1.0/css/font-awesome.min.css';
 
@@ -10,7 +12,9 @@
 h1,h2,h3 { margin:0; }
 a { color: #2489ce; text-decoration: none; }
 .modal-footer { margin-top: 0; }
-.modal-body { padding: 0; }
+.hint { font-style: italic; display: inline-block; }
+.row { margin-right: 0; margin-left: 0; }
+.row:not(:first-child) { margin-top: 30px; }
 
 .group:after { visibility: hidden; display: block; content: ""; clear: both; height: 0; }
 header, footer, nav, section { display: block; }
@@ -24,7 +28,7 @@ div.debug { display:none; font-size: 24px; text-align: center; }
 
 /* default to desktop */
 body {
-    font-size: .85em;
+    font-size: 16px;
     font-family: "Open Sans", sans-serif;
     color: #333;
     background-color: #f5f5f5;
@@ -37,6 +41,7 @@ header { padding-bottom: 10px; .orangeDiag;
         .fa-bars,.fa-search,.fa-times { display:none; .noSelect }
     }
 }
+
 /* nav */
 #navBar {
     .content { width: 990px; margin:0 auto;
@@ -52,12 +57,18 @@ header { padding-bottom: 10px; .orangeDiag;
     }
 }
 
+/* welcome (no zip has been specified yet) */
+.welcome .or { display:inline-block; margin: 0 20px; }
+.welcome .enterZip { display:inline-block; width: 200px; }
+.welcome .goZip { margin-top: -3px; }
+
 /* select dialog (for selecting theater) */
+.selectTheater .modal-body { padding: 0; }
+.selectTheater .hint { padding: 20px; }
 .selectTheater a { display:block; padding: 20px; }
 .selectTheater a:not(:last-child) { border-bottom: 1px solid #e5e5e5; }
 
 /* select zip */
-.selectZip .modal-body { padding: 20px; }
 
 /* mobile & tablet */
 /* @media (min-width: 768px) and (max-width: 991px) */
@@ -66,7 +77,7 @@ header { padding-bottom: 10px; .orangeDiag;
     a:hover { color:#2489ce; text-decoration:none; }
 
     h2 { line-height: 50px; }
-    body { background-color: #fff; }
+    body { /*background-color: #fff;*/ }
     .mainContent { width: auto; margin: 0; padding: 30px; }
 
     header { .greenGradient; position:relative; padding:0; height: 60px;
@@ -96,6 +107,13 @@ header { padding-bottom: 10px; .orangeDiag;
             }
         }
     }
+
+    .welcome {
+        #nearMe { width: 100%; }
+        .or { display: block; text-align: center; margin: 20px 0; line-height: normal; }
+        .enterZip { width: ~"calc(100% - 44px)"; }
+    }
+
     .debug.tablet { display:block; }
 }
 

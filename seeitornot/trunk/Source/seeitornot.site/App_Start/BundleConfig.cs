@@ -15,9 +15,11 @@ namespace seeitornot.site
                 "~/scripts/knockout.mapping.js",
                 "~/scripts/plugins/jquery.history.js",
                 "~/scripts/plugins/bootstrap-dialog/bootstrap-dialog.min.js",
+                "~/scripts/plugins/iscroll.js",
                 "~/scripts/ianhd.js"
             ));
 
+            // other stuff? in @import's in .less
             bundles.Add(new StyleBundle("~/Content/css").Include(
                 "~/Content/site.css",
                 "~/Content/ratings.css"

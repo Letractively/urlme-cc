@@ -1,13 +1,19 @@
-﻿ianhd.registerNamespace("app");
+﻿viewModel.zip.subscribe(function (newVal) {
+    localStorage.setItem("zip", newVal);
+});
+
+ianhd.registerNamespace("app");
 ianhd.app = {
     controls: {
         logo: function () { return $("#logo"); },
         menu: function () { return $("nav"); },
         menuIcon: function () { return $(".fa-bars"); },
         movie: function () { return $("#movie"); },
+        nearMe: function() { return $("#nearMe"); },
         overlay: function () { return $("#overlay"); },
         searchBox: function() { return $("input.search"); },
         searchIcon: function () { return $(".fa-search"); },
+        selectTheaterBody: function () { return $(".selectTheater .bootstrap-dialog-message"); },
         theater: function () { return $(".theater"); },
         zip: function () { return $(".zip"); }
     },
@@ -59,12 +65,22 @@ ianhd.app = {
             History.pushState(null, null, "/");
         });
 
+        // use my location button
+        ianhd.app.controls.nearMe().click(function (e) {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(function (position) {
+                    alert(JSON.stringify(position));
+                    //$("#location").val(position.address.city + ", " + position.address.region);
+                });
+            }
+        });
+
         // theater prompt
         ianhd.app.controls.theater().click(function (e) {
             e.preventDefault();
             BootstrapDialog.show({
                 title: "Select a theater",
-                message: "<a href='#'>* All Theaters *</a><a href='#'>Theater 1</a>",
+                message: "<span class='hint'>Loading...</span>",
                 cssClass: "selectTheater",
                 buttons: [{
                     label: 'Cancel',
@@ -72,7 +88,17 @@ ianhd.app = {
                     action: function (dialog) {
                         dialog.close();
                     }
-                }]
+                }],
+                onshown: function () {
+                    $.get(apiBaseUrl + "api/theaters?zip=" + viewModel.zip(), function (theaters) {
+                        var dialogBody = ianhd.app.controls.selectTheaterBody();
+                        dialogBody.html(""); // clear out any "Loading..." messages
+                        dialogBody.append("<a href='#'>* All Theaters *</a>");
+                        $.each(theaters, function (i, theater) {
+                            dialogBody.append("<a href='#'>{0}</a>".format(theater.name));
+                        });
+                    });
+                }
             });
         });
 

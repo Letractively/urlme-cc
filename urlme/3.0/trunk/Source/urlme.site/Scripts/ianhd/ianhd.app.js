@@ -40,8 +40,8 @@ ianhd.app = {
 	init: function () {
 	    // $("abbr.timeago").timeago();
 
+	    ianhd.app.bindControls();
 	    ianhd.app.loadData();
-        ianhd.app.bindControls();
         ianhd.app.initZeroClipboard();
         ianhd.app.removeHash();
 	},
@@ -247,7 +247,7 @@ ianhd.app = {
 
 	        // datatable-ize the table
 	        dt = $("#example").dataTable({
-	            "aaSorting": [[2, "desc"]]
+	            "aaSorting": [[3, "desc"]]
 	        });
 	    });
 	},

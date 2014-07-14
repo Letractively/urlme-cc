@@ -6,13 +6,13 @@ namespace seeitornot.model
 {
     public partial class Theater
     {
-        public static Dictionary<int, Theater> Get(string zip)
+        public static List<Theater> Get(string zip)
         {
-            Dictionary<int, Theater> rtn = Cache.GetValue<Dictionary<int, Theater>>(
+            var rtn = Cache.GetValue<List<Theater>>(
                 string.Format("seeitornot.model.Theater.Get.{0}", zip),
                 () =>
                 {
-                    var theaters = new Dictionary<int, Theater>();
+                    var theaters = new List<Theater>();
 
                     string url = api.Flixster.GetShowtimesUrl(zip);
                     
@@ -45,11 +45,10 @@ namespace seeitornot.model
                             id = theaterId,
                             name = theaterTitle,
                             address = theaterAddress,
-                            theaterUrl = theaterHref,
                             mapUrl = mapUrl
                         };
 
-                        theaters.Add(theaterId, theater);
+                        theaters.Add(theater);
                     }
 
                     return theaters;

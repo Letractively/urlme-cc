@@ -10,9 +10,10 @@ namespace seeitornot.site.Controllers
     public class ApiController : Controller
     {
         [Route("theaters")]
-        public ActionResult Index()
+        public JsonResult Index(string zip)
         {
-            return Content("theaters");
+            var theaters = seeitornot.model.Theater.Get(zip);
+            return this.Json(theaters, JsonRequestBehavior.AllowGet);
         }
     }
 }

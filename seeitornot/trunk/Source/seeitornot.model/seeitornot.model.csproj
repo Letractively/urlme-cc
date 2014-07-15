@@ -50,6 +50,7 @@
   <ItemGroup>
     <Compile Include="Data\Theater.cs" />
     <Compile Include="Data\Movie.cs" />
+    <Compile Include="TheaterWithShowtimes.cs" />
     <Compile Include="Theater.cs" />
     <Compile Include="MovieList.cs" />
     <Compile Include="Movie.cs" />

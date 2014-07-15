@@ -37,28 +37,33 @@ ianhd.app = {
         ianhd.app.bindControls();
     },
     loadShowtimes: function (zip, theaterId) {
-        //console.log('loading showtimes...');
+        var url = "{0}api/theaters-with-showtimes?zip={1}&theaterId={2}".format(apiBaseUrl, zip, theaterId);
+        $.get(url, function (theaters) {
+
+            $.each(theaters, function (i, theater) {
+            
+            });
+        });
     },
     bindControls: function () {
-        // close popup
-        $(document).on('click', ianhd.app.selectors.closePopup, function (e) {
-            //History.pushState(null, null, "/");
-        });
-
+        // select an actual theater
         $(document).on('click', ianhd.app.selectors.selectTheater, function (e) {
             e.preventDefault();
+            BootstrapDialog.closeAll(); // close any open dialogs. this is nice that BootstrapDialog provides this.
             router.navigate($(this).attr("href"));
         });
 
         // use my location button
         ianhd.app.controls.nearMe().click(function (e) {
+            var btn = $(this);
+            btn.button('loading');
             if (navigator.geolocation) {
                 navigator.geolocation.getCurrentPosition(function (position) {
                     var url = "http://api.geonames.org/findNearbyPostalCodesJSON?lat={0}&lng={1}&username=codejkjk".format(position.coords.latitude, position.coords.longitude);
                     $.ajax({
                         url: url,
                         dataType: "jsonp",
-                        success: function (resp) { viewModel.zip(resp.postalCodes[0].postalCode); }, // todo: check if postalCodes[0]
+                        success: function (resp) { viewModel.zip(resp.postalCodes[0].postalCode); btn.button('reset'); }, // todo: check if postalCodes[0]
                         error: function () { }
                     });
                 }, function (error) {
@@ -82,7 +87,8 @@ ianhd.app = {
                     }
                 }],
                 onshown: function () {
-                    $.get(apiBaseUrl + "api/theaters?zip=" + viewModel.zip(), function (theaters) {
+                    var url = "{0}api/theaters?zip={1}".format(apiBaseUrl, viewModel.zip());
+                    $.get(url, function (theaters) {
                         var dialogBody = ianhd.app.controls.selectTheaterBody();
                         dialogBody.html(""); // clear out any "Loading..." messages
                         dialogBody.append("<a href='/showtimes/{0}/all'>* All Theaters *</a>".format(viewModel.zip()));

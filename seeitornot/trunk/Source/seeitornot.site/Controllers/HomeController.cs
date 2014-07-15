@@ -6,7 +6,6 @@ using System.Web.Mvc;
 
 namespace seeitornot.site.Controllers
 {
-    [RoutePrefix("")]
     public class HomeController : BaseController
     {
         //
@@ -17,6 +16,13 @@ namespace seeitornot.site.Controllers
         {
             // HttpCookie cookie = new HttpCookie(FormsAuthentication.FormsCookieName, encryptedTicket);
             var vm = new ViewModels.Home.Index(rtMovieId);
+            return View(vm);
+        }
+
+        [Route("showtimes/{zip}/{theaterId}")]
+        public ActionResult Index(string zip, string theaterId)
+        {
+            var vm = new ViewModels.Home.Index("");
             return View(vm);
         }
 

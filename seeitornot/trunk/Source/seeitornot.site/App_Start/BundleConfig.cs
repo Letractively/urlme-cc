@@ -13,9 +13,9 @@ namespace seeitornot.site
                 "~/Scripts/jquery-1.8.3.min.js",
                 "~/scripts/knockout-2.2.1.js",
                 "~/scripts/knockout.mapping.js",
-                //"~/scripts/plugins/jquery.history.js",
                 "~/scripts/plugins/bootstrap-dialog/bootstrap-dialog.min.js",
                 "~/scripts/plugins/iscroll.js",
+                "~/scripts/plugins/jquery.history.js",
                 "~/scripts/plugins/Router.js",
                 "~/scripts/ianhd.js"
             ));

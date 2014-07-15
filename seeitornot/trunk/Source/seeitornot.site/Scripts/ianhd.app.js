@@ -2,6 +2,8 @@
     localStorage.setItem("zip", newVal);
 });
 
+var router = new Router();
+
 ianhd.registerNamespace("app");
 ianhd.app = {
     controls: {
@@ -15,10 +17,11 @@ ianhd.app = {
         searchIcon: function () { return $(".fa-search"); },
         selectTheaterBody: function () { return $(".selectTheater .bootstrap-dialog-message"); },
         theater: function () { return $(".theater"); },
-        zip: function () { return $(".zip"); }
+        zip: function () { return $(".zip"); },
     },
     selectors: {
-        closePopup: "#overlay,.closePopup"
+        closePopup: "#overlay,.closePopup",
+        selectTheater: ".selectTheater a",
     },
     init: function () {
         // check if browser can support this site
@@ -33,10 +36,18 @@ ianhd.app = {
         ianhd.app.initHistory();
         ianhd.app.bindControls();
     },
+    loadShowtimes: function (zip, theaterId) {
+        //console.log('loading showtimes...');
+    },
     bindControls: function () {
         // close popup
         $(document).on('click', ianhd.app.selectors.closePopup, function (e) {
-            History.pushState(null, null, "/");
+            //History.pushState(null, null, "/");
+        });
+
+        $(document).on('click', ianhd.app.selectors.selectTheater, function (e) {
+            e.preventDefault();
+            router.navigate($(this).attr("href"));
         });
 
         // use my location button
@@ -74,9 +85,9 @@ ianhd.app = {
                     $.get(apiBaseUrl + "api/theaters?zip=" + viewModel.zip(), function (theaters) {
                         var dialogBody = ianhd.app.controls.selectTheaterBody();
                         dialogBody.html(""); // clear out any "Loading..." messages
-                        dialogBody.append("<a href='#'>* All Theaters *</a>");
+                        dialogBody.append("<a href='/showtimes/{0}/all'>* All Theaters *</a>".format(viewModel.zip()));
                         $.each(theaters, function (i, theater) {
-                            dialogBody.append("<a href='#'>{0}</a>".format(theater.name));
+                            dialogBody.append("<a href='/showtimes/{0}/{1}'>{2}</a>".format(viewModel.zip(), theater.id, theater.name));
                         });
                     });
                 }
@@ -86,18 +97,8 @@ ianhd.app = {
         // zip prompt
         ianhd.app.controls.zip().click(function (e) {
             e.preventDefault();
-            BootstrapDialog.show({
-                title: "Select a zip code",
-                message: "<form class='form-inline'><input class='form-control' class='enterZip' placeholder='Enter zip code...' /><button class='btn btn-primary'>Go</button></form>",
-                cssClass: "selectZip",
-                buttons: [{
-                    label: 'Cancel',
-                    cssClass: 'btn-default',
-                    action: function (dialog) {
-                        dialog.close();
-                    }
-                }]
-            });
+            viewModel.zip("");
+            router.navigate("/", false);
         });
 
         // menu icon
@@ -133,7 +134,16 @@ ianhd.app = {
         });
     },
     initHistory: function () {
+        router.route('/showtimes/:zip/:theaterId', function (zip, theaterId) {
+            console.log('route /showtimes/:zip/:theaterId');
+            ianhd.app.loadShowtimes(zip, theaterId);
+        });
+        router.route('/', function (zip, theaterId) {
+            console.log('route /');
+        });
 
+        // trigger initial route
+        //router.navigate(window.location.pathname);
     }
 };
 

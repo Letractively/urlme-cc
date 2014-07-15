@@ -29,6 +29,16 @@ a {
 .row:not(:first-child) {
   margin-top: 30px;
 }
+button.close {
+  font-size: 42px;
+}
+.modal-header .close {
+  margin-top: -10px;
+}
+.form-control {
+  height: 45px;
+  padding: 8px 14px;
+}
 .group:after {
   visibility: hidden;
   display: block;

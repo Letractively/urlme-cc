@@ -17,6 +17,7 @@ namespace seeitornot.site
                 "~/scripts/plugins/iscroll.js",
                 "~/scripts/plugins/jquery.history.js",
                 "~/scripts/plugins/Router.js",
+                "~/scripts/plugins/jsrender.js",
                 "~/scripts/ianhd.js"
             ));
 

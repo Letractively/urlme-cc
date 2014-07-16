@@ -13,6 +13,9 @@ namespace seeitornot.model
         public string parentalGuideUrl { get; set; }
         public int audienceScore { get; set; }
         public string audienceScoreTag { get; set; }
+        
+        // props that do NOT come from RT API
+        public string showtimesHtml { get; set; }
 
         public Movie(JToken item)
         {

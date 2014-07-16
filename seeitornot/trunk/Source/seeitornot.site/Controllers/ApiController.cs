@@ -16,8 +16,8 @@ namespace seeitornot.site.Controllers
             return this.Json(theaters, JsonRequestBehavior.AllowGet);
         }
 
-        [Route("theaters-with-showtimes")]
-        public JsonResult TheatersWithShowtimes(string zip, string theaterId)
+        [Route("theaters-with-movies")]
+        public JsonResult TheatersWithMovies(string zip, string theaterId)
         {
             var theaters = seeitornot.model.Theater.Get(zip, theaterId, System.DateTime.Now);
             return this.Json(theaters, JsonRequestBehavior.AllowGet);

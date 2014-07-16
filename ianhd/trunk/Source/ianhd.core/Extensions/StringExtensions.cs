@@ -61,5 +61,10 @@
 
             return s;
         }
+
+        public static string StripHtml(this string s)
+        {
+            return Regex.Replace(s, "<.*?>", string.Empty);
+        }
     }
 }

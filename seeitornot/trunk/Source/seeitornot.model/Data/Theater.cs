@@ -2,19 +2,22 @@
 using System.Collections.Generic;
 using HtmlAgilityPack;
 using System;
+using ianhd.core.Extensions;
 
 namespace seeitornot.model
 {
     public partial class Theater
     {
-        public static List<TheaterWithShowtimes> Get(string zip, string theaterId, DateTime date)
+        public static List<Theater> Get(string zip, string theaterId, DateTime date)
         {
             var dateStr = date.ToString("yyyyMMdd");
 
-            var rtn = Cache.GetValue<List<TheaterWithShowtimes>>(
+            var rtn = Cache.GetValue<List<Theater>>(
                 string.Format("seeitornot.model.Theater.Get.{0}.{1}.{2}", zip, theaterId, dateStr), 
                 () =>
                 {
+                    var theaters = new List<Theater>();
+
                     var url = api.Flixster.GetShowtimesUrl(zip, date);
 
                     // html agility pack magic
@@ -31,14 +34,46 @@ namespace seeitornot.model
                         }
 
                         var theater = new Theater(theaterDiv);
+                        theater.movies = new List<Movie>();
 
-                        //theaters.Add(theater);
+                        var addTheater = theaterId == "all" || theater.id == theaterId;
+                        if (!addTheater) continue; // do not process or add this theater
+
+                        // showtimes info
+                        var movies = new List<Movie>();
+                        foreach (HtmlNode showtimeDiv in theaterDiv.SelectNodes("div/div"))
+                        {
+                            try // to parse movie and add it to the list of movies for this theater
+                            {
+                                // parse out rt movie id
+                                var movieHrefNode = showtimeDiv.SelectSingleNode("h3/a");
+                                string movieTitle = movieHrefNode.InnerHtml.Trim();
+                                string rtMovieId = movieHrefNode.Attributes["href"].Value.Substring(movieHrefNode.Attributes["href"].Value.LastIndexOf("/") + 1);
+                                var movie = Movie.Get(rtMovieId);
+
+                                // parse out showtimes html for this movie
+                                var h3ToRemove = showtimeDiv.SelectSingleNode("h3");
+                                h3ToRemove.ParentNode.RemoveChild(h3ToRemove);
+                                string showtimes = showtimeDiv.InnerHtml.Trim().Replace("\t", "").Replace("\n", "").Replace("&nbsp;", "&nbsp;&nbsp;&nbsp;");
+                                movie.showtimesHtml = showtimes.StripHtml();
+
+                                // add to movie list, which we'll add to theater later
+                                movies.Add(movie);
+                            }
+                            catch
+                            {
+                                continue; // skip this movie
+                            }
+                        } // next movie
+                        theater.movies.AddRange(movies);
+
+                        theaters.Add(theater);
                     }
 
-                    return null;
+                    return theaters;
                 });
 
-            return null;
+            return rtn;
         }
         
         public static List<Theater> Get(string zip)

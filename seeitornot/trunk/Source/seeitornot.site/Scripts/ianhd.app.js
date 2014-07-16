@@ -17,6 +17,7 @@ ianhd.app = {
         searchIcon: function () { return $(".fa-search"); },
         selectTheaterBody: function () { return $(".selectTheater .bootstrap-dialog-message"); },
         theater: function () { return $(".theater"); },
+        theatersWithMovies: function () { return $("#theatersWithMovies"); },
         zip: function () { return $(".zip"); },
     },
     selectors: {
@@ -37,12 +38,11 @@ ianhd.app = {
         ianhd.app.bindControls();
     },
     loadShowtimes: function (zip, theaterId) {
-        var url = "{0}api/theaters-with-showtimes?zip={1}&theaterId={2}".format(apiBaseUrl, zip, theaterId);
+        var url = "{0}api/theaters-with-movies?zip={1}&theaterId={2}".format(apiBaseUrl, zip, theaterId);
         $.get(url, function (theaters) {
-
-            $.each(theaters, function (i, theater) {
-            
-            });
+            ianhd.app.controls.theatersWithMovies().html(
+                $("#theaterTmpl").render(theaters)
+            );
         });
     },
     bindControls: function () {

@@ -243,11 +243,11 @@ header .content .fa-times {
   white-space: nowrap;
   float: left;
   height: 20px;
-  left: 74px;
 }
 #theatersWithMovies .theater .movie .showtimesHtml {
   position: absolute;
   bottom: 0;
+  left: 74px;
   width: calc(100% - 74px);
   font-size: 14px;
 }
@@ -275,7 +275,7 @@ header .content .fa-times {
     text-decoration: none;
   }
   h2 {
-    line-height: 50px;
+    line-height: 40px;
   }
   body {
     /*background-color: #fff;*/

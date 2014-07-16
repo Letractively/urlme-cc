@@ -22,6 +22,7 @@ button.close { font-size: 42px; }
 .group:after { visibility: hidden; display: block; content: ""; clear: both; height: 0; }
 header, footer, nav, section { display: block; }
 div.debug { display:none; font-size: 24px; text-align: center; }
+.ellipsis { overflow:hidden; text-overflow:ellipsis; white-space: nowrap; }
 
 .orangeDiag { background-image: -webkit-gradient(linear, left top, right bottom, color-stop(0, #e76801), color-stop(0.25, #e76801), color-stop(0.25, #ec7f24), color-stop(0.5, #ec7f24), color-stop(0.5, #e76801), color-stop(0.75, #e76801), color-stop(0.75, #ec7f24));	background-image: -webkit-linear-gradient(left top, #e76801 0%, #e76801 25%, #ec7f24 25%, #ec7f24 50%, #e76801 50%, #e76801 75%, #ec7f24 75%); background-image: -moz-linear-gradient(left top, #e76801 0%, #e76801 25%, #ec7f24 25%, #ec7f24 50%, #e76801 50%, #e76801 75%, #ec7f24 75%); background-image: -ms-linear-gradient(left top, #e76801 0%, #e76801 25%, #ec7f24 25%, #ec7f24 50%, #e76801 50%, #e76801 75%, #ec7f24 75%); background-image: -o-linear-gradient(left top, #e76801 0%, #e76801 25%, #ec7f24 25%, #ec7f24 50%, #e76801 50%, #e76801 75%, #ec7f24 75%);	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e76801', endColorstr='#ec7f24',GradientType=0 ); /* IE6-8 */ background-image: linear-gradient(left top, #e76801 0%, #e76801 25%, #ec7f24 25%, #ec7f24 50%, #e76801 50%, #e76801 75%, #ec7f24 75%); background-size: 20px 20px; }
 .greenGradient { background: #65b145; /* fallback */ background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#79d153), to(#65b145)); background: -webkit-linear-gradient(top, #79d153, #65b145); background: -moz-linear-gradient(top, #79d153, #65b145); }
@@ -70,7 +71,22 @@ header { padding-bottom: 10px; .orangeDiag;
 .selectTheater a { display:block; padding: 20px; }
 .selectTheater a:not(:last-child) { border-bottom: 1px solid #e5e5e5; }
 
-/* select zip */
+/* theaters with movies list */
+#theatersWithMovies { margin-top: 20px;
+    .theater { background: white; margin-top: 20px; padding: 20px; 
+        h3 { padding-bottom: 10px; border-bottom: 1px solid #e6e6e6; }
+        .movie { margin-top: 20px; position: relative;
+            img { float:left; margin-right: 20px; max-width: 54px; }
+            h4 { margin: 0; width: ~"calc(100% - 74px)"; .ellipsis; float:left; height: 20px; left: 74px; }
+            .showtimesHtml { position: absolute; bottom: 0; width: ~"calc(100% - 74px)"; font-size: 14px;
+                span { display:inline-block; }
+                span:not(:last-child) { margin-right: 10px; }
+            }
+            .hint { font-size: 14px; color: #929292; }
+        }
+    }
+    .theater:first-child { margin-top: 0; }
+}
 
 /* mobile & tablet */
 /* @media (min-width: 768px) and (max-width: 991px) */
@@ -80,7 +96,7 @@ header { padding-bottom: 10px; .orangeDiag;
 
     h2 { line-height: 50px; }
     body { /*background-color: #fff;*/ }
-    .mainContent { width: auto; margin: 0; padding: 30px; }
+    .mainContent { width: auto; margin: 0; padding: 20px; }
 
     header { .greenGradient; position:relative; padding:0; height: 60px;
         .content { width: 100%; margin: 0; 

@@ -57,6 +57,11 @@ div.debug {
   font-size: 24px;
   text-align: center;
 }
+.ellipsis {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
 .orangeDiag {
   background-image: -webkit-gradient(linear, left top, right bottom, color-stop(0, #e76801), color-stop(0.25, #e76801), color-stop(0.25, #ec7f24), color-stop(0.5, #ec7f24), color-stop(0.5, #e76801), color-stop(0.75, #e76801), color-stop(0.75, #ec7f24));
   background-image: -webkit-linear-gradient(left top, #e76801 0%, #e76801 25%, #ec7f24 25%, #ec7f24 50%, #e76801 50%, #e76801 75%, #ec7f24 75%);
@@ -208,7 +213,57 @@ header .content .fa-times {
 .selectTheater a:not(:last-child) {
   border-bottom: 1px solid #e5e5e5;
 }
-/* select zip */
+/* theaters with movies list */
+#theatersWithMovies {
+  margin-top: 20px;
+}
+#theatersWithMovies .theater {
+  background: white;
+  margin-top: 20px;
+  padding: 20px;
+}
+#theatersWithMovies .theater h3 {
+  padding-bottom: 10px;
+  border-bottom: 1px solid #e6e6e6;
+}
+#theatersWithMovies .theater .movie {
+  margin-top: 20px;
+  position: relative;
+}
+#theatersWithMovies .theater .movie img {
+  float: left;
+  margin-right: 20px;
+  max-width: 54px;
+}
+#theatersWithMovies .theater .movie h4 {
+  margin: 0;
+  width: calc(100% - 74px);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  float: left;
+  height: 20px;
+  left: 74px;
+}
+#theatersWithMovies .theater .movie .showtimesHtml {
+  position: absolute;
+  bottom: 0;
+  width: calc(100% - 74px);
+  font-size: 14px;
+}
+#theatersWithMovies .theater .movie .showtimesHtml span {
+  display: inline-block;
+}
+#theatersWithMovies .theater .movie .showtimesHtml span:not(:last-child) {
+  margin-right: 10px;
+}
+#theatersWithMovies .theater .movie .hint {
+  font-size: 14px;
+  color: #929292;
+}
+#theatersWithMovies .theater:first-child {
+  margin-top: 0;
+}
 /* mobile & tablet */
 /* @media (min-width: 768px) and (max-width: 991px) */
 @media (max-width: 991px) {
@@ -228,7 +283,7 @@ header .content .fa-times {
   .mainContent {
     width: auto;
     margin: 0;
-    padding: 30px;
+    padding: 20px;
   }
   header {
     background: #65b145;

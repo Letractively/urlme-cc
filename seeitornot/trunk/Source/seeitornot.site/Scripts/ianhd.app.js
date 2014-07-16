@@ -39,8 +39,10 @@ ianhd.app = {
     },
     loadShowtimes: function (zip, theaterId) {
         var url = "{0}api/theaters-with-movies?zip={1}&theaterId={2}".format(apiBaseUrl, zip, theaterId);
+        var targetOutput = ianhd.app.controls.theatersWithMovies();
+        targetOutput.html("<span class='hint'>Loading...</span>")
         $.get(url, function (theaters) {
-            ianhd.app.controls.theatersWithMovies().html(
+            targetOutput.html(
                 $("#theaterTmpl").render(theaters)
             );
         });
@@ -63,7 +65,12 @@ ianhd.app = {
                     $.ajax({
                         url: url,
                         dataType: "jsonp",
-                        success: function (resp) { viewModel.zip(resp.postalCodes[0].postalCode); btn.button('reset'); }, // todo: check if postalCodes[0]
+                        success: function (resp) {
+                            var zip = resp.postalCodes[0].postalCode;
+                            viewModel.zip(zip);
+                            router.navigate("/showtimes/{0}/all".format(zip));
+                            btn.button('reset');
+                        }, // todo: check if postalCodes[0]
                         error: function () { }
                     });
                 }, function (error) {
@@ -147,6 +154,19 @@ ianhd.app = {
         router.route('/', function (zip, theaterId) {
             console.log('route /');
         });
+
+        // gotta be a better way to trigger initial route
+        var initPath = window.location.pathname;
+        if (initPath.indexOf("showtimes") >= 0) {
+            initPath = initPath.substr(initPath.indexOf("showtimes"));
+            var parts = initPath.split('/');
+            var zip = parts[1];
+            var theaterId = parts[2];
+            viewModel.zip(zip);
+            ianhd.app.loadShowtimes(zip, theaterId);
+        } else if (viewModel.zip()) {
+            ianhd.app.loadShowtimes(viewModel.zip(), "all");
+        }
 
         // trigger initial route
         //router.navigate(window.location.pathname);

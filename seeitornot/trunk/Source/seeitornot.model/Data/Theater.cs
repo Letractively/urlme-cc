@@ -54,8 +54,11 @@ namespace seeitornot.model
                                 // parse out showtimes html for this movie
                                 var h3ToRemove = showtimeDiv.SelectSingleNode("h3");
                                 h3ToRemove.ParentNode.RemoveChild(h3ToRemove);
-                                string showtimes = showtimeDiv.InnerHtml.Trim().Replace("\t", "").Replace("\n", "").Replace("&nbsp;", "&nbsp;&nbsp;&nbsp;");
-                                movie.showtimesHtml = showtimes.StripHtml();
+                                string showtimes = showtimeDiv.InnerHtml.Trim().Replace("\t", "").Replace("\n", "").Replace("&nbsp;", "^").TrimEnd('^');
+
+                                if (string.IsNullOrEmpty(showtimes)) continue; // next movie
+
+                                movie.showtimesHtml = "<span>" + showtimes.StripHtml().Replace("^", "</span><span>") + "</span>";
 
                                 // add to movie list, which we'll add to theater later
                                 movies.Add(movie);

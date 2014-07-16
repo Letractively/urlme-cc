@@ -50,7 +50,7 @@ namespace seeitornot.model
                     var jObj = (JObject)JsonConvert.DeserializeObject(json);
                     var ret = jObj["movies"].Select(item => new Movie(item));
 
-                    return ret.Where(x => !x.posterDetailed.Contains("poster_default.gif") && x.mpaa_rating != "Unrated").ToDictionary(key => key.id, value => value);
+                    return ret.Where(x => !x.posterDetailed.Contains("poster_default.gif") && x.mpaaRating != "Unrated").ToDictionary(key => key.id, value => value);
                 });
 
             // set reviews for each movie

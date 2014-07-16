@@ -41,7 +41,26 @@ ianhd.app = {
         var url = "{0}api/theaters-with-movies?zip={1}&theaterId={2}".format(apiBaseUrl, zip, theaterId);
         var targetOutput = ianhd.app.controls.theatersWithMovies();
         targetOutput.html("<span class='hint'>Loading...</span>")
+
         $.get(url, function (theaters) {
+
+            // remove any times that are earlier than now
+            /*
+            var now = new Date();
+            now = parseInt(now.getHours() + "" + now.getMinutes());
+            $.each(theaters, function (i, theater) {
+                $.each(theater.movies, function (j, movie) {
+                    var showtimesHtml = "<div>" + movie.showtimesHtml + "</div>"; // wrap in div so $("...") can parse it correctly
+                    $.each($(showtimesHtml).find("span"), function (k, span) {
+                        span = $(span);
+                        var time = span.html();
+                        var hours = Number(time.match(/^(\d+)/)[1]);
+                        var minutes = Number(time.match(/:(\d+)/)[1]);
+                    });
+                });
+            });
+            */
+
             targetOutput.html(
                 $("#theaterTmpl").render(theaters)
             );

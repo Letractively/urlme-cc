@@ -1,5 +1,6 @@
 ﻿using Newtonsoft.Json.Linq;
 using ianhd.core.Extensions;
+using System.Collections.Generic;
 
 namespace seeitornot.model
 {
@@ -16,7 +17,7 @@ namespace seeitornot.model
         public string runtime { get; set; }
 
         // props that do NOT come from RT API
-        public string showtimesHtml { get; set; }
+        public List<string> showtimes { get; set; }
 
         public Movie(JToken item)
         {

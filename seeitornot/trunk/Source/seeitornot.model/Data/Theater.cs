@@ -58,7 +58,7 @@ namespace seeitornot.model
 
                                 if (string.IsNullOrEmpty(showtimes)) continue; // next movie
 
-                                movie.showtimesHtml = "<span>" + showtimes.StripHtml().Replace("^", "</span><span>") + "</span>";
+                                movie.showtimes = new List<string>(showtimes.StripHtml().Split('^'));
 
                                 // add to movie list, which we'll add to theater later
                                 movies.Add(movie);

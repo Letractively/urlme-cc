@@ -16,7 +16,7 @@
 
 <div class="mainContent group">
     <section style="display:none" id="showtimes" data-bind="visible: zip">
-        <h2 class="filter">Showtimes for <a data-bind="text: theater" class="theater" href="#"></a> near <a data-bind="text: zip" class="zip" href="#"></a>.</h2>
+        <h2 class="filter">Showtimes@*for <a data-bind="text: theater" class="theater" href="#"></a>*@ near <a data-bind="text: zip" class="zip" href="#"></a>.</h2>
         <div id="theatersWithMovies"></div>
     </section>
     <section class="welcome" style="display:none" data-bind="visible: !zip()">
@@ -33,11 +33,11 @@
         <h2>@movieList.title</h2>
         foreach (var movie in movieList.movies.Values)
         {
-            <a href="~/@movie.movieSlug" class="group movie bottomShadow">
+            <a href="~/@*@movie.movieSlug*@" class="group movie bottomShadow">
                 <img src="@movie.posterDetailed" />
                 <div class="details">
                     <div class="mpaa">
-                        @movie.mpaa_rating
+                        @movie.mpaaRating
                     </div>
                 </div>
             </a>
@@ -45,11 +45,18 @@
     }
 </div>
 
-<script id="theaterTmpl" @*type="text/x-jsrender"*@ @*type="text/x-handlebars-template"*@ type="text/x-jquery-tmpl">
-    <h2>{{=name}}</h2>
-    {{#each movies}}
-    <h3>{{=title}}</h3>
-    {{/each}}
+<script id="theaterTmpl" type="text/x-jquery-tmpl">
+    <div class="theater">
+        <h3>{{=name}}</h3>
+        {{#each movies}}
+            <div class="movie group">
+                <img src="{{=posterDetailed}}" />
+                <h4>{{=title}}</h4>
+                <div class="hint">{{=mpaaRating}}{{#if runtime}} , {{=runtime}}{{/if}}</div>
+                <div class="showtimesHtml">{{=showtimesHtml!}}</div>
+            </div>
+        {{/each}}
+    </div>
 </script>
 
 <section id="movie" class="popup rounded" data-bind="visible: overlayMovieId()" style="display:none;">

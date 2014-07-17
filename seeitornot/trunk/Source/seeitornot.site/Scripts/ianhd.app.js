@@ -45,25 +45,27 @@ ianhd.app = {
         $.get(url, function (theaters) {
 
             // remove any times that are earlier than now
-            /*
+            
             var now = new Date();
             now = parseInt(now.getHours() + "" + now.getMinutes());
+
             $.each(theaters, function (i, theater) {
                 $.each(theater.movies, function (j, movie) {
-                    var showtimesHtml = "<div>" + movie.showtimesHtml + "</div>"; // wrap in div so $("...") can parse it correctly
-                    $.each($(showtimesHtml).find("span"), function (k, span) {
-                        span = $(span);
-                        var time = span.html();
-                        var hours = Number(time.match(/^(\d+)/)[1]);
-                        var minutes = Number(time.match(/:(\d+)/)[1]);
+
+                    movie.showtimes = $.grep(movie.showtimes, function (showtime, k) {
+                        var hours = Number(showtime.match(/^(\d+)/)[1]);
+                        var minutes = Number(showtime.match(/:(\d+)/)[1]);
+                        var isAM = showtime.indexOf("am") >= 0;
+                        hours = !isAM ? hours + 12 : hours;
+                        var showtime24hr = parseInt(hours + "" + minutes);
+                        return true;
+                        //return now <= showtime24hr;
                     });
                 });
             });
-            */
-
-            targetOutput.html(
-                $("#theaterTmpl").render(theaters)
-            );
+            
+            var html = $.templates("#theaterTmpl").render(theaters);
+            targetOutput.html(html);
         });
     },
     bindControls: function () {

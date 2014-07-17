@@ -45,21 +45,21 @@
     }
 </div>
 
-<script id="theaterTmpl" type="text/x-jquery-tmpl">
+<script id="theaterTmpl" type="text/x-jsrender">
     <div class="theater">
-        <h3>{{=name}}</h3>
-        {{#each movies}}
+        <h3>{{:name}}</h3>
+        {{for movies}}
             <div class="movie group">
-                <img src="{{=posterDetailed}}" />
-                <h4>{{=title}}</h4>
-                <div class="hint">{{=mpaaRating}}{{#if runtime}} , {{=runtime}}{{/if}}</div>
+                <img src="{{:posterDetailed}}" />
+                <h4>{{:title}}</h4>
+                <div class="hint">{{:mpaaRating}}{{if runtime}} , {{:runtime}}{{/if}}</div>
                 <div class="showtimesHtml">
-                    {{#each showtimes}}
-                        <span>$value</span>
-                    {{/each}}
+                    {{for showtimes}}
+                        <span>{{:#data}}</span>
+                    {{/for}}
                 </div>
             </div>
-        {{/each}}
+        {{/for}}
     </div>
 </script>
 

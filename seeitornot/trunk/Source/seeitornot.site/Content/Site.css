@@ -233,11 +233,11 @@ header .content .fa-times {
 #theatersWithMovies .theater .movie img {
   float: left;
   margin-right: 20px;
-  max-width: 54px;
+  max-width: 61px;
 }
 #theatersWithMovies .theater .movie h4 {
   margin: 0;
-  width: calc(100% - 74px);
+  width: calc(100% - 81px);
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -247,8 +247,7 @@ header .content .fa-times {
 #theatersWithMovies .theater .movie .showtimesHtml {
   position: absolute;
   bottom: 0;
-  left: 74px;
-  width: calc(100% - 74px);
+  left: 81px;
   font-size: 14px;
 }
 #theatersWithMovies .theater .movie .showtimesHtml span {
@@ -256,6 +255,10 @@ header .content .fa-times {
 }
 #theatersWithMovies .theater .movie .showtimesHtml span:not(:last-child) {
   margin-right: 10px;
+}
+#theatersWithMovies .theater .movie .showtimesHtml .hint {
+  text-decoration: line-through;
+  font-style: normal;
 }
 #theatersWithMovies .theater .movie .hint {
   font-size: 14px;

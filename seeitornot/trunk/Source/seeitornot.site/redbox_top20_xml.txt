@@ -1,0 +1,1137 @@
+<Top20 xmlns="http://api.redbox.com/v3/Products" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" productType="Movies" lastUpdated="2012-04-11T18:20:06" period="30">
+<Item productId="08EDC18F-64AD-4F7A-AEEE-DB7546C330CF" format="DVD" websiteUrl="http://www.redbox.com/movies/the-girl-with-the-dragon-tattoo-2011">
+<Title>The Girl with the Dragon Tattoo (2011)</Title>
+<SortTitle>Girl with the Dragon Tattoo (2011)</SortTitle>
+<UppercaseTitle>THE GIRL WITH THE DRAGON TATTOO (2011)</UppercaseTitle>
+<RedboxReleaseDate>2012-03-20</RedboxReleaseDate>
+<RedboxComingSoonDate xsi:nil="true"/>
+<Flags>
+<Flag type="NewRelease" beginDate="2012-03-20" endDate="2012-04-03"/>
+<Flag type="AvailableAtRedbox" beginDate="2012-03-20"/>
+<Flag type="SearchOnWeb" beginDate="2012-03-20"/>
+<Flag type="BrowseOnWeb" beginDate="2012-03-20"/>
+</Flags>
+<SynopsisShort>
+A journalist is hired by one of Sweden's richest industrialists to investigate the disappearance of his niece 40 years ago. With a female hacker assisting him, they uncover a secret history of murder and sexual abuse that puts their lives in danger. NOTE TO RENTERS: The handwritten look on the disc of this movie is legitimate and is intended to look like a burned DVD.
+</SynopsisShort>
+<SynopsisLong>
+The bestselling book is now a MAJOR MOTION PICTURE. A journalist is hired by one of Sweden's richest industrialists to investigate the disappearance of his niece 40 years ago. With a female hacker assisting him, they uncover a secret history of murder and sexual abuse that puts their lives in danger. NOTE TO RENTERS: The handwritten look on the disc of this movie is legitimate and is intended to look like a burned DVD.
+</SynopsisLong>
+<RedboxDoNotRentDate xsi:nil="true"/>
+<Genres>
+<Genre>Action</Genre>
+<Genre>Drama</Genre>
+</Genres>
+<BoxArtImages>
+<atom:link xmlns:atom="http://www.w3.org/2005/Atom" href="http://images.redbox.com/Images/epc/Thumb/4688.jpg" rel="http://api.redbox.com/Links/BoxArt/Thumb"/>
+<atom:link xmlns:atom="http://www.w3.org/2005/Atom" href="http://images.redbox.com/Images/epc/Full/4688.jpg" rel="http://api.redbox.com/Links/BoxArt/Full"/>
+<atom:link xmlns:atom="http://www.w3.org/2005/Atom" href="http://images.redbox.com/Images/epc/Thumb150/4688.jpg" rel="http://api.redbox.com/Links/BoxArt/Thumb150"/>
+<atom:link xmlns:atom="http://www.w3.org/2005/Atom" href="http://images.redbox.com/Images/epc/Detail370/4688.jpg" rel="http://api.redbox.com/Links/BoxArt/Detail370"/>
+<atom:link xmlns:atom="http://www.w3.org/2005/Atom" href="http://images.redbox.com/Images/epc/Original/4688.jpg" rel="http://api.redbox.com/Links/BoxArt/Original"/>
+<atom:link xmlns:atom="http://www.w3.org/2005/Atom" href="http://images.redbox.com/Images/epc/Kiosk/4688.jpg" rel="http://api.redbox.com/Links/BoxArt/Kiosk"/>
+</BoxArtImages>
+<RatingContext ratingReason="for brutal violent content including rape and torture, strong sexuality, graphic nudity, and language" ratingDescription="Restricted. Children Under 17 Require Accompanying Parent or Adult Guardian." ratedBy="by the Motion Picture Association of America"/>
+<ExternalIds>
+<ExternalId source="Baseline" description="DVDId">5265979</ExternalId>
+<ExternalId source="Baseline" description="FilmId">4763033</ExternalId>
+<ExternalId source="UPC">043396395985</ExternalId>
+</ExternalIds>
+<StreetReleaseDate>2012-03-20</StreetReleaseDate>
+<ReleaseYear>2011</ReleaseYear>
+<DomesticHomeVideoDistributor>Sony</DomesticHomeVideoDistributor>
+<DomesticTheatricalDistributor>Columbia TriStar Motion Picture Group</DomesticTheatricalDistributor>
+<RunningLength>P0Y0M0DT2H38M0S</RunningLength>
+<MPAARating>R</MPAARating>
+<Actors>
+<Person>Daniel Craig</Person>
+<Person>Rooney Mara</Person>
+<Person>Christopher Plummer</Person>
+<Person>Stellan Skarsgård</Person>
+<Person>Steven Berkoff</Person>
+</Actors>
+<Directors>
+<Person>David Fincher</Person>
+</Directors>
+<BoxOfficeRevenue>100800000</BoxOfficeRevenue>
+<ScreenFormat>Widescreen</ScreenFormat>
+<Top20Entry xmlns:p4="http://api.redbox.com/v3/Top20" xsi:type="p4:OldTop20Entry" position="1" direction="Up" amount="1"/>
+</Item>
+<Item productId="8CC4FB01-D030-496C-99E9-437ADAFB572F" format="DVD" websiteUrl="http://www.redbox.com/movies/jack-and-jill">
+<Title>Jack and Jill</Title>
+<SortTitle>Jack and Jill</SortTitle>
+<UppercaseTitle>JACK AND JILL</UppercaseTitle>
+<RedboxReleaseDate>2012-03-06</RedboxReleaseDate>
+<RedboxComingSoonDate xsi:nil="true"/>
+<Flags>
+<Flag type="NewRelease" beginDate="2012-03-06" endDate="2012-03-20"/>
+<Flag type="AvailableAtRedbox" beginDate="2012-03-06"/>
+<Flag type="SearchOnWeb" beginDate="2012-03-06"/>
+<Flag type="BrowseOnWeb" beginDate="2012-03-06"/>
+</Flags>
+<SynopsisShort>
+Once again, successful advertising executive Jack Sadelstein dreads the annual Thanksgiving visit of his twin sister Jill, knowing that her passive-aggressiveness will undoubtedly turn his family's life upside down.
+</SynopsisShort>
+<SynopsisLong>
+Jack Sadelstein is a successful advertising executive in Los Angeles with a beautiful wife and kids, who dreads one event each year: the Thanksgiving visit of his identical twin sister Jill. Jill's neediness and passive-aggressiveness is maddening to Jack, turning his normally tranquil life upside down.
+</SynopsisLong>
+<RedboxDoNotRentDate xsi:nil="true"/>
+<Genres>
+<Genre>Comedy</Genre>
+</Genres>
+<BoxArtImages>
+<atom:link xmlns:atom="http://www.w3.org/2005/Atom" href="http://images.redbox.com/Images/epc/Thumb/4675.jpg" rel="http://api.redbox.com/Links/BoxArt/Thumb"/>
+<atom:link xmlns:atom="http://www.w3.org/2005/Atom" href="http://images.redbox.com/Images/epc/Full/4675.jpg" rel="http://api.redbox.com/Links/BoxArt/Full"/>
+<atom:link xmlns:atom="http://www.w3.org/2005/Atom" href="http://images.redbox.com/Images/epc/Thumb150/4675.jpg" rel="http://api.redbox.com/Links/BoxArt/Thumb150"/>
+<atom:link xmlns:atom="http://www.w3.org/2005/Atom" href="http://images.redbox.com/Images/epc/Detail370/4675.jpg" rel="http://api.redbox.com/Links/BoxArt/Detail370"/>
+<atom:link xmlns:atom="http://www.w3.org/2005/Atom" href="http://images.redbox.com/Images/epc/Original/4675.jpg" rel="http://api.redbox.com/Links/BoxArt/Original"/>
+<atom:link xmlns:atom="http://www.w3.org/2005/Atom" href="http://images.redbox.com/Images/epc/Kiosk/4675.jpg" rel="http://api.redbox.com/Links/BoxArt/Kiosk"/>
+</BoxArtImages>
+<RatingContext ratingReason="for crude material including suggestive references, language, comic violence and brief smoking" ratingDescription="Parental Guidance Suggested. Some Material May Not Be Suitable For Children." ratedBy="by the Motion Picture Association of America"/>
+<ExternalIds>
+<ExternalId source="Baseline" description="DVDId">5261268</ExternalId>
+<ExternalId source="Baseline" description="FilmId">4732256</ExternalId>
+<ExternalId source="UPC">043396395138</ExternalId>
+</ExternalIds>
+<StreetReleaseDate>2012-03-06</StreetReleaseDate>
+<ReleaseYear>2011</ReleaseYear>
+<DomesticHomeVideoDistributor>Sony</DomesticHomeVideoDistributor>
+<DomesticTheatricalDistributor>Columbia TriStar Motion Picture Group</DomesticTheatricalDistributor>
+<RunningLength>P0Y0M0DT1H31M0S</RunningLength>
+<MPAARating>PG</MPAARating>
+<Actors>
+<Person>Adam Sandler</Person>
+<Person>Katie Holmes</Person>
+<Person>Allen Covert</Person>
+<Person>Al Pacino</Person>
+<Person>Elodie Tougne</Person>
+</Actors>
+<Directors>
+<Person>Dennis Dugan</Person>
+</Directors>
+<BoxOfficeRevenue>73400000</BoxOfficeRevenue>
+<ScreenFormat>Widescreen</ScreenFormat>
+<Top20Entry xmlns:p4="http://api.redbox.com/v3/Top20" xsi:type="p4:OldTop20Entry" position="2" direction="Down" amount="1"/>
+</Item>
+<Item productId="84A7F7F3-D9D9-4F00-A0EC-82EC7DF8C6E5" format="DVD" websiteUrl="http://www.redbox.com/movies/tower-heist">
+<Title>Tower Heist</Title>
+<SortTitle>Tower Heist</SortTitle>
+<UppercaseTitle>TOWER HEIST</UppercaseTitle>
+<RedboxReleaseDate>2012-03-20</RedboxReleaseDate>
+<RedboxComingSoonDate xsi:nil="true"/>
+<Flags>
+<Flag type="ComingSoon" beginDate="2012-02-21" endDate="2012-03-20"/>
+<Flag type="NewRelease" beginDate="2012-03-20" endDate="2012-04-03"/>
+<Flag type="AvailableAtRedbox" beginDate="2012-03-20"/>
+<Flag type="SearchOnWeb" beginDate="2012-03-20"/>
+<Flag type="BrowseOnWeb" beginDate="2012-03-20"/>
+</Flags>
+<SynopsisShort>
+After penthouse tower resident Arthur Shaw robs many of their life savings in a Ponzi scheme, a group of his victims, including his building's manager Josh Kovaks, plan a heist to get their money back with interest.
+</SynopsisShort>
+<SynopsisLong>
+Queens native Josh Kovaks has managed one of the most luxurious and well-secured residences in New York City for more than a decade. Under his watchful eye, nothing goes undetected. In the swankiest unit atop Josh's building, Wall Street titan Arthur Shaw is under house arrest after being caught stealing two billion from his investors. The hardest hit among those he defrauded? The tower staffers whose pensions he was entrusted to manage. With only days before Arthur gets away with the perfect crime, Josh's crew turns to petty crook Slide to plan the nearly impossible...to steal what they are sure is hidden in Arthur's guarded condo. Though amateurs, these rookie thieves know the building better than anyone. Turns out they've been casing the place for years, they just didn't know it.
+</SynopsisLong>
+<RedboxDoNotRentDate xsi:nil="true"/>
+<Genres>
+<Genre>Action</Genre>
+<Genre>Comedy</Genre>
+</Genres>
+<BoxArtImages>
+<atom:link xmlns:atom="http://www.w3.org/2005/Atom" href="http://images.redbox.com/Images/epc/Thumb/4693.jpg" rel="http://api.redbox.com/Links/BoxArt/Thumb"/>
+<atom:link xmlns:atom="http://www.w3.org/2005/Atom" href="http://images.redbox.com/Images/epc/Full/4693.jpg" rel="http://api.redbox.com/Links/BoxArt/Full"/>
+<atom:link xmlns:atom="http://www.w3.org/2005/Atom" href="http://images.redbox.com/Images/epc/Thumb150/4693.jpg" rel="http://api.redbox.com/Links/BoxArt/Thumb150"/>
+<atom:link xmlns:atom="http://www.w3.org/2005/Atom" href="http://images.redbox.com/Images/epc/Detail370/4693.jpg" rel="http://api.redbox.com/Links/BoxArt/Detail370"/>
+<atom:link xmlns:atom="http://www.w3.org/2005/Atom" href="http://images.redbox.com/Images/epc/Original/4693.jpg" rel="http://api.redbox.com/Links/BoxArt/Original"/>
+<atom:link xmlns:atom="http://www.w3.org/2005/Atom" href="http://images.redbox.com/Images/epc/Kiosk/4693.jpg" rel="http://api.redbox.com/Links/BoxArt/Kiosk"/>
+</BoxArtImages>
+<RatingContext ratingReason="for language and sexual content" ratingDescription="Parents Strongly Cautioned. Some Material May Be Inappropriate For Children Under 13." ratedBy="by the Motion Picture Association of America"/>
+<ExternalIds>
+<ExternalId source="Baseline" description="DVDId">5266455</ExternalId>
+<ExternalId source="Baseline" description="FilmId">4772725</ExternalId>
+<ExternalId source="UPC">025192078347</ExternalId>
+</ExternalIds>
+<StreetReleaseDate>2012-02-21</StreetReleaseDate>
+<ReleaseYear>2011</ReleaseYear>
+<DomesticHomeVideoDistributor>Universal</DomesticHomeVideoDistributor>
+<DomesticTheatricalDistributor>Universal Pictures</DomesticTheatricalDistributor>
+<RunningLength>P0Y0M0DT1H45M0S</RunningLength>
+<MPAARating>PG-13</MPAARating>
+<Actors>
+<Person>Ben Stiller</Person>
+<Person>Eddie Murphy</Person>
+<Person>Casey Affleck</Person>
+<Person>Alan Alda</Person>
+<Person>Matthew Broderick</Person>
+</Actors>
+<Directors>
+<Person>Brett Ratner</Person>
+</Directors>
+<BoxOfficeRevenue>78000000</BoxOfficeRevenue>
+<ScreenFormat>Widescreen</ScreenFormat>
+<Top20Entry xmlns:p4="http://api.redbox.com/v3/Top20" xsi:type="p4:OldTop20Entry" position="3" direction="NoChange" amount="0"/>
+</Item>
+<Item productId="406B249E-C4B2-4DD3-99B8-FB399AF30636" format="DVD" websiteUrl="http://www.redbox.com/movies/the-adventures-of-tintin">
+<Title>The Adventures of Tintin</Title>
+<SortTitle>Adventures of Tintin</SortTitle>
+<UppercaseTitle>THE ADVENTURES OF TINTIN</UppercaseTitle>
+<RedboxReleaseDate>2012-03-13</RedboxReleaseDate>
+<RedboxComingSoonDate xsi:nil="true"/>
+<Flags>
+<Flag type="NewRelease" beginDate="2012-03-13" endDate="2012-03-27"/>
+<Flag type="AvailableAtRedbox" beginDate="2012-03-13"/>
+<Flag type="SearchOnWeb" beginDate="2012-03-13"/>
+<Flag type="BrowseOnWeb" beginDate="2012-03-13"/>
+</Flags>
+<SynopsisShort>
+The fearless young reporter Tintin is on the trail of a big story which leads him into a world of high adventure. He and his friends go on a treasure hunt when they find directions to a sunken ship, and Tintin must face the notorious Red Rackham.
+</SynopsisShort>
+<SynopsisLong>
+The film is based on the comic strip "Tintin" and a series of books by George "Herge" Remi, about the fearless young reporter Tintin. Tintin is on the trail of a big story which leads him into a world of high adventure. When he and his friends find the directions to a sunken ship, they go off to find the treasure it contained and Tintin must face the notorious Red Rackham.
+</SynopsisLong>
+<RedboxDoNotRentDate xsi:nil="true"/>
+<Genres>
+<Genre>Family</Genre>
+</Genres>
+<BoxArtImages>
+<atom:link xmlns:atom="http://www.w3.org/2005/Atom" href="http://images.redbox.com/Images/epc/Thumb/4686.jpg" rel="http://api.redbox.com/Links/BoxArt/Thumb"/>
+<atom:link xmlns:atom="http://www.w3.org/2005/Atom" href="http://images.redbox.com/Images/epc/Full/4686.jpg" rel="http://api.redbox.com/Links/BoxArt/Full"/>
+<atom:link xmlns:atom="http://www.w3.org/2005/Atom" href="http://images.redbox.com/Images/epc/Thumb150/4686.jpg" rel="http://api.redbox.com/Links/BoxArt/Thumb150"/>
+<atom:link xmlns:atom="http://www.w3.org/2005/Atom" href="http://images.redbox.com/Images/epc/Detail370/4686.jpg" rel="http://api.redbox.com/Links/BoxArt/Detail370"/>
+<atom:link xmlns:atom="http://www.w3.org/2005/Atom" href="http://images.redbox.com/Images/epc/Original/4686.jpg" rel="http://api.redbox.com/Links/BoxArt/Original"/>
+<atom:link xmlns:atom="http://www.w3.org/2005/Atom" href="http://images.redbox.com/Images/epc/Kiosk/4686.jpg" rel="http://api.redbox.com/Links/BoxArt/Kiosk"/>
+</BoxArtImages>
+<RatingContext ratingReason="for adventure action violence, some drunkenness and brief smoking" ratingDescription="Parental Guidance Suggested. Some Material May Not Be Suitable For Children." ratedBy="by the Motion Picture Association of America"/>
+<ExternalIds>
+<ExternalId source="Baseline" description="DVDId">5265059</ExternalId>
+<ExternalId source="Baseline" description="FilmId">4822414</ExternalId>
+<ExternalId source="UPC">032429108067</ExternalId>
+</ExternalIds>
+<StreetReleaseDate>2012-03-13</StreetReleaseDate>
+<ReleaseYear>2011</ReleaseYear>
+<DomesticHomeVideoDistributor>Paramount</DomesticHomeVideoDistributor>
+<DomesticTheatricalDistributor>Paramount Pictures</DomesticTheatricalDistributor>
+<RunningLength>P0Y0M0DT1H46M0S</RunningLength>
+<MPAARating>PG</MPAARating>
+<Actors>
+<Person>Jamie Bell</Person>
+<Person>Andy Serkis</Person>
+<Person>Daniel Craig</Person>
+<Person>Simon Pegg</Person>
+<Person>Nick Frost</Person>
+</Actors>
+<Directors>
+<Person>Steven Spielberg</Person>
+</Directors>
+<BoxOfficeRevenue>75300000</BoxOfficeRevenue>
+<ScreenFormat>Widescreen</ScreenFormat>
+<Top20Entry xmlns:p4="http://api.redbox.com/v3/Top20" xsi:type="p4:OldTop20Entry" position="4" direction="NoChange" amount="0"/>
+</Item>
+<Item productId="DCEF7DB7-66DF-4186-8349-27E0DCE280FF" format="DVD" websiteUrl="http://www.redbox.com/movies/young-adult">
+<Title>Young Adult</Title>
+<SortTitle>Young Adult</SortTitle>
+<UppercaseTitle>YOUNG ADULT</UppercaseTitle>
+<RedboxReleaseDate>2012-03-13</RedboxReleaseDate>
+<RedboxComingSoonDate xsi:nil="true"/>
+<Flags>
+<Flag type="ComingSoon" beginDate="2012-02-14" endDate="2012-03-13"/>
+<Flag type="NewRelease" beginDate="2012-03-13" endDate="2012-03-27"/>
+<Flag type="AvailableAtRedbox" beginDate="2012-03-13"/>
+<Flag type="SearchOnWeb" beginDate="2012-03-13"/>
+<Flag type="BrowseOnWeb" beginDate="2012-03-13"/>
+</Flags>
+<SynopsisShort>
+When teen book author Mavis Gary learns that her high school boyfriend has become a father, she returns to her hometown to break up his marriage and win him back. Going home is not easy and she finds an unlikely ally with an old classmate.
+</SynopsisShort>
+<SynopsisLong>
+Mavis Gary, a writer of teen literature returns to her small hometown to relive her glory days and attempt to reclaim her happily married high school sweetheart. When returning home proves more difficult than she thought, Mavis forms an unusual bond with a former classmate who hasn't quite gotten over high school, either.
+</SynopsisLong>
+<RedboxDoNotRentDate xsi:nil="true"/>
+<Genres>
+<Genre>Comedy</Genre>
+<Genre>Drama</Genre>
+</Genres>
+<BoxArtImages>
+<atom:link xmlns:atom="http://www.w3.org/2005/Atom" href="http://images.redbox.com/Images/epc/Thumb/5366.jpg" rel="http://api.redbox.com/Links/BoxArt/Thumb"/>
+<atom:link xmlns:atom="http://www.w3.org/2005/Atom" href="http://images.redbox.com/Images/epc/Full/5366.jpg" rel="http://api.redbox.com/Links/BoxArt/Full"/>
+<atom:link xmlns:atom="http://www.w3.org/2005/Atom" href="http://images.redbox.com/Images/epc/Thumb150/5366.jpg" rel="http://api.redbox.com/Links/BoxArt/Thumb150"/>
+<atom:link xmlns:atom="http://www.w3.org/2005/Atom" href="http://images.redbox.com/Images/epc/Detail370/5366.jpg" rel="http://api.redbox.com/Links/BoxArt/Detail370"/>
+<atom:link xmlns:atom="http://www.w3.org/2005/Atom" href="http://images.redbox.com/Images/epc/Original/5366.jpg" rel="http://api.redbox.com/Links/BoxArt/Original"/>
+<atom:link xmlns:atom="http://www.w3.org/2005/Atom" href="http://images.redbox.com/Images/epc/Kiosk/5366.jpg" rel="http://api.redbox.com/Links/BoxArt/Kiosk"/>
+</BoxArtImages>
+<RatingContext ratingReason="for language and some sexual content" ratingDescription="Restricted. Children Under 17 Require Accompanying Parent or Adult Guardian." ratedBy="by the Motion Picture Association of America"/>
+<ExternalIds>
+<ExternalId source="Baseline" description="DVDId">5265020</ExternalId>
+<ExternalId source="Baseline" description="FilmId">4786644</ExternalId>
+<ExternalId source="UPC">032429110886</ExternalId>
+</ExternalIds>
+<StreetReleaseDate>2012-03-13</StreetReleaseDate>
+<ReleaseYear>2011</ReleaseYear>
+<DomesticHomeVideoDistributor>Paramount</DomesticHomeVideoDistributor>
+<DomesticTheatricalDistributor>NA</DomesticTheatricalDistributor>
+<RunningLength>P0Y0M0DT1H33M0S</RunningLength>
+<MPAARating>R</MPAARating>
+<Actors>
+<Person>Charlize Theron</Person>
+<Person>Patton Oswalt</Person>
+<Person>Patrick Wilson</Person>
+<Person>Elizabeth Reaser</Person>
+<Person>Collette Wolfe</Person>
+</Actors>
+<Directors>
+<Person>Jason Reitman</Person>
+</Directors>
+<BoxOfficeRevenue>16200000</BoxOfficeRevenue>
+<ScreenFormat>Widescreen</ScreenFormat>
+<Top20Entry xmlns:p4="http://api.redbox.com/v3/Top20" xsi:type="p4:OldTop20Entry" position="5" direction="NoChange" amount="0"/>
+</Item>
+<Item productId="4B9EFF42-983A-411B-AE2A-4FEC12990D63" format="DVD" websiteUrl="http://www.redbox.com/movies/in-time">
+<Title>In Time</Title>
+<SortTitle>In Time</SortTitle>
+<UppercaseTitle>IN TIME</UppercaseTitle>
+<RedboxReleaseDate>2012-02-28</RedboxReleaseDate>
+<RedboxComingSoonDate xsi:nil="true"/>
+<Flags>
+<Flag type="NewRelease" beginDate="2012-02-28" endDate="2012-03-13"/>
+<Flag type="AvailableAtRedbox" beginDate="2012-02-28" endDate="2012-08-28"/>
+<Flag type="SearchOnWeb" beginDate="2012-02-28" endDate="2012-08-28"/>
+<Flag type="BrowseOnWeb" beginDate="2012-02-28" endDate="2012-08-28"/>
+</Flags>
+<SynopsisShort>
+In the near future, the aging gene has been deactivated, so to avoid overpopulation, time is the currency. The rich can live forever and when a young man comes into a fortune of time, he ends up on the run from a corrupt force known as "time keepers."
+</SynopsisShort>
+<SynopsisLong>
+In the near future, people are immortal because the aging gene has been deactivated. To avoid overpopulation, time has become the currency. The rich can live forever, and the rest have to negotiate for their immortality. When a young man comes into a fortune of time, he ends up on the run from a corrupt force known as "time keepers."
+</SynopsisLong>
+<RedboxDoNotRentDate xsi:nil="true"/>
+<Genres>
+<Genre>Action</Genre>
+</Genres>
+<BoxArtImages>
+<atom:link xmlns:atom="http://www.w3.org/2005/Atom" href="http://images.redbox.com/Images/epc/Thumb/4685.jpg" rel="http://api.redbox.com/Links/BoxArt/Thumb"/>
+<atom:link xmlns:atom="http://www.w3.org/2005/Atom" href="http://images.redbox.com/Images/epc/Full/4685.jpg" rel="http://api.redbox.com/Links/BoxArt/Full"/>
+<atom:link xmlns:atom="http://www.w3.org/2005/Atom" href="http://images.redbox.com/Images/epc/Thumb150/4685.jpg" rel="http://api.redbox.com/Links/BoxArt/Thumb150"/>
+<atom:link xmlns:atom="http://www.w3.org/2005/Atom" href="http://images.redbox.com/Images/epc/Detail370/4685.jpg" rel="http://api.redbox.com/Links/BoxArt/Detail370"/>
+<atom:link xmlns:atom="http://www.w3.org/2005/Atom" href="http://images.redbox.com/Images/epc/Original/4685.jpg" rel="http://api.redbox.com/Links/BoxArt/Original"/>
+<atom:link xmlns:atom="http://www.w3.org/2005/Atom" href="http://images.redbox.com/Images/epc/Kiosk/4685.jpg" rel="http://api.redbox.com/Links/BoxArt/Kiosk"/>
+</BoxArtImages>
+<RatingContext ratingReason="for violence, some sexuality and partial nudity, and brief strong language" ratingDescription="Parents Strongly Cautioned. Some Material May Be Inappropriate For Children Under 13." ratedBy="by the Motion Picture Association of America"/>
+<ExternalIds>
+<ExternalId source="Baseline" description="DVDId">5259284</ExternalId>
+<ExternalId source="Baseline" description="FilmId">4685390</ExternalId>
+<ExternalId source="UPC">024543782933</ExternalId>
+</ExternalIds>
+<StreetReleaseDate>2012-01-31</StreetReleaseDate>
+<ReleaseYear>2011</ReleaseYear>
+<DomesticHomeVideoDistributor>Fox</DomesticHomeVideoDistributor>
+<DomesticTheatricalDistributor>20th Century Fox Distribution</DomesticTheatricalDistributor>
+<RunningLength>P0Y0M0DT1H50M0S</RunningLength>
+<MPAARating>PG-13</MPAARating>
+<Actors>
+<Person>Justin Timberlake</Person>
+<Person>Amanda Seyfried</Person>
+<Person>Cillian Murphy</Person>
+<Person>Vincent Kartheiser</Person>
+<Person>Olivia Wilde</Person>
+</Actors>
+<Directors>
+<Person>Andrew Niccol</Person>
+</Directors>
+<BoxOfficeRevenue>37500000</BoxOfficeRevenue>
+<ScreenFormat>Widescreen</ScreenFormat>
+<Top20Entry xmlns:p4="http://api.redbox.com/v3/Top20" xsi:type="p4:OldTop20Entry" position="6" direction="NoChange" amount="0"/>
+</Item>
+<Item productId="82E9609C-6BDE-4B0B-A3AC-99AAA88E0F1B" format="DVD" websiteUrl="http://www.redbox.com/movies/footloose-1">
+<Title>Footloose (2011)</Title>
+<SortTitle>Footloose (2011)</SortTitle>
+<UppercaseTitle>FOOTLOOSE (2011)</UppercaseTitle>
+<RedboxReleaseDate>2012-03-06</RedboxReleaseDate>
+<RedboxComingSoonDate xsi:nil="true"/>
+<Flags>
+<Flag type="NewRelease" beginDate="2012-03-06" endDate="2012-03-20"/>
+<Flag type="AvailableAtRedbox" beginDate="2012-03-06"/>
+<Flag type="SearchOnWeb" beginDate="2012-03-06"/>
+<Flag type="BrowseOnWeb" beginDate="2012-03-06"/>
+</Flags>
+<SynopsisShort>
+A big city teen is transplanted to a small southern town that prohibits loud music and dancing. Not one to bow to the status quo, he challenges the ban, revitalizing the town and falling in love with the minister's troubled daughter in the process.
+</SynopsisShort>
+<SynopsisLong>
+Ren McCormack is transplanted from Boston to the small southern town of Bomont where he experiences a heavy dose of culture shock. A few years prior, the community was rocked by a tragic accident that killed five teenagers after a night out and Bomont's local councilmen and the beloved Reverend Shaw Moore responded by implementing ordinances that prohibit loud music and dancing. Not one to bow to the status quo, Ren challenges the ban, revitalizing the town and falling in love with the minister's troubled daughter Ariel in the process.
+</SynopsisLong>
+<RedboxDoNotRentDate xsi:nil="true"/>
+<Genres>
+<Genre>Comedy</Genre>
+<Genre>Drama</Genre>
+</Genres>
+<BoxArtImages>
+<atom:link xmlns:atom="http://www.w3.org/2005/Atom" href="http://images.redbox.com/Images/epc/Thumb/4144.jpg" rel="http://api.redbox.com/Links/BoxArt/Thumb"/>
+<atom:link xmlns:atom="http://www.w3.org/2005/Atom" href="http://images.redbox.com/Images/epc/Full/4144.jpg" rel="http://api.redbox.com/Links/BoxArt/Full"/>
+<atom:link xmlns:atom="http://www.w3.org/2005/Atom" href="http://images.redbox.com/Images/epc/Thumb150/4144.jpg" rel="http://api.redbox.com/Links/BoxArt/Thumb150"/>
+<atom:link xmlns:atom="http://www.w3.org/2005/Atom" href="http://images.redbox.com/Images/epc/Detail370/4144.jpg" rel="http://api.redbox.com/Links/BoxArt/Detail370"/>
+<atom:link xmlns:atom="http://www.w3.org/2005/Atom" href="http://images.redbox.com/Images/epc/Original/4144.jpg" rel="http://api.redbox.com/Links/BoxArt/Original"/>
+<atom:link xmlns:atom="http://www.w3.org/2005/Atom" href="http://images.redbox.com/Images/epc/Kiosk/4144.jpg" rel="http://api.redbox.com/Links/BoxArt/Kiosk"/>
+</BoxArtImages>
+<RatingContext ratingReason="for some teen drug and alcohol use, sexual content, violence and language" ratingDescription="Parents Strongly Cautioned. Some Material May Be Inappropriate For Children Under 13." ratedBy="by the Motion Picture Association of America"/>
+<ExternalIds>
+<ExternalId source="Baseline" description="DVDId">5263291</ExternalId>
+<ExternalId source="Baseline" description="FilmId">4658534</ExternalId>
+<ExternalId source="UPC">032429110725</ExternalId>
+</ExternalIds>
+<StreetReleaseDate>2012-03-06</StreetReleaseDate>
+<ReleaseYear>2011</ReleaseYear>
+<DomesticHomeVideoDistributor>Paramount</DomesticHomeVideoDistributor>
+<DomesticTheatricalDistributor>Paramount Pictures</DomesticTheatricalDistributor>
+<RunningLength>P0Y0M0DT1H53M0S</RunningLength>
+<MPAARating>PG-13</MPAARating>
+<Actors>
+<Person>Kenny Wormald</Person>
+<Person>Julianne Hough</Person>
+<Person>Andie MacDowell</Person>
+<Person>Dennis Quaid</Person>
+<Person>Miles Teller</Person>
+</Actors>
+<Directors>
+<Person>Craig Brewer</Person>
+</Directors>
+<BoxOfficeRevenue>51800000</BoxOfficeRevenue>
+<ScreenFormat>Widescreen</ScreenFormat>
+<Top20Entry xmlns:p4="http://api.redbox.com/v3/Top20" xsi:type="p4:OldTop20Entry" position="7" direction="NoChange" amount="0"/>
+</Item>
+<Item productId="BF7F7FA1-00C1-4724-8BC1-B88404F3C157" format="DVD" websiteUrl="http://www.redbox.com/movies/puss-in-boots">
+<Title>Puss in Boots</Title>
+<SortTitle>Puss in Boots</SortTitle>
+<UppercaseTitle>PUSS IN BOOTS</UppercaseTitle>
+<RedboxReleaseDate>2012-02-24</RedboxReleaseDate>
+<RedboxComingSoonDate xsi:nil="true"/>
+<Flags>
+<Flag type="NewRelease" beginDate="2012-02-24" endDate="2012-03-09"/>
+<Flag type="AvailableAtRedbox" beginDate="2012-02-24"/>
+<Flag type="SearchOnWeb" beginDate="2012-02-24"/>
+<Flag type="BrowseOnWeb" beginDate="2012-02-24"/>
+</Flags>
+<SynopsisShort>
+Before meeting Shrek and his friends, the suave, swashbuckling Puss in Boots teams up with Humpty Dumpty and street-savvy Kitty Softpaws to steal the goose that lays the golden eggs.
+</SynopsisShort>
+<SynopsisLong>
+Way before Puss in Boots ever met Shrek, our suave and furry feline hero goes on a swashbuckling ride, as he teams up with mastermind Humpty Dumpty and the street-savvy Kitty Southpaws to steal the famed goose that lays the golden eggs.
+</SynopsisLong>
+<RedboxDoNotRentDate xsi:nil="true"/>
+<Genres>
+<Genre>Family</Genre>
+</Genres>
+<BoxArtImages>
+<atom:link xmlns:atom="http://www.w3.org/2005/Atom" href="http://images.redbox.com/Images/epc/Thumb/4691.jpg" rel="http://api.redbox.com/Links/BoxArt/Thumb"/>
+<atom:link xmlns:atom="http://www.w3.org/2005/Atom" href="http://images.redbox.com/Images/epc/Full/4691.jpg" rel="http://api.redbox.com/Links/BoxArt/Full"/>
+<atom:link xmlns:atom="http://www.w3.org/2005/Atom" href="http://images.redbox.com/Images/epc/Thumb150/4691.jpg" rel="http://api.redbox.com/Links/BoxArt/Thumb150"/>
+<atom:link xmlns:atom="http://www.w3.org/2005/Atom" href="http://images.redbox.com/Images/epc/Detail370/4691.jpg" rel="http://api.redbox.com/Links/BoxArt/Detail370"/>
+<atom:link xmlns:atom="http://www.w3.org/2005/Atom" href="http://images.redbox.com/Images/epc/Original/4691.jpg" rel="http://api.redbox.com/Links/BoxArt/Original"/>
+<atom:link xmlns:atom="http://www.w3.org/2005/Atom" href="http://images.redbox.com/Images/epc/Kiosk/4691.jpg" rel="http://api.redbox.com/Links/BoxArt/Kiosk"/>
+</BoxArtImages>
+<RatingContext ratingReason="for some adventure action and mild rude humor" ratingDescription="Parental Guidance Suggested. Some Material May Not Be Suitable For Children." ratedBy="by the Motion Picture Association of America"/>
+<ExternalIds>
+<ExternalId source="Baseline" description="DVDId">5259224</ExternalId>
+<ExternalId source="Baseline" description="FilmId">4733248</ExternalId>
+<ExternalId source="UPC">032429107985</ExternalId>
+</ExternalIds>
+<StreetReleaseDate>2012-02-24</StreetReleaseDate>
+<ReleaseYear>2011</ReleaseYear>
+<DomesticHomeVideoDistributor>Paramount</DomesticHomeVideoDistributor>
+<DomesticTheatricalDistributor>Paramount Pictures</DomesticTheatricalDistributor>
+<RunningLength>P0Y0M0DT1H30M0S</RunningLength>
+<MPAARating>PG</MPAARating>
+<Actors>
+<Person>Antonio Banderas</Person>
+<Person>Salma Hayek</Person>
+<Person>Zach Galifianakis</Person>
+<Person>Billy Bob Thornton</Person>
+<Person>Amy Sedaris</Person>
+</Actors>
+<Directors>
+<Person>Chris Miller</Person>
+</Directors>
+<BoxOfficeRevenue>147700000</BoxOfficeRevenue>
+<ScreenFormat>Widescreen</ScreenFormat>
+<Top20Entry xmlns:p4="http://api.redbox.com/v3/Top20" xsi:type="p4:OldTop20Entry" position="8" direction="NoChange" amount="0"/>
+</Item>
+<Item productId="40F83106-5756-4EB6-AD8E-8199EA6DD579" format="DVD" websiteUrl="http://www.redbox.com/movies/the-three-musketeers">
+<Title>The Three Musketeers</Title>
+<SortTitle>Three Musketeers</SortTitle>
+<UppercaseTitle>THE THREE MUSKETEERS</UppercaseTitle>
+<RedboxReleaseDate>2012-03-13</RedboxReleaseDate>
+<RedboxComingSoonDate xsi:nil="true"/>
+<Flags>
+<Flag type="ComingSoon" beginDate="2012-02-14" endDate="2012-03-13"/>
+<Flag type="NewRelease" beginDate="2012-03-13" endDate="2012-03-27"/>
+<Flag type="AvailableAtRedbox" beginDate="2012-03-13"/>
+<Flag type="SearchOnWeb" beginDate="2012-03-13"/>
+<Flag type="BrowseOnWeb" beginDate="2012-03-13"/>
+</Flags>
+<SynopsisShort>
+Warriors Porthos, Athos, and Aramis are Musketeers of the King of France. After discovering a conspiracy to overthrow the king, the three add young D'Artagnan to their band and the four of them embark on a mission to save the Crown and Europe.
+</SynopsisShort>
+<SynopsisLong>
+They are known as Porthos, Athos, and Aramis - three elite warriors who serve the King of France as his best Musketeers. After discovering an evil conspiracy to overthrow the King, the Musketeers come across a young, aspiring hero - D'Artagnan - and take him under their wing. Together, the four embark on a dangerous mission to foil the plot that not only threatens the Crown, but the future of Europe itself.
+</SynopsisLong>
+<RedboxDoNotRentDate xsi:nil="true"/>
+<Genres>
+<Genre>Action</Genre>
+</Genres>
+<BoxArtImages>
+<atom:link xmlns:atom="http://www.w3.org/2005/Atom" href="http://images.redbox.com/Images/epc/Thumb/4172.jpg" rel="http://api.redbox.com/Links/BoxArt/Thumb"/>
+<atom:link xmlns:atom="http://www.w3.org/2005/Atom" href="http://images.redbox.com/Images/epc/Full/4172.jpg" rel="http://api.redbox.com/Links/BoxArt/Full"/>
+<atom:link xmlns:atom="http://www.w3.org/2005/Atom" href="http://images.redbox.com/Images/epc/Thumb150/4172.jpg" rel="http://api.redbox.com/Links/BoxArt/Thumb150"/>
+<atom:link xmlns:atom="http://www.w3.org/2005/Atom" href="http://images.redbox.com/Images/epc/Detail370/4172.jpg" rel="http://api.redbox.com/Links/BoxArt/Detail370"/>
+<atom:link xmlns:atom="http://www.w3.org/2005/Atom" href="http://images.redbox.com/Images/epc/Original/4172.jpg" rel="http://api.redbox.com/Links/BoxArt/Original"/>
+<atom:link xmlns:atom="http://www.w3.org/2005/Atom" href="http://images.redbox.com/Images/epc/Kiosk/4172.jpg" rel="http://api.redbox.com/Links/BoxArt/Kiosk"/>
+</BoxArtImages>
+<RatingContext ratingReason="for sequences of adventure action violence" ratingDescription="Parents Strongly Cautioned. Some Material May Be Inappropriate For Children Under 13." ratedBy="by the Motion Picture Association of America"/>
+<ExternalIds>
+<ExternalId source="Baseline" description="DVDId">5265003</ExternalId>
+<ExternalId source="Baseline" description="FilmId">4818127</ExternalId>
+<ExternalId source="UPC">025192131844</ExternalId>
+</ExternalIds>
+<StreetReleaseDate>2012-03-13</StreetReleaseDate>
+<ReleaseYear>2011</ReleaseYear>
+<DomesticHomeVideoDistributor>Summit</DomesticHomeVideoDistributor>
+<DomesticTheatricalDistributor>Summit</DomesticTheatricalDistributor>
+<RunningLength>P0Y0M0DT1H51M0S</RunningLength>
+<MPAARating>PG-13</MPAARating>
+<Actors>
+<Person>Logan Lerman</Person>
+<Person>Ray Stevenson</Person>
+<Person>Luke Evans</Person>
+<Person>Matthew Macfadyen</Person>
+<Person>Gabriella Wilde</Person>
+</Actors>
+<Directors>
+<Person>Paul W.S. Anderson</Person>
+</Directors>
+<BoxOfficeRevenue>20300000</BoxOfficeRevenue>
+<ScreenFormat>Widescreen</ScreenFormat>
+<Top20Entry xmlns:p4="http://api.redbox.com/v3/Top20" xsi:type="p4:OldTop20Entry" position="9" direction="NoChange" amount="0"/>
+</Item>
+<Item productId="CBFE6AD5-64CB-4161-95DB-4303267B860E" format="DVD" websiteUrl="http://www.redbox.com/movies/immortals">
+<Title>Immortals</Title>
+<SortTitle>Immortals</SortTitle>
+<UppercaseTitle>IMMORTALS</UppercaseTitle>
+<RedboxReleaseDate>2012-04-03</RedboxReleaseDate>
+<RedboxComingSoonDate xsi:nil="true"/>
+<Flags>
+<Flag type="NewRelease" beginDate="2012-04-03" endDate="2012-04-17"/>
+<Flag type="AvailableAtRedbox" beginDate="2012-04-03" endDate="2012-10-02"/>
+<Flag type="SearchOnWeb" beginDate="2012-04-03" endDate="2012-10-02"/>
+<Flag type="BrowseOnWeb" beginDate="2012-04-03" endDate="2012-10-02"/>
+</Flags>
+<SynopsisShort>
+At the dawn of time, the Greek Gods triumph in their war against the Titans. Centuries later, Hyperion becomes the tyrant king of the Titans, leading a murderous rampage across Greece and only Theseus can lead the fight to save mankind.
+</SynopsisShort>
+<SynopsisLong>
+The brutal and bloodthirsty King Hyperion and his murderous army are rampaging across Greece, demolishing everything in their wake with ruthless efficiency. Village after village falls to Hyperion's legions and each victory takes him one step closer to his goal: unleashing the power of the sleeping Titans to vanquish both the Gods of Olympus and all of humankind. It seems nothing will stop the evil king's mission to become the undisputed master of the world, until a stonemason named Theseus vows to avenge the death of his mother in one of Hyperion's raids. When Theseus meets the Sibylline Oracle, Phaedra, her disturbing visions of the young man's future convince her that he is the key to stopping the destruction. With her help, Theseus assembles a small band of followers and embraces his destiny in a final desperate battle for the future of humanity.
+</SynopsisLong>
+<RedboxDoNotRentDate xsi:nil="true"/>
+<Genres>
+<Genre>Action</Genre>
+</Genres>
+<BoxArtImages>
+<atom:link xmlns:atom="http://www.w3.org/2005/Atom" href="http://images.redbox.com/Images/epc/Thumb/4695.jpg" rel="http://api.redbox.com/Links/BoxArt/Thumb"/>
+<atom:link xmlns:atom="http://www.w3.org/2005/Atom" href="http://images.redbox.com/Images/epc/Full/4695.jpg" rel="http://api.redbox.com/Links/BoxArt/Full"/>
+<atom:link xmlns:atom="http://www.w3.org/2005/Atom" href="http://images.redbox.com/Images/epc/Thumb150/4695.jpg" rel="http://api.redbox.com/Links/BoxArt/Thumb150"/>
+<atom:link xmlns:atom="http://www.w3.org/2005/Atom" href="http://images.redbox.com/Images/epc/Detail370/4695.jpg" rel="http://api.redbox.com/Links/BoxArt/Detail370"/>
+<atom:link xmlns:atom="http://www.w3.org/2005/Atom" href="http://images.redbox.com/Images/epc/Original/4695.jpg" rel="http://api.redbox.com/Links/BoxArt/Original"/>
+<atom:link xmlns:atom="http://www.w3.org/2005/Atom" href="http://images.redbox.com/Images/epc/Kiosk/4695.jpg" rel="http://api.redbox.com/Links/BoxArt/Kiosk"/>
+</BoxArtImages>
+<RatingContext ratingReason="for strong bloody violence, and a scene of sexuality" ratingDescription="Restricted. Children Under 17 Require Accompanying Parent or Adult Guardian." ratedBy="by the Motion Picture Association of America"/>
+<ExternalIds>
+<ExternalId source="Baseline" description="DVDId">5270491</ExternalId>
+<ExternalId source="Baseline" description="FilmId">4790076</ExternalId>
+<ExternalId source="UPC">024543776291</ExternalId>
+</ExternalIds>
+<StreetReleaseDate>2012-03-06</StreetReleaseDate>
+<ReleaseYear>2011</ReleaseYear>
+<DomesticHomeVideoDistributor>Fox</DomesticHomeVideoDistributor>
+<DomesticTheatricalDistributor>Relativity Media</DomesticTheatricalDistributor>
+<RunningLength>P0Y0M0DT1H50M0S</RunningLength>
+<MPAARating>R</MPAARating>
+<Actors>
+<Person>Henry Cavill</Person>
+<Person>Mickey Rourke</Person>
+<Person>Luke Evans</Person>
+<Person>John Hurt</Person>
+<Person>Stephen Dorff</Person>
+</Actors>
+<Directors>
+<Person>Tarsem Singh</Person>
+</Directors>
+<BoxOfficeRevenue>83500000</BoxOfficeRevenue>
+<ScreenFormat>Widescreen</ScreenFormat>
+<Top20Entry xmlns:p4="http://api.redbox.com/v3/Top20" xsi:type="p4:OldTop20Entry" position="10" direction="Up" amount="1"/>
+</Item>
+<Item productId="B00CC5D5-546C-4788-9E74-8B07AA119E8C" format="DVD" websiteUrl="http://www.redbox.com/movies/happy-feet-two">
+<Title>Happy Feet Two</Title>
+<SortTitle>Happy Feet Two</SortTitle>
+<UppercaseTitle>HAPPY FEET TWO</UppercaseTitle>
+<RedboxReleaseDate>2012-03-20</RedboxReleaseDate>
+<RedboxComingSoonDate xsi:nil="true"/>
+<Flags>
+<Flag type="ComingSoon" beginDate="2012-02-21" endDate="2012-03-20"/>
+<Flag type="NewRelease" beginDate="2012-03-20" endDate="2012-04-03"/>
+<Flag type="AvailableAtRedbox" beginDate="2012-03-20"/>
+<Flag type="SearchOnWeb" beginDate="2012-03-20"/>
+<Flag type="BrowseOnWeb" beginDate="2012-03-20"/>
+</Flags>
+<SynopsisShort>
+Tap-dancing penguin, Mumble and his love Gloria return with their son Erik who is struggling to find his own talents in the Emperor Penguin world.
+</SynopsisShort>
+<SynopsisLong>
+The most famous tap-dancing penguin, Mumble, returns along with the love of his life, Gloria, and their old friends Ramon and Lovelace. Mumble and Gloria now have a son, Erik, who is struggling to find his own particular talents in the Emperor Penguin world. But new dangers are threatening the penguin nation, and it's going to take everyone working - and dancing - together to save them.
+</SynopsisLong>
+<RedboxDoNotRentDate xsi:nil="true"/>
+<Genres>
+<Genre>Family</Genre>
+</Genres>
+<BoxArtImages>
+<atom:link xmlns:atom="http://www.w3.org/2005/Atom" href="http://images.redbox.com/Images/epc/Thumb/4702.jpg" rel="http://api.redbox.com/Links/BoxArt/Thumb"/>
+<atom:link xmlns:atom="http://www.w3.org/2005/Atom" href="http://images.redbox.com/Images/epc/Full/4702.jpg" rel="http://api.redbox.com/Links/BoxArt/Full"/>
+<atom:link xmlns:atom="http://www.w3.org/2005/Atom" href="http://images.redbox.com/Images/epc/Thumb150/4702.jpg" rel="http://api.redbox.com/Links/BoxArt/Thumb150"/>
+<atom:link xmlns:atom="http://www.w3.org/2005/Atom" href="http://images.redbox.com/Images/epc/Detail370/4702.jpg" rel="http://api.redbox.com/Links/BoxArt/Detail370"/>
+<atom:link xmlns:atom="http://www.w3.org/2005/Atom" href="http://images.redbox.com/Images/epc/Original/4702.jpg" rel="http://api.redbox.com/Links/BoxArt/Original"/>
+<atom:link xmlns:atom="http://www.w3.org/2005/Atom" href="http://images.redbox.com/Images/epc/Kiosk/4702.jpg" rel="http://api.redbox.com/Links/BoxArt/Kiosk"/>
+</BoxArtImages>
+<RatingContext ratingReason="for some rude humor and mild peril" ratingDescription="Parental Guidance Suggested. Some Material May Not Be Suitable For Children." ratedBy="by the Motion Picture Association of America"/>
+<ExternalIds>
+<ExternalId source="Baseline" description="DVDId">5260426</ExternalId>
+<ExternalId source="Baseline" description="FilmId">4810337</ExternalId>
+<ExternalId source="UPC">883929156450</ExternalId>
+</ExternalIds>
+<StreetReleaseDate>2012-03-13</StreetReleaseDate>
+<ReleaseYear>2011</ReleaseYear>
+<DomesticHomeVideoDistributor>Warner</DomesticHomeVideoDistributor>
+<DomesticTheatricalDistributor>Warner Bros. Pictures</DomesticTheatricalDistributor>
+<RunningLength>P0Y0M0DT1H39M0S</RunningLength>
+<MPAARating>PG</MPAARating>
+<Actors>
+<Person>Elijah Wood</Person>
+<Person>Pink</Person>
+<Person>Robin Williams</Person>
+<Person>Sofia Vergara</Person>
+<Person>Hank Azaria</Person>
+</Actors>
+<Directors>
+<Person>George Miller</Person>
+</Directors>
+<BoxOfficeRevenue>63700000</BoxOfficeRevenue>
+<ScreenFormat>Widescreen</ScreenFormat>
+<Top20Entry xmlns:p4="http://api.redbox.com/v3/Top20" xsi:type="p4:OldTop20Entry" position="11" direction="Down" amount="1"/>
+</Item>
+<Item productId="230D862F-BE9C-4602-84BA-B1FD8216F3B0" format="DVD" websiteUrl="http://www.redbox.com/movies/my-week-with-marilyn">
+<Title>My Week With Marilyn</Title>
+<SortTitle>My Week With Marilyn</SortTitle>
+<UppercaseTitle>MY WEEK WITH MARILYN</UppercaseTitle>
+<RedboxReleaseDate>2012-03-13</RedboxReleaseDate>
+<RedboxComingSoonDate xsi:nil="true"/>
+<Flags>
+<Flag type="NewRelease" beginDate="2012-03-13" endDate="2012-03-27"/>
+<Flag type="AvailableAtRedbox" beginDate="2012-03-13"/>
+<Flag type="SearchOnWeb" beginDate="2012-03-13"/>
+<Flag type="BrowseOnWeb" beginDate="2012-03-13"/>
+</Flags>
+<SynopsisShort>
+Colin Clark met Marilyn Monroe while working as an assistant on "The Prince and the Showgirl." When Marilyn experienced emotional difficulties during shooting, the 23-year-old came to her aid and a brief romance developed between them.
+</SynopsisShort>
+<SynopsisLong>
+Early in the summer of 1956, American film star Marilyn Monroe set foot on British soil for the first time. On honeymoon with her husband, the celebrated playwright Arthur Miller, Monroe came to England to shoot "The Prince and the Showgirl." That same summer, 23-year-old Colin Clark set foot on a film set for the first time in his life. Newly graduated from Oxford, Clark aspired to be a filmmaker and found a job as a lowly production hand on the set of "The Prince and the Showgirl." Forty years later, he recounted his experiences of the six-month shoot in a memoir entitled, "The Prince, the Showgirl and Me." But one week in Clark's account was missing. It wasn't until years later that Clark revealed why. In a follow-up memoir entitled, "My Week with Marilyn," he recounted the true story of one magical week he spent alone with the world's biggest star the week he spent with Marilyn.
+</SynopsisLong>
+<RedboxDoNotRentDate xsi:nil="true"/>
+<Genres>
+<Genre>Drama</Genre>
+</Genres>
+<BoxArtImages>
+<atom:link xmlns:atom="http://www.w3.org/2005/Atom" href="http://images.redbox.com/Images/epc/Thumb/5427.jpg" rel="http://api.redbox.com/Links/BoxArt/Thumb"/>
+<atom:link xmlns:atom="http://www.w3.org/2005/Atom" href="http://images.redbox.com/Images/epc/Full/5427.jpg" rel="http://api.redbox.com/Links/BoxArt/Full"/>
+<atom:link xmlns:atom="http://www.w3.org/2005/Atom" href="http://images.redbox.com/Images/epc/Thumb150/5427.jpg" rel="http://api.redbox.com/Links/BoxArt/Thumb150"/>
+<atom:link xmlns:atom="http://www.w3.org/2005/Atom" href="http://images.redbox.com/Images/epc/Detail370/5427.jpg" rel="http://api.redbox.com/Links/BoxArt/Detail370"/>
+<atom:link xmlns:atom="http://www.w3.org/2005/Atom" href="http://images.redbox.com/Images/epc/Original/5427.jpg" rel="http://api.redbox.com/Links/BoxArt/Original"/>
+<atom:link xmlns:atom="http://www.w3.org/2005/Atom" href="http://images.redbox.com/Images/epc/Kiosk/5427.jpg" rel="http://api.redbox.com/Links/BoxArt/Kiosk"/>
+</BoxArtImages>
+<RatingContext ratingReason="for some language" ratingDescription="Restricted. Children Under 17 Require Accompanying Parent or Adult Guardian." ratedBy="by the Motion Picture Association of America"/>
+<ExternalIds>
+<ExternalId source="Baseline" description="DVDId">5263989</ExternalId>
+<ExternalId source="Baseline" description="FilmId">4744082</ExternalId>
+<ExternalId source="UPC">013132469799</ExternalId>
+</ExternalIds>
+<StreetReleaseDate>2012-03-13</StreetReleaseDate>
+<ReleaseYear>2011</ReleaseYear>
+<DomesticHomeVideoDistributor>Anchor Bay</DomesticHomeVideoDistributor>
+<DomesticTheatricalDistributor>Weinstein</DomesticTheatricalDistributor>
+<RunningLength>P0Y0M0DT1H39M0S</RunningLength>
+<MPAARating>R</MPAARating>
+<Actors>
+<Person>Michelle Williams</Person>
+<Person>Eddie Redmayne</Person>
+<Person>Kenneth Branagh</Person>
+<Person>Julia Ormond</Person>
+<Person>Dougray Scott</Person>
+</Actors>
+<Directors>
+<Person>Simon Curtis</Person>
+</Directors>
+<BoxOfficeRevenue>13000000</BoxOfficeRevenue>
+<ScreenFormat>Widescreen</ScreenFormat>
+<Top20Entry xmlns:p4="http://api.redbox.com/v3/Top20" xsi:type="p4:OldTop20Entry" position="12" direction="Up" amount="1"/>
+</Item>
+<Item productId="15100BCC-ED01-4A60-A255-8F785C775F1B" format="DVD" websiteUrl="http://www.redbox.com/movies/hugo">
+<Title>Hugo</Title>
+<SortTitle>Hugo</SortTitle>
+<UppercaseTitle>HUGO</UppercaseTitle>
+<RedboxReleaseDate>2012-02-28</RedboxReleaseDate>
+<RedboxComingSoonDate xsi:nil="true"/>
+<Flags>
+<Flag type="ComingSoon" beginDate="2012-01-31" endDate="2012-02-28"/>
+<Flag type="NewRelease" beginDate="2012-02-28" endDate="2012-03-13"/>
+<Flag type="AvailableAtRedbox" beginDate="2012-02-28"/>
+<Flag type="SearchOnWeb" beginDate="2012-02-28"/>
+<Flag type="BrowseOnWeb" beginDate="2012-02-28"/>
+</Flags>
+<SynopsisShort>
+12-year-old Hugo lives in the walls of a busy Paris train station, his survival depending on secrets and anonymity. When he gets involved with an eccentric girl and the owner of the station's toy booth, his undercover life is put in jeopardy.
+</SynopsisShort>
+<SynopsisLong>
+When wily and resourceful Hugo discovers a secret left by his father, he unlocks a mystery and embarks on a quest that will transform those around him and lead to a safe and loving place he can call home.
+</SynopsisLong>
+<RedboxDoNotRentDate xsi:nil="true"/>
+<Genres>
+<Genre>Drama</Genre>
+<Genre>Family</Genre>
+</Genres>
+<BoxArtImages>
+<atom:link xmlns:atom="http://www.w3.org/2005/Atom" href="http://images.redbox.com/Images/epc/Thumb/4698.jpg" rel="http://api.redbox.com/Links/BoxArt/Thumb"/>
+<atom:link xmlns:atom="http://www.w3.org/2005/Atom" href="http://images.redbox.com/Images/epc/Full/4698.jpg" rel="http://api.redbox.com/Links/BoxArt/Full"/>
+<atom:link xmlns:atom="http://www.w3.org/2005/Atom" href="http://images.redbox.com/Images/epc/Thumb150/4698.jpg" rel="http://api.redbox.com/Links/BoxArt/Thumb150"/>
+<atom:link xmlns:atom="http://www.w3.org/2005/Atom" href="http://images.redbox.com/Images/epc/Detail370/4698.jpg" rel="http://api.redbox.com/Links/BoxArt/Detail370"/>
+<atom:link xmlns:atom="http://www.w3.org/2005/Atom" href="http://images.redbox.com/Images/epc/Original/4698.jpg" rel="http://api.redbox.com/Links/BoxArt/Original"/>
+<atom:link xmlns:atom="http://www.w3.org/2005/Atom" href="http://images.redbox.com/Images/epc/Kiosk/4698.jpg" rel="http://api.redbox.com/Links/BoxArt/Kiosk"/>
+</BoxArtImages>
+<RatingContext ratingReason="for mild thematic material, some action/peril and smoking" ratingDescription="Parental Guidance Suggested. Some Material May Not Be Suitable For Children." ratedBy="by the Motion Picture Association of America"/>
+<ExternalIds>
+<ExternalId source="Baseline" description="DVDId">5263274</ExternalId>
+<ExternalId source="Baseline" description="FilmId">4752777</ExternalId>
+<ExternalId source="UPC">032429110961</ExternalId>
+</ExternalIds>
+<StreetReleaseDate>2012-02-28</StreetReleaseDate>
+<ReleaseYear>2011</ReleaseYear>
+<DomesticHomeVideoDistributor>Paramount</DomesticHomeVideoDistributor>
+<DomesticTheatricalDistributor>Paramount Pictures</DomesticTheatricalDistributor>
+<RunningLength>P0Y0M0DT2H6M0S</RunningLength>
+<MPAARating>PG</MPAARating>
+<Actors>
+<Person>Ben Kingsley</Person>
+<Person>Sacha Baron Cohen</Person>
+<Person>Asa Butterfield</Person>
+<Person>Chlöe Grace Moretz</Person>
+<Person>Ray Winstone</Person>
+</Actors>
+<Directors>
+<Person>Martin Scorsese</Person>
+</Directors>
+<BoxOfficeRevenue>59500000</BoxOfficeRevenue>
+<ScreenFormat>Widescreen</ScreenFormat>
+<Top20Entry xmlns:p4="http://api.redbox.com/v3/Top20" xsi:type="p4:OldTop20Entry" position="13" direction="Down" amount="1"/>
+</Item>
+<Item productId="C56506CA-2E51-460B-8982-35D60BF5F99E" format="DVD" websiteUrl="http://www.redbox.com/movies/the-muppets-2011">
+<Title>The Muppets (2011)</Title>
+<SortTitle>Muppets (2011)</SortTitle>
+<UppercaseTitle>THE MUPPETS (2011)</UppercaseTitle>
+<RedboxReleaseDate>2012-03-20</RedboxReleaseDate>
+<RedboxComingSoonDate xsi:nil="true"/>
+<Flags>
+<Flag type="ComingSoon" beginDate="2012-02-21" endDate="2012-03-20"/>
+<Flag type="NewRelease" beginDate="2012-03-20" endDate="2012-04-03"/>
+<Flag type="AvailableAtRedbox" beginDate="2012-03-20"/>
+<Flag type="SearchOnWeb" beginDate="2012-03-20"/>
+<Flag type="BrowseOnWeb" beginDate="2012-03-20"/>
+</Flags>
+<SynopsisShort>
+Walter is the world's biggest Muppet fan. When he and his friends uncover an oilman's plan to raze the Muppet Theater, they help Kermit reunite the Muppets to stage a telethon to raise the $10 million needed to save it.
+</SynopsisShort>
+<SynopsisLong>
+On vacation in Los Angeles, Walter, the world's biggest Muppet fan, his brother Gary and Gary's girlfriend Mary from Smalltown, USA, discover the nefarious plan of oilman Tex Richman to raze the Muppet Theater and drill for the oil recently discovered beneath the Muppets' former stomping grounds. To stage a telethon and raise the $10 million needed to save the theater, Walter, Mary and Gary help Kermit reunite the Muppets, who have all gone their separate ways: Fozzie now performs with a Reno casino tribute band called the Moopets, Miss Piggy is a plus-size fashion editor at Vogue Paris, Animal is in a Santa Barbara clinic for anger management, and Gonzo is a high-powered plumbing magnate.
+</SynopsisLong>
+<RedboxDoNotRentDate xsi:nil="true"/>
+<Genres>
+<Genre>Comedy</Genre>
+<Genre>Family</Genre>
+</Genres>
+<BoxArtImages>
+<atom:link xmlns:atom="http://www.w3.org/2005/Atom" href="http://images.redbox.com/Images/epc/Thumb/4690.jpg" rel="http://api.redbox.com/Links/BoxArt/Thumb"/>
+<atom:link xmlns:atom="http://www.w3.org/2005/Atom" href="http://images.redbox.com/Images/epc/Full/4690.jpg" rel="http://api.redbox.com/Links/BoxArt/Full"/>
+<atom:link xmlns:atom="http://www.w3.org/2005/Atom" href="http://images.redbox.com/Images/epc/Thumb150/4690.jpg" rel="http://api.redbox.com/Links/BoxArt/Thumb150"/>
+<atom:link xmlns:atom="http://www.w3.org/2005/Atom" href="http://images.redbox.com/Images/epc/Detail370/4690.jpg" rel="http://api.redbox.com/Links/BoxArt/Detail370"/>
+<atom:link xmlns:atom="http://www.w3.org/2005/Atom" href="http://images.redbox.com/Images/epc/Original/4690.jpg" rel="http://api.redbox.com/Links/BoxArt/Original"/>
+<atom:link xmlns:atom="http://www.w3.org/2005/Atom" href="http://images.redbox.com/Images/epc/Kiosk/4690.jpg" rel="http://api.redbox.com/Links/BoxArt/Kiosk"/>
+</BoxArtImages>
+<RatingContext ratingReason="for some mild rude humor" ratingDescription="Parental Guidance Suggested. Some Material May Not Be Suitable For Children." ratedBy="by the Motion Picture Association of America"/>
+<ExternalIds>
+<ExternalId source="Baseline" description="DVDId">5266043</ExternalId>
+<ExternalId source="Baseline" description="FilmId">4687178</ExternalId>
+<ExternalId source="UPC">786936816969</ExternalId>
+</ExternalIds>
+<StreetReleaseDate>2012-03-20</StreetReleaseDate>
+<ReleaseYear>2011</ReleaseYear>
+<DomesticHomeVideoDistributor>Disney</DomesticHomeVideoDistributor>
+<DomesticTheatricalDistributor>Walt Disney Studios Motion Pictures</DomesticTheatricalDistributor>
+<RunningLength>P0Y0M0DT1H43M0S</RunningLength>
+<MPAARating>PG</MPAARating>
+<Actors>
+<Person>Jason Segel</Person>
+<Person>Amy Adams</Person>
+<Person>Chris Cooper</Person>
+<Person>Rashida Jones</Person>
+<Person>Steve Whitmire</Person>
+</Actors>
+<Directors>
+<Person>James Bobin</Person>
+</Directors>
+<BoxOfficeRevenue>87800000</BoxOfficeRevenue>
+<ScreenFormat>Widescreen</ScreenFormat>
+<Top20Entry xmlns:p4="http://api.redbox.com/v3/Top20" xsi:type="p4:OldTop20Entry" position="14" direction="NoChange" amount="0"/>
+</Item>
+<Item productId="A182F611-FBC0-4C1B-A501-59AB6772F1D1" format="DVD" websiteUrl="http://www.redbox.com/movies/war-horse">
+<Title>War Horse</Title>
+<SortTitle>War Horse</SortTitle>
+<UppercaseTitle>WAR HORSE</UppercaseTitle>
+<RedboxReleaseDate>2012-04-03</RedboxReleaseDate>
+<RedboxComingSoonDate xsi:nil="true"/>
+<Flags>
+<Flag type="NewRelease" beginDate="2012-04-03" endDate="2012-04-17"/>
+<Flag type="AvailableAtRedbox" beginDate="2012-04-03"/>
+<Flag type="SearchOnWeb" beginDate="2012-04-03"/>
+<Flag type="BrowseOnWeb" beginDate="2012-04-03"/>
+</Flags>
+<SynopsisShort>
+Albert Narracott's beloved horse Joey is sold to the cavalry and shipped to France during World War I where he ends up in the dangerous "No Man's Land." Albert is too young to enlist, but goes to France to save his Joey.
+</SynopsisShort>
+<SynopsisLong>
+When World War I breaks out, young Albert Narracott's beloved horse Joey is sold to the cavalry and shipped to France. Joey serves in both the British and German armies before he winds up alone in the dangerous area between the two sides-"No Man's Land." Albert is too young to enlist, but goes to France to save Joey.
+</SynopsisLong>
+<RedboxDoNotRentDate xsi:nil="true"/>
+<Genres>
+<Genre>Drama</Genre>
+</Genres>
+<BoxArtImages>
+<atom:link xmlns:atom="http://www.w3.org/2005/Atom" href="http://images.redbox.com/Images/epc/Thumb/4706.jpg" rel="http://api.redbox.com/Links/BoxArt/Thumb"/>
+<atom:link xmlns:atom="http://www.w3.org/2005/Atom" href="http://images.redbox.com/Images/epc/Full/4706.jpg" rel="http://api.redbox.com/Links/BoxArt/Full"/>
+<atom:link xmlns:atom="http://www.w3.org/2005/Atom" href="http://images.redbox.com/Images/epc/Thumb150/4706.jpg" rel="http://api.redbox.com/Links/BoxArt/Thumb150"/>
+<atom:link xmlns:atom="http://www.w3.org/2005/Atom" href="http://images.redbox.com/Images/epc/Detail370/4706.jpg" rel="http://api.redbox.com/Links/BoxArt/Detail370"/>
+<atom:link xmlns:atom="http://www.w3.org/2005/Atom" href="http://images.redbox.com/Images/epc/Original/4706.jpg" rel="http://api.redbox.com/Links/BoxArt/Original"/>
+<atom:link xmlns:atom="http://www.w3.org/2005/Atom" href="http://images.redbox.com/Images/epc/Kiosk/4706.jpg" rel="http://api.redbox.com/Links/BoxArt/Kiosk"/>
+</BoxArtImages>
+<RatingContext ratingReason="for intense sequences of war violence" ratingDescription="Parents Strongly Cautioned. Some Material May Be Inappropriate For Children Under 13." ratedBy="by the Motion Picture Association of America"/>
+<ExternalIds>
+<ExternalId source="Baseline" description="DVDId">5271935</ExternalId>
+<ExternalId source="Baseline" description="FilmId">4649462</ExternalId>
+<ExternalId source="UPC">786936824100</ExternalId>
+</ExternalIds>
+<StreetReleaseDate>2012-04-03</StreetReleaseDate>
+<ReleaseYear>2011</ReleaseYear>
+<DomesticHomeVideoDistributor>Disney</DomesticHomeVideoDistributor>
+<DomesticTheatricalDistributor>Walt Disney Studios Distribution</DomesticTheatricalDistributor>
+<RunningLength>P0Y0M0DT2H26M0S</RunningLength>
+<MPAARating>PG-13</MPAARating>
+<Actors>
+<Person>Jeremy Irvine</Person>
+<Person>Peter Mullan</Person>
+<Person>Emily Watson</Person>
+<Person>Niels Arestrup</Person>
+<Person>David Thewlis</Person>
+</Actors>
+<Directors>
+<Person>Steven Spielberg</Person>
+</Directors>
+<BoxOfficeRevenue>79000000</BoxOfficeRevenue>
+<ScreenFormat>Widescreen</ScreenFormat>
+<Top20Entry xmlns:p4="http://api.redbox.com/v3/Top20" xsi:type="p4:OldTop20Entry" position="15" direction="NoChange" amount="0"/>
+</Item>
+<Item productId="19B4BC28-931B-4517-A615-F62ACAEE04C9" format="DVD" websiteUrl="http://www.redbox.com/movies/the-big-year">
+<Title>The Big Year</Title>
+<SortTitle>Big Year</SortTitle>
+<UppercaseTitle>THE BIG YEAR</UppercaseTitle>
+<RedboxReleaseDate>2012-02-28</RedboxReleaseDate>
+<RedboxComingSoonDate xsi:nil="true"/>
+<Flags>
+<Flag type="NewRelease" beginDate="2012-02-28" endDate="2012-03-13"/>
+<Flag type="AvailableAtRedbox" beginDate="2012-02-28" endDate="2012-08-28"/>
+<Flag type="SearchOnWeb" beginDate="2012-02-28" endDate="2012-08-28"/>
+<Flag type="BrowseOnWeb" beginDate="2012-02-28" endDate="2012-08-28"/>
+</Flags>
+<SynopsisShort>
+Three obsessive bird watchers compete to spot and record the highest number of species in 1998-when El Nino brought an unprecedented number of species to North America. During their competition, they come to realize that winning isn't everything.
+</SynopsisShort>
+<SynopsisLong>
+Everyone is searching for something - and Stu Preissler, Brad Harris and Kenny Bostick are determined to not only find their "something," but to be the very best at it. For Stu, Brad and Kenny, that means being the world's greatest .birder. An extraordinary race becomes a transformative journey for wealthy industrialist Stu, computer code-writer Brad, and successful contractor Kenny, who race across the continent on a Big Year, a whirlwind competition to see who can spot the most species of birds in North America within one calendar year.
+</SynopsisLong>
+<RedboxDoNotRentDate xsi:nil="true"/>
+<Genres>
+<Genre>Comedy</Genre>
+</Genres>
+<BoxArtImages>
+<atom:link xmlns:atom="http://www.w3.org/2005/Atom" href="http://images.redbox.com/Images/epc/Thumb/4680.jpg" rel="http://api.redbox.com/Links/BoxArt/Thumb"/>
+<atom:link xmlns:atom="http://www.w3.org/2005/Atom" href="http://images.redbox.com/Images/epc/Full/4680.jpg" rel="http://api.redbox.com/Links/BoxArt/Full"/>
+<atom:link xmlns:atom="http://www.w3.org/2005/Atom" href="http://images.redbox.com/Images/epc/Thumb150/4680.jpg" rel="http://api.redbox.com/Links/BoxArt/Thumb150"/>
+<atom:link xmlns:atom="http://www.w3.org/2005/Atom" href="http://images.redbox.com/Images/epc/Detail370/4680.jpg" rel="http://api.redbox.com/Links/BoxArt/Detail370"/>
+<atom:link xmlns:atom="http://www.w3.org/2005/Atom" href="http://images.redbox.com/Images/epc/Original/4680.jpg" rel="http://api.redbox.com/Links/BoxArt/Original"/>
+<atom:link xmlns:atom="http://www.w3.org/2005/Atom" href="http://images.redbox.com/Images/epc/Kiosk/4680.jpg" rel="http://api.redbox.com/Links/BoxArt/Kiosk"/>
+</BoxArtImages>
+<RatingContext ratingReason="for language and some sensuality" ratingDescription="Parental Guidance Suggested. Some Material May Not Be Suitable For Children." ratedBy="by the Motion Picture Association of America"/>
+<ExternalIds>
+<ExternalId source="Baseline" description="DVDId">5259314</ExternalId>
+<ExternalId source="Baseline" description="FilmId">4800313</ExternalId>
+<ExternalId source="UPC">024543773702</ExternalId>
+</ExternalIds>
+<StreetReleaseDate>2012-01-31</StreetReleaseDate>
+<ReleaseYear>2011</ReleaseYear>
+<DomesticHomeVideoDistributor>Fox</DomesticHomeVideoDistributor>
+<DomesticTheatricalDistributor>20th Century Fox Distribution</DomesticTheatricalDistributor>
+<RunningLength>P0Y0M0DT1H40M0S</RunningLength>
+<MPAARating>PG</MPAARating>
+<Actors>
+<Person>Steve Martin</Person>
+<Person>Jack Black</Person>
+<Person>Owen Wilson</Person>
+<Person>Brian Dennehy</Person>
+<Person>Anjelica Huston</Person>
+</Actors>
+<Directors>
+<Person>David Frankel</Person>
+</Directors>
+<BoxOfficeRevenue>7200000</BoxOfficeRevenue>
+<ScreenFormat>Widescreen</ScreenFormat>
+<Top20Entry xmlns:p4="http://api.redbox.com/v3/Top20" xsi:type="p4:OldTop20Entry" position="16" direction="NoChange" amount="0"/>
+</Item>
+<Item productId="F9FDCEF2-2435-4ACF-8414-78A1397E6F5D" format="DVD" websiteUrl="http://www.redbox.com/movies/the-rum-diary">
+<Title>The Rum Diary</Title>
+<SortTitle>Rum Diary</SortTitle>
+<UppercaseTitle>THE RUM DIARY</UppercaseTitle>
+<RedboxReleaseDate>2012-02-14</RedboxReleaseDate>
+<RedboxComingSoonDate xsi:nil="true"/>
+<Flags>
+<Flag type="NewRelease" beginDate="2012-02-14" endDate="2012-02-28"/>
+<Flag type="AvailableAtRedbox" beginDate="2012-02-14"/>
+<Flag type="SearchOnWeb" beginDate="2012-02-14"/>
+<Flag type="BrowseOnWeb" beginDate="2012-02-14"/>
+</Flags>
+<SynopsisShort>
+When Paul Kemp goes to Puerto Rico to write for a local newspaper, he soaks in rum and becomes obsessed with the fiancée of a shady businessman. Asked to write favorably about the man's latest scheme, Paul can comply for money or take him down.
+</SynopsisShort>
+<SynopsisLong>
+When Paul Kemp goes to Puerto Rico to write for a local newspaper, he soaks in rum and becomes obsessed with the fiancée of a shady businessman. Asked to write favorably about the man's latest scheme, Paul can comply for money or take him down.
+</SynopsisLong>
+<RedboxDoNotRentDate xsi:nil="true"/>
+<Genres>
+<Genre>Comedy</Genre>
+<Genre>Drama</Genre>
+</Genres>
+<BoxArtImages>
+<atom:link xmlns:atom="http://www.w3.org/2005/Atom" href="http://images.redbox.com/Images/epc/Thumb/5163.jpg" rel="http://api.redbox.com/Links/BoxArt/Thumb"/>
+<atom:link xmlns:atom="http://www.w3.org/2005/Atom" href="http://images.redbox.com/Images/epc/Full/5163.jpg" rel="http://api.redbox.com/Links/BoxArt/Full"/>
+<atom:link xmlns:atom="http://www.w3.org/2005/Atom" href="http://images.redbox.com/Images/epc/Thumb150/5163.jpg" rel="http://api.redbox.com/Links/BoxArt/Thumb150"/>
+<atom:link xmlns:atom="http://www.w3.org/2005/Atom" href="http://images.redbox.com/Images/epc/Detail370/5163.jpg" rel="http://api.redbox.com/Links/BoxArt/Detail370"/>
+<atom:link xmlns:atom="http://www.w3.org/2005/Atom" href="http://images.redbox.com/Images/epc/Original/5163.jpg" rel="http://api.redbox.com/Links/BoxArt/Original"/>
+<atom:link xmlns:atom="http://www.w3.org/2005/Atom" href="http://images.redbox.com/Images/epc/Kiosk/5163.jpg" rel="http://api.redbox.com/Links/BoxArt/Kiosk"/>
+</BoxArtImages>
+<RatingContext ratingReason="for language, brief drug use and sexuality" ratingDescription="Restricted. Children Under 17 Require Accompanying Parent or Adult Guardian." ratedBy="by the Motion Picture Association of America"/>
+<ExternalIds>
+<ExternalId source="Baseline" description="DVDId">5256026</ExternalId>
+<ExternalId source="Baseline" description="FilmId">4798610</ExternalId>
+<ExternalId source="UPC">043396394926</ExternalId>
+</ExternalIds>
+<StreetReleaseDate>2012-02-14</StreetReleaseDate>
+<ReleaseYear>2011</ReleaseYear>
+<DomesticHomeVideoDistributor>Sony</DomesticHomeVideoDistributor>
+<DomesticTheatricalDistributor>FilmDistrict</DomesticTheatricalDistributor>
+<RunningLength>P0Y0M0DT2H0M0S</RunningLength>
+<MPAARating>R</MPAARating>
+<Actors>
+<Person>Johnny Depp</Person>
+<Person>Aaron Eckhart</Person>
+<Person>Michael Rispoli</Person>
+<Person>Amber Heard</Person>
+<Person>Richard Jenkins</Person>
+</Actors>
+<Directors>
+<Person>Bruce Robinson</Person>
+</Directors>
+<BoxOfficeRevenue>13100000</BoxOfficeRevenue>
+<ScreenFormat>Widescreen</ScreenFormat>
+<Top20Entry xmlns:p4="http://api.redbox.com/v3/Top20" xsi:type="p4:OldTop20Entry" position="17" direction="NoChange" amount="0"/>
+</Item>
+<Item productId="01639704-979A-4399-9282-0D1EA65EDA04" format="DVD" websiteUrl="http://www.redbox.com/movies/j-edgar">
+<Title>J. Edgar</Title>
+<SortTitle>J. Edgar</SortTitle>
+<UppercaseTitle>J. EDGAR</UppercaseTitle>
+<RedboxReleaseDate>2012-02-28</RedboxReleaseDate>
+<RedboxComingSoonDate xsi:nil="true"/>
+<Flags>
+<Flag type="NewRelease" beginDate="2012-02-28" endDate="2012-03-13"/>
+<Flag type="AvailableAtRedbox" beginDate="2012-02-28"/>
+<Flag type="SearchOnWeb" beginDate="2012-02-28"/>
+<Flag type="BrowseOnWeb" beginDate="2012-02-28"/>
+</Flags>
+<SynopsisShort>
+As the face of law enforcement in America for almost fifty years, J. Edgar Hoover was feared and admired, reviled and revered. But behind closed doors, he held secrets that would have destroyed his image, his career and his life.
+</SynopsisShort>
+<SynopsisLong>
+As the face of law enforcement in America for almost fifty years, J. Edgar Hoover was feared and admired, reviled and revered. But behind closed doors, he held secrets that would have destroyed his image, his career and his life.
+</SynopsisLong>
+<RedboxDoNotRentDate xsi:nil="true"/>
+<Genres>
+<Genre>Drama</Genre>
+</Genres>
+<BoxArtImages>
+<atom:link xmlns:atom="http://www.w3.org/2005/Atom" href="http://images.redbox.com/Images/epc/Thumb/5176.jpg" rel="http://api.redbox.com/Links/BoxArt/Thumb"/>
+<atom:link xmlns:atom="http://www.w3.org/2005/Atom" href="http://images.redbox.com/Images/epc/Full/5176.jpg" rel="http://api.redbox.com/Links/BoxArt/Full"/>
+<atom:link xmlns:atom="http://www.w3.org/2005/Atom" href="http://images.redbox.com/Images/epc/Thumb150/5176.jpg" rel="http://api.redbox.com/Links/BoxArt/Thumb150"/>
+<atom:link xmlns:atom="http://www.w3.org/2005/Atom" href="http://images.redbox.com/Images/epc/Detail370/5176.jpg" rel="http://api.redbox.com/Links/BoxArt/Detail370"/>
+<atom:link xmlns:atom="http://www.w3.org/2005/Atom" href="http://images.redbox.com/Images/epc/Original/5176.jpg" rel="http://api.redbox.com/Links/BoxArt/Original"/>
+<atom:link xmlns:atom="http://www.w3.org/2005/Atom" href="http://images.redbox.com/Images/epc/Kiosk/5176.jpg" rel="http://api.redbox.com/Links/BoxArt/Kiosk"/>
+</BoxArtImages>
+<RatingContext ratingReason="for brief strong language" ratingDescription="Restricted. Children Under 17 Require Accompanying Parent or Adult Guardian." ratedBy="by the Motion Picture Association of America"/>
+<ExternalIds>
+<ExternalId source="Baseline" description="DVDId">5256231</ExternalId>
+<ExternalId source="Baseline" description="FilmId">4696318</ExternalId>
+<ExternalId source="UPC">883929215003</ExternalId>
+</ExternalIds>
+<StreetReleaseDate>2012-02-21</StreetReleaseDate>
+<ReleaseYear>2011</ReleaseYear>
+<DomesticHomeVideoDistributor>Warner</DomesticHomeVideoDistributor>
+<DomesticTheatricalDistributor>Warner Bros. Pictures Distribution</DomesticTheatricalDistributor>
+<RunningLength>P0Y0M0DT2H17M0S</RunningLength>
+<MPAARating>R</MPAARating>
+<Actors>
+<Person>Leonardo DiCaprio</Person>
+<Person>Naomi Watts</Person>
+<Person>Armie Hammer</Person>
+<Person>Josh Lucas</Person>
+<Person>Judi Dench</Person>
+</Actors>
+<Directors>
+<Person>Clint Eastwood</Person>
+</Directors>
+<BoxOfficeRevenue>37000000</BoxOfficeRevenue>
+<ScreenFormat>Widescreen</ScreenFormat>
+<Top20Entry xmlns:p4="http://api.redbox.com/v3/Top20" xsi:type="p4:OldTop20Entry" position="18" direction="NoChange" amount="0"/>
+</Item>
+<Item productId="BB9D9455-D837-4B60-B839-7C8692D88DBE" format="DVD" websiteUrl="http://www.redbox.com/movies/the-thing-2011">
+<Title>The Thing (2011)</Title>
+<SortTitle>Thing (2011)</SortTitle>
+<UppercaseTitle>THE THING (2011)</UppercaseTitle>
+<RedboxReleaseDate>2012-02-28</RedboxReleaseDate>
+<RedboxComingSoonDate xsi:nil="true"/>
+<Flags>
+<Flag type="NewRelease" beginDate="2012-02-28" endDate="2012-03-13"/>
+<Flag type="AvailableAtRedbox" beginDate="2012-02-28"/>
+<Flag type="SearchOnWeb" beginDate="2012-02-28"/>
+<Flag type="BrowseOnWeb" beginDate="2012-02-28"/>
+</Flags>
+<SynopsisShort>
+An American scientific expedition to Antarctica discovers an alien spaceship with a mysterious frozen "thing" found nearby. When they drill through the ice encasement, they free the organism and trigger a series of horrific incidents.
+</SynopsisShort>
+<SynopsisLong>
+An American scientific expedition to Antarctica discovers an alien spaceship with a mysterious frozen "thing" found nearby. When they drill through the ice encasement, they free the organism and trigger a series of horrific incidents.
+</SynopsisLong>
+<RedboxDoNotRentDate xsi:nil="true"/>
+<Genres>
+<Genre>Action</Genre>
+<Genre>Horror</Genre>
+</Genres>
+<BoxArtImages>
+<atom:link xmlns:atom="http://www.w3.org/2005/Atom" href="http://images.redbox.com/Images/epc/Thumb/4170.jpg" rel="http://api.redbox.com/Links/BoxArt/Thumb"/>
+<atom:link xmlns:atom="http://www.w3.org/2005/Atom" href="http://images.redbox.com/Images/epc/Full/4170.jpg" rel="http://api.redbox.com/Links/BoxArt/Full"/>
+<atom:link xmlns:atom="http://www.w3.org/2005/Atom" href="http://images.redbox.com/Images/epc/Thumb150/4170.jpg" rel="http://api.redbox.com/Links/BoxArt/Thumb150"/>
+<atom:link xmlns:atom="http://www.w3.org/2005/Atom" href="http://images.redbox.com/Images/epc/Detail370/4170.jpg" rel="http://api.redbox.com/Links/BoxArt/Detail370"/>
+<atom:link xmlns:atom="http://www.w3.org/2005/Atom" href="http://images.redbox.com/Images/epc/Original/4170.jpg" rel="http://api.redbox.com/Links/BoxArt/Original"/>
+<atom:link xmlns:atom="http://www.w3.org/2005/Atom" href="http://images.redbox.com/Images/epc/Kiosk/4170.jpg" rel="http://api.redbox.com/Links/BoxArt/Kiosk"/>
+</BoxArtImages>
+<RatingContext ratingReason="for strong creature violence and gore, disturbing images, and language" ratingDescription="Restricted. Children Under 17 Require Accompanying Parent or Adult Guardian." ratedBy="by the Motion Picture Association of America"/>
+<ExternalIds>
+<ExternalId source="Baseline" description="DVDId">5260116</ExternalId>
+<ExternalId source="Baseline" description="FilmId">4777518</ExternalId>
+<ExternalId source="UPC">025192082962</ExternalId>
+</ExternalIds>
+<StreetReleaseDate>2012-01-31</StreetReleaseDate>
+<ReleaseYear>2011</ReleaseYear>
+<DomesticHomeVideoDistributor>Universal</DomesticHomeVideoDistributor>
+<DomesticTheatricalDistributor>Universal Pictures</DomesticTheatricalDistributor>
+<RunningLength>P0Y0M0DT1H43M0S</RunningLength>
+<MPAARating>R</MPAARating>
+<Actors>
+<Person>Mary Elizabeth Winstead</Person>
+<Person>Joel Edgerton</Person>
+<Person>Ulrich Thomsen</Person>
+<Person>Eric Christian Olsen</Person>
+<Person>Adewale Akinnuoye-Agbaje</Person>
+</Actors>
+<Directors>
+<Person>Matthijs Van Heijningen</Person>
+</Directors>
+<BoxOfficeRevenue>16900000</BoxOfficeRevenue>
+<ScreenFormat>Widescreen</ScreenFormat>
+<Top20Entry xmlns:p4="http://api.redbox.com/v3/Top20" xsi:type="p4:OldTop20Entry" position="19" direction="NoChange" amount="0"/>
+</Item>
+<Item productId="E5A166CC-9889-4B81-8D42-8218AC200F56" format="DVD" websiteUrl="http://www.redbox.com/movies/johnny-english-reborn">
+<Title>Johnny English Reborn</Title>
+<SortTitle>Johnny English Reborn</SortTitle>
+<UppercaseTitle>JOHNNY ENGLISH REBORN</UppercaseTitle>
+<RedboxReleaseDate>2012-03-27</RedboxReleaseDate>
+<RedboxComingSoonDate xsi:nil="true"/>
+<Flags>
+<Flag type="ComingSoon" beginDate="2012-02-28" endDate="2012-03-27"/>
+<Flag type="NewRelease" beginDate="2012-03-27" endDate="2012-04-10"/>
+<Flag type="AvailableAtRedbox" beginDate="2012-03-27"/>
+<Flag type="SearchOnWeb" beginDate="2012-03-27"/>
+<Flag type="BrowseOnWeb" beginDate="2012-03-27"/>
+</Flags>
+<SynopsisShort>
+Secret Service officer Johnny English has been working in a remote part of Asia, but is hunted down by his superiors for a special mission. He must stop a group of international assassins before they eliminate a world leader and cause global chaos.
+</SynopsisShort>
+<SynopsisLong>
+In his latest adventure, the most unlikely intelligence officer in Her Majesty's Secret Service must stop a group of international assassins before they eliminate a world leader and cause global chaos. In the years since MI-7's top spy vanished off the grid, he has been honing his unique skills in a remote region of Asia. But when his agency superiors learn of an attempt against the Chinese premier's life, they must hunt down the highly unorthodox agent. Now that the world needs him once again, Johnny English is back in action. With one shot at redemption, he must employ the latest in hi-tech gadgets to unravel a web of conspiracy that runs throughout the KGB, CIA and even MI-7. With mere days until a heads of state conference, one man must use every trick in his playbook to protect us all. For Johnny English, disaster may be an option, but failure never is.
+</SynopsisLong>
+<RedboxDoNotRentDate xsi:nil="true"/>
+<Genres>
+<Genre>Comedy</Genre>
+</Genres>
+<BoxArtImages>
+<atom:link xmlns:atom="http://www.w3.org/2005/Atom" href="http://images.redbox.com/Images/epc/Thumb/4668.jpg" rel="http://api.redbox.com/Links/BoxArt/Thumb"/>
+<atom:link xmlns:atom="http://www.w3.org/2005/Atom" href="http://images.redbox.com/Images/epc/Full/4668.jpg" rel="http://api.redbox.com/Links/BoxArt/Full"/>
+<atom:link xmlns:atom="http://www.w3.org/2005/Atom" href="http://images.redbox.com/Images/epc/Thumb150/4668.jpg" rel="http://api.redbox.com/Links/BoxArt/Thumb150"/>
+<atom:link xmlns:atom="http://www.w3.org/2005/Atom" href="http://images.redbox.com/Images/epc/Detail370/4668.jpg" rel="http://api.redbox.com/Links/BoxArt/Detail370"/>
+<atom:link xmlns:atom="http://www.w3.org/2005/Atom" href="http://images.redbox.com/Images/epc/Original/4668.jpg" rel="http://api.redbox.com/Links/BoxArt/Original"/>
+<atom:link xmlns:atom="http://www.w3.org/2005/Atom" href="http://images.redbox.com/Images/epc/Kiosk/4668.jpg" rel="http://api.redbox.com/Links/BoxArt/Kiosk"/>
+</BoxArtImages>
+<RatingContext ratingReason="for mild action violence, rude humor, some language and brief sensuality" ratingDescription="Parental Guidance Suggested. Some Material May Not Be Suitable For Children." ratedBy="by the Motion Picture Association of America"/>
+<ExternalIds>
+<ExternalId source="Baseline" description="DVDId">5270059</ExternalId>
+<ExternalId source="Baseline" description="FilmId">4760200</ExternalId>
+<ExternalId source="UPC">025192123771</ExternalId>
+</ExternalIds>
+<StreetReleaseDate>2012-02-28</StreetReleaseDate>
+<ReleaseYear>2011</ReleaseYear>
+<DomesticHomeVideoDistributor>Universal</DomesticHomeVideoDistributor>
+<DomesticTheatricalDistributor>Universal Pictures</DomesticTheatricalDistributor>
+<RunningLength>P0Y0M0DT1H42M0S</RunningLength>
+<MPAARating>PG</MPAARating>
+<Actors>
+<Person>Rowan Atkinson</Person>
+<Person>Gillian Anderson</Person>
+<Person>Pierce Brosnan</Person>
+<Person>Dominic West</Person>
+<Person>Rosamund Pike</Person>
+</Actors>
+<Directors>
+<Person>Oliver Parker</Person>
+</Directors>
+<BoxOfficeRevenue>8300000</BoxOfficeRevenue>
+<ScreenFormat>Widescreen</ScreenFormat>
+<Top20Entry xmlns:p4="http://api.redbox.com/v3/Top20" xsi:type="p4:NewTop20Entry" position="20"/>
+</Item>
+</Top20>

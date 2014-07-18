@@ -44,7 +44,7 @@ ianhd.app = {
 
         $.get(url, function (theaters) {
 
-            // remove any times that are earlier than now
+            // mark any times that are earlier than now
             
             var now = new Date();
             now = parseInt(now.getHours() + "" + now.getMinutes());
@@ -52,15 +52,19 @@ ianhd.app = {
             $.each(theaters, function (i, theater) {
                 $.each(theater.movies, function (j, movie) {
 
-                    movie.showtimes = $.grep(movie.showtimes, function (showtime, k) {
+                    var showtimes = [];
+                    $.each(movie.showtimes, function (k, showtime) {
                         var hours = Number(showtime.match(/^(\d+)/)[1]);
                         var minutes = Number(showtime.match(/:(\d+)/)[1]);
-                        var isAM = showtime.indexOf("am") >= 0;
-                        hours = !isAM ? hours + 12 : hours;
+                        minutes = minutes < 10 ? "0" + minutes : minutes;
+                        var isPM = showtime.indexOf("am") == -1;
+                        hours = hours != 12 && isPM ? hours + 12 : hours;
                         var showtime24hr = parseInt(hours + "" + minutes);
-                        return true;
-                        //return now <= showtime24hr;
+                        var isPast = now > showtime24hr;
+                        showtimes.push({ isPast: isPast, showtime: showtime });
                     });
+
+                    movie.showtimes = showtimes;
                 });
             });
             

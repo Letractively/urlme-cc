@@ -145,11 +145,7 @@ ianhd.app = {
             ianhd.app.controls.searchIcon().toggle();
 
             var menu = ianhd.app.controls.menu()
-            if (trigger.hasClass("fa-times")) {
-                menu.slideDown();
-            } else {
-                menu.slideUp();
-            }
+            menu.slideToggle();
         });
 
         // search icon

@@ -16,7 +16,7 @@
 
 <div class="mainContent group">
     <section style="display:none" id="showtimes" data-bind="visible: zip">
-        <h2 class="filter">Showtimes@*for <a data-bind="text: theater" class="theater" href="#"></a>*@ near <a data-bind="text: zip" class="zip" href="#"></a>.</h2>
+        <h2 class="filter">Showtimes@*for <a data-bind="text: theater" class="theater" href="#"></a>*@ near <a data-bind="text: zip" class="zip" href="#"></a></h2>
         <div id="theatersWithMovies"></div>
     </section>
     <section class="welcome" style="display:none" data-bind="visible: !zip()">
@@ -55,7 +55,7 @@
                 <div class="hint">{{:mpaaRating}}{{if runtime}} , {{:runtime}}{{/if}}</div>
                 <div class="showtimesHtml">
                     {{for showtimes}}
-                        <span>{{:#data}}</span>
+                        <span class="{{if isPast}}hint{{:runtime}}{{/if}}">{{:showtime}}</span>
                     {{/for}}
                 </div>
             </div>

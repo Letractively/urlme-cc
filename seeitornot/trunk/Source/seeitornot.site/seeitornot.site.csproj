@@ -157,6 +157,10 @@
     <Content Include="Content\Site.css" />
     <Content Include="Content\Site.less" />
     <None Include="Properties\PublishProfiles\publish to c - publish.pubxml" />
+    <Content Include="imdb_json.txt" />
+    <Content Include="imdb_legit_json.txt" />
+    <Content Include="redbox_top20_xml.txt" />
+    <Content Include="rt_json.txt" />
     <Content Include="Scripts\ianhd.app.js" />
     <Content Include="Scripts\ianhd.js" />
     <Content Include="Scripts\jquery-1.8.3.min.js" />
@@ -174,6 +178,7 @@
     <Content Include="Scripts\Plugins\jsrender.min.js" />
     <Content Include="Scripts\Plugins\Router.js" />
     <Content Include="Scripts\_references.js" />
+    <Content Include="showtimes_html.txt" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>

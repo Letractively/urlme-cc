@@ -25,7 +25,7 @@ namespace seeitornot.model
             {
                 this.id = (string)item["id"];
                 this.title = (string)item["title"];
-                this.posterDetailed = (string)item["posters"]["detailed"];
+                this.posterDetailed = ((string)item["posters"]["detailed"]).Replace("_tmb", "_mob");
                 this.mpaaRating = (string)item["mpaa_rating"];
                 this.runtime = (int)item["runtime"] + " min";
                 // this.movieSlug = string.Format("{0}/{1}", this.title.Slugify(), this.id);

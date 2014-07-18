@@ -1,0 +1,225 @@
+{
+  "exp": 1366835875,
+  "@meta": {
+    "serverTimeMs": 92,
+    "requestId": "087ZSW89TGQG9K18AHQC"
+  },
+  "data": {
+    "rating": 8.9,
+    "num_votes": 728194,
+    "photos": [
+      {
+        "link": "http:\/\/www.imdb.com\/rg\/appphoto\/link\/media\/rm770344448\/tt0137523",
+        "image": {
+          "width": 2048,
+          "url": "http:\/\/ia.media-imdb.com\/images\/M\/MV5BNDY1MzE3MTI0Nl5BMl5BanBnXkFtZTcwNDIwNTI5Mw@@._V1_.jpg",
+          "height": 1335
+        }
+      }
+    ],
+    "directors_summary": [
+      {
+        "name": {
+          "nconst": "nm0000399",
+          "name": "David Fincher",
+          "image": {
+            "width": 261,
+            "url": "http:\/\/ia.media-imdb.com\/images\/M\/MV5BMTc1NDkwMTQ2MF5BMl5BanBnXkFtZTcwMzY0ODkyMg@@._V1_.jpg",
+            "height": 400
+          }
+        }
+      }
+    ],
+    "user_comment": {
+      "user_rating": 10,
+      "status": "G",
+      "date": "2000-02-15",
+      "user_name": "Ian (rmic@home.com)",
+      "summary": "Generally positive comments",
+      "user_score": 179,
+      "text": "\nThis film, is basically, at least in my opinion, one of the greatest films ever, period.  I read the book afterwards, and equally enjoyed the book. The film is definitely for younger people, the critics of films, in general are older, so they cannot appreciate this film.  The film defines the younger generation, only younger people can relate to it, however, older people(middle aged+) can appreciate the art of the film, the beauty of the camera work, as well as the excellent acting.  The film, in every aspect is fantastic, it begins with a rather humorous narration, from a person we grow to know as, \"narrator\".  It goes about to show how he lives, and his way of life.  In these scenes alone, movie lines that will go down in history are said, and it's only the first twenty minutes.  The film tends to progress faster and faster as the film continues.  We delve into the narrators psyche, and find that he is not unlike most people in this world, he has a tendency to say to people what they want to hear, even if it is not the truth in it's entirety.  Almost all folks can relate to the main character, and he feels to be a real human, not a character in a story.  This, is partially due to the excellent directing, as well as book, but it is mostly due to the fantastic performance by Edward Norton. It, in my opinion is an Oscar performance.  Bradd Pitt gives his best performance to date, he is definitely an excellent coworker with David Fincher, they seem to share a common thread when it comes to film making I suppose.  I have full intention of purchasing this film when it is released on VHS and DVD.  Do yourself a favour, see this film, if that is not an option, at least read the book.  If you are younger and feel unrest with society, this is the film.\n",
+      "user_location": "pittsburgh, pennsylvania",
+      "user_score_count": 289
+    },
+    "certificate": {
+      "certificate": "R",
+      "attr": "(certificate #36857)"
+    },
+    "has": [
+      "more_cast",
+      "trivia",
+      "goofs",
+      "quotes",
+      "more_plot",
+      "parentalguide",
+      "synopsis",
+      "user_comments",
+      "external_reviews",
+      "photos"
+    ],
+    "writers_summary": [
+      {
+        "name": {
+          "nconst": "nm0657333",
+          "name": "Chuck Palahniuk",
+          "image": {
+            "width": 267,
+            "url": "http:\/\/ia.media-imdb.com\/images\/M\/MV5BMTQ4MjMyMjE3NV5BMl5BanBnXkFtZTcwODUxMzc1MQ@@._V1_.jpg",
+            "height": 400
+          }
+        },
+        "attr": "(novel)"
+      },
+      {
+        "name": {
+          "nconst": "nm0880243",
+          "name": "Jim Uhls"
+        },
+        "attr": "(screenplay)"
+      }
+    ],
+    "tconst": "tt0137523",
+    "genres": [
+      "Drama"
+    ],
+    "best_plot": {
+      "outline": "An insomniac office worker looking for a way to change his life crosses paths with a devil-may-care soap maker and they form an underground fight club that evolves into something much, much more...",
+      "total_summaries": 3
+    },
+    "quote": {
+      "lines": [
+        {
+          "stage": "first lines"
+        }
+      ],
+      "qconst": "qt0479091"
+    },
+    "can_rate": true,
+    "trailer": {
+      "encodings": {
+        "H.264 480x270": {
+          "format": "H.264 480x270",
+          "url": "http:\/\/www.totaleclips.com\/Player\/Bounce.aspx?eclipid=e61676&bitrateid=461&vendorid=102&type=.mp4"
+        },
+        "H.264 640x360": {
+          "format": "H.264 640x360",
+          "url": "http:\/\/www.totaleclips.com\/Player\/Bounce.aspx?eclipid=e61676&bitrateid=472&vendorid=102&type=.mp4"
+        }
+      },
+      "description": "Trailer for Fight Club",
+      "relatedTitle": {
+        "title": "Fight Club",
+        "type": "feature",
+        "title_id": "tt0137523",
+        "year": "1999",
+        "image": {
+          "width": 336,
+          "url": "http:\/\/ia.media-imdb.com\/images\/M\/MV5BMjIwNTYzMzE1M15BMl5BanBnXkFtZTcwOTE5Mzg3OA@@._V1_.jpg",
+          "height": 500
+        }
+      },
+      "duration_seconds": 120,
+      "slates": [
+        {
+          "width": 266,
+          "url": "http:\/\/ia.media-imdb.com\/images\/M\/MV5BMTMxMjk1NTI3M15BMl5BanBnXkFtZTcwMTYwNzcyNA@@._V1_.jpg",
+          "height": 200
+        }
+      ],
+      "content_type": "Trailer",
+      "relatedName": {
+        "nconst": "nm0001533",
+        "name": "Meat Loaf",
+        "image": {
+          "width": 285,
+          "url": "http:\/\/ia.media-imdb.com\/images\/M\/MV5BMTIzNTQ4MjYyOV5BMl5BanBnXkFtZTcwNzgwNTEzMg@@._V1_.jpg",
+          "height": 400
+        }
+      },
+      "id": "vi781228825",
+      "title": "Fight Club",
+      "@type": "mobile.media.video"
+    },
+    "release_date": {
+      "normal": "1999-10-15"
+    },
+    "trivium": "Cameo (Kevin Scott Mack): Digital Domain visual effects supervisor is the terrified guy with glasses in the plane crash scene.",
+    "goof": "When the Narrator is quitting his job, the thermostat alternates between white and black as the shot cuts back and forth between him and his boss. (The 2009 Blu-ray release digitally alters the scene so the thermostat is now consistently white.)",
+    "image": {
+      "width": 336,
+      "url": "http:\/\/ia.media-imdb.com\/images\/M\/MV5BMjIwNTYzMzE1M15BMl5BanBnXkFtZTcwOTE5Mzg3OA@@._V1_.jpg",
+      "height": 500
+    },
+    "tagline": "How much can you know about yourself if you've never been in a fight?",
+    "runtime": {
+      "time": 8340
+    },
+    "cast_summary": [
+      {
+        "char": "Tyler Durden",
+        "name": {
+          "nconst": "nm0000093",
+          "name": "Brad Pitt",
+          "image": {
+            "width": 1363,
+            "url": "http:\/\/ia.media-imdb.com\/images\/M\/MV5BMjA1MjE2MTQ2MV5BMl5BanBnXkFtZTcwMjE5MDY0Nw@@._V1_.jpg",
+            "height": 2048
+          }
+        }
+      }
+    ],
+    "plot": {
+      "outline": "An insomniac office worker looking for a way to change his life crosses paths with a devil-may-care soap maker and they form an underground fight club that evolves into something much, much more...",
+      "more": 1
+    },
+    "news": {
+      "channel": "tt0137523",
+      "total": 2206,
+      "sources": {
+        "ns0000055": {
+          "logo": "http:\/\/ia.media-imdb.com\/images\/M\/MV5BMjI0OTAwNjEwNF5BMl5BanBnXkFtZTcwMDY0MjQzOA@@._V1.jpg",
+          "url": "http:\/\/www.ropeofsilicon.com\/",
+          "label": "Rope Of Silicon"
+        },
+        "ns0000742": {
+          "url": "http:\/\/www.hollywoodlife.com\/",
+          "label": "HollywoodLife"
+        },
+        "ns0000218": {
+          "logo": "http:\/\/ia.media-imdb.com\/images\/M\/MV5BMTUxOTMwNDY5N15BMl5BanBnXkFtZTcwMDExNzI0Mg@@._V1._SY140_.jpg",
+          "url": "http:\/\/www.huffingtonpost.com\/",
+          "label": "Huffington Post"
+        }
+      },
+      "markup": "flat",
+      "label": "Fight Club",
+      "limit": 3,
+      "start": 0,
+      "items": [
+        {
+          "source": "ns0000218",
+          "head": "Roger Ebert Thought He Went 'Overboard' With This Review",
+          "id": "ni51844329",
+          "datetime": "2013-04-22T01:58:00Z"
+        },
+        {
+          "source": "ns0000742",
+          "head": "Edward Norton Welcomes Baby Boy With Fiancee Shauna Robertson",
+          "id": "ni51595472",
+          "datetime": "2013-04-18T17:23:00Z"
+        },
+        {
+          "source": "ns0000055",
+          "head": "Podcast: Reviewing 'Oblivion', Talking 2013's Summer Movies and Laremy is in Greece",
+          "id": "ni51520204",
+          "datetime": "2013-04-17T18:58:00Z"
+        }
+      ],
+      "@type": "mobile.news.list"
+    },
+    "type": "feature",
+    "title": "Fight Club",
+    "year": "1999"
+  },
+  "copyright": "For use only by clients authorized in writing by IMDb.  Authors and users of unauthorized clients accept full legal exposure\/liability for their actions."
+}

@@ -2,6 +2,10 @@
     localStorage.setItem("zip", newVal);
 });
 
+viewModel.theater.subscribe(function (newVal) {
+    localStorage.setItem("theater", newVal);
+});
+
 var router = new Router();
 
 ianhd.registerNamespace("app");

@@ -8,7 +8,7 @@
     <title>@ViewBag.Title</title>
     <link rel="icon" href="~/content/favicon.jpg" />
 
-    @Styles.Render("~/Content/css")
+    @Styles.Render("~/Content/site.min.css?v=" + seeitornot.site.MvcApplication.ApplicationBuild)
     
     @Html.Partial("BeforeEndHead")
 </head>

@@ -38,7 +38,7 @@ namespace seeitornot.model
             }
             catch
             {
-                // silent, leave all defaults
+                // silent, leave all defaults, some comment.
             }
         }
     }

@@ -15,11 +15,11 @@
 }
 
 <div class="mainContent group">
-    <section style="display:none" id="showtimes" data-bind="visible: zip">
+    <section style="display:none" id="showtimes" data-bind="visible: zip() && theater()">
         <h2 class="filter">Showtimes for <a data-bind="text: theater" class="theater" href="#"></a> near <a data-bind="text: zip" class="zip" href="#"></a></h2>
         <div id="theatersWithMovies"></div>
     </section>
-    <section class="welcome" style="display:none" data-bind="visible: !zip()">
+    <section class="welcome" style="display:none" data-bind="visible: !zip() || !theater()">
         <div class="row">
             <h2>Where would you like to see showtimes?</h2>
         </div>

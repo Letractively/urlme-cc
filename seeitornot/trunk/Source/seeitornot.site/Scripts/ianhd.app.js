@@ -41,7 +41,33 @@ ianhd.app = {
         ianhd.app.initHistory();
         ianhd.app.bindControls();
     },
+    loadTheaters: function () {
+        BootstrapDialog.show({
+            title: "Select a theater",
+            message: "<span class='hint'>Loading...</span>",
+            cssClass: "selectTheater",
+            buttons: [{
+                label: 'Cancel',
+                cssClass: 'btn-default',
+                action: function (dialog) {
+                    dialog.close();
+                }
+            }],
+            onshown: function () {
+                var url = "{0}api/theaters?zip={1}".format(apiBaseUrl, viewModel.zip());
+                $.get(url, function (theaters) {
+                    var dialogBody = ianhd.app.controls.selectTheaterBody();
+                    dialogBody.html(""); // clear out any "Loading..." messages
+                    dialogBody.append("<a href='/showtimes/{0}/all' data-theater='all'>* All Theaters *</a>".format(viewModel.zip()));
+                    $.each(theaters, function (i, theater) {
+                        dialogBody.append("<a href='/showtimes/{0}/{1}' data-theater='{1}'>{2}</a>".format(viewModel.zip(), theater.id, theater.name));
+                    });
+                });
+            }
+        });
+    },
     loadShowtimes: function (zip, theaterId) {
+        console.log("Loading showtimes...");
         var url = "{0}api/theaters-with-movies?zip={1}&theaterId={2}".format(apiBaseUrl, zip, theaterId);
         var targetOutput = ianhd.app.controls.theatersWithMovies();
         targetOutput.html("<span class='hint'>Loading...</span>")
@@ -80,8 +106,10 @@ ianhd.app = {
         // select an actual theater
         $(document).on('click', ianhd.app.selectors.selectTheater, function (e) {
             e.preventDefault();
+            var trigger = $(this);
+            viewModel.theater(trigger.attr('data-theater'));
             BootstrapDialog.closeAll(); // close any open dialogs. this is nice that BootstrapDialog provides this.
-            router.navigate($(this).attr("href"));
+            router.navigate(trigger.attr("href"));
         });
 
         // use my location button
@@ -96,8 +124,9 @@ ianhd.app = {
                         dataType: "jsonp",
                         success: function (resp) {
                             var zip = resp.postalCodes[0].postalCode;
+                            viewModel.theater("");
                             viewModel.zip(zip);
-                            router.navigate("/showtimes/{0}/all".format(zip));
+                            ianhd.app.loadTheaters();
                             btn.button('reset');
                         }, // todo: check if postalCodes[0]
                         error: function () { }
@@ -111,29 +140,7 @@ ianhd.app = {
         // theater prompt
         ianhd.app.controls.theater().click(function (e) {
             e.preventDefault();
-            BootstrapDialog.show({
-                title: "Select a theater",
-                message: "<span class='hint'>Loading...</span>",
-                cssClass: "selectTheater",
-                buttons: [{
-                    label: 'Cancel',
-                    cssClass: 'btn-default',
-                    action: function (dialog) {
-                        dialog.close();
-                    }
-                }],
-                onshown: function () {
-                    var url = "{0}api/theaters?zip={1}".format(apiBaseUrl, viewModel.zip());
-                    $.get(url, function (theaters) {
-                        var dialogBody = ianhd.app.controls.selectTheaterBody();
-                        dialogBody.html(""); // clear out any "Loading..." messages
-                        dialogBody.append("<a href='/showtimes/{0}/all'>* All Theaters *</a>".format(viewModel.zip()));
-                        $.each(theaters, function (i, theater) {
-                            dialogBody.append("<a href='/showtimes/{0}/{1}'>{2}</a>".format(viewModel.zip(), theater.id, theater.name));
-                        });
-                    });
-                }
-            });
+            ianhd.app.loadTheaters();
         });
 
         // zip prompt
@@ -189,7 +196,7 @@ ianhd.app = {
             var theaterId = parts[2];
             viewModel.zip(zip);
             ianhd.app.loadShowtimes(zip, theaterId);
-        } else if (viewModel.zip()) {
+        } else if (viewModel.zip() && viewModel.theater()) {
             ianhd.app.loadShowtimes(viewModel.zip(), "all");
         }
 

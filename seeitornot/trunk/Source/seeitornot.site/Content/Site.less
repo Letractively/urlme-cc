@@ -78,13 +78,14 @@ header { padding-bottom: 10px; .orangeDiag;
         .movie { margin-top: 20px; position: relative;
             img { float:left; margin-right: 20px; max-width: 61px; }
             h4 { margin: 0; width: ~"calc(100% - 81px)"; .ellipsis; float:left; height: 20px; }
-            .showtimesHtml { position: absolute; bottom: 0; left: 81px; font-size: 14px;
+            .showtimesHtml { position: absolute; bottom: 0; left: 81px; font-size: 14px; line-height: 18px;
                 span { display:inline-block; }
                 span:not(:last-child) { margin-right: 10px; }
                 .hint { text-decoration: line-through; font-style: normal; }
             }
             .hint { font-size: 14px; color: #929292; }
         }
+        .movie:first-child { margin-top: 0; }
     }
     .theater:first-child { margin-top: 0; }
 }

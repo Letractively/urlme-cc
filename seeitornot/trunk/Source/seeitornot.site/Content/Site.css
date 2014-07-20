@@ -249,6 +249,7 @@ header .content .fa-times {
   bottom: 0;
   left: 81px;
   font-size: 14px;
+  line-height: 18px;
 }
 #theatersWithMovies .theater .movie .showtimesHtml span {
   display: inline-block;
@@ -263,6 +264,9 @@ header .content .fa-times {
 #theatersWithMovies .theater .movie .hint {
   font-size: 14px;
   color: #929292;
+}
+#theatersWithMovies .theater .movie:first-child {
+  margin-top: 0;
 }
 #theatersWithMovies .theater:first-child {
   margin-top: 0;

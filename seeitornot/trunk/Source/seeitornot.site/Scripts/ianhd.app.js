@@ -1,9 +1,11 @@
 ﻿viewModel.zip.subscribe(function (newVal) {
     localStorage.setItem("zip", newVal);
 });
-
-viewModel.theater.subscribe(function (newVal) {
-    localStorage.setItem("theater", newVal);
+viewModel.theaterName.subscribe(function (newVal) {
+    localStorage.setItem("theaterName", newVal);
+});
+viewModel.theaterId.subscribe(function (newVal) {
+    localStorage.setItem("theaterId", newVal);
 });
 
 var router = new Router();
@@ -58,9 +60,9 @@ ianhd.app = {
                 $.get(url, function (theaters) {
                     var dialogBody = ianhd.app.controls.selectTheaterBody();
                     dialogBody.html(""); // clear out any "Loading..." messages
-                    dialogBody.append("<a href='/showtimes/{0}/all' data-theater='all'>* All Theaters *</a>".format(viewModel.zip()));
+                    // dialogBody.append("<a href='/showtimes/{0}/all' data-theater-id='all'>* All Theaters *</a>".format(viewModel.zip()));
                     $.each(theaters, function (i, theater) {
-                        dialogBody.append("<a href='/showtimes/{0}/{1}' data-theater='{1}'>{2}</a>".format(viewModel.zip(), theater.id, theater.name));
+                        dialogBody.append("<a href='/showtimes/{0}/{1}' data-theater-id='{1}'>{2}</a>".format(viewModel.zip(), theater.id, theater.name));
                     });
                 });
             }
@@ -107,7 +109,8 @@ ianhd.app = {
         $(document).on('click', ianhd.app.selectors.selectTheater, function (e) {
             e.preventDefault();
             var trigger = $(this);
-            viewModel.theater(trigger.attr('data-theater'));
+            viewModel.theaterId(trigger.attr('data-theater-id'));
+            viewModel.theaterName(trigger.html());
             BootstrapDialog.closeAll(); // close any open dialogs. this is nice that BootstrapDialog provides this.
             router.navigate(trigger.attr("href"));
         });
@@ -124,7 +127,8 @@ ianhd.app = {
                         dataType: "jsonp",
                         success: function (resp) {
                             var zip = resp.postalCodes[0].postalCode;
-                            viewModel.theater("");
+                            viewModel.theaterId("");
+                            viewModel.theaterName("");
                             viewModel.zip(zip);
                             ianhd.app.loadTheaters();
                             btn.button('reset');
@@ -196,7 +200,7 @@ ianhd.app = {
             var theaterId = parts[2];
             viewModel.zip(zip);
             ianhd.app.loadShowtimes(zip, theaterId);
-        } else if (viewModel.zip() && viewModel.theater()) {
+        } else if (viewModel.zip() && viewModel.theaterId()) {
             ianhd.app.loadShowtimes(viewModel.zip(), "all");
         }
 

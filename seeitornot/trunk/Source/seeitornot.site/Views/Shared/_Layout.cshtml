@@ -37,9 +37,6 @@
 
     @Scripts.Render("~/bundles/js/jquery")
 
-    @* bootstrap *@
-    @Scripts.Render("//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js")
-
     <script>var apiBaseUrl = '@Url.Content("~/")';</script>
     @RenderSection("scripts", required: false)
     @Scripts.Render("~/scripts/ianhd.app.js")

@@ -3,17 +3,19 @@ using System.Collections.Generic;
 using HtmlAgilityPack;
 using System;
 using ianhd.core.Extensions;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace seeitornot.model
 {
     public partial class Theater
     {
-        public static List<Theater> Get(string zip, string theaterId, DateTime date)
+        public static List<Theater> GetWithMovies(string zip, string theaterId, DateTime date)
         {
             var dateStr = date.ToString("yyyyMMdd");
 
             var rtn = Cache.GetValue<List<Theater>>(
-                string.Format("seeitornot.model.Theater.Get.{0}.{1}.{2}", zip, theaterId, dateStr), 
+                string.Format("seeitornot.model.Theater.GetWithMovies.{0}.{1}.{2}", zip, theaterId, dateStr), 
                 () =>
                 {
                     var theaters = new List<Theater>();
@@ -68,7 +70,8 @@ namespace seeitornot.model
                                 continue; // skip this movie
                             }
                         } // next movie
-                        theater.movies.AddRange(movies);
+
+                        theater.movies.AddRange(movies.OrderByDescending(x => x.releaseDate));
 
                         theaters.Add(theater);
                     }

@@ -1,6 +1,7 @@
 ﻿using Newtonsoft.Json.Linq;
 using ianhd.core.Extensions;
 using System.Collections.Generic;
+using System;
 
 namespace seeitornot.model
 {
@@ -15,6 +16,7 @@ namespace seeitornot.model
         public int audienceScore { get; set; }
         public string audienceScoreTag { get; set; }
         public string runtime { get; set; }
+        public DateTime releaseDate { get; set; }
 
         // props that do NOT come from RT API
         public List<string> showtimes { get; set; }
@@ -32,6 +34,7 @@ namespace seeitornot.model
                 this.audienceScore = (int)item["ratings"]["audience_score"];
                 this.audienceScoreTag = (string)item["ratings"]["audience_rating"];
                 this.parentalGuideUrl = string.Format("http://www.imdb.com/title/tt{0}/parentalguide", (string)item["alternate_ids"]["imdb"]);
+                this.releaseDate = (DateTime)item["release_dates"]["theater"];
             }
             catch
             {

@@ -19,7 +19,7 @@ namespace seeitornot.site.Controllers
         [Route("theaters-with-movies")]
         public JsonResult TheatersWithMovies(string zip, string theaterId)
         {
-            var theaters = seeitornot.model.Theater.Get(zip, theaterId, System.DateTime.Now);
+            var theaters = seeitornot.model.Theater.GetWithMovies(zip, theaterId, System.DateTime.Now);
             return this.Json(theaters, JsonRequestBehavior.AllowGet);
         }
     }

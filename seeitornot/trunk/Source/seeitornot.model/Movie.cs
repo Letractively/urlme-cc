@@ -17,6 +17,7 @@ namespace seeitornot.model
         public string audienceScoreTag { get; set; }
         public string runtime { get; set; }
         public DateTime releaseDate { get; set; }
+        public string slug { get; set; }
 
         // props that do NOT come from RT API
         public List<string> showtimes { get; set; }
@@ -27,6 +28,7 @@ namespace seeitornot.model
             {
                 this.id = (string)item["id"];
                 this.title = (string)item["title"];
+                this.slug = this.title.Slugify();
                 this.posterDetailed = ((string)item["posters"]["detailed"]).Replace("_tmb", "_mob");
                 this.mpaaRating = (string)item["mpaa_rating"];
                 this.runtime = (int)item["runtime"] + " min";

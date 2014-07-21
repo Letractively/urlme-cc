@@ -103,6 +103,7 @@ body {
   color: #333;
   background-color: #f5f5f5;
 }
+/* main content and header */
 .mainContent {
   width: 990px;
   margin: 0 auto;
@@ -214,6 +215,9 @@ header .content .fa-times {
   border-bottom: 1px solid #e5e5e5;
 }
 /* theaters with movies list */
+h3.filter {
+  line-height: 36px;
+}
 #theatersWithMovies {
   margin-top: 20px;
 }

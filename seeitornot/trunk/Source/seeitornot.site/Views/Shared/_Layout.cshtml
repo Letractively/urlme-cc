@@ -1,4 +1,5 @@
 ﻿@using ianhd.core.Extensions
+@using System.Web.Optimization
 
 <!DOCTYPE html>
 <html>
@@ -39,6 +40,7 @@
 
     <script>var apiBaseUrl = '@Url.Content("~/")';</script>
     @RenderSection("scripts", required: false)
-    @Scripts.Render("~/scripts/ianhd.app.js")
+    
+    @Scripts.RenderFormat("<script src='{0}' async></script>", "~/scripts/ianhd.app.js?v=" + seeitornot.site.MvcApplication.ApplicationBuild)
 </body>
 </html>

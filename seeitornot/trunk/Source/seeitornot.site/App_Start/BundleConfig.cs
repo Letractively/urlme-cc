@@ -22,12 +22,6 @@ namespace seeitornot.site
                 "~/scripts/ianhd.js"
             ));
 
-            // other stuff? in @import's in .less
-            bundles.Add(new StyleBundle("~/Content/css").Include(
-                "~/Content/site.css",
-                "~/Content/ratings.css"
-            ));
-
             // BundleTable.EnableOptimizations = true;
         }
     }

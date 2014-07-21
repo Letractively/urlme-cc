@@ -1,4 +1,15 @@
-﻿viewModel.zip.subscribe(function (newVal) {
+﻿// @koalb-prepend "jquery-1.8.3.min.js"
+// @koalb-prepend "knockout-2.2.1.js",
+// @koalb-prepend "knockout.mapping.js",
+// @koalb-prepend "plugins/bootstrap-dialog/bootstrap-dialog.min.js", //
+// @koalb-prepend "plugins/iscroll.js",
+// @koalb-prepend "plugins/jquery.history.js",
+// @koalb-prepend "plugins/Router.js",
+// @koalb-prepend "plugins/jsrender.min.js",
+// @koalb-prepend "plugins/bootstrap-3.1.1/js/bootstrap.min.js",
+// @koalb-prepend "ianhd.js"
+
+viewModel.zip.subscribe(function (newVal) {
     localStorage.setItem("zip", newVal);
 });
 viewModel.theaterName.subscribe(function (newVal) {

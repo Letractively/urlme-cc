@@ -9,24 +9,31 @@
             overlayMovieId: '@(Model.OverlayMovie != null ? Model.OverlayMovie.id : "")',
             theaterName: localStorage.getItem("theaterName"),
             theaterId: localStorage.getItem("theaterId"),
-            zip: localStorage.getItem("zip")
+            zip: localStorage.getItem("zip"),
+            movieId: ""
         });
         ko.applyBindings(viewModel);
     </script>
 }
 
 <div class="mainContent group">
-    <section style="display:none" id="showtimes" data-bind="visible: zip() && theaterId()">
-        <h2 class="filter">Showtimes for <a data-bind="text: theaterName" class="theater" href="#"></a> near <a data-bind="text: zip" class="zip" href="#"></a></h2>
+    
+    <section style="display:none" id="showtimes" data-bind="visible: zip() && theaterId() && !movieId()">
+        <h3 class="filter">Showtimes for <a data-bind="text: theaterName" class="theater" href="#"></a> near <a data-bind="text: zip" class="zip" href="#"></a></h3>
         <div id="theatersWithMovies"></div>
     </section>
-    <section class="welcome" style="display:none" data-bind="visible: !zip() || !theaterId()">
+    
+    <section style="display:none" class="welcome" data-bind="visible: (!zip() || !theaterId()) && !movieId()">
         <div class="row">
             <h2>Where would you like to see showtimes?</h2>
         </div>
         <div class="row">
             <button id="nearMe" class="btn btn-primary btn-lg" data-loading-text="Loading...">Use my location</button><span class="or">- or -</span><input type="search" class="form-control form-inline enterZip" placeholder="Enter zip code..." />
         </div>
+    </section>
+    
+    <section style="display:none" class="singleMovie" data-bind="visible: movieId()">
+        This is a movie
     </section>
 
     @foreach (var movieList in Model.movieLists)
@@ -50,7 +57,7 @@
     <div class="theater">
         {{for movies}}
             <div class="movie group">
-                <img src="{{:posterDetailed}}" />
+                <a href="/{{:slug}}/{{:id}}" data-movie-id="{{:id}}"><img src="{{:posterDetailed}}" /></a>
                 <h4>{{:title}}</h4>
                 <div class="hint">{{:mpaaRating}}{{if runtime}} , {{:runtime}}{{/if}}</div>
                 <div class="showtimesHtml">

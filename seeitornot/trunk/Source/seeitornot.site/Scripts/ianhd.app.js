@@ -29,6 +29,7 @@ ianhd.app = {
     },
     selectors: {
         closePopup: "#overlay,.closePopup",
+        selectMovie: "#theatersWithMovies .movie a",
         selectTheater: ".selectTheater a",
     },
     init: function () {
@@ -78,10 +79,8 @@ ianhd.app = {
         $.get(url, function (theaters) {
 
             // mark any times that are earlier than now
-            
             var now = new Date();
             now = parseInt(now.getHours() + "" + now.getMinutes());
-
             $.each(theaters, function (i, theater) {
                 $.each(theater.movies, function (j, movie) {
 
@@ -105,6 +104,10 @@ ianhd.app = {
             targetOutput.html(html);
         });
     },
+    loadMovie: function (movieSlug, movieId) {
+        console.log("Loading movie...");
+
+    },
     bindControls: function () {
         // select an actual theater
         $(document).on('click', ianhd.app.selectors.selectTheater, function (e) {
@@ -113,6 +116,14 @@ ianhd.app = {
             viewModel.theaterId(trigger.attr('data-theater-id'));
             viewModel.theaterName(trigger.html());
             BootstrapDialog.closeAll(); // close any open dialogs. this is nice that BootstrapDialog provides this.
+            router.navigate(trigger.attr("href"));
+        });
+
+        // select an actual movie
+        $(document).on('click', ianhd.app.selectors.selectMovie, function (e) {
+            e.preventDefault();
+            var trigger = $(this);
+            viewModel.movieId(trigger.attr('data-movie-id'));
             router.navigate(trigger.attr("href"));
         });
 
@@ -204,10 +215,16 @@ ianhd.app = {
     initHistory: function () {
         router.route('/showtimes/:zip/:theaterId', function (zip, theaterId) {
             console.log('route /showtimes/:zip/:theaterId');
+            // todo: set zip and theater id to localStorage
             ianhd.app.loadShowtimes(zip, theaterId);
+        });
+        router.route('/:movieSlug/:movieId', function (movieSlug, movieId) {
+            console.log('route /:movieSlug/:movieId');
+            ianhd.app.loadMovie(movieSlug, movieId);
         });
         router.route('/', function (zip, theaterId) {
             console.log('route /');
+            viewModel.movieId("");
         });
 
         // gotta be a better way to trigger initial route
@@ -219,6 +236,12 @@ ianhd.app = {
             var theaterId = parts[2];
             viewModel.zip(zip);
             ianhd.app.loadShowtimes(zip, theaterId);
+        } else if (initPath !== "/") { // movie
+            var parts = initPath.split('/');
+            var movieSlug = parts[1];
+            var movieId = parts[2];
+            viewModel.movieId(movieId);
+            ianhd.app.loadMovie(movieSlug, movieId);
         } else if (viewModel.zip() && viewModel.theaterId()) {
             ianhd.app.loadShowtimes(viewModel.zip(), viewModel.theaterId());
         }

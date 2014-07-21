@@ -20,11 +20,17 @@ namespace seeitornot.site.Controllers
         }
 
         [Route("showtimes/{zip}/{theaterId}")]
-        public ActionResult Index(string zip, string theaterId)
+        public ActionResult Showtimes(string zip, string theaterId)
         {
             var vm = new ViewModels.Home.Index("");
-            return View(vm);
+            return View("Index", vm);
         }
 
+        [Route("{movieSlug}/{movieId}")]
+        public ActionResult Movie(string movieSlug, string movieId)
+        {
+            var vm = new ViewModels.Home.Index("");
+            return View("Index", vm);
+        }
     }
 }

@@ -13,6 +13,7 @@ var router = new Router();
 ianhd.registerNamespace("app");
 ianhd.app = {
     controls: {
+        enterZip: function () { return $(".enterZip"); },
         logo: function () { return $("#logo"); },
         menu: function () { return $("nav"); },
         menuIcon: function () { return $(".fa-bars"); },
@@ -141,6 +142,24 @@ ianhd.app = {
             }
         });
 
+        // enter zip textbox
+        ianhd.app.controls.enterZip().keyup(function (e) {
+            var trigger = $(this);
+            if (e.keyCode == 13) {
+                var val = $.trim(trigger.val());
+                if (isNaN(val) || val.length !== 5) {
+                    alert("Please enter a 5-digit zip code.")
+                    trigger.focus();
+                    return;
+                }
+
+                viewModel.theaterId("");
+                viewModel.theaterName("");
+                viewModel.zip(val);
+                ianhd.app.loadTheaters();
+            }
+        });
+
         // theater prompt
         ianhd.app.controls.theater().click(function (e) {
             e.preventDefault();
@@ -201,7 +220,7 @@ ianhd.app = {
             viewModel.zip(zip);
             ianhd.app.loadShowtimes(zip, theaterId);
         } else if (viewModel.zip() && viewModel.theaterId()) {
-            ianhd.app.loadShowtimes(viewModel.zip(), "all");
+            ianhd.app.loadShowtimes(viewModel.zip(), viewModel.theaterId());
         }
 
         // trigger initial route

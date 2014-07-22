@@ -153,17 +153,12 @@
     <Content Include="Content\logo.png" />
     <Content Include="Content\logo_mobile.png" />
     <Content Include="Content\logo_mobile_white.png" />
-    <Content Include="Content\Ratings.css" />
     <Content Include="Content\Site.min.css" />
     <Content Include="Content\sprite.png" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="Content\Site.less" />
     <None Include="Properties\PublishProfiles\publish to c - publish.pubxml" />
-    <Content Include="imdb_json.txt" />
-    <Content Include="imdb_legit_json.txt" />
-    <Content Include="redbox_top20_xml.txt" />
-    <Content Include="rt_json.txt" />
     <Content Include="Scripts\ianhd.app.js" />
     <Content Include="Scripts\ianhd.js" />
     <Content Include="Scripts\jquery-1.8.3.min.js" />
@@ -181,7 +176,6 @@
     <Content Include="Scripts\Plugins\jsrender.min.js" />
     <Content Include="Scripts\Plugins\Router.js" />
     <Content Include="Scripts\_references.js" />
-    <Content Include="showtimes_html.txt" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -206,10 +200,9 @@
     <None Include="Properties\PublishProfiles\publish to dev.pubxml" />
     <None Include="Properties\PublishProfiles\publish to local.pubxml" />
     <Content Include="Views\Api\Movie.cshtml" />
+    <None Include="Properties\PublishProfiles\publish to prod.pubxml" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="App_Data\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="packages.config" />
   </ItemGroup>

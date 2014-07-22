@@ -9,6 +9,13 @@ namespace seeitornot.site.Controllers
     [RoutePrefix("api")]
     public class ApiController : Controller
     {
+        [Route("movie/{movieId}")]
+        public ActionResult Movie(string movieId)
+        {
+            var movie = model.Movie.Get(movieId);
+            return PartialView(movie);
+        }
+        
         [Route("theaters")]
         public JsonResult Theaters(string zip)
         {

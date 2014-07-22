@@ -11,7 +11,7 @@ namespace seeitornot.model
         public string title { get; set; }
         public string mpaaRating { get; set; }
         public string posterDetailed { get; set; }
-        // public string movieSlug { get; set; }
+        public string posterThumbnail { get; set; }
         public string parentalGuideUrl { get; set; }
         public int audienceScore { get; set; }
         public string audienceScoreTag { get; set; }
@@ -29,7 +29,8 @@ namespace seeitornot.model
                 this.id = (string)item["id"];
                 this.title = (string)item["title"];
                 this.slug = this.title.Slugify();
-                this.posterDetailed = ((string)item["posters"]["detailed"]).Replace("_tmb", "_mob");
+                this.posterThumbnail = ((string)item["posters"]["detailed"]).Replace("_tmb", "_mob");
+                this.posterDetailed = ((string)item["posters"]["detailed"]).Replace("_tmb", "_det");
                 this.mpaaRating = (string)item["mpaa_rating"];
                 this.runtime = (int)item["runtime"] + " min";
                 // this.movieSlug = string.Format("{0}/{1}", this.title.Slugify(), this.id);

@@ -33,7 +33,6 @@
     </section>
     
     <section style="display:none" class="singleMovie" data-bind="visible: movieId()">
-        This is a movie
     </section>
 
     @foreach (var movieList in Model.movieLists)
@@ -57,7 +56,7 @@
     <div class="theater">
         {{for movies}}
             <div class="movie group">
-                <a href="/{{:slug}}/{{:id}}" data-movie-id="{{:id}}"><img src="{{:posterDetailed}}" /></a>
+                <a href="/{{:slug}}/{{:id}}" data-movie-id="{{:id}}"><img src="{{:posterThumbnail}}" /></a>
                 <h4>{{:title}}</h4>
                 <div class="hint">{{:mpaaRating}}{{if runtime}} , {{:runtime}}{{/if}}</div>
                 <div class="showtimesHtml">

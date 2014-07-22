@@ -15,6 +15,8 @@ namespace seeitornot.model
         public string parentalGuideUrl { get; set; }
         public int audienceScore { get; set; }
         public string audienceScoreTag { get; set; }
+        public int criticsScore { get; set; }
+        public string criticsScoreTag { get; set; }
         public string runtime { get; set; }
         public DateTime releaseDate { get; set; }
         public string slug { get; set; }
@@ -36,6 +38,8 @@ namespace seeitornot.model
                 // this.movieSlug = string.Format("{0}/{1}", this.title.Slugify(), this.id);
                 this.audienceScore = (int)item["ratings"]["audience_score"];
                 this.audienceScoreTag = (string)item["ratings"]["audience_rating"];
+                this.criticsScore = (int)item["ratings"]["critics_score"];
+                this.criticsScoreTag = (string)item["ratings"]["critics_rating"];
                 this.parentalGuideUrl = string.Format("http://www.imdb.com/title/tt{0}/parentalguide", (string)item["alternate_ids"]["imdb"]);
                 this.releaseDate = (DateTime)item["release_dates"]["theater"];
             }

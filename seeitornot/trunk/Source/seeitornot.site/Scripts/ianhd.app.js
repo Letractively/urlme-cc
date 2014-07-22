@@ -147,6 +147,7 @@ ianhd.app = {
         // select an actual movie
         $(document).on('click', ianhd.app.selectors.selectMovie, function (e) {
             e.preventDefault();
+            console.log('selecting a movie');
             var trigger = $(this);
             viewModel.movieId(trigger.attr('data-movie-id'));
             router.navigate(trigger.attr("href"));

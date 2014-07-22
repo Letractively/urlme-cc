@@ -87,7 +87,7 @@ h3.filter { line-height: 36px; }
             img { float:left; margin-right: 20px; width: 61px; }
             h4 { margin: 0; width: ~"calc(100% - 81px)"; .ellipsis; height: 20px; }
             .hint { font-size: 14px; color: #929292; display:block; }
-            .movieInfo { margin-top:5px; display:inline-block; }
+            .movieInfo { margin-top:5px; display:inline-block; border-bottom: 1px solid #2489ce; }
             .showtimesHtml { position: absolute; bottom: 20px; left: 101px; font-size: 14px; line-height: 18px;
                 span { display:inline-block; }
                 span:not(:last-child) { margin-right: 10px; }
@@ -100,9 +100,9 @@ h3.filter { line-height: 36px; }
 }
 
 .singleMovie {
+    h1 { font-size: 24px; margin-bottom: @bufferLg; } 
     img { float: left; width: 171px; margin-right: @bufferLg; }
     .details { /* width: ~"calc(100% - 201px)"; */
-        h1 { font-size: 24px; } 
         .ratings { margin-top: @bufferLg;
            h2 { font-size: 16px; font-weight: bold; margin-bottom: @bufferSm; }
         }
@@ -162,6 +162,7 @@ h3.filter { line-height: 36px; }
     }
 
     .singleMovie {
+        h1 { margin-bottom: @bufferMd; }
         img { margin-right: @bufferMd; }
         .details { /*width: ~"calc(100% - 191px)"; */
             .ratings { margin-top: @bufferMd;

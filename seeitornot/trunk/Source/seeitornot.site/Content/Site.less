@@ -86,12 +86,13 @@ h3.filter { line-height: 36px; }
         .movie { background: white; margin-top: 20px; position: relative; padding: 20px;
             img { float:left; margin-right: 20px; width: 61px; }
             h4 { margin: 0; width: ~"calc(100% - 81px)"; .ellipsis; height: 20px; }
+            .hint { font-size: 14px; color: #929292; display:block; }
+            .movieInfo { margin-top:5px; display:inline-block; }
             .showtimesHtml { position: absolute; bottom: 20px; left: 101px; font-size: 14px; line-height: 18px;
                 span { display:inline-block; }
                 span:not(:last-child) { margin-right: 10px; }
                 .hint { text-decoration: line-through; font-style: normal; }
             }
-            .hint { font-size: 14px; color: #929292; }
         }
         .movie:first-child { margin-top: 0; }
     }
@@ -154,6 +155,7 @@ h3.filter { line-height: 36px; }
     #theatersWithMovies { margin-top: 20px;
         .theater { 
             .movie { 
+                .movieInfo { margin-top:29px; }
                 .showtimesHtml { position: static; padding-top:20px; clear:left; }
             }
         }

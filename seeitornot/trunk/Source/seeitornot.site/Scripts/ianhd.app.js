@@ -34,6 +34,7 @@ ianhd.app = {
         searchBox: function() { return $("input.search"); },
         searchIcon: function () { return $(".fa-search"); },
         selectTheaterBody: function () { return $(".selectTheater .bootstrap-dialog-message"); },
+        singleMovie: function () { return $(".singleMovie"); },
         theater: function () { return $(".theater"); },
         theatersWithMovies: function () { return $("#theatersWithMovies"); },
         zip: function () { return $(".zip"); },
@@ -117,7 +118,12 @@ ianhd.app = {
     },
     loadMovie: function (movieSlug, movieId) {
         console.log("Loading movie...");
-
+        var url = "{0}api/movie/{1}".format(apiBaseUrl, movieId);
+        var target = ianhd.app.controls.singleMovie();
+        target.html("<span class='hint'>Loading</span>");
+        $.get(url, function (html) {
+            target.html(html);
+        });
     },
     bindControls: function () {
         // select an actual theater

@@ -275,6 +275,14 @@ h3.filter {
 #theatersWithMovies .theater:first-child {
   margin-top: 0;
 }
+.singleMovie img {
+  float: left;
+  width: 171px;
+  margin-right: 30px;
+}
+.singleMovie h1 {
+  font-size: 24px;
+}
 /* mobile & tablet */
 /* @media (min-width: 768px) and (max-width: 991px) */
 @media (max-width: 991px) {

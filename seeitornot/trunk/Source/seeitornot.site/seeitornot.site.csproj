@@ -205,6 +205,7 @@
     <Content Include="Scripts\Plugins\font-awesome-4.1.0\fonts\FontAwesome.otf" />
     <None Include="Properties\PublishProfiles\publish to dev.pubxml" />
     <None Include="Properties\PublishProfiles\publish to local.pubxml" />
+    <Content Include="Views\Api\Movie.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

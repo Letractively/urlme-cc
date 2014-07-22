@@ -248,7 +248,6 @@ h3.filter {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-  float: left;
   height: 20px;
 }
 #theatersWithMovies .theater .movie .showtimesHtml {

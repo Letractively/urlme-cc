@@ -1,13 +1,21 @@
-﻿// @koalb-prepend "jquery-1.8.3.min.js"
-// @koalb-prepend "knockout-2.2.1.js",
-// @koalb-prepend "knockout.mapping.js",
-// @koalb-prepend "plugins/bootstrap-dialog/bootstrap-dialog.min.js", //
-// @koalb-prepend "plugins/iscroll.js",
-// @koalb-prepend "plugins/jquery.history.js",
-// @koalb-prepend "plugins/Router.js",
-// @koalb-prepend "plugins/jsrender.min.js",
-// @koalb-prepend "plugins/bootstrap-3.1.1/js/bootstrap.min.js",
-// @koalb-prepend "ianhd.js"
+﻿// @koala-prepend "jquery-1.8.3.min.js"
+// @koala-prepend "knockout-2.2.1.js",
+// @koala-prepend "knockout.mapping.js",
+// @koala-prepend "plugins/bootstrap-dialog/bootstrap-dialog.min.js", //
+// @koala-prepend "plugins/iscroll.js",
+// @koala-prepend "plugins/jquery.history.js",
+// @koala-prepend "plugins/Router.js",
+// @koala-prepend "plugins/jsrender.min.js",
+// @koala-prepend "plugins/bootstrap-3.1.1/js/bootstrap.min.js",
+// @koala-prepend "ianhd.js"
+
+var viewModel = ko.mapping.fromJS({
+    theaterName: localStorage.getItem("theaterName"),
+    theaterId: localStorage.getItem("theaterId"),
+    zip: localStorage.getItem("zip"),
+    movieId: ""
+});
+ko.applyBindings(viewModel);
 
 viewModel.zip.subscribe(function (newVal) {
     localStorage.setItem("zip", newVal);
@@ -60,7 +68,7 @@ ianhd.app = {
     loadTheaters: function () {
         BootstrapDialog.show({
             title: "Select a theater",
-            message: "<span class='hint'>Loading...</span>",
+            message: "<span class='hint loading'></span>",
             cssClass: "selectTheater",
             buttons: [{
                 label: 'Cancel',
@@ -86,7 +94,7 @@ ianhd.app = {
         console.log("Loading showtimes...");
         var url = "{0}api/theaters-with-movies?zip={1}&theaterId={2}".format(apiBaseUrl, zip, theaterId);
         var targetOutput = ianhd.app.controls.theatersWithMovies();
-        targetOutput.html("<span class='hint'>Loading...</span>")
+        targetOutput.html("<span class='hint loading'></span>")
 
         $.get(url, function (theaters) {
 
@@ -120,7 +128,7 @@ ianhd.app = {
         console.log("Loading movie...");
         var url = "{0}api/movie/{1}".format(apiBaseUrl, movieId);
         var target = ianhd.app.controls.singleMovie();
-        target.html("<span class='hint'>Loading</span>");
+        target.html("<span class='hint loading'></span>");
         $.get(url, function (html) {
             target.html(html);
         });

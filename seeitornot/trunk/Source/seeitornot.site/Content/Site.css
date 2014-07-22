@@ -250,6 +250,15 @@ h3.filter {
   white-space: nowrap;
   height: 20px;
 }
+#theatersWithMovies .theater .movie .hint {
+  font-size: 14px;
+  color: #929292;
+  display: block;
+}
+#theatersWithMovies .theater .movie .movieInfo {
+  margin-top: 5px;
+  display: inline-block;
+}
 #theatersWithMovies .theater .movie .showtimesHtml {
   position: absolute;
   bottom: 20px;
@@ -266,10 +275,6 @@ h3.filter {
 #theatersWithMovies .theater .movie .showtimesHtml .hint {
   text-decoration: line-through;
   font-style: normal;
-}
-#theatersWithMovies .theater .movie .hint {
-  font-size: 14px;
-  color: #929292;
 }
 #theatersWithMovies .theater .movie:first-child {
   margin-top: 0;
@@ -410,6 +415,9 @@ h3.filter {
   }
   #theatersWithMovies {
     margin-top: 20px;
+  }
+  #theatersWithMovies .theater .movie .movieInfo {
+    margin-top: 29px;
   }
   #theatersWithMovies .theater .movie .showtimesHtml {
     position: static;

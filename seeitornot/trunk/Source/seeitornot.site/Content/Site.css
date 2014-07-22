@@ -406,6 +406,9 @@ h3.filter {
     padding-top: 20px;
     clear: left;
   }
+  .singleMovie img {
+    margin-right: 20px;
+  }
   .debug.tablet {
     display: block;
   }

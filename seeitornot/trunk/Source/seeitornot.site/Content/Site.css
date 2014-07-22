@@ -258,6 +258,7 @@ h3.filter {
 #theatersWithMovies .theater .movie .movieInfo {
   margin-top: 5px;
   display: inline-block;
+  border-bottom: 1px solid #2489ce;
 }
 #theatersWithMovies .theater .movie .showtimesHtml {
   position: absolute;
@@ -282,6 +283,10 @@ h3.filter {
 #theatersWithMovies .theater:first-child {
   margin-top: 0;
 }
+.singleMovie h1 {
+  font-size: 24px;
+  margin-bottom: 30px;
+}
 .singleMovie img {
   float: left;
   width: 171px;
@@ -289,9 +294,6 @@ h3.filter {
 }
 .singleMovie .details {
   /* width: ~"calc(100% - 201px)"; */
-}
-.singleMovie .details h1 {
-  font-size: 24px;
 }
 .singleMovie .details .ratings {
   margin-top: 30px;
@@ -423,6 +425,9 @@ h3.filter {
     position: static;
     padding-top: 20px;
     clear: left;
+  }
+  .singleMovie h1 {
+    margin-bottom: 20px;
   }
   .singleMovie img {
     margin-right: 20px;

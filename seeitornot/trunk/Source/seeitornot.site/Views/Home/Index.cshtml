@@ -46,7 +46,7 @@
                 <a href="/{{:slug}}/{{:id}}" data-movie-id="{{:id}}"><img src="{{:posterThumbnail}}" /></a>
                 <h4>{{:title}}</h4>
                 <div class="hint">{{:mpaaRating}}{{if runtime}} , {{:runtime}}{{/if}}</div>
-                <a class="movieInfo" href="/{{:slug}}/{{:id}}">Movie info...</a>
+                <a class="movieInfo" href="/{{:slug}}/{{:id}}" data-movie-id="{{:id}}">Movie info...</a>
                 <div class="showtimesHtml">
                     {{for showtimes}}
                         <span class="{{if isPast}}hint{{:runtime}}{{/if}}">{{:showtime}}</span>

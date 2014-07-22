@@ -1,4 +1,15 @@
 ﻿@model seeitornot.model.Movie
 
 <img src="@Model.posterDetailed" />
-<h1>@this.Model.title</h1>
+<div class="details">
+    <h1>@this.Model.title</h1>
+    <div class="ratings">
+        <h2>Rotten Tomatoes® Scores</h2>
+        <div>
+            @Model.audienceScore% Audience Score
+        </div>
+        <div>
+            @Model.criticsScore% Critic Score
+        </div>
+    </div>
+</div>

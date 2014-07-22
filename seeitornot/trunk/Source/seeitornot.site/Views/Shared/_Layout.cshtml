@@ -36,11 +36,13 @@
     </div>
     @RenderBody()
 
-    @Scripts.Render("~/bundles/js/jquery")
+    <script>
+        var apiBaseUrl = '@Url.Content("~/")';
 
-    <script>var apiBaseUrl = '@Url.Content("~/")';</script>
-    @RenderSection("scripts", required: false)
+        // need this?
+        var omid = '@(Model.OverlayMovie != null ? Model.OverlayMovie.id : "")';
+    </script>
     
-    @Scripts.RenderFormat("<script src='{0}' async></script>", "~/scripts/ianhd.app.js?v=" + seeitornot.site.MvcApplication.ApplicationBuild)
+    @Scripts.RenderFormat("<script src='{0}' async></script>", "~/scripts/ianhd.app.min.js?v=" + seeitornot.site.MvcApplication.ApplicationBuild)
 </body>
 </html>

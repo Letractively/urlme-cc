@@ -1,5 +1,8 @@
 ﻿@using ianhd.core.Extensions
 @using System.Web.Optimization
+@{ 
+    var version = File.GetCreationTime(ViewContext.Controller.GetType().Assembly.Location).Ticks; // seeitornot.site.MvcApplication.ApplicationBuild 
+}
 
 <!DOCTYPE html>
 <html>
@@ -8,7 +11,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"> 
     <title>@ViewBag.Title</title>
 
-    @Styles.Render("~/Content/site.min.css?v=" + seeitornot.site.MvcApplication.ApplicationBuild)
+    @Styles.Render("~/Content/site.min.css?v=" + version)
     
     @Html.Partial("BeforeEndHead")
 </head>
@@ -42,6 +45,6 @@
         var omid = '@(Model.OverlayMovie != null ? Model.OverlayMovie.id : "")';
     </script>
     
-    @Scripts.RenderFormat("<script src='{0}' async></script>", "~/scripts/ianhd.app.min.js?v=" + seeitornot.site.MvcApplication.ApplicationBuild)
+    @Scripts.RenderFormat("<script src='{0}' async></script>", "~/scripts/ianhd.app.min.js?v=" + version)
 </body>
 </html>

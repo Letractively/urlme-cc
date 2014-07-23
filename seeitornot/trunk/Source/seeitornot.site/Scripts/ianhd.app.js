@@ -12,8 +12,9 @@
 var viewModel = ko.mapping.fromJS({
     theaterName: localStorage.getItem("theaterName"),
     theaterId: localStorage.getItem("theaterId"),
+    movieId: "",
     zip: localStorage.getItem("zip"),
-    movieId: ""
+    showBack: false
 });
 ko.applyBindings(viewModel);
 
@@ -48,6 +49,7 @@ ianhd.app = {
         zip: function () { return $(".zip"); },
     },
     selectors: {
+        back: ".back",
         closePopup: "#overlay,.closePopup",
         selectMovie: "#theatersWithMovies .movie a",
         selectTheater: ".selectTheater a",
@@ -131,6 +133,9 @@ ianhd.app = {
         target.html("<span class='hint loading'></span>");
         $.get(url, function (html) {
             target.html(html);
+            if (viewModel.showBack()) {
+                target.find(".backContainer").show();
+            }
         });
     },
     bindControls: function () {
@@ -237,19 +242,27 @@ ianhd.app = {
                 searchBox.focus();
             }
         });
+        
+        // go back
+        $(document).on('click', ianhd.app.selectors.back, function (e) {
+            e.preventDefault();
+            router.go(-1);
+        });
     },
     initHistory: function () {
         router.route('/showtimes/:zip/:theaterId', function (zip, theaterId) {
             console.log('route /showtimes/:zip/:theaterId');
-            // todo: set zip and theater id to localStorage
+            viewModel.showBack(true);
             ianhd.app.loadShowtimes(zip, theaterId);
         });
         router.route('/:movieSlug/:movieId', function (movieSlug, movieId) {
             console.log('route /:movieSlug/:movieId');
+            viewModel.showBack(true);
             ianhd.app.loadMovie(movieSlug, movieId);
         });
         router.route('/', function (zip, theaterId) {
             console.log('route /');
+            viewModel.showBack(true);
             viewModel.movieId("");
         });
 

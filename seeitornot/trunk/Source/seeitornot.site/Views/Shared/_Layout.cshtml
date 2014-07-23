@@ -7,7 +7,6 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"> 
     <title>@ViewBag.Title</title>
-    <link rel="icon" href="~/content/favicon.jpg" />
 
     @Styles.Render("~/Content/site.min.css?v=" + seeitornot.site.MvcApplication.ApplicationBuild)
     
@@ -27,8 +26,8 @@
         <div class="content group">
             <nav>
                 <ul>
-                    <li><a class="navItem selected" href="~/showtimes">In Theaters</a></li>
-                    <li><a class="navItem" href="~/coming-soon">Coming Soon</a></li>
+                    <li><a class="navItem selected" href="~/">Showtimes</a></li>
+                    <li><a class="navItem" href="~/coming-soon" onclick="alert('This page is in the works...'); return false;">Coming Soon</a></li>
                 </ul>
             </nav>
             <input type="text" class="search" placeholder="Search..." />

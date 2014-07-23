@@ -258,7 +258,6 @@ h3.filter {
 #theatersWithMovies .theater .movie .movieInfo {
   margin-top: 5px;
   display: inline-block;
-  border-bottom: 1px solid #2489ce;
 }
 #theatersWithMovies .theater .movie .showtimesHtml {
   position: absolute;
@@ -420,6 +419,7 @@ h3.filter {
   }
   #theatersWithMovies .theater .movie .movieInfo {
     margin-top: 29px;
+    border-bottom: 1px solid #2489ce;
   }
   #theatersWithMovies .theater .movie .showtimesHtml {
     position: static;

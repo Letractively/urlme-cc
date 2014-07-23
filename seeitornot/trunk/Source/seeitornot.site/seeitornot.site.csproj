@@ -145,6 +145,17 @@
     <Compile Include="ViewModels\ViewModelItem.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="apple-touch-icon-114x114.png" />
+    <Content Include="apple-touch-icon-120x120.png" />
+    <Content Include="apple-touch-icon-144x144.png" />
+    <Content Include="apple-touch-icon-152x152.png" />
+    <Content Include="apple-touch-icon-57x57.png" />
+    <Content Include="apple-touch-icon-60x60.png" />
+    <Content Include="apple-touch-icon-72x72.png" />
+    <Content Include="apple-touch-icon-76x76.png" />
+    <Content Include="apple-touch-icon-precomposed.png" />
+    <Content Include="apple-touch-icon.png" />
+    <Content Include="browserconfig.xml" />
     <Content Include="Content\boostrap-flatly.min.css" />
     <Content Include="Content\bootstrap-social.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
@@ -155,10 +166,21 @@
     <Content Include="Content\logo_mobile_white.png" />
     <Content Include="Content\Site.min.css" />
     <Content Include="Content\sprite.png" />
+    <Content Include="favicon-160x160.png" />
+    <Content Include="favicon-16x16.png" />
+    <Content Include="favicon-196x196.png" />
+    <Content Include="favicon-32x32.png" />
+    <Content Include="favicon-96x96.png" />
+    <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="Content\Site.less" />
     <None Include="Properties\PublishProfiles\publish to c - publish.pubxml" />
+    <Content Include="mstile-144x144.png" />
+    <Content Include="mstile-150x150.png" />
+    <Content Include="mstile-310x150.png" />
+    <Content Include="mstile-310x310.png" />
+    <Content Include="mstile-70x70.png" />
     <Content Include="Scripts\ianhd.app.js" />
     <Content Include="Scripts\ianhd.app.min.js" />
     <Content Include="Scripts\ianhd.js" />

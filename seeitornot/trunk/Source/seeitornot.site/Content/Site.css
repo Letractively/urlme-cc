@@ -282,22 +282,37 @@ h3.filter {
 #theatersWithMovies .theater:first-child {
   margin-top: 0;
 }
+.singleMovie .back {
+  font-size: 24px;
+  display: inline-block;
+  margin-right: 20px;
+  padding-right: 20px;
+  border-right: 1px solid #ccc;
+}
+.singleMovie .backAfter {
+  display: none;
+}
 .singleMovie h1 {
   font-size: 24px;
   margin-bottom: 30px;
+  display: inline-block;
 }
-.singleMovie img {
+.singleMovie .movieContent {
+  padding: 30px;
+  background: white;
+}
+.singleMovie .movieContent img {
   float: left;
   width: 171px;
   margin-right: 30px;
 }
-.singleMovie .details {
+.singleMovie .movieContent .details {
   /* width: ~"calc(100% - 201px)"; */
 }
-.singleMovie .details .ratings {
+.singleMovie .movieContent .details .ratings {
   margin-top: 30px;
 }
-.singleMovie .details .ratings h2 {
+.singleMovie .movieContent .details .ratings h2 {
   font-size: 16px;
   font-weight: bold;
   margin-bottom: 10px;
@@ -426,19 +441,34 @@ h3.filter {
     padding-top: 20px;
     clear: left;
   }
+  .singleMovie .back {
+    border-bottom: 1px solid #2489ce;
+    padding-right: 0;
+    margin-right: 0;
+    border-right: none;
+  }
+  .singleMovie .backAfter {
+    width: 20px;
+    margin-left: 20px;
+    display: inline-block;
+    border-left: 1px solid red;
+  }
   .singleMovie h1 {
     margin-bottom: 20px;
   }
-  .singleMovie img {
+  .singleMovie .movieContent {
+    padding: 20px;
+  }
+  .singleMovie .movieContent img {
     margin-right: 20px;
   }
-  .singleMovie .details {
+  .singleMovie .movieContent .details {
     /*width: ~"calc(100% - 191px)"; */
   }
-  .singleMovie .details .ratings {
+  .singleMovie .movieContent .details .ratings {
     margin-top: 20px;
   }
-  .singleMovie .details .ratings h2 {
+  .singleMovie .movieContent .details .ratings h2 {
     font-weight: bold;
   }
   .debug.tablet {

@@ -1,15 +1,17 @@
 ﻿@model seeitornot.model.Movie
 
-<h1>@this.Model.title</h1>
-<img src="@Model.posterDetailed" />
-<div class="details">
-    <div class="ratings">
-        <h2>Rotten Tomatoes® Scores</h2>
-        <div>
-            @Model.audienceScore% Audience Score
-        </div>
-        <div>
-            @Model.criticsScore% Critic Score
+<a class="back" href="#"><i class="fa fa-chevron-left"></i> Back</a><span class="backAfter"></span><h1>@this.Model.title</h1>
+<div class="movieContent group">
+    <img src="@Model.posterDetailed" />
+    <div class="details">
+        <div class="ratings">
+            <h2>Rotten Tomatoes® Scores</h2>
+            <div>
+                @Model.audienceScore% Audience Score
+            </div>
+            <div>
+                @Model.criticsScore% Critic Score
+            </div>
         </div>
     </div>
 </div>

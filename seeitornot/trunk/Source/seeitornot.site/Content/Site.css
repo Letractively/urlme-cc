@@ -283,17 +283,13 @@ h3.filter {
   margin-top: 0;
 }
 .singleMovie .backContainer {
-  display: inline-block;
+  margin-bottom: 20px;
 }
 .singleMovie .backContainer .back {
   font-size: 24px;
-  display: inline-block;
-  margin-right: 20px;
-  padding-right: 20px;
-  border-right: 1px solid #ccc;
 }
-.singleMovie .backContainer .backAfter {
-  display: none;
+.singleMovie .backContainer .back .fa {
+  font-size: 20px;
 }
 .singleMovie h1 {
   font-size: 24px;
@@ -446,15 +442,7 @@ h3.filter {
   }
   .singleMovie .backContainer .back {
     border-bottom: 1px solid #2489ce;
-    padding-right: 0;
-    margin-right: 0;
-    border-right: none;
-  }
-  .singleMovie .backContainer .backAfter {
-    width: 20px;
-    margin-left: 20px;
-    display: inline-block;
-    border-left: 1px solid #ccc;
+    margin-bottom: 20px;
   }
   .singleMovie h1 {
     margin-bottom: 20px;

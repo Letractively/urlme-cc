@@ -100,9 +100,10 @@ h3.filter { line-height: 36px; }
 }
 
 .singleMovie {
-    .backContainer { display:inline-block; 
-        .back { font-size: 24px; display:inline-block; margin-right: @bufferMd; padding-right: @bufferMd; border-right: 1px solid #ccc; }
-        .backAfter { display:none; }
+    .backContainer { margin-bottom: @bufferMd;
+        .back { font-size: 24px; 
+            .fa { font-size: 20px; }
+        }
     }
     h1 { font-size: 24px; margin-bottom: @bufferLg; display:inline-block; } 
     .movieContent { padding: @bufferLg; background:white; 
@@ -169,8 +170,7 @@ h3.filter { line-height: 36px; }
 
     .singleMovie {
         .backContainer {
-            .back { border-bottom: 1px solid #2489ce; padding-right: 0; margin-right: 0; border-right: none; }
-            .backAfter { width: @bufferMd; margin-left: @bufferMd; display:inline-block; border-left: 1px solid #ccc; }
+            .back { border-bottom: 1px solid #2489ce; margin-bottom: @bufferMd; }
         }
         h1 { margin-bottom: @bufferMd; }
         .movieContent { padding: @bufferMd;

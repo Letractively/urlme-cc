@@ -1,10 +1,13 @@
 ﻿@model seeitornot.model.Movie
 
-<div class="backContainer" style="display:none;"><a class="back" href="#"><i class="fa fa-chevron-left"></i> Back</a><span class="backAfter">&nbsp;</span></div><h1>@this.Model.title</h1>
+<div class="backContainer" style="display:none;"><a class="back" href="#"><i class="fa fa-chevron-left"></i> Back</a><span class="backAfter">&nbsp;</span></div>
 <div class="movieContent group">
+    <h1>@this.Model.title</h1>
     <img src="@Model.posterDetailed" />
     <div class="details">
-        <div class="ratings">
+        <div class="hint">@Model.mpaaRating , @Model.runtime</div>
+        <div class="bufferTop"><a href="@Model.parentalGuideUrl">Parents Guide on IMDb.com <i class="fa fa-external-link"></i></i></a></div>
+        <div class="ratings bufferTop">
             <h2>Rotten Tomatoes® Scores</h2>
             <div>
                 @Model.audienceScore% Audience Score

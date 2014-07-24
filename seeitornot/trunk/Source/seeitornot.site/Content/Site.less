@@ -105,11 +105,12 @@ h3.filter { line-height: 36px; }
             .fa { font-size: 20px; }
         }
     }
-    h1 { font-size: 24px; margin-bottom: @bufferLg; display:inline-block; } 
     .movieContent { padding: @bufferLg; background:white; 
+        h1 { font-size: 24px; margin-bottom: @bufferLg; } 
         img { float: left; width: 171px; margin-right: @bufferLg; }
         .details { /* width: ~"calc(100% - 201px)"; */
-            .ratings { margin-top: @bufferLg;
+            .bufferTop { margin-top: @bufferLg; }
+            .ratings {
                h2 { font-size: 16px; font-weight: bold; margin-bottom: @bufferSm; }
             }
         }
@@ -162,7 +163,7 @@ h3.filter { line-height: 36px; }
     #theatersWithMovies { margin-top: 20px;
         .theater { 
             .movie { 
-                .movieInfo { margin-top:29px; border-bottom: 1px solid #2489ce; }
+                .movieInfo { margin-top:29px; }
                 .showtimesHtml { position: static; padding-top:20px; clear:left; }
             }
         }
@@ -170,15 +171,16 @@ h3.filter { line-height: 36px; }
 
     .singleMovie {
         .backContainer {
-            .back { border-bottom: 1px solid #2489ce; margin-bottom: @bufferMd; }
+            .back { margin-bottom: @bufferMd; }
         }
-        h1 { margin-bottom: @bufferMd; }
         .movieContent { padding: @bufferMd;
+            h1 { margin-bottom: @bufferMd; }
             img { margin-right: @bufferMd; }
             .details { /*width: ~"calc(100% - 191px)"; */
-                .ratings { margin-top: @bufferMd;
+                .ratings {
                    h2 { font-weight: bold; }
                 }
+                .bufferTop { margin-top: @bufferMd; }
             }
         }
     }

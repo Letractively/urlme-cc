@@ -52,7 +52,7 @@ namespace seeitornot.model
                                 string movieTitle = movieHrefNode.InnerHtml.Trim();
                                 string rtMovieId = movieHrefNode.Attributes["href"].Value.Substring(movieHrefNode.Attributes["href"].Value.LastIndexOf("/") + 1);
                                 var movie = Movie.Get(rtMovieId);
-
+                                
                                 // parse out showtimes html for this movie
                                 var h3ToRemove = showtimeDiv.SelectSingleNode("h3");
                                 h3ToRemove.ParentNode.RemoveChild(h3ToRemove);

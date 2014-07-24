@@ -315,6 +315,29 @@ h3.filter {
   font-weight: bold;
   margin-bottom: 10px;
 }
+.singleMovie .movieContent .details .ratings .rt {
+  margin-top: 10px;
+}
+.singleMovie .movieContent .details .ratings .rt:before {
+  width: 24px;
+  height: 24px;
+  content: '\00a0';
+  background: url("sprite.png") no-repeat;
+  display: inline-block;
+  margin-right: 5px;
+}
+.singleMovie .movieContent .details .ratings .rt[data-rt-tag*="Fresh"]:before {
+  background-position: -287px -49px;
+}
+.singleMovie .movieContent .details .ratings .rt[data-rt-tag*="Rotten"]:before {
+  background-position: -288px -96px;
+}
+.singleMovie .movieContent .details .ratings .rt[data-rt-tag*="Upright"]:before {
+  background-position: -291px -24px;
+}
+.singleMovie .movieContent .details .ratings .rt[data-rt-tag*="Spilled"]:before {
+  background-position: -288px -119px;
+}
 /* mobile & tablet */
 /* @media (min-width: 768px) and (max-width: 991px) */
 @media (max-width: 991px) {
@@ -455,13 +478,12 @@ h3.filter {
     margin-bottom: 20px;
   }
   .singleMovie .movieContent img {
-    margin-right: 20px;
+    float: none;
+    display: block;
   }
   .singleMovie .movieContent .details {
     /*width: ~"calc(100% - 191px)"; */
-  }
-  .singleMovie .movieContent .details .ratings h2 {
-    font-weight: bold;
+    margin-top: 20px;
   }
   .singleMovie .movieContent .details .bufferTop {
     margin-top: 20px;

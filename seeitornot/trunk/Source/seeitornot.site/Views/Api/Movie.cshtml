@@ -6,13 +6,13 @@
     <img src="@Model.posterDetailed" />
     <div class="details">
         <div class="hint">@Model.mpaaRating , @Model.runtime</div>
-        <div class="bufferTop"><a href="@Model.parentalGuideUrl">Parents Guide on IMDb.com <i class="fa fa-external-link"></i></i></a></div>
+        <div class="bufferTop"><a target="_blank" href="@Model.parentalGuideUrl">Parents Guide on IMDb <i class="fa fa-external-link"></i></i></a></div>
         <div class="ratings bufferTop">
             <h2>Rotten Tomatoes® Scores</h2>
-            <div>
+            <div class="rt" data-rt-tag="@Model.audienceScoreTag">@* tag could be null *@
                 @Model.audienceScore% Audience Score
             </div>
-            <div>
+            <div class="rt" data-rt-tag="@Model.criticsScoreTag">@* tag could be null *@
                 @Model.criticsScore% Critic Score
             </div>
         </div>

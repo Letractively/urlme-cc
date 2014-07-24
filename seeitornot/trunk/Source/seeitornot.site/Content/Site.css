@@ -332,6 +332,7 @@ h3.filter {
     width: auto;
     margin: 0;
     padding: 20px;
+    margin-top: 60px;
   }
   header {
     background: #65b145;
@@ -339,9 +340,12 @@ h3.filter {
     background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#79d153), to(#65b145));
     background: -webkit-linear-gradient(top, #79d153, #65b145);
     background: -moz-linear-gradient(top, #79d153, #65b145);
-    position: relative;
+    position: fixed;
     padding: 0;
     height: 60px;
+    width: 100%;
+    z-index: 1000;
+    top: 0;
   }
   header .content {
     width: 100%;
@@ -385,6 +389,9 @@ h3.filter {
   #navBar .content {
     width: 100%;
     margin: 0;
+    position: fixed;
+    top: 60px;
+    z-index: 1000;
   }
   #navBar .content nav {
     display: none;
@@ -395,7 +402,7 @@ h3.filter {
   }
   #navBar .content input.search.display {
     display: block;
-    position: absolute;
+    position: fixed;
     top: 0;
     width: calc(100% - 87px);
     margin: 10px 0 0 15px;

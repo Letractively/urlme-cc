@@ -51,7 +51,7 @@ namespace seeitornot.model
                                 var movieHrefNode = showtimeDiv.SelectSingleNode("h3/a");
                                 string movieTitle = movieHrefNode.InnerHtml.Trim();
                                 string rtMovieId = movieHrefNode.Attributes["href"].Value.Substring(movieHrefNode.Attributes["href"].Value.LastIndexOf("/") + 1);
-                                var movie = Movie.Get(rtMovieId);
+                                var movie = (Movie)Movie.Get(rtMovieId).Clone();
                                 
                                 // parse out showtimes html for this movie
                                 var h3ToRemove = showtimeDiv.SelectSingleNode("h3");
@@ -61,6 +61,7 @@ namespace seeitornot.model
                                 if (string.IsNullOrEmpty(showtimes)) continue; // next movie
 
                                 movie.showtimes = new List<string>(showtimes.StripHtml().Split('^'));
+                                movie.is3d = movieTitle.ToLower().Contains("3d");
 
                                 // add to movie list, which we'll add to theater later
                                 movies.Add(movie);

@@ -5,7 +5,7 @@ using System;
 
 namespace seeitornot.model
 {
-    public partial class Movie
+    public partial class Movie : ICloneable
     {
         public string id { get; set; }
         public string title { get; set; }
@@ -23,6 +23,9 @@ namespace seeitornot.model
 
         // props that do NOT come from RT API
         public List<string> showtimes { get; set; }
+        public bool is3d { get; set; }
+
+        public Movie() { }
 
         public Movie(JToken item)
         {
@@ -35,7 +38,6 @@ namespace seeitornot.model
                 this.posterDetailed = ((string)item["posters"]["detailed"]).Replace("_tmb", "_det");
                 this.mpaaRating = (string)item["mpaa_rating"];
                 this.runtime = (int)item["runtime"] + " min";
-                // this.movieSlug = string.Format("{0}/{1}", this.title.Slugify(), this.id);
                 this.audienceScore = (int)item["ratings"]["audience_score"];
                 this.audienceScoreTag = (string)item["ratings"]["audience_rating"];
                 this.criticsScore = (int)item["ratings"]["critics_score"];
@@ -47,6 +49,27 @@ namespace seeitornot.model
             {
                 // silent, leave all defaults, some comment.
             }
+        }
+
+        public object Clone()
+        {
+            var m = new Movie();
+            
+            m.id = this.id;
+            m.title = this.title;
+            m.slug = this.slug;
+            m.posterThumbnail = this.posterThumbnail;
+            m.posterDetailed = this.posterDetailed;
+            m.mpaaRating = this.mpaaRating;
+            m.runtime = this.runtime;
+            m.audienceScore = this.audienceScore;
+            m.audienceScoreTag = this.audienceScoreTag;
+            m.criticsScore = this.criticsScore;
+            m.criticsScoreTag = this.criticsScoreTag;
+            m.parentalGuideUrl = this.parentalGuideUrl;
+            m.releaseDate = this.releaseDate;
+
+            return m;
         }
     }
 }

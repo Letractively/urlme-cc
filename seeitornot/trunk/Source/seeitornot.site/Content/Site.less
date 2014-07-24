@@ -124,9 +124,9 @@ h3.filter { line-height: 36px; }
     a:hover { color:#2489ce; text-decoration:none; }
 
     body { /*background-color: #fff;*/ }
-    .mainContent { width: auto; margin: 0; padding: 20px; }
+    .mainContent { width: auto; margin: 0; padding: 20px; margin-top: 60px; }
 
-    header { .greenGradient; position:relative; padding:0; height: 60px;
+    header { .greenGradient; position:fixed; padding:0; height: 60px; width: 100%; z-index: 1000; top: 0;
         .content { width: 100%; margin: 0; 
             #logo { border:none; background: url('logo_mobile_white.png'); width: 60px; height: 48px; margin-left: 0; float:none; position: absolute; left: 50%; margin-left:-30px; top:50%; margin-top:-24px; }
             #fbLikeContainer { display:none; }
@@ -138,10 +138,10 @@ h3.filter { line-height: 36px; }
     }
 
     #navBar {
-        .content { width: 100%; margin: 0; 
+        .content { width: 100%; margin: 0; position: fixed; top: 60px; z-index: 1000;
             nav { display:none; float:none; }
             input.search { display:none; }
-            input.search.display { display:block; position:absolute; top: 0; width: ~"calc(100% - 87px)"; margin: 10px 0 0 15px; padding: 8px; }
+            input.search.display { display:block; position:fixed; top: 0; width: ~"calc(100% - 87px)"; margin: 10px 0 0 15px; padding: 8px; }
             nav { 
                 ul { float:none;
                     li { float: none; 

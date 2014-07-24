@@ -45,7 +45,7 @@
             <div class="movie group">
                 <a href="/{{:slug}}/{{:id}}" data-movie-id="{{:id}}"><img src="{{:posterThumbnail}}" /></a>
                 <h4>{{:title}}</h4>
-                <div class="hint">{{:mpaaRating}}{{if runtime}} , {{:runtime}}{{/if}}</div>
+                <div class="hint">{{:mpaaRating}}{{if runtime}} , {{:runtime}}{{/if}}{{if is3d}} , <strong>3D</strong>{{/if}}</div>
                 <a class="movieInfo" href="/{{:slug}}/{{:id}}" data-movie-id="{{:id}}">Movie info...</a>
                 <div class="showtimesHtml">
                     {{for showtimes}}

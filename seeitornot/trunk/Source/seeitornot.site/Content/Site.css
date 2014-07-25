@@ -327,7 +327,7 @@ h3.filter {
   margin-right: 5px;
 }
 .singleMovie .movieContent .details .ratings .rt[data-rt-tag*="Fresh"]:before {
-  background-position: -287px -49px;
+  background-position: -288px -24px;
 }
 .singleMovie .movieContent .details .ratings .rt[data-rt-tag*="Rotten"]:before {
   background-position: -288px -96px;

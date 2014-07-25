@@ -68,9 +68,29 @@ ianhd.app = {
         ianhd.app.bindControls();
     },
     loadTheaters: function () {
+        var lsKey = "theaters-" + viewModel.zip(); // local storage key
+        var theaters = localStorage.getItem(lsKey);
+        var url = "{0}api/theaters?zip={1}".format(apiBaseUrl, viewModel.zip());
+        var message = "";
+        var haveData = false;
+        if (theaters) {
+            console.log("Retrieved theaters from localStorage.");
+            message = ianhd.app.getTheaterListHtml(JSON.parse(theaters));
+            haveData = true;
+            // update local storage w/ latest from server (todo: do this every once in a while)
+            $.get(url, function (theaters) {
+                localStorage.setItem(lsKey, JSON.stringify(theaters));
+                console.log("Updated theaters in localStorage after localStorage retrieval.");
+            });
+        } else {
+            console.log("Theaters not found in localStorage; retrieving from server.");
+            message = "<span class='hint loading'></span>";
+            // leave haveData = false  
+        } 
+
         BootstrapDialog.show({
             title: "Select a theater",
-            message: "<span class='hint loading'></span>",
+            message: message,
             cssClass: "selectTheater",
             buttons: [{
                 label: 'Cancel',
@@ -80,17 +100,24 @@ ianhd.app = {
                 }
             }],
             onshown: function () {
-                var url = "{0}api/theaters?zip={1}".format(apiBaseUrl, viewModel.zip());
-                $.get(url, function (theaters) {
-                    var dialogBody = ianhd.app.controls.selectTheaterBody();
-                    dialogBody.html(""); // clear out any "Loading..." messages
-                    // dialogBody.append("<a href='/showtimes/{0}/all' data-theater-id='all'>* All Theaters *</a>".format(viewModel.zip()));
-                    $.each(theaters, function (i, theater) {
-                        dialogBody.append("<a href='/showtimes/{0}/{1}' data-theater-id='{1}'>{2}</a>".format(viewModel.zip(), theater.id, theater.name));
+                if (!haveData) {
+                    $.get(url, function (theaters) {
+                        var dialogBody = ianhd.app.controls.selectTheaterBody();
+                        dialogBody.html(
+                            ianhd.app.getTheaterListHtml(theaters)
+                        );
+                        localStorage.setItem(lsKey, JSON.stringify(theaters));
                     });
-                });
+                }
             }
         });
+    },
+    getTheaterListHtml: function(theaters) {
+        var html = "";
+        $.each(theaters, function (i, theater) {
+            html += "<a href='/showtimes/{0}/{1}' data-theater-id='{1}'>{2}</a>".format(viewModel.zip(), theater.id, theater.name);
+        });
+        return html;
     },
     loadShowtimes: function (zip, theaterId) {
         console.log("Loading showtimes...");

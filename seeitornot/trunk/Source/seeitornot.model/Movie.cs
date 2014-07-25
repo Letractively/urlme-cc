@@ -37,7 +37,11 @@ namespace seeitornot.model
                 this.posterThumbnail = ((string)item["posters"]["detailed"]).Replace("_tmb", "_mob");
                 this.posterDetailed = ((string)item["posters"]["detailed"]).Replace("_tmb", "_det");
                 this.mpaaRating = (string)item["mpaa_rating"];
-                this.runtime = (int)item["runtime"] + " min";
+
+                var totalMin = (int)item["runtime"]; // minutes
+                var min = totalMin % 60;
+                this.runtime = string.Format("{0} hr{1}", totalMin / 60, min > 0 ? " " + min + " min" : "");
+
                 this.audienceScore = (int)item["ratings"]["audience_score"];
                 this.audienceScoreTag = (string)item["ratings"]["audience_rating"];
                 this.criticsScore = (int)item["ratings"]["critics_score"];

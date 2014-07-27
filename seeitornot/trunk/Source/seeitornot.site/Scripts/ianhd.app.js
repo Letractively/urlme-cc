@@ -280,6 +280,7 @@ ianhd.app = {
         router.route('/showtimes/:zip/:theaterId', function (zip, theaterId) {
             console.log('route /showtimes/:zip/:theaterId');
             viewModel.showBack(true);
+            viewModel.movieId("");
             ianhd.app.loadShowtimes(zip, theaterId);
         });
         router.route('/:movieSlug/:movieId', function (movieSlug, movieId) {

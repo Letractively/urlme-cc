@@ -306,6 +306,14 @@ h3.filter {
 }
 .singleMovie .movieContent .details {
   /* width: ~"calc(100% - 201px)"; */
+  /*critics
+- Rotten = green splat
+- Certified Fresh = award looking thing
+- Fresh = red tomatoe
+
+audience
+- Spilled = green popcorn spilled
+- Upright = red upright popcorn*/
 }
 .singleMovie .movieContent .details .bufferTop {
   margin-top: 30px;
@@ -329,13 +337,13 @@ h3.filter {
 .singleMovie .movieContent .details .ratings .rt[data-rt-tag*="Fresh"]:before {
   background-position: -288px -24px;
 }
-.singleMovie .movieContent .details .ratings .rt[data-rt-tag*="Rotten"]:before {
+.singleMovie .movieContent .details .ratings .rt[data-rt-tag="Rotten"]:before {
   background-position: -288px -96px;
 }
-.singleMovie .movieContent .details .ratings .rt[data-rt-tag*="Upright"]:before {
+.singleMovie .movieContent .details .ratings .rt[data-rt-tag="Upright"]:before {
   background-position: -291px -24px;
 }
-.singleMovie .movieContent .details .ratings .rt[data-rt-tag*="Spilled"]:before {
+.singleMovie .movieContent .details .ratings .rt[data-rt-tag="Spilled"]:before {
   background-position: -288px -119px;
 }
 /* mobile & tablet */

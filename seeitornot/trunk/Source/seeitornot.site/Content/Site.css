@@ -3,9 +3,14 @@
 @import '../scripts/plugins/bootstrap-dialog/bootstrap-dialog.min.css';
 @import '../scripts/plugins/font-awesome-4.1.0/css/font-awesome.min.css';
 /* to fix: */
+/*---------------------------------------------------
+    LESS Elements 0.9
+  ---------------------------------------------------
+    A set of useful LESS mixins
+    More info at: http://lesselements.com
+  ---------------------------------------------------*/
 /*@import 'http://bootswatch.com/flatly/bootstrap.min.css';*/
 /*@import '../scripts/plugins/bootstrap-3.1.1/css/bootstrap-theme.min.css';*/
-/* mixins */
 /* bootstrap overrides */
 h1,
 h2,
@@ -442,10 +447,10 @@ h3.filter {
     max-height: 0;
     overflow-y: hidden;
     float: none;
-    -moz-transition: all 0.5s ease;
-    -webkit-transition: all 0.5s ease;
-    -o-transition: all 0.5s ease;
-    transition: all 0.5s ease;
+    -webkit-transition: all 0.4s ease;
+    -moz-transition: all 0.4s ease;
+    -o-transition: all 0.4s ease;
+    transition: all 0.4s ease;
   }
   #navBar .content nav ul {
     float: none;

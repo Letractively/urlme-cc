@@ -175,6 +175,7 @@
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="Content\Site.less" />
+    <Content Include="Content\elements.less" />
     <None Include="Properties\PublishProfiles\publish to c - publish.pubxml" />
     <Content Include="mstile-144x144.png" />
     <Content Include="mstile-150x150.png" />

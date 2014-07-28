@@ -5,6 +5,7 @@
 /* to fix: */
 /*@import 'http://bootswatch.com/flatly/bootstrap.min.css';*/
 /*@import '../scripts/plugins/bootstrap-3.1.1/css/bootstrap-theme.min.css';*/
+/* mixins */
 /* bootstrap overrides */
 h1,
 h2,
@@ -426,10 +427,6 @@ h3.filter {
     top: 60px;
     z-index: 1000;
   }
-  #navBar .content nav {
-    display: none;
-    float: none;
-  }
   #navBar .content input.search {
     display: none;
   }
@@ -440,6 +437,15 @@ h3.filter {
     width: calc(100% - 87px);
     margin: 10px 0 0 15px;
     padding: 8px;
+  }
+  #navBar .content nav {
+    max-height: 0;
+    overflow-y: hidden;
+    float: none;
+    -moz-transition: all 0.5s ease;
+    -webkit-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    transition: all 0.5s ease;
   }
   #navBar .content nav ul {
     float: none;
@@ -454,6 +460,9 @@ h3.filter {
   }
   #navBar .content nav ul li a {
     border-top: 1px solid #79d153;
+  }
+  #navBar .content nav.expanded {
+    max-height: 106px;
   }
   .welcome #nearMe {
     width: 100%;

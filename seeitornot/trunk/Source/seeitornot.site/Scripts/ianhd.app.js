@@ -251,8 +251,8 @@ ianhd.app = {
             ianhd.app.controls.logo().toggle();
             ianhd.app.controls.searchIcon().toggle();
 
-            var menu = ianhd.app.controls.menu()
-            menu.slideToggle();
+            var menu = ianhd.app.controls.menu();
+            menu.toggleClass("expanded");
         });
 
         // search icon

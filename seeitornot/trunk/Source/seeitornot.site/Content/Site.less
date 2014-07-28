@@ -1,5 +1,4 @@
 ﻿/* to fix: */
-
 @import url(http://fonts.googleapis.com/css?family=Open+Sans|Oswald);
 /*@import 'http://bootswatch.com/flatly/bootstrap.min.css';*/
 @import '../scripts/plugins/bootstrap-3.1.1/css/bootstrap.min.css';
@@ -11,6 +10,14 @@
 @bufferSm: 10px;
 @bufferMd: 20px;
 @bufferLg: 30px;
+
+/* mixins */
+.transition-duration(@duration: 0.2s) {
+  -moz-transition-duration: @duration;
+  -webkit-transition-duration: @duration;
+  -o-transition-duration: @duration;
+  transition-duration: @duration;
+}
 
 /* bootstrap overrides */
 h1,h2,h3 { margin:0; }
@@ -144,12 +151,12 @@ h3.filter { line-height: 36px; }
         }
     }
 
+    @duration: 0.5s;
     #navBar {
         .content { width: 100%; margin: 0; position: fixed; top: 60px; z-index: 1000;
-            nav { display:none; float:none; }
             input.search { display:none; }
             input.search.display { display:block; position:fixed; top: 0; width: ~"calc(100% - 87px)"; margin: 10px 0 0 15px; padding: 8px; }
-            nav { 
+            nav { max-height:0; overflow-y: hidden; float:none; -moz-transition: all @duration ease; -webkit-transition: all @duration ease; -o-transition: all @duration ease; transition: all @duration ease;
                 ul { float:none;
                     li { float: none; 
                         a.navItem { display:block; background: #65b145; padding: 16px 0 14px 16px; }
@@ -158,6 +165,7 @@ h3.filter { line-height: 36px; }
                     li a { border-top: 1px solid #79d153; }
                 }
             }
+            nav.expanded { max-height: 106px; }
         }
     }
 

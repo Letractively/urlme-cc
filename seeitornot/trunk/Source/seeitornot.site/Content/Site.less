@@ -110,24 +110,15 @@ h3.filter { line-height: 36px; }
         img { float: left; width: 171px; margin-right: @bufferLg; }
         .details { /* width: ~"calc(100% - 201px)"; */
             .bufferTop { margin-top: @bufferLg; }
-
-/*critics
-- Rotten = green splat
-- Certified Fresh = award looking thing
-- Fresh = red tomatoe
-
-audience
-- Spilled = green popcorn spilled
-- Upright = red upright popcorn*/
-
             .ratings {
                 h2 { font-size: 16px; font-weight: bold; margin-bottom: @bufferSm; }
                 .rt { margin-top:10px; }
                 .rt:before { width: 24px; height: 24px; content: '\00a0'; background: url("sprite.png") no-repeat; display:inline-block; margin-right: 5px; }
-                .rt[data-rt-tag*="Fresh"]:before { background-position: -288px -24px; }
-                .rt[data-rt-tag="Rotten"]:before { background-position: -288px -96px; }
-                .rt[data-rt-tag="Upright"]:before { background-position: -291px -24px; }
-                .rt[data-rt-tag="Spilled"]:before { background-position: -288px -119px; }
+                .rt[data-rt-tag="Fresh"]:before { background-position: -288px -48px; } /* red tomatoe */
+                .rt[data-rt-tag="Certified Fresh"]:before { background-position: -288px -72px; } /* award looking thing */
+                .rt[data-rt-tag="Rotten"]:before { background-position: -288px -96px; } /* green splat */
+                .rt[data-rt-tag="Upright"]:before { background-position: -289px -24px; } /* red upright popcorn */
+                .rt[data-rt-tag="Spilled"]:before { background-position: -288px -119px; } /* green popcorn spilled */
             }
         }
     }

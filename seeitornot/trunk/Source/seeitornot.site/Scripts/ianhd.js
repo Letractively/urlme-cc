@@ -20,6 +20,12 @@ String.prototype.stripHtml = function () {
     return $.trim(this.replace(/<(?:.|\n)*?>/gm, ''));
 }
 
+// ex: (new Date).addHours(4) gives now plus 4 hours
+Date.prototype.addHours = function (h) {
+    this.setHours(this.getHours() + h);
+    return this;
+}
+
 /* =ianhd.registerNamespace */
 if (typeof ianhd === "undefined" || !ianhd) {
     var ianhd = {};

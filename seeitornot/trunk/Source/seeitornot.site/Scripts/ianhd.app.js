@@ -14,7 +14,8 @@ var viewModel = ko.mapping.fromJS({
     theaterId: localStorage.getItem("theaterId"),
     movieId: "",
     zip: localStorage.getItem("zip"),
-    showBack: false
+    showBack: false,
+    view: '',
 });
 ko.applyBindings(viewModel);
 
@@ -26,6 +27,16 @@ viewModel.theaterName.subscribe(function (newVal) {
 });
 viewModel.theaterId.subscribe(function (newVal) {
     localStorage.setItem("theaterId", newVal);
+});
+viewModel.view.subscribe(function(newVal) {
+    switch (newVal) {
+        case "showtimes":
+            viewModel.movieId("");
+            break;
+        case "home":
+            viewModel.movieId("");
+            break;
+    }
 });
 
 var router = new Router();
@@ -179,10 +190,7 @@ ianhd.app = {
         // select an actual movie
         $(document).on('click', ianhd.app.selectors.selectMovie, function (e) {
             e.preventDefault();
-            console.log('selecting a movie');
-            var trigger = $(this);
-            viewModel.movieId(trigger.attr('data-movie-id'));
-            router.navigate(trigger.attr("href"));
+            router.navigate($(this).attr("href"));
         });
 
         // use my location button
@@ -280,18 +288,20 @@ ianhd.app = {
         router.route('/showtimes/:zip/:theaterId', function (zip, theaterId) {
             console.log('route /showtimes/:zip/:theaterId');
             viewModel.showBack(true);
-            viewModel.movieId("");
             ianhd.app.loadShowtimes(zip, theaterId);
+            viewModel.view("showtimes");
         });
         router.route('/:movieSlug/:movieId', function (movieSlug, movieId) {
             console.log('route /:movieSlug/:movieId');
             viewModel.showBack(true);
+            viewModel.movieId(movieId);
             ianhd.app.loadMovie(movieSlug, movieId);
+            viewModel.view("movie");
         });
         router.route('/', function (zip, theaterId) {
             console.log('route /');
             viewModel.showBack(true);
-            viewModel.movieId("");
+            viewModel.view("home");
         });
 
         // gotta be a better way to trigger initial route
@@ -303,14 +313,17 @@ ianhd.app = {
             var theaterId = parts[2];
             viewModel.zip(zip);
             ianhd.app.loadShowtimes(zip, theaterId);
+            viewModel.view("showtimes");
         } else if (initPath !== "/") { // movie
             var parts = initPath.split('/');
             var movieSlug = parts[1];
             var movieId = parts[2];
             viewModel.movieId(movieId);
             ianhd.app.loadMovie(movieSlug, movieId);
+            viewModel.view("movie");
         } else if (viewModel.zip() && viewModel.theaterId()) {
             ianhd.app.loadShowtimes(viewModel.zip(), viewModel.theaterId());
+            viewModel.view("home");
         }
 
         // trigger initial route

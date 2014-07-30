@@ -82,7 +82,13 @@ namespace seeitornot.model
 
             return rtn;
         }
-        
+
+        public static Theater Get(string zip, string theaterId)
+        {
+            var theaters = Get(zip);
+            return theaters.SingleOrDefault(x => x.id == theaterId);
+        }
+
         public static List<Theater> Get(string zip)
         {
             var rtn = Cache.GetValue<List<Theater>>(

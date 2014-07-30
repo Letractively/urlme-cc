@@ -27,6 +27,7 @@ namespace seeitornot.site.Controllers
             vm.view = "showtimes";
             vm.zip = zip;
             vm.theaterId = theaterId;
+            vm.theaterName = seeitornot.model.Theater.Get(zip, theaterId).name;
 
             return View("Index", vm);
         }

@@ -227,6 +227,26 @@ header .content .fa-times {
 h3.filter {
   line-height: 36px;
 }
+#showtimes .datePicker {
+  text-align: center;
+  position: relative;
+  padding: 5px;
+  background: white;
+  margin-top: 20px;
+}
+#showtimes .datePicker .next,
+#showtimes .datePicker .prev {
+  position: absolute;
+  top: -1px;
+  padding: 5px 15px;
+  font-size: 20px;
+}
+#showtimes .datePicker .prev {
+  left: 0;
+}
+#showtimes .datePicker .next {
+  right: 0;
+}
 #theatersWithMovies {
   margin-top: 20px;
 }
@@ -488,6 +508,10 @@ h3.filter {
   }
   .welcome .enterZip {
     width: 100%;
+  }
+  #showtimes .datePicker {
+    padding: 5px;
+    margin-top: 15px;
   }
   #theatersWithMovies {
     margin-top: 15px;

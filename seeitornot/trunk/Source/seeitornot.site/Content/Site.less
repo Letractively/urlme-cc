@@ -8,6 +8,7 @@
 @import '../scripts/plugins/bootstrap-dialog/bootstrap-dialog.min.css';
 @import '../scripts/plugins/font-awesome-4.1.0/css/font-awesome.min.css';
 
+@bufferMini: 5px;
 @bufferSm: 10px;
 @bufferSmMd: 15px;
 @bufferMd: 20px;
@@ -81,6 +82,11 @@ header { padding-bottom: 10px; .orangeDiag;
 
 /* theaters with movies list */
 h3.filter { line-height: 36px; }
+#showtimes .datePicker { text-align: center; position: relative; padding: @bufferMini; background: white; margin-top: @bufferMd; 
+    .next,.prev { position: absolute; top: -1px; padding: @bufferMini @bufferSmMd; font-size:20px; }
+    .prev { left: 0; }
+    .next { right: 0; }
+}
 #theatersWithMovies { margin-top: 20px;
     .theater { margin-top: 20px;  
         h3 { padding-bottom: 10px; border-bottom: 1px solid #e6e6e6; }
@@ -172,6 +178,7 @@ h3.filter { line-height: 36px; }
         .enterZip { width: 100%; }
     }
 
+    #showtimes .datePicker { padding: @bufferMini; margin-top: @bufferSmMd; }
     #theatersWithMovies { margin-top: @bufferSmMd;
         .theater { 
             .movie { padding: @bufferSmMd;

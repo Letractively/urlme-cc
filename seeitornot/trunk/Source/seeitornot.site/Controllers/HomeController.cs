@@ -12,10 +12,11 @@ namespace seeitornot.site.Controllers
         // GET: /Home/
 
         [Route("")]
-        public ActionResult Index(string rtMovieId)
+        public ActionResult Index()
         {
-            // HttpCookie cookie = new HttpCookie(FormsAuthentication.FormsCookieName, encryptedTicket);
-            var vm = new ViewModels.Home.Index(rtMovieId);
+            var vm = new ViewModels.Home.Index("");
+            vm.view = "home";
+
             return View(vm);
         }
 
@@ -23,6 +24,10 @@ namespace seeitornot.site.Controllers
         public ActionResult Showtimes(string zip, string theaterId)
         {
             var vm = new ViewModels.Home.Index("");
+            vm.view = "showtimes";
+            vm.zip = zip;
+            vm.theaterId = theaterId;
+
             return View("Index", vm);
         }
 
@@ -30,6 +35,9 @@ namespace seeitornot.site.Controllers
         public ActionResult Movie(string movieSlug, string movieId)
         {
             var vm = new ViewModels.Home.Index("");
+            vm.view = "movie";
+            vm.movieId = movieId;
+
             return View("Index", vm);
         }
     }

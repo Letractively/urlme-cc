@@ -43,10 +43,10 @@
     <div class="theater">
         {{for movies}}
             <div class="movie group">
-                <a href="/{{:slug}}/{{:id}}"><img src="{{:posterThumbnail}}" /></a>
+                <a href="/{{:slug}}/{{:id}}" class="triggerRoute"><img src="{{:posterThumbnail}}" /></a>
                 <h4>{{:title}}</h4>
                 <div class="hint">{{:mpaaRating}}{{if runtime}} , {{:runtime}}{{/if}}{{if is3d}} , <strong>3D</strong>{{/if}}</div>
-                <a class="movieInfo" href="/{{:slug}}/{{:id}}" data-movie-id="{{:id}}">Movie info...</a>
+                <a class="movieInfo triggerRoute" href="/{{:slug}}/{{:id}}">Movie info...</a>
                 <div class="showtimesHtml">
                     {{for showtimes}}
                         <span class="{{if isPast}}hint{{:runtime}}{{/if}}">{{:showtime}}</span>

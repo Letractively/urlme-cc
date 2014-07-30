@@ -15,6 +15,7 @@ namespace seeitornot.site.ViewModels.Home
         // to match the knockout viewModel properties
         public string view { get; set; }
         public string theaterId { get; set; }
+        public string theaterName { get; set; }
         public string movieId { get; set; }
         public string zip { get; set; }
 

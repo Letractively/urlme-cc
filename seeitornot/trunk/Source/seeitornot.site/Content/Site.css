@@ -357,6 +357,14 @@ h3.filter {
 /* mobile & tablet */
 /* @media (min-width: 768px) and (max-width: 991px) */
 @media (max-width: 991px) {
+  h4 {
+    font-size: 16px;
+    font-weight: bold;
+  }
+  .filter {
+    font-size: 20px;
+    line-height: 32px;
+  }
   .filter a {
     border-bottom: 1px solid #2489ce;
   }
@@ -370,7 +378,7 @@ h3.filter {
   .mainContent {
     width: auto;
     margin: 0;
-    padding: 20px;
+    padding: 15px;
     margin-top: 60px;
   }
   header {
@@ -482,24 +490,27 @@ h3.filter {
     width: 100%;
   }
   #theatersWithMovies {
-    margin-top: 20px;
+    margin-top: 15px;
+  }
+  #theatersWithMovies .theater .movie {
+    padding: 15px;
   }
   #theatersWithMovies .theater .movie .movieInfo {
     margin-top: 29px;
   }
   #theatersWithMovies .theater .movie .showtimesHtml {
     position: static;
-    padding-top: 20px;
+    padding-top: 15px;
     clear: left;
   }
-  .singleMovie .backContainer .back {
-    margin-bottom: 20px;
+  .singleMovie .backContainer {
+    margin-bottom: 15px;
   }
   .singleMovie .movieContent {
-    padding: 20px;
+    padding: 15px;
   }
   .singleMovie .movieContent h1 {
-    margin-bottom: 20px;
+    margin-bottom: 15px;
   }
   .singleMovie .movieContent img {
     float: none;
@@ -507,10 +518,10 @@ h3.filter {
   }
   .singleMovie .movieContent .details {
     /*width: ~"calc(100% - 191px)"; */
-    margin-top: 20px;
+    margin-top: 15px;
   }
   .singleMovie .movieContent .details .bufferTop {
-    margin-top: 20px;
+    margin-top: 15px;
   }
   .debug.tablet {
     display: block;

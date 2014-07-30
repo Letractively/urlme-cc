@@ -9,6 +9,7 @@
 @import '../scripts/plugins/font-awesome-4.1.0/css/font-awesome.min.css';
 
 @bufferSm: 10px;
+@bufferSmMd: 15px;
 @bufferMd: 20px;
 @bufferLg: 30px;
 
@@ -127,11 +128,14 @@ h3.filter { line-height: 36px; }
 /* mobile & tablet */
 /* @media (min-width: 768px) and (max-width: 991px) */
 @media (max-width: 991px) {
-    .filter a { border-bottom: 1px solid #2489ce; }
+    h4 { font-size: 16px; font-weight: bold; }
+    .filter { font-size: 20px; line-height: 32px;
+        a { border-bottom: 1px solid #2489ce; }
+    }
     a:hover { color:#2489ce; text-decoration:none; }
 
     body { /*background-color: #fff;*/ }
-    .mainContent { width: auto; margin: 0; padding: 20px; margin-top: 60px; }
+    .mainContent { width: auto; margin: 0; padding: @bufferSmMd; margin-top: 60px; }
 
     header { .greenGradient; position:fixed; padding:0; height: 60px; width: 100%; z-index: 1000; top: 0;
         .content { width: 100%; margin: 0; 
@@ -168,24 +172,22 @@ h3.filter { line-height: 36px; }
         .enterZip { width: 100%; }
     }
 
-    #theatersWithMovies { margin-top: 20px;
+    #theatersWithMovies { margin-top: @bufferSmMd;
         .theater { 
-            .movie { 
+            .movie { padding: @bufferSmMd;
                 .movieInfo { margin-top:29px; }
-                .showtimesHtml { position: static; padding-top:20px; clear:left; }
+                .showtimesHtml { position: static; padding-top:@bufferSmMd; clear:left; }
             }
         }
     }
 
     .singleMovie {
-        .backContainer {
-            .back { margin-bottom: @bufferMd; }
-        }
-        .movieContent { padding: @bufferMd;
-            h1 { margin-bottom: @bufferMd; }
+        .backContainer { margin-bottom: @bufferSmMd; }
+        .movieContent { padding: @bufferSmMd;
+            h1 { margin-bottom: @bufferSmMd; }
             img { float:none; display:block; }
-            .details { /*width: ~"calc(100% - 191px)"; */ margin-top: @bufferMd;
-                .bufferTop { margin-top: @bufferMd; }
+            .details { /*width: ~"calc(100% - 191px)"; */ margin-top: @bufferSmMd;
+                .bufferTop { margin-top: @bufferSmMd; }
             }
         }
     }

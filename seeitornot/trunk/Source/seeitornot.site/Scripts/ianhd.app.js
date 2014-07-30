@@ -32,8 +32,10 @@ viewModel.view.subscribe(function(newVal) {
     console.log("view changed to " + newVal);
     switch (newVal) {
         case "showtimes":
+            viewModel.movieId("");
             break;
         case "home":
+            viewModel.movieId("");
             break;
         case "movie":
             break;

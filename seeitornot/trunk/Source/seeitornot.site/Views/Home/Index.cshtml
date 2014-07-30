@@ -5,11 +5,6 @@
 
 <div class="mainContent group">
     
-    <section style="display:none" id="showtimes" data-bind="visible: zip() && theaterId() && !movieId()">
-        <h3 class="filter">Showtimes for <a data-bind="text: theaterName" class="theater" href="#"></a> near <a data-bind="text: zip" class="zip" href="#"></a></h3>
-        <div id="theatersWithMovies"></div>
-    </section>
-    
     <section style="display:none" class="welcome" data-bind="visible: (!zip() || !theaterId()) && !movieId()">
         <div class="row">
             <h2>Where would you like to see showtimes?</h2>
@@ -17,6 +12,16 @@
         <div class="row">
             <button id="nearMe" class="btn btn-primary btn-lg" data-loading-text="Loading...">Use my location</button><span class="or">- or -</span><input type="search" class="form-control form-inline enterZip" placeholder="Enter zip code..." />
         </div>
+    </section>
+    
+    <section style="display:none" id="showtimes" data-bind="visible: zip() && theaterId() && !movieId()">
+        <h3 class="filter">Showtimes for <a data-bind="text: theaterName" class="theater" href="#"></a> near <a data-bind="text: zip" class="zip" href="#"></a></h3>
+        <div class="datePicker" data-bind="visible: view() === 'home' || view() === 'showtimes'">
+            <a href="#" class="prev"><i class="fa fa-chevron-left"></i></a>
+            <a href="#" class="next"><i class="fa fa-chevron-right"></i></a>
+            Today
+        </div>
+        <div id="theatersWithMovies"></div>
     </section>
     
     <section style="display:none" class="singleMovie" data-bind="visible: movieId()">

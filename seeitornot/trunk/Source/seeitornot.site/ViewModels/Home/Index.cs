@@ -11,6 +11,12 @@ namespace seeitornot.site.ViewModels.Home
     {
         public List<model.MovieList> movieLists { get; set; }
         public model.Movie OverlayMovie { get; set; }
+        
+        // to match the knockout viewModel properties
+        public string view { get; set; }
+        public string theaterId { get; set; }
+        public string movieId { get; set; }
+        public string zip { get; set; }
 
         public Index(string rtMovieId)
         {

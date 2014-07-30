@@ -43,6 +43,10 @@
 
         // need this?
         var omid = '@(Model.OverlayMovie != null ? Model.OverlayMovie.id : "")';
+        var tid = '@Model.theaterId';
+        var mid = '@Model.movieId';
+        var v = '@Model.view';
+        var z = '@Model.zip';
     </script>
     
     @Scripts.RenderFormat("<script src='{0}' async></script>", "~/scripts/ianhd.app.min.js?v=" + version)

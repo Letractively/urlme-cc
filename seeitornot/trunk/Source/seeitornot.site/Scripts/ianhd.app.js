@@ -11,11 +11,11 @@
 
 var viewModel = ko.mapping.fromJS({
     theaterName: localStorage.getItem("theaterName"),
-    theaterId: localStorage.getItem("theaterId"),
-    movieId: "",
-    zip: localStorage.getItem("zip"),
+    theaterId: tid || localStorage.getItem("theaterId"),
+    movieId: mid,
+    zip: z || localStorage.getItem("zip"),
     showBack: false,
-    view: '',
+    view: v,
 });
 ko.applyBindings(viewModel);
 
@@ -29,12 +29,13 @@ viewModel.theaterId.subscribe(function (newVal) {
     localStorage.setItem("theaterId", newVal);
 });
 viewModel.view.subscribe(function(newVal) {
+    console.log("view changed to " + newVal);
     switch (newVal) {
         case "showtimes":
-            viewModel.movieId("");
             break;
         case "home":
-            viewModel.movieId("");
+            break;
+        case "movie":
             break;
     }
 });
@@ -53,7 +54,6 @@ ianhd.app = {
         overlay: function () { return $("#overlay"); },
         searchBox: function() { return $("input.search"); },
         searchIcon: function () { return $(".fa-search"); },
-        selectTheaterBody: function () { return $(".selectTheater .bootstrap-dialog-message"); },
         singleMovie: function () { return $(".singleMovie"); },
         theater: function () { return $(".theater"); },
         theatersWithMovies: function () { return $("#theatersWithMovies"); },
@@ -62,7 +62,7 @@ ianhd.app = {
     selectors: {
         back: ".back",
         closePopup: "#overlay,.closePopup",
-        selectMovie: "#theatersWithMovies .movie a",
+        routeTrigger: '.triggerRoute',
         selectTheater: ".selectTheater a",
     },
     init: function () {
@@ -110,11 +110,10 @@ ianhd.app = {
                     dialog.close();
                 }
             }],
-            onshown: function () {
+            onshown: function (dialog) {
                 if (!haveData) {
                     $.get(url, function (theaters) {
-                        var dialogBody = ianhd.app.controls.selectTheaterBody();
-                        dialogBody.html(
+                        dialog.setMessage(
                             ianhd.app.getTheaterListHtml(theaters)
                         );
                         localStorage.setItem(lsKey, JSON.stringify(theaters));
@@ -126,7 +125,7 @@ ianhd.app = {
     getTheaterListHtml: function(theaters) {
         var html = "";
         $.each(theaters, function (i, theater) {
-            html += "<a href='/showtimes/{0}/{1}' data-theater-id='{1}'>{2}</a>".format(viewModel.zip(), theater.id, theater.name);
+            html += "<a href='/showtimes/{0}/{1}'>{2}</a>".format(viewModel.zip(), theater.id, theater.name);
         });
         return html;
     },
@@ -181,14 +180,13 @@ ianhd.app = {
         $(document).on('click', ianhd.app.selectors.selectTheater, function (e) {
             e.preventDefault();
             var trigger = $(this);
-            viewModel.theaterId(trigger.attr('data-theater-id'));
             viewModel.theaterName(trigger.html());
             BootstrapDialog.closeAll(); // close any open dialogs. this is nice that BootstrapDialog provides this.
             router.navigate(trigger.attr("href"));
         });
 
-        // select an actual movie
-        $(document).on('click', ianhd.app.selectors.selectMovie, function (e) {
+        // route triggers
+        $(document).on('click', ianhd.app.selectors.routeTrigger, function (e) {
             e.preventDefault();
             router.navigate($(this).attr("href"));
         });
@@ -288,6 +286,8 @@ ianhd.app = {
         router.route('/showtimes/:zip/:theaterId', function (zip, theaterId) {
             console.log('route /showtimes/:zip/:theaterId');
             viewModel.showBack(true);
+            viewModel.zip(zip);
+            viewModel.theaterId(theaterId);
             ianhd.app.loadShowtimes(zip, theaterId);
             viewModel.view("showtimes");
         });
@@ -303,6 +303,16 @@ ianhd.app = {
             viewModel.showBack(true);
             viewModel.view("home");
         });
+
+        // handle initial route
+        switch (viewModel.view()) {
+            case "home":
+                break;
+            case "showtimes":
+                break;
+            case "movie":
+                break;
+        }
 
         // gotta be a better way to trigger initial route
         var initPath = window.location.pathname;

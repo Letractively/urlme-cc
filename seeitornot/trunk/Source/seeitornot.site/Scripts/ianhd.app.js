@@ -138,31 +138,50 @@ ianhd.app = {
         
         var url = "{0}api/theaters-with-movies?zip={1}&theaterId={2}".format(apiBaseUrl, zip, theaterId);
         var targetOutput = ianhd.app.controls.theatersWithMovies();
-        targetOutput.html("<span class='hint loading'></span>")
+        targetOutput.html("<span class='hint loading'></span>");
 
         $.get(url, function (theaters) {
 
-            // mark any times that are earlier than now
-            var now = new Date();
-            now = parseInt(now.getHours() + "" + now.getMinutes());
-            $.each(theaters, function (i, theater) {
-                $.each(theater.movies, function (j, movie) {
+            // combine any movies that have standard + 3d sets of showtimes
+            $.each(theaters, function(h, theater) {
+                $.each(theater.movies, function (i, movie) {
+                    if (!movie.is3d) return true; // continue
 
-                    var showtimes = [];
-                    $.each(movie.showtimes, function (k, showtime) {
-                        var hours = Number(showtime.match(/^(\d+)/)[1]);
-                        var minutes = Number(showtime.match(/:(\d+)/)[1]);
-                        minutes = minutes < 10 ? "0" + minutes : minutes;
-                        var isPM = showtime.indexOf("am") == -1;
-                        hours = hours != 12 && isPM ? hours + 12 : hours;
-                        var showtime24hr = parseInt(hours + "" + minutes);
-                        var isPast = now > showtime24hr;
-                        showtimes.push({ isPast: isPast, showtime: showtime });
+                    // we have a 3d movie, so find it's standard movie equivalent, which we'll modify for the view
+                    var standardMovie = $.grep(theater.movies, function (tm, j) {
+                        return tm.id === movie.id && !tm.is3d;
                     });
 
-                    movie.showtimes = showtimes;
+                    if (standardMovie.length) {
+                        standardMovie[0].has3dShowtimes = true;
+                        standardMovie[0].threeDShowtimes = movie.showtimes;
+                    } else { // if there is no standard equivalent to this 3d movie, then mark the 3d movie as "is3dOnly"
+                        movie.is3dOnly = true;
+                    }
                 });
             });
+
+            // mark any times that are earlier than now
+            //var now = new Date();
+            //now = parseInt(now.getHours() + "" + now.getMinutes());
+            //$.each(theaters, function (i, theater) {
+            //    $.each(theater.movies, function (j, movie) {
+
+            //        var showtimes = [];
+            //        $.each(movie.showtimes, function (k, showtime) {
+            //            var hours = Number(showtime.match(/^(\d+)/)[1]);
+            //            var minutes = Number(showtime.match(/:(\d+)/)[1]);
+            //            minutes = minutes < 10 ? "0" + minutes : minutes;
+            //            var isPM = showtime.indexOf("am") == -1;
+            //            hours = hours != 12 && isPM ? hours + 12 : hours;
+            //            var showtime24hr = parseInt(hours + "" + minutes);
+            //            var isPast = now > showtime24hr;
+            //            showtimes.push({ isPast: isPast, showtime: showtime });
+            //        });
+
+            //        movie.showtimes = showtimes;
+            //    });
+            //});
             
             var html = $.templates("#theaterTmpl").render(theaters);
             targetOutput.html(html);

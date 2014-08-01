@@ -56,6 +56,9 @@
                     {{for showtimes}}
                         <span class="{{if isPast}}hint{{:runtime}}{{/if}}">{{:showtime}}</span>
                     {{/for}}
+                    {{if has3dShowtimes}}
+                        this has 3d showtimes
+                    {{/if}}
                 </div>
             </div>
         {{/for}}

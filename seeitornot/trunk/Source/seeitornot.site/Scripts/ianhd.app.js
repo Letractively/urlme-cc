@@ -47,6 +47,7 @@ var router = new Router();
 ianhd.registerNamespace("app");
 ianhd.app = {
     controls: {
+        changeDate: function () { return $(".datePicker a"); },
         enterZip: function () { return $(".enterZip"); },
         logo: function () { return $("#logo"); },
         menu: function () { return $("nav"); },
@@ -150,14 +151,18 @@ ianhd.app = {
                     // we have a 3d movie, so find it's standard movie equivalent, which we'll modify for the view
                     var standardMovie = $.grep(theater.movies, function (tm, j) {
                         return tm.id === movie.id && !tm.is3d;
-                    });
+                    })[0];
 
-                    if (standardMovie.length) {
-                        standardMovie[0].has3dShowtimes = true;
-                        standardMovie[0].threeDShowtimes = movie.showtimes;
+                    if (standardMovie) {
+                        standardMovie.threeDShowtimes = movie.showtimes;
+                        movie.remove = true;
                     } else { // if there is no standard equivalent to this 3d movie, then mark the 3d movie as "is3dOnly"
                         movie.is3dOnly = true;
                     }
+                });
+
+                theater.movies = $.grep(theater.movies, function(tm, j) {
+                    return !tm.remove;
                 });
             });
 
@@ -215,6 +220,12 @@ ianhd.app = {
         $(document).on('click', ianhd.app.selectors.routeTrigger, function (e) {
             e.preventDefault();
             router.navigate($(this).attr("href"));
+        });
+
+        // change date
+        ianhd.app.controls.changeDate().click(function (e) {
+            e.preventDefault();
+            alert("Working on this...");
         });
 
         // use my location button

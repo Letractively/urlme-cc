@@ -52,12 +52,25 @@
                 <h4>{{:title}}</h4>
                 <div class="hint">{{:mpaaRating}}{{if runtime}} , {{:runtime}}{{/if}}{{if is3d}} , <strong>3D</strong>{{/if}}</div>
                 <a class="movieInfo triggerRoute" href="/{{:slug}}/{{:id}}">Movie info...</a>
-                <div class="showtimesHtml">
-                    {{for showtimes}}
-                        <span class="{{if isPast}}hint{{:runtime}}{{/if}}">{{:showtime}}</span>
-                    {{/for}}
-                    {{if has3dShowtimes}}
-                        this has 3d showtimes
+                <div class="showtimesContainer {{if threeDShowtimes}}with3dShowtimes{{/if}}">
+                    {{if threeDShowtimes}}
+                        <div class="showtimeType">Standard</div>
+                    {{/if}}
+                    <div class="showtimes">
+                        {{for showtimes}}
+                            @*<span class="{{if isPast}}hint{{:runtime}}{{/if}}">{{:showtime}}</span>*@
+                            <span>{{:}}</span>
+                        {{/for}}
+                    </div>
+                    {{if threeDShowtimes}}
+                    <div class="threeDShowtimes">
+                        <div class="showtimeType">3D</div>
+                        <div class="showtimes">
+                            {{for threeDShowtimes}}
+                            <span>{{:}}</span>
+                            {{/for}}
+                        </div>
+                    </div>
                     {{/if}}
                 </div>
             </div>

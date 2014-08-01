@@ -143,6 +143,7 @@ h3.filter { line-height: 36px; }
 /* mobile & tablet */
 /* @media (min-width: 768px) and (max-width: 991px) */
 @media (max-width: 991px) {
+    h2 { font-size: 28px; margin-top: @bufferMini; }
     h4 { font-size: 16px; font-weight: bold; }
     .filter { font-size: 20px; line-height: 32px;
         a { border-bottom: 1px solid #2489ce; }
@@ -190,7 +191,7 @@ h3.filter { line-height: 36px; }
     #showtimes .datePicker { padding: @bufferMini; margin-top: @bufferSmMd; }
     #theatersWithMovies { margin-top: @bufferSmMd;
         .theater { 
-            .movie { padding: @bufferSmMd;
+            .movie { padding: @bufferSmMd; margin-top: @bufferSmMd;
                 img { margin-right: @bufferSmMd; }
                 .movieInfo { margin-top:29px; }
                 .showtimesContainer { padding-top:@bufferSmMd; }

@@ -193,6 +193,7 @@
     <Content Include="Scripts\Plugins\bootstrap-3.1.1\js\bootstrap.min.js" />
     <Content Include="Scripts\Plugins\bootstrap-dialog\bootstrap-dialog.min.css" />
     <Content Include="Scripts\Plugins\bootstrap-dialog\bootstrap-dialog.min.js" />
+    <Content Include="Scripts\Plugins\date.js" />
     <Content Include="Scripts\Plugins\font-awesome-4.1.0\css\font-awesome.min.css" />
     <Content Include="Scripts\Plugins\font-awesome-4.1.0\fonts\fontawesome-webfont.svg" />
     <Content Include="Scripts\Plugins\iscroll.js" />

@@ -17,7 +17,9 @@ var viewModel = ko.mapping.fromJS({
     zip: z || localStorage.getItem("zip"),
     showBack: false,
     view: v,
-    date: Date.parse("today").toString("dddd, MMM d"),
+    date: Date.parse("today"),
+    dateLabel: Date.parse("today").toString("dddd, MMM d"),
+    dateApiLabel: Date.parse("today").toString("yyyy-MM-dd"),
     dateIdx: 0,
     numDays: 5
 });
@@ -32,6 +34,10 @@ viewModel.theaterName.subscribe(function (newVal) {
 viewModel.theaterId.subscribe(function (newVal) {
     localStorage.setItem("theaterId", newVal);
 });
+viewModel.date.subscribe(function (newVal) {
+    viewModel.dateLabel(newVal.toString("dddd, MMM d"));
+    viewModel.dateApiLabel(newVal.toString("yyyy-MM-dd"));
+})
 viewModel.view.subscribe(function(newVal) {
     console.log("view changed to " + newVal);
     switch (newVal) {
@@ -139,9 +145,10 @@ ianhd.app = {
     loadShowtimes: function () {
         var zip = viewModel.zip();
         var theaterId = viewModel.theaterId();
+        var date = viewModel.dateApiLabel();
         console.log("Loading showtimes...");
         
-        var url = "{0}api/theaters-with-movies?zip={1}&theaterId={2}".format(apiBaseUrl, zip, theaterId);
+        var url = "{0}api/theaters-with-movies?zip={1}&theaterId={2}&date={3}".format(apiBaseUrl, zip, theaterId, date);
         var targetOutput = ianhd.app.controls.theatersWithMovies();
         targetOutput.html("<span class='hint loading'></span>");
 
@@ -240,7 +247,8 @@ ianhd.app = {
                 viewModel.dateIdx(viewModel.dateIdx() - 1);
                 add = -1;
             }
-            viewModel.date(Date.parse(viewModel.date()).add(add).days().toString("dddd, MMM d"));
+            viewModel.date(viewModel.date().add(add).days());
+            ianhd.app.loadShowtimes();
         });
 
         // use my location button

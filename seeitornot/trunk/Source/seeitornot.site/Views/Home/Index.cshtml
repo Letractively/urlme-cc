@@ -19,7 +19,7 @@
         <div class="datePicker" data-bind="visible: view() === 'home' || view() === 'showtimes'">
             <a href="#" class="prev" data-bind="css: { 'enabled': dateIdx }"><i class="fa fa-chevron-left"></i></a>
             <a href="#" class="next" data-bind="css: { 'enabled': dateIdx() < (numDays()-1) }"><i class="fa fa-chevron-right"></i></a>
-            <span data-bind="text: date"></span><span data-bind="text: dateIdx()"></span>
+            <span data-bind="text: dateLabel"></span>
         </div>
         <div id="theatersWithMovies"></div>
     </section>

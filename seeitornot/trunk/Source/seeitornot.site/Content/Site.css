@@ -230,16 +230,18 @@ h3.filter {
 #showtimes .datePicker {
   text-align: center;
   position: relative;
-  padding: 5px;
+  padding: 10px;
   background: white;
   margin-top: 20px;
 }
-#showtimes .datePicker .next,
-#showtimes .datePicker .prev {
+#showtimes .datePicker a {
   position: absolute;
-  top: -1px;
+  top: 3px;
   padding: 5px 15px;
   font-size: 20px;
+}
+#showtimes .datePicker a:not(.enabled) {
+  color: #e6e6e6;
 }
 #showtimes .datePicker .prev {
   left: 0;
@@ -529,11 +531,10 @@ h3.filter {
     width: 100%;
   }
   #showtimes .datePicker {
-    padding: 5px;
-    margin-top: 15px;
+    margin-top: 20px;
   }
   #theatersWithMovies {
-    margin-top: 15px;
+    margin-top: 20px;
   }
   #theatersWithMovies .theater .movie {
     padding: 15px;

@@ -7,6 +7,7 @@
 // @koala-prepend "plugins/Router.js",
 // @koala-prepend "plugins/jsrender.min.js",
 // @koala-prepend "plugins/bootstrap-3.1.1/js/bootstrap.min.js",
+// @koala-prepend "plugins/date.js",
 // @koala-prepend "ianhd.js"
 
 var viewModel = ko.mapping.fromJS({
@@ -16,6 +17,9 @@ var viewModel = ko.mapping.fromJS({
     zip: z || localStorage.getItem("zip"),
     showBack: false,
     view: v,
+    date: Date.parse("today").toString("dddd, MMM d"),
+    dateIdx: 0,
+    numDays: 5
 });
 ko.applyBindings(viewModel);
 
@@ -225,7 +229,18 @@ ianhd.app = {
         // change date
         ianhd.app.controls.changeDate().click(function (e) {
             e.preventDefault();
-            alert("Working on this...");
+            var trigger = $(this);
+            if (!trigger.hasClass("enabled")) return; // do nothing if this link is not enabled
+
+            var isNext = trigger.hasClass("next");
+            var add = 1;
+            if (isNext) {
+                viewModel.dateIdx(viewModel.dateIdx() + 1);
+            } else {
+                viewModel.dateIdx(viewModel.dateIdx() - 1);
+                add = -1;
+            }
+            viewModel.date(Date.parse(viewModel.date()).add(add).days().toString("dddd, MMM d"));
         });
 
         // use my location button

@@ -8,6 +8,7 @@
 // @koala-prepend "plugins/jsrender.min.js",
 // @koala-prepend "plugins/bootstrap-3.1.1/js/bootstrap.min.js",
 // @koala-prepend "plugins/date.js",
+// @koala-prepend "plugins/jquery.touchSwipe.min.js",
 // @koala-prepend "ianhd.js"
 
 var viewModel = ko.mapping.fromJS({
@@ -69,6 +70,7 @@ ianhd.app = {
         searchIcon: function () { return $(".fa-search"); },
         singleMovie: function () { return $(".singleMovie"); },
         theater: function () { return $(".theater"); },
+        theaterMovie: function () { return $(".theater .movie"); },
         theatersWithMovies: function () { return $("#theatersWithMovies"); },
         zip: function () { return $(".zip"); },
     },
@@ -201,6 +203,9 @@ ianhd.app = {
             
             var html = $.templates("#theaterTmpl").render(theaters);
             targetOutput.html(html);
+            
+            // now that we have theater movies in the dom, bind the swipes for them (swipe js plugin does not support $(document).on, not that I know of
+            ianhd.app.bindTheaterMovieSwipes();
         });
     },
     loadMovie: function () {
@@ -217,6 +222,20 @@ ianhd.app = {
             }
         });
     },
+    
+    swipeTheaterMovie: function(event, direction, distance, duration, fingerCount) {
+        var theaterMovie = $(event.toElement).closest(".movie");
+        alert("class={0}, length={1}".format(theaterMovie.attr("class"), theaterMovie.length));
+        theaterMovie.fadeOut(function () {
+            theaterMovie.remove();
+        });
+        //alert("Target is {0}, direction is {1}.".format(event.toElement, direction));
+    },
+
+    bindTheaterMovieSwipes: function() {
+        ianhd.app.controls.theaterMovie().swipe({ swipeLeft: ianhd.app.swipeTheaterMovie, swipeRight: ianhd.app.swipeTheaterMovie, allowPageScroll: "auto", threshold: 100 });
+    },
+
     bindControls: function () {
         // select an actual theater
         $(document).on('click', ianhd.app.selectors.selectTheater, function (e) {

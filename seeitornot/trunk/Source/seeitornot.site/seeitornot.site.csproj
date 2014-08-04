@@ -197,6 +197,7 @@
     <Content Include="Scripts\Plugins\font-awesome-4.1.0\css\font-awesome.min.css" />
     <Content Include="Scripts\Plugins\font-awesome-4.1.0\fonts\fontawesome-webfont.svg" />
     <Content Include="Scripts\Plugins\iscroll.js" />
+    <Content Include="Scripts\Plugins\jquery.touchSwipe.min.js" />
     <Content Include="Scripts\Plugins\jquery.history.js" />
     <Content Include="Scripts\Plugins\jsrender.min.js" />
     <Content Include="Scripts\Plugins\Router.js" />

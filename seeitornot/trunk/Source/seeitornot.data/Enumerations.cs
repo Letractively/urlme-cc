@@ -15,5 +15,11 @@ namespace seeitornot.data
             InTheaters,
             Upcoming
         }
+
+        public enum LoginProvider
+        {
+            Facebook = 1,
+            Google = 2
+        }
     }
 }

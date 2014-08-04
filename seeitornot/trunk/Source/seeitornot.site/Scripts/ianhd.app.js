@@ -225,15 +225,13 @@ ianhd.app = {
     
     swipeTheaterMovie: function(event, direction, distance, duration, fingerCount) {
         var theaterMovie = $(event.currentTarget).closest(".movie");
-        alert("raw={0}, jquery={1}, class={2}, length={3}".format(event.currentTarget, theaterMovie, theaterMovie.attr("class"), theaterMovie.length));
         theaterMovie.fadeOut(function () {
             theaterMovie.remove();
         });
-        //alert("Target is {0}, direction is {1}.".format(event.toElement, direction));
     },
 
     bindTheaterMovieSwipes: function() {
-        ianhd.app.controls.theaterMovie().swipe({ swipeLeft: ianhd.app.swipeTheaterMovie, swipeRight: ianhd.app.swipeTheaterMovie, allowPageScroll: "auto", threshold: 100 });
+        ianhd.app.controls.theaterMovie().swipe({ swipeLeft: ianhd.app.swipeTheaterMovie, swipeRight: ianhd.app.swipeTheaterMovie, allowPageScroll: "auto", threshold: 100, excludedElements: "" });
     },
 
     bindControls: function () {

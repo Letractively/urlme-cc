@@ -225,7 +225,7 @@ ianhd.app = {
     
     swipeTheaterMovie: function(event, direction, distance, duration, fingerCount) {
         var theaterMovie = $(event.toElement).closest(".movie");
-        alert("class={0}, length={1}".format(theaterMovie.attr("class"), theaterMovie.length));
+        alert("raw={0}, jquery={1}, class={2}, length={3}".format(event.toElement, theaterMovie, theaterMovie.attr("class"), theaterMovie.length));
         theaterMovie.fadeOut(function () {
             theaterMovie.remove();
         });

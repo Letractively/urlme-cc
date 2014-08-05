@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace seeitornot.data.Models.Database
 {
-    class BaseModel
+    public class BaseModel
     {
         private static ianhd.core.Data.Database _db { get; set; }
 

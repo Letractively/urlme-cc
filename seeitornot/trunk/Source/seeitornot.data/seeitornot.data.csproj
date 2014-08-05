@@ -45,6 +45,8 @@
     <Compile Include="Constants.cs" />
     <Compile Include="Enumerations.cs" />
     <Compile Include="Models\Database\BaseModel.cs" />
+    <Compile Include="Models\Database\LoginProvider.cs" />
+    <Compile Include="Models\Database\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -51,7 +51,6 @@
     <Compile Include="Models\Database\Link.cs" />
     <Compile Include="Models\Database\User.cs" />
     <Compile Include="Models\Link.cs" />
-    <Compile Include="Models\OAuth.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Operations\SaveLink.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

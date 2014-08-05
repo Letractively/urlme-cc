@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace seeitornot.data.Models.Database
+namespace seeitornot.data.Models
 {
     public sealed partial class User : BaseModel
     {

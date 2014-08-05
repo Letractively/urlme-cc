@@ -10,7 +10,8 @@ namespace seeitornot.data.Models.Database
     {
         public int UserId { get; set; }
         public int LoginProviderId { get; set; }
-        public string UserKey { get; set; }
+        public string LoginProviderUserKey { get; set; }
+        public string Name { get; set; }
         public DateTime DateCreated { get; set; }
         public DateTime DateModified { get; set; }
     }

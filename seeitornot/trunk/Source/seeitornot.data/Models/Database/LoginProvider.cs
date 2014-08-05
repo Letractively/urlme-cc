@@ -9,6 +9,7 @@ namespace seeitornot.data.Models.Database
     public sealed partial class LoginProvider : BaseModel
     {
         public int LoginProviderId { get; set; }
+        public string Slug { get; set; }
         public string Name { get; set; }
         public int SortOrder { get; set; }
         public string ClientId { get; set; }

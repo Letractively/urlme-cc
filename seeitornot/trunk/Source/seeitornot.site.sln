@@ -1,6 +1,8 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2012
+# Visual Studio 2013
+VisualStudioVersion = 12.0.21005.1
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "seeitornot.site", "seeitornot.site\seeitornot.site.csproj", "{AEBA6AE7-92AA-47CD-9322-78E917ABEBD2}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "seeitornot.model", "seeitornot.model\seeitornot.model.csproj", "{172DC3D5-6591-4460-839E-7281611B274D}"
@@ -8,6 +10,16 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "seeitornot.api", "seeitornot.api\seeitornot.api.csproj", "{9C46FB84-F295-42EA-BD6C-52EE399BF4D5}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "seeitornot.data", "seeitornot.data\seeitornot.data.csproj", "{00F217B0-D8F0-4508-A997-5811DDFC6ECC}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Reference Files", "Reference Files", "{BB14499C-DA7C-40B3-8A47-E6CEA095B373}"
+	ProjectSection(SolutionItems) = preProject
+		facebook_oauth_user_info_example.json = facebook_oauth_user_info_example.json
+		seeitornot.site\imdb_json.txt = seeitornot.site\imdb_json.txt
+		seeitornot.site\imdb_legit_json.txt = seeitornot.site\imdb_legit_json.txt
+		seeitornot.site\redbox_top20_xml.txt = seeitornot.site\redbox_top20_xml.txt
+		seeitornot.site\rt_json.txt = seeitornot.site\rt_json.txt
+		seeitornot.site\showtimes_html.txt = seeitornot.site\showtimes_html.txt
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

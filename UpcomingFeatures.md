@@ -1,0 +1,12 @@
+# Introduction #
+
+Intro content here.
+
+
+# Details #
+
+1. OpenID authentication, supporting login to urlme.cc via your Google, MyOpenID, Facebook accounts.
+
+2. Thumbnail previews for each link, via http://www.thumbalizr.com/.
+
+3. Easier way to copy/paste your links.
